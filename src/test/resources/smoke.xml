@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="smoke suit" parallel="tests" thread-count="2">
+    <test name="distributor tests">
+        <classes>
+            <class name="com.cutanddry.qa.tests.DistributorLoginTest" />
+            <class name="com.cutanddry.qa.tests.AddProductsFrmOrderGuideTest" />
+        </classes>
+    </test>
+</suite>
