@@ -11,9 +11,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class AddProductsFromCatalogTest extends TestBase {
+public class EditProductQtyFrmCatalogTest extends TestBase {
     static User user;
-
+    static String itemName = "Artichoke -24ct";
 
     @BeforeMethod
     public void setUp(){
@@ -22,24 +22,23 @@ public class AddProductsFromCatalogTest extends TestBase {
     }
 
     @Test
-    public static void loginAsDistributor() {
-        String itemName;
+    public static void editProductQtyFrmCatalog() {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsDistributor(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"error");
+        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToIndependentPopup(),"error");
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToIndependentPopup(),"error");
-        Customer.NavigateToCatalog();
-        softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"error");
-//        itemName = Customer.getItemNameFirstRow();
-//        Customer.increaseFirstRowQtyByOne();
-//        Customer.checkoutItems();
-//        softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
-//        softAssert.assertAll();
-
+        Customer.goToCatalog();
+        softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
+        Customer.searchItemOnCatalog(itemName);
+        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName), "item not found");
+        Customer.addItemToCartCatalog();
+        Customer.increaseCatalogQtyByThree();
+        softAssert.assertEquals(Customer.getItemQtyCatalog(),"3");
+        Customer.decreaseCatalogQtyByThree();
+        softAssert.assertTrue(Customer.isAddToCartTextDisplayed(),"text error");
+        softAssert.assertAll();
     }
 
     @AfterMethod

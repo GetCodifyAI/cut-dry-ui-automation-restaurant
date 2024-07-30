@@ -9,6 +9,32 @@ public class Customer {
         customersPage.clickPlusQryFirstRow();
     }
     public static void increaseSecondRowQtyByOne(){customersPage.clickPlusQrySecondRow();}
+    public static void decreaseFirstRowQtyByOne(){
+        customersPage.clickMinusQryFirstRow();
+    }
+    public static void decreaseSecondRowQtyByOne(){
+        customersPage.clickMinusQrySecondRow();
+    }
+    public static void increaseFirstRowQtyByThree(){
+        customersPage.clickPlusQryFirstRow();
+        customersPage.clickPlusQryFirstRow();
+        customersPage.clickPlusQryFirstRow();
+    }
+    public static void decreaseFirstRowQtyByThree(){
+        customersPage.clickMinusQryFirstRow();
+        customersPage.clickMinusQryFirstRow();
+        customersPage.clickMinusQryFirstRow();
+    }
+    public static void increaseCatalogQtyByThree(){
+        customersPage.clickPlusCatalog();
+        customersPage.clickPlusCatalog();
+    }
+    public static void decreaseCatalogQtyByThree(){
+        customersPage.clickMinusCatalog();
+        customersPage.clickMinusCatalog();
+        customersPage.clickMinusCatalog();
+    }
+
     public static String getItemNameFirstRow(){
         return customersPage.getItemNameFirstRow();
     }
@@ -16,6 +42,29 @@ public class Customer {
     public static void checkoutItems(){
         customersPage.clickOnCheckoutButton();
     }
-    public static void NavigateToCatalog(){customersPage.clickCatalogButton();}
-    public static boolean isUserNavigatedToCatalog(){return customersPage.isCatalogTextDisplayed();
-    }}
+    public static boolean isUserNavigatedToCatalog(){return customersPage.isCatalogTextDisplayed();}
+    public static void goToCatalog(){
+        customersPage.clickOnCatalogButton();
+    }
+    public static void searchItemOnCatalog(String item){
+        customersPage.typeToSearchOnCatalog(item);
+    }
+    public static String getFirstElementFrmSearchResults(){return customersPage.getFirstItemNameFrmSearchResults();}
+    public static void addItemToCartCatalog(){
+        customersPage.clickAddToCartCatalog();
+    }
+    public static String getItemQtyFirstRow(){
+        return customersPage.getItemQtyFirstRow();
+    }
+    public static String getItemQtyCatalog(){
+        return customersPage.getItemQtyCatalog();
+    }
+    public static double getItemPriceFirstRow(){
+        return customersPage.getItemPriceFirstRow();
+    }
+    public static double getItemPriceOnCheckoutButton(){
+        return customersPage.getItemPriceOnCheckoutButton();
+    }
+    public static boolean isAddToCartTextDisplayed(){return customersPage.isAddToCartTextDisplayed();}
+
+}
