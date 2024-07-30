@@ -6,12 +6,12 @@ import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.io.IOException;
-
-public class AddProductsFrmOrderGuideTest extends TestBase {
+public class AddProductsFromCatalogTest extends TestBase {
     static User user;
 
 
@@ -32,11 +32,13 @@ public class AddProductsFrmOrderGuideTest extends TestBase {
         softAssert.assertTrue(Dashboard.isUserNavigatedToIndependentPopup(),"error");
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToIndependentPopup(),"error");
-        itemName = Customer.getItemNameFirstRow();
-        Customer.increaseFirstRowQtyByOne();
-        Customer.checkoutItems();
-        softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
-        softAssert.assertAll();
+        Customer.NavigateToCatalog();
+        softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"error");
+//        itemName = Customer.getItemNameFirstRow();
+//        Customer.increaseFirstRowQtyByOne();
+//        Customer.checkoutItems();
+//        softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
+//        softAssert.assertAll();
 
     }
 

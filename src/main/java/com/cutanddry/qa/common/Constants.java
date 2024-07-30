@@ -8,7 +8,7 @@ public class Constants {
 
     private static String baseDomain() {
         if (TEST_ENV.equalsIgnoreCase("UAT")){
-            MAIN_URL = "https://supplier-"+TEST_ENV+".staging.cutanddry.com/";
+            MAIN_URL = "https://app-"+TEST_ENV+".staging.cutanddry.com/";
         } else if (TEST_ENV.equalsIgnoreCase("")){
             //implement for other env here
         }

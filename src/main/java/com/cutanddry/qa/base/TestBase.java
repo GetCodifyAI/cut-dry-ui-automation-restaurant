@@ -23,10 +23,10 @@ public class TestBase {
         if (BROWSER_NAME.equalsIgnoreCase("chrome")){
             try {
                 ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--start-maximized");
-                if (RUN_HEADLESS){
-                    chromeOptions.addArguments("--headless","--window-size=1920,1080");
-                }
+//                chromeOptions.addArguments("--start-maximized");
+//                if (RUN_HEADLESS){
+//                    chromeOptions.addArguments("--headless","--window-size=1920,1080");
+//                }
                 driver = new ChromeDriver(chromeOptions);
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
                 driver.get(MAIN_URL);
