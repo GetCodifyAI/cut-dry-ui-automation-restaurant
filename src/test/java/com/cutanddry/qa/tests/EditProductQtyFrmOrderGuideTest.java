@@ -23,20 +23,20 @@ public class EditProductQtyFrmOrderGuideTest extends TestBase {
     }
 
     @Test
-    public static void editProductQtyFrmOrderGuide() {
+    public void editProductQtyFrmOrderGuide() {
         SoftAssert softAssert = new SoftAssert();
-        Login.loginAsDistributor(user.getEmailOrMobile(), user.getPassword());
+        Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToIndependentPopup(),"navigation error");
+        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.increaseFirstRowQtyByThree();
         softAssert.assertEquals(Customer.getItemQtyFirstRow(),"3");
-        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceFirstRow()*3, "price error");
+        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceFirstRow()*3, "price error after increase");
         Customer.decreaseFirstRowQtyByThree();
         softAssert.assertEquals(Customer.getItemQtyFirstRow(),"0");
-        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceFirstRow()*0, "price error");
+        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceFirstRow()*0, "price error after decrease");
         softAssert.assertAll();
     }
 

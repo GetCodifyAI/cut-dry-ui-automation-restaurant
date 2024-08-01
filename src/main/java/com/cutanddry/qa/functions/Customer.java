@@ -1,6 +1,7 @@
 package com.cutanddry.qa.functions;
 
 import com.cutanddry.qa.pages.CustomersPage;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Customer {
     static CustomersPage customersPage = new CustomersPage();
@@ -34,6 +35,15 @@ public class Customer {
         customersPage.clickMinusCatalog();
         customersPage.clickMinusCatalog();
     }
+    public static void increaseReviewCartQtyByThree(){
+        customersPage.clickPlusReviewCart();
+        customersPage.clickPlusReviewCart();
+    }
+    public static void decreaseReviewCartQtyByThree(){
+        customersPage.clickMinusReviewCart();
+        customersPage.clickMinusReviewCart();
+        customersPage.clickMinusReviewCart();
+    }
 
     public static String getItemNameFirstRow(){
         return customersPage.getItemNameFirstRow();
@@ -66,5 +76,13 @@ public class Customer {
         return customersPage.getItemPriceOnCheckoutButton();
     }
     public static boolean isAddToCartTextDisplayed(){return customersPage.isAddToCartTextDisplayed();}
-
+    public static double getItemPriceReviewCart(){return customersPage.getItemPriceReviewCart();}
+    public static String getItemQtyReviewCart(){
+        return customersPage.getItemQtyReviewCart();
+    }
+    public static double getItemPriceReviewCartFirstRow(){
+        return customersPage.getItemPriceReviewCartFirstRow();
+    }
+    public static void submitOrder(){customersPage.submitOrder();if (customersPage.isDuplicatePopupDisplayed()){customersPage.clickYesDuplicatePopup();}}
+    public static boolean isThankingForOrderPopupDisplayed(){return customersPage.isThankingForOrderPopupDisplayed();}
 }

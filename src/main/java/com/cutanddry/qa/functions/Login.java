@@ -6,7 +6,7 @@ public class Login {
 
     static LoginPage loginPage = new LoginPage();
 
-    public static void loginAsDistributor(String emailOrMobile, String password){
+    public static void loginAsRestaurant(String emailOrMobile, String password){
         loginPage.typeEmailOrMobile(emailOrMobile);
         loginPage.typePassword(password);
         loginPage.clickSubmit();

@@ -14,8 +14,8 @@ public class Dashboard {
     public static void navigateToOrderGuide() {
         dashboardPage.clickOnHayes();
     }
-    public static boolean isUserNavigatedToIndependentPopup(){
-        return dashboardPage.isIndependentPopupDisplayed();
+    public static boolean isUserNavigatedToOrderGuide(){
+        return dashboardPage.isOrderGuideTextDisplayed();
     }
 
 }

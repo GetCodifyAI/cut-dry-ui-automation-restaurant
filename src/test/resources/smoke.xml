@@ -2,7 +2,7 @@
 <suite name="smoke suit" parallel="tests" thread-count="2">
     <test name="distributor tests">
         <classes>
-            <class name="com.cutanddry.qa.tests.DistributorLoginTest" />
+            <class name="com.cutanddry.qa.tests.RestaurantLoginTest" />
             <class name="com.cutanddry.qa.tests.AddProductsFrmOrderGuideTest" />
         </classes>
     </test>

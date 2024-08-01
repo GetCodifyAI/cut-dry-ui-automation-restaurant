@@ -22,14 +22,14 @@ public class AddProductsFrmCatalogTest extends TestBase {
     }
 
     @Test
-    public static void loginAsDistributor() {
+    public void addProductsFrmCatalog() {
         SoftAssert softAssert = new SoftAssert();
-        Login.loginAsDistributor(user.getEmailOrMobile(), user.getPassword());
+        Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToIndependentPopup(),"navigation error");
+        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.goToCatalog();
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
         Customer.searchItemOnCatalog(itemName);
