@@ -1,9 +1,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="smoke suit" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="com.cutanddry.qa.utils.RetryTransformer"/>
+    </listeners>
     <test name="distributor tests">
         <classes>
             <class name="com.cutanddry.qa.tests.RestaurantLoginTest" />
             <class name="com.cutanddry.qa.tests.AddProductsFrmOrderGuideTest" />
+            <class name="com.cutanddry.qa.tests.AddProductsFrmCatalogTest" />
+            <class name="com.cutanddry.qa.tests.EditProductQtyFrmOrderGuideTest" />
+            <class name="com.cutanddry.qa.tests.EditProductQtyFrmCatalogTest" />
+            <class name="com.cutanddry.qa.tests.EditProductQtyFrmReviewCartTest" />
+            <class name="com.cutanddry.qa.tests.RestaurantOrderSubmissionTest" />
         </classes>
     </test>
 </suite>
