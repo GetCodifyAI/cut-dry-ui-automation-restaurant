@@ -20,7 +20,8 @@ public class CustomersPage extends LoginPage {
     By lbl_itemPriceFirstRow = By.xpath("//tr[1]//td[5]/div");
     By btn_increaseQtyCatalog = By.xpath("//div[contains(@class, 'd-flex') and contains(@class, 'btn-primary')]/*[name()='svg' and contains(@data-icon, 'plus')]");
     By btn_decreaseQtyCatalog = By.xpath("//div[contains(@class, 'd-flex') and contains(@class, 'btn-primary')]/*[name()='svg' and @data-icon='minus']");
-    By tbx_itemQuantityCatalog = By.xpath("//input[contains(@class, '_w5swlf') and @type='number']");
+    By tbx_itemQuantityCatalog = By.xpath("//input[@type='number']");
+    By lbl_itemPriceSearchCatalogList = By.xpath("//span[contains(text(),'$')]");
     By txt_addToCart = By.xpath("//button[contains(text(), 'Add to Cart')]");
     By lbl_itemPriceReviewCart = By.xpath("//tbody[2]/tr[2]/td[2]");
     By btn_increaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[3]");
@@ -30,6 +31,7 @@ public class CustomersPage extends LoginPage {
     By btn_submitOrder = By.xpath("//button[contains(text(),'Submit Order')]");
     By btn_duplicateOrderYes = By.xpath("//button[contains(text(), 'Yes')]");
     By lbl_thankYouForOrder = By.xpath("//*[contains(text(),'Thank you for your order!')]");
+
 
     public String getItemNameFirstRow(){
         return driver.findElements(lbl_itemNameList).getFirst().getText();
@@ -61,6 +63,7 @@ public class CustomersPage extends LoginPage {
     public void clickAddToCartCatalog(){driver.findElement(btn_addToCart).click();}
     public String getItemQtyFirstRow(){return driver.findElement(tbx_itemQuantityFirstRow).getAttribute("value");}
     public String getItemQtyCatalog(){return driver.findElement(tbx_itemQuantityCatalog).getAttribute("value");}
+    public Double getItemPriceCatalogSearch() {return Double.parseDouble(driver.findElements(lbl_itemPriceSearchCatalogList).get(1).getText().replace("$", ""));}
     public Double getItemPriceFirstRow(){return Double.valueOf(driver.findElement(lbl_itemPriceFirstRow).getText().replace("$",""));}
     public Double getItemPriceOnCheckoutButton(){return Double.valueOf(driver.findElement(btn_checkout).getText().replace("$",""));}
     public boolean isAddToCartTextDisplayed(){return driver.findElement(txt_addToCart).isDisplayed();}
@@ -72,6 +75,6 @@ public class CustomersPage extends LoginPage {
     public boolean isDuplicatePopupDisplayed(){try {return driver.findElement(btn_duplicateOrderYes).isDisplayed();} catch (Exception e){return false;}}
     public void clickYesDuplicatePopup(){wait.until(ExpectedConditions.elementToBeClickable(btn_duplicateOrderYes));driver.findElement(btn_duplicateOrderYes).click();wait.until(ExpectedConditions.invisibilityOf(driver.findElement(btn_duplicateOrderYes)));}
     public boolean isThankingForOrderPopupDisplayed(){try {wait.until(ExpectedConditions.visibilityOf(driver.findElement(lbl_thankYouForOrder)));return driver.findElement(lbl_thankYouForOrder).isDisplayed();} catch (Exception e){return false;}}
-    public void submitOrder(){wait.until(ExpectedConditions.elementToBeClickable(btn_submitOrder));driver.findElement(btn_submitOrder).click();
-    }
+    public void submitOrder(){wait.until(ExpectedConditions.elementToBeClickable(btn_submitOrder));driver.findElement(btn_submitOrder).click();}
+
 }

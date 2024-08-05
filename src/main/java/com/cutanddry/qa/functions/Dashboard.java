@@ -11,8 +11,11 @@ public class Dashboard {
     public static void navigateToIndependentFoodsCo() {
         dashboardPage.clickOnPlaceOrder();
     }
-    public static void navigateToOrderGuide() {
+    public static void navigateToOrderGuide(){
         dashboardPage.clickOnHayes();
+        if (dashboardPage.isTestAutomationPopupDisplayed()){
+            dashboardPage.clickOnTestAutomationPopup();
+        }
     }
     public static boolean isUserNavigatedToOrderGuide(){
         return dashboardPage.isOrderGuideTextDisplayed();

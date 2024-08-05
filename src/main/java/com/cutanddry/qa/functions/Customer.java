@@ -1,7 +1,8 @@
 package com.cutanddry.qa.functions;
 
 import com.cutanddry.qa.pages.CustomersPage;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import lombok.SneakyThrows;
+
 
 public class Customer {
     static CustomersPage customersPage = new CustomersPage();
@@ -26,15 +27,20 @@ public class Customer {
         customersPage.clickMinusQryFirstRow();
         customersPage.clickMinusQryFirstRow();
     }
+    @SneakyThrows
     public static void increaseCatalogQtyByThree(){
         customersPage.clickPlusCatalog();
         customersPage.clickPlusCatalog();
+        Thread.sleep(4000);
     }
+    @SneakyThrows
     public static void decreaseCatalogQtyByThree(){
         customersPage.clickMinusCatalog();
         customersPage.clickMinusCatalog();
         customersPage.clickMinusCatalog();
+        Thread.sleep(4000);
     }
+
     public static void increaseReviewCartQtyByThree(){
         customersPage.clickPlusReviewCart();
         customersPage.clickPlusReviewCart();
@@ -63,6 +69,7 @@ public class Customer {
     public static void addItemToCartCatalog(){
         customersPage.clickAddToCartCatalog();
     }
+    public static Double getItemPriceCatalogSearch(){return customersPage.getItemPriceCatalogSearch();}
     public static String getItemQtyFirstRow(){
         return customersPage.getItemQtyFirstRow();
     }
