@@ -21,7 +21,7 @@ public class CustomersPage extends LoginPage {
     By btn_increaseQtyCatalog = By.xpath("//div[contains(@class, 'd-flex') and contains(@class, 'btn-primary')]/*[name()='svg' and contains(@data-icon, 'plus')]");
     By btn_decreaseQtyCatalog = By.xpath("//div[contains(@class, 'd-flex') and contains(@class, 'btn-primary')]/*[name()='svg' and @data-icon='minus']");
     By tbx_itemQuantityCatalog = By.xpath("//input[@type='number']");
-    By lbl_itemPriceSearchCatalogList = By.xpath("//span[contains(text(),'$')]");
+    By lbl_itemPriceSearchCatalogList = By.xpath("//div[4]/div/div[1]/div/span[contains(text(), '$')]");
     By txt_addToCart = By.xpath("//button[contains(text(), 'Add to Cart')]");
     By lbl_itemPriceReviewCart = By.xpath("//tbody[2]/tr[2]/td[2]");
     By btn_increaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[3]");
@@ -51,7 +51,8 @@ public class CustomersPage extends LoginPage {
     }
     public void clickMinusCatalog(){driver.findElement(btn_decreaseQtyCatalog).click();}
     public String getItemNameSecondRow(){return driver.findElements(lbl_itemNameList).get(1).getText();}
-    public void clickOnCheckoutButton(){wait.until(ExpectedConditions.elementToBeClickable(btn_checkout));driver.findElement(btn_checkout).click();}
+    public void clickOnCheckoutButton(){
+        driver.findElement(btn_checkout).click();}
     public boolean isCatalogTextDisplayed(){return driver.findElement(txt_catalog).isDisplayed();}
     public void clickOnCatalogButton(){
         driver.findElement(btn_catalog).click();
@@ -60,12 +61,17 @@ public class CustomersPage extends LoginPage {
         driver.findElement(tbx_catalogSearch).sendKeys(item);
     }
     public String getFirstItemNameFrmSearchResults(){return driver.findElements(lbl_catalogSearchItemList).getFirst().getText();}
-    public void clickAddToCartCatalog(){driver.findElement(btn_addToCart).click();}
+    public void clickAddToCartCatalog(){
+        driver.findElement(btn_addToCart).click();
+        wait.until(ExpectedConditions.elementToBeClickable(btn_checkout));
+    }
     public String getItemQtyFirstRow(){return driver.findElement(tbx_itemQuantityFirstRow).getAttribute("value");}
     public String getItemQtyCatalog(){return driver.findElement(tbx_itemQuantityCatalog).getAttribute("value");}
-    public Double getItemPriceCatalogSearch() {return Double.parseDouble(driver.findElements(lbl_itemPriceSearchCatalogList).get(1).getText().replace("$", ""));}
+    public Double getItemPriceCatalogSearch(){
+        return Double.valueOf(driver.findElement(lbl_itemPriceSearchCatalogList).getText().replace("$",""));}
     public Double getItemPriceFirstRow(){return Double.valueOf(driver.findElement(lbl_itemPriceFirstRow).getText().replace("$",""));}
-    public Double getItemPriceOnCheckoutButton(){return Double.valueOf(driver.findElement(btn_checkout).getText().replace("$",""));}
+    public Double getItemPriceOnCheckoutButton(){
+        return Double.valueOf(driver.findElement(btn_checkout).getText().replace("$",""));}
     public boolean isAddToCartTextDisplayed(){return driver.findElement(txt_addToCart).isDisplayed();}
     public Double getItemPriceReviewCart(){return Double.valueOf(driver.findElement(lbl_itemPriceReviewCart).getText().replace("$",""));}
     public void clickPlusReviewCart(){driver.findElement(btn_increaseQtyReviewCart).click();}

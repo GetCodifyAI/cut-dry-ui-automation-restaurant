@@ -2,6 +2,7 @@ package com.cutanddry.qa.functions;
 
 import com.cutanddry.qa.pages.DashboardPage;
 
+
 public class Dashboard {
     static DashboardPage dashboardPage = new DashboardPage();
 
@@ -15,6 +16,9 @@ public class Dashboard {
         dashboardPage.clickOnHayes();
         if (dashboardPage.isTestAutomationPopupDisplayed()){
             dashboardPage.clickOnTestAutomationPopup();
+        }
+        if (dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickOnNoDraftOrder();
         }
     }
     public static boolean isUserNavigatedToOrderGuide(){

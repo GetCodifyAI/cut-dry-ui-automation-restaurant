@@ -32,6 +32,7 @@ public class Customer {
         customersPage.clickPlusCatalog();
         customersPage.clickPlusCatalog();
         Thread.sleep(4000);
+
     }
     @SneakyThrows
     public static void decreaseCatalogQtyByThree(){
@@ -39,6 +40,7 @@ public class Customer {
         customersPage.clickMinusCatalog();
         customersPage.clickMinusCatalog();
         Thread.sleep(4000);
+
     }
 
     public static void increaseReviewCartQtyByThree(){
@@ -55,10 +57,12 @@ public class Customer {
         return customersPage.getItemNameFirstRow();
     }
     public static String getItemNameSecondRow(){return customersPage.getItemNameSecondRow();}
+
     public static void checkoutItems(){
         customersPage.clickOnCheckoutButton();
     }
     public static boolean isUserNavigatedToCatalog(){return customersPage.isCatalogTextDisplayed();}
+
     public static void goToCatalog(){
         customersPage.clickOnCatalogButton();
     }
