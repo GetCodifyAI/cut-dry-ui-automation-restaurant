@@ -6,14 +6,15 @@ import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.io.IOException;
+import java.util.Optional;
 
-public class AddProductsFrmOrderGuideTest extends TestBase {
+public class EditProductQtyFrmOrderGuideTest extends TestBase {
     static User user;
-
 
     @BeforeMethod
     public void setUp(){
@@ -22,8 +23,7 @@ public class AddProductsFrmOrderGuideTest extends TestBase {
     }
 
     @Test
-    public void addProductsFrmOrderGuide() {
-        String itemName;
+    public void editProductQtyFrmOrderGuide() {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
@@ -31,12 +31,13 @@ public class AddProductsFrmOrderGuideTest extends TestBase {
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        itemName = Customer.getItemNameFirstRow();
-        Customer.increaseFirstRowQtyByOne();
-        Customer.checkoutItems();
-        softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
+        Customer.increaseFirstRowQtyByThree();
+        softAssert.assertEquals(Customer.getItemQtyFirstRow(),"3");
+        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceFirstRow()*3, "price error after increase");
+        Customer.decreaseFirstRowQtyByThree();
+        softAssert.assertEquals(Customer.getItemQtyFirstRow(),"0");
+        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceFirstRow()*0, "price error after decrease");
         softAssert.assertAll();
-
     }
 
     @AfterMethod

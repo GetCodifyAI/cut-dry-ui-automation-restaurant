@@ -8,7 +8,7 @@ import com.cutanddry.qa.utils.JsonUtil;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
-public class DistributorLoginTest extends TestBase {
+public class RestaurantLoginTest extends TestBase {
     static User user;
     @BeforeMethod
     public void setUp() {
@@ -17,9 +17,9 @@ public class DistributorLoginTest extends TestBase {
     }
 
     @Test
-    public static void loginAsDistributor() {
+    public void loginAsRestaurant() {
         SoftAssert softAssert = new SoftAssert();
-        Login.loginAsDistributor(user.getEmailOrMobile(), user.getPassword());
+        Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         softAssert.assertAll();
     }

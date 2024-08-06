@@ -1,9 +1,11 @@
 package com.cutanddry.qa.base;
 
 import com.cutanddry.qa.common.Constants;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.logging.Level;
@@ -14,6 +16,8 @@ import static com.cutanddry.qa.common.Constants.*;
 public class TestBase {
     private static final Logger LOGGER = Logger.getLogger(TestBase.class.getName());
     public static WebDriver driver;
+    public static WebDriverWait wait;
+    public static JavascriptExecutor js;
 
     public TestBase(){
 
@@ -28,6 +32,8 @@ public class TestBase {
                     chromeOptions.addArguments("--headless","--window-size=1920,1080");
                 }
                 driver = new ChromeDriver(chromeOptions);
+                wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+                js = (JavascriptExecutor) driver;
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
                 driver.get(MAIN_URL);
                 LOGGER.info("WebDriver initialized and navigated to the URL: " + MAIN_URL);
