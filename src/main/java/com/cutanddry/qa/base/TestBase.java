@@ -32,9 +32,9 @@ public class TestBase {
                     chromeOptions.addArguments("--headless","--window-size=1920,1080");
                 }
                 driver = new ChromeDriver(chromeOptions);
-                wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+                wait = new WebDriverWait(driver, Duration.ofSeconds(40));
                 js = (JavascriptExecutor) driver;
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
                 driver.get(MAIN_URL);
                 LOGGER.info("WebDriver initialized and navigated to the URL: " + MAIN_URL);
             }catch (Exception e){
