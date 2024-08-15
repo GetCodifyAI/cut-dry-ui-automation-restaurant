@@ -4,7 +4,12 @@ public class Constants {
     public static String BROWSER_NAME = System.getProperty("test.browser", "chrome");
     public static boolean RUN_HEADLESS = Boolean.parseBoolean(System.getProperty("run.headless", "True"));
     public static String TEST_ENV = System.getProperty("test.env", "uat");
+    public static String SLACK_TOKEN = System.getProperty("slack.token", "***");
+    public static String SLACK_CHANNEL = System.getProperty("slack.channel", "#ui-automation-tests");
     public static String MAIN_URL = baseDomain();
+
+    //slackToken=***
+    //slackChannel=#ui-automation-tests
 
     private static String baseDomain() {
         if (TEST_ENV.equalsIgnoreCase("UAT")){

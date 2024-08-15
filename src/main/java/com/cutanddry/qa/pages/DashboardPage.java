@@ -14,34 +14,43 @@ public class DashboardPage extends LoginPage{
 
 
 
-    public boolean isDashboardTextDisplayed(){try {wait.until(ExpectedConditions.visibilityOf(driver.findElement(txt_dashboard)));return driver.findElement(txt_dashboard).isDisplayed();} catch (Exception e){return false;}}
-    public void clickOnPlaceOrder() {driver.findElement(btn_placeOrder).click();}
-    public void clickOnHayes() {driver.findElement(btn_hayes).click();}
+    public boolean isDashboardTextDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_dashboard);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_dashboard);
+    }
+    public void clickOnPlaceOrder() {
+        restaurantUI.click(btn_placeOrder);}
+    public void clickOnHayes() {
+        restaurantUI.click(btn_hayes);}
     public boolean isOrderGuideTextDisplayed(){
-        return driver.findElement(txt_OrderGuide).isDisplayed();
+        return restaurantUI.isDisplayed(txt_OrderGuide);
     }
     public boolean isTestAutomationPopupDisplayed(){
         try {
-            return driver.findElement(btn_TestAutomation).isDisplayed();
+            return restaurantUI.isDisplayed(btn_TestAutomation);
         } catch (Exception e){
             return false;
         }
     }
     public void clickOnTestAutomationPopup(){
-        wait.until(ExpectedConditions.elementToBeClickable(btn_TestAutomation));
-        driver.findElement(btn_TestAutomation).click();
-        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(btn_TestAutomation)));
+        restaurantUI.waitForClickability(btn_TestAutomation);
+        restaurantUI.click(btn_TestAutomation);
+        restaurantUI.waitForInvisibility(btn_TestAutomation);
     }
     public boolean isDraftOrderPopUpDisplayed(){
         try {
-            return driver.findElement(txt_draftOrder).isDisplayed();
+            return restaurantUI.isDisplayed(txt_draftOrder);
         } catch (Exception e){
             return false;
         }
     }
     public void clickOnNoDraftOrder(){
-        wait.until(ExpectedConditions.elementToBeClickable(btn_noDraftOrder));
-        driver.findElement(btn_noDraftOrder).click();
-        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(btn_noDraftOrder)));
+        restaurantUI.waitForClickability(btn_noDraftOrder);
+        restaurantUI.click(btn_noDraftOrder);
+        restaurantUI.waitForInvisibility(btn_noDraftOrder);
     }
 }

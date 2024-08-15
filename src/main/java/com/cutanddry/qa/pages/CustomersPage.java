@@ -34,53 +34,84 @@ public class CustomersPage extends LoginPage {
 
 
     public String getItemNameFirstRow(){
-        return driver.findElements(lbl_itemNameList).getFirst().getText();
+        return restaurantUI.getText(lbl_itemNameList);
     }
     public void clickPlusQryFirstRow(){
-        driver.findElement(btn_increaseQtyFirstRow).click();
+        restaurantUI.click(btn_increaseQtyFirstRow);
     }
-    public void clickPlusQrySecondRow(){driver.findElement(btn_increaseQtySecondRow).click();}
+    public void clickPlusQrySecondRow(){
+        restaurantUI.click(btn_increaseQtySecondRow);
+    }
     public void clickMinusQryFirstRow(){
-        driver.findElement(btn_decreaseQtyFirstRow).click();
+        restaurantUI.click(btn_decreaseQtyFirstRow);
     }
     public void clickMinusQrySecondRow(){
-        driver.findElement(btn_decreaseQtySecondRow).click();
+        restaurantUI.click(btn_decreaseQtySecondRow);
     }
     public void clickPlusCatalog(){
-        driver.findElement(btn_increaseQtyCatalog).click();
+        restaurantUI.click(btn_increaseQtyCatalog);
     }
-    public void clickMinusCatalog(){driver.findElement(btn_decreaseQtyCatalog).click();}
-    public String getItemNameSecondRow(){return driver.findElements(lbl_itemNameList).get(1).getText();}
+    public void clickMinusCatalog(){
+        restaurantUI.click(btn_decreaseQtyCatalog);
+    }
+    public String getItemNameSecondRow(){
+        return restaurantUI.getText(lbl_itemNameList,1);
+    }
     public void clickOnCheckoutButton(){
-        driver.findElement(btn_checkout).click();}
-    public boolean isCatalogTextDisplayed(){return driver.findElement(txt_catalog).isDisplayed();}
+        restaurantUI.click(btn_checkout);}
+    public boolean isCatalogTextDisplayed(){
+        return restaurantUI.isDisplayed(txt_catalog);}
     public void clickOnCatalogButton(){
-        driver.findElement(btn_catalog).click();
+        restaurantUI.click(btn_catalog);
     }
     public void typeToSearchOnCatalog(String item){
-        driver.findElement(tbx_catalogSearch).sendKeys(item);
+        restaurantUI.sendKeys(tbx_catalogSearch,item);
     }
-    public String getFirstItemNameFrmSearchResults(){return driver.findElements(lbl_catalogSearchItemList).getFirst().getText();}
+    public String getFirstItemNameFrmSearchResults(){
+        return restaurantUI.getText(lbl_catalogSearchItemList, 0);
+    }
     public void clickAddToCartCatalog(){
-        driver.findElement(btn_addToCart).click();
-        wait.until(ExpectedConditions.elementToBeClickable(btn_checkout));
+        restaurantUI.click(btn_addToCart);
+        restaurantUI.waitForClickability(btn_checkout);
     }
-    public String getItemQtyFirstRow(){return driver.findElement(tbx_itemQuantityFirstRow).getAttribute("value");}
-    public String getItemQtyCatalog(){return driver.findElement(tbx_itemQuantityCatalog).getAttribute("value");}
+    public String getItemQtyFirstRow(){
+        return restaurantUI.getText(tbx_itemQuantityFirstRow,"value");}
+    public String getItemQtyCatalog(){
+        return restaurantUI.getText(tbx_itemQuantityCatalog,"value");}
     public Double getItemPriceCatalogSearch(){
-        return Double.valueOf(driver.findElement(lbl_itemPriceSearchCatalogList).getText().replace("$",""));}
-    public Double getItemPriceFirstRow(){return Double.valueOf(driver.findElement(lbl_itemPriceFirstRow).getText().replace("$",""));}
+        return Double.valueOf(restaurantUI.getText(lbl_itemPriceSearchCatalogList).replace("$",""));}
+    public Double getItemPriceFirstRow(){
+        return Double.valueOf(restaurantUI.getText(lbl_itemPriceFirstRow).replace("$",""));}
     public Double getItemPriceOnCheckoutButton(){
-        return Double.valueOf(driver.findElement(btn_checkout).getText().replace("$",""));}
-    public boolean isAddToCartTextDisplayed(){return driver.findElement(txt_addToCart).isDisplayed();}
-    public Double getItemPriceReviewCart(){return Double.valueOf(driver.findElement(lbl_itemPriceReviewCart).getText().replace("$",""));}
-    public void clickPlusReviewCart(){driver.findElement(btn_increaseQtyReviewCart).click();}
-    public void clickMinusReviewCart(){driver.findElement(btn_decreaseQtyReviewCart).click();}
-    public String getItemQtyReviewCart(){return driver.findElement(tbx_itemQuantityReviewCart).getAttribute("value");}
-    public Double getItemPriceReviewCartFirstRow(){return Double.valueOf(driver.findElement(lbl_itemPriceReviewCartFirstRow).getText().replace("$",""));}
-    public boolean isDuplicatePopupDisplayed(){try {return driver.findElement(btn_duplicateOrderYes).isDisplayed();} catch (Exception e){return false;}}
-    public void clickYesDuplicatePopup(){wait.until(ExpectedConditions.elementToBeClickable(btn_duplicateOrderYes));driver.findElement(btn_duplicateOrderYes).click();wait.until(ExpectedConditions.invisibilityOf(driver.findElement(btn_duplicateOrderYes)));}
-    public boolean isThankingForOrderPopupDisplayed(){try {wait.until(ExpectedConditions.visibilityOf(driver.findElement(lbl_thankYouForOrder)));return driver.findElement(lbl_thankYouForOrder).isDisplayed();} catch (Exception e){return false;}}
-    public void submitOrder(){wait.until(ExpectedConditions.elementToBeClickable(btn_submitOrder));driver.findElement(btn_submitOrder).click();}
+        return Double.valueOf(restaurantUI.getText(btn_checkout).replace("$",""));}
+    public boolean isAddToCartTextDisplayed(){
+        return restaurantUI.isDisplayed(txt_addToCart);}
+    public Double getItemPriceReviewCart(){
+        return Double.valueOf(restaurantUI.getText(lbl_itemPriceReviewCart).replace("$",""));}
+    public void clickPlusReviewCart(){
+        restaurantUI.click(btn_increaseQtyReviewCart);}
+    public void clickMinusReviewCart(){
+        restaurantUI.click(btn_decreaseQtyReviewCart);}
+    public String getItemQtyReviewCart(){
+        return restaurantUI.getText(tbx_itemQuantityReviewCart,"value");}
+    public Double getItemPriceReviewCartFirstRow(){
+        return Double.valueOf(restaurantUI.getText(lbl_itemPriceReviewCartFirstRow).replace("$",""));}
+    public boolean isDuplicatePopupDisplayed(){
+        try {
+            return restaurantUI.isDisplayed(btn_duplicateOrderYes);}
+        catch (Exception e){return false;}}
+    public void clickYesDuplicatePopup(){
+        restaurantUI.waitForClickability(btn_duplicateOrderYes);
+        restaurantUI.click(btn_duplicateOrderYes);
+        restaurantUI.waitForInvisibility(btn_duplicateOrderYes);
+    }
+    public boolean isThankingForOrderPopupDisplayed(){
+        try {
+            restaurantUI.waitForClickability(lbl_thankYouForOrder);
+            return restaurantUI.isDisplayed(lbl_thankYouForOrder);}
+        catch (Exception e){return false;}}
+    public void submitOrder(){
+        restaurantUI.waitForClickability(btn_submitOrder);
+        restaurantUI.click(btn_submitOrder);}
 
 }
