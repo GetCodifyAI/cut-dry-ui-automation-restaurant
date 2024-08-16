@@ -9,13 +9,13 @@ public class LoginPage extends TestBase {
     By btn_signIn = By.xpath("//button[@type='submit']");
 
     public void typeEmailOrMobile(String emailOrMobile){
-        driver.findElement(txt_emailOrMobile).sendKeys(emailOrMobile);
+        restaurantUI.sendKeys(txt_emailOrMobile,emailOrMobile);
     }
     public void typePassword(String password){
-        driver.findElement(txt_password).sendKeys(password);
+        restaurantUI.sendKeys(txt_password,password);
     }
     public void clickSubmit(){
-        driver.findElement(btn_signIn).click();
+        restaurantUI.click(btn_signIn);
     }
 
 }

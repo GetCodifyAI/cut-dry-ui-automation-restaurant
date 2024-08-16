@@ -6,6 +6,7 @@ import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
@@ -40,7 +41,8 @@ public class AddProductsFrmOrderGuideTest extends TestBase {
     }
 
     @AfterMethod
-    public void tearDown(){
+    public void tearDown(ITestResult result) {
+        takeScreenshotOnFailure(result);
         closeAllBrowsers();
     }
 
