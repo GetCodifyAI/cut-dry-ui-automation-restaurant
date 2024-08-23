@@ -12,9 +12,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class AddProductsFrmCatalogTest extends TestBase {
+public class VerifyExportingOrderGuideEditFeatureTest extends TestBase {
     static User user;
-    static String itemName = "Artichoke -24ct";
 
     @BeforeMethod
     public void setUp(){
@@ -23,7 +22,7 @@ public class AddProductsFrmCatalogTest extends TestBase {
     }
 
     @Test
-    public void addProductsFrmCatalog()throws InterruptedException  {
+    public void verifyExportingOrderGuideEditFeature() {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
@@ -31,13 +30,10 @@ public class AddProductsFrmCatalogTest extends TestBase {
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.goToCatalog();
-        softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
-        Customer.searchItemOnCatalog(itemName);
-        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName), "item not found");
-        Customer.addItemToCartCatalog();
-        Customer.checkoutItems();
-        softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item mismatch");
+        Customer.goToEdit();
+        softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigation error for edit");
+        Customer.expandMoreOptionsDropdown();
+        Customer.exportOrderGuide();
         softAssert.assertAll();
 
     }

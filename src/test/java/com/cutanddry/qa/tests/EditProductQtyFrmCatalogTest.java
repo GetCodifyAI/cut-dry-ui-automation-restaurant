@@ -23,7 +23,7 @@ public class EditProductQtyFrmCatalogTest extends TestBase {
     }
 
     @Test
-    public void editProductQtyFrmCatalog() {
+    public void editProductQtyFrmCatalog() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();

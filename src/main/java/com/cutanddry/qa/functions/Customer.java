@@ -57,20 +57,26 @@ public class Customer {
         return customersPage.getItemNameFirstRow();
     }
     public static String getItemNameSecondRow(){return customersPage.getItemNameSecondRow();}
-
+    @SneakyThrows
     public static void checkoutItems(){
         customersPage.clickOnCheckoutButton();
+        Thread.sleep(4000);
     }
     public static boolean isUserNavigatedToCatalog(){return customersPage.isCatalogTextDisplayed();}
 
     public static void goToCatalog(){
         customersPage.clickOnCatalogButton();
     }
+    @SneakyThrows
     public static void searchItemOnCatalog(String item){
         customersPage.typeToSearchOnCatalog(item);
+        Thread.sleep(4000);
+    }
+    public static void searchItemOnOrderGuide(String item){
+        customersPage.typeToSearchOnOrderGuide(item);
     }
     public static String getFirstElementFrmSearchResults(){return customersPage.getFirstItemNameFrmSearchResults();}
-    public static void addItemToCartCatalog(){
+    public static void addItemToCartCatalog()throws InterruptedException {
         customersPage.clickAddToCartCatalog();
     }
     public static Double getItemPriceCatalogSearch(){return customersPage.getItemPriceCatalogSearch();}
@@ -96,4 +102,35 @@ public class Customer {
     }
     public static void submitOrder(){customersPage.submitOrder();if (customersPage.isDuplicatePopupDisplayed()){customersPage.clickYesDuplicatePopup();}}
     public static boolean isThankingForOrderPopupDisplayed(){return customersPage.isThankingForOrderPopupDisplayed();}
+    public static void clickCompanyDropdown(){
+        customersPage.clickCompanyDropdown();
+    }
+    public static boolean isCompanyDropdownTextDisplayed(){return customersPage.isCompanyDropdownTextDisplayed();}
+    public static void clickOnPrint(){
+        customersPage.clickOnPrint();
+    }
+    public static void printOrderGuide(){
+        customersPage.clickOnDownloadOrderGuide();
+    }
+    public static boolean isPrintFriendlyPopupDisplayed(){return customersPage.isPrintFriendlyPopupDisplayed();}
+    public static void goToEdit(){
+        customersPage.clickOnEdit();
+    }
+    public static boolean isEditOrderGuideTextDisplayed(){return customersPage.isEditOrderGuideTextDisplayed();}
+    public static void expandMoreOptionsDropdown(){
+        customersPage.clickOnMoreOptions();
+    }
+    public static void exportOrderGuide(){
+        customersPage.clickOnExportOrderGuide();
+    }
+    public static void goToCreatePopup(){
+        customersPage.clickOnCreate();
+    }
+    public static void createOrderGuide(String orderGuideName){
+        customersPage.typeOrderGuideName(orderGuideName);
+        customersPage.clickSubmitOrderGuide();
+    }
+    public static void createOrderFromCatalog(){
+        customersPage.clickOnAddFromCatalog();
+    }
 }

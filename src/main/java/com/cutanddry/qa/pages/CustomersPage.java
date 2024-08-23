@@ -14,6 +14,7 @@ public class CustomersPage extends LoginPage {
     By txt_catalog = By.xpath("//div[text()='All Items']");
     By btn_catalog = By.xpath("//div[text()='Catalog']");
     By tbx_catalogSearch = By.xpath("//input[@placeholder='Search catalog...']");
+    By tbx_orderGuideSearch = By.xpath("//input[@placeholder='Search order guide...']");
     By lbl_catalogSearchItemList = By.xpath("//div[contains(text(), 'Artichoke')]");
     By btn_addToCart = By.xpath("//button[text()='Add to Cart']");
     By tbx_itemQuantityFirstRow = By.xpath("//tr[1]//td[6]//input");
@@ -31,6 +32,26 @@ public class CustomersPage extends LoginPage {
     By btn_submitOrder = By.xpath("//button[contains(text(),'Submit Order')]");
     By btn_duplicateOrderYes = By.xpath("//button[contains(text(), 'Yes')]");
     By lbl_thankYouForOrder = By.xpath("//*[contains(text(),'Thank you for your order!')]");
+    By btn_companyDropdown = By.xpath("//button[.//span[text()='Company:']]");
+    By txt_companyDropdownText = By.xpath("//a[contains(text(), 'Independent Foods Co')]");
+    By btn_print = By.xpath("//button[contains(text(), 'Print')]");
+    By btn_downloadOrderGuide = By.xpath("//button[contains(text(), 'Download Order Guide')]");
+    By lbl_printFriendlyOrderGuide = By.xpath("//h5[contains(text(), 'Print-Friendly Order Guide')]");
+    By btn_edit = By.xpath("//button[contains(., 'Edit')]");
+    By txt_editOrderGuide= By.xpath("//span[contains(text(), 'Edit Order Guide')]");
+    By btn_moreOptions = By.xpath("//span[contains(text(), 'More Options')]");
+    By btn_exportOrderGuide = By.xpath("//a[contains(text(), 'Export Order Guide (XLSX)')]");
+    By btn_create = By.xpath("//button[contains(text(), 'Create')]");
+    By tbx_OrderGuideName = By.xpath("//input[@placeholder='Enter Name']");
+    By btn_submitOrderGuide = By.xpath("//button[contains(text(), 'Submit')]");
+    By btn_addFromCatalog = By.xpath("//div[contains(text(), 'Add from Catalog')]");
+
+
+
+
+
+
+
 
 
     public String getItemNameFirstRow(){
@@ -57,8 +78,11 @@ public class CustomersPage extends LoginPage {
     public String getItemNameSecondRow(){
         return restaurantUI.getText(lbl_itemNameList,1);
     }
-    public void clickOnCheckoutButton(){
-        restaurantUI.click(btn_checkout);}
+    public void clickOnCheckoutButton()throws InterruptedException {
+        restaurantUI.waitForElementEnabledState(btn_checkout,true);
+        restaurantUI.click(btn_checkout);
+        restaurantUI.waitForCustom(4000);
+    }
     public boolean isCatalogTextDisplayed(){
         return restaurantUI.isDisplayed(txt_catalog);}
     public void clickOnCatalogButton(){
@@ -67,12 +91,17 @@ public class CustomersPage extends LoginPage {
     public void typeToSearchOnCatalog(String item){
         restaurantUI.sendKeys(tbx_catalogSearch,item);
     }
+    public void typeToSearchOnOrderGuide(String item){
+        restaurantUI.sendKeys(tbx_orderGuideSearch,item);
+    }
     public String getFirstItemNameFrmSearchResults(){
         return restaurantUI.getText(lbl_catalogSearchItemList, 0);
     }
-    public void clickAddToCartCatalog(){
+    public void clickAddToCartCatalog()throws InterruptedException {
+        restaurantUI.waitForClickability(btn_addToCart);
+        restaurantUI.waitForCustom(4000);
         restaurantUI.click(btn_addToCart);
-        restaurantUI.waitForClickability(btn_checkout);
+        restaurantUI.waitForElementEnabledState(btn_checkout,true);
     }
     public String getItemQtyFirstRow(){
         return restaurantUI.getText(tbx_itemQuantityFirstRow,"value");}
@@ -113,5 +142,55 @@ public class CustomersPage extends LoginPage {
     public void submitOrder(){
         restaurantUI.waitForClickability(btn_submitOrder);
         restaurantUI.click(btn_submitOrder);}
-
+    public void clickCompanyDropdown(){
+        restaurantUI.waitForClickability(btn_companyDropdown);
+        restaurantUI.click(btn_companyDropdown);
+    }
+    public boolean isCompanyDropdownTextDisplayed(){
+        return restaurantUI.isDisplayed(txt_companyDropdownText);}
+    public void clickOnPrint(){
+        restaurantUI.waitForClickability(btn_print);
+        restaurantUI.click(btn_print);
+    }
+    public void clickOnDownloadOrderGuide(){
+        restaurantUI.waitForClickability(btn_downloadOrderGuide);
+        restaurantUI.click(btn_downloadOrderGuide);
+    }
+    public boolean isPrintFriendlyPopupDisplayed(){
+        return restaurantUI.isDisplayed(lbl_printFriendlyOrderGuide);}
+    public void clickOnEdit(){
+        restaurantUI.waitForClickability(btn_edit);
+        restaurantUI.click(btn_edit);
+    }
+    public boolean isEditOrderGuideTextDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_editOrderGuide);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_editOrderGuide);
+    }
+    public void clickOnMoreOptions(){
+        restaurantUI.waitForClickability(btn_moreOptions);
+        restaurantUI.click(btn_moreOptions);
+    }
+    public void clickOnExportOrderGuide(){
+        restaurantUI.waitForClickability(btn_exportOrderGuide);
+        restaurantUI.click(btn_exportOrderGuide);
+    }
+    public void clickOnCreate(){
+        restaurantUI.waitForClickability(btn_create);
+        restaurantUI.click(btn_create);
+    }
+    public void typeOrderGuideName(String orderGuideName){
+        restaurantUI.sendKeys(tbx_OrderGuideName,orderGuideName);
+    }
+    public void clickSubmitOrderGuide(){
+        restaurantUI.waitForClickability(btn_submitOrderGuide);
+        restaurantUI.click(btn_submitOrderGuide);
+    }
+    public void clickOnAddFromCatalog(){
+        restaurantUI.waitForClickability(btn_addFromCatalog);
+        restaurantUI.click(btn_addFromCatalog);
+    }
 }

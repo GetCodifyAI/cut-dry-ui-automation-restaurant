@@ -12,9 +12,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class AddProductsFrmCatalogTest extends TestBase {
+public class VerifyTheSearchFeatureTest extends TestBase {
     static User user;
     static String itemName = "Artichoke -24ct";
+    static String itemCode = "01700";
 
     @BeforeMethod
     public void setUp(){
@@ -23,7 +24,7 @@ public class AddProductsFrmCatalogTest extends TestBase {
     }
 
     @Test
-    public void addProductsFrmCatalog()throws InterruptedException  {
+    public void verifyTheSearchFeature() {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
@@ -31,12 +32,9 @@ public class AddProductsFrmCatalogTest extends TestBase {
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.goToCatalog();
-        softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
-        Customer.searchItemOnCatalog(itemName);
-        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName), "item not found");
-        Customer.addItemToCartCatalog();
-        Customer.checkoutItems();
+        Customer.searchItemOnOrderGuide(itemName);
+        softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item mismatch");
+        Customer.searchItemOnOrderGuide(itemCode);
         softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item mismatch");
         softAssert.assertAll();
 
