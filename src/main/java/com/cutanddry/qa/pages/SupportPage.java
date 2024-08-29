@@ -5,14 +5,15 @@ import org.openqa.selenium.By;
 
 public class SupportPage extends TestBase {
 
-    By icon_sup = By.xpath("//a[@href='https://operator-cutdry.happyfox.com/home/' and @data-tip='Support']");
+    By support_icon = By.xpath("//a[@data-tip='Support']");
     By support_center = By.xpath("//div[@class='hf-header-support-center-name']");
 
-    public void clickIcon(){ restaurantUI.click(icon_sup); }
+    public void clickIcon(){ restaurantUI.click(support_icon); }
 
     public boolean isSupportCenterHeaderDisplayed(){
+        String url = restaurantUI.getText(support_icon,"href");
         try {
-            return restaurantUI.openURL("https://operator-cutdry.happyfox.com/home/").isDisplayed(support_center);
+            return restaurantUI.navigateToURL(url).isDisplayed(support_center);
         } catch (Exception e){
             return false;
         }
