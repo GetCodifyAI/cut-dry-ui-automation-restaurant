@@ -1,4 +1,4 @@
-package Support;
+package com.cutanddry.qa.tests.Support;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
