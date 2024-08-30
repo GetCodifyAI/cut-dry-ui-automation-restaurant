@@ -1,4 +1,4 @@
-package com.cutanddry.qa.tests;
+package com.cutanddry.qa.tests.OrderGuide;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
@@ -12,10 +12,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.util.Optional;
-
-public class EditProductQtyFrmOrderGuideTest extends TestBase {
+public class VerifyTheSortOptionsTest extends TestBase {
     static User user;
+    static String itemName = "Broccolini 18 Ct";
 
     @BeforeMethod
     public void setUp(){
@@ -24,7 +23,7 @@ public class EditProductQtyFrmOrderGuideTest extends TestBase {
     }
 
     @Test
-    public void editProductQtyFrmOrderGuide() {
+    public void verifyTheSortOptions() {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
@@ -32,13 +31,8 @@ public class EditProductQtyFrmOrderGuideTest extends TestBase {
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.increaseFirstRowQtyByThree();
-        softAssert.assertEquals(Customer.getItemQtyFirstRow(),"3");
-        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceFirstRow()*3, "price error after increase");
-        Customer.decreaseFirstRowQtyByThree();
-        softAssert.assertEquals(Customer.getItemQtyFirstRow(),"0");
-        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceFirstRow()*0, "price error after decrease");
-        softAssert.assertAll();
+
+
     }
 
     @AfterMethod

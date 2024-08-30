@@ -1,6 +1,9 @@
 package com.cutanddry.qa.common;
 
 public class Constants {
+    public final static String PROJECT_KEY = System.getProperty("project.key","DOT");
+    public final static String CYCLE_KEY = System.getProperty("cycle.key","DOT-CY-41");
+    public static boolean CREATE_CYCLE = Boolean.parseBoolean(System.getProperty("create.cycle","false"));
     public static String BROWSER_NAME = System.getProperty("test.browser", "chrome");
     public static boolean RUN_HEADLESS = Boolean.parseBoolean(System.getProperty("run.headless", "True"));
     public static String TEST_ENV = System.getProperty("test.env", "uat");

@@ -49,7 +49,6 @@ public class DashboardPage extends LoginPage{
         }
     }
     public void clickOnNoDraftOrder(){
-        restaurantUI.waitForClickability(btn_noDraftOrder);
         restaurantUI.click(btn_noDraftOrder);
         restaurantUI.waitForInvisibility(btn_noDraftOrder);
     }

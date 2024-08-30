@@ -1,4 +1,4 @@
-package com.cutanddry.qa.tests;
+package com.cutanddry.qa.tests.OrderGuide;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
@@ -22,7 +22,7 @@ public class AddProductsFrmCatalogTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test
+    @Test(groups = "DOT-TC-57")
     public void addProductsFrmCatalog()throws InterruptedException  {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());

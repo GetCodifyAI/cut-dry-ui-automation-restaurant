@@ -1,4 +1,4 @@
-package com.cutanddry.qa.tests;
+package com.cutanddry.qa.tests.OrderGuide;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
@@ -7,14 +7,14 @@ import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyCreatingOrdersWithCatalogItemsTest extends TestBase {
+import java.io.IOException;
+
+public class AddProductsFrmOrderGuideTest extends TestBase {
     static User user;
-    static String OrderGuideName = "Test_Guide";
+
 
     @BeforeMethod
     public void setUp(){
@@ -22,8 +22,9 @@ public class VerifyCreatingOrdersWithCatalogItemsTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test
-    public void verifyCreatingOrdersWithCatalogItems() {
+    @Test(groups = "DOT-TC-56")
+    public void addProductsFrmOrderGuide() {
+        String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
@@ -31,9 +32,10 @@ public class VerifyCreatingOrdersWithCatalogItemsTest extends TestBase {
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.goToCreatePopup();
-        Customer.createOrderGuide(OrderGuideName);
-        Customer.createOrderFromCatalog();
+        itemName = Customer.getItemNameFirstRow();
+        Customer.increaseFirstRowQtyByOne();
+        Customer.checkoutItems();
+        softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         softAssert.assertAll();
 
     }

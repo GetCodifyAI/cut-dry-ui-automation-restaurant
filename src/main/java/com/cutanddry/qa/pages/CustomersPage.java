@@ -45,6 +45,9 @@ public class CustomersPage extends LoginPage {
     By tbx_OrderGuideName = By.xpath("//input[@placeholder='Enter Name']");
     By btn_submitOrderGuide = By.xpath("//button[contains(text(), 'Submit')]");
     By btn_addFromCatalog = By.xpath("//div[contains(text(), 'Add from Catalog')]");
+    By btn_addToOrderGuide = By.xpath("//button[@data-tip='Add to Order Guide']");
+    By btn_closeEditor = By.xpath("//button[contains(text(), 'Close Editor')]");
+    By btn_removeFromOrderGuide = By.xpath("//button[@data-tip='Remove from Order Guide']");
 
 
 
@@ -192,5 +195,16 @@ public class CustomersPage extends LoginPage {
     public void clickOnAddFromCatalog(){
         restaurantUI.waitForClickability(btn_addFromCatalog);
         restaurantUI.click(btn_addFromCatalog);
+    }
+    public void clickOnAddTOOrderGuide(){
+        restaurantUI.waitForVisibility(btn_addToOrderGuide);
+        restaurantUI.click(btn_addToOrderGuide);
+    }
+    public void clickOnCloseEditor(){
+        restaurantUI.click(btn_closeEditor);
+    }
+    public void clickOnRemoveFromOrderGuide(){
+        restaurantUI.waitForVisibility(btn_removeFromOrderGuide);
+        restaurantUI.click(btn_removeFromOrderGuide);
     }
 }
