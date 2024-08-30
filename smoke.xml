@@ -14,11 +14,15 @@
             <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmCatalogTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmReviewCartTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantOrderSubmissionTest" />
-<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCompanyDropdownTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCreatingOrdersWithCatalogItemsTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyExportingOrderGuideEditFeatureTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePrintFeatureTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSearchFeatureTest" />-->
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCompanyDropdownTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCreatingOrdersWithCatalogItemsTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyExportingOrderGuideEditFeatureTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePrintFeatureTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSearchFeatureTest" />
+            <class name="com.cutanddry.qa.tests.Support.RestaurantSupportTest" />
+            <class name="com.cutanddry.qa.tests.SignIn.VerifyForgotPasswordValidTest" />
+            <class name="com.cutanddry.qa.tests.SignIn.VerifyForgotPasswordInvalidTest" />
+            <class name="com.cutanddry.qa.tests.SignIn.VerifyForgotPasswordUnauthorizedTest" />
         </classes>
     </test>
 </suite>
