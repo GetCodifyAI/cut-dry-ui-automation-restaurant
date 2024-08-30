@@ -19,7 +19,7 @@ public class VerifyForgotPasswordUnauthorizedTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-105")
-    public void verifyForgotPasswordValidEmail() {
+    public void verifyForgotPasswordUnauthorizedEmail() {
         SoftAssert softAssert = new SoftAssert();
         Login.forgotPassword();
         softAssert.assertTrue(Login.forgotPassword(),"forgot password navigation error");
