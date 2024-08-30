@@ -1,12 +1,13 @@
 package com.cutanddry.qa.functions;
 
 import com.cutanddry.qa.pages.CustomersPage;
+import com.cutanddry.qa.pages.DashboardPage;
 import lombok.SneakyThrows;
 
 
 public class Customer {
     static CustomersPage customersPage = new CustomersPage();
-
+    static DashboardPage dashboardPage = new DashboardPage();
     public static void increaseFirstRowQtyByOne(){
         customersPage.clickPlusQryFirstRow();
     }
@@ -132,5 +133,17 @@ public class Customer {
     }
     public static void createOrderFromCatalog(){
         customersPage.clickOnAddFromCatalog();
+    }
+    public static void addItemFromCatalog(){
+        customersPage.clickOnAddTOOrderGuide();
+    }
+    public static void closeEditor(){
+        customersPage.clickOnCloseEditor();
+        if (dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickOnNoDraftOrder();
+        }
+    }
+    public static void removeItemFromCatalog(){
+        customersPage.clickOnRemoveFromOrderGuide();
     }
 }

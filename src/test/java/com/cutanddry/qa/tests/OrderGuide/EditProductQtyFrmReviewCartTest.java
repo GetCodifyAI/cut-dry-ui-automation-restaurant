@@ -1,4 +1,4 @@
-package com.cutanddry.qa.tests;
+package com.cutanddry.qa.tests.OrderGuide;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class RestaurantOrderSubmissionTest extends TestBase {
+public class EditProductQtyFrmReviewCartTest extends TestBase {
     static User user;
 
     @BeforeMethod
@@ -21,8 +21,8 @@ public class RestaurantOrderSubmissionTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test
-    public void RestaurantOrderSubmission() {
+    @Test(groups = "DOT-TC-60")
+    public void editProductQtyFrmReviewCart() {
         String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
@@ -35,8 +35,10 @@ public class RestaurantOrderSubmissionTest extends TestBase {
         Customer.increaseFirstRowQtyByOne();
         Customer.checkoutItems();
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
-        Customer.submitOrder();
-        softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
+        Customer.increaseReviewCartQtyByThree();
+        softAssert.assertEquals(Customer.getItemPriceReviewCart(),Customer.getItemPriceReviewCartFirstRow()*3,"price error after increase");
+        Customer.decreaseReviewCartQtyByThree();
+        softAssert.assertEquals(Customer.getItemPriceReviewCart(),0.0,"price error after decrease");
         softAssert.assertAll();
     }
 

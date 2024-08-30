@@ -1,4 +1,4 @@
-package com.cutanddry.qa.tests;
+package com.cutanddry.qa.tests.OrderGuide;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
@@ -12,10 +12,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyTheSearchFeatureTest extends TestBase {
+public class VerifyEditingOrderGuideWithCatalogItemsTest extends TestBase {
     static User user;
-    static String itemName = "Artichoke -24ct";
-    static String itemCode = "01700";
+    static String itemName = "Broccolini 18 Ct";
 
     @BeforeMethod
     public void setUp(){
@@ -24,7 +23,7 @@ public class VerifyTheSearchFeatureTest extends TestBase {
     }
 
     @Test
-    public void verifyTheSearchFeature() {
+    public void verifyEditingOrderGuideWithCatalogItems() {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
@@ -32,10 +31,15 @@ public class VerifyTheSearchFeatureTest extends TestBase {
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Customer.goToEdit();
+        softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigation error for edit");
+        Customer.createOrderFromCatalog();
+        Customer.searchItemOnCatalog(itemName);
+        Customer.addItemFromCatalog();
+        Customer.closeEditor();
         Customer.searchItemOnOrderGuide(itemName);
-        softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item mismatch");
-        Customer.searchItemOnOrderGuide(itemCode);
-        softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item mismatch");
+        Customer.goToCatalog();
+        Customer.removeItemFromCatalog();
         softAssert.assertAll();
 
     }

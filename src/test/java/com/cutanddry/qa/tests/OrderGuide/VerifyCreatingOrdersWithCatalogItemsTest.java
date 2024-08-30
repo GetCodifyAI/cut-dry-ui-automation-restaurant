@@ -1,4 +1,4 @@
-package com.cutanddry.qa.tests;
+package com.cutanddry.qa.tests.OrderGuide;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
@@ -12,8 +12,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyThePrintFeatureTest extends TestBase {
+public class VerifyCreatingOrdersWithCatalogItemsTest extends TestBase {
     static User user;
+    static String OrderGuideName = "Test_Guide";
+    static String itemName = "Broccolini 18 Ct";
 
     @BeforeMethod
     public void setUp(){
@@ -21,8 +23,8 @@ public class VerifyThePrintFeatureTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test
-    public void verifyThePrintFeature() {
+    @Test(groups = "DOT-TC-66")
+    public void verifyCreatingOrdersWithCatalogItems() {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
@@ -30,9 +32,12 @@ public class VerifyThePrintFeatureTest extends TestBase {
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.clickOnPrint();
-        softAssert.assertTrue(Customer.isPrintFriendlyPopupDisplayed(),"print friendly popup error");
-        Customer.printOrderGuide();
+        Customer.goToCreatePopup();
+        Customer.createOrderGuide(OrderGuideName);
+        Customer.createOrderFromCatalog();
+        Customer.searchItemOnCatalog(itemName);
+        Customer.addItemFromCatalog();
+        Customer.closeEditor();
         softAssert.assertAll();
 
     }
