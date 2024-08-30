@@ -18,7 +18,7 @@ public class RestaurantSupportTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test
+    @Test(groups = "DOT-TC-108")
     public void supportPageRestaurant() {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());

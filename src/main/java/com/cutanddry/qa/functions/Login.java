@@ -11,4 +11,24 @@ public class Login {
         loginPage.typePassword(password);
         loginPage.clickSubmit();
     }
+    public static boolean forgotPassword(){
+        loginPage.clickForgotPassword();
+        return loginPage.isForgotPasswordPopupDisplayed();
+    }
+    public static void passwordResetRequest(String emailOrMobile){
+        loginPage.enterEmailOrMobile(emailOrMobile);
+        loginPage.clickRequestPassword();
+    }
+    public static boolean validEmailOrMobileForgotPassword(){
+        return loginPage.validEmailOrMobile();
+    }
+    public static boolean invalidEmailOrMobileForgotPassword(){
+        return loginPage.invalidEmailOrMobile();
+    }
+    public static void clickOk(){
+        loginPage.clickOk();
+    }
+    public static void clickTryAgain(){
+        loginPage.clickTryAgain();
+    }
 }
