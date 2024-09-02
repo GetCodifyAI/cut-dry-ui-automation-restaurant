@@ -15,7 +15,7 @@ public class VerifyForgotPasswordInvalidTest extends TestBase {
     @BeforeMethod
     public void setUp() {
         initialization();
-        user = JsonUtil.readInvalidUserLogin();
+        user = JsonUtil.readForgotPasswordUserLogin();
     }
 
     @Test(groups = "DOT-TC-102")
@@ -23,12 +23,12 @@ public class VerifyForgotPasswordInvalidTest extends TestBase {
         SoftAssert softAssert = new SoftAssert();
         Login.forgotPassword();
         softAssert.assertTrue(Login.forgotPassword(),"forgot password navigation error");
-        Login.passwordResetRequest(user.getEmail());
+        Login.passwordResetRequest(user.getEmail_invalid());
         softAssert.assertTrue(Login.invalidEmailOrMobileForgotPassword(),"invalid email pop up error");
         Login.clickTryAgain();
         Login.forgotPassword();
         softAssert.assertTrue(Login.forgotPassword(),"forgot password navigation error");
-        Login.passwordResetRequest(user.getMobile());
+        Login.passwordResetRequest(user.getMobile_invalid());
         softAssert.assertTrue(Login.invalidEmailOrMobileForgotPassword(),"invalid email pop up error");
         Login.clickTryAgain();
         softAssert.assertAll();
