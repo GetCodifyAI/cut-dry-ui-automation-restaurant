@@ -3,6 +3,7 @@ package com.cutanddry.qa.utils.aio.core.rest;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.exception.JsonPathException;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -81,29 +82,65 @@ public class AioAPIHelper {
             doPost(MARK_CASE, runStatus, projectKey, cycleKey, caseKey, "false" );
         }
     }
-
-    public static String addCase(String projectKey, String cycleKey, String caseKey ) {
-        Response r =  doPost(ADD_CASE_TO_CYCLE, null, projectKey, cycleKey, caseKey );
-        return r.jsonPath().get("ID").toString();
+    public static String addCase(String projectKey, String cycleKey, String caseKey) {
+        Response r = doPost(ADD_CASE_TO_CYCLE, null, projectKey, cycleKey, caseKey);
+        // Check if response is in JSON format and contains the expected data
+        String responseBody = r.getBody().asString();
+        try {
+            if (r.getContentType().contains("application/json")) {
+                String id = r.jsonPath().getString("ID");
+                System.out.println("Case ID retrieved: " + id);
+                return id;
+            } else {
+                System.err.println("Unexpected response format. Response: " + responseBody);
+            }
+        } catch (JsonPathException e) {
+            System.err.println("Failed to parse JSON. Response was: " + responseBody);
+        }
+        return null;
     }
 
-    public static Response doGet(String path, String ...pathParams) {
-        Response response = given(defaultRequestSpec).when().get(path,pathParams).andReturn();
-        response.prettyPrint();
-        return response;
-    }
 
-    public static Response doPost(String path, Map<String, Object> params, Object ...pathParams) {
-        Response response = params != null?
-                given(defaultRequestSpec).contentType(ContentType.JSON).body(params).when().post(path,pathParams).andReturn() :
-                given(defaultRequestSpec).contentType(ContentType.JSON).when().post(path,pathParams).andReturn();
-        if(response.statusCode() == 200) {
+
+
+    public static Response doPost(String path, Map<String, Object> params, Object... pathParams) {
+        Response response = params != null ?
+                given(defaultRequestSpec).contentType(ContentType.JSON).body(params).when().post(path, pathParams).andReturn() :
+                given(defaultRequestSpec).contentType(ContentType.JSON).when().post(path, pathParams).andReturn();
+        // Log the response status code and content type
+        System.out.println("Response Status Code: " + response.statusCode());
+        System.out.println("Response Content Type: " + response.getContentType());
+        if (response.statusCode() == 200) {
             System.out.println("Case posted successfully in : " + pathParams[0]);
         } else {
+            System.err.println("Failed to post case. Status Code: " + response.statusCode());
             response.prettyPrint();
         }
         return response;
     }
+
+//    public static String addCase(String projectKey, String cycleKey, String caseKey ) {
+//        Response r =  doPost(ADD_CASE_TO_CYCLE, null, projectKey, cycleKey, caseKey );
+//        return r.jsonPath().get("ID").toString();
+//    }
+//
+//    public static Response doGet(String path, String ...pathParams) {
+//        Response response = given(defaultRequestSpec).when().get(path,pathParams).andReturn();
+//        response.prettyPrint();
+//        return response;
+//    }
+//
+//    public static Response doPost(String path, Map<String, Object> params, Object ...pathParams) {
+//        Response response = params != null?
+//                given(defaultRequestSpec).contentType(ContentType.JSON).body(params).when().post(path,pathParams).andReturn() :
+//                given(defaultRequestSpec).contentType(ContentType.JSON).when().post(path,pathParams).andReturn();
+//        if(response.statusCode() == 200) {
+//            System.out.println("Case posted successfully in : " + pathParams[0]);
+//        } else {
+//            response.prettyPrint();
+//        }
+//        return response;
+//    }
 
     public static Response doMultipartPost(String path, File file, Map<String, Object> formParams, Object ...pathParams) {
 
