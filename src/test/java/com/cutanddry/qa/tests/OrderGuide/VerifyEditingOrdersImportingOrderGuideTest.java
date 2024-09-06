@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyTheSortOptionsTest extends TestBase {
+public class VerifyEditingOrdersImportingOrderGuideTest extends TestBase {
     static User user;
     static String itemName = "Broccolini 18 Ct";
 
@@ -22,8 +22,8 @@ public class VerifyTheSortOptionsTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-64")
-    public void verifyTheSortOptions() {
+    @Test(groups = "DOT-TC-70")
+    public void verifyEditingOrdersImportingOrderGuide() {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
@@ -31,7 +31,16 @@ public class VerifyTheSortOptionsTest extends TestBase {
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-
+        Customer.goToEdit();
+        softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigation error for edit");
+        Customer.createOrderFromCatalog();
+        Customer.searchItemOnCatalog(itemName);
+        Customer.addItemFromCatalog();
+        Customer.closeEditor();
+        Customer.searchItemOnOrderGuide(itemName);
+        Customer.goToCatalog();
+        Customer.removeItemFromCatalog();
+        softAssert.assertAll();
 
     }
 
