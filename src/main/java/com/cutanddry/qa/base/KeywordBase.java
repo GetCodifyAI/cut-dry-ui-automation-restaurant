@@ -52,7 +52,18 @@ public class KeywordBase {
         return this;
     }
 
-    // Send keys to an element using By object
+    // Send keys to hidden element using By object
+    public KeywordBase sendKeysHiddenElements(By by, String data) {
+        try {
+            WebElement element = driver.findElement(by);
+            element.sendKeys(data);
+            logger.info("Sent keys to element: {} with data: {}", by, data);
+        } catch (Exception e) {
+            logger.error("Failed to send keys to element: {} with data: {}", by, data, e);
+        }
+        return this;
+    }
+
     public KeywordBase sendKeys(By by, String data) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));

@@ -22,8 +22,8 @@ public class VerifyEditingOrderGuideWithCatalogItemsTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test
-    public void verifyEditingOrderGuideWithCatalogItems() {
+    @Test(groups = "DOT-TC-68")
+    public void verifyEditingOrderGuideWithCatalogItems()throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
