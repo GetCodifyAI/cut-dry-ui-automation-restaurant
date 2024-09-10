@@ -124,6 +124,12 @@ public class Customer {
     public static void exportOrderGuide(){
         customersPage.clickOnExportOrderGuide();
     }
+    public static void importOrderGuide(){
+        customersPage.clickOnImportOrderGuide();
+    }
+    public static void uploadToOrder(){
+        customersPage.clickOnUploadToOrder();
+    }
     public static void goToCreatePopup(){
         customersPage.clickOnCreate();
     }
@@ -143,7 +149,36 @@ public class Customer {
             dashboardPage.clickOnNoDraftOrder();
         }
     }
-    public static void removeItemFromCatalog(){
+    public static void removeItemFromCatalog()throws InterruptedException{
         customersPage.clickOnRemoveFromOrderGuide();
+    }
+
+    public static void sortByItemCategory(){
+        customersPage.clickDropDownCustomerOrder();
+        customersPage.selectDropDownItemCategory();
+    }
+    public static void sortByAlphabet(){
+        customersPage.clickDropDownItemCategory();
+        customersPage.selectDropDownAlphabetical();
+    }
+    public static void sortByCustomOrder(){
+        customersPage.clickDropDownAlphabetical();
+        customersPage.selectDropDownCustomerOrder();
+    }
+    public static boolean isSeaFoodTextDisplayed(){return customersPage.isSeaFoodTextDisplayed();}
+    public static void clickOnUploadFile(){
+        customersPage.clickOnUploadFile();
+    }
+
+    public static void clickOnNext(){
+        customersPage.clickOnNext();
+    }
+    public static void clickOnConfirm(){
+        customersPage.clickOnConfirm();
+    }
+    public static boolean isOrderGuideSuccessfulTextDisplayed(){return customersPage.isOrderGuideSuccessfulTextDisplayed();}
+    public static boolean isSubstitutionTextDisplayed(){return customersPage.isSubstitutionTextDisplayed();}
+    public static void uploadFile(String path) {
+        customersPage.fileUpload(path);
     }
 }

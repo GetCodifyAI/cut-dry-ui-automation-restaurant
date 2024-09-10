@@ -41,6 +41,8 @@ public class CustomersPage extends LoginPage {
     By txt_editOrderGuide= By.xpath("//span[contains(text(), 'Edit Order Guide')]");
     By btn_moreOptions = By.xpath("//span[contains(text(), 'More Options')]");
     By btn_exportOrderGuide = By.xpath("//a[contains(text(), 'Export Order Guide (XLSX)')]");
+    By btn_importOrderGuide = By.xpath("//a[contains(text(), 'Import Order Guide (XLSX)')]");
+    By btn_uploadToOrder = By.xpath("//a[contains(text(), 'Upload to Order')]");
     By btn_create = By.xpath("//button[contains(text(), 'Create')]");
     By tbx_OrderGuideName = By.xpath("//input[@placeholder='Enter Name']");
     By btn_submitOrderGuide = By.xpath("//button[contains(text(), 'Submit')]");
@@ -48,6 +50,21 @@ public class CustomersPage extends LoginPage {
     By btn_addToOrderGuide = By.xpath("//button[@data-tip='Add to Order Guide']");
     By btn_closeEditor = By.xpath("//button[contains(text(), 'Close Editor')]");
     By btn_removeFromOrderGuide = By.xpath("//button[@data-tip='Remove from Order Guide']");
+    By btn_sortCustomOrder = By.xpath("//div[contains(@class, 'cd_themed_select__single-value') and text()='Custom Order']");
+    By btn_sortItemCategory = By.xpath("//div[contains(@class, 'cd_themed_select__single-value') and text()='Item Categories']");
+    By btn_sortAlphabetical = By.xpath("//div[contains(@class, 'cd_themed_select__single-value') and text()='Alphabetical (A-Z)']");
+    By btn_selectCustomOrder = By.xpath("//div[contains(@class, 'cd_themed_select__option') and contains(text(), 'Custom Order')]");
+    By btn_selectItemCategory = By.xpath("//div[contains(@class, 'cd_themed_select__option') and contains(text(), 'Item Categories')]");
+    By btn_selectAlphabetical = By.xpath("//div[contains(@class, 'cd_themed_select__option') and contains(text(), 'Alphabetical (A-Z)')]");
+    By txt_seaFood= By.xpath("//div[contains(text(), 'seafood')]");
+    By btn_browse = By.xpath("//input[@type='file']");
+    By btn_uploadFile = By.xpath("//button[contains(text(), 'Upload File')]");
+    By btn_next = By.xpath("//button[contains(text(), 'Next')]");
+    By btn_confirm= By.xpath("//button[contains(text(), 'Confirm')]");
+    By txt_successfulOrderGuide= By.xpath("//h2[contains(text(), 'Order guide updated successfully')]");
+    By txt_substitutions= By.xpath("//div[contains(text(), 'Substitutions (1 of 1)')]");
+
+
 
 
 
@@ -181,6 +198,14 @@ public class CustomersPage extends LoginPage {
         restaurantUI.waitForClickability(btn_exportOrderGuide);
         restaurantUI.click(btn_exportOrderGuide);
     }
+    public void clickOnImportOrderGuide(){
+        restaurantUI.waitForClickability(btn_importOrderGuide);
+        restaurantUI.click(btn_importOrderGuide);
+    }
+    public void clickOnUploadToOrder(){
+        restaurantUI.waitForClickability(btn_uploadToOrder);
+        restaurantUI.click(btn_uploadToOrder);
+    }
     public void clickOnCreate(){
         restaurantUI.waitForClickability(btn_create);
         restaurantUI.click(btn_create);
@@ -203,8 +228,51 @@ public class CustomersPage extends LoginPage {
     public void clickOnCloseEditor(){
         restaurantUI.click(btn_closeEditor);
     }
-    public void clickOnRemoveFromOrderGuide(){
+    public void clickOnRemoveFromOrderGuide()throws InterruptedException {
         restaurantUI.waitForVisibility(btn_removeFromOrderGuide);
         restaurantUI.click(btn_removeFromOrderGuide);
+        restaurantUI.waitForCustom(4000);
+    }
+
+    public void clickDropDownCustomerOrder(){
+        restaurantUI.click(btn_sortCustomOrder);}
+    public void clickDropDownItemCategory(){
+        restaurantUI.click(btn_sortItemCategory);}
+    public void clickDropDownAlphabetical(){
+        restaurantUI.click(btn_sortAlphabetical);}
+    public void selectDropDownCustomerOrder(){
+        restaurantUI.click(btn_selectCustomOrder);}
+    public void selectDropDownItemCategory(){
+        restaurantUI.click(btn_selectItemCategory);}
+    public void selectDropDownAlphabetical(){
+        restaurantUI.click(btn_selectAlphabetical);}
+    public boolean isSeaFoodTextDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_seaFood);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_seaFood);
+    }
+    public void clickOnUploadFile(){
+        restaurantUI.waitForClickability(btn_uploadFile);
+        restaurantUI.click(btn_uploadFile);
+    }
+    public void clickOnNext(){
+        restaurantUI.waitForClickability(btn_next);
+        restaurantUI.click(btn_next);
+    }
+    public void clickOnConfirm(){
+        restaurantUI.waitForClickability(btn_confirm);
+        restaurantUI.click(btn_confirm);
+    }
+    public boolean isOrderGuideSuccessfulTextDisplayed(){
+        return restaurantUI.isDisplayed(txt_successfulOrderGuide);}
+
+    public boolean isSubstitutionTextDisplayed(){
+        return restaurantUI.isDisplayed(txt_substitutions);}
+
+    public void fileUpload(String path) {
+        restaurantUI.sendKeysHiddenElements(btn_browse, path);
     }
 }

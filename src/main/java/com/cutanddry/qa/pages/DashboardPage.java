@@ -9,8 +9,8 @@ public class DashboardPage extends LoginPage{
     By btn_hayes = By.xpath("//div[contains(text(), 'Hayes')]");
     By txt_OrderGuide = By.xpath("//div[contains(text(), 'Order Guide')]");
     By btn_TestAutomation = By.xpath("//div[contains(text(), 'Test_Automation') and contains(@class, 'w-100')]");
-    By txt_draftOrder = By.xpath("//div[contains(text(), 'Do you want to continue your previous draft order?')]");
-    By btn_noDraftOrder = By.xpath("//div[contains(text(), 'No')]");
+    By txt_draftOrder = By.xpath("//div[contains(@class, 'text-center') and contains(text(), 'continue your previous draft order')]");
+    By btn_noDraftOrder = By.xpath("//span[text()='×']");
 
 
 
@@ -50,6 +50,5 @@ public class DashboardPage extends LoginPage{
     }
     public void clickOnNoDraftOrder(){
         restaurantUI.click(btn_noDraftOrder);
-        restaurantUI.waitForInvisibility(btn_noDraftOrder);
     }
 }

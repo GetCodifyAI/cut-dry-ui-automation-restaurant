@@ -14,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheSortOptionsTest extends TestBase {
     static User user;
-    static String itemName = "Broccolini 18 Ct";
+    static String itemName = "Artichoke -24ct";
 
     @BeforeMethod
     public void setUp(){
@@ -31,7 +31,13 @@ public class VerifyTheSortOptionsTest extends TestBase {
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-
+        Customer.sortByItemCategory();
+        softAssert.assertTrue(Customer.isSeaFoodTextDisplayed(),"sort error for item category");
+        Customer.sortByAlphabet();
+        softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"sort error for alphabet");
+        Customer.sortByCustomOrder();
+        softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"sort error for custom order");
+        softAssert.assertAll();
 
     }
 

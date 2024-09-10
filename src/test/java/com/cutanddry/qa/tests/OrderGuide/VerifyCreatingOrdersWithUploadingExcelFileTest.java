@@ -11,6 +11,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
+import java.util.Objects;
 
 public class VerifyCreatingOrdersWithUploadingExcelFileTest extends TestBase {
     static User user;
@@ -24,7 +27,7 @@ public class VerifyCreatingOrdersWithUploadingExcelFileTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-67")
-    public void erifyCreatingOrdersWithUploadingExcelFile() {
+    public void verifyCreatingOrdersWithUploadingExcelFile()throws InterruptedException, URISyntaxException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
@@ -34,10 +37,11 @@ public class VerifyCreatingOrdersWithUploadingExcelFileTest extends TestBase {
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.goToCreatePopup();
         Customer.createOrderGuide(OrderGuideName);
-        Customer.createOrderFromCatalog();
-        Customer.searchItemOnCatalog(itemName);
-        Customer.addItemFromCatalog();
-        Customer.closeEditor();
+        Customer.clickOnUploadFile();
+        Customer.uploadFile(Paths.get(Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource("excelFiles/Test_Order_Guide_Automation.xlsx")).toURI()).toString());
+        Customer.clickOnNext();
+        Customer.clickOnConfirm();
+        softAssert.assertTrue(Customer.isOrderGuideSuccessfulTextDisplayed(),"order guide creating error");
         softAssert.assertAll();
 
     }
