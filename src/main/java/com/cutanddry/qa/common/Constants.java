@@ -11,6 +11,8 @@ public class Constants {
     public static String SLACK_CHANNEL = System.getProperty("slack.channel", "#ui-automation-tests");
     public static String MAIN_URL = baseDomain();
 
+    public static String SLACK_WEBHOOK = System.getenv("SLACK_WEBHOOK");
+
     //slackToken=***
     //slackChannel=#ui-automation-tests
 
