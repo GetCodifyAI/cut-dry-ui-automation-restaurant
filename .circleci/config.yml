@@ -33,7 +33,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and Run Tests
-          command: mvn clean test -Dsurefire.suiteXmlFiles=smoke.xml -Drun.headless=true
+          command: mvn clean test -Dsurefire.suiteXmlFiles=bvt.xml -Drun.headless=true
 
 workflows:
   version: 2
