@@ -13,6 +13,8 @@ public class Constants {
     public static String SEC_URL = secDomain();
 
 
+    public static String SLACK_WEBHOOK = System.getenv("SLACK_WEBHOOK");
+
     //slackToken=***
     //slackChannel=#ui-automation-tests
 

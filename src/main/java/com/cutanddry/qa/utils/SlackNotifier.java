@@ -5,10 +5,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
+import com.cutanddry.qa.common.Constants;
 import org.json.JSONObject;
 
 public class SlackNotifier {
-    private static final String WEBHOOK_URL = "https://hooks.slack.com/services/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";
+    private static final String WEBHOOK_URL = Constants.SLACK_WEBHOOK;
     //https://hooks.slack.com/services/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
 
     // Update this with the actual URL where the report is hosted
@@ -23,7 +24,7 @@ public class SlackNotifier {
                     + "\"type\": \"section\","
                     + "\"text\": {"
                     + "\"type\": \"mrkdwn\","
-                    + "\"text\": \"*Distributor - Smoke Suite Execution Completed!*\""
+                    + "\"text\": \"*Operator - Test Suite Execution Completed!*\""
                     + "}"
                     + "},"
                     + "{"

@@ -1,0 +1,34 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="regression suit" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="com.cutanddry.qa.utils.RetryTransformer"/>
+        <listener class-name="com.cutanddry.qa.utils.TestNGListener"/>
+        <listener class-name="com.cutanddry.qa.utils.AIOSampleUIMethodListener"/>
+    </listeners>
+    <test name="operator tests">
+        <classes>
+            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantLoginTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmOrderGuideTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmCatalogTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmOrderGuideTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmCatalogTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmReviewCartTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantOrderSubmissionTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCompanyDropdownTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCreatingOrdersWithCatalogItemsTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyExportingOrderGuideEditFeatureTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePrintFeatureTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSearchFeatureTest" />
+            <class name="com.cutanddry.qa.tests.Support.RestaurantSupportTest" />
+            <class name="com.cutanddry.qa.tests.SignIn.VerifyForgotPasswordValidTest" />
+            <class name="com.cutanddry.qa.tests.SignIn.VerifyForgotPasswordInvalidTest" />
+            <class name="com.cutanddry.qa.tests.SignIn.VerifyForgotPasswordUnauthorizedTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCreatingOrdersWithUploadingExcelFileTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrderGuideWithCatalogItemsTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrdersImportingOrderGuideTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrdersWithUploadingExcelFileTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSortOptionsTest" />
+
+        </classes>
+    </test>
+</suite>
