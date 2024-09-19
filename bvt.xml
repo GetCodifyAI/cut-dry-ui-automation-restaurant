@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="smoke suit" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="com.cutanddry.qa.utils.RetryTransformer"/>
+        <listener class-name="com.cutanddry.qa.utils.TestNGListener"/>
+        <listener class-name="com.cutanddry.qa.utils.AIOSampleUIMethodListener"/>
+    </listeners>
+    <test name="distributor tests">
+        <classes>
+            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantLoginTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmOrderGuideTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmCatalogTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmOrderGuideTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmCatalogTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmReviewCartTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantOrderSubmissionTest" />
+        </classes>
+    </test>
+</suite>

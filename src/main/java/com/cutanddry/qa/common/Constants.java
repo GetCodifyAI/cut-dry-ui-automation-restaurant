@@ -10,6 +10,8 @@ public class Constants {
     public static String SLACK_TOKEN = System.getProperty("slack.token", "***");
     public static String SLACK_CHANNEL = System.getProperty("slack.channel", "#ui-automation-tests");
     public static String MAIN_URL = baseDomain();
+    public static String SEC_URL = secDomain();
+
 
     //slackToken=***
     //slackChannel=#ui-automation-tests
@@ -21,6 +23,15 @@ public class Constants {
             //implement for other env here
         }
         return MAIN_URL;
+    }
+
+    private static String secDomain() {
+        if (TEST_ENV.equalsIgnoreCase("UAT")){
+            SEC_URL = "https://supplier-"+TEST_ENV+".staging.cutanddry.com/";
+        } else if (TEST_ENV.equalsIgnoreCase("")){
+            //implement for other env here
+        }
+        return SEC_URL;
     }
 
 }

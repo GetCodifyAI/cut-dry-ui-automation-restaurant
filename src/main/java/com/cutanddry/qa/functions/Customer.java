@@ -181,4 +181,25 @@ public class Customer {
     public static void uploadFile(String path) {
         customersPage.fileUpload(path);
     }
+    public static boolean isInvalidDeliveryTextDisplayed(){return customersPage.isInvalidDeliveryTextDisplayed();}
+    public static void closeDeliveryPopup()throws InterruptedException{
+        customersPage.clickOnClose();
+    }
+
+    @SneakyThrows
+    public static void submitOrderAfterDeliveryTime(){
+        Thread.sleep(240000);
+        customersPage.submitOrder();
+    }
+
+    public static void selectDeliveryDateFirstLine()throws InterruptedException{
+        customersPage.clickOnDeliveryDate();
+        customersPage.selectDeliveryDateFirstLine();
+
+    }
+    public static void selectDeliveryDateSecondLine() throws InterruptedException {
+        customersPage.clickOnDeliveryDate();
+        customersPage.selectDeliveryDateSecondLine();
+    }
+
 }
