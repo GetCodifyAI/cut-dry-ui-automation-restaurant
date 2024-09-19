@@ -1,11 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="bvt suit" parallel="tests" thread-count="2">
+<suite name="smoke suit" parallel="tests" thread-count="2">
     <listeners>
         <listener class-name="com.cutanddry.qa.utils.RetryTransformer"/>
         <listener class-name="com.cutanddry.qa.utils.TestNGListener"/>
         <listener class-name="com.cutanddry.qa.utils.AIOSampleUIMethodListener"/>
     </listeners>
-    <test name="Operator tests">
+    <test name="distributor tests">
         <classes>
             <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantLoginTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmOrderGuideTest" />

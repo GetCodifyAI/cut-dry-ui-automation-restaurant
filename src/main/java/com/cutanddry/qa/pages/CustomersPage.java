@@ -38,7 +38,7 @@ public class CustomersPage extends LoginPage {
     By btn_downloadOrderGuide = By.xpath("//button[contains(text(), 'Download Order Guide')]");
     By lbl_printFriendlyOrderGuide = By.xpath("//h5[contains(text(), 'Print-Friendly Order Guide')]");
     By btn_edit = By.xpath("//button[contains(., 'Edit')]");
-    By txt_editOrderGuide= By.xpath("//span[contains(text(), 'Edit Order Guide')]");
+    By txt_editOrderGuide = By.xpath("//span[contains(text(), 'Edit Order Guide')]");
     By btn_moreOptions = By.xpath("//span[contains(text(), 'More Options')]");
     By btn_exportOrderGuide = By.xpath("//a[contains(text(), 'Export Order Guide (XLSX)')]");
     By btn_importOrderGuide = By.xpath("//a[contains(text(), 'Import Order Guide (XLSX)')]");
@@ -56,223 +56,332 @@ public class CustomersPage extends LoginPage {
     By btn_selectCustomOrder = By.xpath("//div[contains(@class, 'cd_themed_select__option') and contains(text(), 'Custom Order')]");
     By btn_selectItemCategory = By.xpath("//div[contains(@class, 'cd_themed_select__option') and contains(text(), 'Item Categories')]");
     By btn_selectAlphabetical = By.xpath("//div[contains(@class, 'cd_themed_select__option') and contains(text(), 'Alphabetical (A-Z)')]");
-    By txt_seaFood= By.xpath("//div[contains(text(), 'seafood')]");
+    By txt_seaFood = By.xpath("//div[contains(text(), 'seafood')]");
     By btn_browse = By.xpath("//input[@type='file']");
     By btn_uploadFile = By.xpath("//button[contains(text(), 'Upload File')]");
     By btn_next = By.xpath("//button[contains(text(), 'Next')]");
-    By btn_confirm= By.xpath("//button[contains(text(), 'Confirm')]");
-    By txt_successfulOrderGuide= By.xpath("//h2[contains(text(), 'Order guide updated successfully')]");
-    By txt_substitutions= By.xpath("//div[contains(text(), 'Substitutions (1 of 1)')]");
+    By btn_confirm = By.xpath("//button[contains(text(), 'Confirm')]");
+    By txt_successfulOrderGuide = By.xpath("//h2[contains(text(), 'Order guide updated successfully')]");
+    By txt_substitutions = By.xpath("//div[contains(text(), 'Substitutions (1 of 1)')]");
+    By txt_invalidDeliveryDate = By.xpath("//h2[text()='Error! Invalid Delivery Date']");
+    By btn_close = By.xpath("//button[contains(text(), 'Close')]");
+    By btn_deliveryDate = By.xpath("//div[@class='cd_themed_select__control css-sa5o0q-control']");
+    By btn_selectDeliveryDateFirstLine = By.xpath("(//div[contains(@class, 'cd_themed_select__option')])[1]");
+    By btn_selectDeliveryDateSecondLine = By.xpath("(//div[contains(@class, 'cd_themed_select__option')])[2]");
 
 
 
 
-
-
-
-
-
-
-
-    public String getItemNameFirstRow(){
+    public String getItemNameFirstRow() {
         return restaurantUI.getText(lbl_itemNameList);
     }
-    public void clickPlusQryFirstRow(){
+
+    public void clickPlusQryFirstRow() {
         restaurantUI.click(btn_increaseQtyFirstRow);
     }
-    public void clickPlusQrySecondRow(){
+
+    public void clickPlusQrySecondRow() {
         restaurantUI.click(btn_increaseQtySecondRow);
     }
-    public void clickMinusQryFirstRow(){
+
+    public void clickMinusQryFirstRow() {
         restaurantUI.click(btn_decreaseQtyFirstRow);
     }
-    public void clickMinusQrySecondRow(){
+
+    public void clickMinusQrySecondRow() {
         restaurantUI.click(btn_decreaseQtySecondRow);
     }
-    public void clickPlusCatalog(){
+
+    public void clickPlusCatalog() {
         restaurantUI.click(btn_increaseQtyCatalog);
     }
-    public void clickMinusCatalog(){
+
+    public void clickMinusCatalog() {
         restaurantUI.click(btn_decreaseQtyCatalog);
     }
-    public String getItemNameSecondRow(){
-        return restaurantUI.getText(lbl_itemNameList,1);
+
+    public String getItemNameSecondRow() {
+        return restaurantUI.getText(lbl_itemNameList, 1);
     }
-    public void clickOnCheckoutButton()throws InterruptedException {
-        restaurantUI.waitForElementEnabledState(btn_checkout,true);
+
+    public void clickOnCheckoutButton() throws InterruptedException {
+        restaurantUI.waitForElementEnabledState(btn_checkout, true);
         restaurantUI.click(btn_checkout);
         restaurantUI.waitForCustom(4000);
     }
-    public boolean isCatalogTextDisplayed(){
-        return restaurantUI.isDisplayed(txt_catalog);}
-    public void clickOnCatalogButton(){
+
+    public boolean isCatalogTextDisplayed() {
+        return restaurantUI.isDisplayed(txt_catalog);
+    }
+
+    public void clickOnCatalogButton() {
         restaurantUI.click(btn_catalog);
     }
-    public void typeToSearchOnCatalog(String item){
-        restaurantUI.sendKeys(tbx_catalogSearch,item);
+
+    public void typeToSearchOnCatalog(String item) {
+        restaurantUI.sendKeys(tbx_catalogSearch, item);
     }
-    public void typeToSearchOnOrderGuide(String item){
-        restaurantUI.sendKeys(tbx_orderGuideSearch,item);
+
+    public void typeToSearchOnOrderGuide(String item) {
+        restaurantUI.sendKeys(tbx_orderGuideSearch, item);
     }
-    public String getFirstItemNameFrmSearchResults(){
+
+    public String getFirstItemNameFrmSearchResults() {
         return restaurantUI.getText(lbl_catalogSearchItemList, 0);
     }
-    public void clickAddToCartCatalog()throws InterruptedException {
+
+    public void clickAddToCartCatalog() throws InterruptedException {
         restaurantUI.waitForClickability(btn_addToCart);
         restaurantUI.waitForCustom(4000);
         restaurantUI.click(btn_addToCart);
-        restaurantUI.waitForElementEnabledState(btn_checkout,true);
+        restaurantUI.waitForElementEnabledState(btn_checkout, true);
     }
-    public String getItemQtyFirstRow(){
-        return restaurantUI.getText(tbx_itemQuantityFirstRow,"value");}
-    public String getItemQtyCatalog(){
-        return restaurantUI.getText(tbx_itemQuantityCatalog,"value");}
-    public Double getItemPriceCatalogSearch(){
-        return Double.valueOf(restaurantUI.getText(lbl_itemPriceSearchCatalogList).replace("$",""));}
-    public Double getItemPriceFirstRow(){
-        return Double.valueOf(restaurantUI.getText(lbl_itemPriceFirstRow).replace("$",""));}
-    public Double getItemPriceOnCheckoutButton(){
-        return Double.valueOf(restaurantUI.getText(btn_checkout).replace("$",""));}
-    public boolean isAddToCartTextDisplayed(){
-        return restaurantUI.isDisplayed(txt_addToCart);}
-    public Double getItemPriceReviewCart(){
-        return Double.valueOf(restaurantUI.getText(lbl_itemPriceReviewCart).replace("$",""));}
-    public void clickPlusReviewCart(){
-        restaurantUI.click(btn_increaseQtyReviewCart);}
-    public void clickMinusReviewCart(){
-        restaurantUI.click(btn_decreaseQtyReviewCart);}
-    public String getItemQtyReviewCart(){
-        return restaurantUI.getText(tbx_itemQuantityReviewCart,"value");}
-    public Double getItemPriceReviewCartFirstRow(){
-        return Double.valueOf(restaurantUI.getText(lbl_itemPriceReviewCartFirstRow).replace("$",""));}
-    public boolean isDuplicatePopupDisplayed(){
+
+    public String getItemQtyFirstRow() {
+        return restaurantUI.getText(tbx_itemQuantityFirstRow, "value");
+    }
+
+    public String getItemQtyCatalog() {
+        return restaurantUI.getText(tbx_itemQuantityCatalog, "value");
+    }
+
+    public Double getItemPriceCatalogSearch() {
+        return Double.valueOf(restaurantUI.getText(lbl_itemPriceSearchCatalogList).replace("$", ""));
+    }
+
+    public Double getItemPriceFirstRow() {
+        return Double.valueOf(restaurantUI.getText(lbl_itemPriceFirstRow).replace("$", ""));
+    }
+
+    public Double getItemPriceOnCheckoutButton() {
+        return Double.valueOf(restaurantUI.getText(btn_checkout).replace("$", ""));
+    }
+
+    public boolean isAddToCartTextDisplayed() {
+        return restaurantUI.isDisplayed(txt_addToCart);
+    }
+
+    public Double getItemPriceReviewCart() {
+        return Double.valueOf(restaurantUI.getText(lbl_itemPriceReviewCart).replace("$", ""));
+    }
+
+    public void clickPlusReviewCart() {
+        restaurantUI.click(btn_increaseQtyReviewCart);
+    }
+
+    public void clickMinusReviewCart() {
+        restaurantUI.click(btn_decreaseQtyReviewCart);
+    }
+
+    public String getItemQtyReviewCart() {
+        return restaurantUI.getText(tbx_itemQuantityReviewCart, "value");
+    }
+
+    public Double getItemPriceReviewCartFirstRow() {
+        return Double.valueOf(restaurantUI.getText(lbl_itemPriceReviewCartFirstRow).replace("$", ""));
+    }
+
+    public boolean isDuplicatePopupDisplayed() {
         try {
-            return restaurantUI.isDisplayed(btn_duplicateOrderYes);}
-        catch (Exception e){return false;}}
-    public void clickYesDuplicatePopup(){
+            return restaurantUI.isDisplayed(btn_duplicateOrderYes);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void clickYesDuplicatePopup() {
         restaurantUI.waitForClickability(btn_duplicateOrderYes);
         restaurantUI.click(btn_duplicateOrderYes);
         restaurantUI.waitForInvisibility(btn_duplicateOrderYes);
     }
-    public boolean isThankingForOrderPopupDisplayed(){
+
+    public boolean isThankingForOrderPopupDisplayed() {
         try {
             restaurantUI.waitForClickability(lbl_thankYouForOrder);
-            return restaurantUI.isDisplayed(lbl_thankYouForOrder);}
-        catch (Exception e){return false;}}
-    public void submitOrder(){
+            return restaurantUI.isDisplayed(lbl_thankYouForOrder);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void submitOrder() {
         restaurantUI.waitForClickability(btn_submitOrder);
-        restaurantUI.click(btn_submitOrder);}
-    public void clickCompanyDropdown(){
+        restaurantUI.click(btn_submitOrder);
+    }
+
+    public void clickCompanyDropdown() {
         restaurantUI.waitForClickability(btn_companyDropdown);
         restaurantUI.click(btn_companyDropdown);
     }
-    public boolean isCompanyDropdownTextDisplayed(){
-        return restaurantUI.isDisplayed(txt_companyDropdownText);}
-    public void clickOnPrint(){
+
+    public boolean isCompanyDropdownTextDisplayed() {
+        return restaurantUI.isDisplayed(txt_companyDropdownText);
+    }
+
+    public void clickOnPrint() {
         restaurantUI.waitForClickability(btn_print);
         restaurantUI.click(btn_print);
     }
-    public void clickOnDownloadOrderGuide(){
+
+    public void clickOnDownloadOrderGuide() {
         restaurantUI.waitForClickability(btn_downloadOrderGuide);
         restaurantUI.click(btn_downloadOrderGuide);
     }
-    public boolean isPrintFriendlyPopupDisplayed(){
-        return restaurantUI.isDisplayed(lbl_printFriendlyOrderGuide);}
-    public void clickOnEdit(){
+
+    public boolean isPrintFriendlyPopupDisplayed() {
+        return restaurantUI.isDisplayed(lbl_printFriendlyOrderGuide);
+    }
+
+    public void clickOnEdit() {
         restaurantUI.waitForClickability(btn_edit);
         restaurantUI.click(btn_edit);
     }
-    public boolean isEditOrderGuideTextDisplayed(){
+
+    public boolean isEditOrderGuideTextDisplayed() {
         try {
             restaurantUI.waitForVisibility(txt_editOrderGuide);
-        } catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
         return restaurantUI.isDisplayed(txt_editOrderGuide);
     }
-    public void clickOnMoreOptions(){
+
+    public void clickOnMoreOptions() {
         restaurantUI.waitForClickability(btn_moreOptions);
         restaurantUI.click(btn_moreOptions);
     }
-    public void clickOnExportOrderGuide(){
+
+    public void clickOnExportOrderGuide() {
         restaurantUI.waitForClickability(btn_exportOrderGuide);
         restaurantUI.click(btn_exportOrderGuide);
     }
-    public void clickOnImportOrderGuide(){
+
+    public void clickOnImportOrderGuide() {
         restaurantUI.waitForClickability(btn_importOrderGuide);
         restaurantUI.click(btn_importOrderGuide);
     }
-    public void clickOnUploadToOrder(){
+
+    public void clickOnUploadToOrder() {
         restaurantUI.waitForClickability(btn_uploadToOrder);
         restaurantUI.click(btn_uploadToOrder);
     }
-    public void clickOnCreate(){
+
+    public void clickOnCreate() {
         restaurantUI.waitForClickability(btn_create);
         restaurantUI.click(btn_create);
     }
-    public void typeOrderGuideName(String orderGuideName){
-        restaurantUI.sendKeys(tbx_OrderGuideName,orderGuideName);
+
+    public void typeOrderGuideName(String orderGuideName) {
+        restaurantUI.sendKeys(tbx_OrderGuideName, orderGuideName);
     }
-    public void clickSubmitOrderGuide(){
+
+    public void clickSubmitOrderGuide() {
         restaurantUI.waitForClickability(btn_submitOrderGuide);
         restaurantUI.click(btn_submitOrderGuide);
     }
-    public void clickOnAddFromCatalog(){
+
+    public void clickOnAddFromCatalog() {
         restaurantUI.waitForClickability(btn_addFromCatalog);
         restaurantUI.click(btn_addFromCatalog);
     }
-    public void clickOnAddTOOrderGuide(){
+
+    public void clickOnAddTOOrderGuide() {
         restaurantUI.waitForVisibility(btn_addToOrderGuide);
         restaurantUI.click(btn_addToOrderGuide);
     }
-    public void clickOnCloseEditor(){
+
+    public void clickOnCloseEditor() {
         restaurantUI.click(btn_closeEditor);
     }
-    public void clickOnRemoveFromOrderGuide()throws InterruptedException {
+
+    public void clickOnRemoveFromOrderGuide() throws InterruptedException {
         restaurantUI.waitForVisibility(btn_removeFromOrderGuide);
         restaurantUI.click(btn_removeFromOrderGuide);
         restaurantUI.waitForCustom(4000);
     }
 
-    public void clickDropDownCustomerOrder(){
-        restaurantUI.click(btn_sortCustomOrder);}
-    public void clickDropDownItemCategory(){
-        restaurantUI.click(btn_sortItemCategory);}
-    public void clickDropDownAlphabetical(){
-        restaurantUI.click(btn_sortAlphabetical);}
-    public void selectDropDownCustomerOrder(){
-        restaurantUI.click(btn_selectCustomOrder);}
-    public void selectDropDownItemCategory(){
-        restaurantUI.click(btn_selectItemCategory);}
-    public void selectDropDownAlphabetical(){
-        restaurantUI.click(btn_selectAlphabetical);}
-    public boolean isSeaFoodTextDisplayed(){
+    public void clickDropDownCustomerOrder() {
+        restaurantUI.click(btn_sortCustomOrder);
+    }
+
+    public void clickDropDownItemCategory() {
+        restaurantUI.click(btn_sortItemCategory);
+    }
+
+    public void clickDropDownAlphabetical() {
+        restaurantUI.click(btn_sortAlphabetical);
+    }
+
+    public void selectDropDownCustomerOrder() {
+        restaurantUI.click(btn_selectCustomOrder);
+    }
+
+    public void selectDropDownItemCategory() {
+        restaurantUI.click(btn_selectItemCategory);
+    }
+
+    public void selectDropDownAlphabetical() {
+        restaurantUI.click(btn_selectAlphabetical);
+    }
+
+    public boolean isSeaFoodTextDisplayed() {
         try {
             restaurantUI.waitForVisibility(txt_seaFood);
-        } catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
         return restaurantUI.isDisplayed(txt_seaFood);
     }
-    public void clickOnUploadFile(){
+
+    public void clickOnUploadFile() {
         restaurantUI.waitForClickability(btn_uploadFile);
         restaurantUI.click(btn_uploadFile);
     }
-    public void clickOnNext(){
+
+    public void clickOnNext() {
         restaurantUI.waitForClickability(btn_next);
         restaurantUI.click(btn_next);
     }
-    public void clickOnConfirm(){
+
+    public void clickOnConfirm() {
         restaurantUI.waitForClickability(btn_confirm);
         restaurantUI.click(btn_confirm);
     }
-    public boolean isOrderGuideSuccessfulTextDisplayed(){
-        return restaurantUI.isDisplayed(txt_successfulOrderGuide);}
 
-    public boolean isSubstitutionTextDisplayed(){
-        return restaurantUI.isDisplayed(txt_substitutions);}
+    public boolean isOrderGuideSuccessfulTextDisplayed() {
+        return restaurantUI.isDisplayed(txt_successfulOrderGuide);
+    }
+
+    public boolean isSubstitutionTextDisplayed() {
+        return restaurantUI.isDisplayed(txt_substitutions);
+    }
 
     public void fileUpload(String path) {
         restaurantUI.sendKeysHiddenElements(btn_browse, path);
+    }
+
+    public boolean isInvalidDeliveryTextDisplayed() {
+        return restaurantUI.isDisplayed(txt_invalidDeliveryDate);
+    }
+
+    public void clickOnClose() throws InterruptedException{
+        restaurantUI.waitForCustom(4000);
+        restaurantUI.click(btn_close);
+
+    }
+
+
+    public void clickOnDeliveryDate() throws InterruptedException{
+        restaurantUI.waitForCustom(4000);
+        restaurantUI.click(btn_deliveryDate);
+    }
+
+    public void selectDeliveryDateFirstLine() {
+        restaurantUI.click(btn_selectDeliveryDateFirstLine);
+    }
+    public void selectDeliveryDateSecondLine()  throws InterruptedException {
+        restaurantUI.waitForCustom(4000);
+        restaurantUI.click(btn_selectDeliveryDateSecondLine);
+        restaurantUI.waitForCustom(4000);
     }
 }

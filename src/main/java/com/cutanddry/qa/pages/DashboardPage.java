@@ -11,6 +11,7 @@ public class DashboardPage extends LoginPage{
     By btn_TestAutomation = By.xpath("//div[contains(text(), 'Test_Automation') and contains(@class, 'w-100')]");
     By txt_draftOrder = By.xpath("//div[contains(@class, 'text-center') and contains(text(), 'continue your previous draft order')]");
     By btn_noDraftOrder = By.xpath("//span[text()='×']");
+    By txt_disDashboard = By.xpath("//li[contains(text(),'Dashboard')]");
 
 
 
@@ -50,5 +51,14 @@ public class DashboardPage extends LoginPage{
     }
     public void clickOnNoDraftOrder(){
         restaurantUI.click(btn_noDraftOrder);
+    }
+
+    public boolean isDisDashboardTextDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_disDashboard);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_disDashboard);
     }
 }

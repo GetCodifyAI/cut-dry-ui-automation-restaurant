@@ -46,6 +46,32 @@ public class TestBase {
         }
     }
 
+    public static void secInitialization() {
+        if (driver == null) {  // Ensure WebDriver is initialized only once
+            if (Constants.BROWSER_NAME.equalsIgnoreCase("chrome")) {
+                try {
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.addArguments("--start-maximized");
+                    if (Constants.RUN_HEADLESS) {
+                        chromeOptions.addArguments("--headless", "--window-size=1920,1080");
+                    }
+                    driver = new ChromeDriver(chromeOptions);
+                    js = (JavascriptExecutor) driver;
+                    wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
+                    driver.get(Constants.SEC_URL);
+                    restaurantUI = new KeywordBase(driver, wait);  // Initialize KeywordBase here
+
+                    LOGGER.info("WebDriver initialized and navigated to the URL: " + Constants.SEC_URL);
+                } catch (Exception e) {
+                    LOGGER.log(Level.SEVERE, "Failed to initialize WebDriver", e);
+                }
+            } else {
+                LOGGER.warning("Unsupported browser or WebDriver is already initialized.");
+            }
+        }
+    }
+
     // Method to close the browser and clean up resources
     public static void closeAllBrowsers() {
         if (driver != null) {

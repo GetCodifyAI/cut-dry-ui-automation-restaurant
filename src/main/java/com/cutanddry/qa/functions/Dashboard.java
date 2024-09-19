@@ -25,4 +25,7 @@ public class Dashboard {
         return dashboardPage.isOrderGuideTextDisplayed();
     }
 
+    public static boolean isUserNavigatedToDisDashboard(){
+        return dashboardPage.isDisDashboardTextDisplayed();
+    }
 }
