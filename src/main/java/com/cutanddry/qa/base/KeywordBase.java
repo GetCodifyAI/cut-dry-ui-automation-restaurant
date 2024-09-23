@@ -12,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 
@@ -493,5 +494,20 @@ public class KeywordBase {
             logger.error("Failed to take screenshot for test: " + testName, e);
         }
     }
+    public void switchToNewTab() {
+        String originalWindow = driver.getWindowHandle();
+
+        // Wait for the new tab to open (optional, depending on your application)
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> driver.getWindowHandles().size() > 1);
+
+        // Switch to the new tab
+        for (String windowHandle : driver.getWindowHandles()) {
+            if (!windowHandle.equals(originalWindow)) {
+                driver.switchTo().window(windowHandle);
+                break; // Exit loop once switched to new tab
+            }
+        }
+    }
+
 }
 

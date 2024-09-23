@@ -34,4 +34,13 @@ public class Login {
     public static void navigateToWhiteLabel() {
         loginPage.navigateToWhiteLabel();
     }
+    public static void navigateToLoginAs() {
+        loginPage.navigateToLoginAs();
+    }
+    public static void goToOperatorJoshuaClayton(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnJoshuaClayton();
+        loginPage.clickOnLoginAsClassic();
+
+    }
 }

@@ -202,4 +202,12 @@ public class Customer {
         customersPage.selectDeliveryDateSecondLine();
     }
 
+    public static void orderGuideSettings(){
+        customersPage.clickOnOrderGuideSettings();
+    }
+
+    public static void saveOrderApproval() throws InterruptedException {
+        customersPage.clickOnOrderApproval();
+        customersPage.clickOnSave();
+    }
 }
