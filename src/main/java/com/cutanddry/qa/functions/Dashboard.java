@@ -28,4 +28,10 @@ public class Dashboard {
     public static boolean isUserNavigatedToDisDashboard(){
         return dashboardPage.isDisDashboardTextDisplayed();
     }
+    public static void navigateToCooksCompanyProduce() {
+        dashboardPage.clickOnCooksCompanyProduce();
+    }
+    public static boolean isApprovalsTabDisplayed(){
+        return dashboardPage.isApprovalsTabDisplayed();
+    }
 }

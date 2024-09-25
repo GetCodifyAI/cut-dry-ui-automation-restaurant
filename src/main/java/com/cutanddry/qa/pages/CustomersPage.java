@@ -68,6 +68,10 @@ public class CustomersPage extends LoginPage {
     By btn_deliveryDate = By.xpath("//div[@class='cd_themed_select__control css-sa5o0q-control']");
     By btn_selectDeliveryDateFirstLine = By.xpath("(//div[contains(@class, 'cd_themed_select__option')])[1]");
     By btn_selectDeliveryDateSecondLine = By.xpath("(//div[contains(@class, 'cd_themed_select__option')])[2]");
+    By btn_orderGuideSettings = By.xpath("//a[contains(text(), 'Order Guide Settings')]");
+    By btn_orderApproval = By.xpath("//div[contains(@class, 'react-switch-handle')]");
+    By btn_save = By.xpath("//button[contains(@class, 'btn btn-primary') and contains(text(), 'Save')]");
+
 
 
 
@@ -384,4 +388,16 @@ public class CustomersPage extends LoginPage {
         restaurantUI.click(btn_selectDeliveryDateSecondLine);
         restaurantUI.waitForCustom(4000);
     }
+    public void clickOnOrderGuideSettings() {
+        restaurantUI.waitForClickability(btn_orderGuideSettings);
+        restaurantUI.click(btn_orderGuideSettings);
+    }
+    public void clickOnOrderApproval() throws InterruptedException {
+        restaurantUI.click(btn_orderApproval);
+        restaurantUI.waitForCustom(4000);
+    }
+    public void clickOnSave() {
+        restaurantUI.click(btn_save );
+    }
+
 }

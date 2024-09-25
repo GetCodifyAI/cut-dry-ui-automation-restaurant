@@ -33,6 +33,8 @@
             <class name="com.cutanddry.qa.tests.SignIn.VerifyWhiteLabelForgotPasswordValidTest" />
             <class name="com.cutanddry.qa.tests.SignIn.VerifyWhiteLabelForgotPasswordInvalidTest" />
             <class name="com.cutanddry.qa.tests.SignIn.VerifyWhiteLabelForgotPasswordUnauthorizedTest" />
+            <class name="com.cutanddry.qa.tests.Approvals.VerifyOrderApprovalTurnOnFeatureTest" />
+            <class name="com.cutanddry.qa.tests.Approvals.VerifyOrderApprovalChangesTest" />
 
         </classes>
     </test>

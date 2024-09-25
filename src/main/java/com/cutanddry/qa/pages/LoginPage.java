@@ -16,6 +16,12 @@ public class LoginPage extends TestBase {
     By txt_invalidEmailOrMobile = By.xpath("//div[text()='Error']");
     By btn_ok = By.xpath("//button[text()='Ok']");
     By btn_tryAgain = By.xpath("//button[text()='Try Again']");
+    By tbx_operatorSearch = By.xpath("//input[@id='react-select-5-input']");
+    By txt_joshuaClayton = By.xpath("//div[contains(text(), 'JOSHUA CLAYTON - 81264146')]");
+    By btn_LoginAsClassic = By.xpath("//a[contains(text(), 'Login As (classic)')]");
+
+
+
 
     public void typeEmailOrMobile(String emailOrMobile){
         restaurantUI.sendKeys(txt_emailOrMobile,emailOrMobile);
@@ -55,5 +61,21 @@ public class LoginPage extends TestBase {
     }
     public void navigateToWhiteLabel() {
         restaurantUI.navigateToURL(Constants.WHITELABEL_APP_URL);
+    }
+    public void navigateToLoginAs() {
+        restaurantUI.navigateToURL(Constants.LOGIN_AS_APP_URL);
+    }
+
+    public void typeToSearchOnOperator(String operator) throws InterruptedException {
+        restaurantUI.sendKeys(tbx_operatorSearch, operator);
+        restaurantUI.waitForCustom(4000);
+    }
+    public void clickOnJoshuaClayton(){
+        restaurantUI.click(txt_joshuaClayton);
+    }
+    public void clickOnLoginAsClassic() throws InterruptedException {
+        restaurantUI.click(btn_LoginAsClassic);
+//        restaurantUI.closeBrowser();
+//        restaurantUI.waitForCustom(4000);
     }
 }
