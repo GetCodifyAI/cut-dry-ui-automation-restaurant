@@ -14,7 +14,7 @@ public class DashboardPage extends LoginPage{
     By txt_disDashboard = By.xpath("//li[contains(text(),'Dashboard')]");
     By btn_cooksCompanyProduce = By.xpath("//div[contains(text(), 'Cooks Company Produce')]");
     By txt_approvals = By.xpath("//div[contains(text(), 'Approvals')]");
-
+    By btn_Reports = By.xpath("//a[contains(@data-tip, 'Reports')]");
 
 
     public boolean isDashboardTextDisplayed(){
@@ -73,4 +73,7 @@ public class DashboardPage extends LoginPage{
     }
     public void clickOnCooksCompanyProduce() {
         restaurantUI.click(btn_cooksCompanyProduce);}
+
+    public void clickOnReports() {
+        restaurantUI.click(btn_Reports);}
 }

@@ -21,9 +21,9 @@ public class Constants {
 
     private static String baseDomain() {
         if (TEST_ENV.equalsIgnoreCase("UAT")){
-            MAIN_URL = "https://app-"+TEST_ENV+".staging.cutanddry.com/";
-        } else if (TEST_ENV.equalsIgnoreCase("")){
-            //implement for other env here
+            MAIN_URL = "https://app-uat.staging.cutanddry.com/";
+        } else if (TEST_ENV.equalsIgnoreCase("PROD")){
+            MAIN_URL = "https://app.cutanddry.com/";
         }
         return MAIN_URL;
     }

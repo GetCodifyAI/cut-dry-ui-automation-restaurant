@@ -35,6 +35,10 @@
             <class name="com.cutanddry.qa.tests.SignIn.VerifyWhiteLabelForgotPasswordUnauthorizedTest" />
             <class name="com.cutanddry.qa.tests.Approvals.VerifyOrderApprovalTurnOnFeatureTest" />
             <class name="com.cutanddry.qa.tests.Approvals.VerifyOrderApprovalChangesTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForClassicOperatorTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForWhiteLabelOperatorTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForClassicOperatorTestTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForWhiteLabelOperatorTest" />
 
         </classes>
     </test>

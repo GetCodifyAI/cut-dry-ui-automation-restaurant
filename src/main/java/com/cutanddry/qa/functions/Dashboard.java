@@ -34,4 +34,8 @@ public class Dashboard {
     public static boolean isApprovalsTabDisplayed(){
         return dashboardPage.isApprovalsTabDisplayed();
     }
+
+    public static void navigateToReports() {
+        dashboardPage.clickOnReports();
+    }
 }
