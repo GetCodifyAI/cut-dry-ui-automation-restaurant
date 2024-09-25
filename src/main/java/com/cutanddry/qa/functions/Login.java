@@ -41,6 +41,10 @@ public class Login {
         loginPage.typeToSearchOnOperator(operator);
         loginPage.clickOnJoshuaClayton();
         loginPage.clickOnLoginAsClassic();
-
+    }
+    public static void goToOperatorStephanieCollins(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnStephanieCollins();
+        loginPage.clickOnLoginAsWhiteLabel();
     }
 }

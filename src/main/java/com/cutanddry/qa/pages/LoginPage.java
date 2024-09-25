@@ -18,8 +18,9 @@ public class LoginPage extends TestBase {
     By btn_tryAgain = By.xpath("//button[text()='Try Again']");
     By tbx_operatorSearch = By.xpath("//input[@id='react-select-5-input']");
     By txt_joshuaClayton = By.xpath("//div[contains(text(), 'JOSHUA CLAYTON - 81264146')]");
+    By txt_stephanieCollins = By.xpath("//div[contains(text(), 'Stephanie Collins - 176617582')]");
     By btn_LoginAsClassic = By.xpath("//a[contains(text(), 'Login As (classic)')]");
-
+    By btn_LoginAsWhiteLabel = By.xpath("//a[contains(text(), 'Login As (white-label)')]");
 
 
 
@@ -73,8 +74,19 @@ public class LoginPage extends TestBase {
     public void clickOnJoshuaClayton(){
         restaurantUI.click(txt_joshuaClayton);
     }
+
+    public void clickOnStephanieCollins(){
+        restaurantUI.click(txt_stephanieCollins);
+    }
+
     public void clickOnLoginAsClassic() throws InterruptedException {
         restaurantUI.click(btn_LoginAsClassic);
+//        restaurantUI.closeBrowser();
+//        restaurantUI.waitForCustom(4000);
+    }
+
+    public void clickOnLoginAsWhiteLabel() throws InterruptedException {
+        restaurantUI.click(btn_LoginAsWhiteLabel);
 //        restaurantUI.closeBrowser();
 //        restaurantUI.waitForCustom(4000);
     }
