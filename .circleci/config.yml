@@ -80,7 +80,7 @@ workflows:
   scheduled-tests:
     triggers:
       - schedule:
-          cron: "15 06 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)
+          cron: "00 06 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)
           filters:
             branches:
               only:
