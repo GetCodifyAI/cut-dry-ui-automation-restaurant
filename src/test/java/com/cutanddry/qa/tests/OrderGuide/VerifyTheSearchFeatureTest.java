@@ -24,7 +24,7 @@ public class VerifyTheSearchFeatureTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-63")
-    public void verifyTheSearchFeature() {
+    public void verifyTheSearchFeature() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();

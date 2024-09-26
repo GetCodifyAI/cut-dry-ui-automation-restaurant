@@ -24,7 +24,7 @@ public class EditProductQtyFrmOrderGuideTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-59")
-    public void editProductQtyFrmOrderGuide() {
+    public void editProductQtyFrmOrderGuide() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();

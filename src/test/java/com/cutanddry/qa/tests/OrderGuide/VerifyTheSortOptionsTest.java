@@ -23,7 +23,7 @@ public class VerifyTheSortOptionsTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-64")
-    public void verifyTheSortOptions() {
+    public void verifyTheSortOptions() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
