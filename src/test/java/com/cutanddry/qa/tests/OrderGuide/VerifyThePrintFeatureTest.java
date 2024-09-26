@@ -22,7 +22,7 @@ public class VerifyThePrintFeatureTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-62")
-    public void verifyThePrintFeature() {
+    public void verifyThePrintFeature() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();

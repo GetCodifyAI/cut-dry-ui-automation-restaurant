@@ -22,7 +22,7 @@ public class RestaurantOrderSubmissionTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-61")
-    public void RestaurantOrderSubmission() {
+    public void RestaurantOrderSubmission() throws InterruptedException {
         String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());

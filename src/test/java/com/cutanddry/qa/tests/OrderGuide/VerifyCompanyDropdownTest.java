@@ -22,7 +22,7 @@ public class VerifyCompanyDropdownTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-77")
-    public void verifyCompanyDropdown() {
+    public void verifyCompanyDropdown() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();

@@ -73,7 +73,10 @@ public class Customer {
         customersPage.typeToSearchOnCatalog(item);
         Thread.sleep(4000);
     }
-    public static void searchItemOnOrderGuide(String item){
+    public static void searchItemOnOrderGuide(String item) throws InterruptedException {
+        if (customersPage.isPreviousDraftOrderNoDisplayed()){
+            customersPage.clickPreviousDraftOrderNo();
+        }
         customersPage.typeToSearchOnOrderGuide(item);
     }
     public static String getFirstElementFrmSearchResults(){return customersPage.getFirstItemNameFrmSearchResults();}
