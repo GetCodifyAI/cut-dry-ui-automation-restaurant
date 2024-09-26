@@ -33,7 +33,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run tests
-          command: mvn clean test -Dsurefire.suiteXmlFiles=bvt.xml -Drun.headless=true -X
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=bvt.xml" "-Drun.headless=true" "-Dtest.env=uat"
     executor:
 
   nightly-build-and-test:
@@ -68,7 +68,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run nightly tests
-          command: mvn clean test -Dsurefire.suiteXmlFiles=regression.xml -Drun.headless=true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression.xml" "-Drun.headless=true" "-Dtest.env=uat"
     executor:
 
 workflows:
@@ -80,7 +80,7 @@ workflows:
   scheduled-tests:
     triggers:
       - schedule:
-          cron: "30 18 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)
+          cron: "15 06 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)
           filters:
             branches:
               only:
