@@ -19,6 +19,7 @@ public class LoginPage extends TestBase {
     By tbx_operatorSearch = By.xpath("//input[@id='react-select-5-input']");
     By txt_joshuaClayton = By.xpath("//div[contains(text(), 'JOSHUA CLAYTON - 81264146')]");
     By txt_stephanieCollins = By.xpath("//div[contains(text(), 'Stephanie Collins - 176617582')]");
+    By txt_bermudaBiologicalStation= By.xpath("//div[contains(text(), '(explorer) - Bermuda Biological Station - 196795960')]");
     By btn_LoginAsClassic = By.xpath("//a[contains(text(), 'Login As (classic)')]");
     By btn_LoginAsWhiteLabel = By.xpath("//a[contains(text(), 'Login As (white-label)')]");
 
@@ -89,5 +90,8 @@ public class LoginPage extends TestBase {
         restaurantUI.click(btn_LoginAsWhiteLabel);
 //        restaurantUI.closeBrowser();
 //        restaurantUI.waitForCustom(4000);
+    }
+    public void clickOnBermudaBiologicalStation(){
+        restaurantUI.click(txt_bermudaBiologicalStation);
     }
 }

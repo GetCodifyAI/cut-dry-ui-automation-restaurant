@@ -47,4 +47,9 @@ public class Login {
         loginPage.clickOnStephanieCollins();
         loginPage.clickOnLoginAsWhiteLabel();
     }
+    public static void goToOperatorBermudaBiologicalStation(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnBermudaBiologicalStation();
+        loginPage.clickOnLoginAsWhiteLabel();
+    }
 }

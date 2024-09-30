@@ -28,6 +28,8 @@
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrdersImportingOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrdersWithUploadingExcelFileTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSortOptionsTest" />
+            <class name="com.cutanddry.qa.tests.Settings.VerifyThatTheUsersCannotOrderItemsAfterTheCutOffTimeTest" />
+            <class name="com.cutanddry.qa.tests.Settings.VerifyThatTheUsersCanOrderItemsBeforeTheCutOffTimeTest" />
             <class name="com.cutanddry.qa.tests.SignIn.VerifyWhiteLabelForgotPasswordValidTest" />
             <class name="com.cutanddry.qa.tests.SignIn.VerifyWhiteLabelForgotPasswordInvalidTest" />
             <class name="com.cutanddry.qa.tests.SignIn.VerifyWhiteLabelForgotPasswordUnauthorizedTest" />
@@ -37,6 +39,8 @@
             <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForWhiteLabelOperatorTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForClassicOperatorTestTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForWhiteLabelOperatorTest" />
+            <class name="com.cutanddry.qa.tests.MultiCart.VerifyCreatedOrdersFromMultipleCartsTest" />
+            <class name="com.cutanddry.qa.tests.MultiCart.VerifyGroupingProductsIntoTwoCartsTest" />
 
         </classes>
     </test>
