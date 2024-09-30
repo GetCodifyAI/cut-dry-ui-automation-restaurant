@@ -24,7 +24,7 @@ public class VerifyCreatingOrdersWithCatalogItemsTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-66")
-    public void verifyCreatingOrdersWithCatalogItems() {
+    public void verifyCreatingOrdersWithCatalogItems() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();

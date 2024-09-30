@@ -22,7 +22,7 @@ public class VerifyExportingOrderGuideEditFeatureTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-71")
-    public void verifyExportingOrderGuideEditFeature() {
+    public void verifyExportingOrderGuideEditFeature() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();

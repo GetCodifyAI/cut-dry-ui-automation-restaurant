@@ -22,7 +22,7 @@ public class EditProductQtyFrmReviewCartTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-60")
-    public void editProductQtyFrmReviewCart() {
+    public void editProductQtyFrmReviewCart() throws InterruptedException {
         String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
