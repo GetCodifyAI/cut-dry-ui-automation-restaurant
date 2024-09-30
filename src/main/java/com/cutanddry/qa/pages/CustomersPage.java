@@ -71,6 +71,7 @@ public class CustomersPage extends LoginPage {
     By btn_orderGuideSettings = By.xpath("//a[contains(text(), 'Order Guide Settings')]");
     By btn_orderApproval = By.xpath("//div[contains(@class, 'react-switch-handle')]");
     By btn_save = By.xpath("//button[contains(@class, 'btn btn-primary') and contains(text(), 'Save')]");
+    By btn_previousDraftOrderNo = By.xpath("//div[contains(text(),'previous draft order')]/..//div[text()='No']");
     By btn_placeOrder = By.xpath("//a[contains(@class, 'btn-primary') and contains(text(), 'Place Order')]");
     By btn_increaseQtyFirstRowInWL = By.xpath("//tr[2]/td[6]/div/div/div/div[3]");
     By btn_decreaseQtyFirstRowInWL = By.xpath("//tr[2]/td[6]/div/div/div/div[1]");
@@ -79,6 +80,15 @@ public class CustomersPage extends LoginPage {
     String txt_orders = "(//div[contains(text(), 'Order #')])[NUM]";
     By lbl_itemNameListWL = By.xpath("//td//span/div[@data-tip='View Product Details']");
 
+    public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
+        restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.isDisplayed(btn_previousDraftOrderNo);
+    }
+
+    public void clickPreviousDraftOrderNo() throws InterruptedException {
+        restaurantUI.click(btn_previousDraftOrderNo);
+    }
 
     public String getItemNameFirstRow() {
         return restaurantUI.getText(lbl_itemNameList);
