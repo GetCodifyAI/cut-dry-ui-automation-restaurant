@@ -5,7 +5,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CustomersPage extends LoginPage {
 
-    By lbl_itemNameList = By.xpath("//td//span/div[@data-tip='View Product Details']");
+    By lbl_itemNameList = By.xpath("//td//span/div[@data-tip='View Item Details']");
     By btn_increaseQtyFirstRow = By.xpath("//tr[1]/td[6]/div/div/div/div[3]");
     By btn_decreaseQtyFirstRow = By.xpath("//tr[1]/td[6]/div/div/div/div[1]");
     By btn_decreaseQtySecondRow = By.xpath("//tr[2]/td[6]/div/div/div/div[1]");
@@ -72,6 +72,13 @@ public class CustomersPage extends LoginPage {
     By btn_orderApproval = By.xpath("//div[contains(@class, 'react-switch-handle')]");
     By btn_save = By.xpath("//button[contains(@class, 'btn btn-primary') and contains(text(), 'Save')]");
     By btn_previousDraftOrderNo = By.xpath("//div[contains(text(),'previous draft order')]/..//div[text()='No']");
+    By btn_placeOrder = By.xpath("//a[contains(@class, 'btn-primary') and contains(text(), 'Place Order')]");
+    By btn_increaseQtyFirstRowInWL = By.xpath("//tr[2]/td[6]/div/div/div/div[3]");
+    By btn_decreaseQtyFirstRowInWL = By.xpath("//tr[2]/td[6]/div/div/div/div[1]");
+    By txt_foodServiceDistCenter = By.xpath("//span[text()='Food Service Distribution Centre']");
+    By txt_retailDistCenter = By.xpath("//span[text()='Retail Distribution Centre']");
+    String txt_orders = "(//div[contains(text(), 'Order #')])[NUM]";
+    By lbl_itemNameListWL = By.xpath("//td//span/div[@data-tip='View Product Details']");
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -407,4 +414,38 @@ public class CustomersPage extends LoginPage {
         restaurantUI.click(btn_save );
     }
 
+    public void clickOnPlaceOrder() {
+        restaurantUI.click(btn_placeOrder );
+    }
+
+    public void clickPlusQryFirstRowInWL() throws InterruptedException {
+        restaurantUI.waitForCustom(1000);
+        restaurantUI.click(btn_increaseQtyFirstRowInWL);
+    }
+
+    public boolean isMultiDistCentersDisplayed() {
+        try {
+            restaurantUI.waitForVisibility(txt_foodServiceDistCenter);
+            restaurantUI.isDisplayed(txt_foodServiceDistCenter);
+            restaurantUI.waitForVisibility(txt_retailDistCenter);
+            restaurantUI.isDisplayed(txt_retailDistCenter);
+        } catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+    public int getOrderCount(int num) {
+        int count = 0;
+        for (int i = 1; i <= num; i++) {
+            if (restaurantUI.isDisplayed(By.xpath(txt_orders.replace("NUM", String.valueOf(i))))){
+                count += 1;
+            };
+        }
+        return count;
+    }
+    public String getItemNameFirstRowWL() throws InterruptedException {
+        restaurantUI.waitForElementEnabledState(lbl_itemNameListWL,true);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemNameListWL);
+    }
 }

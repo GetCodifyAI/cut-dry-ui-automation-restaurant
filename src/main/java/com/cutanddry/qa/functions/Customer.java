@@ -213,4 +213,22 @@ public class Customer {
         customersPage.clickOnOrderApproval();
         customersPage.clickOnSave();
     }
+
+    public static void clickOnPlaceOrder() {
+        customersPage.clickOnPlaceOrder();
+    }
+
+    public static void increaseFirstRowQtyByOneInWL() throws InterruptedException {
+        customersPage.clickPlusQryFirstRowInWL();
+    }
+
+    public static boolean isMultiDistCentersDisplayed(){
+        return customersPage.isMultiDistCentersDisplayed();
+    }
+    public static int getOrderCount(int num){
+        return customersPage.getOrderCount(num);
+    }
+    public static String getItemNameFirstRowWL() throws InterruptedException {
+        return customersPage.getItemNameFirstRowWL();
+    }
 }
