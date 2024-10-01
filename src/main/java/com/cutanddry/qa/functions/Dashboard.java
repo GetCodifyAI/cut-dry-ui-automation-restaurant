@@ -40,4 +40,7 @@ public class Dashboard {
     public static void navigateToReports() {
         dashboardPage.clickOnReports();
     }
+    public static void navigateToCustomers() {
+        dashboardPage.clickOnCustomers();
+    }
 }

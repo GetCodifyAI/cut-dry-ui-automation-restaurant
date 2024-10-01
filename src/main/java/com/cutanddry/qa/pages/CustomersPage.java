@@ -5,7 +5,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CustomersPage extends LoginPage {
 
-    By lbl_itemNameList = By.xpath("//td//span/div[@data-tip='View Item Details']");
+    By lbl_itemNameList = By.xpath("//td//span/div[@data-tip='View Product Details']");
     By btn_increaseQtyFirstRow = By.xpath("//tr[1]/td[6]/div/div/div/div[3]");
     By btn_decreaseQtyFirstRow = By.xpath("//tr[1]/td[6]/div/div/div/div[1]");
     By btn_decreaseQtySecondRow = By.xpath("//tr[2]/td[6]/div/div/div/div[1]");
@@ -79,6 +79,15 @@ public class CustomersPage extends LoginPage {
     By txt_retailDistCenter = By.xpath("//span[text()='Retail Distribution Centre']");
     String txt_orders = "(//div[contains(text(), 'Order #')])[NUM]";
     By lbl_itemNameListWL = By.xpath("//td//span/div[@data-tip='View Product Details']");
+    By tbx_searchCustomers = By.xpath("//input[@placeholder='Search Customers']");
+    String btnOrderGuide = "//button[contains(text(), 'Order Guide')]";
+    By btn_increaseQtyFirstRowDis = By.xpath("//tr[1]/td[8]/div/div/div/div[3]");
+    By btn_pickup = By.xpath("//span[text()='Pickup']");
+    By txt_orderCutOffForPickUp = By.xpath("//span[contains(text(), '12:30am') and contains(text(), 'GMT+5:30')]");
+    By txt_errorSubmittingOrder= By.xpath("//div[text()='Error submitting order. Please try again.']");
+
+
+
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -94,28 +103,34 @@ public class CustomersPage extends LoginPage {
         return restaurantUI.getText(lbl_itemNameList);
     }
 
-    public void clickPlusQryFirstRow() {
+    public void clickPlusQryFirstRow() throws InterruptedException {
         restaurantUI.click(btn_increaseQtyFirstRow);
+        restaurantUI.waitForCustom(4000);
     }
 
-    public void clickPlusQrySecondRow() {
+    public void clickPlusQrySecondRow() throws InterruptedException {
         restaurantUI.click(btn_increaseQtySecondRow);
+        restaurantUI.waitForCustom(4000);
     }
 
-    public void clickMinusQryFirstRow() {
+    public void clickMinusQryFirstRow() throws InterruptedException {
         restaurantUI.click(btn_decreaseQtyFirstRow);
+        restaurantUI.waitForCustom(4000);
     }
 
-    public void clickMinusQrySecondRow() {
+    public void clickMinusQrySecondRow() throws InterruptedException {
         restaurantUI.click(btn_decreaseQtySecondRow);
+        restaurantUI.waitForCustom(4000);
     }
 
-    public void clickPlusCatalog() {
+    public void clickPlusCatalog() throws InterruptedException {
         restaurantUI.click(btn_increaseQtyCatalog);
+        restaurantUI.waitForCustom(4000);
     }
 
-    public void clickMinusCatalog() {
+    public void clickMinusCatalog() throws InterruptedException {
         restaurantUI.click(btn_decreaseQtyCatalog);
+        restaurantUI.waitForCustom(4000);
     }
 
     public String getItemNameSecondRow() {
@@ -136,8 +151,9 @@ public class CustomersPage extends LoginPage {
         restaurantUI.click(btn_catalog);
     }
 
-    public void typeToSearchOnCatalog(String item) {
+    public void typeToSearchOnCatalog(String item) throws InterruptedException {
         restaurantUI.sendKeys(tbx_catalogSearch, item);
+        restaurantUI.waitForCustom(4000);
     }
 
     public void typeToSearchOnOrderGuide(String item) {
@@ -330,16 +346,19 @@ public class CustomersPage extends LoginPage {
         restaurantUI.click(btn_sortAlphabetical);
     }
 
-    public void selectDropDownCustomerOrder() {
+    public void selectDropDownCustomerOrder() throws InterruptedException {
         restaurantUI.click(btn_selectCustomOrder);
+        restaurantUI.waitForCustom(4000);
     }
 
-    public void selectDropDownItemCategory() {
+    public void selectDropDownItemCategory() throws InterruptedException {
         restaurantUI.click(btn_selectItemCategory);
+        restaurantUI.waitForCustom(4000);
     }
 
-    public void selectDropDownAlphabetical() {
+    public void selectDropDownAlphabetical() throws InterruptedException {
         restaurantUI.click(btn_selectAlphabetical);
+        restaurantUI.waitForCustom(4000);
     }
 
     public boolean isSeaFoodTextDisplayed() {
@@ -447,5 +466,46 @@ public class CustomersPage extends LoginPage {
         restaurantUI.waitForElementEnabledState(lbl_itemNameListWL,true);
         restaurantUI.waitForCustom(3000);
         return restaurantUI.getText(lbl_itemNameListWL);
+    }
+    public void clickOnSearchCustomers(){
+        restaurantUI.click(tbx_searchCustomers);
+    }
+    public void typeOnSearchCustomers(String code) throws InterruptedException {
+        restaurantUI.clear(tbx_searchCustomers);
+        restaurantUI.waitForCustom(3000);
+        restaurantUI.sendKeys(tbx_searchCustomers, code);
+        restaurantUI.waitForCustom(3000);
+    }
+    public void clickOnOrderGuide(String code) {
+        restaurantUI.click(By.xpath(btnOrderGuide.replace("CODE", code)));
+    }
+    public void clickPlusQryFirstRowDis(){
+        restaurantUI.click(btn_increaseQtyFirstRowDis);
+    }
+
+    public boolean isPickupTextDisplayed() {
+        try {
+            return restaurantUI.isDisplayed(btn_pickup);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    public void clickOnPickUp(){
+        restaurantUI.click(btn_pickup);
+    }
+    public boolean isOrderCutOffDisplayed() {
+        try {
+            return restaurantUI.isDisplayed(txt_orderCutOffForPickUp);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isSubmittingErrorDisplayed() {
+        try {
+            return restaurantUI.isDisplayed(txt_errorSubmittingOrder);
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

@@ -8,22 +8,22 @@ import lombok.SneakyThrows;
 public class Customer {
     static CustomersPage customersPage = new CustomersPage();
     static DashboardPage dashboardPage = new DashboardPage();
-    public static void increaseFirstRowQtyByOne(){
+    public static void increaseFirstRowQtyByOne() throws InterruptedException {
         customersPage.clickPlusQryFirstRow();
     }
-    public static void increaseSecondRowQtyByOne(){customersPage.clickPlusQrySecondRow();}
-    public static void decreaseFirstRowQtyByOne(){
+    public static void increaseSecondRowQtyByOne() throws InterruptedException {customersPage.clickPlusQrySecondRow();}
+    public static void decreaseFirstRowQtyByOne() throws InterruptedException {
         customersPage.clickMinusQryFirstRow();
     }
-    public static void decreaseSecondRowQtyByOne(){
+    public static void decreaseSecondRowQtyByOne() throws InterruptedException {
         customersPage.clickMinusQrySecondRow();
     }
-    public static void increaseFirstRowQtyByThree(){
+    public static void increaseFirstRowQtyByThree() throws InterruptedException {
         customersPage.clickPlusQryFirstRow();
         customersPage.clickPlusQryFirstRow();
         customersPage.clickPlusQryFirstRow();
     }
-    public static void decreaseFirstRowQtyByThree(){
+    public static void decreaseFirstRowQtyByThree() throws InterruptedException {
         customersPage.clickMinusQryFirstRow();
         customersPage.clickMinusQryFirstRow();
         customersPage.clickMinusQryFirstRow();
@@ -156,15 +156,15 @@ public class Customer {
         customersPage.clickOnRemoveFromOrderGuide();
     }
 
-    public static void sortByItemCategory(){
+    public static void sortByItemCategory() throws InterruptedException {
         customersPage.clickDropDownCustomerOrder();
         customersPage.selectDropDownItemCategory();
     }
-    public static void sortByAlphabet(){
+    public static void sortByAlphabet() throws InterruptedException {
         customersPage.clickDropDownItemCategory();
         customersPage.selectDropDownAlphabetical();
     }
-    public static void sortByCustomOrder(){
+    public static void sortByCustomOrder() throws InterruptedException {
         customersPage.clickDropDownAlphabetical();
         customersPage.selectDropDownCustomerOrder();
     }
@@ -231,4 +231,36 @@ public class Customer {
     public static String getItemNameFirstRowWL() throws InterruptedException {
         return customersPage.getItemNameFirstRowWL();
     }
+    public static void searchCustomerByCode(String code) throws InterruptedException {
+        customersPage.clickOnSearchCustomers();
+        customersPage.typeOnSearchCustomers(code);
+    }
+    public static void clickOnOrderGuide(String code) throws InterruptedException {
+        customersPage.clickOnOrderGuide(code);
+        if (customersPage.isPreviousDraftOrderNoDisplayed()){
+            customersPage.clickPreviousDraftOrderNo();
+        }
+    }
+    public static void increaseFirstRowQtyCustomDis(int count) throws InterruptedException {
+        if (customersPage.isPreviousDraftOrderNoDisplayed()){
+            customersPage.clickPreviousDraftOrderNo();
+        }
+        for (int i=0; i<count;i++){
+            customersPage.clickPlusQryFirstRowDis();
+        }
+    }
+    public static void clickOnPickup() {
+        customersPage.clickOnPickUp();
+    }
+    public static boolean isPickUpTextDisplayed(){
+        return customersPage.isPickupTextDisplayed();
+    }
+    public static boolean isOrderCutOffDisplayed(){
+        return customersPage.isOrderCutOffDisplayed();
+    }
+    public static boolean isSubmittingErrorDisplayed(){
+        return customersPage.isSubmittingErrorDisplayed();
+    }
+
+
 }
