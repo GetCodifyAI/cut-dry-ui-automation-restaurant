@@ -108,7 +108,7 @@ jobs:
             sudo apt-get install -y google-chrome-stable
             google-chrome --version
       - run:
-          name: Build and run nightly tests
+          name: Build and run daily tests
           command: mvn clean test "-Dsurefire.suiteXmlFiles=regression.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true"
       - store_artifacts:
           path: target/surefire-reports
