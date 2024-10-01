@@ -34,6 +34,9 @@ jobs:
       - run:
           name: Build and run tests
           command: mvn clean test "-Dsurefire.suiteXmlFiles=bvt.xml" "-Drun.headless=true" "-Dtest.env=uat"
+      - store_artifacts:
+          path: target/surefire-reports
+          destination: build-and-test-artifacts
     executor:
 
   nightly-build-and-test:
@@ -69,6 +72,9 @@ jobs:
       - run:
           name: Build and run nightly tests
           command: mvn clean test "-Dsurefire.suiteXmlFiles=regression.xml" "-Drun.headless=true" "-Dtest.env=uat"
+      - store_artifacts:
+          path: target/surefire-reports
+          destination: nightly-build-and-test-artifacts
     executor:
 
   daily-build-and-test:
@@ -102,8 +108,11 @@ jobs:
             sudo apt-get install -y google-chrome-stable
             google-chrome --version
       - run:
-          name: Build and run nightly tests
+          name: Build and run daily tests
           command: mvn clean test "-Dsurefire.suiteXmlFiles=regression.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true"
+      - store_artifacts:
+          path: target/surefire-reports
+          destination: daily-build-and-test-artifacts
     executor:
 
 workflows:
@@ -126,7 +135,7 @@ workflows:
   scheduled-test-2:
     triggers:
       - schedule:
-          cron: "30 10 * * *"  # This will run daily-build-and-test at 04:00 PM IST (10:30 PM UTC)
+          cron: "30 10 * * 1-5"  # This will run daily-build-and-test at 04:00 PM IST (10:30 PM UTC)
           filters:
             branches:
               only:
