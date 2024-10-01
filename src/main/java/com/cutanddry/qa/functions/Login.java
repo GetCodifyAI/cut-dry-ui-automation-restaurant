@@ -52,4 +52,11 @@ public class Login {
         loginPage.clickOnBermudaBiologicalStation();
         loginPage.clickOnLoginAsWhiteLabel();
     }
+
+    public static void goToDistributorSunriseFood(String distributor) throws InterruptedException {
+        loginPage.typeToSearchOnDistributor(distributor);
+        loginPage.clickOnSunriseFood();
+        loginPage.clickOnLoginAsSupplier();
+    }
+
 }

@@ -22,6 +22,11 @@ public class LoginPage extends TestBase {
     By txt_bermudaBiologicalStation= By.xpath("//div[contains(text(), '(explorer) - Bermuda Biological Station - 196795960')]");
     By btn_LoginAsClassic = By.xpath("//a[contains(text(), 'Login As (classic)')]");
     By btn_LoginAsWhiteLabel = By.xpath("//a[contains(text(), 'Login As (white-label)')]");
+    By tbx_distributorSearch = By.xpath("//input[@id='react-select-2-input']");
+    By txt_sunriseFoods = By.xpath("//div[contains(text(), '195998346 - Cut+Dry Agent - Sunrise Food Service Inc')]");
+    By btn_LoginAsSupplier = By.xpath("//a[contains(text(), 'Login As (supplier)')]");
+
+
 
 
 
@@ -93,5 +98,21 @@ public class LoginPage extends TestBase {
     }
     public void clickOnBermudaBiologicalStation(){
         restaurantUI.click(txt_bermudaBiologicalStation);
+    }
+
+    public void typeToSearchOnDistributor(String operator) throws InterruptedException {
+        restaurantUI.click(tbx_distributorSearch);
+        restaurantUI.sendKeys(tbx_distributorSearch, operator);
+        restaurantUI.waitForCustom(4000);
+    }
+
+    public void clickOnSunriseFood(){
+        restaurantUI.click(txt_sunriseFoods);
+    }
+
+    public void clickOnLoginAsSupplier() throws InterruptedException {
+        restaurantUI.click(btn_LoginAsSupplier);
+//        restaurantUI.closeBrowser();
+//        restaurantUI.waitForCustom(4000);
     }
 }
