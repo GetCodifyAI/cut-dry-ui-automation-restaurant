@@ -14,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyOrderApprovalChangesTest extends TestBase {
     static User user;
-    static String OperatorName = "JOSHUA CLAYTON";
+    static String OperatorName = "Jonathan Allen";
 
     @BeforeMethod
     public void setUp(){
