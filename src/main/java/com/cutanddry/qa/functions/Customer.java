@@ -249,7 +249,7 @@ public class Customer {
             customersPage.clickPlusQryFirstRowDis();
         }
     }
-    public static void clickOnPickup() {
+    public static void clickOnPickup() throws InterruptedException {
         customersPage.clickOnPickUp();
     }
     public static boolean isPickUpTextDisplayed(){
