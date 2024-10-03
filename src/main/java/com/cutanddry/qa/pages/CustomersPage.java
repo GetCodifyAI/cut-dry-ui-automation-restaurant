@@ -83,7 +83,7 @@ public class CustomersPage extends LoginPage {
     String btnOrderGuide = "//button[contains(text(), 'Order Guide')]";
     By btn_increaseQtyFirstRowDis = By.xpath("//tr[1]/td[8]/div/div/div/div[3]");
     By btn_pickup = By.xpath("//span[text()='Pickup']");
-    By txt_orderCutOffForPickUp = By.xpath("//span[contains(text(), '12:30am') and contains(text(), 'GMT+5:30')]");
+    By txt_orderCutOffForPickUp = By.xpath("//span[contains(text(), '7:00pm')]");
     By txt_errorSubmittingOrder= By.xpath("//div[text()='Error submitting order. Please try again.']");
 
 
@@ -490,8 +490,9 @@ public class CustomersPage extends LoginPage {
             return false;
         }
     }
-    public void clickOnPickUp(){
+    public void clickOnPickUp() throws InterruptedException {
         restaurantUI.click(btn_pickup);
+        restaurantUI.waitForCustom(4000);
     }
     public boolean isOrderCutOffDisplayed() {
         try {
