@@ -1,7 +1,6 @@
 package com.cutanddry.qa.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CustomersPage extends LoginPage {
 
@@ -85,7 +84,8 @@ public class CustomersPage extends LoginPage {
     By btn_pickup = By.xpath("//span[text()='Pickup']");
     By txt_orderCutOffForPickUp = By.xpath("//span[contains(text(), '7:00pm')]");
     By txt_errorSubmittingOrder= By.xpath("//div[text()='Error submitting order. Please try again.']");
-
+    By ordercartdeletebtn = By.xpath("//td[@class='_xigbpq4 border-top border-bottom py-3']/*[name()='svg' and @data-icon='trash-alt']");
+    By totalvalue = By.xpath("//tr[@class='_2ehv7q text-primary']/td[2]");
 
 
 
@@ -509,4 +509,13 @@ public class CustomersPage extends LoginPage {
             return false;
         }
     }
+
+    public void clickOnDeleteItemInCart(){
+        restaurantUI.click(ordercartdeletebtn);
+    }
+
+    public Double isCartTotalBecomsZero(){
+        return Double.valueOf(restaurantUI.getText(totalvalue).replace("$", ""));
+    }
+
 }

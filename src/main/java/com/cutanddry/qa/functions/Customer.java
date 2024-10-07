@@ -262,5 +262,11 @@ public class Customer {
         return customersPage.isSubmittingErrorDisplayed();
     }
 
+    public static void clickDeleteItemOnCart(){
+        customersPage.clickOnDeleteItemInCart();
+    }
 
+    public static double isCartTotalZero(){
+        return customersPage.isCartTotalBecomsZero();
+    }
 }
