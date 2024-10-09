@@ -23,7 +23,7 @@ public class VerifyUnhideItemsFromOrderGuideTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-291")
-    public void VerifyHidingAnItemFromOrderGuide() throws InterruptedException {
+    public void VerifyUnhideItemsFromOrderGuide() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();

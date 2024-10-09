@@ -22,8 +22,8 @@ public class VerifyOrderItemUnitsTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-285")
-    public void VerifyAddingOrderGuideSections() throws InterruptedException {
+    @Test(groups = "DOT-TC-284")
+    public void VerifyOrderItemUnits() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();

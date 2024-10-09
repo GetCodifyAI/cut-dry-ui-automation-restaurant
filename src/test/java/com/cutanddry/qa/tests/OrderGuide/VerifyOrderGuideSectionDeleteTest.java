@@ -22,8 +22,8 @@ public class VerifyOrderGuideSectionDeleteTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-286")
-    public void VerifyEditOrderGuideSections() throws InterruptedException {
+    @Test(groups = "DOT-TC-287")
+    public void VerifyOrderGuideSectionDelete() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
