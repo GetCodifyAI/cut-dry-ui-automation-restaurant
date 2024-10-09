@@ -269,4 +269,97 @@ public class Customer {
     public static double isCartTotalZero(){
         return customersPage.isCartTotalBecomsZero();
     }
+
+    public static void selectAddSectionFromMoreOptionsDropdown(){
+        customersPage.clickAddSectionFromMoreOptionsDropdown();
+    }
+
+
+    public static void addSectionName(String sectionName){
+        customersPage.TypeSectionName(sectionName);
+    }
+
+    public static void clickSaveSection(){
+        customersPage.clickOnSaveBtn();
+    }
+
+    public static boolean isAddedSectionDisplayed(String sectionName){
+        return customersPage.isSectionDisplayed(sectionName);
+    }
+
+    public static void DragSectionToUP(){
+        customersPage.dragSectionToHigher();
+    }
+
+    public static void clickOnBackBtnInEditOrderGuide() throws InterruptedException {
+        customersPage.clickOnBackBtn();
+        if (customersPage.isPreviousDraftOrderNoDisplayed()){
+            customersPage.clickPreviousDraftOrderNo();
+        }
+    }
+
+    public static void editsection(String sectionName){
+        customersPage.clickOnEditSection(sectionName);
+    }
+
+    public static void editSectionName(String sectionName){
+        customersPage.TypeSectionName(sectionName);
+    }
+
+    public static void deleteSection(){
+        customersPage.clickOnDeleteBtn();
+    }
+
+    public static void selectYesOnDeleteConfirmationOverlay(){
+        customersPage.clickYesOnConfirmationOverlay();
+    }
+
+    public static boolean isDeletedSectionNotDisplayed(String sectionName){
+        return customersPage.isSectionDisplayed(sectionName);
+    }
+
+    public static void selectPkgFromUnitSelectionDropdown(){
+        customersPage.clickPkgOption();
+    }
+
+    public static String isUnitChangedToPkg(){
+        return customersPage.isUnitChangedToPkg();
+    }
+
+    public static void selectCaseFromUnitSelectionDropdown(){
+        customersPage.clickCaseOption();
+    }
+
+    public static String isUnitChangedToCase(){
+        return customersPage.isUnitChangedToCase();
+    }
+
+    public static void clickOnItemEditBtn(String ItemName){
+        customersPage.clickEditItemBtn(ItemName);
+
+    }
+
+    public static void clickOnItemHideBtn(){
+        customersPage.clickOnHideBtn();
+    }
+
+    public static void clickOnItemHideConfirmationOverlay(){
+        customersPage.clickYesOnConfirmationOverlay();
+    }
+
+    public static boolean isHiddenItemDisplayedOnGrid(String itemName){
+        return customersPage.isHiddenItemDisplayed(itemName);
+    }
+
+    public static void selectActiveAndHiddenItems(){
+        customersPage.clickShowActiveAndHiddenItems();
+    }
+
+    public static void clickSaveAndUnhide(){
+        customersPage.clickSaveAndUnhideBtn();
+    }
+
+    public static void selectOnlyActiveItems(){
+        customersPage.clickShowOnlyActiveItems();
+    }
 }
