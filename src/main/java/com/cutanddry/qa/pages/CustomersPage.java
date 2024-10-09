@@ -84,8 +84,26 @@ public class CustomersPage extends LoginPage {
     By btn_pickup = By.xpath("//span[text()='Pickup']");
     By txt_orderCutOffForPickUp = By.xpath("//span[contains(text(), '7:00pm')]");
     By txt_errorSubmittingOrder= By.xpath("//div[text()='Error submitting order. Please try again.']");
-    By ordercartdeletebtn = By.xpath("//td[@class='_xigbpq4 border-top border-bottom py-3']/*[name()='svg' and @data-icon='trash-alt']");
-    By totalvalue = By.xpath("//tr[@class='_2ehv7q text-primary']/td[2]");
+    By orderCartDeletebtn = By.xpath("//td[@class='_xigbpq4 border-top border-bottom py-3']/*[name()='svg' and @data-icon='trash-alt']");
+    By totalValue = By.xpath("//tr[@class='_2ehv7q text-primary']/td[2]");
+    By selectedSections = By.xpath("//a[contains(@class,'_1ccoy1o text-decoration-none dropdown-item') and contains(text(),'Add Section')]");
+    By sectionName = By.xpath("//div[contains(@class,'mb-5 form-group')]//input[@id='sectionName']");
+    By saveSectionBtn = By.xpath("//button[contains(text(),'Save')]");
+    String section = "//div[contains(@class,'d-flex align-items-center no-gutters')]//div[contains(text(),'SECTIONNAME')]";
+    By backBtn = By.xpath("//button[contains(text(),'Back')]");
+    String sectionEditBtn ="//div[contains(text(), 'NAME')]/following-sibling::div[@class='col-2 d-flex justify-content-end align-items-center']/*[local-name() = 'svg' and @data-icon='pencil']";
+    By sectionDeleteBtn = By.xpath("//button[contains(text(),'Delete')]");
+    By deleteConfirmationYesBtn = By.xpath("//button[contains(text(),'Yes')]");
+    By unitSelectionDropdown = By.xpath("//tbody/tr/td[3]/div/div/div/div");
+    By pkgOption = By.xpath("//div[contains(@class, 'cd_themed_select__option') and text()='Pkg']");
+    By caseOption = By.xpath("//div[contains(@class, 'cd_themed_select__option') and text()='Case']");
+    String editItemBtn = "//div[contains(text(), 'ITEMNAME')]/../following-sibling::div[@class='col-2 col-lg-1 d-flex justify-content-end mt-1 align-items-center align-items-lg-start']//*[name()='svg' and @role='img']";
+    By hideBtn = By.xpath("//button[contains(text(),'Hide Item')]");
+    String hiddenItem ="//div[text()='ITEMNAME']";
+    By showFilter = By.xpath("(//div[@class='cd_themed_select__value-container cd_themed_select__value-container--has-value css-1hwfws3'])[3]");
+    By activeAndHiddenOption = By.xpath("//div[contains(@class,'cd_themed_select__option css-yt9ioa-option') and text()='Active & Hidden Items']");
+    By onlyActiveItemsOption = By.xpath("//div[contains(@class,'cd_themed_select__option css-yt9ioa-option') and text()='Only Active Items']");
+    By saveAndUnhideBtn = By.xpath("//button[@class='btn btn-primary btn-block'and contains(text(),'Save and Unhide Item')]");
 
 
 
@@ -511,11 +529,133 @@ public class CustomersPage extends LoginPage {
     }
 
     public void clickOnDeleteItemInCart(){
-        restaurantUI.click(ordercartdeletebtn);
+        restaurantUI.click(orderCartDeletebtn);
     }
 
     public Double isCartTotalBecomsZero(){
-        return Double.valueOf(restaurantUI.getText(totalvalue).replace("$", ""));
+        return Double.valueOf(restaurantUI.getText(totalValue).replace("$", ""));
     }
+
+    public void clickAddSectionFromMoreOptionsDropdown(){
+        restaurantUI.click(selectedSections);
+    }
+
+
+    public void TypeSectionName(String sectionName){
+        restaurantUI.sendKeys(this.sectionName,sectionName);
+    }
+
+
+    public void clickOnSaveBtn(){
+        restaurantUI.click(saveSectionBtn);
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean isSectionDisplayed(String sectionName){
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return restaurantUI.isDisplayed(By.xpath(section.replace("SECTIONNAME",sectionName)));
+    }
+
+    public void dragSectionToHigher(){
+        restaurantUI.dragAndDrop(By.xpath("//div[contains(@class, '_11h2a11m') and @data-rbd-draggable-id='item-288275866']"),By.xpath("//div[@data-rbd-draggable-id='item-212365835']"));
+
+    }
+
+    public void clickOnBackBtn(){
+        restaurantUI.click(backBtn);
+    }
+
+    public void clickOnEditSection(String name){
+        restaurantUI.waitForVisibility(By.xpath(sectionEditBtn.replace("NAME", name)));
+        restaurantUI.click(By.xpath(sectionEditBtn.replace("NAME", name)));
+    }
+
+    public void clickOnDeleteBtn(){
+        restaurantUI.click(sectionDeleteBtn);
+    }
+
+    public void clickYesOnConfirmationOverlay(){
+        restaurantUI.click(deleteConfirmationYesBtn);
+    }
+
+    public void clickPkgOption(){
+        restaurantUI.isDisplayed(unitSelectionDropdown);
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.click(unitSelectionDropdown);
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.waitForVisibility(pkgOption);
+        restaurantUI.click(pkgOption);
+    }
+
+    public String isUnitChangedToPkg(){
+        restaurantUI.waitForVisibility(unitSelectionDropdown);
+        return restaurantUI.getText(unitSelectionDropdown);
+    }
+
+    public void clickCaseOption(){
+        restaurantUI.isDisplayed(unitSelectionDropdown);
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.click(unitSelectionDropdown);
+        restaurantUI.waitForVisibility(caseOption);
+        restaurantUI.click(caseOption);
+    }
+
+    public String isUnitChangedToCase(){
+        restaurantUI.waitForVisibility(unitSelectionDropdown);
+        return restaurantUI.getText(unitSelectionDropdown);
+    }
+
+    public void clickEditItemBtn(String itemname){
+        restaurantUI.click(By.xpath(editItemBtn.replace("ITEMNAME",itemname)));
+
+    }
+
+    public void clickOnHideBtn(){
+        restaurantUI.click(hideBtn);
+    }
+
+    public boolean isHiddenItemDisplayed(String itemName){
+        return restaurantUI.isDisplayed(By.xpath(hiddenItem.replace("ITEMNAME",itemName)));
+    }
+
+    public void clickShowActiveAndHiddenItems(){
+        restaurantUI.waitForVisibility(showFilter);
+        restaurantUI.click(showFilter);
+        restaurantUI.waitForVisibility(activeAndHiddenOption);
+        restaurantUI.click(activeAndHiddenOption);
+    }
+
+    public void clickShowOnlyActiveItems(){
+        restaurantUI.waitForVisibility(showFilter);
+        restaurantUI.click(showFilter);
+        restaurantUI.waitForVisibility(onlyActiveItemsOption);
+        restaurantUI.click(onlyActiveItemsOption);
+
+    }
+
+    public void clickSaveAndUnhideBtn(){
+        restaurantUI.click(saveAndUnhideBtn);
+    }
+
 
 }

@@ -18,6 +18,11 @@
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCreatingOrdersWithCatalogItemsTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyExportingOrderGuideEditFeatureTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePrintFeatureTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyAddingOrderGuideSectionsTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditOrderGuideSectionsTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyOrderGuideSectionDeleteTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyHidingAnItemFromOrderGuideTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyUnhideItemsFromOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSearchFeatureTest" />
             <class name="com.cutanddry.qa.tests.Support.RestaurantSupportTest" />
             <class name="com.cutanddry.qa.tests.SignIn.VerifyForgotPasswordValidTest" />
@@ -51,6 +56,7 @@
             <class name="com.cutanddry.qa.tests.Suppliers.VerifyAddingSupplierTest" />
             <class name="com.cutanddry.qa.tests.Suppliers.VerifyEditingSupplierTest" />
             <class name="com.cutanddry.qa.tests.Suppliers.VerifyDeletingSupplierTest" />
+            <class name="com.cutanddry.qa.tests.units.VerifyOrderItemUnitsTest" />
 
 
         </classes>
