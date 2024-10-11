@@ -104,6 +104,21 @@ public class CustomersPage extends LoginPage {
     By activeAndHiddenOption = By.xpath("//div[contains(@class,'cd_themed_select__option css-yt9ioa-option') and text()='Active & Hidden Items']");
     By onlyActiveItemsOption = By.xpath("//div[contains(@class,'cd_themed_select__option css-yt9ioa-option') and text()='Only Active Items']");
     By saveAndUnhideBtn = By.xpath("//button[@class='btn btn-primary btn-block'and contains(text(),'Save and Unhide Item')]");
+    By catalogimg = By.xpath("//img[@class='card-img-top _1d49j2h' and contains(@src,'23ea1851c5077e4e1deab4c760fdf5dc5358634d47c19530b4d821f11e3f7650_PROD_0001_07628.JPG')]");
+    String Item = "//div[@class='_3quvq7 _1vlidrf' and text()='ITEMNAME']";
+    String itemNamePdpView = "//div[contains(@class,'mb-0 pt-2 d-flex align-items-center mont _1wrelxt _1vlidrf') and contains(text(),'ITEMNAME')]";
+    By itemPricePdpView = By.xpath("//span[@class='_1u7yq58']");
+    String ItemPriceCatalogView = "//div[contains(@class, '_13kb1gk')]//div[text()= 'ITEMNAME']//ancestor::div[contains(@class, '_13kb1gk')]//div[@class='_btf6h0']//div[@class='_5kaapu']";
+    By deliveryDate = By.xpath("//div[@class='text-truncate']");
+    String customerCodeOnGrid = "//tr[@class='_du1frc']/td[text()='CUSTOMERCODE']";
+    String customerCodeInProfilePage = "//div[@class='col' and text()='CUSTOMERCODE']";
+    By editDeliveryBtn = By.xpath("//div[contains(text(), 'Delivery Days')]//following-sibling::div//div[@class='pl-0 col-sm-auto col-auto']/*");
+    String cutOffDay = "//tr[td[contains(text(), 'DAY')]]//div[contains(@class, 'themed_select__control')]";
+    String cutOffDaySelect = "//div[contains(@class,'themed_select__option css-yt9ioa-option') and text()='DAY']";
+    String cutOffTime = "//tr[td[contains(text(), 'DAY')]]//input[@class='_1avn95e form-control']";
+    By cutOffDateTimeSave = By.xpath("//button[contains(text(),'Save Changes')]");
+    By orderCutOffTime = By.xpath("//span[@class='ml-1 text-nowrap _d7ebxxy']");
+    String clearDeliveryDate = "//tr[td[contains(text(), 'DAY')]]//div[contains(@class, 'themed_select__control')]//div[contains(@class, 'themed_select__clear-indicator')]/*";
 
 
 
@@ -584,6 +599,11 @@ public class CustomersPage extends LoginPage {
 
     public void clickYesOnConfirmationOverlay(){
         restaurantUI.click(deleteConfirmationYesBtn);
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void clickPkgOption(){
@@ -657,5 +677,83 @@ public class CustomersPage extends LoginPage {
         restaurantUI.click(saveAndUnhideBtn);
     }
 
+    public boolean isCatalogPageImagesDisplayed(){
+        restaurantUI.waitForVisibility(catalogimg);
+        return restaurantUI.isDisplayed(catalogimg);
+    }
 
+    public void clickItemOnCatalog(String itemName){
+        restaurantUI.isDisplayed(By.xpath(Item.replace("ITEMNAME",itemName)));
+        restaurantUI.click(By.xpath(Item.replace("ITEMNAME",itemName)));
+    }
+
+    public boolean isPDPViewItemNameDisplayed(String itemName){
+        restaurantUI.waitForVisibility(By.xpath(itemNamePdpView.replace("ITEMNAME",itemName)));
+        return restaurantUI.isDisplayed(By.xpath(itemNamePdpView.replace("ITEMNAME",itemName)));
+    }
+
+    public String getPDPViewItemName(String itemName){
+        return restaurantUI.getText(By.xpath(itemNamePdpView.replace("ITEMNAME",itemName)));
+    }
+
+    public String getCatalogViewItemName(String itemName){
+        return restaurantUI.getText(By.xpath(Item.replace("ITEMNAME",itemName)));
+    }
+
+    public String getPDPViewItemPrice(){
+        return restaurantUI.getText(itemPricePdpView);
+    }
+
+    public String getCatalogViewItemPrice(String itemName){
+        return restaurantUI.getText(By.xpath(ItemPriceCatalogView.replace("ITEMNAME",itemName)));
+    }
+
+    public String getDeliveryDateReviewCart(){
+        return restaurantUI.getText(deliveryDate);
+    }
+
+    public void clickOnCustomer(String customerCode){
+        restaurantUI.click(By.xpath(customerCodeOnGrid.replace("CUSTOMERCODE",customerCode)));
+    }
+
+    public String isCustomerCodeDisplayed(String customerCode){
+        return restaurantUI.getText(By.xpath(customerCodeInProfilePage.replace("CUSTOMERCODE",customerCode)));
+    }
+
+    public void clickOnEditDeliveryDate(){
+        restaurantUI.click(editDeliveryBtn);
+    }
+
+    public void clickOnpreviousDateDropdow(String Date){
+        restaurantUI.click(By.xpath(cutOffDay.replace("DAY",Date)));
+    }
+
+    public void clickTodayONDropDown(String Date){
+        restaurantUI.click(By.xpath(cutOffDaySelect.replace("DAY",Date)));
+    }
+
+    public void typeCutOffTime(String date , String time){
+        restaurantUI.sendKeys(By.xpath(cutOffTime.replace("DAY",date)),time);
+    }
+
+    public void saveChangesBtn(){
+        restaurantUI.click(cutOffDateTimeSave);
+    }
+
+    public String getCutOffTimeFromReviewCart(){
+        return restaurantUI.getText(orderCutOffTime);
+    }
+
+
+    public void clickOnClearDeliveryDateBtn(String Date){
+        restaurantUI.click(By.xpath(clearDeliveryDate.replace("DAY",Date)));
+    }
+
+    public void waitForCutOffTimeToBeOver(){
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

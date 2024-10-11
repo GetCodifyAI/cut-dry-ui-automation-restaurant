@@ -362,4 +362,77 @@ public class Customer {
     public static void selectOnlyActiveItems(){
         customersPage.clickShowOnlyActiveItems();
     }
+
+    public static boolean CatalogImagesDisplayed(){
+        return customersPage.isCatalogPageImagesDisplayed();
+    }
+
+    public static void ClickOnItem(String itemName){
+        customersPage.clickItemOnCatalog(itemName);
+    }
+
+    public static boolean isNavigatedToPDP(String itemName){
+        return customersPage.isPDPViewItemNameDisplayed(itemName);
+    }
+
+    public static String pdpViewItemName(String itemName){
+        return customersPage.getPDPViewItemName(itemName);
+    }
+
+    public static String catalogViewItemName(String itemName){
+        return customersPage.getCatalogViewItemName(itemName);
+    }
+
+    public static String pdpViewItemCost(){
+        return customersPage.getPDPViewItemPrice();
+    }
+
+    public static String catalogViewItemPrice(String itemName){
+        return customersPage.getCatalogViewItemPrice(itemName);
+    }
+
+    public static void selectCustomer(String customerCode){
+        customersPage.clickOnCustomer(customerCode);
+
+    }
+    public static String getDeliveryDateOnReviewCart(){
+        return customersPage.getDeliveryDateReviewCart();
+    }
+
+    public static String isNavigatedToProfile(String customerCode){
+        return customersPage.isCustomerCodeDisplayed(customerCode);
+    }
+
+    public static void editDeliveryDate(){
+        customersPage.clickOnEditDeliveryDate();
+    }
+
+    public static void clickOnPreviousDateDropdow(String date){
+        customersPage.clickOnpreviousDateDropdow(date);
+    }
+
+    public static void selectTodayFromDropdownAsCutOff(String date){
+        customersPage.clickTodayONDropDown(date);
+    }
+
+    public static void selectCutOffTime(String date , String time){
+        customersPage.typeCutOffTime(date,time);
+    }
+
+    public static void saveChangesInCutOffTimeOverlay(){
+        customersPage.saveChangesBtn();
+    }
+
+    public static String getOrderCutOffOnReviewCart(){
+        return customersPage.getCutOffTimeFromReviewCart();
+    }
+
+    public static void clearDeliveryDate(String date){
+        customersPage.clickOnClearDeliveryDateBtn(date);
+    }
+
+    public static void waitPastCutOffTime(){
+        customersPage.waitForCutOffTimeToBeOver();
+    }
+
 }
