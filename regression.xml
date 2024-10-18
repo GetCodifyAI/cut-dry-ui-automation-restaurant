@@ -33,6 +33,10 @@
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrdersImportingOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrdersWithUploadingExcelFileTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSortOptionsTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyItemPriceTest" />
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyCatalogItemImagesTest" />
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyItemDescriptionTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyUserCanOrderItemsBeforeCutOffTest" />
             <class name="com.cutanddry.qa.tests.Settings.VerifyThatTheUsersCannotOrderItemsAfterTheCutOffTimeTest" />
             <class name="com.cutanddry.qa.tests.Settings.VerifyThatTheUsersCanOrderItemsBeforeTheCutOffTimeTest" />
             <class name="com.cutanddry.qa.tests.SignIn.VerifyWhiteLabelForgotPasswordValidTest" />
