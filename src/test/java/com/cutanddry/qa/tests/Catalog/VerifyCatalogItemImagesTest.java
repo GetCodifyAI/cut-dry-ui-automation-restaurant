@@ -1,4 +1,4 @@
-package com.cutanddry.qa.tests.Approvals;
+package com.cutanddry.qa.tests.Catalog;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
@@ -12,9 +12,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyOrderApprovalChangesTest extends TestBase {
+public class VerifyCatalogItemImagesTest extends TestBase {
     static User user;
-    static String OperatorName = "Jonathan Allen";
+    String ItemName = "Artichoke";
 
     @BeforeMethod
     public void setUp(){
@@ -22,24 +22,22 @@ public class VerifyOrderApprovalChangesTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-206")
-    public void verifyOrderApprovalChangesTest()throws InterruptedException {
+    @Test(groups = "DOT-TC-297")
+    public void VerifyCatalogItemImages() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        Login.navigateToLoginAs();
-        Login.goToOperatorJoshuaClayton(OperatorName);
-        restaurantUI.switchToNewTab();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
-        softAssert.assertTrue(Dashboard.isApprovalsTabDisplayed(),"approvals tab error");
-        Dashboard.navigateToCooksCompanyProduce();
-        Customer.goToEdit();
-        softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigation error for edit");
-        Customer.expandMoreOptionsDropdown();
-        Customer.orderGuideSettings();
-        Customer.saveOrderApproval();
-        softAssert.assertAll();
+        Dashboard.navigateToIndependentFoodsCo();
+        Dashboard.navigateToOrderGuide();
+        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Customer.goToCatalog();
+        softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"ERROR in navigating to catalog page");
+        Customer.searchItemOnCatalog(ItemName);
+        softAssert.assertTrue(Customer.CatalogImagesDisplayed(),"Error in displaying catalog images ");
 
+
+        softAssert.assertAll();
     }
 
     @AfterMethod

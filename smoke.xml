@@ -39,6 +39,14 @@
             <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForWhiteLabelOperatorTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForClassicOperatorTestTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForWhiteLabelOperatorTest" />
+            <class name="com.cutanddry.qa.tests.MultiCart.VerifyCreatedOrdersFromMultipleCartsTest" />
+            <class name="com.cutanddry.qa.tests.MultiCart.VerifyGroupingProductsIntoTwoCartsTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheCutOffTimeForPickup" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePickUpDisplayTerm" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePickUpSubmit" />
+            <class name="com.cutanddry.qa.tests.Suppliers.VerifyAddingSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Suppliers.VerifyEditingSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Suppliers.VerifyDeletingSupplierTest" />
 
         </classes>
     </test>

@@ -1,7 +1,6 @@
 package com.cutanddry.qa.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class DashboardPage extends LoginPage{
     By txt_dashboard = By.xpath("//div[text()='Place Order']");
@@ -15,6 +14,10 @@ public class DashboardPage extends LoginPage{
     By btn_cooksCompanyProduce = By.xpath("//div[contains(text(), 'Cooks Company Produce')]");
     By txt_approvals = By.xpath("//div[contains(text(), 'Approvals')]");
     By btn_Reports = By.xpath("//a[contains(@data-tip, 'Reports')]");
+    By btn_customers = By.xpath("//a[@data-tip='Customers']");
+    String supplierTxt = "//tr[@class='_du1frc _14u3xd3 py-3']//div[text()='SUPPLIERNAME']";
+    By MaxiesSLTxt = By.xpath("//div[@class='_hp19hv mx-3 aling-items-center d-flex']//span[@data-tip='Maxies SL']//div[text()='Maxies SL']");
+
 
 
     public boolean isDashboardTextDisplayed(){
@@ -76,4 +79,19 @@ public class DashboardPage extends LoginPage{
 
     public void clickOnReports() {
         restaurantUI.click(btn_Reports);}
+
+    public void clickOnCustomers(){
+        restaurantUI.click(btn_customers);
+    }
+
+    public void clickOnSupplier(String supplierName){
+        restaurantUI.waitForVisibility(By.xpath(supplierTxt.replace("SUPPLIERNAME",supplierName)));
+        restaurantUI.click(By.xpath(supplierTxt.replace("SUPPLIERNAME",supplierName)));
+    }
+
+    public boolean isNavigatedToMaxiesSLOrderGuide() throws InterruptedException {
+        restaurantUI.waitForCustom(4000);
+        return restaurantUI.isDisplayed(MaxiesSLTxt);
+    }
+
 }

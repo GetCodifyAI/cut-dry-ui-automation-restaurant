@@ -1,4 +1,4 @@
-package com.cutanddry.qa.tests.Approvals;
+package com.cutanddry.qa.tests.OrderGuide;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
@@ -12,34 +12,31 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyOrderApprovalChangesTest extends TestBase {
+public class VerifyThePickUpDisplayTerm extends TestBase {
     static User user;
-    static String OperatorName = "Jonathan Allen";
-
+    static String OperatorName = "sunrise Food";
+    static String customerId = "Testayendras Bakery - Testayendras Bakery";
     @BeforeMethod
     public void setUp(){
         initialization();
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-206")
-    public void verifyOrderApprovalChangesTest()throws InterruptedException {
+    @Test(groups = "DOT-TC-166")
+    public void verifyThePickUpDisplayTerm() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
-        Login.goToOperatorJoshuaClayton(OperatorName);
+        Login.goToDistributorSunriseFood(OperatorName);
         restaurantUI.switchToNewTab();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
-        softAssert.assertTrue(Dashboard.isApprovalsTabDisplayed(),"approvals tab error");
-        Dashboard.navigateToCooksCompanyProduce();
-        Customer.goToEdit();
-        softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigation error for edit");
-        Customer.expandMoreOptionsDropdown();
-        Customer.orderGuideSettings();
-        Customer.saveOrderApproval();
+        Dashboard.navigateToCustomers();
+        Customer.searchCustomerByCode(customerId);
+        Customer.clickOnOrderGuide(customerId);
+        Customer.increaseFirstRowQtyCustomDis(2);
+        Customer.checkoutItems();
+        softAssert.assertTrue(Customer.isPickUpTextDisplayed(),"Pick up text error");
         softAssert.assertAll();
-
     }
 
     @AfterMethod

@@ -1,4 +1,4 @@
-package com.cutanddry.qa.tests.Approvals;
+package com.cutanddry.qa.tests.OrderGuide;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
@@ -12,9 +12,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyOrderApprovalChangesTest extends TestBase {
+public class VerifyUnhideItemsFromOrderGuideTest extends TestBase {
     static User user;
-    static String OperatorName = "Jonathan Allen";
+    String ItemName = "Carrot - Baby Peeled - 1 Lb";
 
     @BeforeMethod
     public void setUp(){
@@ -22,30 +22,31 @@ public class VerifyOrderApprovalChangesTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-206")
-    public void verifyOrderApprovalChangesTest()throws InterruptedException {
+    @Test(groups = "DOT-TC-291")
+    public void VerifyUnhideItemsFromOrderGuide() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        Login.navigateToLoginAs();
-        Login.goToOperatorJoshuaClayton(OperatorName);
-        restaurantUI.switchToNewTab();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
-        softAssert.assertTrue(Dashboard.isApprovalsTabDisplayed(),"approvals tab error");
-        Dashboard.navigateToCooksCompanyProduce();
+        Dashboard.navigateToIndependentFoodsCo();
+        Dashboard.navigateToOrderGuide();
+        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.goToEdit();
-        softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigation error for edit");
-        Customer.expandMoreOptionsDropdown();
-        Customer.orderGuideSettings();
-        Customer.saveOrderApproval();
-        softAssert.assertAll();
+        softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
+        Customer.selectActiveAndHiddenItems();
+        softAssert.assertTrue(Customer.isHiddenItemDisplayedOnGrid(ItemName),"ERROR in hidden Item");
+        Customer.clickOnItemEditBtn(ItemName);
+        Customer.clickSaveAndUnhide();
+        Customer.selectOnlyActiveItems();
+        softAssert.assertTrue(Customer.isHiddenItemDisplayedOnGrid(ItemName),"ERROR in unhiding the Item");
 
+        softAssert.assertAll();
     }
+
 
     @AfterMethod
     public void tearDown(ITestResult result) {
         takeScreenshotOnFailure(result);
         closeAllBrowsers();
     }
-
 }

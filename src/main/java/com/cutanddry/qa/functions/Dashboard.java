@@ -40,4 +40,21 @@ public class Dashboard {
     public static void navigateToReports() {
         dashboardPage.clickOnReports();
     }
+    public static void navigateToCustomers() {
+        dashboardPage.clickOnCustomers();
+    }
+
+    public static void selectSupplier(String supplierName){
+        dashboardPage.clickOnSupplier(supplierName);
+        dashboardPage.clickOnHayes();
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickOnNoDraftOrder();
+        }
+    }
+
+    public static boolean isNavigatedToMaxiesSLPage() throws InterruptedException {
+        return dashboardPage.isNavigatedToMaxiesSLOrderGuide();
+    }
+
+
 }

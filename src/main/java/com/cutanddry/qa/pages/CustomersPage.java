@@ -1,7 +1,6 @@
 package com.cutanddry.qa.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CustomersPage extends LoginPage {
 
@@ -72,6 +71,56 @@ public class CustomersPage extends LoginPage {
     By btn_orderApproval = By.xpath("//div[contains(@class, 'react-switch-handle')]");
     By btn_save = By.xpath("//button[contains(@class, 'btn btn-primary') and contains(text(), 'Save')]");
     By btn_previousDraftOrderNo = By.xpath("//div[contains(text(),'previous draft order')]/..//div[text()='No']");
+    By btn_placeOrder = By.xpath("//a[contains(@class, 'btn-primary') and contains(text(), 'Place Order')]");
+    By btn_increaseQtyFirstRowInWL = By.xpath("//tr[2]/td[6]/div/div/div/div[3]");
+    By btn_decreaseQtyFirstRowInWL = By.xpath("//tr[2]/td[6]/div/div/div/div[1]");
+    By txt_foodServiceDistCenter = By.xpath("//span[text()='Food Service Distribution Centre']");
+    By txt_retailDistCenter = By.xpath("//span[text()='Retail Distribution Centre']");
+    String txt_orders = "(//div[contains(text(), 'Order #')])[NUM]";
+    By lbl_itemNameListWL = By.xpath("//td//span/div[@data-tip='View Product Details']");
+    By tbx_searchCustomers = By.xpath("//input[@placeholder='Search Customers']");
+    String btnOrderGuide = "//button[contains(text(), 'Order Guide')]";
+    By btn_increaseQtyFirstRowDis = By.xpath("//tr[1]/td[8]/div/div/div/div[3]");
+    By btn_pickup = By.xpath("//span[text()='Pickup']");
+    By txt_orderCutOffForPickUp = By.xpath("//span[contains(text(), '7:00pm')]");
+    By txt_errorSubmittingOrder= By.xpath("//div[text()='Error submitting order. Please try again.']");
+    By orderCartDeletebtn = By.xpath("//td[@class='_xigbpq4 border-top border-bottom py-3']/*[name()='svg' and @data-icon='trash-alt']");
+    By totalValue = By.xpath("//tr[@class='_2ehv7q text-primary']/td[2]");
+    By selectedSections = By.xpath("//a[contains(@class,'_1ccoy1o text-decoration-none dropdown-item') and contains(text(),'Add Section')]");
+    By sectionName = By.xpath("//div[contains(@class,'mb-5 form-group')]//input[@id='sectionName']");
+    By saveSectionBtn = By.xpath("//button[contains(text(),'Save')]");
+    String section = "//div[contains(@class,'d-flex align-items-center no-gutters')]//div[contains(text(),'SECTIONNAME')]";
+    By backBtn = By.xpath("//button[contains(text(),'Back')]");
+    String sectionEditBtn ="//div[contains(text(), 'NAME')]/following-sibling::div[@class='col-2 d-flex justify-content-end align-items-center']/*[local-name() = 'svg' and @data-icon='pencil']";
+    By sectionDeleteBtn = By.xpath("//button[contains(text(),'Delete')]");
+    By deleteConfirmationYesBtn = By.xpath("//button[contains(text(),'Yes')]");
+    By unitSelectionDropdown = By.xpath("//tbody/tr/td[3]/div/div/div/div");
+    By pkgOption = By.xpath("//div[contains(@class, 'cd_themed_select__option') and text()='Pkg']");
+    By caseOption = By.xpath("//div[contains(@class, 'cd_themed_select__option') and text()='Case']");
+    String editItemBtn = "//div[contains(text(), 'ITEMNAME')]/../following-sibling::div[@class='col-2 col-lg-1 d-flex justify-content-end mt-1 align-items-center align-items-lg-start']//*[name()='svg' and @role='img']";
+    By hideBtn = By.xpath("//button[contains(text(),'Hide Item')]");
+    String hiddenItem ="//div[text()='ITEMNAME']";
+    By showFilter = By.xpath("(//div[@class='cd_themed_select__value-container cd_themed_select__value-container--has-value css-1hwfws3'])[3]");
+    By activeAndHiddenOption = By.xpath("//div[contains(@class,'cd_themed_select__option css-yt9ioa-option') and text()='Active & Hidden Items']");
+    By onlyActiveItemsOption = By.xpath("//div[contains(@class,'cd_themed_select__option css-yt9ioa-option') and text()='Only Active Items']");
+    By saveAndUnhideBtn = By.xpath("//button[@class='btn btn-primary btn-block'and contains(text(),'Save and Unhide Item')]");
+    By catalogimg = By.xpath("//img[@class='card-img-top _1d49j2h' and contains(@src,'23ea1851c5077e4e1deab4c760fdf5dc5358634d47c19530b4d821f11e3f7650_PROD_0001_07628.JPG')]");
+    String Item = "//div[@class='_3quvq7 _1vlidrf' and text()='ITEMNAME']";
+    String itemNamePdpView = "//div[contains(@class,'mb-0 pt-2 d-flex align-items-center mont _1wrelxt _1vlidrf') and contains(text(),'ITEMNAME')]";
+    By itemPricePdpView = By.xpath("//span[@class='_1u7yq58']");
+    String ItemPriceCatalogView = "//div[contains(@class, '_13kb1gk')]//div[text()= 'ITEMNAME']//ancestor::div[contains(@class, '_13kb1gk')]//div[@class='_btf6h0']//div[@class='_5kaapu']";
+    By deliveryDate = By.xpath("//div[@class='text-truncate']");
+    String customerCodeOnGrid = "//tr[@class='_du1frc']/td[text()='CUSTOMERCODE']";
+    String customerCodeInProfilePage = "//div[@class='col' and text()='CUSTOMERCODE']";
+    By editDeliveryBtn = By.xpath("//div[contains(text(), 'Delivery Days')]//following-sibling::div//div[@class='pl-0 col-sm-auto col-auto']/*");
+    String cutOffDay = "//tr[td[contains(text(), 'DAY')]]//div[contains(@class, 'themed_select__control')]";
+    String cutOffDaySelect = "//div[contains(@class,'themed_select__option css-yt9ioa-option') and text()='DAY']";
+    String cutOffTime = "//tr[td[contains(text(), 'DAY')]]//input[@class='_1avn95e form-control']";
+    By cutOffDateTimeSave = By.xpath("//button[contains(text(),'Save Changes')]");
+    By orderCutOffTime = By.xpath("//span[@class='ml-1 text-nowrap _d7ebxxy']");
+    String clearDeliveryDate = "//tr[td[contains(text(), 'DAY')]]//div[contains(@class, 'themed_select__control')]//div[contains(@class, 'themed_select__clear-indicator')]/*";
+
+
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -87,28 +136,34 @@ public class CustomersPage extends LoginPage {
         return restaurantUI.getText(lbl_itemNameList);
     }
 
-    public void clickPlusQryFirstRow() {
+    public void clickPlusQryFirstRow() throws InterruptedException {
         restaurantUI.click(btn_increaseQtyFirstRow);
+        restaurantUI.waitForCustom(4000);
     }
 
-    public void clickPlusQrySecondRow() {
+    public void clickPlusQrySecondRow() throws InterruptedException {
         restaurantUI.click(btn_increaseQtySecondRow);
+        restaurantUI.waitForCustom(4000);
     }
 
-    public void clickMinusQryFirstRow() {
+    public void clickMinusQryFirstRow() throws InterruptedException {
         restaurantUI.click(btn_decreaseQtyFirstRow);
+        restaurantUI.waitForCustom(4000);
     }
 
-    public void clickMinusQrySecondRow() {
+    public void clickMinusQrySecondRow() throws InterruptedException {
         restaurantUI.click(btn_decreaseQtySecondRow);
+        restaurantUI.waitForCustom(4000);
     }
 
-    public void clickPlusCatalog() {
+    public void clickPlusCatalog() throws InterruptedException {
         restaurantUI.click(btn_increaseQtyCatalog);
+        restaurantUI.waitForCustom(4000);
     }
 
-    public void clickMinusCatalog() {
+    public void clickMinusCatalog() throws InterruptedException {
         restaurantUI.click(btn_decreaseQtyCatalog);
+        restaurantUI.waitForCustom(4000);
     }
 
     public String getItemNameSecondRow() {
@@ -129,8 +184,9 @@ public class CustomersPage extends LoginPage {
         restaurantUI.click(btn_catalog);
     }
 
-    public void typeToSearchOnCatalog(String item) {
+    public void typeToSearchOnCatalog(String item) throws InterruptedException {
         restaurantUI.sendKeys(tbx_catalogSearch, item);
+        restaurantUI.waitForCustom(4000);
     }
 
     public void typeToSearchOnOrderGuide(String item) {
@@ -323,16 +379,19 @@ public class CustomersPage extends LoginPage {
         restaurantUI.click(btn_sortAlphabetical);
     }
 
-    public void selectDropDownCustomerOrder() {
+    public void selectDropDownCustomerOrder() throws InterruptedException {
         restaurantUI.click(btn_selectCustomOrder);
+        restaurantUI.waitForCustom(4000);
     }
 
-    public void selectDropDownItemCategory() {
+    public void selectDropDownItemCategory() throws InterruptedException {
         restaurantUI.click(btn_selectItemCategory);
+        restaurantUI.waitForCustom(4000);
     }
 
-    public void selectDropDownAlphabetical() {
+    public void selectDropDownAlphabetical() throws InterruptedException {
         restaurantUI.click(btn_selectAlphabetical);
+        restaurantUI.waitForCustom(4000);
     }
 
     public boolean isSeaFoodTextDisplayed() {
@@ -407,4 +466,294 @@ public class CustomersPage extends LoginPage {
         restaurantUI.click(btn_save );
     }
 
+    public void clickOnPlaceOrder() {
+        restaurantUI.click(btn_placeOrder );
+    }
+
+    public void clickPlusQryFirstRowInWL() throws InterruptedException {
+        restaurantUI.waitForCustom(1000);
+        restaurantUI.click(btn_increaseQtyFirstRowInWL);
+    }
+
+    public boolean isMultiDistCentersDisplayed() {
+        try {
+            restaurantUI.waitForVisibility(txt_foodServiceDistCenter);
+            restaurantUI.isDisplayed(txt_foodServiceDistCenter);
+            restaurantUI.waitForVisibility(txt_retailDistCenter);
+            restaurantUI.isDisplayed(txt_retailDistCenter);
+        } catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+    public int getOrderCount(int num) {
+        int count = 0;
+        for (int i = 1; i <= num; i++) {
+            if (restaurantUI.isDisplayed(By.xpath(txt_orders.replace("NUM", String.valueOf(i))))){
+                count += 1;
+            };
+        }
+        return count;
+    }
+    public String getItemNameFirstRowWL() throws InterruptedException {
+        restaurantUI.waitForElementEnabledState(lbl_itemNameListWL,true);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemNameListWL);
+    }
+    public void clickOnSearchCustomers(){
+        restaurantUI.click(tbx_searchCustomers);
+    }
+    public void typeOnSearchCustomers(String code) throws InterruptedException {
+        restaurantUI.clear(tbx_searchCustomers);
+        restaurantUI.waitForCustom(3000);
+        restaurantUI.sendKeys(tbx_searchCustomers, code);
+        restaurantUI.waitForCustom(3000);
+    }
+    public void clickOnOrderGuide(String code) {
+        restaurantUI.click(By.xpath(btnOrderGuide.replace("CODE", code)));
+    }
+    public void clickPlusQryFirstRowDis(){
+        restaurantUI.click(btn_increaseQtyFirstRowDis);
+    }
+
+    public boolean isPickupTextDisplayed() {
+        try {
+            return restaurantUI.isDisplayed(btn_pickup);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    public void clickOnPickUp() throws InterruptedException {
+        restaurantUI.click(btn_pickup);
+        restaurantUI.waitForCustom(4000);
+    }
+    public boolean isOrderCutOffDisplayed() {
+        try {
+            return restaurantUI.isDisplayed(txt_orderCutOffForPickUp);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isSubmittingErrorDisplayed() {
+        try {
+            return restaurantUI.isDisplayed(txt_errorSubmittingOrder);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void clickOnDeleteItemInCart(){
+        restaurantUI.click(orderCartDeletebtn);
+    }
+
+    public Double isCartTotalBecomsZero(){
+        return Double.valueOf(restaurantUI.getText(totalValue).replace("$", ""));
+    }
+
+    public void clickAddSectionFromMoreOptionsDropdown(){
+        restaurantUI.click(selectedSections);
+    }
+
+
+    public void TypeSectionName(String sectionName){
+        restaurantUI.sendKeys(this.sectionName,sectionName);
+    }
+
+
+    public void clickOnSaveBtn(){
+        restaurantUI.click(saveSectionBtn);
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean isSectionDisplayed(String sectionName){
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return restaurantUI.isDisplayed(By.xpath(section.replace("SECTIONNAME",sectionName)));
+    }
+
+    public void dragSectionToHigher(){
+        restaurantUI.dragAndDrop(By.xpath("//div[contains(@class, '_11h2a11m') and @data-rbd-draggable-id='item-288275866']"),By.xpath("//div[@data-rbd-draggable-id='item-212365835']"));
+
+    }
+
+    public void clickOnBackBtn(){
+        restaurantUI.click(backBtn);
+    }
+
+    public void clickOnEditSection(String name){
+        restaurantUI.waitForVisibility(By.xpath(sectionEditBtn.replace("NAME", name)));
+        restaurantUI.click(By.xpath(sectionEditBtn.replace("NAME", name)));
+    }
+
+    public void clickOnDeleteBtn(){
+        restaurantUI.click(sectionDeleteBtn);
+    }
+
+    public void clickYesOnConfirmationOverlay(){
+        restaurantUI.click(deleteConfirmationYesBtn);
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void clickPkgOption(){
+        restaurantUI.isDisplayed(unitSelectionDropdown);
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.click(unitSelectionDropdown);
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.waitForVisibility(pkgOption);
+        restaurantUI.click(pkgOption);
+    }
+
+    public String isUnitChangedToPkg(){
+        restaurantUI.waitForVisibility(unitSelectionDropdown);
+        return restaurantUI.getText(unitSelectionDropdown);
+    }
+
+    public void clickCaseOption(){
+        restaurantUI.isDisplayed(unitSelectionDropdown);
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.click(unitSelectionDropdown);
+        restaurantUI.waitForVisibility(caseOption);
+        restaurantUI.click(caseOption);
+    }
+
+    public String isUnitChangedToCase(){
+        restaurantUI.waitForVisibility(unitSelectionDropdown);
+        return restaurantUI.getText(unitSelectionDropdown);
+    }
+
+    public void clickEditItemBtn(String itemname){
+        restaurantUI.click(By.xpath(editItemBtn.replace("ITEMNAME",itemname)));
+
+    }
+
+    public void clickOnHideBtn(){
+        restaurantUI.click(hideBtn);
+    }
+
+    public boolean isHiddenItemDisplayed(String itemName){
+        return restaurantUI.isDisplayed(By.xpath(hiddenItem.replace("ITEMNAME",itemName)));
+    }
+
+    public void clickShowActiveAndHiddenItems(){
+        restaurantUI.waitForVisibility(showFilter);
+        restaurantUI.click(showFilter);
+        restaurantUI.waitForVisibility(activeAndHiddenOption);
+        restaurantUI.click(activeAndHiddenOption);
+    }
+
+    public void clickShowOnlyActiveItems(){
+        restaurantUI.waitForVisibility(showFilter);
+        restaurantUI.click(showFilter);
+        restaurantUI.waitForVisibility(onlyActiveItemsOption);
+        restaurantUI.click(onlyActiveItemsOption);
+
+    }
+
+    public void clickSaveAndUnhideBtn(){
+        restaurantUI.click(saveAndUnhideBtn);
+    }
+
+    public boolean isCatalogPageImagesDisplayed(){
+        restaurantUI.waitForVisibility(catalogimg);
+        return restaurantUI.isDisplayed(catalogimg);
+    }
+
+    public void clickItemOnCatalog(String itemName){
+        restaurantUI.isDisplayed(By.xpath(Item.replace("ITEMNAME",itemName)));
+        restaurantUI.click(By.xpath(Item.replace("ITEMNAME",itemName)));
+    }
+
+    public boolean isPDPViewItemNameDisplayed(String itemName){
+        restaurantUI.waitForVisibility(By.xpath(itemNamePdpView.replace("ITEMNAME",itemName)));
+        return restaurantUI.isDisplayed(By.xpath(itemNamePdpView.replace("ITEMNAME",itemName)));
+    }
+
+    public String getPDPViewItemName(String itemName){
+        return restaurantUI.getText(By.xpath(itemNamePdpView.replace("ITEMNAME",itemName)));
+    }
+
+    public String getCatalogViewItemName(String itemName){
+        return restaurantUI.getText(By.xpath(Item.replace("ITEMNAME",itemName)));
+    }
+
+    public String getPDPViewItemPrice(){
+        return restaurantUI.getText(itemPricePdpView);
+    }
+
+    public String getCatalogViewItemPrice(String itemName){
+        return restaurantUI.getText(By.xpath(ItemPriceCatalogView.replace("ITEMNAME",itemName)));
+    }
+
+    public String getDeliveryDateReviewCart(){
+        return restaurantUI.getText(deliveryDate);
+    }
+
+    public void clickOnCustomer(String customerCode){
+        restaurantUI.click(By.xpath(customerCodeOnGrid.replace("CUSTOMERCODE",customerCode)));
+    }
+
+    public String isCustomerCodeDisplayed(String customerCode){
+        return restaurantUI.getText(By.xpath(customerCodeInProfilePage.replace("CUSTOMERCODE",customerCode)));
+    }
+
+    public void clickOnEditDeliveryDate(){
+        restaurantUI.click(editDeliveryBtn);
+    }
+
+    public void clickOnpreviousDateDropdow(String Date){
+        restaurantUI.click(By.xpath(cutOffDay.replace("DAY",Date)));
+    }
+
+    public void clickTodayONDropDown(String Date){
+        restaurantUI.click(By.xpath(cutOffDaySelect.replace("DAY",Date)));
+    }
+
+    public void typeCutOffTime(String date , String time){
+        restaurantUI.sendKeys(By.xpath(cutOffTime.replace("DAY",date)),time);
+    }
+
+    public void saveChangesBtn(){
+        restaurantUI.click(cutOffDateTimeSave);
+    }
+
+    public String getCutOffTimeFromReviewCart(){
+        return restaurantUI.getText(orderCutOffTime);
+    }
+
+
+    public void clickOnClearDeliveryDateBtn(String Date){
+        restaurantUI.click(By.xpath(clearDeliveryDate.replace("DAY",Date)));
+    }
+
+    public void waitForCutOffTimeToBeOver(){
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
