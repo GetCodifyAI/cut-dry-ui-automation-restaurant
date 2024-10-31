@@ -4,9 +4,14 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import com.cutanddry.qa.common.Constants;
 import org.json.JSONObject;
+
+import static com.fasterxml.jackson.databind.jsonFormatVisitors.JsonValueFormat.URI;
 
 public class SlackNotifier {
     private static final String WEBHOOK_URL = Constants.SLACK_WEBHOOK;
@@ -73,7 +78,8 @@ public class SlackNotifier {
                     + "}";
 
             // Establish a connection to the Slack webhook
-            URL url = new URL(WEBHOOK_URL);
+            URI uri = new URI(WEBHOOK_URL);
+            URL url = uri.toURL();
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
