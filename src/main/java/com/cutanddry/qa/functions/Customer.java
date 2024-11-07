@@ -193,6 +193,9 @@ public class Customer {
     public static void submitOrderAfterDeliveryTime(){
         Thread.sleep(240000);
         customersPage.submitOrder();
+        if(customersPage.isDuplicatePopupDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
     }
 
     public static void selectDeliveryDateFirstLine()throws InterruptedException{

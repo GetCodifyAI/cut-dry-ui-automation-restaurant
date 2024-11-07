@@ -17,7 +17,7 @@ public class DashboardPage extends LoginPage{
     By btn_customers = By.xpath("//a[@data-tip='Customers']");
     String supplierTxt = "//tr[@class='_du1frc _14u3xd3 py-3']//div[text()='SUPPLIERNAME']";
     By MaxiesSLTxt = By.xpath("//div[@class='_hp19hv mx-3 aling-items-center d-flex']//span[@data-tip='Maxies SL']//div[text()='Maxies SL']");
-
+    By users = By.xpath("//a[contains(@class,'parent-item nav-link') and @data-tip='Team']");
 
 
     public boolean isDashboardTextDisplayed(){
@@ -92,6 +92,10 @@ public class DashboardPage extends LoginPage{
     public boolean isNavigatedToMaxiesSLOrderGuide() throws InterruptedException {
         restaurantUI.waitForCustom(4000);
         return restaurantUI.isDisplayed(MaxiesSLTxt);
+    }
+
+    public void clickOnUsers(){
+        restaurantUI.click(users);
     }
 
 }

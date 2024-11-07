@@ -55,4 +55,172 @@ public class Settings {
         settingsPage.clickOnSaveChanges();
     }
 
+    public static void clickOnProfileUnderSettings(){
+        settingsPage.clickOnSettings();
+        settingsPage.clickOnProfile();
+    }
+
+    public static void editNameInProfile(String profileName){
+        settingsPage.editNameInProfile(profileName);
+    }
+
+    public static void saveProfileChanges(){
+        settingsPage.clickOnSave();
+    }
+
+    public static boolean isSuccessfulUserProfileUpdateOverlayDisplayed(){
+        return settingsPage.isProfileUpdateSuccessMessageDisplayed();
+    }
+
+    public static String getUpdatedProfileName(){
+        return settingsPage.getUpdateName();
+    }
+
+    public static void clickOnRestaurantUnderSettings(){
+        settingsPage.clickOnSettings();
+        settingsPage.clickOnRestuarent();
+    }
+
+    public static void editNameInRestaurant(String restaurantName){
+        settingsPage.editNameInRestaurant(restaurantName);
+    }
+
+    public static void saveRestaurantChanges(){
+        settingsPage.clickOnSave();
+    }
+
+    public static boolean isSuccessfulCompanyDetailsUpdateOverlayDisplayed(){
+        return settingsPage.isCompanyDetailsUpdateSuccessMessageDisplayed();
+    }
+
+    public static String getUpdatedRestaurantName(){
+        return settingsPage.getUpdateRestName();
+    }
+
+    public static void removeLogo(){
+        settingsPage.clickOnRemoveLogoBtn();
+    }
+
+    public static boolean isRestaurantLogoRemoved(){
+        return settingsPage.isLogoAvailable();
+    }
+
+    public static boolean isRestaurantLogoAdded(){
+        return settingsPage.isLogoAvailable();
+    }
+
+    public static void uploadFile(String path) {
+        settingsPage.fileUpload(path);
+    }
+
+    public static void clickOnLocationsUnderSettings(){
+        settingsPage.clickOnSettings();
+        settingsPage.clickOnLocationsBtn();
+    }
+
+    public static void AddLocation(){
+        settingsPage.clickOnAddLocation();
+    }
+
+    public static void enterLocationName(String locationName){
+        settingsPage.typeLocationName(locationName);
+    }
+
+    public static boolean isAddLocationOverlayDisplayed(){
+        return settingsPage.isAddLocationOverlayDisplayed();
+    }
+
+    public static boolean isEditLocationOverlayDisplayed(){
+        return settingsPage.isEditLocationOverlayDisplayed();
+    }
+
+    public static void enterStreetAddress(String streetAddress){
+        settingsPage.typeStreetAddress(streetAddress);
+    }
+
+    public static void clickAddLocationBtnInOverlay(){
+        settingsPage.clickOnAddLocationOnOverlay();
+    }
+
+    public static boolean isSuccessOverlayDisplayed(){
+        return settingsPage.isSuccessOverlayDisplayed();
+    }
+
+    public static boolean isAddedLocationDisplayedInLocations(String locationName){
+        return settingsPage.isAddedLocationDisplayed(locationName);
+    }
+
+    public static boolean isEditedLocationDisplayedInLocations(String locationName){
+        return settingsPage.isEditedLocationDisplayed(locationName);
+    }
+
+    public static void clickOnLocationInGrid(String locationName){
+        settingsPage.clickTheLocationOnGrid(locationName);
+    }
+
+    public static void DeleteLocation(){
+        settingsPage.clickOnDeleteLocation();
+    }
+
+    public static boolean isDeleteLocationOverlayDisplayed(){
+        return settingsPage.isDeleteLocationOverlayDisplayed();
+    }
+
+    public static void clickYesOnDeleteLocationOverlay(){
+        settingsPage.clickOnYesBtn();
+    }
+
+    public static void clickOnAccounting(){
+        settingsPage.clickOnAccountingBtn();
+    }
+
+    public static boolean isNavigatedToAccountingCatagoryPage(){
+        return settingsPage.isNavigatedToAccountingCatagory();
+    }
+
+    public static int getAccountingCategoryCount(){
+        return settingsPage.getRowCount();
+    }
+
+    public static void createCategory(){
+        settingsPage.clickCreateCatagory();
+    }
+
+    public static void clickOnCreatedCategoryCodeInGrid(){
+        settingsPage.clickOnCreatedCategoryCode();
+    }
+
+    public static void clickOnCreatedCategoryNameInGrid(){
+        settingsPage.clickOnCreatedCategoryName();
+    }
+
+    public static void fillCategoryItemCode(String categoryCode){
+        settingsPage.typeCategoryItemCode(categoryCode);
+    }
+
+    public static void fillCategoryItemName(String categoryCode){
+        settingsPage.typeCategoryItemName(categoryCode);
+    }
+
+    public static void saveCreatedCategoryItemCodeOrName(){
+        settingsPage.saveCreatedCategoryCodeOrName();
+    }
+
+    public static boolean isCreatedCategoryItemCodeDisplayed(String categoryItemCode){
+        return settingsPage.isCategoryItemCodeAdded(categoryItemCode);
+    }
+
+    public static boolean isCreatedCategoryItemNameDisplayed(String categoryItemCode){
+        return settingsPage.isCategoryItemNameAdded(categoryItemCode);
+    }
+
+    public static void deleteCategory(String categoryName){
+        settingsPage.clickOnCategoryDeleteBtn(categoryName);
+    }
+
+    public static boolean isCategoryDeleted(String categoryName){
+        return settingsPage.isCategoryDeleted(categoryName);
+    }
+
+
 }

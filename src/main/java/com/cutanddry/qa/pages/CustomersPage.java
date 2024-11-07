@@ -55,7 +55,7 @@ public class CustomersPage extends LoginPage {
     By btn_selectCustomOrder = By.xpath("//div[contains(@class, 'cd_themed_select__option') and contains(text(), 'Custom Order')]");
     By btn_selectItemCategory = By.xpath("//div[contains(@class, 'cd_themed_select__option') and contains(text(), 'Item Categories')]");
     By btn_selectAlphabetical = By.xpath("//div[contains(@class, 'cd_themed_select__option') and contains(text(), 'Alphabetical (A-Z)')]");
-    By txt_seaFood = By.xpath("//div[contains(text(), 'seafood')]");
+    By txt_seaFood = By.xpath("//div[contains(@class,'flex-grow-1') and contains(text(), 'Seafood')]");
     By btn_browse = By.xpath("//input[@type='file']");
     By btn_uploadFile = By.xpath("//button[contains(text(), 'Upload File')]");
     By btn_next = By.xpath("//button[contains(text(), 'Next')]");

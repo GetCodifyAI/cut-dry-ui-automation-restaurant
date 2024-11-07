@@ -509,5 +509,49 @@ public class KeywordBase {
         }
     }
 
+    // Send keys to an element using By object and press enter
+    public KeywordBase sendKeysAndEnter(By by, String data) {
+        try {
+            Actions actions = new Actions(driver);
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(by));
+//            Thread.sleep(500);
+            actions.moveToElement(element).click().sendKeys(data).sendKeys(Keys.ENTER).perform();
+            logger.info("Sent keys to element: {} with data: {} and enter", by, data);
+        } catch (Exception e) {
+            logger.error("Failed to send keys to element: {} with data: {}", by, data, e);
+        }
+        return this;
+    }
+
+    //Getting the values in a attribute
+    public String getAttributeValue(By locator, String attribute) {
+        String attributeValue = null;
+        try {
+            WebElement element = driver.findElement(locator);
+            attributeValue = element.getAttribute(attribute);
+            logger.info("Retrieved value of attribute '" + attribute + "': " + attributeValue);
+        } catch (Exception e) {
+            logger.error("Failed to retrieve attribute '" + attribute + "'", e);
+        }
+        return attributeValue;
+    }
+
+    // Method to count the number of elements matching a given locator
+    public int countElements(By elementsLocator) {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(elementsLocator));
+
+
+            List<WebElement> elements = driver.findElements(elementsLocator);
+
+
+            // Return the size of the list (i.e., the number of elements)
+            return elements.size();
+        } catch (TimeoutException e) {
+            // If no elements are visible within the timeout, return 0
+            return 0;
+        }
+    }
+
 }
 
