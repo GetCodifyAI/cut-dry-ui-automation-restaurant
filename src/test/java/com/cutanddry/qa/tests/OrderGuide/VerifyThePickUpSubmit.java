@@ -38,7 +38,7 @@ public class VerifyThePickUpSubmit extends TestBase {
         softAssert.assertTrue(Customer.isPickUpTextDisplayed(),"Pick up text error");
         Customer.clickOnPickup();
         Customer.submitOrder();
-        softAssert.assertTrue(Customer.isSubmittingErrorDisplayed(),"order  pickup Submit error");
+        softAssert.assertFalse(Customer.isSubmittingErrorDisplayed(),"order  pickup Submit error");
         softAssert.assertAll();
     }
 
