@@ -19,13 +19,13 @@ public class CreditRequestsPage extends TestBase {
         restaurantUI.click(btn_request_data); // Opens dropdown
     }
 
-    public void selectAllTimeRange(String TimeRange) throws InterruptedException {
+    public void selectAllTimeRange() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(option_all)); // Wait until "All" is visible
         restaurantUI.click(option_all);
     }
 
-    public void selectTimeRange(String timeRange) throws InterruptedException {
+    public void selectTimeRange(String timeRange) {
         // Dynamic XPath using the provided timeRange
         By option_dynamic = By.xpath("//div[contains(@class, 'themed_select__menu')]//div[contains(text(), '" + timeRange + "')]");
 
@@ -40,7 +40,6 @@ public class CreditRequestsPage extends TestBase {
 
     public void typeOnSearch(String orderID) throws InterruptedException {
         restaurantUI.clear(btn_search);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         restaurantUI.sendKeys(btn_search, orderID);
         restaurantUI.waitForCustom(400);
     }

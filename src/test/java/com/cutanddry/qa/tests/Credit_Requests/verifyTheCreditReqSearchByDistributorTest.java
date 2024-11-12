@@ -23,7 +23,6 @@ public class verifyTheCreditReqSearchByDistributorTest extends TestBase {
 
     @Test(groups = "DOT-TC-326")
     public void verifyTheCreditReqSearchByDistributor() throws InterruptedException {
-        String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDisDashboard();
