@@ -14,7 +14,7 @@ public class CustomersPage extends LoginPage {
     By btn_catalog = By.xpath("//div[text()='Catalog']");
     By tbx_catalogSearch = By.xpath("//input[@placeholder='Search catalog...']");
     By tbx_orderGuideSearch = By.xpath("//input[@placeholder='Search order guide...']");
-    By lbl_catalogSearchItemList = By.xpath("//div[contains(text(), 'Artichoke')]");
+    By lbl_catalogSearchItemList = By.xpath("(//div[contains(text(), 'Artichoke')])[last()]");
     By btn_addToCart = By.xpath("//button[text()='Add to Cart']");
     By tbx_itemQuantityFirstRow = By.xpath("//tr[1]//td[6]//input");
     By lbl_itemPriceFirstRow = By.xpath("//tr[1]//td[5]/div");
@@ -82,9 +82,9 @@ public class CustomersPage extends LoginPage {
     String btnOrderGuide = "//button[contains(text(), 'Order Guide')]";
     By btn_increaseQtyFirstRowDis = By.xpath("//tr[1]/td[8]/div/div/div/div[3]");
     By btn_pickup = By.xpath("//span[text()='Pickup']");
-    By txt_orderCutOffForPickUp = By.xpath("//span[contains(text(), '7:00pm')]");
+    By txt_orderCutOffForPickUp = By.xpath("//span[contains(text(), '3:30am')]");
     By txt_errorSubmittingOrder= By.xpath("//div[text()='Error submitting order. Please try again.']");
-    By orderCartDeletebtn = By.xpath("//td[@class='_xigbpq4 border-top border-bottom py-3']/*[name()='svg' and @data-icon='trash-alt']");
+    By orderCartDeletebtn = By.xpath("//td[@class='_xigbpq4 border-top border-bottom py-3']/*[name()='svg' and @data-icon='trash-can']");
     By totalValue = By.xpath("//tr[@class='_2ehv7q text-primary']/td[2]");
     By selectedSections = By.xpath("//a[contains(@class,'_1ccoy1o text-decoration-none dropdown-item') and contains(text(),'Add Section')]");
     By sectionName = By.xpath("//div[contains(@class,'mb-5 form-group')]//input[@id='sectionName']");
