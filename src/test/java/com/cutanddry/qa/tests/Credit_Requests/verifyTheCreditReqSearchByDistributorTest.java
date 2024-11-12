@@ -2,23 +2,13 @@ package com.cutanddry.qa.tests.Credit_Requests;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
-import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.functions.CreditRequests;
-import com.cutanddry.qa.pages.CreditRequestsPage;
 import com.cutanddry.qa.utils.JsonUtil;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
-import java.time.Duration;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class verifyTheCreditReqSearchByDistributorTest extends TestBase {
     static User user;
