@@ -20,7 +20,7 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class verifyTheCreditReqSearchByDistributor extends TestBase {
+public class verifyTheCreditReqSearchByDistributorTest extends TestBase {
     static User user;
     String timeRange = "All";
     String orderID = "316727041";
