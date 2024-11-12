@@ -7,13 +7,14 @@
     </listeners>
     <test name="distributor tests">
         <classes>
-            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantLoginTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmOrderGuideTest" />
-<!--            <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmCatalogTest" />-->
-            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmOrderGuideTest" />
-<!--            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmCatalogTest" />-->
-            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmReviewCartTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantOrderSubmissionTest" />
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantLoginTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmOrderGuideTest" />-->
+<!--&lt;!&ndash;            <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmCatalogTest" />&ndash;&gt;-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmOrderGuideTest" />-->
+<!--&lt;!&ndash;            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmCatalogTest" />&ndash;&gt;-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmReviewCartTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantOrderSubmissionTest" />-->
+            <class name="com.cutanddry.qa.tests.Orders.VerifyUserCanOrderItemsBeforeCutOffTest" />
         </classes>
     </test>
 </suite>
