@@ -48,16 +48,16 @@ public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
         String formattedTomorrowDate = tomorrowDate.format(fullDayInTextFormat);
         String formattedTodayDate = todayDate.format(fullDayInTextFormat);
 
-
-        //Getting the order cut off time
-        ZonedDateTime currentTime = ZonedDateTime.now(ZoneId.of("America/Los_Angeles"));
-        ZonedDateTime cutoffTime = currentTime.plus(Duration.ofMinutes(4));
-        DateTimeFormatter timeformatter = DateTimeFormatter.ofPattern("HH:mm");
-        String cutoffTimeStr = cutoffTime.format(timeformatter);
+        // Set the cutoff time in UTC
+        ZonedDateTime currentTimeUTC = ZonedDateTime.now(ZoneOffset.UTC);
+        ZonedDateTime cutoffTimeUTC = currentTimeUTC.plusMinutes(4);
+        // Format the cutoff time in the desired format
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("MMM d, h:mma 'UTC'");
+        String cutoffTimeStrUTC = cutoffTimeUTC.format(timeFormatter).replace("AM", "am").replace("PM", "pm");
 
         Customer.clickOnPreviousDateDropdow(formattedTomorrowDate);
         Customer.selectTodayFromDropdownAsCutOff(formattedTodayDate);
-        Customer.selectCutOffTime(formattedTomorrowDate,cutoffTimeStr);
+        Customer.selectCutOffTime(formattedTomorrowDate,cutoffTimeStrUTC);
         Customer.saveChangesInCutOffTimeOverlay();
         closeAllBrowsers();
         initialization();
@@ -80,11 +80,11 @@ public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
         softAssert.assertEquals(Customer.getDeliveryDateOnReviewCart(),formattedDeliveryDate,"Delivery date mismatch");
 
         //getting the Order Cut Off Time in review cart and asserting
-        ZonedDateTime convertedTime = currentTime.withZoneSameInstant(ZoneId.of("GMT+05:30")).plusMinutes(4);
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMM d, h:mma 'GMT'XXX");
-        String cutOffTimeInReviewCart = convertedTime.format(dateTimeFormatter).replace("AM", "am").replace("PM", "pm");
-        cutOffTimeInReviewCart = cutOffTimeInReviewCart.replace("+05:30", "+5:30");
-        softAssert.assertEquals(Customer.getOrderCutOffOnReviewCart(),cutOffTimeInReviewCart,"Cutoff time mismatch");
+//        ZonedDateTime convertedTime = currentTimeUTC.withZoneSameInstant(ZoneId.of("GMT+05:30")).plusMinutes(4);
+//        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMM d, h:mma 'GMT'XXX");
+//        String cutOffTimeInReviewCart = convertedTime.format(dateTimeFormatter).replace("AM", "am").replace("PM", "pm");
+//        cutOffTimeInReviewCart = cutOffTimeInReviewCart.replace("+05:30", "+5:30");
+        softAssert.assertEquals(Customer.getOrderCutOffOnReviewCart(), cutoffTimeStrUTC, "Cutoff time mismatch");
 
         Customer.submitOrderAfterDeliveryTime();
         softAssert.assertTrue(Customer.isInvalidDeliveryTextDisplayed(),"Delivery time error");
