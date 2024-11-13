@@ -2,6 +2,7 @@ package com.cutanddry.qa.pages;
 
 import com.cutanddry.qa.base.TestBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.time.Duration;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,19 +11,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CreditRequestsPage extends TestBase {
 
     By btn_request_data = By.xpath("//label[text()='Request Date:']/following-sibling::div//div[contains(@class, 'themed_select__control')]");
-    By option_all = By.xpath("//div[contains(@class, 'themed_select__menu')]//div[contains(text(), 'All')]");
     By btn_search = By.xpath("//input[@placeholder='Search' and contains(@class, 'form-control')]");
+    By first_item = By.xpath("//table[@class='table table-hover']//tbody//tr[1]");
+    By txt_error = By.xpath("//*[contains(translate(text(), 'ERROR', 'error'), 'error')]");
+    By btn_items = By.xpath("//a[@role='tab' and @data-rb-event-key='Items']");
+    By header_items_table = By.xpath("//thead/tr[@class='_jg41os']");
 
     public void clickOnRequestDate() {
         //Check if it's in an iFrame
         driver.switchTo().defaultContent(); // Switch to default first if you're in another iFrame
         restaurantUI.click(btn_request_data); // Opens dropdown
-    }
-
-    public void selectAllTimeRange() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(option_all)); // Wait until "All" is visible
-        restaurantUI.click(option_all);
     }
 
     public void selectTimeRange(String timeRange) {
@@ -44,7 +42,7 @@ public class CreditRequestsPage extends TestBase {
         restaurantUI.waitForCustom(400);
     }
 
-    public boolean checkIfElementVisible(String orderID) {
+    public boolean checkIfSearchedElementVisible(String orderID) {
         // Corrected XPath for dynamic value
         By visibleObject = By.xpath("//td[normalize-space(text())='" + orderID + "']");
 
@@ -57,4 +55,37 @@ public class CreditRequestsPage extends TestBase {
         }
         return restaurantUI.isDisplayed(visibleObject);
     }
+
+    public void clickOnFirstItem(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(first_item));
+        restaurantUI.click(first_item);
+    }
+
+    public void clickOnItems(){
+        restaurantUI.click(btn_items);
+    }
+
+    public boolean checkIfItemSectionVisible() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        try {
+            // Wait for the element to be visible
+            wait.until(ExpectedConditions.visibilityOfElementLocated(header_items_table));
+        } catch (Exception e) {
+            return false; // Element is not visible within the timeout
+        }
+        return driver.findElement(header_items_table).isDisplayed(); // Verify visibility
+    }
+
+    public boolean isErrorTextNotDisplayed() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        try {
+            // Wait to see if the error text becomes visible
+            wait.until(ExpectedConditions.presenceOfElementLocated(txt_error));
+            return false; // "error" text is found
+        } catch (TimeoutException e) {
+            return true; // No "error" text is found within the timeout
+        }
+    }
+
 }
