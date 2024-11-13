@@ -12,7 +12,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-
 public class VerifyTheCreditViewItemsByDistributorTest extends TestBase {
     static User user;
     String timeRange = "All";
