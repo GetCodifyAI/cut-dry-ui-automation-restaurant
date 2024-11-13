@@ -24,6 +24,7 @@ public class verifyTheCreditReqSearchByDistributorTest extends TestBase {
     }
 
 
+
     @Test(groups = "DOT-TC-493")
     public void verifyTheCreditReqSearchByDistributor() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
@@ -37,6 +38,8 @@ public class verifyTheCreditReqSearchByDistributorTest extends TestBase {
         CreditRequests.checkIfSearchedElementVisible(orderID);
         softAssert.assertAll();
     }
+
+
 
     @AfterMethod
     public void tearDown(ITestResult result) {
