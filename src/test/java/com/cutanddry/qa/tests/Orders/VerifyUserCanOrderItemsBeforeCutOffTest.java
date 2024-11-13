@@ -52,8 +52,9 @@ public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
         ZonedDateTime currentTimeUTC = ZonedDateTime.now(ZoneOffset.UTC);
         ZonedDateTime cutoffTimeUTC = currentTimeUTC.plusMinutes(4);
         // Format the cutoff time in the desired format
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("MMM d, h:mma 'UTC'");
-        String cutoffTimeStrUTC = cutoffTimeUTC.format(timeFormatter).replace("AM", "am").replace("PM", "pm");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        String cutoffTimeStrUTC = cutoffTimeUTC.format(timeFormatter);
+        System.out.println("Cut OFF Time : "+ cutoffTimeStrUTC);
 
         Customer.clickOnPreviousDateDropdow(formattedTomorrowDate);
         Customer.selectTodayFromDropdownAsCutOff(formattedTodayDate);
@@ -77,6 +78,7 @@ public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
         //getting the delivery date and asserting
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEE, MMM dd");
         String formattedDeliveryDate = tomorrowDate.format(dateFormatter);
+        System.out.println("delivery date in cart :"+formattedDeliveryDate);
         softAssert.assertEquals(Customer.getDeliveryDateOnReviewCart(),formattedDeliveryDate,"Delivery date mismatch");
 
         //getting the Order Cut Off Time in review cart and asserting
@@ -84,6 +86,7 @@ public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
 //        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMM d, h:mma 'GMT'XXX");
 //        String cutOffTimeInReviewCart = convertedTime.format(dateTimeFormatter).replace("AM", "am").replace("PM", "pm");
 //        cutOffTimeInReviewCart = cutOffTimeInReviewCart.replace("+05:30", "+5:30");
+        System.out.println("Cut off time in cart: " + Customer.getOrderCutOffOnReviewCart());
         softAssert.assertEquals(Customer.getOrderCutOffOnReviewCart(), cutoffTimeStrUTC, "Cutoff time mismatch");
 
         Customer.submitOrderAfterDeliveryTime();
