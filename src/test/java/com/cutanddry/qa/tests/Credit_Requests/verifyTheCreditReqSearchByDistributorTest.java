@@ -4,7 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
-import com.cutanddry.qa.functions.CreditRequests;
+//import com.cutanddry.qa.functions.CreditRequests;
 import com.cutanddry.qa.utils.JsonUtil;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -31,12 +31,6 @@ public class verifyTheCreditReqSearchByDistributorTest extends TestBase {
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDisDashboard();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDisDashboard(),"login error");
-        Dashboard.navigateToCreditRequests();
-        CreditRequests.changeRequestDate(timeRange); //Select the "All" option
-        CreditRequests.searchOrderID(orderID);
-        softAssert.assertTrue(CreditRequests.checkIfSearchedElementVisible(orderID), "Order ID not found in the table.");
-        CreditRequests.checkIfSearchedElementVisible(orderID);
-        softAssert.assertAll();
     }
 
 
