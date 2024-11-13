@@ -6,6 +6,8 @@ import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.functions.CreditRequests;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -21,7 +23,7 @@ public class verifyTheCreditReqSearchByDistributorTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-326")
+    @Test(groups = "DOT-TC-493")
     public void verifyTheCreditReqSearchByDistributor() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
@@ -30,8 +32,14 @@ public class verifyTheCreditReqSearchByDistributorTest extends TestBase {
         Dashboard.navigateToCreditRequests();
         CreditRequests.changeRequestDate(timeRange); //Select the "All" option
         CreditRequests.searchOrderID(orderID);
-        softAssert.assertTrue(CreditRequests.checkIfElementVisible(orderID), "Order ID not found in the table.");
-        CreditRequests.checkIfElementVisible(orderID);
+        softAssert.assertTrue(CreditRequests.checkIfSearchedElementVisible(orderID), "Order ID not found in the table.");
+        CreditRequests.checkIfSearchedElementVisible(orderID);
         softAssert.assertAll();
+    }
+
+    @AfterMethod
+    public void tearDown(ITestResult result) {
+        takeScreenshotOnFailure(result);
+        closeAllBrowsers();
     }
 }
