@@ -60,7 +60,4 @@ public class Dashboard {
         dashboardPage.clickOnUsers();
     }
 
-    public static void navigateToCreditRequests(){
-        dashboardPage.clickOnCreditRequests();
-    }
 }
