@@ -24,7 +24,7 @@ public class CreditRequests {
         creditRequestsPage.clickOnFirstItem();
     }
 
-    public static void clickOnItem(){
+    public static void clickOnItems(){
         creditRequestsPage.clickOnItems();
     }
 
@@ -34,5 +34,14 @@ public class CreditRequests {
 
     public static boolean isErrorTextNotDisplayed(){
         return creditRequestsPage.isErrorTextNotDisplayed();
+    }
+
+    public static void clickOnTimeline(){
+        creditRequestsPage.clickOnTimeline();
+    }
+
+    public static boolean checkIfTimelineSectionVisible(){
+        return creditRequestsPage.checkIfTimelineSectionVisible();
+
     }
 }
