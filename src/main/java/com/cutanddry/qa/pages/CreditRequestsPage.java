@@ -84,6 +84,7 @@ public class CreditRequestsPage extends TestBase {
         return driver.findElement(header_items_table).isDisplayed(); // Verify visibility
     }
 
+
     public boolean isErrorTextNotDisplayed() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         try {
