@@ -31,7 +31,7 @@ public class VerifyTheCreditViewItemsByDistributorTest extends TestBase {
         Dashboard.navigateToCreditRequests();
         softAssert.assertTrue(CreditRequests.isErrorTextNotDisplayed(),"Error Message Displayed");
         CreditRequests.changeRequestDate(timeRange); //Select the "All" option
-        CreditRequests.clickOnFirstItem();
+        CreditRequests.clickOnFirstItemOfCreditRequests();
         softAssert.assertTrue(CreditRequests.isErrorTextNotDisplayed(),"Error Message Displayed");
         CreditRequests.clickOnItems();
         softAssert.assertTrue(CreditRequests.checkIfItemSectionVisible(), "Item Section is not visible");
