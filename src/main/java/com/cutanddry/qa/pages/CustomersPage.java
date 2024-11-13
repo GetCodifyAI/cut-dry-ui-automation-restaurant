@@ -718,6 +718,11 @@ public class CustomersPage extends LoginPage {
     }
 
     public void clickOnCustomer(String customerCode){
+        try {
+            restaurantUI.waitForCustom(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         restaurantUI.click(By.xpath(customerCodeOnGrid.replace("CUSTOMERCODE",customerCode)));
     }
 
@@ -726,6 +731,7 @@ public class CustomersPage extends LoginPage {
     }
 
     public void clickOnEditDeliveryDate(){
+        restaurantUI.waitForVisibility(editDeliveryBtn);
         restaurantUI.click(editDeliveryBtn);
     }
 
