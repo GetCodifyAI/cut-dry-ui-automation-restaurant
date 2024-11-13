@@ -12,7 +12,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-
 public class VerifyTheCreditViewTimelineByDistributorTest extends  TestBase{
 
     static User user;
@@ -25,7 +24,7 @@ public class VerifyTheCreditViewTimelineByDistributorTest extends  TestBase{
     }
 
     @Test(groups = "DOT-TC-495")
-    public void VerifyTheCreditViewItemsByDistributor() throws InterruptedException {
+    public void VerifyTheCreditViewTimelineByDistributor() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDisDashboard();
