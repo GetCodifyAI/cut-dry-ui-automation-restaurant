@@ -12,12 +12,16 @@ public class CreditRequestsPage extends TestBase {
 
     By btn_request_data = By.xpath("//label[text()='Request Date:']/following-sibling::div//div[contains(@class, 'themed_select__control')]");
     By btn_search = By.xpath("//input[@placeholder='Search' and contains(@class, 'form-control')]");
-    By first_item = By.xpath("//table[@class='table table-hover']//tbody//tr[1]");
+    By first_row_credit_requests = By.xpath("//table[@class='table table-hover']//tbody//tr[1]");
+    By first_row_credit_view = By.xpath("//table[@class='table table-hover']//tbody//tr[1]");
     By txt_error = By.xpath("//*[contains(translate(text(), 'ERROR', 'error'), 'error')]");
     By btn_items = By.xpath("//a[@role='tab' and @data-rb-event-key='Items']");
     By header_items_table = By.xpath("//thead/tr[@class='_jg41os']");
     By btn_timeline = By.xpath("//a[@role='tab' and @data-rb-event-key='Timeline']");
     By header_timeline_table = By.xpath("//tr[@class='_jg41os' and th[text()='Timestamp'] and th[text()='Status'] and th[text()='Organization'] and th[text()='User'] and th[text()='Action']]");
+    By btn_credit_view = By.xpath("//a[@role='tab' and @data-rb-event-key='Credit Request']");
+    By header_credit_view_table = By.xpath("//tr[@class='_jg41os' and th[text()='Item Code'] and th[text()='Unit'] and th[text()='Price'] and th[text()='Qty.'] and th[text()='Issue'] and th[text()='Total'] and th[text()='Credit']]");
+    By modal_issue_details = By.xpath("//div[@class='modal-header']//div[contains(@class, 'modal-title') and text()='Issue Details']");
 
 
     public void clickOnRequestDate() {
@@ -59,10 +63,10 @@ public class CreditRequestsPage extends TestBase {
         return restaurantUI.isDisplayed(visibleObject);
     }
 
-    public void clickOnFirstItem(){
+    public void clickOnFirstItemOfCreditRequests(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(first_item));
-        restaurantUI.click(first_item);
+        wait.until(ExpectedConditions.elementToBeClickable(first_row_credit_requests));
+        restaurantUI.click(first_row_credit_requests);
     }
 
     public void clickOnItems(){
@@ -105,6 +109,40 @@ public class CreditRequestsPage extends TestBase {
             return false; // Header row is not visible within the timeout
         }
     }
+
+    public void clickOnCreditView(){
+        restaurantUI.click(btn_credit_view);
+    }
+
+    public boolean checkIfCreditViewSectionVisible() {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        try {
+            // Wait for the header row to be visible
+            wait.until(ExpectedConditions.visibilityOfElementLocated(header_credit_view_table));
+            return true; // Header row is visible
+        } catch (TimeoutException e) {
+            return false; // Header row is not visible within the timeout
+        }
+    }
+
+    public void clickOnFirstItemOfCreditView(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(first_row_credit_view));
+        restaurantUI.click(first_row_credit_view);
+    }
+
+    public boolean checkIfIssueDetailsModalDisplayed() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(modal_issue_details));
+            return true;
+        } catch (TimeoutException e) {
+            return false; // Modal Card is not displayed within the timeout
+        }
+    }
+
+
 
 
 }

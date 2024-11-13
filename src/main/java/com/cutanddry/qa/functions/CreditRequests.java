@@ -20,8 +20,8 @@ public class CreditRequests {
         return creditRequestsPage.checkIfSearchedElementVisible(orderID);
     }
 
-    public static void clickOnFirstItem(){
-        creditRequestsPage.clickOnFirstItem();
+    public static void clickOnFirstItemOfCreditRequests(){
+        creditRequestsPage.clickOnFirstItemOfCreditRequests();
     }
 
     public static void clickOnItems(){
@@ -43,5 +43,21 @@ public class CreditRequests {
     public static boolean checkIfTimelineSectionVisible(){
         return creditRequestsPage.checkIfTimelineSectionVisible();
 
+    }
+
+    public static void clickOnCreditView(){
+        creditRequestsPage.clickOnCreditView();
+    }
+
+    public static boolean checkIfCreditViewSectionVisible(){
+        return creditRequestsPage.checkIfCreditViewSectionVisible();
+    }
+
+    public static void clickOnFirstItemOfCreditView(){
+        creditRequestsPage.clickOnFirstItemOfCreditView();
+    }
+
+    public static boolean checkIfIssueDetailsModalDisplayed(){
+        return creditRequestsPage.checkIfIssueDetailsModalDisplayed();
     }
 }

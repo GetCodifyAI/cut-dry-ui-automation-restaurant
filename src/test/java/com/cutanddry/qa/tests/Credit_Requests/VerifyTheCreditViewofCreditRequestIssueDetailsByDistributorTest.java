@@ -6,13 +6,11 @@ import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.functions.CreditRequests;
 import com.cutanddry.qa.utils.JsonUtil;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyTheCreditViewTimelineByDistributorTest extends  TestBase{
+public class VerifyTheCreditViewofCreditRequestIssueDetailsByDistributorTest extends TestBase{
 
     static User user;
     String timeRange = "All";
@@ -23,8 +21,8 @@ public class VerifyTheCreditViewTimelineByDistributorTest extends  TestBase{
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-495")
-    public void VerifyTheCreditViewTimelineByDistributor() throws InterruptedException {
+    @Test(groups = "DOT-TC-496")
+    public void VerifyTheCreditViewofCreditRequestIssueDetailsByDistributor() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDisDashboard();
@@ -32,16 +30,15 @@ public class VerifyTheCreditViewTimelineByDistributorTest extends  TestBase{
         Dashboard.navigateToCreditRequests();
         softAssert.assertTrue(CreditRequests.isErrorTextNotDisplayed(),"Error Message Displayed");
         CreditRequests.changeRequestDate(timeRange); //Select the "All" option
+        CreditRequests.clickOnFirstItemOfCreditView();
+        softAssert.assertTrue(CreditRequests.isErrorTextNotDisplayed(),"Error Message Displayed");
+        CreditRequests.clickOnCreditView();
+        softAssert.assertTrue(CreditRequests.checkIfCreditViewSectionVisible(), "Timeline Section is not visible");
+        softAssert.assertTrue(CreditRequests.isErrorTextNotDisplayed(),"Error Message Displayed");
         CreditRequests.clickOnFirstItemOfCreditRequests();
-        softAssert.assertTrue(CreditRequests.isErrorTextNotDisplayed(),"Error Message Displayed");
-        CreditRequests.clickOnTimeline();
-        softAssert.assertTrue(CreditRequests.checkIfTimelineSectionVisible(), "Timeline Section is not visible");
-        softAssert.assertTrue(CreditRequests.isErrorTextNotDisplayed(),"Error Message Displayed");
+        softAssert.assertTrue(CreditRequests.checkIfIssueDetailsModalDisplayed(), "Issue Detail Modal Card is not visible");
+
     }
 
-    @AfterMethod
-    public void tearDown(ITestResult result) {
-        takeScreenshotOnFailure(result);
-        closeAllBrowsers();
-    }
+
 }
