@@ -21,5 +21,17 @@ public class History {
     public static boolean checkIfSearchedElementVisible(String orderID){
         return historyPage.checkIfSearchedElementVisible(orderID);
     }
+    public static void clickOnFirstItemOfOrderHistory(){
+        historyPage.clickOnFirstItemOfOrderHistory();
+    }
+    public static boolean isErrorTextNotDisplayed(){
+        return historyPage.isErrorTextNotDisplayed();
+    }
+    public static void clickOnItems(){
+        historyPage.clickOnItems();
+    }
+    public static boolean checkIfItemSectionVisible(){
+        return historyPage.checkIfItemSectionVisible();
+    }
 
 }
