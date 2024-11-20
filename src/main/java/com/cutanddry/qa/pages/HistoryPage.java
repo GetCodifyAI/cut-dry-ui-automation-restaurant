@@ -52,15 +52,6 @@ public class HistoryPage extends TestBase {
         restaurantUI.click(first_row_order_details);
     }
 
-    public boolean isErrorTextNotDisplayed() {
-    try {
-        restaurantUI.waitForCustom(3000);
-    } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-    }
-    return restaurantUI.isDisplayed(header_items_table);
-    }
-
     public void clickOnItems(){
         restaurantUI.click(btn_items);
     }

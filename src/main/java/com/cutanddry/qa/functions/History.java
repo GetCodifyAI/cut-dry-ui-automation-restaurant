@@ -23,9 +23,7 @@ public class History {
     public static void clickOnFirstItemOfOrderHistory(){
         historyPage.clickOnFirstItemOfOrderHistory();
     }
-    public static boolean isErrorTextNotDisplayed(){
-        return historyPage.isErrorTextNotDisplayed();
-    }
+
     public static void clickOnItems(){
         historyPage.clickOnItems();
     }

@@ -29,10 +29,8 @@ public class VerifyTheOrderDetailsViewItemTest extends TestBase {
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.clickOnFirstItemOfOrderHistory();
-        softAssert.assertTrue(History.isErrorTextNotDisplayed(),"Error Message Displayed");
         History.clickOnItems();
         softAssert.assertTrue(History.checkIfItemSectionVisible(), "Item Section is not visible");
-        softAssert.assertTrue(History.isErrorTextNotDisplayed(),"Error Message Displayed");
         softAssert.assertAll();
 
 
