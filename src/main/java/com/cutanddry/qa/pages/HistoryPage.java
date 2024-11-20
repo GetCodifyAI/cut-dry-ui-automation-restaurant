@@ -2,25 +2,21 @@ package com.cutanddry.qa.pages;
 
 import com.cutanddry.qa.base.TestBase;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class HistoryPage extends TestBase {
 
     By btn_history = By.xpath("//a[contains(., 'History')]");
     By txt_history = By.xpath("//h2[text()='Order History']");
     By btn_search = By.xpath("//input[@placeholder='Search' and contains(@class, 'form-control')]");
-    By first_row_order_details = By.xpath("//tr[@class='_du1frc _du1frc _qy4b979 py-3' and @href='/orders-revised/view-one/327856087']");
-    By txt_error = By.xpath("//*[contains(translate(text(), 'ERROR', 'error'), 'error')]");
+    By first_row_order_details = By.xpath("//tr[2]/td[4]");
     By btn_items = By.xpath("//a[@role='tab' and @data-rb-event-key='Items']");
-    By header_items_table = By.xpath("//thead/tr[@class='_jg41os']");
+    By header_items_table = By.xpath("//thead/tr/th[1][text()='Item']");
     By btn_timeline = By.xpath("//a[@role='tab' and @data-rb-event-key='Timeline']");
-    By header_timeline_table = By.xpath("//tr[@class='_jg41os' and th[text()='Timestamp']]");
-    By search_result = By.xpath("//tr[contains(@href,'/orders-revised/view-one')]//following-sibling::td[contains(.,'#327851152')]");
-
+    By header_timeline_table = By.xpath("//thead/tr/th[1][text()='Timestamp']");
+    String search_result = "//tr[contains(@href,'/orders-revised/view-one')]//following-sibling::td[contains(.,'ORDERID')]";
+    By btn_more_filters = By.xpath("//button[@type='button' and contains(text(), 'More Filters')]");
+    By txt_filter_orders = By.xpath("//div[contains(text(), 'Filter Orders')]");
+    By btn_location = By.xpath("//html/body/div[6]/div/div/div/div[2]/form/div[1]/div/div");
 
     public void clickHistory(){ restaurantUI.click(btn_history); }
 
@@ -41,34 +37,11 @@ public class HistoryPage extends TestBase {
         restaurantUI.sendKeys(btn_search, orderID);
         restaurantUI.waitForCustom(400);
     }
-//    public boolean checkIfSearchedElementVisible(String orderID) {
-//        // Corrected XPath for dynamic value
-//        By visibleObject = By.xpath("//td[normalize-space(text())='" + orderID + "']");
-//
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        try {
-//            // Wait for the element to be visible
-//            wait.until(ExpectedConditions.visibilityOfElementLocated(visibleObject));
-//        } catch (Exception e) {
-//            return false; // Element is not visible
-//        }
-//        return restaurantUI.isDisplayed(visibleObject);
-//    }
-public boolean checkIfSearchedElementVisible(String orderID) {
-    // Format the XPath with the dynamic value
-    By visibleObject = By.xpath(String.format(search_result.toString(), orderID));
 
-    try {
-        // Custom wait for element to be visible
-        restaurantUI.waitForCustom(10000); // Wait for 10 seconds
-        return restaurantUI.isDisplayed(visibleObject);
-    } catch (Exception e) {
-        return false; // Element is not visible
+    public boolean checkIfSearchedElementVisible(String orderID) {
+
+    return restaurantUI.isDisplayed(By.xpath(search_result.replace("ORDERID",orderID)));
     }
-}
-
-
-
 
     public void clickOnFirstItemOfOrderHistory(){
         try {
@@ -79,50 +52,47 @@ public boolean checkIfSearchedElementVisible(String orderID) {
         restaurantUI.click(first_row_order_details);
     }
 
-public boolean isErrorTextNotDisplayed() {
+    public boolean isErrorTextNotDisplayed() {
     try {
-        restaurantUI.waitForCustom(2000);
-
-        if (driver.findElements(txt_error).size() > 0) {
-            System.out.println("Error text is displayed on the page.");
-            return false;
-        } else {
-            System.out.println("Error text is not displayed.");
-            return true;
-        }
+        restaurantUI.waitForCustom(3000);
     } catch (InterruptedException e) {
-        throw new RuntimeException("Wait was interrupted", e);
+        throw new RuntimeException(e);
     }
-}
+    return restaurantUI.isDisplayed(header_items_table);
+    }
 
     public void clickOnItems(){
         restaurantUI.click(btn_items);
     }
 
-public boolean checkIfItemSectionVisible() {
-    try {
-        restaurantUI.waitForCustom(5000);
-        return driver.findElement(header_items_table).isDisplayed();
-    } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-    } catch (Exception e) {
-        return false;
+    public boolean checkIfItemSectionVisible() {
+        restaurantUI.waitForVisibility(header_items_table);
+    return restaurantUI.isDisplayed(header_items_table);
     }
-}
     public void clickOnTimeline(){
         restaurantUI.click(btn_timeline);
     }
-
     public boolean checkIfTimelineSectionVisible() {
+        return restaurantUI.isDisplayed(header_timeline_table);
+    }
+    public void clickOnMoreFilters(){
+        restaurantUI.waitForVisibility(btn_more_filters);
+        restaurantUI.click(btn_more_filters);
+    }
+    public boolean isFilterOrdersPopupDisplayed(){
         try {
-            restaurantUI.waitForCustom(5000);
-            return driver.findElement(header_timeline_table).isDisplayed();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (Exception e) {
+            restaurantUI.waitForVisibility(txt_filter_orders);
+        } catch (Exception e){
             return false;
         }
+        return restaurantUI.isDisplayed(txt_filter_orders);
     }
+
+    public void clickLocation(){
+        restaurantUI.click(btn_location);
+    }
+
+
 
 
 

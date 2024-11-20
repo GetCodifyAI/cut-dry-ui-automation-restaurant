@@ -33,7 +33,7 @@ public class VerifyTheOrderDetailsViewItemTest extends TestBase {
         History.clickOnItems();
         softAssert.assertTrue(History.checkIfItemSectionVisible(), "Item Section is not visible");
         softAssert.assertTrue(History.isErrorTextNotDisplayed(),"Error Message Displayed");
-
+        softAssert.assertAll();
 
 
     }

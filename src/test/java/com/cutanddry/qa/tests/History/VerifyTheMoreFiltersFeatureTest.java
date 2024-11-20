@@ -12,34 +12,33 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyTheOrderDetailsViewTimelineTest extends TestBase {
+public class VerifyTheMoreFiltersFeatureTest extends TestBase {
     static User user;
+    static String orderID = "327851152";
 
     @BeforeMethod
     public void setUp(){
         initialization();
         user = JsonUtil.readUserLogin();
     }
-    @Test(groups = "DOT-TC-554")
-    public void verifyTheOrderDetailsViewTimeline() throws InterruptedException{
+    @Test(groups = "DOT-TC-552")
+    public void verifyTheMoreFiltersFeature() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
-        History.clickOnFirstItemOfOrderHistory();
-        //softAssert.assertTrue(History.isErrorTextNotDisplayed(),"Error Message Displayed");
-        History.clickOnTimeline();
-        softAssert.assertTrue(History.checkIfTimelineSectionVisible(), "Item Section is not visible");
-        //softAssert.assertTrue(History.isErrorTextNotDisplayed(),"Error Message Displayed");
+        History.clickOnMoreFilters();
+        softAssert.assertTrue(History.isFilterOrdersPopupDisplayed(),"Filter Orders pop up error");
+        History.clickLocation();
+
         softAssert.assertAll();
+
     }
-    @AfterMethod
-    public void tearDown(ITestResult result) {
-        takeScreenshotOnFailure(result);
-        closeAllBrowsers();
-    }
+//    @AfterMethod
+//    public void tearDown(ITestResult result) {
+//        takeScreenshotOnFailure(result);
+//        closeAllBrowsers();
+//    }
 }
-
-

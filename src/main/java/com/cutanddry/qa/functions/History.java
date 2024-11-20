@@ -10,7 +10,6 @@ public class History {
     public static void goToHistory(){
         historyPage.clickHistory();
     }
-
     public static boolean isUserNavigatedToHistory(){
         return historyPage.isHistoryTextDisplayed();
     }
@@ -39,6 +38,15 @@ public class History {
     public static boolean checkIfTimelineSectionVisible(){
         return historyPage.checkIfTimelineSectionVisible();
 
+    }
+    public static void clickOnMoreFilters(){
+         historyPage.clickOnMoreFilters();
+    }
+    public static boolean isFilterOrdersPopupDisplayed() {
+        return historyPage.isFilterOrdersPopupDisplayed();
+    }
+    public static void clickLocation(){
+        historyPage.clickLocation();
     }
 
 }
