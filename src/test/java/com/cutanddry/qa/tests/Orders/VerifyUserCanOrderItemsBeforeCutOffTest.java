@@ -91,7 +91,9 @@ public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
 //        String cutoffTimeStrUTC = ZonedDateTime.now(ZoneOffset.UTC).format(timeFormatter).replace("AM", "am").replace("PM", "pm");
         System.out.println("Cut off time in cart: " + Customer.getOrderCutOffOnReviewCart());
 
-        softAssert.assertEquals(Customer.getOrderCutOffOnReviewCart(), cutoffTimeStrUTC, "Cutoff time mismatch");
+        DateTimeFormatter dateFormatternew = DateTimeFormatter.ofPattern("MMM d, h:mma z");
+        String formattedCutoffTimeStrUTC = cutoffTimeStrUTC.format(String.valueOf(dateFormatternew));
+        softAssert.assertEquals(Customer.getOrderCutOffOnReviewCart(), formattedCutoffTimeStrUTC, "Cutoff time mismatch");
 
         Customer.submitOrderAfterDeliveryTime();
         softAssert.assertTrue(Customer.isInvalidDeliveryTextDisplayed(),"Delivery time error");

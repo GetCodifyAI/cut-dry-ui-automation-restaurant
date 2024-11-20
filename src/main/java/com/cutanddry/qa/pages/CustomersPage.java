@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class CustomersPage extends LoginPage {
 
     By lbl_itemNameList = By.xpath("//td//span/div[@data-tip='View Product Details']");
-    By btn_increaseQtyFirstRow = By.xpath("//tr[1]/td[6]/div/div/div/div[3]");
+    By btn_increaseQtyFirstRow = By.xpath("(//div//*[local-name()='svg' and @data-icon='plus' and contains(@class,'_ge9f5q')])[1]");
     By btn_decreaseQtyFirstRow = By.xpath("//tr[1]/td[6]/div/div/div/div[1]");
     By btn_decreaseQtySecondRow = By.xpath("//tr[2]/td[6]/div/div/div/div[1]");
     By btn_increaseQtySecondRow = By.xpath("//tr[2]/td[6]/div/div/div/div[3]");
