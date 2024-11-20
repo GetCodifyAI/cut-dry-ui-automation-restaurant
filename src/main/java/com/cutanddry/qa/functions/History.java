@@ -33,5 +33,12 @@ public class History {
     public static boolean checkIfItemSectionVisible(){
         return historyPage.checkIfItemSectionVisible();
     }
+    public static void clickOnTimeline(){
+        historyPage.clickOnTimeline();
+    }
+    public static boolean checkIfTimelineSectionVisible(){
+        return historyPage.checkIfTimelineSectionVisible();
+
+    }
 
 }

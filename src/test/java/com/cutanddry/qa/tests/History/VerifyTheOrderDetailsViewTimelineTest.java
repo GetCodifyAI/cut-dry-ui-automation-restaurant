@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyTheOrderDetailsViewItemTest extends TestBase {
+public class VerifyTheOrderDetailsViewTimelineTest extends TestBase {
     static User user;
 
     @BeforeMethod
@@ -20,8 +20,8 @@ public class VerifyTheOrderDetailsViewItemTest extends TestBase {
         initialization();
         user = JsonUtil.readUserLogin();
     }
-    @Test(groups = "DOT-TC-553")
-    public void verifyTheOrderDetailsViewItem() throws InterruptedException{
+    @Test(groups = "DOT-TC-554")
+    public void verifyTheOrderDetailsViewTimeline() throws InterruptedException{
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
@@ -30,9 +30,11 @@ public class VerifyTheOrderDetailsViewItemTest extends TestBase {
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.clickOnFirstItemOfOrderHistory();
         softAssert.assertTrue(History.isErrorTextNotDisplayed(),"Error Message Displayed");
-        History.clickOnItems();
-        softAssert.assertTrue(History.checkIfItemSectionVisible(), "Item Section is not visible");
+        History.clickOnTimeline();
+        softAssert.assertTrue(History.checkIfTimelineSectionVisible(), "Item Section is not visible");
         softAssert.assertTrue(History.isErrorTextNotDisplayed(),"Error Message Displayed");
+
+        softAssert.assertAll();
 
 
 
