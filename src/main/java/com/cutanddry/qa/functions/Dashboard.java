@@ -56,8 +56,11 @@ public class Dashboard {
         return dashboardPage.isNavigatedToMaxiesSLOrderGuide();
     }
 
-    public static void navigateToUsers(){
-        dashboardPage.clickOnUsers();
+    public static void navigateToUsers(){dashboardPage.clickOnUsers();
+    }
+
+    public static void navigateToRewards() {
+        dashboardPage.clickOnRewards();
     }
 
 }

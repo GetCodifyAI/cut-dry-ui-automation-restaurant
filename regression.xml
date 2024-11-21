@@ -72,6 +72,15 @@
             <class name="com.cutanddry.qa.tests.Suppliers.VerifyEditingSupplierTest" />
             <class name="com.cutanddry.qa.tests.Suppliers.VerifyDeletingSupplierTest" />
             <class name="com.cutanddry.qa.tests.units.VerifyOrderItemUnitsTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyAddSupplierOptionTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyLaunchPadOptionTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyRewardsFeatureForLearnMoreOptionTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifySearchByDateRangeTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyRedeemBalanceOptionTest" />
+
+
+
+
 
 
         </classes>
