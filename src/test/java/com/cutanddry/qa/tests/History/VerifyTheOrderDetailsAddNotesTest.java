@@ -12,27 +12,33 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyTheSearchFeatureTest extends TestBase {
+public class VerifyTheOrderDetailsAddNotesTest extends TestBase {
     static User user;
-    static String orderID = "307236646";
+    static String orderNote = "This is the order note !!!";
 
     @BeforeMethod
     public void setUp(){
         initialization();
         user = JsonUtil.readUserLogin();
     }
-    @Test(groups = "DOT-TC-551")
-    public void verifyTheSearchFeature() throws InterruptedException {
+    @Test(groups = "DOT-TC-560")
+    public void verifyTheOrderDetailsAddNotes() throws InterruptedException{
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
-        History.searchOrderID(orderID);
-        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderID), "Order ID not found in the table.");
-        History.checkIfSearchedElementVisible(orderID);
+        History.clickOnFirstItemOfOrderHistory();
+        softAssert.assertTrue(History.isOrderSectionDisplayed(),"Order section not display");
+        History.clickAddNotes();
+        softAssert.assertTrue(History.isAddNotePopUpWindowDisplayed(),"Add Order Note Pop up window not display");
+        History.typeOrderNote(orderNote);
+        History.clickSaveChanges();
+        softAssert.assertTrue(History.checkOrderNoteVisible(orderNote),"Order note not found");
+        History.checkOrderNoteVisible(orderNote);
         softAssert.assertAll();
+
 
     }
     @AfterMethod
@@ -41,3 +47,5 @@ public class VerifyTheSearchFeatureTest extends TestBase {
         closeAllBrowsers();
     }
 }
+
+

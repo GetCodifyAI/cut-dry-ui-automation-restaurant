@@ -29,6 +29,7 @@ public class VerifyTheOrderDetailsViewTimelineTest extends TestBase {
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.clickOnFirstItemOfOrderHistory();
+        softAssert.assertTrue(History.isOrderSectionDisplayed(),"Order section not display");
         History.clickOnTimeline();
         softAssert.assertTrue(History.checkIfTimelineSectionVisible(), "Item Section is not visible");
 

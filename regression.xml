@@ -75,6 +75,14 @@
             <class name="com.cutanddry.qa.tests.History.VerifyTheSearchFeatureTest"/>
             <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsViewItemTest"/>
             <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsViewTimelineTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheMoreFiltersFeatureTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsPrintOrderTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsAddNotesTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsCheckInOrderTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsCancelOrderTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsEditOrderTest
+"/>
+
 
         </classes>
     </test>
