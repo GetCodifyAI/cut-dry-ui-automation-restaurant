@@ -80,10 +80,8 @@
             <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsAddNotesTest"/>
             <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsCheckInOrderTest"/>
             <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsCancelOrderTest"/>
-            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsEditOrderTest
-"/>
-
-
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsEditOrderTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsRecreateOrderTest"/>
         </classes>
     </test>
 </suite>

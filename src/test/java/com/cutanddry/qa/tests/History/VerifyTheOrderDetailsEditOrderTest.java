@@ -21,7 +21,7 @@ public class VerifyTheOrderDetailsEditOrderTest extends TestBase {
         initialization();
         user = JsonUtil.readUserLogin();
     }
-    @Test(groups = "DOT-TC-570")
+    @Test(groups = "DOT-TC-559")
     public void verifyTheOrderDetailsEditOrder() throws InterruptedException{
         String itemName;
         SoftAssert softAssert = new SoftAssert();

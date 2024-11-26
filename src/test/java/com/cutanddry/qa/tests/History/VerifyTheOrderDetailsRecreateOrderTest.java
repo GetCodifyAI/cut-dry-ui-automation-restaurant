@@ -13,7 +13,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyTheOrderDetailsCancelOrderTest extends TestBase {
+public class VerifyTheOrderDetailsRecreateOrderTest extends TestBase {
     static User user;
 
     @BeforeMethod
@@ -21,8 +21,8 @@ public class VerifyTheOrderDetailsCancelOrderTest extends TestBase {
         initialization();
         user = JsonUtil.readUserLogin();
     }
-    @Test(groups = "DOT-TC-558")
-    public void verifyTheOrderDetailsCancelOrder() throws InterruptedException{
+    @Test(groups = "DOT-TC-555")
+    public void verifyTheOrderDetailsRecreateOrder() throws InterruptedException {
         String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
@@ -43,11 +43,15 @@ public class VerifyTheOrderDetailsCancelOrderTest extends TestBase {
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.clickOnFirstItemOfOrderHistory();
         softAssert.assertTrue(History.isOrderSectionDisplayed(),"Order section not display");
-        History.clickCancel();
-        softAssert.assertTrue(History.isCancelOrderPopUpDisplayed(),"Cancel order pop up window not display");
-        History.clickConfirmCancelOrder();
+        History.clickMoreOptions();
+        History.clickRecreateOrder();
+        itemName = Customer.getItemNameFirstRow();
+        Customer.increaseFirstRowQtyByOne();
+        Customer.checkoutItems();
+        softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
+        Customer.submitOrder();
+        History.clickClose();
         softAssert.assertAll();
-
 
     }
     @AfterMethod
@@ -56,5 +60,3 @@ public class VerifyTheOrderDetailsCancelOrderTest extends TestBase {
         closeAllBrowsers();
     }
 }
-
-

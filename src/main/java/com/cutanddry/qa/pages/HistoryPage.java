@@ -44,6 +44,7 @@ public class HistoryPage extends TestBase {
     By txt_review_order = By.xpath("//div[@class='d-flex align-items-center _5h4pkd _11zeigs' and text()='Review Order']");
     By btn_ok_edit_order = By.xpath("//button[@class='swal2-confirm swal2-styled' and text()='OK']");
     By txt_ok_edit_order = By.xpath("//h2[@id='swal2-title' and text()='Order edit request has been sent.']");
+    By btn_recreate_order = By.xpath("//a[@class='_gozzbg dropdown-item' and text() ='Recreate Order']");
 
     public void clickClose(){
         restaurantUI.click(btn_close);
@@ -247,14 +248,11 @@ public class HistoryPage extends TestBase {
             return false;
         }
         return restaurantUI.isDisplayed(txt_ok_edit_order);
-
     }
     public void clickOkEditOrder(){
         restaurantUI.click(btn_ok_edit_order);
     }
-
-
-
-
-
+    public void clickRecreateOrder(){
+        restaurantUI.click(btn_recreate_order);
+    }
 }

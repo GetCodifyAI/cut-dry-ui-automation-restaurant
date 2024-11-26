@@ -135,5 +135,8 @@ public class History {
     public static void clickOkEditOrder(){
         historyPage.clickOkEditOrder();
     }
+    public static void clickRecreateOrder(){
+        historyPage.clickRecreateOrder();
+    }
 
 }
