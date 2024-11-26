@@ -82,6 +82,7 @@
             <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsCancelOrderTest"/>
             <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsEditOrderTest"/>
             <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsRecreateOrderTest"/>
+            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyCreateCreditRequestTest"/>
         </classes>
     </test>
 </suite>
