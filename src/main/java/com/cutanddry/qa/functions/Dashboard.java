@@ -60,4 +60,11 @@ public class Dashboard {
         dashboardPage.clickOnUsers();
     }
 
+    public static boolean isUserNavigatedToDistributorDashboard(){
+        return dashboardPage.isDistributorDashboardTextDisplayed();
+    }
+    public static void navigateToCreditRequests(){
+        dashboardPage.clickOnCreditRequests();
+    }
+
 }

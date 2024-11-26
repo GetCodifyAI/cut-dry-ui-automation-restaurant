@@ -18,6 +18,25 @@ public class CreditRequestsPage extends TestBase {
     By txt_sent_request = By.xpath("//h2[@class = 'swal2-title' and text() = 'Credit Request Sent!']");
     By btn_close = By.xpath("//button[@class = 'swal2-confirm swal2-styled' and text() = 'Close']");
     By txt_credit_status = By.xpath("//div[@class='themed_select__single-value themed_select__single-value--is-disabled css-107lb6w-singleValue' and text()='Credit Status: Requested']");
+    By txt_credit_request = By.xpath("//h3[@class='mt-2 mont' and text()='Credit Requests']");
+    By first_row_credit_requests = By.xpath("//table[@class='table table-hover']//tbody//tr[1]");
+    By txt_credit_request_section = By.xpath("//h2[@class='mb-0 _1vx3fhy' and starts-with(text(), 'Order #')]");
+    By btn_process_credit = By.xpath("//button[@class='mr-3 btn btn-primary' and text()='Process Credit']");
+    By txt_process_credit = By.xpath("//h2[@class='mb-0 _1vx3fhy' and text()='Process Credit']");
+    By btn_check_box = By.xpath("//td/div[@class='d-flex align-items-center justify-content-center _du1frc']");
+    By btn_approve_credit = By.xpath("//button[@class='btn btn-primary' and text()='Approve Credit']");
+    By btn_decline_credit = By.xpath("//button[@class='mr-3 btn btn-outline-primary' and text()='Decline Credit']");
+    By txt_approve_credit = By.xpath("//div[@class='mont modal-title h4' and text()='Approve Credit']");
+    By txt_decline_credit = By.xpath("//div[@class='mont modal-title h4' and text()='Decline Credit']");
+    By btn_submit = By.xpath("//button[@class='btn btn-primary btn-block']");
+    By txt_confirm_approve = By.xpath("//h2[@id='swal2-title' and text()='Confirm Approval?']");
+    By txt_confirm_decline_= By.xpath("//h2[@id='swal2-title' and text()='Decline Credit?']");
+    By btn_confirm = By.xpath("//button[@class='swal2-confirm order-2 swal2-styled' and text()='Confirm']");
+    By txt_approved_credit = By.xpath("//h2[@id='swal2-title' and text()='Credit Request Approved!']");
+    By txt_credit_approved = By.xpath("//td/span[@Class='_1a5re9s' and text()='Credit Approved']");
+
+
+
 
     public void clickReportIssue(){
         restaurantUI.click(btn_report_issue);
@@ -90,5 +109,85 @@ public class CreditRequestsPage extends TestBase {
         }
         return restaurantUI.isDisplayed(txt_credit_status);
     }
+    //----------------------
+
+    public boolean isCreditRequestSectionDisplay(){
+        try {
+            restaurantUI.waitForVisibility(txt_credit_request);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_credit_request);
+    }
+    public void clickCreditRequest(){
+        restaurantUI.click(first_row_credit_requests);
+    }
+    public boolean isOrderCreditRequestSectionDisplay(){
+        try {
+            restaurantUI.waitForVisibility(txt_credit_request_section);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_credit_request_section);
+    }
+    public void clickProcessCredit(){
+        restaurantUI.click(btn_process_credit);
+    }
+    public boolean isProcessCreditSectionDisplay(){
+        try {
+            restaurantUI.waitForVisibility(txt_process_credit);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_process_credit);
+    }
+    public void clickSelectItem(){
+        restaurantUI.click(btn_check_box);
+    }
+    public void clickApproveCredit(){
+        restaurantUI.click(btn_approve_credit);
+    }
+    public boolean isApproveCreditPopUpDisplay(){
+        try {
+            restaurantUI.waitForVisibility(txt_approve_credit);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_approve_credit);
+    }
+    public void clickSubmit(){
+        restaurantUI.click(btn_submit);
+    }
+    public boolean isConfirmApprovalPopUpDisplay(){
+        try {
+            restaurantUI.waitForVisibility(txt_confirm_approve);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_confirm_approve);
+    }
+    public void clickConfirm(){
+        restaurantUI.click(btn_confirm);
+    }
+    public boolean isCreditRequestApprovedPopUpDisplay(){
+        try {
+            restaurantUI.waitForVisibility(txt_approved_credit);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_approved_credit);
+    }
+    public boolean isCreditApprovedDisplay(){
+        try {
+            restaurantUI.waitForVisibility(txt_credit_approved);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_credit_approved);
+    }
+
+
+
+
 
 }

@@ -58,5 +58,10 @@ public class Login {
         loginPage.clickOnSunriseFood();
         loginPage.clickOnLoginAsSupplier();
     }
+    public static void goToDistributor(String distributor) throws InterruptedException {
+        loginPage.typeToSearchOnDistributor(distributor);
+        loginPage.clickOnDistributor(distributor);
+        loginPage.clickOnLoginAsSupplier();
+    }
 
 }

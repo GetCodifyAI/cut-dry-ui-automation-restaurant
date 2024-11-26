@@ -44,6 +44,35 @@ public class CreditRequests {
     public static boolean isCreditStatusRequestedDisplay(){
         return creditRequestsPage.isCreditStatusRequestedDisplay();
     }
+    //--------------
+    public static boolean isCreditRequestSectionDisplay(){
+        return creditRequestsPage.isCreditRequestSectionDisplay();
+    }
+    public static void clickCreditRequest(){creditRequestsPage.clickCreditRequest();}
+    public static boolean isOrderCreditRequestSectionDisplay(){
+        return creditRequestsPage.isOrderCreditRequestSectionDisplay();
+    }
+    public static void clickProcessCredit(){creditRequestsPage.clickProcessCredit();}
+    public static boolean isProcessCreditSectionDisplay(){
+        return creditRequestsPage.isProcessCreditSectionDisplay();
+    }
+    public static void clickSelectItem(){creditRequestsPage.clickSelectItem();}
+    public static void clickApproveCredit(){creditRequestsPage.clickApproveCredit();}
+    public static boolean isApproveCreditPopUpDisplay(){
+        return creditRequestsPage.isApproveCreditPopUpDisplay();
+    }
+    public static void clickSubmit(){creditRequestsPage.clickSubmit();}
+    public static boolean isConfirmApprovalPopUpDisplay(){
+        return creditRequestsPage.isConfirmApprovalPopUpDisplay();
+    }
+    public static void clickConfirm(){creditRequestsPage.clickConfirm();}
+    public static boolean isCreditRequestApprovedPopUpDisplay(){
+        return creditRequestsPage.isCreditRequestApprovedPopUpDisplay();
+    }
+    public static boolean isCreditApprovedDisplay(){
+        return creditRequestsPage.isCreditApprovedDisplay();
+    }
+
 
 
 }
