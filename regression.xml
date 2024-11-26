@@ -84,6 +84,7 @@
             <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsRecreateOrderTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyCreateCreditRequestTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestApproveFlowTest"/>
+            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestDeclineFlowTest"/>
         </classes>
     </test>
 </suite>

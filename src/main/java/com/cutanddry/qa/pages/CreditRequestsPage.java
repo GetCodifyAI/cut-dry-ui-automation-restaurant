@@ -33,7 +33,9 @@ public class CreditRequestsPage extends TestBase {
     By txt_confirm_decline_= By.xpath("//h2[@id='swal2-title' and text()='Decline Credit?']");
     By btn_confirm = By.xpath("//button[@class='swal2-confirm order-2 swal2-styled' and text()='Confirm']");
     By txt_approved_credit = By.xpath("//h2[@id='swal2-title' and text()='Credit Request Approved!']");
+    By txt_declined_credit = By.xpath("//h2[@id='swal2-title' and text()='Credit Request Declined!']");
     By txt_credit_approved = By.xpath("//td/span[@Class='_1a5re9s' and text()='Credit Approved']");
+    By txt_credit_declined = By.xpath("//td/span[@Class='_1a5re9s' and text()='Credit Declined']");
 
 
 
@@ -184,6 +186,41 @@ public class CreditRequestsPage extends TestBase {
             return false;
         }
         return restaurantUI.isDisplayed(txt_credit_approved);
+    }
+    public void clickDeclineCredit(){
+        restaurantUI.click(btn_decline_credit);
+    }
+    public boolean isDeclineCreditPopUpDisplay(){
+        try {
+            restaurantUI.waitForVisibility(txt_decline_credit);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_decline_credit);
+    }
+    public boolean isConfirmDeclinePopUpDisplay(){
+        try {
+            restaurantUI.waitForVisibility(txt_confirm_decline_);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_confirm_decline_);
+    }
+    public boolean isCreditRequestDeclinedPopUpDisplay(){
+        try {
+            restaurantUI.waitForVisibility(txt_declined_credit);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_declined_credit);
+    }
+    public boolean isCreditDeclinedDisplay(){
+        try {
+            restaurantUI.waitForVisibility(txt_credit_declined);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_credit_declined);
     }
 
 

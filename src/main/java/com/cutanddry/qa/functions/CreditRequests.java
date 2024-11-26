@@ -73,6 +73,20 @@ public class CreditRequests {
         return creditRequestsPage.isCreditApprovedDisplay();
     }
 
+    public static void clickDeclineCredit(){creditRequestsPage.clickDeclineCredit();}
+    public static boolean isDeclineCreditPopUpDisplay(){
+        return creditRequestsPage.isDeclineCreditPopUpDisplay();
+    }
+    public static boolean isConfirmDeclinePopUpDisplay(){
+        return creditRequestsPage.isConfirmDeclinePopUpDisplay();
+    }
+    public static boolean isCreditRequestDeclinedPopUpDisplay(){
+        return creditRequestsPage.isCreditRequestDeclinedPopUpDisplay();
+    }
+    public static boolean isCreditDeclinedDisplay(){
+        return creditRequestsPage.isCreditDeclinedDisplay();
+    }
+
 
 
 }

@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyEndToEndCreditRequestApproveFlowTest extends TestBase {
+public class VerifyEndToEndCreditRequestDeclineFlowTest extends TestBase {
     static User user;
     static String Dp_Name = "47837013 - Brandon IFC Cut+Dry Agent - Independent Foods Co";
 
@@ -19,8 +19,8 @@ public class VerifyEndToEndCreditRequestApproveFlowTest extends TestBase {
         initialization();
         user = JsonUtil.readUserLogin();
     }
-    @Test(groups = "DOT-TC-506")
-    public void verifyEndToEndCreditRequestApproveFlow() throws InterruptedException{
+    @Test(groups = "DOT-TC-507")
+    public void verifyEndToEndCreditRequestDeclineFlow() throws InterruptedException{
         String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
@@ -72,14 +72,14 @@ public class VerifyEndToEndCreditRequestApproveFlowTest extends TestBase {
         CreditRequests.clickProcessCredit();
         softAssert.assertTrue(CreditRequests.isProcessCreditSectionDisplay(),"Process credit section not display");
         CreditRequests.clickSelectItem();
-        CreditRequests.clickApproveCredit();
-        softAssert.assertTrue(CreditRequests.isApproveCreditPopUpDisplay(),"Approve credit pop p not display");
+        CreditRequests.clickDeclineCredit();
+        softAssert.assertTrue(CreditRequests.isDeclineCreditPopUpDisplay(),"Decline credit pop p not display");
         CreditRequests.clickSubmit();
-        softAssert.assertTrue(CreditRequests.isConfirmApprovalPopUpDisplay(),"Confirm approval pop up not display");
+        softAssert.assertTrue(CreditRequests.isConfirmDeclinePopUpDisplay(),"Confirm decline pop up not display");
         CreditRequests.clickConfirm();
-        softAssert.assertTrue(CreditRequests.isCreditRequestApprovedPopUpDisplay(),"Credit request approved pop up not display");
+        softAssert.assertTrue(CreditRequests.isCreditRequestDeclinedPopUpDisplay(),"Credit request declined pop up not display");
         CreditRequests.clickClose();
-        softAssert.assertTrue(CreditRequests.isCreditApprovedDisplay(),"credit approved not display");
+        softAssert.assertTrue(CreditRequests.isCreditDeclinedDisplay(),"credit declined not display");
         softAssert.assertAll();
     }
     @AfterMethod
