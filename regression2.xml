@@ -40,6 +40,12 @@
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyCreateCreditRequestTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestApproveFlowTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestDeclineFlowTest"/>
+            <class name="com.cutanddry.qa.tests.Pay.VerifyAddPaymentMethodTest" />
+            <class name="com.cutanddry.qa.tests.Pay.VerifyOutstandingInvoiceTest" />
+            <class name="com.cutanddry.qa.tests.Pay.VerifyOutstandingInvoiceStatusDropdownTest" />
+            <class name="com.cutanddry.qa.tests.Pay.VerifyDownloadReceiptPaidInvoiceTest" />
+            <class name="com.cutanddry.qa.tests.Pay.VerifyPaidInvoiceStatusDropdownTest" />
+
         </classes>
     </test>
 </suite>
