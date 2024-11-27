@@ -60,6 +60,10 @@ public class Dashboard {
         dashboardPage.clickOnUsers();
     }
 
+    public static void navigateToRewards() {
+        dashboardPage.clickOnRewards();
+    }
+
     public static boolean isUserNavigatedToDistributorDashboard(){
         return dashboardPage.isDistributorDashboardTextDisplayed();
     }

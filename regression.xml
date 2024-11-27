@@ -82,6 +82,11 @@
             <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsCancelOrderTest"/>
             <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsEditOrderTest"/>
             <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsRecreateOrderTest"/>
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyAddSupplierOptionTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyLaunchPadOptionTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyRewardsFeatureForLearnMoreOptionTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifySearchByDateRangeTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyRedeemBalanceOptionTest" />
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyCreateCreditRequestTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestApproveFlowTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestDeclineFlowTest"/>
