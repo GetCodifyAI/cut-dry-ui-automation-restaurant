@@ -200,7 +200,7 @@ workflows:
             branches:
               only:
                 #- main
-                -feature/xml_seperate
+                - feature/xml_seperate
     jobs:
       - nightly-build-and-test-1
       - nightly-build-and-test-2
