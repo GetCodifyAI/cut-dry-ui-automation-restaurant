@@ -14,6 +14,7 @@ public class TestNGListener implements ITestListener {
     private int failedTests = 0;
     private final List<String> passedTestCases = new ArrayList<>();
     private final List<String> failedTestCases = new ArrayList<>();
+    String PART;
 
     @Override
     public void onTestStart(ITestResult result) {
@@ -35,7 +36,7 @@ public class TestNGListener implements ITestListener {
     @Override
     public void onFinish(ITestContext context) {
 //        String environment = System.getProperty("test.env", "uat");
-        SlackNotifier.sendSlackAlert(totalTests, passedTests, failedTests, TEST_ENV, passedTestCases, failedTestCases);
+        SlackNotifier.sendSlackAlert(totalTests, passedTests, failedTests, TEST_ENV, passedTestCases, failedTestCases,PART);
     }
 
     // Implement other ITestListener methods if needed
@@ -51,6 +52,7 @@ public class TestNGListener implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
-        // Optional: execute code when test suite starts
+        // Retrieve the Part number from the test parameters
+        PART = context.getCurrentXmlTest().getParameter("PART");
     }
 }

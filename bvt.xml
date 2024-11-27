@@ -6,6 +6,7 @@
         <listener class-name="com.cutanddry.qa.utils.AIOSampleUIMethodListener"/>
     </listeners>
     <test name="distributor tests">
+        <parameter name="PART" value="BVT" />
         <classes>
             <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantLoginTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmOrderGuideTest" />
