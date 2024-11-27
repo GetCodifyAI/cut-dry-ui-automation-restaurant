@@ -64,4 +64,11 @@ public class Dashboard {
         dashboardPage.clickOnRewards();
     }
 
+    public static boolean isUserNavigatedToDistributorDashboard(){
+        return dashboardPage.isDistributorDashboardTextDisplayed();
+    }
+    public static void navigateToCreditRequests(){
+        dashboardPage.clickOnCreditRequests();
+    }
+
 }

@@ -59,6 +59,9 @@
 <!--            <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForWhiteLabelOperatorTest" />-->
 <!--            <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForClassicOperatorTestTest" />-->
 <!--            <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForWhiteLabelOperatorTest" />-->
+            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyCreateCreditRequestTest"/>
+            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestApproveFlowTest"/>
+            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestDeclineFlowTest"/>
         </classes>
     </test>
 </suite>
