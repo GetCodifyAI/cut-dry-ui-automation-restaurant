@@ -5,19 +5,19 @@ import org.openqa.selenium.By;
 
 public class RewardsPage extends TestBase {
 
-    By link_learnMore = By.xpath("//button[@class='_14btn4r p-0 _107wcic btn btn-link' and text()='Learn More']");
-    By text_visibilityOfEarnRewards = By.xpath("//h4[contains(text(), 'Earn Rewards')]");
-    By btn_redeemBalance = By.xpath("//button[text()='Redeem Balance']");
-    By text_visibilityOfRedeemBalance = By.xpath("//div[@class='modal-title h4' and text()='Cashback Amount $146.97']");
-    By btn_addMoreSuppliers = By.xpath("//button[@class='d-flex align-items-center justify-content-center cdbutton _y7yhn9 btn btn-outline-primary btn-block btn-sm' and text()='Add More Suppliers']");
-    By text_visibilityOfConnectYourSupplier = By.xpath("//h4[contains(text(), 'Connect Your Suppliers')]");
-    By img_connectSupplier = By.xpath("//img[contains(@src, 'ordering-supplies-images-1.s3.us-east-2.amazonaws.com')]");
-    By text_visibilityOfSupplier = By.xpath("//h4[contains(text(), 'Connect to Performance Foodservice through Cut + Dry')]");
-    By btn_launchpad = By.xpath("//button[@class='d-flex align-items-center justify-content-center cdbutton _y7yhn9 btn btn-outline-primary btn-block btn-sm' and text()='Go to Launchpad']");
-    By text_beplLaunchpad = By.xpath("//*[contains(text(), 'Login')]");
-    By btn_selectDateRange = By.xpath("//div[@class='themed_select__value-container themed_select__value-container--has-value css-1hwfws3']");
-    By btn_selectAllDates = By.xpath("//div[@class='themed_select__option css-yt9ioa-option' and text()='All']");
-    By link_orderID = By.xpath("//a[@class='_1xqbum8 btn btn-link' and text()='258976362']");
+    By link_learnMore = By.xpath("//button[contains(text(),'Learn More')]");
+    By text_visibilityOfEarnRewards = By.xpath("//h4[contains(text(),'Earn Rewards Ordering Here')]");
+    By btn_redeemBalance = By.xpath("//button[contains(text(),'Redeem Balance')]");
+    By text_visibilityOfRedeemBalance = By.xpath("//div[contains(text(),'Cashback Amount')]");
+    By btn_addMoreSuppliers = By.xpath("//button[contains(text(),'Add More Suppliers')]");
+    By text_visibilityOfConnectYourSupplier = By.xpath("//h4[contains(text(),'Connect Your Suppliers')]");
+    By img_connectSupplier = By.xpath("//div[contains(@class,'px-2 col-md-4')][1]");
+    By text_visibilityOfSupplier = By.xpath("//h4[contains(text(),'Connect to Performance')]");
+    By btn_launchpad = By.xpath("//button[contains(text(),'Go to Launchpad')]");
+    By text_beplLaunchpad = By.xpath("//p[contains(text(),'Welcome to')]");
+    By btn_selectDateRange = By.xpath("//div[contains(@class,'themed_select')]");
+    By btn_selectAllDates = By.xpath("//div[text()='All']");
+    By link_orderID = By.xpath("(//a[contains(@href,'orders-revised')])[1]");
     String viewOrderName = "//div[text() = 'itemName']";
 
     public void clickOnLearnMore(){restaurantUI.click(link_learnMore);
