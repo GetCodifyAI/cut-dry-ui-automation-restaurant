@@ -60,4 +60,8 @@ public class Dashboard {
         dashboardPage.clickOnUsers();
     }
 
+    public static void navigateToRewards() {
+        dashboardPage.clickOnRewards();
+    }
+
 }
