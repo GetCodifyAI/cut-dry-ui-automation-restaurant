@@ -37,6 +37,7 @@ public class PayPage extends TestBase{
     By paidInvoice = By.xpath("//div[contains(text(),'Paid')]");
     By statusPaid = By.xpath("//div[contains(text(),'Paid')]");
     By txt_filteredStatus = By.xpath("//td[@class='align-middle' and text()='Paid']");
+    By btn_printReceipt = By.xpath("//a[@class='dropdown-item']//span[text()='Print Receipt']");
 
     public void clickOnPay(){restaurantUI.click(btn_pay);}
 
@@ -186,6 +187,10 @@ public class PayPage extends TestBase{
             return false;
         }
         return restaurantUI.isDisplayed(txt_paymentSettings);
+    }
+    public void clickOnOneInvoicePrintReceipt(){
+        restaurantUI.click(btn_threeDots);
+        restaurantUI.click(btn_printReceipt);
     }
 
 }

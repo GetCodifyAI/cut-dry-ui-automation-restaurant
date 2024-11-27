@@ -75,5 +75,6 @@ public class Pay {
     public static boolean isPaymentSettingsDisplayed(){
         return PayPage.isPaymentSettingsDisplayed();
     }
+    public static void clickOnOneInvoicePrintReceipt(){PayPage.clickOnOneInvoicePrintReceipt();}
 
 }
