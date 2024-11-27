@@ -14,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheMoreFiltersFeatureTest extends TestBase {
     static User user;
-    static String orderID = "327851152";
+    static String location = "Hayes";
 
     @BeforeMethod
     public void setUp(){
@@ -32,7 +32,10 @@ public class VerifyTheMoreFiltersFeatureTest extends TestBase {
         History.clickOnMoreFilters();
         softAssert.assertTrue(History.isFilterOrdersPopupDisplayed(),"Filter Orders pop up error");
         History.clickLocation();
-
+        History.clickOption();
+        History.clickSave();
+        softAssert.assertTrue(History.checkIfFilteredElementVisible(location), "location not found in the table.");
+        History.checkIfFilteredElementVisible(location);
         softAssert.assertAll();
 
     }

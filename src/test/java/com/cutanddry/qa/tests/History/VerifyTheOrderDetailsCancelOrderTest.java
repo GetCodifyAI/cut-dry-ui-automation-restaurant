@@ -2,6 +2,7 @@ package com.cutanddry.qa.tests.History;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
+import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.History;
 import com.cutanddry.qa.functions.Login;
@@ -12,27 +13,41 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyTheSearchFeatureTest extends TestBase {
+public class VerifyTheOrderDetailsCancelOrderTest extends TestBase {
     static User user;
-    static String orderID = "307236646";
 
     @BeforeMethod
     public void setUp(){
         initialization();
         user = JsonUtil.readUserLogin();
     }
-    @Test(groups = "DOT-TC-551")
-    public void verifyTheSearchFeature() throws InterruptedException {
+    @Test(groups = "DOT-TC-558")
+    public void verifyTheOrderDetailsCancelOrder() throws InterruptedException{
+        String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Dashboard.navigateToIndependentFoodsCo();
+        Dashboard.navigateToOrderGuide();
+        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        itemName = Customer.getItemNameFirstRow();
+        Customer.increaseFirstRowQtyByOne();
+        Customer.checkoutItems();
+        softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
+        Customer.submitOrder();
+        softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
+        History.clickClose();
+
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
-        History.searchOrderID(orderID);
-        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderID), "Order ID not found in the table.");
-        History.checkIfSearchedElementVisible(orderID);
+        History.clickOnFirstItemOfOrderHistory();
+        softAssert.assertTrue(History.isOrderSectionDisplayed(),"Order section not display");
+        History.clickCancel();
+        softAssert.assertTrue(History.isCancelOrderPopUpDisplayed(),"Cancel order pop up window not display");
+        History.clickConfirmCancelOrder();
         softAssert.assertAll();
+
 
     }
     @AfterMethod
@@ -41,3 +56,5 @@ public class VerifyTheSearchFeatureTest extends TestBase {
         closeAllBrowsers();
     }
 }
+
+
