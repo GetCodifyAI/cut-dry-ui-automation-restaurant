@@ -72,4 +72,8 @@ public class Pay {
 
     public static void clickOnDownloadReceiptPaidInvoice(){PayPage.clickOnOneInvoiceDownloadReceipt();}
 
+    public static boolean isPaymentSettingsDisplayed(){
+        return PayPage.isPaymentSettingsDisplayed();
+    }
+
 }

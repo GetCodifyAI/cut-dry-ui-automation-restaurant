@@ -7,6 +7,7 @@ public class PayPage extends TestBase{
 
     By btn_pay = By.xpath("//a[contains(@data-tip, 'View Invoices')]");
     By btn_paymentSettings = By.xpath("//button[contains(text(),'Payment Settings')]");
+    By txt_paymentSettings = By.xpath("//h2[@class='_5kripx' and text()='Payment Settings']");
     By text_visibilityOfPaySuppliers = By.xpath("//h2[contains(text(),'Pay Suppliers')]");
     By btn_payOption = By.xpath("(//button[text()='Pay'])[1]");
     By txt_invoiceIdNo = By.xpath("//div[contains(@class,'_ozzg7w')]");
@@ -177,6 +178,14 @@ public class PayPage extends TestBase{
     public void clickOnOneInvoiceDownloadReceipt(){
         restaurantUI.click(btn_threeDots);
         restaurantUI.click(btn_downloadReceipt);
+    }
+    public boolean isPaymentSettingsDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_paymentSettings);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_paymentSettings);
     }
 
 }
