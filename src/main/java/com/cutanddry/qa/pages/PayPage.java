@@ -38,6 +38,15 @@ public class PayPage extends TestBase{
     By statusPaid = By.xpath("//div[contains(text(),'Paid')]");
     By txt_filteredStatus = By.xpath("//td[@class='align-middle' and text()='Paid']");
     By btn_printReceipt = By.xpath("//a[@class='dropdown-item']//span[text()='Print Receipt']");
+    By btn_selectInvoice = By.xpath("(//tr[contains(@class,'_13xlah4')]//div/*[@data-icon='square'])[1]");
+
+    By btn_autoPay = By.xpath("//button[@class='mr-1 font-weight-bold btn btn-primary' and text()='Enable Auto Pay']");
+    By txt_highlightAutoPay = By.xpath("//a[@data-rb-event-key='Auto Pay Settings' and @aria-selected='true' and contains(@class, 'nav-link')]");
+    By btn_batchAction = By.xpath("//button[@class='dropdown-toggle btn btn-outline-primary']");
+    By btn_downloadInvoice = By.xpath("//a[@class='dropdown-item' and text()='Download Invoices']']");
+    By txt_downloadInvoice = By.xpath("//h2[@id='swal2-title']");
+    By btn_ok = By.xpath("//button[@class='swal2-confirm swal2-styled' and text()='OK']");
+
 
     public void clickOnPay(){restaurantUI.click(btn_pay);}
 
@@ -191,6 +200,27 @@ public class PayPage extends TestBase{
     public void clickOnOneInvoicePrintReceipt(){
         restaurantUI.click(btn_threeDots);
         restaurantUI.click(btn_printReceipt);
+    }
+    public void clickSelectInvoice() throws InterruptedException{
+        restaurantUI.waitForCustom(2000);
+        restaurantUI.clickUsingJavaScript(btn_selectInvoice);
+    }
+    public void clickBatchActions(){
+        restaurantUI.click(btn_batchAction);
+    }
+    public void clickDownloadInvoices(){
+        restaurantUI.click(btn_downloadInvoice);
+    }
+    public boolean isInvoicesSentPopUpDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_downloadInvoice);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_downloadInvoice);
+    }
+    public void clickOk(){
+        restaurantUI.click(btn_ok);
     }
 
 }

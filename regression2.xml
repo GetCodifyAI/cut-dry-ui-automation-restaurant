@@ -47,6 +47,8 @@
             <class name="com.cutanddry.qa.tests.Pay.VerifyPaidInvoiceStatusDropdownTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyPaymentSettingsAddPaymentMethodTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyPrintReceiptPaidInvoiceTest" />
+            <class name="com.cutanddry.qa.tests.Pay.VerifyBatchActionsDownloadOutstandingInvoicesTest" />
+            <class name="com.cutanddry.qa.tests.Pay.VerifyBatchActionsDownloadPaidInvoicesTest" />
 
         </classes>
     </test>
