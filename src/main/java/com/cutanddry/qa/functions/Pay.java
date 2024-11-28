@@ -45,12 +45,28 @@ public class Pay {
 
     public static void paymentSettings(){PayPage.clickOnPaymentSetting();}
 
-    public static void editPaymentSettings(){PayPage.clickOnEditPaymentSetting();}
+    public static void removePaymentSettings(){PayPage.clickOnRemovePaymentSetting();}
+
+    public static boolean isNicknameTextDisplayed(){return PayPage.isEditNicknameTextDisplayed();}
 
     public static void editPaymentMethodNickName(String editNickname)throws InterruptedException{
-        PayPage.clickOnEditPaymentSetting();
+        PayPage.clickOnRemovePaymentSetting();
         PayPage.editNickName(editNickname);
     }
+
+    public static void clickOnRemovePaymentOption(){PayPage.clickOnRemovePayment();}
+
+    public static boolean isRemoveConfirmationMessageDisplayed(){return PayPage.isRemoveConfirmationTextDisplayed();}
+
+    public static void clickOnRemoveOption(){PayPage.clickOnConfirmYes();}
+
+    public static boolean isRemoveSuccessMessageDisplayed(){return PayPage.isRemoveSuccessTextDisplayed();}
+
+    public static void clickOnOkOption(){PayPage.clickOnOk();}
+
+    public static void clickOnPaymentSettingsRemoveOption(){PayPage.clickPaymentSettingsRemove();}
+
+    public static boolean isPaymentSettingsNicknameTextDisplayed(){return PayPage.isPaymentSettingsNicknameTextDisplayed();}
 
     public static void clickOnInvoice(){PayPage.clickOnOneInvoice();}
 

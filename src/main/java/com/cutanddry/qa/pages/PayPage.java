@@ -22,8 +22,16 @@ public class PayPage extends TestBase{
     By btn_next = By.xpath("//button[contains(text(),'Next')]");
     By txt_nickname = By.xpath("//label[contains(text(),'Nickname')]/following-sibling::input");
     By btn_save = By.xpath("//button[contains (text(),'Save')]");
-    By btn_paymentMethod = By.xpath("(//div[contains(@class,'_1amj4ln _du1frc')])[10]");
-    By tbx_editNickname = By.xpath("(//input[contains(@class,'form-control')])[2]");//
+    By btn_paymentMethod = By.xpath("//div[text()='TestKaty']/following-sibling::div/button[contains(text(),'Edit')]");
+    By txt_visibilityOfNickname = By.xpath("//h2[contains (text(),'Edit TestKaty 2220')]");
+    By btn_removePayment = By.xpath("//button[contains(@class,'pr-0 btn btn-link')]");
+    By txt_removeConfirmation = By.xpath("//h2[contains(text(),'Are you sure?')]");
+    By btn_remYesConfirmation = By.xpath("//button[contains(@class,'swal2-confirm')]");
+    By txt_removeSuccessMsg = By.xpath("//h2[contains(text(),'Payment method has been removed')]");
+    By btn_OK = By.xpath("//button[contains(@class,'swal2-confirm swal2-styled')]");
+    By btn_paymentSettingsRemove = By.xpath("//div[text()='TestKaty01']/following-sibling::div/button[contains(text(),'Edit')]");
+    By txt_paySettingsNickname = By.xpath("//h2[contains (text(),'Edit TestKaty01 2220')]");
+    By tbx_editNickname = By.xpath("(//input[contains(@class,'form-control')])[2]");
     By invoice = By.xpath("(//td[contains(@class,'align-middle')])[1]");
     By txt_invoiceId = By.xpath("//h2[contains(@class,'my-2 font-weight')]");
     By btn_invoiceStatus = By.xpath("(//div[contains(@class,'dropdown-indicator')]/*)[1]");
@@ -122,12 +130,58 @@ public class PayPage extends TestBase{
 
     public void clickOnPaymentSetting(){restaurantUI.click(btn_paymentSettings);}
 
-    public void clickOnEditPaymentSetting(){restaurantUI.click(btn_paymentMethod);}
+    public void clickOnRemovePaymentSetting(){restaurantUI.click(btn_paymentMethod);}
+
+    public boolean isEditNicknameTextDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_visibilityOfNickname);
+        } catch (Exception e) {
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_visibilityOfNickname);
+    }
+
+    public void clickOnRemovePayment(){restaurantUI.click(btn_removePayment);}
+
+    public boolean isRemoveConfirmationTextDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_removeConfirmation);
+        } catch (Exception e) {
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_removeConfirmation);
+    }
+
+    public void clickOnConfirmYes(){restaurantUI.click(btn_remYesConfirmation);}
 
     public void editNickName(String editNickname)throws InterruptedException{
         restaurantUI.doubleClick(tbx_editNickname);
         restaurantUI.waitForClickability(tbx_editNickname);
         restaurantUI.sendKeys(tbx_editNickname,editNickname);
+    }
+
+    public boolean isRemoveSuccessTextDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_removeSuccessMsg);
+        } catch (Exception e) {
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_removeSuccessMsg);
+    }
+
+    public void clickOnOk(){restaurantUI.click(btn_OK);}
+
+    public void clickPaymentSettingsRemove(){
+        restaurantUI.click(btn_paymentSettingsRemove);
+    }
+
+    public boolean isPaymentSettingsNicknameTextDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_paySettingsNickname);
+        } catch (Exception e) {
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_paySettingsNickname);
     }
 
     public void clickOnOneInvoice(){restaurantUI.click(invoice);}
