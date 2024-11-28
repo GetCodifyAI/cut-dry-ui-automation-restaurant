@@ -50,6 +50,7 @@
             <class name="com.cutanddry.qa.tests.Pay.VerifyPrintReceiptPaidInvoiceTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyBatchActionsDownloadOutstandingInvoicesTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyBatchActionsDownloadPaidInvoicesTest" />
+            <class name="com.cutanddry.qa.tests.Pay.VerifyEnableAutoPayTest" />
 
         </classes>
     </test>

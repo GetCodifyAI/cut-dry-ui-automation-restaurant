@@ -276,6 +276,17 @@ public class PayPage extends TestBase{
     public void clickOk(){
         restaurantUI.click(btn_ok);
     }
+    public void clickAutoPay(){
+        restaurantUI.click(btn_autoPay);
+    }
+    public boolean isAutoPaySettingsHighlighted(){
+        try {
+            restaurantUI.waitForVisibility(txt_highlightAutoPay);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_highlightAutoPay);
+    }
 
 }
 
