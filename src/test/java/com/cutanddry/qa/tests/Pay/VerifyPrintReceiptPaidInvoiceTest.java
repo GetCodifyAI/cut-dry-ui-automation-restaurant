@@ -21,7 +21,7 @@ public class VerifyPrintReceiptPaidInvoiceTest extends TestBase{
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-566")
+    @Test(groups = "DOT-TC-567")
     public void VerifyDownloadReceiptPaidInvoice()throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
