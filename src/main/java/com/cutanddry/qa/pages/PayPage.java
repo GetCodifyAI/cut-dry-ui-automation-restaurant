@@ -46,12 +46,12 @@ public class PayPage extends TestBase{
     By statusPaid = By.xpath("//div[contains(text(),'Paid')]");
     By txt_filteredStatus = By.xpath("//td[@class='align-middle' and text()='Paid']");
     By btn_printReceipt = By.xpath("//a[@class='dropdown-item']//span[text()='Print Receipt']");
-    By btn_selectInvoice = By.xpath("(//tr[contains(@class,'_13xlah4')]//div/*[@data-icon='square'])[1]");
-
+    By btn_selectPaidInvoice = By.xpath("(//div[contains(text(),'Payment Date')]/ancestor::thead/following-sibling::tbody/tr[contains(@class,'_13xlah4')]//div[contains(@class,'align-middle _du1frc')])[1]");
+    By btn_selectOutstandingInvoice =By.xpath("(//div[contains(text(),'Due Date')]/ancestor::thead/following-sibling::tbody/tr[contains(@class,'_13xlah4')]//div[contains(@class,'align-middle _du1frc')])[1]");
     By btn_autoPay = By.xpath("//button[@class='mr-1 font-weight-bold btn btn-primary' and text()='Enable Auto Pay']");
     By txt_highlightAutoPay = By.xpath("//a[@data-rb-event-key='Auto Pay Settings' and @aria-selected='true' and contains(@class, 'nav-link')]");
     By btn_batchAction = By.xpath("//button[@class='dropdown-toggle btn btn-outline-primary']");
-    By btn_downloadInvoice = By.xpath("//a[@class='dropdown-item' and text()='Download Invoices']']");
+    By btn_downloadInvoice = By.xpath("//a[@class='dropdown-item' and text()='Download Invoices']");
     By txt_downloadInvoice = By.xpath("//h2[@id='swal2-title']");
     By btn_ok = By.xpath("//button[@class='swal2-confirm swal2-styled' and text()='OK']");
 
@@ -255,10 +255,15 @@ public class PayPage extends TestBase{
         restaurantUI.click(btn_threeDots);
         restaurantUI.click(btn_printReceipt);
     }
-    public void clickSelectInvoice() throws InterruptedException{
+    public void clickSelectPaidInvoice() throws InterruptedException{
         restaurantUI.waitForCustom(2000);
-        restaurantUI.clickUsingJavaScript(btn_selectInvoice);
+        restaurantUI.clickUsingJavaScript(btn_selectPaidInvoice);
     }
+    public void clickSelectOutstandingInvoice() throws InterruptedException{
+        restaurantUI.waitForCustom(2000);
+        restaurantUI.clickUsingJavaScript(btn_selectOutstandingInvoice);
+    }
+
     public void clickBatchActions(){
         restaurantUI.click(btn_batchAction);
     }

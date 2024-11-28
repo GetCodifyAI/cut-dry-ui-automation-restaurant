@@ -28,7 +28,7 @@ public class VerifyBatchActionsDownloadOutstandingInvoicesTest extends TestBase{
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Pay.navigateToPay();
         softAssert.assertTrue(Pay.isPaySupplierTextDisplayed(),"error in text display");
-        Pay.clickSelectInvoice();
+        Pay.clickSelectOutstandingPaidInvoice();
         Pay.clickBatchActions();
         Pay.clickDownloadInvoices();
         softAssert.assertTrue(Pay.isInvoicesSentPopUpDisplayed(),"Invoice sent to email pop up not display");
