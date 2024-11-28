@@ -83,5 +83,10 @@ public class Pay {
         return PayPage.isInvoicesSentPopUpDisplayed();
     }
     public static void clickOk(){PayPage.clickOk();}
+    public static void clickAutoPay(){PayPage.clickAutoPay();}
+
+    public static boolean isAutoPaySettingsHighlighted(){
+        return PayPage.isAutoPaySettingsHighlighted();
+    }
 
 }

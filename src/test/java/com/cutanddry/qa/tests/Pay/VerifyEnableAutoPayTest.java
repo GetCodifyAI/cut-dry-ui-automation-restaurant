@@ -12,43 +12,33 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyPaymentSettingsAddPaymentMethodTest extends TestBase {
+public class VerifyEnableAutoPayTest extends TestBase {
     static User user;
-    static String accountNumber = "2222220";
-    static String routeNumber = "321081669";
-    static String nickName = "TestKaty01";
 
     @BeforeMethod
-    public void setUp(){
+    public void setUp() {
         initialization();
         user = JsonUtil.readUserLogin();
+
     }
 
-    @Test(groups = "DOT-TC-569")
-    public void VerifyPaymentSettingsAddPaymentMethod()throws InterruptedException {
+    @Test(groups = "DOT-TC-568")
+    public void VerifyEnableAutoPay() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(), "login error");
         Pay.navigateToPay();
         softAssert.assertTrue(Pay.isPaySupplierTextDisplayed(),"error in text display");
-        Pay.paymentSettings();
+        Pay.clickAutoPay();
         softAssert.assertTrue(Pay.isPaymentSettingsDisplayed(),"payment setting window not display");
-        Pay.addPaymentMethod();
-        softAssert.assertTrue(Pay.isAddPaymentMethodTextDisplayed(),"error in payment method title");
-        Pay.bankAccountOption();
-        softAssert.assertTrue(Pay.isAddBankAccountTextDisplayed(),"error in add bank account title");
-        Pay.addAccountNumber(accountNumber);
-        Pay.addRouteNumber(routeNumber);
-        Pay.selectAccountTypeOption();
-        Pay.addNickname(nickName);
+        softAssert.assertTrue(Pay.isAutoPaySettingsHighlighted(),"Auto Pay settings not highlighted");
         softAssert.assertAll();
 
     }
-
+    
     @AfterMethod
     public void tearDown(ITestResult result) {
         takeScreenshotOnFailure(result);
         closeAllBrowsers();
     }
-    
 }
