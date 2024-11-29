@@ -58,5 +58,8 @@ public class Login {
         loginPage.clickOnSunriseFood();
         loginPage.clickOnLoginAsSupplier();
     }
+    public static void navigateToOperator(){
+        loginPage.navigateToOperator();
+    }
 
 }

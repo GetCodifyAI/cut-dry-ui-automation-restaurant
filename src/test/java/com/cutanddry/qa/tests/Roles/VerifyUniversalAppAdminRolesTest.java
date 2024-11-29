@@ -60,8 +60,11 @@ public class VerifyUniversalAppAdminRolesTest extends TestBase {
 //        Dashboard.navigateToReports();
 //        softAssert.assertTrue(Reports.disabledGenerateReport(),"error in  generate report button");
 
-//        Dashboard.navigateToUsers();
-//        softAssert.assertTrue(Users.isNavigatedToUserTab(),"navigation to users error");
+        Dashboard.navigateToUsers();
+        softAssert.assertTrue(Users.isNavigatedToUserTab(),"navigation to users error");
+        Support.goToSupportPage();
+        softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
+        Login.navigateToOperator();
         Settings.clickOnProfileUnderSettings();
         softAssert.assertTrue(Settings.isNavigatedToProfileSetting(),"navigation to profile settings error");
         Settings.clickOnRestaurantUnderSettings();
@@ -70,10 +73,7 @@ public class VerifyUniversalAppAdminRolesTest extends TestBase {
         softAssert.assertTrue(Settings.isNavigatedToLocationSettings(),"navigation to loc settings error");
         Settings.clickOnAccounting();
         softAssert.assertTrue(Settings.isNavigatedToAccountingCatagoryPage(),"Error in navigating to Account Categories");
-        Support.goToSupportPage();
-        softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
         softAssert.assertAll();
-
     }
 
     @AfterMethod
