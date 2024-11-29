@@ -12,7 +12,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyUniversalAppAdminRolesTest extends TestBase {
     static User user;
-    static String itemName = "Artichoke -24ct";
+    static String itemName = "Apples - Fuji";
     static String userAdmin = "Mashan";
 
     @BeforeMethod

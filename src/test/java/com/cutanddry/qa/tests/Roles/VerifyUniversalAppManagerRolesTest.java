@@ -12,7 +12,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyUniversalAppManagerRolesTest extends TestBase {
     static User user;
-    static String itemName = "Asparagus 11 Lb";
+    static String itemName = "Apples - Fuji";
     static String userAdmin = "Mashan";
     static String userManager = "Aselabookkeeper4";
     static String userEmployee = "Sudam";
