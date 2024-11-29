@@ -61,5 +61,9 @@ public class Login {
     public static void navigateToOperator(){
         loginPage.navigateToOperator();
     }
-
+    public static void loginAsManager(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnManager();
+        loginPage.clickOnLoginAsClassic();
+    }
 }

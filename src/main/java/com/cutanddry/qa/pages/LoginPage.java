@@ -25,7 +25,7 @@ public class LoginPage extends TestBase {
     By tbx_distributorSearch = By.xpath("//input[@id='react-select-2-input']");
     By txt_sunriseFoods = By.xpath("//div[contains(text(), '195998346 - Cut+Dry Agent - Sunrise Food Service Inc')]");
     By btn_LoginAsSupplier = By.xpath("//a[contains(text(), 'Login As (supplier)')]");
-
+    By txt_manager = By.xpath("//div[contains(text(), 'Aselabookkeeper4')]");
 
 
 
@@ -80,7 +80,9 @@ public class LoginPage extends TestBase {
     public void clickOnJoshuaClayton(){
         restaurantUI.click(txt_joshuaClayton);
     }
-
+    public void clickOnManager(){
+        restaurantUI.click(txt_manager);
+    }
     public void clickOnStephanieCollins(){
         restaurantUI.click(txt_stephanieCollins);
     }

@@ -77,5 +77,12 @@ public class UsersPage extends LoginPage {
     public boolean isUserRemoveOverlayDisplayed(){
         return restaurantUI.isDisplayed(userRemoveOverlay);
     }
-
+    public boolean isUserEditable(String username){
+        try {
+            restaurantUI.waitForClickability(By.xpath(user.replace("USERNAME", username)));
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
 }

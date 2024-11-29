@@ -61,8 +61,8 @@ public class Users {
     public static boolean removeConfirmationOverlayDisplayed(){
         return usersPage.isUserRemoveOverlayDisplayed();
     }
-
-
-
+    public static boolean isUserEditable(String userName){
+        return usersPage.isUserEditable(userName);
+    }
 
 }

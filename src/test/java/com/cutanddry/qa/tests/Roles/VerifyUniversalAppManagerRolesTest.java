@@ -10,10 +10,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyUniversalAppAdminRolesTest extends TestBase {
+public class VerifyUniversalAppManagerRolesTest extends TestBase {
     static User user;
     static String itemName = "Artichoke -24ct";
     static String userAdmin = "Mashan";
+    static String userEmployee = "Mashan";
+    static String OperatorName = "Aselabookkeeper4";
 
     @BeforeMethod
     public void setUp(){
@@ -21,12 +23,14 @@ public class VerifyUniversalAppAdminRolesTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-639")
-    public void VerifyUniversalAppAdminRoles() throws InterruptedException {
+    @Test(groups = "DOT-TC-640")
+    public void VerifyUniversalAppManagerRoles() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Login.navigateToLoginAs();
+        Login.loginAsManager(OperatorName);
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
@@ -57,7 +61,8 @@ public class VerifyUniversalAppAdminRolesTest extends TestBase {
         softAssert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"navigation to suppliers error");
         Dashboard.navigateToUsers();
         softAssert.assertTrue(Users.isNavigatedToUserTab(),"navigation to users error");
-        Users.isUserEditable(userAdmin);
+        softAssert.assertTrue(Users.isUserEditable(userAdmin), "user error");
+        softAssert.assertFalse(Users.isUserEditable(userEmployee), "user error");
         Support.goToSupportPage();
         softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
         Login.navigateToOperator();
