@@ -14,6 +14,13 @@ public class DashboardPage extends LoginPage{
     By btn_cooksCompanyProduce = By.xpath("//div[contains(text(), 'Cooks Company Produce')]");
     By txt_approvals = By.xpath("//div[contains(text(), 'Approvals')]");
     By btn_Reports = By.xpath("//a[contains(@data-tip, 'Reports')]");
+    By btn_approvals = By.xpath("//a[contains(@data-tip, 'Approvals')]");
+    By btn_drafts = By.xpath("//a[contains(@data-tip, 'View Drafts')]");
+    By btn_chats = By.xpath("//a[contains(@data-tip, 'Supplier Chat')]");
+    By btn_pay = By.xpath("//a[contains(@data-tip, 'View Invoices')]");
+    By txt_drafts = By.xpath("//div[contains(text(), 'Drafts')]");
+    By txt_chats = By.xpath("//li[contains(text(), 'Your Suppliers')]");
+    By txt_pay = By.xpath("//h2[contains(text(), 'Pay Suppliers')]");
     By btn_customers = By.xpath("//a[@data-tip='Customers']");
     String supplierTxt = "//tr[@class='_du1frc _14u3xd3 py-3']//div[text()='SUPPLIERNAME']";
     By MaxiesSLTxt = By.xpath("//div[@class='_hp19hv mx-3 aling-items-center d-flex']//span[@data-tip='Maxies SL']//div[text()='Maxies SL']");
@@ -27,6 +34,30 @@ public class DashboardPage extends LoginPage{
             return false;
         }
         return restaurantUI.isDisplayed(txt_dashboard);
+    }
+    public boolean isChatTextDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_chats);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_chats);
+    }
+    public boolean isDraftsTextDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_drafts);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_drafts);
+    }
+    public boolean isPayTextDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_pay);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_pay);
     }
     public boolean isApprovalsTabDisplayed(){
         try {
@@ -77,9 +108,16 @@ public class DashboardPage extends LoginPage{
     public void clickOnCooksCompanyProduce() {
         restaurantUI.click(btn_cooksCompanyProduce);}
 
+    public void clickOnDrafts() {
+        restaurantUI.click(btn_drafts);}
+    public void clickOnChats() {
+        restaurantUI.click(btn_chats);}
     public void clickOnReports() {
         restaurantUI.click(btn_Reports);}
-
+    public void clickOnPay() {
+        restaurantUI.click(btn_pay);}
+    public void clickOnApprovals() {
+        restaurantUI.click(btn_approvals);}
     public void clickOnCustomers(){
         restaurantUI.click(btn_customers);
     }

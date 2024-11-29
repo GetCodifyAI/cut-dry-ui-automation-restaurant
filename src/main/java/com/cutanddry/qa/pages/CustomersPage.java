@@ -119,7 +119,7 @@ public class CustomersPage extends LoginPage {
     By cutOffDateTimeSave = By.xpath("//button[contains(text(),'Save Changes')]");
     By orderCutOffTime = By.xpath("//span[@class='ml-1 text-nowrap _d7ebxxy']");
     String clearDeliveryDate = "//tr[td[contains(text(), 'DAY')]]//div[contains(@class, 'themed_select__control')]//div[contains(@class, 'themed_select__clear-indicator')]/*";
-
+    By btn_close_ = By.xpath("//button[contains(@class, 'close')]/span[text()='×']");
 
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
@@ -270,7 +270,12 @@ public class CustomersPage extends LoginPage {
             return false;
         }
     }
-
+    public void clickClose(){
+        restaurantUI.waitForVisibility(btn_close);
+        restaurantUI.click(btn_close);
+        restaurantUI.waitForInvisibility(btn_close);
+        restaurantUI.refreshPage();
+    }
     public void submitOrder() {
         restaurantUI.waitForClickability(btn_submitOrder);
         restaurantUI.click(btn_submitOrder);

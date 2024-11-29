@@ -13,7 +13,16 @@ public class ReportsPage extends TestBase {
     By btn_table = By.xpath("//button[contains(., 'Table')]");
     By btn_csv = By.xpath("//a[contains(text(), 'CSV') and @data-id='__csv']");
     By txt_csv = By.xpath("//button[contains(., 'CSV')]");
+    By txt_reporting = By.xpath("//li[contains(text(),'Reporting')]");
 
+    public boolean isReportingTextDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_reporting);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_reporting);
+    }
     public boolean isDisabledGenerateReportButtonDisplayed(){
         try {
             restaurantUI.waitForVisibility(btn_disabledGenerateReport);

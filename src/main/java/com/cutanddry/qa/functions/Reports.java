@@ -5,7 +5,9 @@ import com.cutanddry.qa.pages.ReportsPage;
 public class Reports {
 
     static com.cutanddry.qa.pages.ReportsPage ReportsPage = new ReportsPage();
-
+    public static boolean isUserNavigatedToReports(){
+        return ReportsPage.isReportingTextDisplayed();
+    }
     public static void generateReport(){
         ReportsPage.clickOnGenerateReports();
     }
