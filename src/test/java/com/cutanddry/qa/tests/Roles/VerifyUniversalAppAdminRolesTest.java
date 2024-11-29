@@ -58,6 +58,9 @@ public class VerifyUniversalAppAdminRolesTest extends TestBase {
         softAssert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"navigation to suppliers error");
         Dashboard.navigateToUsers();
         softAssert.assertTrue(Users.isNavigatedToUserTab(),"navigation to users error");
+        Login.navigateToOperator();
+        Dashboard.navigateToReports();
+        softAssert.assertTrue(Reports.disabledGenerateReport(),"error in  generate report button");
         Support.goToSupportPage();
         softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
         Login.navigateToOperator();
@@ -69,15 +72,13 @@ public class VerifyUniversalAppAdminRolesTest extends TestBase {
         softAssert.assertTrue(Settings.isNavigatedToLocationSettings(),"navigation to loc settings error");
         Settings.clickOnAccounting();
         softAssert.assertTrue(Settings.isNavigatedToAccountingCatagoryPage(),"Error in navigating to Account Categories");
-        Login.navigateToOperator();
-        Dashboard.navigateToReports();
-        softAssert.assertTrue(Reports.disabledGenerateReport(),"error in  generate report button");
         softAssert.assertAll();
     }
 
     @AfterMethod
     public void tearDown(ITestResult result) {
         takeScreenshotOnFailure(result);
+        closeAllBrowsers();
         closeAllBrowsers();
     }
 
