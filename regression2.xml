@@ -22,7 +22,7 @@
             <class name="com.cutanddry.qa.tests.Suppliers.VerifyEditingSupplierTest" />
             <class name="com.cutanddry.qa.tests.Suppliers.VerifyDeletingSupplierTest" />
             <class name="com.cutanddry.qa.tests.units.VerifyOrderItemUnitsTest" />
-            <class name="com.cutanddry.qa.tests.History.VerifyTheSearchFeatureTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderSearchFeatureTest"/>
             <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsViewItemTest"/>
             <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsViewTimelineTest"/>
             <class name="com.cutanddry.qa.tests.History.VerifyTheMoreFiltersFeatureTest"/>
