@@ -25,7 +25,7 @@ public class LoginPage extends TestBase {
     By tbx_distributorSearch = By.xpath("//input[@id='react-select-2-input']");
     By txt_sunriseFoods = By.xpath("//div[contains(text(), '195998346 - Cut+Dry Agent - Sunrise Food Service Inc')]");
     By btn_LoginAsSupplier = By.xpath("//a[contains(text(), 'Login As (supplier)')]");
-    By txt_manager = By.xpath("//div[contains(text(), 'Aselabookkeeper4')]");
+    By txt_manager = By.xpath("//div[contains(text(), 'Aselabookkeeper4 - 131583036 - Manager - Restaurant(Test) - asela+bookkeeper4@cutanddry.com - null')]");
 
 
 
