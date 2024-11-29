@@ -45,12 +45,28 @@ public class Pay {
 
     public static void paymentSettings(){PayPage.clickOnPaymentSetting();}
 
-    public static void editPaymentSettings(){PayPage.clickOnEditPaymentSetting();}
+    public static void removePaymentSettings(){PayPage.clickOnRemovePaymentSetting();}
+
+    public static boolean isNicknameTextDisplayed(){return PayPage.isEditNicknameTextDisplayed();}
 
     public static void editPaymentMethodNickName(String editNickname)throws InterruptedException{
-        PayPage.clickOnEditPaymentSetting();
+        PayPage.clickOnRemovePaymentSetting();
         PayPage.editNickName(editNickname);
     }
+
+    public static void clickOnRemovePaymentOption(){PayPage.clickOnRemovePayment();}
+
+    public static boolean isRemoveConfirmationMessageDisplayed(){return PayPage.isRemoveConfirmationTextDisplayed();}
+
+    public static void clickOnRemoveOption(){PayPage.clickOnConfirmYes();}
+
+    public static boolean isRemoveSuccessMessageDisplayed(){return PayPage.isRemoveSuccessTextDisplayed();}
+
+    public static void clickOnOkOption(){PayPage.clickOnOk();}
+
+    public static void clickOnPaymentSettingsRemoveOption(){PayPage.clickPaymentSettingsRemove();}
+
+    public static boolean isPaymentSettingsNicknameTextDisplayed(){return PayPage.isPaymentSettingsNicknameTextDisplayed();}
 
     public static void clickOnInvoice(){PayPage.clickOnOneInvoice();}
 
@@ -71,5 +87,23 @@ public class Pay {
     public static boolean isPaidSearchedTextDisplayed(){return PayPage.isPaidSearchedTextDisplayed();}
 
     public static void clickOnDownloadReceiptPaidInvoice(){PayPage.clickOnOneInvoiceDownloadReceipt();}
+
+    public static boolean isPaymentSettingsDisplayed(){
+        return PayPage.isPaymentSettingsDisplayed();
+    }
+    public static void clickOnOneInvoicePrintReceipt(){PayPage.clickOnOneInvoicePrintReceipt();}
+    public static void clickSelectPaidInvoice()throws InterruptedException{PayPage.clickSelectPaidInvoice();}
+    public static void clickSelectOutstandingPaidInvoice()throws InterruptedException{PayPage.clickSelectOutstandingInvoice();}
+    public static void clickBatchActions(){PayPage.clickBatchActions();}
+    public static void clickDownloadInvoices(){PayPage.clickDownloadInvoices();}
+    public static boolean isInvoicesSentPopUpDisplayed(){
+        return PayPage.isInvoicesSentPopUpDisplayed();
+    }
+    public static void clickOk(){PayPage.clickOk();}
+    public static void clickAutoPay(){PayPage.clickAutoPay();}
+
+    public static boolean isAutoPaySettingsHighlighted(){
+        return PayPage.isAutoPaySettingsHighlighted();
+    }
 
 }

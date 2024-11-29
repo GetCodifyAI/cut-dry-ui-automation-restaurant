@@ -41,10 +41,16 @@
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestApproveFlowTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestDeclineFlowTest"/>
             <class name="com.cutanddry.qa.tests.Pay.VerifyAddPaymentMethodTest" />
+            <class name="com.cutanddry.qa.tests.Pay.VerifyPaymentSettingsAddPaymentMethodTest" />
+            <class name="com.cutanddry.qa.tests.Pay.VerifyEditRemovePaymentSettingsTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyOutstandingInvoiceTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyOutstandingInvoiceStatusDropdownTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyDownloadReceiptPaidInvoiceTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyPaidInvoiceStatusDropdownTest" />
+            <class name="com.cutanddry.qa.tests.Pay.VerifyPrintReceiptPaidInvoiceTest" />
+            <class name="com.cutanddry.qa.tests.Pay.VerifyBatchActionsDownloadOutstandingInvoicesTest" />
+            <class name="com.cutanddry.qa.tests.Pay.VerifyBatchActionsDownloadPaidInvoicesTest" />
+            <class name="com.cutanddry.qa.tests.Pay.VerifyEnableAutoPayTest" />
 
         </classes>
     </test>

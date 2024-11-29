@@ -12,11 +12,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyAddPaymentMethodTest extends TestBase {
+public class VerifyPaymentSettingsAddPaymentMethodTest extends TestBase {
     static User user;
     static String accountNumber = "2222220";
     static String routeNumber = "321081669";
-    static String nickName = "TestKaty";
+    static String nickName = "TestKaty01";
 
     @BeforeMethod
     public void setUp(){
@@ -24,15 +24,15 @@ public class VerifyAddPaymentMethodTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-561")
-    public void VerifyAddPaymentMethod()throws InterruptedException {
+    @Test(groups = "DOT-TC-569")
+    public void VerifyPaymentSettingsAddPaymentMethod()throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Pay.navigateToPay();
         softAssert.assertTrue(Pay.isPaySupplierTextDisplayed(),"error in text display");
-        Pay.payOption();
-        softAssert.assertTrue(Pay.isInvoiceIDNoDisplayed(),"error in invoice ID number");
+        Pay.paymentSettings();
+        softAssert.assertTrue(Pay.isPaymentSettingsDisplayed(),"payment setting window not display");
         Pay.addPaymentMethod();
         softAssert.assertTrue(Pay.isAddPaymentMethodTextDisplayed(),"error in payment method title");
         Pay.bankAccountOption();
@@ -41,14 +41,6 @@ public class VerifyAddPaymentMethodTest extends TestBase {
         Pay.addRouteNumber(routeNumber);
         Pay.selectAccountTypeOption();
         Pay.addNickname(nickName);
-        Pay.paymentSettings();
-        Pay.removePaymentSettings();
-        softAssert.assertTrue(Pay.isNicknameTextDisplayed(),"error in text display");
-        Pay.clickOnRemovePaymentOption();
-        softAssert.assertTrue(Pay.isRemoveConfirmationMessageDisplayed(),"error in text display");
-        Pay.clickOnRemoveOption();
-        softAssert.assertTrue(Pay.isRemoveSuccessMessageDisplayed(),"error in text display");
-        Pay.clickOnOkOption();
         softAssert.assertAll();
 
     }
