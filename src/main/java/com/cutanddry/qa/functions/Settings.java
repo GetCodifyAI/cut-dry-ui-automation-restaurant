@@ -183,7 +183,10 @@ public class Settings {
     }
 
     public static boolean isNavigatedToRestaurantSettings(){
-        return settingsPage.isNavigatedToAccountingCatagory();
+        return settingsPage.isNavigatedToRestaurantSettings();
+    }
+    public static boolean isNavigatedToLocationSettings(){
+        return settingsPage.isNavigatedToLocationSettings();
     }
 
     public static int getAccountingCategoryCount(){
