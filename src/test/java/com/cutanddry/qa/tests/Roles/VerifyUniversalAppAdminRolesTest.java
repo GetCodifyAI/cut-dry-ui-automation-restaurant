@@ -58,6 +58,8 @@ public class VerifyUniversalAppAdminRolesTest extends TestBase {
         Dashboard.navigateToReports();
         softAssert.assertTrue(Reports.isUserNavigatedToReports(),"navigation to reports error");
         Dashboard.navigateToUsers();
+        softAssert.assertTrue(Users.isNavigatedToUserTab(),"navigation to users error");
+
         softAssert.assertAll();
 
     }

@@ -51,6 +51,14 @@ public class DashboardPage extends LoginPage{
         }
         return restaurantUI.isDisplayed(txt_drafts);
     }
+    public boolean isUsersTextDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_chats);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_chats);
+    }
     public boolean isPayTextDisplayed(){
         try {
             restaurantUI.waitForVisibility(txt_pay);
