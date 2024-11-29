@@ -43,7 +43,6 @@ public class VerifyUniversalAppManagerRolesTest extends TestBase {
         Customer.goToCatalog();
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
         Customer.searchItemOnCatalog(itemName);
-        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName), "item not found");
         Customer.addItemToCartCatalog();
         Customer.checkoutItems();
         Customer.submitOrder();

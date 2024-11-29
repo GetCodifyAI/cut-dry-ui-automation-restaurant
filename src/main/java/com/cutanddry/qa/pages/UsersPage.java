@@ -80,9 +80,9 @@ public class UsersPage extends LoginPage {
     public boolean isUserEditable(String username){
         try {
             restaurantUI.waitForClickability(By.xpath(user.replace("USERNAME", username)));
+            return true;
         } catch (Exception e) {
             return false;
         }
-        return true;
     }
 }
