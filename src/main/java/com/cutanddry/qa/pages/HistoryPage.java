@@ -13,7 +13,7 @@ public class HistoryPage extends TestBase {
     By header_items_table = By.xpath("//thead/tr/th[1][text()='Item']");
     By btn_timeline = By.xpath("//a[@role='tab' and @data-rb-event-key='Timeline']");
     By header_timeline_table = By.xpath("//thead/tr/th[1][text()='Timestamp']");
-    String search_result = "//tr[contains(@href,'/orders-revised/view-one')]//following-sibling::td[contains(.,'ORDERID')]";
+    String search_result = "//tr[contains(@href,'/orders-revised/view-one')][1]//following-sibling::td[contains(.,'ORDERID')]";
     By btn_more_filters = By.xpath("//button[@type='button' and contains(text(), 'More Filters')]");
     By txt_filter_orders = By.xpath("//div[contains(text(), 'Filter Orders')]");
     By btn_location = By.xpath("//form/div[1]/div/div");
@@ -39,12 +39,13 @@ public class HistoryPage extends TestBase {
     By btn_confirm_order = By.xpath("//button[@class = 'swal2-confirm order-2 swal2-styled' and text()='Confirm']");
     By btn_edit_order = By.xpath("//button[@class = 'mr-3 btn btn-outline-primary' and text() = 'Edit Order']");
     By txt_edit_order = By.xpath("//h2[@id = 'swal2-title' and text() = 'Edit Order?']");
-    By btn_edit_quantity = By.xpath("//tr[2]/td[4]/div/div/div/div[3]");
+    By btn_edit_quantity = By.xpath("(//div[contains(@class,'align-middle')]/*[contains(@data-icon,'plus')])[1]");
     By btn_submit_edit_order = By.xpath("//button[@id='submit-order-button' and text()='Submit Order Edits']");
     By txt_review_order = By.xpath("//div[@class='d-flex align-items-center _5h4pkd _11zeigs' and text()='Review Order']");
     By btn_ok_edit_order = By.xpath("//button[@class='swal2-confirm swal2-styled' and text()='OK']");
     By txt_ok_edit_order = By.xpath("//h2[@id='swal2-title' and text()='Order edit request has been sent.']");
     By btn_recreate_order = By.xpath("//a[@class='_gozzbg dropdown-item' and text() ='Recreate Order']");
+    By lastOrderId = By.xpath("(//tr[contains(@href,'/orders-revised/view-one')])[last()]//td[contains(text(),'#')]");
 
     public void clickClose(){
         restaurantUI.click(btn_close);
@@ -255,4 +256,9 @@ public class HistoryPage extends TestBase {
     public void clickRecreateOrder(){
         restaurantUI.click(btn_recreate_order);
     }
+
+    public String getLastOrderReference(){
+        return restaurantUI.getText(lastOrderId).split("#")[1];
+    }
+
 }

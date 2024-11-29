@@ -46,11 +46,11 @@ public class VerifyTheOrderDetailsEditOrderTest extends TestBase {
         History.clickEditOrder();
         softAssert.assertTrue(History.isEditOrderPopUpDisplayed(),"Edit order pop up window not display");
         History.clickConfirmEditOrder();
-        softAssert.assertTrue(History.isReviewOrderTextDisplayed(),"Review order section not display");
         History.increaseFirstRowQtyByOne();
+        Customer.checkoutItems();
+        softAssert.assertTrue(History.isReviewOrderTextDisplayed(),"Review order section not display");
         History.clickSubmitEditOrder();
         softAssert.assertTrue(History.isOrderEditRequestPopupDisplayed(),"Order edit request not sent");
-        History.clickOkEditOrder();
         softAssert.assertAll();
 
 
