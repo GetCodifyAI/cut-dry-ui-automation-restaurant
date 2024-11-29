@@ -4,6 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.*;
 import com.cutanddry.qa.pages.HistoryPage;
+import com.cutanddry.qa.pages.SupportPage;
 import com.cutanddry.qa.utils.JsonUtil;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -59,7 +60,14 @@ public class VerifyUniversalAppAdminRolesTest extends TestBase {
         softAssert.assertTrue(Reports.isUserNavigatedToReports(),"navigation to reports error");
         Dashboard.navigateToUsers();
         softAssert.assertTrue(Users.isNavigatedToUserTab(),"navigation to users error");
-
+        Settings.clickOnAccounting();
+        softAssert.assertTrue(Settings.isNavigatedToAccountingCatagoryPage(),"Error in navigating to Account Categories");
+        Settings.clickOnProfileUnderSettings();
+        Settings.clickOnRestaurantUnderSettings();
+        Settings.AddLocation();
+        softAssert.assertTrue(Settings.isAddLocationOverlayDisplayed(),"Error in displaying add location overlay");
+        Support.goToSupportPage();
+        softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
         softAssert.assertAll();
 
     }
