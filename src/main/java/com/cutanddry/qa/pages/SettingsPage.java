@@ -41,7 +41,7 @@ public class SettingsPage extends LoginPage{
     String addedCategoryCodeOrName = "//table[@class='table table-striped']//tbody//tr//td//a[contains(text(),'CATEGORYCODE')]";
     String CategoryDeleteBtn = "//a[contains(text(),'CATEGORYNAME')]/parent::td/following-sibling::td//button[contains(@class, 'js_are_you_sure')]";
     By txt_profile = By.xpath("//h5[text()='Profile']");
-    By txt_restaurant = By.xpath("//h5[text()='Company Settings']");
+    By txt_restaurant = By.xpath("//h2[text()='Company Settings']");
     By txt_locations = By.xpath("//h2[text()='Locations']");
 
     public void clickOnSettings(){
@@ -193,7 +193,7 @@ public class SettingsPage extends LoginPage{
         return restaurantUI.isDisplayed(txt_restaurant);
     }
     public boolean isNavigatedToLocationSettings(){
-        return restaurantUI.isDisplayed(txt_restaurant);
+        return restaurantUI.isDisplayed(txt_locations);
     }
     public int getRowCount(){
         return restaurantUI.countElements(numberOfRows);
