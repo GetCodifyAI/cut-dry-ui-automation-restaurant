@@ -1,6 +1,7 @@
 package com.cutanddry.qa.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 
 public class UsersPage extends LoginPage {
     By usersTab = By.xpath("//h2[@class='font-weight-900 m-0 mont' and contains(text(),'Team')]");
@@ -81,7 +82,7 @@ public class UsersPage extends LoginPage {
         try {
             restaurantUI.waitForClickability(By.xpath(user.replace("USERNAME", username)));
             return true;
-        } catch (Exception e) {
+        } catch (TimeoutException e) {
             return false;
         }
     }
