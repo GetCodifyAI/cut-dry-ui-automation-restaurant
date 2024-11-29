@@ -3,8 +3,6 @@ package com.cutanddry.qa.tests.Roles;
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.*;
-import com.cutanddry.qa.pages.HistoryPage;
-import com.cutanddry.qa.pages.SupportPage;
 import com.cutanddry.qa.utils.JsonUtil;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
