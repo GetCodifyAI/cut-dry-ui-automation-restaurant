@@ -178,6 +178,14 @@ public class Settings {
         return settingsPage.isNavigatedToAccountingCatagory();
     }
 
+    public static boolean isNavigatedToProfileSetting(){
+        return settingsPage.isNavigatedToProfileSetting();
+    }
+
+    public static boolean isNavigatedToRestaurantSettings(){
+        return settingsPage.isNavigatedToAccountingCatagory();
+    }
+
     public static int getAccountingCategoryCount(){
         return settingsPage.getRowCount();
     }

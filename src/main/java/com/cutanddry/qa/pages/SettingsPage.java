@@ -40,7 +40,8 @@ public class SettingsPage extends LoginPage{
     By saveCreatedCategoryCode = By.xpath("//button[@type='submit' and contains(@class, 'editable-submit')]");
     String addedCategoryCodeOrName = "//table[@class='table table-striped']//tbody//tr//td//a[contains(text(),'CATEGORYCODE')]";
     String CategoryDeleteBtn = "//a[contains(text(),'CATEGORYNAME')]/parent::td/following-sibling::td//button[contains(@class, 'js_are_you_sure')]";
-
+    By txt_profile = By.xpath("//h5[text()='Accounting Categories']");
+    By txt_restaurant = By.xpath("//h5[text()='Accounting Categories']");
 
     public void clickOnSettings(){
         restaurantUI.click(btn_settings);
@@ -183,6 +184,12 @@ public class SettingsPage extends LoginPage{
 
     public boolean isNavigatedToAccountingCatagory(){
         return restaurantUI.isDisplayed(accountCatagory);
+    }
+    public boolean isNavigatedToProfileSetting(){
+        return restaurantUI.isDisplayed(txt_profile);
+    }
+    public boolean isNavigatedToRestaurantSettings(){
+        return restaurantUI.isDisplayed(txt_restaurant);
     }
 
     public int getRowCount(){

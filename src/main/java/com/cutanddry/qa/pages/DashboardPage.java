@@ -24,8 +24,7 @@ public class DashboardPage extends LoginPage{
     By btn_customers = By.xpath("//a[@data-tip='Customers']");
     String supplierTxt = "//tr[@class='_du1frc _14u3xd3 py-3']//div[text()='SUPPLIERNAME']";
     By MaxiesSLTxt = By.xpath("//div[@class='_hp19hv mx-3 aling-items-center d-flex']//span[@data-tip='Maxies SL']//div[text()='Maxies SL']");
-    By users = By.xpath("//a[contains(@class,'parent-item nav-link') and @data-tip='Team']");
-
+    By users = By.xpath("//div[contains(text(),'Users')]");
 
     public boolean isDashboardTextDisplayed(){
         try {

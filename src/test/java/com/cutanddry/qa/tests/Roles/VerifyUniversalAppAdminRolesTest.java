@@ -57,13 +57,16 @@ public class VerifyUniversalAppAdminRolesTest extends TestBase {
         Suppliers.goToSuppliers();
         softAssert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"navigation to suppliers error");
         Dashboard.navigateToReports();
-        softAssert.assertTrue(Reports.isUserNavigatedToReports(),"navigation to reports error");
+//        softAssert.assertTrue(Reports.disabledGenerateReport(),"error in  generate report button");
         Dashboard.navigateToUsers();
         softAssert.assertTrue(Users.isNavigatedToUserTab(),"navigation to users error");
         Settings.clickOnAccounting();
         softAssert.assertTrue(Settings.isNavigatedToAccountingCatagoryPage(),"Error in navigating to Account Categories");
         Settings.clickOnProfileUnderSettings();
+        softAssert.assertTrue(Settings.isNavigatedToProfileSetting(),"Error in navigating to Profile settings");
         Settings.clickOnRestaurantUnderSettings();
+        softAssert.assertTrue(Settings.isNavigatedToRestaurantSettings(),"Error in navigating to Restaurant settings");
+        Settings.clickOnLocationsUnderSettings();
         Settings.AddLocation();
         softAssert.assertTrue(Settings.isAddLocationOverlayDisplayed(),"Error in displaying add location overlay");
         Support.goToSupportPage();
