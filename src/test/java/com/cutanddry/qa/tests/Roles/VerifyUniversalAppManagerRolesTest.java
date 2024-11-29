@@ -56,8 +56,6 @@ public class VerifyUniversalAppManagerRolesTest extends TestBase {
         softAssert.assertTrue(Dashboard.isUserNavigatedToDrafts(),"navigation to drafts error");
         Dashboard.navigateToChats();
         softAssert.assertTrue(Dashboard.isUserNavigatedToChats(),"navigation to chats error");
-//        Dashboard.navigateToPay();
-//        softAssert.assertTrue(Dashboard.isUserNavigatedToPay(),"navigation to pay error");
         Suppliers.goToSuppliers();
         softAssert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"navigation to suppliers error");
         Dashboard.navigateToUsers();
