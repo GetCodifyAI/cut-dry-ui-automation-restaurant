@@ -139,4 +139,7 @@ public class History {
         historyPage.clickRecreateOrder();
     }
 
+    public static String getLastOrderRefNo(){
+        return historyPage.getLastOrderReference();
+    }
 }

@@ -55,7 +55,7 @@ public class CustomersPage extends LoginPage {
     By btn_selectCustomOrder = By.xpath("//div[contains(@class, 'cd_themed_select__option') and contains(text(), 'Custom Order')]");
     By btn_selectItemCategory = By.xpath("//div[contains(@class, 'cd_themed_select__option') and contains(text(), 'Item Categories')]");
     By btn_selectAlphabetical = By.xpath("//div[contains(@class, 'cd_themed_select__option') and contains(text(), 'Alphabetical (A-Z)')]");
-    By txt_seaFood = By.xpath("//div[contains(@class,'flex-grow-1') and contains(text(), 'Seafood')]");
+    By txt_seaFood = By.xpath("//div[contains(@class,'flex-grow-1') and contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'seafood')]");
     By btn_browse = By.xpath("//input[@type='file']");
     By btn_uploadFile = By.xpath("//button[contains(text(), 'Upload File')]");
     By btn_next = By.xpath("//button[contains(text(), 'Next')]");
@@ -119,7 +119,8 @@ public class CustomersPage extends LoginPage {
     By cutOffDateTimeSave = By.xpath("//button[contains(text(),'Save Changes')]");
     By orderCutOffTime = By.xpath("//span[@class='ml-1 text-nowrap _d7ebxxy']");
     String clearDeliveryDate = "//tr[td[contains(text(), 'DAY')]]//div[contains(@class, 'themed_select__control')]//div[contains(@class, 'themed_select__clear-indicator')]/*";
-
+    By ratingOverlayIframe = By.xpath("//iframe[contains(@aria-label,'NPS Survey')]");
+    By ratingOverlayCloseBtn = By.xpath("//div[contains(text(),'✕')]");
 
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
@@ -459,6 +460,15 @@ public class CustomersPage extends LoginPage {
         restaurantUI.click(btn_orderGuideSettings);
     }
     public void clickOnOrderApproval() throws InterruptedException {
+        if(restaurantUI.isDisplayed(ratingOverlayIframe)){
+            restaurantUI.switchToFrameByElement(ratingOverlayIframe);
+            restaurantUI.click(ratingOverlayCloseBtn);
+            try {
+                restaurantUI.waitForCustom(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
         restaurantUI.click(btn_orderApproval);
         restaurantUI.waitForCustom(4000);
     }
