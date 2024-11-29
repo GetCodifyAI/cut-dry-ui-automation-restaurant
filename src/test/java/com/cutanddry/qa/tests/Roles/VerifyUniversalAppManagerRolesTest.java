@@ -15,7 +15,7 @@ public class VerifyUniversalAppManagerRolesTest extends TestBase {
     static String itemName = "Asparagus 11 Lb";
     static String userAdmin = "Mashan";
     static String userManager = "Aselabookkeeper4";
-    static String userEmployee = "Aselabookkeeper4";
+    static String userEmployee = "Sudam";
     static String OperatorName = "Aselabookkeeper4";
 
     @BeforeMethod
