@@ -32,14 +32,18 @@ public class RewardsPage extends TestBase {
         return restaurantUI.isDisplayed(text_visibilityOfEarnRewards);
     }
 
-    public void clickOnRedeemBalance(){restaurantUI.click(btn_redeemBalance);}
+    public void clickOnRedeemBalance(){
+        restaurantUI.waitForClickability(btn_redeemBalance);
+        restaurantUI.hoverOverElement(btn_redeemBalance);
+        try {
+            restaurantUI.waitForCustom(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.clickUsingJavaScript(btn_redeemBalance);}
 
     public boolean isRedeemBalanceTextDisplayed(){
-        try {
-            restaurantUI.waitForVisibility(text_visibilityOfRedeemBalance);
-        } catch (Exception e){
-            return false;
-        }
+        restaurantUI.waitForVisibility(text_visibilityOfRedeemBalance);
         return restaurantUI.isDisplayed(text_visibilityOfRedeemBalance);
     }
 
