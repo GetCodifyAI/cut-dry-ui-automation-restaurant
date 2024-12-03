@@ -66,4 +66,14 @@ public class Login {
         loginPage.clickOnManager();
         loginPage.clickOnLoginAsClassic();
     }
+    public static void loginAsEmployee(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnEmployee();
+        loginPage.clickOnLoginAsClassic();
+    }
+    public static void loginAsBookkeeper(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnBookkeeper();
+        loginPage.clickOnLoginAsClassic();
+    }
 }

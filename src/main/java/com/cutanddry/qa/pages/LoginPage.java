@@ -26,7 +26,8 @@ public class LoginPage extends TestBase {
     By txt_sunriseFoods = By.xpath("//div[contains(text(), '195998346 - Cut+Dry Agent - Sunrise Food Service Inc')]");
     By btn_LoginAsSupplier = By.xpath("//a[contains(text(), 'Login As (supplier)')]");
     By txt_manager = By.xpath("//div[contains(text(), 'Aselabookkeeper4 - 131583036 - Manager - Restaurant(Test) - asela+bookkeeper4@cutanddry.com - null')]");
-
+    By txt_employee = By.xpath("//div[contains(text(), 'Employee - 274855811 - Employee - Restaurant(Test) - kwu333@gmail.com - null')]");
+    By txt_bookkeeper = By.xpath("//div[contains(text(), 'Pasan - 4357653 - Bookkeeper - Restaurant(Test) - pasan@cutanddry.com - null')]");
 
 
 
@@ -82,6 +83,12 @@ public class LoginPage extends TestBase {
     }
     public void clickOnManager(){
         restaurantUI.click(txt_manager);
+    }
+    public void clickOnEmployee(){
+        restaurantUI.click(txt_employee);
+    }
+    public void clickOnBookkeeper(){
+        restaurantUI.click(txt_bookkeeper);
     }
     public void clickOnStephanieCollins(){
         restaurantUI.click(txt_stephanieCollins);
