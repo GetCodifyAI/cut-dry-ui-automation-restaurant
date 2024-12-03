@@ -9,6 +9,8 @@ public class UsersPage extends LoginPage {
     By nameTextField = By.xpath("//div[@class='form-group']//label[contains(text(), 'Name')]/following-sibling::input");
     By emailTextField = By.xpath("//div[@class='form-group']//label[contains(text(), 'Email')]/following-sibling::input");
     By locationDropDown = By.xpath("//div[contains(@class,'themed_select__value-container--is-multi')]");
+    By employeeDropDown = By.xpath("//div[contains(@class,'themed_select__value-container--has-value')]");
+    By employeeList = By.xpath("  //div[@class='themed_select__menu-list css-11unzgr']");
     String locationName = "//div[contains(@class,'themed_select__option css-yt9ioa-option') and contains(text(),'LOCATIONNAME')]";
     By addUserOverlayBtn = By.xpath("//button[contains(@class,'btn btn-primary btn-block') and contains(text(),'Add User')]");
     By locationTxt = By.xpath("//label[@class='form-label' and contains(text(),'Location')]");
@@ -39,9 +41,13 @@ public class UsersPage extends LoginPage {
         restaurantUI.click(locationDropDown);
         restaurantUI.sendKeysAndEnter(locationDropDown,locationName);
         restaurantUI.click(locationTxt);
-
     }
-
+    public void clickOnEmployee(){
+        restaurantUI.click(employeeDropDown);
+    }
+    public boolean employeeSelectionDropdown(String emp){
+        return restaurantUI.getText(employeeList).contains(emp);
+    }
     public void clickOnAddUserOverlayBtn(){
         restaurantUI.click(addUserOverlayBtn);
     }
@@ -81,9 +87,9 @@ public class UsersPage extends LoginPage {
     public boolean isUserEditable(String username){
         try {
             restaurantUI.waitForClickability(By.xpath(user.replace("USERNAME", username)));
-            return true;
-        } catch (TimeoutException e) {
+        } catch (Exception e) {
             return false;
         }
+        return true;
     }
 }

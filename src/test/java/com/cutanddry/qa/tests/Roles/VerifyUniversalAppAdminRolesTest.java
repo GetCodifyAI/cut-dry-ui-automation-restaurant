@@ -12,8 +12,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyUniversalAppAdminRolesTest extends TestBase {
     static User user;
-    static String itemName = "Apples - Fuji";
-    static String userAdmin = "Mashan";
+    static String itemName = "Artichoke -24ct";
 
     @BeforeMethod
     public void setUp(){
@@ -33,12 +32,14 @@ public class VerifyUniversalAppAdminRolesTest extends TestBase {
         Customer.goToEdit();
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
         Customer.clickOnBackBtnInEditOrderGuide();
+        Customer.searchItemOnOrderGuide(itemName);
+        softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item mismatch");
         Customer.increaseFirstRowQtyByOne();
         Customer.goToCatalog();
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
         Customer.searchItemOnCatalog(itemName);
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName), "item not found");
-        Customer.addItemToCartCatalog();
+        Customer.increaseCatalogQtyByThree();
         Customer.checkoutItems();
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
@@ -57,7 +58,12 @@ public class VerifyUniversalAppAdminRolesTest extends TestBase {
         softAssert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"navigation to suppliers error");
         Dashboard.navigateToUsers();
         softAssert.assertTrue(Users.isNavigatedToUserTab(),"navigation to users error");
-        Users.isUserEditable(userAdmin);
+        Users.clickAddUser();
+        Users.clickOnEmployee();
+        softAssert.assertTrue(Users.selectEmployeeFromDropDown("Admin"),"users error");
+        softAssert.assertTrue(Users.selectEmployeeFromDropDown("Manager"),"users error");
+        softAssert.assertTrue(Users.selectEmployeeFromDropDown("Employee"),"users error");
+        softAssert.assertTrue(Users.selectEmployeeFromDropDown("Bookkeeper"),"users error");
         Support.goToSupportPage();
         softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
         Login.navigateToOperator();
