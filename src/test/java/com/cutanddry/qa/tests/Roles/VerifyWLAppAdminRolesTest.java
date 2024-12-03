@@ -33,7 +33,7 @@ public class VerifyWLAppAdminRolesTest extends TestBase {
         Dashboard.navigateToOrder();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.goToEdit();
-        softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
+        softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigating to order guide edit error");
         Customer.clickOnBackBtnInEditOrderGuide();
         Customer.searchItemOnOrderGuide(itemName);
         softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item mismatch");

@@ -51,8 +51,11 @@ public class Dashboard {
     public static void navigateToCustomers() {
         dashboardPage.clickOnCustomers();
     }
-    public static void navigateToOrder() {
+    public static void navigateToOrder() throws InterruptedException {
         dashboardPage.clickOnOrder();
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickOnNoDraftOrder();
+        }
     }
     public static void selectSupplier(String supplierName){
         dashboardPage.clickOnSupplier(supplierName);

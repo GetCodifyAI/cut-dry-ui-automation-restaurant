@@ -132,8 +132,9 @@ public class DashboardPage extends LoginPage{
     public void clickOnCustomers(){
         restaurantUI.click(btn_customers);
     }
-    public void clickOnOrder(){
+    public void clickOnOrder() throws InterruptedException {
         restaurantUI.click(btn_order);
+        restaurantUI.waitForCustom(2000);
     }
 
     public void clickOnSupplier(String supplierName){
