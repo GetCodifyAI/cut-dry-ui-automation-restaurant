@@ -16,7 +16,7 @@ public class DashboardPage extends LoginPage{
     By btn_Reports = By.xpath("//a[contains(@data-tip, 'Reports')]");
     By btn_approvals = By.xpath("//a[contains(@data-tip, 'Approvals')]");
     By btn_drafts = By.xpath("//a[contains(@data-tip, 'View Drafts')]");
-    By btn_chats = By.xpath("//a[contains(@data-tip, 'Supplier Chat')]");
+    By btn_chats = By.xpath("//a[contains(@data-tip, 'Chat')]");
     By btn_pay = By.xpath("//a[contains(@data-tip, 'View Invoices')]");
     By txt_drafts = By.xpath("//div[contains(text(), 'Drafts')]");
     By txt_chats = By.xpath("//li[contains(text(), 'Your Suppliers')]");

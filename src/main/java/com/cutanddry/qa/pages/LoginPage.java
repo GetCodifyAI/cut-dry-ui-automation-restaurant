@@ -29,7 +29,7 @@ public class LoginPage extends TestBase {
     By txt_employee = By.xpath("//div[contains(text(), 'Employee - 274855811 - Employee - Restaurant(Test) - kwu333@gmail.com - null')]");
     By txt_bookkeeper = By.xpath("//div[contains(text(), 'Pasan - 4357653 - Bookkeeper - Restaurant(Test) - pasan@cutanddry.com - null')]");
     String txt_distributor = "(//div[contains(text(), 'DISTRIBUTOR_NAME')])[2]";
-    By txt_adminWL = By.xpath("//div[contains(text(), 'Amir IFC - 198720148 - Owner - Independent Foods Co - Main Location - amir@cutanddry.com - 14082091996')]");
+    By txt_adminWL = By.xpath("//div[contains(text(), 'Amir IFC WL - 246613671 - Owner - IFC Operator Demo - amir@cutanddry.com - 14082091996')]");
     By txt_managerWL = By.xpath("//div[contains(text(), 'CHEF GLENDA - 211953812 - Manager - 110 Reserve Bar - WOODLAND PARK -  - 17192353155')]");
     By txt_bookkeeperWL = By.xpath("//div[contains(text(), 'Brandon IFC White - 170465895 - Owner - IFC Operator Demo - brandon@cutanddry.com - 12345678910')]");
     By txt_employeeWL = By.xpath("//div[contains(text(), 'Hadley Ifc Employee - 274597299 - Employee - IFC Operator Demo - hadley+employee@cutanddry.com - null')]");

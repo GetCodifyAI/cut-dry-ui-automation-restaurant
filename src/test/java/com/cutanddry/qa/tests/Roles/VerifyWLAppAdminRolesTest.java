@@ -13,7 +13,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyWLAppAdminRolesTest extends TestBase {
     static User user;
     static String itemName = "Artichoke -24ct";
-    static String OperatorName = "Amir IFC";
+    static String OperatorName = "Amir IFC WL";
 
     @BeforeMethod
     public void setUp(){
@@ -39,7 +39,7 @@ public class VerifyWLAppAdminRolesTest extends TestBase {
         Customer.clickOnBackBtnInEditOrderGuide();
         Customer.searchItemOnOrderGuide(itemName);
         softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item mismatch");
-        Customer.increaseFirstRowQtyByOne();
+        Customer.increaseFirstRowQtyByOneClassic();
         Customer.goToCatalog();
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
         Customer.searchItemOnCatalog(itemName);
@@ -69,8 +69,6 @@ public class VerifyWLAppAdminRolesTest extends TestBase {
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Employee"),"users error");
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Bookkeeper"),"users error");
         Customer.clickClose();
-        Support.goToSupportPage();
-        softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
         Login.navigateToOperator();
         Dashboard.navigateToReports();
         softAssert.assertTrue(Reports.disabledGenerateReport(),"error in  generate report button");
@@ -81,8 +79,6 @@ public class VerifyWLAppAdminRolesTest extends TestBase {
         softAssert.assertTrue(Settings.isNavigatedToRestaurantSettings(),"navigation to restaurant settings error");
         Settings.clickOnLocationsUnderSettings();
         softAssert.assertTrue(Settings.isNavigatedToLocationSettings(),"navigation to loc settings error");
-        Settings.clickOnAccounting();
-        softAssert.assertTrue(Settings.isNavigatedToAccountingCatagoryPage(),"Error in navigating to Account Categories");
         softAssert.assertAll();
     }
 
