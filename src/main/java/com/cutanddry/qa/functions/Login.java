@@ -81,5 +81,24 @@ public class Login {
         loginPage.clickOnDistributor(distributor);
         loginPage.clickOnLoginAsSupplier();
     }
-
+    public static void loginAsMAdminWL(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnAdminWL();
+        loginPage.clickOnLoginAsWhiteLabel();
+    }
+    public static void loginAsManagerWL(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnManagerWL();
+        loginPage.clickOnLoginAsWhiteLabel();
+    }
+    public static void loginAsEmployeeWL(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnEmployeeWL();
+        loginPage.clickOnLoginAsWhiteLabel();
+    }
+    public static void loginAsBookkeeperWL(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnBookkeeperWL();
+        loginPage.clickOnLoginAsWhiteLabel();
+    }
 }
