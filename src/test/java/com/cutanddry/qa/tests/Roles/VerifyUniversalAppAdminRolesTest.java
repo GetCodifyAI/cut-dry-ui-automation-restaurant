@@ -59,7 +59,6 @@ public class VerifyUniversalAppAdminRolesTest extends TestBase {
         Dashboard.navigateToUsers();
         softAssert.assertTrue(Users.isNavigatedToUserTab(),"navigation to users error");
         Users.clickAddUser();
-        Users.clickOnEmployee();
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Admin"),"users error");
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Manager"),"users error");
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Employee"),"users error");

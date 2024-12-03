@@ -25,9 +25,6 @@ public class Users {
     public static void selectLocationFromDropDown(String locationName){
         usersPage.locationSelectionDropdown(locationName);
     }
-    public static void clickOnEmployee(){
-        usersPage.clickOnEmployee();
-    }
     public static boolean selectEmployeeFromDropDown(String emp){
         return usersPage.employeeSelectionDropdown(emp);
     }

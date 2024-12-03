@@ -42,11 +42,12 @@ public class UsersPage extends LoginPage {
         restaurantUI.sendKeysAndEnter(locationDropDown,locationName);
         restaurantUI.click(locationTxt);
     }
-    public void clickOnEmployee(){
-        restaurantUI.click(employeeDropDown);
-    }
+
     public boolean employeeSelectionDropdown(String emp){
-        return restaurantUI.getText(employeeList).contains(emp);
+        restaurantUI.click(employeeDropDown);
+        boolean out = restaurantUI.getText(employeeList).contains(emp);
+        restaurantUI.click(employeeDropDown);
+        return out;
     }
     public void clickOnAddUserOverlayBtn(){
         restaurantUI.click(addUserOverlayBtn);
