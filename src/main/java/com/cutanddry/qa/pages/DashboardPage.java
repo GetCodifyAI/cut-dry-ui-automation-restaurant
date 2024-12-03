@@ -22,6 +22,7 @@ public class DashboardPage extends LoginPage{
     By txt_chats = By.xpath("//li[contains(text(), 'Your Suppliers')]");
     By txt_pay = By.xpath("//h2[contains(text(), 'Pay Suppliers')]");
     By btn_customers = By.xpath("//a[@data-tip='Customers']");
+    By btn_order = By.xpath("//a[@data-tip='Place Order']");
     String supplierTxt = "//tr[@class='_du1frc _14u3xd3 py-3']//div[text()='SUPPLIERNAME']";
     By MaxiesSLTxt = By.xpath("//div[@class='_hp19hv mx-3 aling-items-center d-flex']//span[@data-tip='Maxies SL']//div[text()='Maxies SL']");
     By users = By.xpath("//div[contains(text(),'Users')]");
@@ -127,6 +128,9 @@ public class DashboardPage extends LoginPage{
         restaurantUI.click(btn_approvals);}
     public void clickOnCustomers(){
         restaurantUI.click(btn_customers);
+    }
+    public void clickOnOrder(){
+        restaurantUI.click(btn_order);
     }
 
     public void clickOnSupplier(String supplierName){

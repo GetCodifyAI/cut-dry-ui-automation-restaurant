@@ -51,7 +51,9 @@ public class Dashboard {
     public static void navigateToCustomers() {
         dashboardPage.clickOnCustomers();
     }
-
+    public static void navigateToOrder() {
+        dashboardPage.clickOnOrder();
+    }
     public static void selectSupplier(String supplierName){
         dashboardPage.clickOnSupplier(supplierName);
         dashboardPage.clickOnHayes();
