@@ -55,7 +55,7 @@ public class Settings {
         settingsPage.clickOnSaveChanges();
     }
 
-    public static void clickOnProfileUnderSettings(){
+    public static void clickOnProfileUnderSettings() throws InterruptedException {
         settingsPage.clickOnSettings();
         settingsPage.clickOnProfile();
     }
@@ -76,7 +76,7 @@ public class Settings {
         return settingsPage.getUpdateName();
     }
 
-    public static void clickOnRestaurantUnderSettings(){
+    public static void clickOnRestaurantUnderSettings() throws InterruptedException {
         settingsPage.clickOnSettings();
         settingsPage.clickOnRestuarent();
     }
@@ -113,7 +113,7 @@ public class Settings {
         settingsPage.fileUpload(path);
     }
 
-    public static void clickOnLocationsUnderSettings(){
+    public static void clickOnLocationsUnderSettings() throws InterruptedException {
         settingsPage.clickOnSettings();
         settingsPage.clickOnLocationsBtn();
     }

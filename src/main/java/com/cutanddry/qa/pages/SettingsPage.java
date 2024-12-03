@@ -63,8 +63,9 @@ public class SettingsPage extends LoginPage{
         restaurantUI.waitForCustom(4000);
     }
 
-    public void clickOnProfile(){
+    public void clickOnProfile() throws InterruptedException {
         restaurantUI.click(profileBtn);
+        restaurantUI.waitForCustom(1000);
     }
 
     public void editNameInProfile(String profileName){
@@ -89,8 +90,9 @@ public class SettingsPage extends LoginPage{
         return restaurantUI.getAttributeValue(profileTextField,"value");
     }
 
-    public void clickOnRestuarent(){
+    public void clickOnRestuarent() throws InterruptedException {
         restaurantUI.click(restaurantBtn);
+        restaurantUI.waitForCustom(1000);
     }
 
     public void editNameInRestaurant(String restaurantName){
@@ -122,8 +124,9 @@ public class SettingsPage extends LoginPage{
         restaurantUI.sendKeysHiddenElements(BrowseImgBtn, path);
     }
 
-    public void clickOnLocationsBtn(){
+    public void clickOnLocationsBtn() throws InterruptedException {
         restaurantUI.click(locationsBtn);
+        restaurantUI.waitForCustom(1000);
     }
 
     public void clickOnAddLocation(){
