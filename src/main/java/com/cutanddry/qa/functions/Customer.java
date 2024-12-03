@@ -28,6 +28,9 @@ public class Customer {
         customersPage.clickMinusQryFirstRow();
         customersPage.clickMinusQryFirstRow();
     }
+    public static void increaseFirstRowQtyByOneClassic() throws InterruptedException {
+        customersPage.clickPlusQryFirstRowClassic();
+    }
     @SneakyThrows
     public static void increaseCatalogQtyByThree(){
         customersPage.clickPlusCatalog();

@@ -124,7 +124,7 @@ public class CustomersPage extends LoginPage {
     By itemNotFoundTxt = By.xpath("//div[contains(text(),'No matches found')]");
     String catalogCardAddToOGBtn = "//div[text()='ITEMNAME']/../../..//button[@data-tip='Add to Order Guide']";
     By btn_close_ = By.xpath("//button[contains(@class, 'close')]/span[text()='×']");
-
+    By btn_increaseQtyFirstRowClassic = By.xpath("//tr[2]/td[7]/div/div/div/div[3]");
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -162,6 +162,11 @@ public class CustomersPage extends LoginPage {
 
     public void clickMinusQrySecondRow() throws InterruptedException {
         restaurantUI.click(btn_decreaseQtySecondRow);
+        restaurantUI.waitForCustom(4000);
+    }
+
+    public void clickPlusQryFirstRowClassic() throws InterruptedException {
+        restaurantUI.click(btn_increaseQtyFirstRowClassic);
         restaurantUI.waitForCustom(4000);
     }
 
