@@ -51,11 +51,10 @@ public class VerifyUniversalAppEmployeeRolesTest extends TestBase {
         softAssert.assertTrue(Dashboard.isUserNavigatedToDrafts(),"navigation to drafts error");
         Dashboard.navigateToChats();
         softAssert.assertTrue(Dashboard.isUserNavigatedToChats(),"navigation to chats error");
+        Settings.clickOnSettingsBtn();
+        softAssert.assertTrue(Settings.isNavigatedToProfileSetting(),"navigation to profile settings error");
         Support.goToSupportPage();
         softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
-        Login.navigateToOperator();
-        Settings.clickOnSettings();
-        softAssert.assertTrue(Settings.isNavigatedToProfileSetting(),"navigation to profile settings error");
         softAssert.assertAll();
     }
 

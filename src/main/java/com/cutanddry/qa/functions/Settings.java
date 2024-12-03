@@ -15,8 +15,8 @@ public class Settings {
         settingsPage.clickOnSettings();
         settingsPage.clickOnOrders();
     }
-    public static void clickOnSettings(){
-        settingsPage.clickOnSettings();
+    public static void clickOnSettingsBtn(){
+        settingsPage.clickOnSettingsBtn();
     }
     public static void setAfterCutOffTime()throws InterruptedException {
 

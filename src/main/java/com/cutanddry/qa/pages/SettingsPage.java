@@ -43,11 +43,14 @@ public class SettingsPage extends LoginPage{
     By txt_profile = By.xpath("//h2[text()='Profile']");
     By txt_restaurant = By.xpath("//h2[text()='Company Settings']");
     By txt_locations = By.xpath("//h2[text()='Locations']");
+    By btn_settings_ = By.xpath("//a[contains(@data-tip, 'Settings')]");
 
     public void clickOnSettings(){
         restaurantUI.click(btn_settings);
     }
-
+    public void clickOnSettingsBtn(){
+        restaurantUI.click(btn_settings_);
+    }
     public void clickOnOrders(){
         restaurantUI.click(btn_orders);
     }
