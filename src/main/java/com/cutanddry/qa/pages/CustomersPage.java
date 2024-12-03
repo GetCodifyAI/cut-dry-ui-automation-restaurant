@@ -165,8 +165,8 @@ public class CustomersPage extends LoginPage {
     }
 
     public void clickPlusCatalog() throws InterruptedException {
-        restaurantUI.click(btn_increaseQtyCatalog);
         restaurantUI.waitForCustom(4000);
+        restaurantUI.click(btn_increaseQtyCatalog);
     }
 
     public void clickMinusCatalog() throws InterruptedException {
@@ -206,9 +206,11 @@ public class CustomersPage extends LoginPage {
     }
 
     public void clickAddToCartCatalog() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_addToCart);
         restaurantUI.waitForClickability(btn_addToCart);
         restaurantUI.waitForCustom(4000);
         restaurantUI.click(btn_addToCart);
+        restaurantUI.waitForCustom(2000);
         restaurantUI.waitForElementEnabledState(btn_checkout, true);
     }
 
