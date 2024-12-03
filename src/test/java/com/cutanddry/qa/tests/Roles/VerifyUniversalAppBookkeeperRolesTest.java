@@ -51,6 +51,12 @@ public class VerifyUniversalAppBookkeeperRolesTest extends TestBase {
         softAssert.assertTrue(Dashboard.isUserNavigatedToDrafts(),"navigation to drafts error");
         Dashboard.navigateToChats();
         softAssert.assertTrue(Dashboard.isUserNavigatedToChats(),"navigation to chats error");
+        Users.clickAddUser();
+        softAssert.assertTrue(Users.selectEmployeeFromDropDown("Admin"),"users error");
+        softAssert.assertTrue(Users.selectEmployeeFromDropDown("Manager"),"users error");
+        softAssert.assertTrue(Users.selectEmployeeFromDropDown("Employee"),"users error");
+        softAssert.assertTrue(Users.selectEmployeeFromDropDown("Bookkeeper"),"users error");
+        Customer.clickClose();
         Support.goToSupportPage();
         softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
         Login.navigateToOperator();
