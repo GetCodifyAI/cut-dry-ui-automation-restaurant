@@ -33,9 +33,11 @@ public class VerifyGroupingProductsIntoTwoCartsTest extends TestBase{
         restaurantUI.switchToNewTab();
         Customer.clickOnPlaceOrder();
         Customer.searchItemOnOrderGuide(itemName_1);
+        Customer.addItemFromCatalogIfNotAvailableInOG(itemName_1);
         softAssert.assertTrue(Customer.getItemNameFirstRowWL().contains(itemName_1), "item 1 mismatch");
         Customer.increaseFirstRowQtyByOneInWL();
         Customer.searchItemOnOrderGuide(itemName_2);
+        Customer.addItemFromCatalogIfNotAvailableInOG(itemName_2);
         softAssert.assertTrue(Customer.getItemNameFirstRowWL().contains(itemName_2), "item 2 mismatch");
         Customer.increaseFirstRowQtyByOneInWL();
         Customer.checkoutItems();

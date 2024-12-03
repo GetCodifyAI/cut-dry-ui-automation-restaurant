@@ -76,4 +76,10 @@ public class Login {
         loginPage.clickOnBookkeeper();
         loginPage.clickOnLoginAsClassic();
     }
+    public static void goToDistributor(String distributor) throws InterruptedException {
+        loginPage.typeToSearchOnDistributor(distributor);
+        loginPage.clickOnDistributor(distributor);
+        loginPage.clickOnLoginAsSupplier();
+    }
+
 }

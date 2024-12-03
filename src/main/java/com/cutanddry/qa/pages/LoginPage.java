@@ -28,6 +28,10 @@ public class LoginPage extends TestBase {
     By txt_manager = By.xpath("//div[contains(text(), 'Aselabookkeeper4 - 131583036 - Manager - Restaurant(Test) - asela+bookkeeper4@cutanddry.com - null')]");
     By txt_employee = By.xpath("//div[contains(text(), 'Employee - 274855811 - Employee - Restaurant(Test) - kwu333@gmail.com - null')]");
     By txt_bookkeeper = By.xpath("//div[contains(text(), 'Pasan - 4357653 - Bookkeeper - Restaurant(Test) - pasan@cutanddry.com - null')]");
+    String txt_distributor = "(//div[contains(text(), 'DISTRIBUTOR_NAME')])[2]";
+
+
+
 
 
 
@@ -118,6 +122,10 @@ public class LoginPage extends TestBase {
     public void clickOnSunriseFood(){
         restaurantUI.click(txt_sunriseFoods);
     }
+    public void clickOnDistributor(String DP_Name){
+        restaurantUI.click(By.xpath(txt_distributor.replace("DISTRIBUTOR_NAME",DP_Name)));
+    }
+
 
     public void clickOnLoginAsSupplier() throws InterruptedException {
         restaurantUI.click(btn_LoginAsSupplier);

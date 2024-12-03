@@ -12,31 +12,33 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyTheMoreFiltersFeatureTest extends TestBase {
+public class VerifyTheOrderDetailsAddNotesTest extends TestBase {
     static User user;
-    static String location = "Hayes";
+    static String orderNote = "This is the order note !!!";
 
     @BeforeMethod
     public void setUp(){
         initialization();
         user = JsonUtil.readUserLogin();
     }
-    @Test(groups = "DOT-TC-552")
-    public void verifyTheMoreFiltersFeature() throws InterruptedException {
+    @Test(groups = "DOT-TC-560")
+    public void verifyTheOrderDetailsAddNotes() throws InterruptedException{
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
-        History.clickOnMoreFilters();
-        softAssert.assertTrue(History.isFilterOrdersPopupDisplayed(),"Filter Orders pop up error");
-        History.clickLocation();
-        History.clickOption();
-        History.clickSave();
-        softAssert.assertTrue(History.checkIfFilteredElementVisible(location), "location not found in the table.");
-        History.checkIfFilteredElementVisible(location);
+        History.clickOnFirstItemOfOrderHistory();
+        softAssert.assertTrue(History.isOrderSectionDisplayed(),"Order section not display");
+        History.clickAddNotes();
+        softAssert.assertTrue(History.isAddNotePopUpWindowDisplayed(),"Add Order Note Pop up window not display");
+        History.typeOrderNote(orderNote);
+        History.clickSaveChanges();
+        softAssert.assertTrue(History.checkOrderNoteVisible(orderNote),"Order note not found");
+        History.checkOrderNoteVisible(orderNote);
         softAssert.assertAll();
+
 
     }
     @AfterMethod
@@ -45,3 +47,5 @@ public class VerifyTheMoreFiltersFeatureTest extends TestBase {
         closeAllBrowsers();
     }
 }
+
+

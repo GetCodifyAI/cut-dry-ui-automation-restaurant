@@ -12,30 +12,26 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyTheMoreFiltersFeatureTest extends TestBase {
+public class VerifyTheOrderSearchFeatureTest extends TestBase {
     static User user;
-    static String location = "Hayes";
+    static String orderID;
 
     @BeforeMethod
     public void setUp(){
         initialization();
         user = JsonUtil.readUserLogin();
     }
-    @Test(groups = "DOT-TC-552")
-    public void verifyTheMoreFiltersFeature() throws InterruptedException {
+    @Test(groups = "DOT-TC-551")
+    public void verifyTheOrderSearchFeature() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         History.goToHistory();
+        orderID = History.getLastOrderRefNo();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
-        History.clickOnMoreFilters();
-        softAssert.assertTrue(History.isFilterOrdersPopupDisplayed(),"Filter Orders pop up error");
-        History.clickLocation();
-        History.clickOption();
-        History.clickSave();
-        softAssert.assertTrue(History.checkIfFilteredElementVisible(location), "location not found in the table.");
-        History.checkIfFilteredElementVisible(location);
+        History.searchOrderID(orderID);
+        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderID), "Order ID not found in the table.");
         softAssert.assertAll();
 
     }

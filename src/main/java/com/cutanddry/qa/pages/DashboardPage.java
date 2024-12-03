@@ -25,6 +25,9 @@ public class DashboardPage extends LoginPage{
     By btn_order = By.xpath("//a[@data-tip='Place Order']");
     String supplierTxt = "//tr[@class='_du1frc _14u3xd3 py-3']//div[text()='SUPPLIERNAME']";
     By MaxiesSLTxt = By.xpath("//div[@class='_hp19hv mx-3 aling-items-center d-flex']//span[@data-tip='Maxies SL']//div[text()='Maxies SL']");
+    By btn_Rewards = By.xpath("//a[contains(@data-tip, 'Rewards')]");
+    By txt_dp_dashboard = By.xpath("//h3[text()='Dashboard']");
+    By btn_credit_requests = By.xpath("//a[@data-for='sideNavSupplierMenuOptions' and @href='/credit-requests']");
     By users = By.xpath("//div[contains(text(),'Users')]");
 
     public boolean isDashboardTextDisplayed(){
@@ -145,6 +148,22 @@ public class DashboardPage extends LoginPage{
 
     public void clickOnUsers(){
         restaurantUI.click(users);
+    }
+
+    public void clickOnRewards(){
+        restaurantUI.click(btn_Rewards);
+    }
+
+    public boolean isDistributorDashboardTextDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_dp_dashboard);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_dp_dashboard);
+    }
+    public void clickOnCreditRequests(){
+        restaurantUI.click(btn_credit_requests);
     }
 
 }

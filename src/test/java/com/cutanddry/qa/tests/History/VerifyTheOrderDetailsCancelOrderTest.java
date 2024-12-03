@@ -2,6 +2,7 @@ package com.cutanddry.qa.tests.History;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
+import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.History;
 import com.cutanddry.qa.functions.Login;
@@ -12,31 +13,41 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyTheMoreFiltersFeatureTest extends TestBase {
+public class VerifyTheOrderDetailsCancelOrderTest extends TestBase {
     static User user;
-    static String location = "Hayes";
 
     @BeforeMethod
     public void setUp(){
         initialization();
         user = JsonUtil.readUserLogin();
     }
-    @Test(groups = "DOT-TC-552")
-    public void verifyTheMoreFiltersFeature() throws InterruptedException {
+    @Test(groups = "DOT-TC-558")
+    public void verifyTheOrderDetailsCancelOrder() throws InterruptedException{
+        String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Dashboard.navigateToIndependentFoodsCo();
+        Dashboard.navigateToOrderGuide();
+        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        itemName = Customer.getItemNameFirstRow();
+        Customer.increaseFirstRowQtyByOne();
+        Customer.checkoutItems();
+        softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
+        Customer.submitOrder();
+        softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
+        History.clickClose();
+
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
-        History.clickOnMoreFilters();
-        softAssert.assertTrue(History.isFilterOrdersPopupDisplayed(),"Filter Orders pop up error");
-        History.clickLocation();
-        History.clickOption();
-        History.clickSave();
-        softAssert.assertTrue(History.checkIfFilteredElementVisible(location), "location not found in the table.");
-        History.checkIfFilteredElementVisible(location);
+        History.clickOnFirstItemOfOrderHistory();
+        softAssert.assertTrue(History.isOrderSectionDisplayed(),"Order section not display");
+        History.clickCancel();
+        softAssert.assertTrue(History.isCancelOrderPopUpDisplayed(),"Cancel order pop up window not display");
+        History.clickConfirmCancelOrder();
         softAssert.assertAll();
+
 
     }
     @AfterMethod
@@ -45,3 +56,5 @@ public class VerifyTheMoreFiltersFeatureTest extends TestBase {
         closeAllBrowsers();
     }
 }
+
+
