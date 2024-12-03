@@ -54,8 +54,8 @@ public class VerifyUniversalAppEmployeeRolesTest extends TestBase {
         Support.goToSupportPage();
         softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
         Login.navigateToOperator();
-//        Settings.clickOnProfileUnderSettings();
-//        softAssert.assertTrue(Settings.isNavigatedToProfileSetting(),"navigation to profile settings error");
+        Settings.clickOnSettings();
+        softAssert.assertTrue(Settings.isNavigatedToProfileSetting(),"navigation to profile settings error");
         softAssert.assertAll();
     }
 

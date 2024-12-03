@@ -15,7 +15,9 @@ public class Settings {
         settingsPage.clickOnSettings();
         settingsPage.clickOnOrders();
     }
-
+    public static void clickOnSettings(){
+        settingsPage.clickOnSettings();
+    }
     public static void setAfterCutOffTime()throws InterruptedException {
 
         // LocalDateTime currentTime = LocalDateTime.now();

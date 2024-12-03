@@ -185,7 +185,6 @@ public class SettingsPage extends LoginPage{
         restaurantUI.click(btn_settings);
         restaurantUI.click(accountingBtn);
     }
-
     public boolean isNavigatedToAccountingCatagory(){
         return restaurantUI.isDisplayed(accountCatagory);
     }

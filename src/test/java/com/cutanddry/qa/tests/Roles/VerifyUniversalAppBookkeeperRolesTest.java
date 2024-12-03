@@ -13,7 +13,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyUniversalAppBookkeeperRolesTest extends TestBase {
     static User user;
     static String itemName = "Artichoke -24ct";
-    static String OperatorName = "kwu333@gmail.com";
+    static String OperatorName = "pasan";
 
     @BeforeMethod
     public void setUp(){
@@ -27,12 +27,15 @@ public class VerifyUniversalAppBookkeeperRolesTest extends TestBase {
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Login.navigateToLoginAs();
-        Login.loginAsEmployee(OperatorName);
+        Login.loginAsBookkeeper(OperatorName);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Customer.goToEdit();
+        softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
+        Customer.clickOnBackBtnInEditOrderGuide();
         Customer.searchItemOnOrderGuide(itemName);
         softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item mismatch");
         Customer.increaseFirstRowQtyByOne();
@@ -51,6 +54,8 @@ public class VerifyUniversalAppBookkeeperRolesTest extends TestBase {
         softAssert.assertTrue(Dashboard.isUserNavigatedToDrafts(),"navigation to drafts error");
         Dashboard.navigateToChats();
         softAssert.assertTrue(Dashboard.isUserNavigatedToChats(),"navigation to chats error");
+        Suppliers.goToSuppliers();
+        softAssert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"navigation to suppliers error");
         Users.clickAddUser();
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Admin"),"users error");
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Manager"),"users error");
