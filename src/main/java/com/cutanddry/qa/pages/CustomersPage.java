@@ -273,7 +273,6 @@ public class CustomersPage extends LoginPage {
     }
 
     public void clickYesDuplicatePopup() throws InterruptedException {
-        restaurantUI.waitForCustom(1000);
         restaurantUI.waitForClickability(btn_duplicateOrderYes);
         restaurantUI.click(btn_duplicateOrderYes);
         restaurantUI.waitForInvisibility(btn_duplicateOrderYes);

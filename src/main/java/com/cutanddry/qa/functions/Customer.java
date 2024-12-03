@@ -28,7 +28,12 @@ public class Customer {
         customersPage.clickMinusQryFirstRow();
         customersPage.clickMinusQryFirstRow();
     }
-    public static void increaseFirstRowQtyByOneClassic() throws InterruptedException {
+    public static void increaseFirstRowQtyBySixClassic() throws InterruptedException {
+        customersPage.clickPlusQryFirstRowClassic();
+        customersPage.clickPlusQryFirstRowClassic();
+        customersPage.clickPlusQryFirstRowClassic();
+        customersPage.clickPlusQryFirstRowClassic();
+        customersPage.clickPlusQryFirstRowClassic();
         customersPage.clickPlusQryFirstRowClassic();
     }
     @SneakyThrows
@@ -107,7 +112,12 @@ public class Customer {
     public static double getItemPriceReviewCartFirstRow(){
         return customersPage.getItemPriceReviewCartFirstRow();
     }
-    public static void submitOrder() throws InterruptedException {customersPage.submitOrder();if (customersPage.isDuplicatePopupDisplayed()){customersPage.clickYesDuplicatePopup();}}
+    public static void submitOrder() throws InterruptedException {
+        customersPage.submitOrder();
+        if (customersPage.isDuplicatePopupDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
+    }
     public static boolean isThankingForOrderPopupDisplayed(){return customersPage.isThankingForOrderPopupDisplayed();}
     public static void clickClose(){
         customersPage.clickCloseIcon();

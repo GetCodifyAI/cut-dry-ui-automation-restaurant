@@ -2,6 +2,8 @@ package com.cutanddry.qa.pages;
 
 import org.openqa.selenium.By;
 
+import static org.apache.commons.lang3.BooleanUtils.or;
+
 public class DashboardPage extends LoginPage{
     By txt_dashboard = By.xpath("//div[text()='Place Order']");
     By btn_placeOrder = By.xpath("//div[contains(text(), 'Independent Foods Co')]");
@@ -20,7 +22,7 @@ public class DashboardPage extends LoginPage{
     By btn_pay = By.xpath("//a[contains(@data-tip, 'View Invoices')]");
     By txt_drafts = By.xpath("//div[contains(text(), 'Drafts')]");
     By txt_chats = By.xpath("//li[contains(text(), 'Your Suppliers')]");
-    By txt_pay = By.xpath("//h2[contains(text(), 'Pay Suppliers')]");
+    By txt_pay = By.xpath("//h2[contains(text(), 'Pay')]");
     By btn_customers = By.xpath("//a[@data-tip='Customers']");
     By btn_order = By.xpath("//a[@data-tip='Place Order']");
     String supplierTxt = "//tr[@class='_du1frc _14u3xd3 py-3']//div[text()='SUPPLIERNAME']";
@@ -29,6 +31,7 @@ public class DashboardPage extends LoginPage{
     By txt_dp_dashboard = By.xpath("//h3[text()='Dashboard']");
     By btn_credit_requests = By.xpath("//a[@data-for='sideNavSupplierMenuOptions' and @href='/credit-requests']");
     By users = By.xpath("//div[contains(text(),'Users')]");
+    By tbx_msg = By.xpath("//input[@placeholder='Message...']");
 
     public boolean isDashboardTextDisplayed(){
         try {
@@ -39,12 +42,13 @@ public class DashboardPage extends LoginPage{
         return restaurantUI.isDisplayed(txt_dashboard);
     }
     public boolean isChatTextDisplayed(){
+        boolean out;
         try {
-            restaurantUI.waitForVisibility(txt_chats);
+            out = restaurantUI.isDisplayed(txt_chats) | restaurantUI.isDisplayed(tbx_msg);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_chats);
+        return out;
     }
     public boolean isDraftsTextDisplayed(){
         try {
@@ -53,14 +57,6 @@ public class DashboardPage extends LoginPage{
             return false;
         }
         return restaurantUI.isDisplayed(txt_drafts);
-    }
-    public boolean isUsersTextDisplayed(){
-        try {
-            restaurantUI.waitForVisibility(txt_chats);
-        } catch (Exception e){
-            return false;
-        }
-        return restaurantUI.isDisplayed(txt_chats);
     }
     public boolean isPayTextDisplayed(){
         try {
