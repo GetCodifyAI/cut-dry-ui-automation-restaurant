@@ -107,7 +107,7 @@ public class Customer {
     public static void submitOrder(){customersPage.submitOrder();if (customersPage.isDuplicatePopupDisplayed()){customersPage.clickYesDuplicatePopup();}}
     public static boolean isThankingForOrderPopupDisplayed(){return customersPage.isThankingForOrderPopupDisplayed();}
     public static void clickClose(){
-        customersPage.clickClose();
+        customersPage.clickCloseIcon();
     }
     public static void clickCompanyDropdown(){
         customersPage.clickCompanyDropdown();

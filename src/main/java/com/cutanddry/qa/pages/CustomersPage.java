@@ -270,10 +270,10 @@ public class CustomersPage extends LoginPage {
             return false;
         }
     }
-    public void clickClose(){
-        restaurantUI.waitForVisibility(btn_close);
-        restaurantUI.click(btn_close);
-        restaurantUI.waitForInvisibility(btn_close);
+    public void clickCloseIcon(){
+        restaurantUI.waitForVisibility(btn_close_);
+        restaurantUI.click(btn_close_);
+        restaurantUI.waitForInvisibility(btn_close_);
         restaurantUI.refreshPage();
     }
     public void submitOrder() {

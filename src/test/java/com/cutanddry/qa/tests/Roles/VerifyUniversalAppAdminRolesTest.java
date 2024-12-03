@@ -65,7 +65,7 @@ public class VerifyUniversalAppAdminRolesTest extends TestBase {
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Bookkeeper"),"users error");
         Support.goToSupportPage();
         softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
-        Login.navigateToOperator();
+        restaurantUI.switchToNewTab();
         Dashboard.navigateToReports();
         softAssert.assertTrue(Reports.disabledGenerateReport(),"error in  generate report button");
         Login.navigateToOperator();
