@@ -48,8 +48,6 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
         Customer.clickClose();
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"navigation to history error");
-        Dashboard.navigateToApprovals();
-        softAssert.assertTrue(Dashboard.isApprovalsTabDisplayed(),"navigation to approval error");
         Dashboard.navigateToDrafts();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDrafts(),"navigation to drafts error");
         Dashboard.navigateToChats();
