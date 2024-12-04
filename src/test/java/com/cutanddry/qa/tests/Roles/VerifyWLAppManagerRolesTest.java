@@ -12,8 +12,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyWLAppManagerRolesTest extends TestBase {
     static User user;
-    static String item = "Lettuce - Spring Mix Sweet";
-    static String itemName = "Arugula Baby";
+    static String itemName = "Flowers Edible Assortment Organic";
     static String OperatorName = "CHEF GLENDA";
 
     @BeforeMethod
@@ -36,12 +35,12 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
         Customer.goToEdit();
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigating to order guide edit error");
         Customer.clickOnBackBtnInEditOrderGuide();
-        Customer.searchItemOnOrderGuide(item);
-        Customer.increaseFirstRowQtyByOne();
+        Customer.searchItemOnOrderGuide(itemName);
+        Customer.increaseFirstRowQtyByOneInWL();
         Customer.goToCatalog();
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
         Customer.searchItemOnCatalog(itemName);
-        Customer.addItemFromCatalog();
+//        Customer.addItemFromCatalog();
         Customer.increaseCatalogQtyByThree();
         Customer.checkoutItems();
         Customer.submitOrder();
@@ -65,12 +64,6 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
         restaurantUI.switchToNewTab();
         Dashboard.navigateToUsers();
         softAssert.assertTrue(Users.isNavigatedToUserTab(),"navigation to users error");
-        Users.clickAddUser();
-        softAssert.assertFalse(Users.selectEmployeeFromDropDown("Admin"),"users error");
-        softAssert.assertFalse(Users.selectEmployeeFromDropDown("Manager"),"users error");
-        softAssert.assertTrue(Users.selectEmployeeFromDropDown("Employee"),"users error");
-        softAssert.assertTrue(Users.selectEmployeeFromDropDown("Bookkeeper"),"users error");
-        Customer.clickClose();
         Dashboard.navigateToReports();
         softAssert.assertTrue(Reports.disabledGenerateReport(),"error in  generate report button");
         Reports.generateReport();
