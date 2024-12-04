@@ -55,6 +55,14 @@ public class VerifyWLAppBookkeeperRolesTest extends TestBase {
         softAssert.assertTrue(Dashboard.isUserNavigatedToChats(),"navigation to chats error");
         Dashboard.navigateToPay();
         softAssert.assertTrue(Dashboard.isUserNavigatedToPay(),"navigation to pay error");
+        Settings.clickOnProfileUnderSettings();
+        softAssert.assertTrue(Settings.isNavigatedToProfileSetting(),"navigation to profile settings error");
+        Settings.clickOnRestaurantUnderSettings();
+        softAssert.assertTrue(Settings.isNavigatedToRestaurantSettings(),"navigation to restaurant settings error");
+        Settings.clickOnLocationsUnderSettings();
+        softAssert.assertTrue(Settings.isNavigatedToLocationSettings(),"navigation to loc settings error");
+        restaurantUI.switchToNewTab();
+        restaurantUI.switchToNewTab();
         Dashboard.navigateToUsers();
         softAssert.assertTrue(Users.isNavigatedToUserTab(),"navigation to users error");
         Users.clickAddUser();
@@ -63,12 +71,14 @@ public class VerifyWLAppBookkeeperRolesTest extends TestBase {
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Employee"),"users error");
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Bookkeeper"),"users error");
         Customer.clickClose();
-        Settings.clickOnProfileUnderSettings();
-        softAssert.assertTrue(Settings.isNavigatedToProfileSetting(),"navigation to profile settings error");
-        Settings.clickOnRestaurantUnderSettings();
-        softAssert.assertTrue(Settings.isNavigatedToRestaurantSettings(),"navigation to restaurant settings error");
-        Settings.clickOnLocationsUnderSettings();
-        softAssert.assertTrue(Settings.isNavigatedToLocationSettings(),"navigation to loc settings error");
+        Dashboard.navigateToReports();
+        softAssert.assertTrue(Reports.disabledGenerateReport(),"error in  generate report button");
+        Reports.generateReport();
+        Reports.clickOnDropdownReportType();
+        softAssert.assertTrue(Reports.isReportTypeDisplayed("monthly expenses by vendor"),"report type error");
+        softAssert.assertTrue(Reports.isReportTypeDisplayed("monthly expenses by location"),"report type error");
+        softAssert.assertTrue(Reports.isReportTypeDisplayed("expenses by product"),"report type error");
+        softAssert.assertTrue(Reports.isReportTypeDisplayed("expenses by employee"),"report type error");
         softAssert.assertAll();
     }
 

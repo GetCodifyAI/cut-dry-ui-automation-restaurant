@@ -84,8 +84,6 @@ public class VerifyWLAppAdminRolesTest extends TestBase {
         softAssert.assertTrue(Reports.isReportTypeDisplayed("monthly expenses by location"),"report type error");
         softAssert.assertTrue(Reports.isReportTypeDisplayed("expenses by product"),"report type error");
         softAssert.assertTrue(Reports.isReportTypeDisplayed("expenses by employee"),"report type error");
-
-
         softAssert.assertAll();
     }
 
