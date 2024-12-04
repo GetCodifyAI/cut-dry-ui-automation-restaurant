@@ -21,7 +21,7 @@ public class VerifyWLAppBookkeeperRolesTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-643")
+    @Test(groups = "DOT-TC-644")
     public void VerifyWLAppBookkeeperRoles() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());

@@ -10,10 +10,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyWLAppAdminRolesTest extends TestBase {
+public class VerifyWLAppManagerRolesTest extends TestBase {
     static User user;
     static String itemName = "Artichoke -24ct";
-    static String OperatorName = "Amir IFC WL";
+    static String OperatorName = "CHEF GLENDA";
 
     @BeforeMethod
     public void setUp(){
@@ -21,14 +21,14 @@ public class VerifyWLAppAdminRolesTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-643")
+    @Test(groups = "DOT-TC-646")
     public void VerifyUniversalAppAdminRoles() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
-        Login.loginAsAdminWL(OperatorName);
+        Login.loginAsManagerWL(OperatorName);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
@@ -67,10 +67,6 @@ public class VerifyWLAppAdminRolesTest extends TestBase {
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Employee"),"users error");
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Bookkeeper"),"users error");
         Customer.clickClose();
-        restaurantUI.switchToNewTab();
-        Dashboard.navigateToReports();
-        softAssert.assertTrue(Reports.disabledGenerateReport(),"error in  generate report button");
-        restaurantUI.switchToNewTab();
         Settings.clickOnProfileUnderSettings();
         softAssert.assertTrue(Settings.isNavigatedToProfileSetting(),"navigation to profile settings error");
         Settings.clickOnRestaurantUnderSettings();

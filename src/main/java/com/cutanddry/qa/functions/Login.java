@@ -81,7 +81,7 @@ public class Login {
         loginPage.clickOnDistributor(distributor);
         loginPage.clickOnLoginAsSupplier();
     }
-    public static void loginAsMAdminWL(String operator) throws InterruptedException {
+    public static void loginAsAdminWL(String operator) throws InterruptedException {
         loginPage.typeToSearchOnOperator(operator);
         loginPage.clickOnAdminWL();
         loginPage.clickOnLoginAsWhiteLabel();
