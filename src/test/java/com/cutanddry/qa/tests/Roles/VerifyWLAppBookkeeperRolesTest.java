@@ -10,10 +10,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyWLAppAdminRolesTest extends TestBase {
+public class VerifyWLAppBookkeeperRolesTest extends TestBase {
     static User user;
     static String itemName = "Artichoke -24ct";
-    static String OperatorName = "Amir IFC WL";
+    static String OperatorName = "Brandon IFC White";
 
     @BeforeMethod
     public void setUp(){
@@ -22,13 +22,13 @@ public class VerifyWLAppAdminRolesTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-643")
-    public void VerifyUniversalAppAdminRoles() throws InterruptedException {
+    public void VerifyWLAppBookkeeperRoles() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
-        Login.loginAsMAdminWL(OperatorName);
+        Login.loginAsBookkeeperWL(OperatorName);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
@@ -49,16 +49,12 @@ public class VerifyWLAppAdminRolesTest extends TestBase {
         Customer.clickClose();
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"navigation to history error");
-        Dashboard.navigateToApprovals();
-        softAssert.assertTrue(Dashboard.isApprovalsTabDisplayed(),"navigation to approval error");
         Dashboard.navigateToDrafts();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDrafts(),"navigation to drafts error");
         Dashboard.navigateToChats();
         softAssert.assertTrue(Dashboard.isUserNavigatedToChats(),"navigation to chats error");
         Dashboard.navigateToPay();
         softAssert.assertTrue(Dashboard.isUserNavigatedToPay(),"navigation to pay error");
-        Suppliers.goToSuppliers();
-        softAssert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"navigation to suppliers error");
         Dashboard.navigateToUsers();
         softAssert.assertTrue(Users.isNavigatedToUserTab(),"navigation to users error");
         Users.clickAddUser();

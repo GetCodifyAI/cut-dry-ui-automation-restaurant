@@ -36,9 +36,6 @@ public class LoginPage extends TestBase {
 
 
 
-
-
-
     public void typeEmailOrMobile(String emailOrMobile){
         restaurantUI.sendKeys(txt_emailOrMobile,emailOrMobile);
     }
