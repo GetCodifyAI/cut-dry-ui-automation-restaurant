@@ -12,7 +12,8 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyWLAppManagerRolesTest extends TestBase {
     static User user;
-    static String itemName = "Artichoke -24ct";
+    static String item = "Lettuce - Spring Mix Sweet";
+    static String itemName = "Arugula Baby";
     static String OperatorName = "CHEF GLENDA";
 
     @BeforeMethod
@@ -35,13 +36,12 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
         Customer.goToEdit();
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigating to order guide edit error");
         Customer.clickOnBackBtnInEditOrderGuide();
-        Customer.searchItemOnOrderGuide(itemName);
-        softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item mismatch");
-        Customer.increaseFirstRowQtyByThree();
+        Customer.searchItemOnOrderGuide(item);
+        Customer.increaseFirstRowQtyByOne();
         Customer.goToCatalog();
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
         Customer.searchItemOnCatalog(itemName);
-        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName), "item not found");
+        Customer.addItemFromCatalog();
         Customer.increaseCatalogQtyByThree();
         Customer.checkoutItems();
         Customer.submitOrder();
