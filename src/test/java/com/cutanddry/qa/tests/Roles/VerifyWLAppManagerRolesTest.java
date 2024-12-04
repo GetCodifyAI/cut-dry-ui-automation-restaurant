@@ -27,7 +27,6 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.isUserNavigatedToDashboard();
-        Login.settingsWLGateKeeper();
         Login.navigateToLoginAs();
         Login.loginAsManagerWL(OperatorName);
         restaurantUI.switchToNewTab();
