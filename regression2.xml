@@ -55,6 +55,10 @@
             <class name="com.cutanddry.qa.tests.Roles.VerifyUniversalAppManagerRolesTest" />
             <class name="com.cutanddry.qa.tests.Roles.VerifyUniversalAppBookkeeperRolesTest" />
             <class name="com.cutanddry.qa.tests.Roles.VerifyUniversalAppEmployeeRolesTest" />
+            <class name="com.cutanddry.qa.tests.Roles.VerifyWLAppAdminRolesTest" />
+            <class name="com.cutanddry.qa.tests.Roles.VerifyWLAppBookkeeperRolesTest" />
+            <class name="com.cutanddry.qa.tests.Roles.VerifyWLAppEmployeeRolesTest" />
+            <class name="com.cutanddry.qa.tests.Roles.VerifyWLAppManagerRolesTest" />
         </classes>
     </test>
 </suite>
