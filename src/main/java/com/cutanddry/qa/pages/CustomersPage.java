@@ -28,7 +28,7 @@ public class CustomersPage extends LoginPage {
     By btn_decreaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[1]");
     By tbx_itemQuantityReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[2]/input");
     By lbl_itemPriceReviewCartFirstRow = By.xpath("//tr[2]/td[3]/div/span");
-    By btn_submitOrder = By.xpath("//button[contains(text(),'Submit Order')]");
+    By btn_submitOrder = By.xpath("//button[contains(text(),'Submit')]");
     By btn_duplicateOrderYes = By.xpath("//button[contains(text(), 'Yes')]");
     By lbl_thankYouForOrder = By.xpath("//*[contains(text(),'Thank you for your order!')]");
     By btn_companyDropdown = By.xpath("//button[.//span[text()='Company:']]");

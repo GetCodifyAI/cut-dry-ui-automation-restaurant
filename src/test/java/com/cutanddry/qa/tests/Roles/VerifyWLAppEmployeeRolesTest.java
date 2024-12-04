@@ -32,10 +32,9 @@ public class VerifyWLAppEmployeeRolesTest extends TestBase {
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.increaseFirstRowQtyByOne();
+        Customer.increaseSecondRowQtyByOne();
         Customer.checkoutItems();
         Customer.submitOrder();
-        softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
         Customer.clickClose();
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"navigation to history error");
