@@ -101,4 +101,7 @@ public class Login {
         loginPage.clickOnBookkeeperWL();
         loginPage.clickOnLoginAsWhiteLabel();
     }
+    public static void settingsWLGateKeeper(){
+        loginPage.settingsWLGateKeeper();
+    }
 }

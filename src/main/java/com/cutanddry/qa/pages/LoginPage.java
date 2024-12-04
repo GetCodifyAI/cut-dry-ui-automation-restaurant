@@ -33,8 +33,8 @@ public class LoginPage extends TestBase {
     By txt_managerWL = By.xpath("//div[contains(text(), 'CHEF GLENDA - 211953812 - Manager - 110 Reserve Bar - WOODLAND PARK -  - 17192353155')]");
     By txt_bookkeeperWL = By.xpath("//div[contains(text(), 'Brandon IFC White - 170465895 - Owner - IFC Operator Demo - brandon@cutanddry.com - 12345678910')]");
     By txt_employeeWL = By.xpath("//div[contains(text(), 'Hadley Ifc Employee - 274597299 - Employee - IFC Operator Demo - hadley+employee@cutanddry.com - null')]");
-
-
+    By lbl_activeVV = By.xpath("(//input[@value='active_for_all_vv'])[1]");
+    By lbl_activeVVChecked = By.xpath("(//input[@value='active_for_all_vv' and @checked])[1]");
 
     public void typeEmailOrMobile(String emailOrMobile){
         restaurantUI.sendKeys(txt_emailOrMobile,emailOrMobile);
@@ -146,5 +146,11 @@ public class LoginPage extends TestBase {
     }
     public void navigateToOperator(){
         restaurantUI.openURL(Constants.MAIN_URL);
+    }
+    public void settingsWLGateKeeper(){
+        restaurantUI.openURL(Constants.GATE_KEEPER_URL);
+        if (restaurantUI.isDisplayed(lbl_activeVVChecked)){
+            restaurantUI.click(lbl_activeVV);
+        }
     }
 }
