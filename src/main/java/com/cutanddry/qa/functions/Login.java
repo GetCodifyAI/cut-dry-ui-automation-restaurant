@@ -101,7 +101,7 @@ public class Login {
         loginPage.clickOnBookkeeperWL();
         loginPage.clickOnLoginAsWhiteLabel();
     }
-    public static void settingsWLGateKeeper(){
+    public static void settingsWLGateKeeper() throws InterruptedException {
         loginPage.settingsWLGateKeeper();
     }
 }

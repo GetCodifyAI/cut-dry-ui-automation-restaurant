@@ -19,7 +19,12 @@ public class Reports {
         ReportsPage.clickOnDropdownReportType();
         ReportsPage.clickOnMonthlyExpensesByVendor();
     }
-
+    public static void clickOnDropdownReportType(){
+        ReportsPage.clickOnDropdownReportType();
+    }
+    public static boolean isReportTypeDisplayed(String txt){
+        return ReportsPage.isReportTypeDisplayed(txt);
+    }
     public static boolean isMonthlyExpensesByVendorDisplayed(){
         return ReportsPage.isMonthlyExpensesByVendorDisplayed();
     }

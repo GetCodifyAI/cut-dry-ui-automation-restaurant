@@ -14,6 +14,9 @@ public class ReportsPage extends TestBase {
     By btn_csv = By.xpath("//a[contains(text(), 'CSV') and @data-id='__csv']");
     By txt_csv = By.xpath("//button[contains(., 'CSV')]");
     By txt_reports = By.xpath("//li[contains(text(),'Reports')]");
+    String txt_option = "//a[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'TXT')]";
+
+
 
     public boolean isReportingTextDisplayed(){
         try {
@@ -53,7 +56,14 @@ public class ReportsPage extends TestBase {
         }
         return restaurantUI.isDisplayed(txt_monthlyExpensesByVendor);
     }
-
+    public boolean isReportTypeDisplayed(String txt){
+        try {
+            restaurantUI.waitForVisibility(By.xpath(txt_option.replace("TXT", txt)));
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(By.xpath(txt_option.replace("TXT", txt)));
+    }
     public void clickOnDropdownTable(){
         restaurantUI.click(btn_table);
     }
