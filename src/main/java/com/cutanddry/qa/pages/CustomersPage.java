@@ -125,6 +125,8 @@ public class CustomersPage extends LoginPage {
     String catalogCardAddToOGBtn = "//div[text()='ITEMNAME']/../../..//button[@data-tip='Add to Order Guide']";
     By btn_close_ = By.xpath("//button[contains(@class, 'close')]/span[text()='×']");
     By btn_increaseQtyFirstRowClassic = By.xpath("//tr[2]/td[7]/div/div/div/div[3]");
+    By lbl_caseMinNotMet = By.xpath("//h2[contains(text(), 'Case Minimum Not Met')]");
+
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -135,7 +137,9 @@ public class CustomersPage extends LoginPage {
     public void clickPreviousDraftOrderNo() throws InterruptedException {
         restaurantUI.click(btn_previousDraftOrderNo);
     }
-
+    public boolean caseMinNotMetDisplayed() throws InterruptedException {
+        return restaurantUI.isDisplayed(lbl_caseMinNotMet);
+    }
     public String getItemNameFirstRow() {
         try {
             restaurantUI.waitForCustom(2000);

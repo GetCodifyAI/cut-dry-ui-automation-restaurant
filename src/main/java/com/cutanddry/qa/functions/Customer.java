@@ -114,6 +114,9 @@ public class Customer {
     }
     public static void submitOrder() throws InterruptedException {
         customersPage.submitOrder();
+        if (customersPage.caseMinNotMetDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
         if (customersPage.isDuplicatePopupDisplayed()){
             customersPage.clickYesDuplicatePopup();
         }
