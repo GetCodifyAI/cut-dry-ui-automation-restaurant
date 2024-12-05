@@ -6,6 +6,7 @@
         <listener class-name="com.cutanddry.qa.utils.AIOSampleUIMethodListener"/>
     </listeners>
     <test name="operator tests">
+        <parameter name="PART" value="Part One" />
         <classes>
             <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantLoginTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmOrderGuideTest" />
@@ -24,7 +25,6 @@
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyHidingAnItemFromOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyUnhideItemsFromOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSearchFeatureTest" />
-            <class name="com.cutanddry.qa.tests.Support.RestaurantSupportTest" />
             <class name="com.cutanddry.qa.tests.SignIn.VerifyForgotPasswordValidTest" />
             <class name="com.cutanddry.qa.tests.SignIn.VerifyForgotPasswordInvalidTest" />
             <class name="com.cutanddry.qa.tests.SignIn.VerifyForgotPasswordUnauthorizedTest" />
@@ -59,21 +59,6 @@
             <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForWhiteLabelOperatorTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForClassicOperatorTestTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForWhiteLabelOperatorTest" />
-            <class name="com.cutanddry.qa.tests.MultiCart.VerifyCreatedOrdersFromMultipleCartsTest" />
-            <class name="com.cutanddry.qa.tests.MultiCart.VerifyGroupingProductsIntoTwoCartsTest" />
-            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierOrderSubmissionTest" />
-            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierOrderGuideEditTest" />
-            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierCartEditTest" />
-            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierCartDeleteTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheCutOffTimeForPickup" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePickUpDisplayTerm" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePickUpSubmit" />
-            <class name="com.cutanddry.qa.tests.Suppliers.VerifyAddingSupplierTest" />
-            <class name="com.cutanddry.qa.tests.Suppliers.VerifyEditingSupplierTest" />
-            <class name="com.cutanddry.qa.tests.Suppliers.VerifyDeletingSupplierTest" />
-            <class name="com.cutanddry.qa.tests.units.VerifyOrderItemUnitsTest" />
-
-
         </classes>
     </test>
 </suite>

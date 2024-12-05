@@ -16,7 +16,7 @@ public class VerifyCreatedOrdersFromMultipleCartsTest extends TestBase{
     static User user;
     static String OperatorName = "(explorer) - Bermuda Biological Station";
     static String itemName_1 = "Beef Bouillon Cubes";
-    static String itemName_2 = "All Purpose Flour";
+    static String itemName_2 = "Sugar Dark Brown";
     static int orderCount = 2;
 
     @BeforeMethod
@@ -34,9 +34,11 @@ public class VerifyCreatedOrdersFromMultipleCartsTest extends TestBase{
         restaurantUI.switchToNewTab();
         Customer.clickOnPlaceOrder();
         Customer.searchItemOnOrderGuide(itemName_1);
+        Customer.addItemFromCatalogIfNotAvailableInOG(itemName_1);
         softAssert.assertTrue(Customer.getItemNameFirstRowWL().contains(itemName_1), "item 1 mismatch");
         Customer.increaseFirstRowQtyByOneInWL();
         Customer.searchItemOnOrderGuide(itemName_2);
+        Customer.addItemFromCatalogIfNotAvailableInOG(itemName_2);
         softAssert.assertTrue(Customer.getItemNameFirstRowWL().contains(itemName_2), "item 2 mismatch");
         Customer.increaseFirstRowQtyByOneInWL();
         Customer.checkoutItems();

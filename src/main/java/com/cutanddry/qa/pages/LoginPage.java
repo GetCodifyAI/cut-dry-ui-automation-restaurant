@@ -25,6 +25,8 @@ public class LoginPage extends TestBase {
     By tbx_distributorSearch = By.xpath("//input[@id='react-select-2-input']");
     By txt_sunriseFoods = By.xpath("//div[contains(text(), '195998346 - Cut+Dry Agent - Sunrise Food Service Inc')]");
     By btn_LoginAsSupplier = By.xpath("//a[contains(text(), 'Login As (supplier)')]");
+    String txt_distributor = "(//div[contains(text(), 'DISTRIBUTOR_NAME')])[2]";
+
 
 
 
@@ -109,9 +111,14 @@ public class LoginPage extends TestBase {
     public void clickOnSunriseFood(){
         restaurantUI.click(txt_sunriseFoods);
     }
+    public void clickOnDistributor(String DP_Name){
+        restaurantUI.click(By.xpath(txt_distributor.replace("DISTRIBUTOR_NAME",DP_Name)));
+    }
+
 
     public void clickOnLoginAsSupplier() throws InterruptedException {
         restaurantUI.click(btn_LoginAsSupplier);
+        restaurantUI.switchToNewTab();
 //        restaurantUI.closeBrowser();
 //        restaurantUI.waitForCustom(4000);
     }

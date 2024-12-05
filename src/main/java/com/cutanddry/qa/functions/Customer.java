@@ -438,4 +438,8 @@ public class Customer {
         customersPage.waitForCutOffTimeToBeOver();
     }
 
+    public static void addItemFromCatalogIfNotAvailableInOG(String itemName){
+        customersPage.clickItemFromCatalogIfNotAvailableInOG(itemName);
+    }
+
 }
