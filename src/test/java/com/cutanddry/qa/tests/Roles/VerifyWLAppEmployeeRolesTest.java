@@ -12,7 +12,6 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyWLAppEmployeeRolesTest extends TestBase {
     static User user;
-    static String itemName = "Artichoke -24ct";
     static String OperatorName = "Hadley Ifc Employee";
 
     @BeforeMethod
