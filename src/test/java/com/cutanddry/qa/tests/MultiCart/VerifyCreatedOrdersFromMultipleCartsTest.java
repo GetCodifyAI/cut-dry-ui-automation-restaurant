@@ -16,7 +16,7 @@ public class VerifyCreatedOrdersFromMultipleCartsTest extends TestBase{
     static User user;
     static String OperatorName = "(explorer) - Bermuda Biological Station";
     static String itemName_1 = "Beef Bouillon Cubes";
-    static String itemName_2 = "All Purpose Flour";
+    static String itemName_2 = "Sugar Dark Brown";
     static int orderCount = 2;
 
     @BeforeMethod
