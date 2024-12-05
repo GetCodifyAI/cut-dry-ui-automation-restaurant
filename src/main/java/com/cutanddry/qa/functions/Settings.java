@@ -15,7 +15,9 @@ public class Settings {
         settingsPage.clickOnSettings();
         settingsPage.clickOnOrders();
     }
-
+    public static void clickOnSettingsBtn(){
+        settingsPage.clickOnSettingsBtn();
+    }
     public static void setAfterCutOffTime()throws InterruptedException {
 
         // LocalDateTime currentTime = LocalDateTime.now();
@@ -55,7 +57,7 @@ public class Settings {
         settingsPage.clickOnSaveChanges();
     }
 
-    public static void clickOnProfileUnderSettings(){
+    public static void clickOnProfileUnderSettings() throws InterruptedException {
         settingsPage.clickOnSettings();
         settingsPage.clickOnProfile();
     }
@@ -76,7 +78,7 @@ public class Settings {
         return settingsPage.getUpdateName();
     }
 
-    public static void clickOnRestaurantUnderSettings(){
+    public static void clickOnRestaurantUnderSettings() throws InterruptedException {
         settingsPage.clickOnSettings();
         settingsPage.clickOnRestuarent();
     }
@@ -113,7 +115,7 @@ public class Settings {
         settingsPage.fileUpload(path);
     }
 
-    public static void clickOnLocationsUnderSettings(){
+    public static void clickOnLocationsUnderSettings() throws InterruptedException {
         settingsPage.clickOnSettings();
         settingsPage.clickOnLocationsBtn();
     }
@@ -176,6 +178,17 @@ public class Settings {
 
     public static boolean isNavigatedToAccountingCatagoryPage(){
         return settingsPage.isNavigatedToAccountingCatagory();
+    }
+
+    public static boolean isNavigatedToProfileSetting(){
+        return settingsPage.isNavigatedToProfileSetting();
+    }
+
+    public static boolean isNavigatedToRestaurantSettings(){
+        return settingsPage.isNavigatedToRestaurantSettings();
+    }
+    public static boolean isNavigatedToLocationSettings(){
+        return settingsPage.isNavigatedToLocationSettings();
     }
 
     public static int getAccountingCategoryCount(){

@@ -19,7 +19,7 @@ public class RestaurantSupportTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-108")
-    public void supportPageRestaurant() {
+    public void supportPageRestaurant() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");

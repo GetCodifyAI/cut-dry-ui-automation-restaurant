@@ -25,12 +25,16 @@ public class LoginPage extends TestBase {
     By tbx_distributorSearch = By.xpath("//input[@id='react-select-2-input']");
     By txt_sunriseFoods = By.xpath("//div[contains(text(), '195998346 - Cut+Dry Agent - Sunrise Food Service Inc')]");
     By btn_LoginAsSupplier = By.xpath("//a[contains(text(), 'Login As (supplier)')]");
+    By txt_manager = By.xpath("//div[contains(text(), 'Aselabookkeeper4 - 131583036 - Manager - Restaurant(Test) - asela+bookkeeper4@cutanddry.com - null')]");
+    By txt_employee = By.xpath("//div[contains(text(), 'Employee - 274855811 - Employee - Restaurant(Test) - kwu333@gmail.com - null')]");
+    By txt_bookkeeper = By.xpath("//div[contains(text(), 'Pasan - 4357653 - Bookkeeper - Restaurant(Test) - pasan@cutanddry.com - null')]");
     String txt_distributor = "(//div[contains(text(), 'DISTRIBUTOR_NAME')])[2]";
-
-
-
-
-
+    By txt_adminWL = By.xpath("//div[contains(text(), 'Amir IFC WL - 246613671 - Owner - IFC Operator Demo - amir@cutanddry.com - 14082091996')]");
+    By txt_managerWL = By.xpath("//div[contains(text(), 'CHEF GLENDA - 211953812 - Manager - 110 Reserve Bar - WOODLAND PARK -  - 17192353155')]");
+    By txt_bookkeeperWL = By.xpath("//div[contains(text(), 'Brandon IFC White - 170465895 - Owner - IFC Operator Demo - brandon@cutanddry.com - 12345678910')]");
+    By txt_employeeWL = By.xpath("//div[contains(text(), 'Hadley Ifc Employee - 274597299 - Employee - IFC Operator Demo - hadley+employee@cutanddry.com - null')]");
+    By lbl_activeVV = By.xpath("//tbody/tr[1]/td[3]/ul[2]/li/label/input[@value='active_for_all_vv']");
+    By lbl_activeVVChecked = By.xpath("//tbody/tr[1]/td[3]/ul[2]/li/label/input[@value='active_for_all_vv' and @checked]");
 
     public void typeEmailOrMobile(String emailOrMobile){
         restaurantUI.sendKeys(txt_emailOrMobile,emailOrMobile);
@@ -82,11 +86,30 @@ public class LoginPage extends TestBase {
     public void clickOnJoshuaClayton(){
         restaurantUI.click(txt_joshuaClayton);
     }
-
+    public void clickOnManager(){
+        restaurantUI.click(txt_manager);
+    }
+    public void clickOnEmployee(){
+        restaurantUI.click(txt_employee);
+    }
+    public void clickOnBookkeeper(){
+        restaurantUI.click(txt_bookkeeper);
+    }
     public void clickOnStephanieCollins(){
         restaurantUI.click(txt_stephanieCollins);
     }
-
+    public void clickOnAdminWL(){
+        restaurantUI.click(txt_adminWL);
+    }
+    public void clickOnManagerWL(){
+        restaurantUI.click(txt_managerWL);
+    }
+    public void clickOnEmployeeWL(){
+        restaurantUI.click(txt_employeeWL);
+    }
+    public void clickOnBookkeeperWL(){
+        restaurantUI.click(txt_bookkeeperWL);
+    }
     public void clickOnLoginAsClassic() throws InterruptedException {
         restaurantUI.click(btn_LoginAsClassic);
 //        restaurantUI.closeBrowser();
@@ -118,8 +141,19 @@ public class LoginPage extends TestBase {
 
     public void clickOnLoginAsSupplier() throws InterruptedException {
         restaurantUI.click(btn_LoginAsSupplier);
-        restaurantUI.switchToNewTab();
 //        restaurantUI.closeBrowser();
 //        restaurantUI.waitForCustom(4000);
+    }
+    public void navigateToOperator(){
+        restaurantUI.openURL(Constants.MAIN_URL);
+    }
+    public void settingsWLGateKeeper() throws InterruptedException {
+        restaurantUI.openURL(Constants.GATE_KEEPER_URL);
+        restaurantUI.refreshPage();
+        restaurantUI.waitForCustom(1000);
+        if (!restaurantUI.isDisplayed(lbl_activeVVChecked)){
+            restaurantUI.click(lbl_activeVV);
+            restaurantUI.waitForCustom(1000);
+        }
     }
 }

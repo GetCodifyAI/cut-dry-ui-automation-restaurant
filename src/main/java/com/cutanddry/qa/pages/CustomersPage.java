@@ -28,7 +28,7 @@ public class CustomersPage extends LoginPage {
     By btn_decreaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[1]");
     By tbx_itemQuantityReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[2]/input");
     By lbl_itemPriceReviewCartFirstRow = By.xpath("//tr[2]/td[3]/div/span");
-    By btn_submitOrder = By.xpath("//button[contains(text(),'Submit Order')]");
+    By btn_submitOrder = By.xpath("//button[contains(text(),'Submit')]");
     By btn_duplicateOrderYes = By.xpath("//button[contains(text(), 'Yes')]");
     By lbl_thankYouForOrder = By.xpath("//*[contains(text(),'Thank you for your order!')]");
     By btn_companyDropdown = By.xpath("//button[.//span[text()='Company:']]");
@@ -123,6 +123,9 @@ public class CustomersPage extends LoginPage {
     By ratingOverlayCloseBtn = By.xpath("//div[contains(text(),'✕')]");
     By itemNotFoundTxt = By.xpath("//div[contains(text(),'No matches found')]");
     String catalogCardAddToOGBtn = "//div[text()='ITEMNAME']/../../..//button[@data-tip='Add to Order Guide']";
+    By btn_close_ = By.xpath("//button[contains(@class, 'close')]/span[text()='×']");
+    By btn_increaseQtyFirstRowClassic = By.xpath("//tr[2]/td[7]/div/div/div/div[3]");
+    By lbl_caseMinNotMet = By.xpath("//h2[contains(text(), 'Case Minimum Not Met')]");
 
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
@@ -134,7 +137,9 @@ public class CustomersPage extends LoginPage {
     public void clickPreviousDraftOrderNo() throws InterruptedException {
         restaurantUI.click(btn_previousDraftOrderNo);
     }
-
+    public boolean caseMinNotMetDisplayed() throws InterruptedException {
+        return restaurantUI.isDisplayed(lbl_caseMinNotMet);
+    }
     public String getItemNameFirstRow() {
         try {
             restaurantUI.waitForCustom(2000);
@@ -161,6 +166,11 @@ public class CustomersPage extends LoginPage {
 
     public void clickMinusQrySecondRow() throws InterruptedException {
         restaurantUI.click(btn_decreaseQtySecondRow);
+        restaurantUI.waitForCustom(4000);
+    }
+
+    public void clickPlusQryFirstRowClassic() throws InterruptedException {
+        restaurantUI.click(btn_increaseQtyFirstRowClassic);
         restaurantUI.waitForCustom(4000);
     }
 
@@ -266,7 +276,7 @@ public class CustomersPage extends LoginPage {
         }
     }
 
-    public void clickYesDuplicatePopup() {
+    public void clickYesDuplicatePopup() throws InterruptedException {
         restaurantUI.waitForClickability(btn_duplicateOrderYes);
         restaurantUI.click(btn_duplicateOrderYes);
         restaurantUI.waitForInvisibility(btn_duplicateOrderYes);
@@ -280,7 +290,12 @@ public class CustomersPage extends LoginPage {
             return false;
         }
     }
-
+    public void clickCloseIcon(){
+        restaurantUI.waitForVisibility(btn_close_);
+        restaurantUI.click(btn_close_);
+        restaurantUI.waitForInvisibility(btn_close_);
+        restaurantUI.refreshPage();
+    }
     public void submitOrder() {
         restaurantUI.waitForClickability(btn_submitOrder);
         restaurantUI.click(btn_submitOrder);

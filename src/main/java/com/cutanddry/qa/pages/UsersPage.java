@@ -1,6 +1,7 @@
 package com.cutanddry.qa.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 
 public class UsersPage extends LoginPage {
     By usersTab = By.xpath("//h2[@class='font-weight-900 m-0 mont' and contains(text(),'Team')]");
@@ -8,6 +9,8 @@ public class UsersPage extends LoginPage {
     By nameTextField = By.xpath("//div[@class='form-group']//label[contains(text(), 'Name')]/following-sibling::input");
     By emailTextField = By.xpath("//div[@class='form-group']//label[contains(text(), 'Email')]/following-sibling::input");
     By locationDropDown = By.xpath("//div[contains(@class,'themed_select__value-container--is-multi')]");
+    By employeeDropDown = By.xpath("//div[contains(@class,'themed_select__value-container--has-value')]");
+    By employeeList = By.xpath("  //div[@class='themed_select__menu-list css-11unzgr']");
     String locationName = "//div[contains(@class,'themed_select__option css-yt9ioa-option') and contains(text(),'LOCATIONNAME')]";
     By addUserOverlayBtn = By.xpath("//button[contains(@class,'btn btn-primary btn-block') and contains(text(),'Add User')]");
     By locationTxt = By.xpath("//label[@class='form-label' and contains(text(),'Location')]");
@@ -38,9 +41,14 @@ public class UsersPage extends LoginPage {
         restaurantUI.click(locationDropDown);
         restaurantUI.sendKeysAndEnter(locationDropDown,locationName);
         restaurantUI.click(locationTxt);
-
     }
 
+    public boolean employeeSelectionDropdown(String emp){
+        restaurantUI.click(employeeDropDown);
+        boolean out = restaurantUI.getText(employeeList).contains(emp);
+        restaurantUI.click(employeeDropDown);
+        return out;
+    }
     public void clickOnAddUserOverlayBtn(){
         restaurantUI.click(addUserOverlayBtn);
     }
@@ -77,5 +85,12 @@ public class UsersPage extends LoginPage {
     public boolean isUserRemoveOverlayDisplayed(){
         return restaurantUI.isDisplayed(userRemoveOverlay);
     }
-
+    public boolean isUserEditable(String username){
+        try {
+            restaurantUI.waitForClickability(By.xpath(user.replace("USERNAME", username)));
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
 }
