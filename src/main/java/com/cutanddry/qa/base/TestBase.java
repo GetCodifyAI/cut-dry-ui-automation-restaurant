@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 
 import java.time.Duration;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -87,4 +88,22 @@ public class TestBase {
             restaurantUI.captureScreenshot(testName);
         }
     }
+
+    //Method to close multiple tabs
+    public static void closeMultipleTabs() {
+        if (driver != null) {
+            // Get all the window handles
+            Set<String> windowHandles = driver.getWindowHandles();
+
+            // Iterate over all the open windows and close them
+            for (String windowHandle : windowHandles) {
+                driver.switchTo().window(windowHandle);
+                driver.close();
+            }
+
+            driver = null;  // Reset the driver to allow re-initialization in future tests
+            LOGGER.info("All browsers are closed.");
+        }
+    }
+
 }

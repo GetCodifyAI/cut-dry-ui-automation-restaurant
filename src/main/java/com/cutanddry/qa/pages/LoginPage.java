@@ -143,6 +143,7 @@ public class LoginPage extends TestBase {
         restaurantUI.click(btn_LoginAsSupplier);
 //        restaurantUI.closeBrowser();
 //        restaurantUI.waitForCustom(4000);
+        restaurantUI.switchToNewTab();
     }
     public void navigateToOperator(){
         restaurantUI.openURL(Constants.MAIN_URL);

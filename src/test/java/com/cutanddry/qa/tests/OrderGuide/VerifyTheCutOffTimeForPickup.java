@@ -43,7 +43,7 @@ public class VerifyTheCutOffTimeForPickup extends TestBase {
     @AfterMethod
     public void tearDown(ITestResult result) {
         takeScreenshotOnFailure(result);
-        closeAllBrowsers();
+        closeMultipleTabs();
     }
 
 }
