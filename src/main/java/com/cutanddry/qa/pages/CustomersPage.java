@@ -114,7 +114,7 @@ public class CustomersPage extends LoginPage {
     String customerCodeInProfilePage = "//div[@class='col' and text()='CUSTOMERCODE']";
     By editDeliveryBtn = By.xpath("//div[contains(text(), 'Delivery Days')]//following-sibling::div//div[@class='pl-0 col-sm-auto col-auto']/*");
     String cutOffDay = "//tr[td[contains(text(), 'DAY')]]//div[contains(@class, 'themed_select__control')]";
-    String cutOffDaySelect = "//div[contains(@class,'themed_select__option css-yt9ioa-option') and text()='DAY']";
+    String cutOffDaySelect = "(//div[contains(@class,'themed_select__') and text()='DAY'])[last()]";
     String cutOffTime = "//tr[td[contains(text(), 'DAY')]]//input[@class='_1avn95e form-control']";
     By cutOffDateTimeSave = By.xpath("//button[contains(text(),'Save Changes')]");
     By orderCutOffTime = By.xpath("//span[@class='ml-1 text-nowrap _d7ebxxy']");

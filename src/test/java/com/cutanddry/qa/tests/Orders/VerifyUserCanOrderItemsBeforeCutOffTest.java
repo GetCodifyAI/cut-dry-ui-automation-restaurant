@@ -82,8 +82,9 @@ public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
         softAssert.assertEquals(Customer.getDeliveryDateOnReviewCart(), formattedDeliveryDate, "Delivery date mismatch");
 
 //        // Getting the Order Cut-Off Time in review cart and asserting
+        ZonedDateTime ConvertedCutoffTimeUTC = currentTime.withZoneSameInstant(ZoneId.of("UTC"));
         DateTimeFormatter dateTimeFormatterUTC = DateTimeFormatter.ofPattern("MMM d, h:mma 'UTC'");
-        String cutOffTimeInReviewCart = cutoffTimeUTC.format(dateTimeFormatterUTC).replace("AM", "am").replace("PM", "pm");
+        String cutOffTimeInReviewCart = ConvertedCutoffTimeUTC.format(dateTimeFormatterUTC).replace("AM", "am").replace("PM", "pm");
         System.out.println("cutOffTimeInReviewCart" + cutOffTimeInReviewCart);
         System.out.println("cutOffTimeInReviewCartInUI" + Customer.getOrderCutOffOnReviewCart());
         softAssert.assertEquals(Customer.getOrderCutOffOnReviewCart(), cutOffTimeInReviewCart, "Cutoff time mismatch");
@@ -114,11 +115,11 @@ public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
         softAssert.assertAll();
     }
 
-    @AfterMethod
-    public void tearDown(ITestResult result) throws InterruptedException {
-        takeScreenshotOnFailure(result);
-        closeAllBrowsers();
-    }
+//    @AfterMethod
+//    public void tearDown(ITestResult result) throws InterruptedException {
+//        takeScreenshotOnFailure(result);
+//        closeAllBrowsers();
+//    }
 
 
 
