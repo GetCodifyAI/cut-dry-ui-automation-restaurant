@@ -27,6 +27,7 @@ public class VerifyReportFeatureForWhiteLabelOperatorTest extends TestBase {
     public void verifyReportFeatureForClassicOperatorTest()throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
+        Reports.turnOnReportsForWhiteLabelCustomersFromGateKeeperIfNotEnabled();
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
         Login.goToOperatorStephanieCollins(OperatorName);
@@ -40,7 +41,7 @@ public class VerifyReportFeatureForWhiteLabelOperatorTest extends TestBase {
     @AfterMethod
     public void tearDown(ITestResult result) {
         takeScreenshotOnFailure(result);
-        closeAllBrowsers();
+        closeMultipleTabs();
     }
 
 }

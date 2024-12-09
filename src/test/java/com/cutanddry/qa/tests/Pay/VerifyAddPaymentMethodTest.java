@@ -41,6 +41,8 @@ public class VerifyAddPaymentMethodTest extends TestBase {
         Pay.addRouteNumber(routeNumber);
         Pay.selectAccountTypeOption();
         Pay.addNickname(nickName);
+        softAssert.assertTrue(Pay.isPaymentMethodSuccessfullyAddedTxtDisplayed(),"Payment method not successfully added");
+        Pay.clickOkAndCloseAddPaymentMethodOverlay();
         Pay.paymentSettings();
         Pay.removePaymentSettings();
         softAssert.assertTrue(Pay.isNicknameTextDisplayed(),"error in text display");

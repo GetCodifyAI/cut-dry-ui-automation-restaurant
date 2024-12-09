@@ -216,6 +216,7 @@ public class CustomersPage extends LoginPage {
     }
 
     public void clickAddToCartCatalog() throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
         restaurantUI.waitForVisibility(btn_addToCart);
         restaurantUI.waitForClickability(btn_addToCart);
         restaurantUI.waitForCustom(4000);
@@ -496,6 +497,21 @@ public class CustomersPage extends LoginPage {
         restaurantUI.click(btn_orderApproval);
         restaurantUI.waitForCustom(4000);
     }
+
+    public boolean isRatingOverlayDisplayed(){
+        return restaurantUI.isDisplayed(ratingOverlayIframe);
+    }
+
+    public void clickCloseRatingOverlay(){
+        restaurantUI.switchToFrameByElement(ratingOverlayIframe);
+        restaurantUI.click(ratingOverlayCloseBtn);
+        try {
+            restaurantUI.waitForCustom(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void clickOnSave() {
         restaurantUI.click(btn_save );
     }

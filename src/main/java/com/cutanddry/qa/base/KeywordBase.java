@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 
 @SuppressWarnings("UnusedReturnValue")
@@ -23,6 +24,8 @@ public class KeywordBase {
     private final WebDriverWait wait;
     private final Actions actions;
     private static final Logger logger = LoggerFactory.getLogger(KeywordBase.class);
+    private String originalTab;
+    private String secondTab;
 
     public KeywordBase(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -551,6 +554,65 @@ public class KeywordBase {
             // If no elements are visible within the timeout, return 0
             return 0;
         }
+    }
+
+    // Method to check if a checkbox is selected, given its locator
+    public boolean isCheckboxSelected(By checkboxLocator) {
+        try {
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(checkboxLocator));
+
+            WebElement checkbox = driver.findElement(checkboxLocator);
+
+            return checkbox.isSelected();
+        } catch (TimeoutException e) {
+
+            return false;
+        }
+    }
+
+    public KeywordBase OpenNewTabAndSwitchToIt() {
+
+        originalTab = driver.getWindowHandle();
+
+        Set<String> existingWindows = driver.getWindowHandles();
+
+        ((JavascriptExecutor) driver).executeScript("window.open();");
+
+        // Wait until the number of windows increases (indicating a new tab is opened)
+        wait.until(ExpectedConditions.numberOfWindowsToBe(existingWindows.size() + 1));
+
+
+        Set<String> windowHandles = driver.getWindowHandles();
+
+        for (String windowHandle : windowHandles) {
+            if (!existingWindows.contains(windowHandle)) {
+                secondTab = windowHandle;
+                driver.switchTo().window(secondTab);
+                logger.info("Switched to new tab: {}", secondTab);
+                break;
+            }
+        }
+
+        return this;
+    }
+
+
+    public KeywordBase CloseNewTabAndSwitchToOriginal() {
+        if (secondTab != null) {
+
+            driver.close();
+            logger.info("Closed the new tab: {}", secondTab);
+
+            // Switch back to the original tab
+            driver.switchTo().window(originalTab);
+            logger.info("Switched back to the original tab: {}", originalTab);
+
+            secondTab = null;
+        } else {
+            logger.warn("No new tab to close.");
+        }
+        return this;
     }
 
 }
