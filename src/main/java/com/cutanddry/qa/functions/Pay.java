@@ -43,6 +43,15 @@ public class Pay {
         PayPage.typeNickname(nickname);
     }
 
+    public static boolean isPaymentMethodSuccessfullyAddedTxtDisplayed(){
+        return PayPage.isPaymentMethodAddSuccessOverlayDisplayed();
+    }
+
+    public static void clickOkAndCloseAddPaymentMethodOverlay(){
+        PayPage.clickOnOk();
+        Customer.clickClose();
+    }
+
     public static void paymentSettings(){PayPage.clickOnPaymentSetting();}
 
     public static void removePaymentSettings(){PayPage.clickOnRemovePaymentSetting();}

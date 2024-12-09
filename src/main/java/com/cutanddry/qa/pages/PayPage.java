@@ -54,7 +54,7 @@ public class PayPage extends TestBase{
     By btn_downloadInvoice = By.xpath("//a[@class='dropdown-item' and text()='Download Invoices']");
     By txt_downloadInvoice = By.xpath("//h2[@id='swal2-title']");
     By btn_ok = By.xpath("//button[@class='swal2-confirm swal2-styled' and text()='OK']");
-
+    By paymentMethodSuccessTxt = By.xpath("//h2[contains(text(),'Payment method has been added successfully.')]");
 
     public void clickOnPay(){restaurantUI.click(btn_pay);}
 
@@ -126,6 +126,10 @@ public class PayPage extends TestBase{
         restaurantUI.sendKeys(txt_nickname,nickname);
         restaurantUI.waitForCustom(800);
         restaurantUI.click(btn_save);
+    }
+
+    public boolean isPaymentMethodAddSuccessOverlayDisplayed(){
+        return restaurantUI.isDisplayed(paymentMethodSuccessTxt);
     }
 
     public void clickOnPaymentSetting(){restaurantUI.click(btn_paymentSettings);}

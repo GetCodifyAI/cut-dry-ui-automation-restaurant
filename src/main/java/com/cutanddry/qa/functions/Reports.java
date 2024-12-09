@@ -37,4 +37,8 @@ public class Reports {
     public static boolean isCSVTextDisplayed(){
         return ReportsPage.isCSVTextDisplayed();
     }
+
+    public static void turnOnReportsForWhiteLabelCustomersFromGateKeeperIfNotEnabled(){
+        ReportsPage.turnOnReportsForWhiteLabelCustomers();
+    }
 }

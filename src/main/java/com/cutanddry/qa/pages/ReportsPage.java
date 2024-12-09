@@ -1,6 +1,7 @@
 package com.cutanddry.qa.pages;
 
 import com.cutanddry.qa.base.TestBase;
+import com.cutanddry.qa.common.Constants;
 import org.openqa.selenium.By;
 
 public class ReportsPage extends TestBase {
@@ -15,7 +16,7 @@ public class ReportsPage extends TestBase {
     By txt_csv = By.xpath("//button[contains(., 'CSV')]");
     By txt_reports = By.xpath("//li[contains(text(),'Reports')]");
     String txt_option = "//a[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'TXT')]";
-
+    String reportForAllVV= "//tr/td/input[contains(@value,'GATEKEEPERFEATURE')]/..//following-sibling::td//input[contains(@value,'active_for_all_vv')]";
 
 
     public boolean isReportingTextDisplayed(){
@@ -80,4 +81,20 @@ public class ReportsPage extends TestBase {
         }
         return restaurantUI.isDisplayed(txt_csv);
     }
+
+    public void turnOnReportsForWhiteLabelCustomers(){
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.OpenNewTabAndSwitchToIt();
+        restaurantUI.navigateToURL(Constants.GATE_KEEPER_URL);
+        restaurantUI.scrollToElement(By.xpath(reportForAllVV.replace("GATEKEEPERFEATURE","reports_for_white_label")));
+        if(!restaurantUI.isCheckboxSelected(By.xpath(reportForAllVV.replace("GATEKEEPERFEATURE","reports_for_white_label")))){
+            restaurantUI.click(By.xpath(reportForAllVV.replace("GATEKEEPERFEATURE","reports_for_white_label")));
+        }
+        restaurantUI.CloseNewTabAndSwitchToOriginal();
+    }
+
 }

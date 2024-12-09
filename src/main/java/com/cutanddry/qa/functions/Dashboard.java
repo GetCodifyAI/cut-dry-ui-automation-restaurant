@@ -2,7 +2,7 @@ package com.cutanddry.qa.functions;
 
 import com.cutanddry.qa.pages.DashboardPage;
 
-import static com.cutanddry.qa.functions.Customer.customersPage;
+import static com.cutanddry.qa.functions.Customer.*;
 
 
 public class Dashboard {
@@ -21,6 +21,9 @@ public class Dashboard {
         }
         if (customersPage.isPreviousDraftOrderNoDisplayed()){
             customersPage.clickPreviousDraftOrderNo();
+        }
+        if (customersPage.isRatingOverlayDisplayed()){
+            customersPage.clickCloseRatingOverlay();
         }
     }
     public static boolean isUserNavigatedToOrderGuide(){

@@ -2,7 +2,6 @@ package com.cutanddry.qa.tests.Reports;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
-import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.functions.Reports;
@@ -24,10 +23,11 @@ public class VerifyReportFeatureForClassicOperatorTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-173")
-    public void verifyReportFeatureForClassicOperatorTest()throws InterruptedException {
+    public void verifyReportFeatureForClassicOperatorTest(){
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
+        Reports.turnOnReportsForWhiteLabelCustomersFromGateKeeperIfNotEnabled();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToReports();
         softAssert.assertTrue(Reports.disabledGenerateReport(),"error in  generate report button");
