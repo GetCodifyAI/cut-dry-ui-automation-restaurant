@@ -27,7 +27,7 @@ public class LoginPage extends TestBase {
     By btn_LoginAsSupplier = By.xpath("//a[contains(text(), 'Login As (supplier)')]");
     By txt_manager = By.xpath("//div[contains(text(), 'Aselabookkeeper4 - 131583036 - Manager - Restaurant(Test) - asela+bookkeeper4@cutanddry.com - null')]");
     By txt_employee = By.xpath("//div[contains(text(), 'Employee - 274855811 - Employee - Restaurant(Test) - kwu333@gmail.com - null')]");
-    By txt_bookkeeper = By.xpath("//div[contains(text(), 'Pasan - 4357653 - Bookkeeper - Restaurant(Test) - pasan@cutanddry.com - null')]");
+    String txt_bookkeeper = "(//div[contains(text(), 'BOOKKEEPERNAME')])[2]";
     String txt_distributor = "(//div[contains(text(), 'DISTRIBUTOR_NAME')])[2]";
     By txt_adminWL = By.xpath("//div[contains(text(), 'Amir IFC WL - 246613671 - Owner - IFC Operator Demo - amir@cutanddry.com - 14082091996')]");
     By txt_managerWL = By.xpath("//div[contains(text(), 'CHEF GLENDA - 211953812 - Manager - 110 Reserve Bar - WOODLAND PARK -  - 17192353155')]");
@@ -92,8 +92,9 @@ public class LoginPage extends TestBase {
     public void clickOnEmployee(){
         restaurantUI.click(txt_employee);
     }
-    public void clickOnBookkeeper(){
-        restaurantUI.click(txt_bookkeeper);
+    public void clickOnBookkeeper(String bookKeeper){
+        restaurantUI.waitForVisibility(By.xpath(txt_bookkeeper.replace("BOOKKEEPERNAME",bookKeeper)));
+        restaurantUI.click(By.xpath(txt_bookkeeper.replace("BOOKKEEPERNAME",bookKeeper)));
     }
     public void clickOnStephanieCollins(){
         restaurantUI.click(txt_stephanieCollins);
