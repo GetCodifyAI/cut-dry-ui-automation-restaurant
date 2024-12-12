@@ -73,7 +73,7 @@ public class Login {
     }
     public static void loginAsBookkeeper(String operator) throws InterruptedException {
         loginPage.typeToSearchOnOperator(operator);
-        loginPage.clickOnBookkeeper();
+        loginPage.clickOnBookkeeper(operator);
         loginPage.clickOnLoginAsClassic();
     }
     public static void goToDistributor(String distributor) throws InterruptedException {
