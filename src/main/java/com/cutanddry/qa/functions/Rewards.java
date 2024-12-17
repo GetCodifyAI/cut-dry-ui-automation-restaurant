@@ -62,7 +62,10 @@ public class Rewards {
         return RewardsPage.isOrderTextDisplayed(itemName);
     }
 
-
-
+    public static void closePromotionOverlayIfDisplayed(){
+        if(RewardsPage.isPromotionOverlayDisplayed()){
+            RewardsPage.clickOnMayBeLaterTxt();
+        }
+    }
 }
 

@@ -17,7 +17,7 @@ public class CustomersPage extends LoginPage {
     By lbl_catalogSearchItemList = By.xpath("(//div[contains(text(), 'Artichoke')])[last()]");
     By btn_addToCart = By.xpath("//button[text()='Add to Cart']");
     By tbx_itemQuantityFirstRow = By.xpath("//tr[1]//td[6]//input");
-    By lbl_itemPriceFirstRow = By.xpath("//tr[1]//td[5]/div");
+    By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[5]//div)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[5]//span)[1]");
     By btn_increaseQtyCatalog = By.xpath("//div[contains(@class, 'd-flex') and contains(@class, 'btn-primary')]/*[name()='svg' and contains(@data-icon, 'plus')]");
     By btn_decreaseQtyCatalog = By.xpath("//div[contains(@class, 'd-flex') and contains(@class, 'btn-primary')]/*[name()='svg' and @data-icon='minus']");
     By tbx_itemQuantityCatalog = By.xpath("//input[@type='number']");
@@ -27,7 +27,7 @@ public class CustomersPage extends LoginPage {
     By btn_increaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[3]");
     By btn_decreaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[1]");
     By tbx_itemQuantityReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[2]/input");
-    By lbl_itemPriceReviewCartFirstRow = By.xpath("//tr[2]/td[3]/div/span");
+    By lbl_itemPriceReviewCartFirstRow = By.xpath("//td//span//div[@data-tip='View Product Details']/ancestor::tr//td/span");
     By btn_submitOrder = By.xpath("//button[contains(text(),'Submit')]");
     By btn_duplicateOrderYes = By.xpath("//button[contains(text(), 'Yes')]");
     By lbl_thankYouForOrder = By.xpath("//*[contains(text(),'Thank you for your order!')]");
@@ -121,8 +121,8 @@ public class CustomersPage extends LoginPage {
     String clearDeliveryDate = "//tr[td[contains(text(), 'DAY')]]//div[contains(@class, 'themed_select__control')]//div[contains(@class, 'themed_select__clear-indicator')]/*";
     By ratingOverlayIframe = By.xpath("//iframe[contains(@aria-label,'NPS Survey')]");
     By ratingOverlayCloseBtn = By.xpath("//div[contains(text(),'✕')]");
-    By itemNotFoundTxt = By.xpath("//div[contains(text(),'No matches found')]");
-    String catalogCardAddToOGBtn = "//div[text()='ITEMNAME']/../../..//button[@data-tip='Add to Order Guide']";
+    String itemNotFoundTxt = "//*[contains(text(),'ITEMCODE')]/following-sibling::div[contains(normalize-space(.), '0 Results')]";
+    String catalogCardAddToOGBtn = "//div[text()='ITEMCODE']/../../..//button[@data-tip='Add to Order Guide']";
     By btn_close_ = By.xpath("//button[contains(@class, 'close')]/span[text()='×']");
     By btn_increaseQtyFirstRowClassic = By.xpath("//tr[2]/td[7]/div/div/div/div[3]");
     By lbl_caseMinNotMet = By.xpath("//h2[contains(text(), 'Case Minimum Not Met')]");
@@ -216,7 +216,7 @@ public class CustomersPage extends LoginPage {
     }
 
     public void clickAddToCartCatalog() throws InterruptedException {
-        restaurantUI.waitForCustom(2000);
+        restaurantUI.waitForCustom(4000);
         restaurantUI.waitForVisibility(btn_addToCart);
         restaurantUI.waitForClickability(btn_addToCart);
         restaurantUI.waitForCustom(4000);
@@ -813,8 +813,8 @@ public class CustomersPage extends LoginPage {
     }
 
     public void clickItemFromCatalogIfNotAvailableInOG(String itemName){
-        if(restaurantUI.isDisplayed(itemNotFoundTxt)){
-            restaurantUI.click(By.xpath(catalogCardAddToOGBtn.replace("ITEMNAME",itemName)));
+        if(restaurantUI.isDisplayed(By.xpath(itemNotFoundTxt.replace("ITEMCODE",itemName.toLowerCase())))){
+            restaurantUI.click(By.xpath(catalogCardAddToOGBtn.replace("ITEMCODE",itemName)));
         }
         try {
             restaurantUI.waitForCustom(2000);

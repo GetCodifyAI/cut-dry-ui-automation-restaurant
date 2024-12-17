@@ -19,6 +19,8 @@ public class RewardsPage extends TestBase {
     By btn_selectAllDates = By.xpath("//div[text()='All']");
     By link_orderID = By.xpath("(//a[contains(@href,'orders-revised')])[1]");
     String viewOrderName = "//div[text() = 'itemName']";
+    By promotioOverlay = By.xpath("//*[contains(text(),'You could be earning more!')]");
+    By mayBeLaterTxt = By.xpath("//*[contains(text(),'Maybe Later')]");
 
     public void clickOnLearnMore(){restaurantUI.click(link_learnMore);
     }
@@ -100,5 +102,12 @@ public class RewardsPage extends TestBase {
         return restaurantUI.isDisplayed(By.xpath(viewOrderName.replace("itemName",productName)));
     }
 
+    public boolean isPromotionOverlayDisplayed(){
+        return restaurantUI.isDisplayed(promotioOverlay);
+    }
+
+    public void clickOnMayBeLaterTxt(){
+        restaurantUI.click(mayBeLaterTxt);
+    }
 
 }
