@@ -17,7 +17,7 @@ public class SettingsPage extends LoginPage{
     By companyDetailsUpdateSuccessOverlay = By.xpath("//h2[contains(@class,'swal2-title') and contains(text(),'Company details successfully edited.')]");
     By removeLogoBtn = By.xpath("//button[@class='mt-2 btn btn-link' and contains(text(),'Remove')]");
     By logoImage = By.xpath("//img[contains(@src,'ordering-supplies-images')]");
-    By BrowseImgBtn = By.xpath("//div[contains(@class,'_5p57xn rounded text-center')]/input[@type='file']");
+    By BrowseImgBtn = By.xpath("//*/input[@type='file']");
     By locationsBtn = By.xpath("//div[@class='fade _1v9d984k mt-5 show']//a[contains(text(),'Locations')]");
     By addLocationBtn = By.xpath("//button[@class='px-4 btn btn-primary' and contains(text(),'Add Location')]");
     By locationNameTextField = By.xpath("//label[contains(text(),'Location Name')]/following-sibling::input[@type='text']");

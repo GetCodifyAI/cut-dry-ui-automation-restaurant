@@ -79,7 +79,7 @@ public class Customer {
     @SneakyThrows
     public static void searchItemOnCatalog(String item){
         customersPage.typeToSearchOnCatalog(item);
-        Thread.sleep(4000);
+        Thread.sleep(5000);
     }
     public static void searchItemOnOrderGuide(String item) throws InterruptedException {
         if (customersPage.isPreviousDraftOrderNoDisplayed()){
