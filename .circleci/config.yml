@@ -195,11 +195,12 @@ workflows:
     triggers:
       - schedule:
           #cron: "30 18 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)
-          cron: "53 12 * * *"
+          cron: "11 13 * * *"
           filters:
             branches:
               only:
-                - main
+                #- main
+                - feature/failure_fixes
     jobs:
       - nightly-build-and-test-1
       - nightly-build-and-test-2
