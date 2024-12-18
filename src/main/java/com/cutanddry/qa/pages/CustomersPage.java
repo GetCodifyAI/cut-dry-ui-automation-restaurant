@@ -124,7 +124,7 @@ public class CustomersPage extends LoginPage {
     String itemNotFoundTxt = "//*[contains(text(),'ITEMCODE')]/following-sibling::div[contains(normalize-space(.), '0 Results')]";
     String catalogCardAddToOGBtn = "//div[text()='ITEMCODE']/../../..//button[@data-tip='Add to Order Guide']";
     By btn_close_ = By.xpath("//button[contains(@class, 'close')]/span[text()='×']");
-    By btn_increaseQtyFirstRowClassic = By.xpath("//tr[2]/td[7]/div/div/div/div[3]");
+    By btn_increaseQtyFirstRowClassic = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'plus')])[1]");
     By lbl_caseMinNotMet = By.xpath("//h2[contains(text(), 'Case Minimum Not Met')]");
 
 
