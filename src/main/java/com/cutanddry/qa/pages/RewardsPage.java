@@ -49,7 +49,9 @@ public class RewardsPage extends TestBase {
         return restaurantUI.isDisplayed(text_visibilityOfRedeemBalance);
     }
 
-    public void clickOnAddMoreSupplier(){restaurantUI.click(btn_addMoreSuppliers);
+    public void clickOnAddMoreSupplier(){
+        restaurantUI.waitForVisibility(btn_addMoreSuppliers);
+        restaurantUI.click(btn_addMoreSuppliers);
     }
 
     public boolean isConnectYourSupplierTextDisplayed(){

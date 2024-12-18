@@ -14,8 +14,8 @@ public class CustomersPage extends LoginPage {
     By btn_catalog = By.xpath("//div[text()='Catalog']");
     By tbx_catalogSearch = By.xpath("//input[@placeholder='Search catalog...']");
     By tbx_orderGuideSearch = By.xpath("//input[@placeholder='Search order guide...']");
-    By lbl_catalogSearchItemList = By.xpath("(//div[contains(text(), 'Artichoke')])[last()]");
-    By btn_addToCart = By.xpath("//button[text()='Add to Cart']");
+    By lbl_catalogSearchItemList = By.xpath("(//button[contains(@data-for,'tooltipundefined')]/ancestor::div[2]/following-sibling::div[2]/div/div)[1]");
+    By btn_addToCart = By.xpath("//button[contains(@data-for,'tooltipundefined')]/ancestor::div[3]//div/button/*[contains(@data-icon,'plus')]");
     By tbx_itemQuantityFirstRow = By.xpath("//tr[1]//td[6]//input");
     By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[5]//div)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[5]//span)[1]");
     By btn_increaseQtyCatalog = By.xpath("//div[contains(@class, 'd-flex') and contains(@class, 'btn-primary')]/*[name()='svg' and contains(@data-icon, 'plus')]");
