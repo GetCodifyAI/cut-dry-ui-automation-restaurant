@@ -203,6 +203,9 @@ public class CustomersPage extends LoginPage {
     }
 
     public void typeToSearchOnCatalog(String item) throws InterruptedException {
+        restaurantUI.clearUsingJavaScript(tbx_catalogSearch);
+        restaurantUI.click(tbx_catalogSearch);
+        restaurantUI.waitForCustom(2000);
         restaurantUI.sendKeys(tbx_catalogSearch, item);
         restaurantUI.waitForCustom(4000);
     }
