@@ -92,6 +92,18 @@ public class KeywordBase {
         return this;
     }
 
+    // Clear using JavaScript (useful when normal clear doesn't work)
+    public KeywordBase clearUsingJavaScript(By by) {
+        try {
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(by));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].value = '';", element);
+            logger.info("Clear using JavaScript on element: {}", by);
+        } catch (Exception e) {
+            logger.error("Failed to Clear using JavaScript on element: {}", by, e);
+        }
+        return this;
+    }
+
     // Get text from an element
     public String getText(By by) {
         try {
