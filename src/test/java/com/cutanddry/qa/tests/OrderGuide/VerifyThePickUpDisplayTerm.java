@@ -29,7 +29,6 @@ public class VerifyThePickUpDisplayTerm extends TestBase {
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
         Login.goToDistributorSunriseFood(OperatorName);
-        restaurantUI.switchToNewTab();
         Dashboard.navigateToCustomers();
         Customer.searchCustomerByCode(customerId);
         Customer.clickOnOrderGuide(customerId);
@@ -42,7 +41,7 @@ public class VerifyThePickUpDisplayTerm extends TestBase {
     @AfterMethod
     public void tearDown(ITestResult result) {
         takeScreenshotOnFailure(result);
-        closeAllBrowsers();
+        closeMultipleTabs();
     }
 
 }

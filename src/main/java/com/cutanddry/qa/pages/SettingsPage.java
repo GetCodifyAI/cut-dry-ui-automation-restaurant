@@ -17,7 +17,7 @@ public class SettingsPage extends LoginPage{
     By companyDetailsUpdateSuccessOverlay = By.xpath("//h2[contains(@class,'swal2-title') and contains(text(),'Company details successfully edited.')]");
     By removeLogoBtn = By.xpath("//button[@class='mt-2 btn btn-link' and contains(text(),'Remove')]");
     By logoImage = By.xpath("//img[contains(@src,'ordering-supplies-images')]");
-    By BrowseImgBtn = By.xpath("//div[contains(@class,'_5p57xn rounded text-center')]/input[@type='file']");
+    By BrowseImgBtn = By.xpath("//*/input[@type='file']");
     By locationsBtn = By.xpath("//div[@class='fade _1v9d984k mt-5 show']//a[contains(text(),'Locations')]");
     By addLocationBtn = By.xpath("//button[@class='px-4 btn btn-primary' and contains(text(),'Add Location')]");
     By locationNameTextField = By.xpath("//label[contains(text(),'Location Name')]/following-sibling::input[@type='text']");
@@ -40,12 +40,17 @@ public class SettingsPage extends LoginPage{
     By saveCreatedCategoryCode = By.xpath("//button[@type='submit' and contains(@class, 'editable-submit')]");
     String addedCategoryCodeOrName = "//table[@class='table table-striped']//tbody//tr//td//a[contains(text(),'CATEGORYCODE')]";
     String CategoryDeleteBtn = "//a[contains(text(),'CATEGORYNAME')]/parent::td/following-sibling::td//button[contains(@class, 'js_are_you_sure')]";
-
+    By txt_profile = By.xpath("//h2[text()='Profile']");
+    By txt_restaurant = By.xpath("//h2[text()='Company Settings']");
+    By txt_locations = By.xpath("//h2[text()='Locations']");
+    By btn_settings_ = By.xpath("//a[contains(@data-tip, 'Settings')]");
 
     public void clickOnSettings(){
         restaurantUI.click(btn_settings);
     }
-
+    public void clickOnSettingsBtn(){
+        restaurantUI.click(btn_settings_);
+    }
     public void clickOnOrders(){
         restaurantUI.click(btn_orders);
     }
@@ -61,8 +66,9 @@ public class SettingsPage extends LoginPage{
         restaurantUI.waitForCustom(4000);
     }
 
-    public void clickOnProfile(){
+    public void clickOnProfile() throws InterruptedException {
         restaurantUI.click(profileBtn);
+        restaurantUI.waitForCustom(1000);
     }
 
     public void editNameInProfile(String profileName){
@@ -87,8 +93,9 @@ public class SettingsPage extends LoginPage{
         return restaurantUI.getAttributeValue(profileTextField,"value");
     }
 
-    public void clickOnRestuarent(){
+    public void clickOnRestuarent() throws InterruptedException {
         restaurantUI.click(restaurantBtn);
+        restaurantUI.waitForCustom(1000);
     }
 
     public void editNameInRestaurant(String restaurantName){
@@ -120,8 +127,9 @@ public class SettingsPage extends LoginPage{
         restaurantUI.sendKeysHiddenElements(BrowseImgBtn, path);
     }
 
-    public void clickOnLocationsBtn(){
+    public void clickOnLocationsBtn() throws InterruptedException {
         restaurantUI.click(locationsBtn);
+        restaurantUI.waitForCustom(1000);
     }
 
     public void clickOnAddLocation(){
@@ -180,11 +188,18 @@ public class SettingsPage extends LoginPage{
         restaurantUI.click(btn_settings);
         restaurantUI.click(accountingBtn);
     }
-
     public boolean isNavigatedToAccountingCatagory(){
         return restaurantUI.isDisplayed(accountCatagory);
     }
-
+    public boolean isNavigatedToProfileSetting(){
+        return restaurantUI.isDisplayed(txt_profile);
+    }
+    public boolean isNavigatedToRestaurantSettings(){
+        return restaurantUI.isDisplayed(txt_restaurant);
+    }
+    public boolean isNavigatedToLocationSettings(){
+        return restaurantUI.isDisplayed(txt_locations);
+    }
     public int getRowCount(){
         return restaurantUI.countElements(numberOfRows);
     }

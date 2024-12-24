@@ -20,7 +20,7 @@ public class SlackNotifier {
     // Update this with the actual URL where the report is hosted
     private static final String REPORT_URL = "https://app.circleci.com/pipelines/github/GetCodifyAI/cut-and-dry?branch=master";
 
-    public static void sendSlackAlert(int totalTests, int passedTests, int failedTests, String environment, List<String> passedTestCases, List<String> failedTestCases) {
+    public static void sendSlackAlert(int totalTests, int passedTests, int failedTests, String environment, List<String> passedTestCases, List<String> failedTestCases, String PART) {
         try {
             // Construct the JSON payload
             String payload = "{"
@@ -29,7 +29,7 @@ public class SlackNotifier {
                     + "\"type\": \"section\","
                     + "\"text\": {"
                     + "\"type\": \"mrkdwn\","
-                    + "\"text\": \"*Operator - Test Suite Execution Completed!*\""
+                    + "\"text\": \"*Operator " + PART + " - Test Suite Execution Completed!*\""
                     + "}"
                     + "},"
                     + "{"

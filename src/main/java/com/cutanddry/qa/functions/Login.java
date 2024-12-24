@@ -58,5 +58,50 @@ public class Login {
         loginPage.clickOnSunriseFood();
         loginPage.clickOnLoginAsSupplier();
     }
-
+    public static void navigateToOperator(){
+        loginPage.navigateToOperator();
+    }
+    public static void loginAsManager(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnManager();
+        loginPage.clickOnLoginAsClassic();
+    }
+    public static void loginAsEmployee(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnEmployee();
+        loginPage.clickOnLoginAsClassic();
+    }
+    public static void loginAsBookkeeper(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnBookkeeper(operator);
+        loginPage.clickOnLoginAsClassic();
+    }
+    public static void goToDistributor(String distributor) throws InterruptedException {
+        loginPage.typeToSearchOnDistributor(distributor);
+        loginPage.clickOnDistributor(distributor);
+        loginPage.clickOnLoginAsSupplier();
+    }
+    public static void loginAsAdminWL(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnAdminWL();
+        loginPage.clickOnLoginAsWhiteLabel();
+    }
+    public static void loginAsManagerWL(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnManagerWL();
+        loginPage.clickOnLoginAsWhiteLabel();
+    }
+    public static void loginAsEmployeeWL(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnEmployeeWL();
+        loginPage.clickOnLoginAsWhiteLabel();
+    }
+    public static void loginAsBookkeeperWL(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOnBookkeeperWL();
+        loginPage.clickOnLoginAsWhiteLabel();
+    }
+    public static void settingsWLGateKeeper() throws InterruptedException {
+        loginPage.settingsWLGateKeeper();
+    }
 }
