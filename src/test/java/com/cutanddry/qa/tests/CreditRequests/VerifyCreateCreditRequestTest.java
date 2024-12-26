@@ -29,7 +29,7 @@ public class VerifyCreateCreditRequestTest extends TestBase {
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         itemName = Customer.getItemNameFirstRow();
-        Customer.increaseFirstRowQtyByOne();
+        Customer.increaseFirstRowQtyInClassic(1);
         Customer.checkoutItems();
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.submitOrder();
