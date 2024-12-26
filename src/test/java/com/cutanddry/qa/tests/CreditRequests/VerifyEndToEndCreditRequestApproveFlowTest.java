@@ -13,6 +13,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyEndToEndCreditRequestApproveFlowTest extends TestBase {
     static User user;
     static String Dp_Name = "47837013 - Brandon IFC Cut+Dry Agent - Independent Foods Co";
+    static String CreditItemName,itemCode, itemPrice,itemQuantity,itemIssue,itemTotal,itemCredit;
 
     @BeforeMethod
     public void setUp(){
@@ -54,6 +55,13 @@ public class VerifyEndToEndCreditRequestApproveFlowTest extends TestBase {
         softAssert.assertTrue(CreditRequests.isIssuePopUpDisplayed(),"Issue pop up not display");
         CreditRequests.clickContinue();
         softAssert.assertTrue(CreditRequests.isCreditRequestedDisplayed(),"Credit requested not display");
+        CreditItemName = CreditRequests.getCreditItemName();
+        itemCode = CreditRequests.getItemCode();
+        itemPrice = CreditRequests.getItemPrice();
+        itemQuantity = CreditRequests.getItemQuantity();
+        itemIssue = CreditRequests.getItemIssue();
+        itemTotal = CreditRequests.getItemTotal();
+        itemCredit = CreditRequests.getItemCredit();
         CreditRequests.clickSaveCheckIn();
         softAssert.assertTrue(CreditRequests.isSubmitCreditRequestPopupDisplayed(),"Submit credit request pop up not display");
         CreditRequests.clickYes();
@@ -69,6 +77,13 @@ public class VerifyEndToEndCreditRequestApproveFlowTest extends TestBase {
         softAssert.assertTrue(CreditRequests.isCreditRequestSectionDisplay(),"Credit request section not display");
         CreditRequests.clickCreditRequest();
         softAssert.assertTrue(CreditRequests.isOrderCreditRequestSectionDisplay(),"Order Credit request section not display");
+        softAssert.assertEquals(CreditRequests.getCreditItemNameDP(), CreditItemName, "Item name of customer credit request is differance");
+        softAssert.assertEquals(CreditRequests.getItemCodeDP(), itemCode, "Item Code of customer credit request is differance");
+        softAssert.assertEquals(CreditRequests.getItemPriceDP(), itemPrice, "Item Price of customer credit request is differance");
+        softAssert.assertEquals(CreditRequests.getItemQuantityDP(), itemQuantity, "Item Quantity of customer credit request is differance");
+        softAssert.assertEquals(CreditRequests.getItemIssueDP(), itemIssue, "Issue of customer credit request is differance");
+        softAssert.assertEquals(CreditRequests.getItemTotalDP(), itemTotal, "Total of customer credit request is differance");
+        softAssert.assertEquals(CreditRequests.getItemCreditDP(), itemCredit, "Credit of customer credit request is differance");
         CreditRequests.clickProcessCredit();
         softAssert.assertTrue(CreditRequests.isProcessCreditSectionDisplay(),"Process credit section not display");
         CreditRequests.clickSelectItem();

@@ -86,6 +86,49 @@ public class CreditRequests {
     public static boolean isCreditDeclinedDisplay(){
         return creditRequestsPage.isCreditDeclinedDisplay();
     }
+   public static String getCreditItemName() throws InterruptedException {
+        return creditRequestsPage.getCreditItemName();
+    }
+    public static String getItemCode() throws InterruptedException {
+        return creditRequestsPage.getItemCode();
+    }
+    public static String getItemPrice() throws InterruptedException {
+        return creditRequestsPage.getItemPrice();
+    }
+    public static String getItemQuantity() throws InterruptedException {
+        return creditRequestsPage.getItemQuantity();
+    }
+    public static String getItemIssue() throws InterruptedException {
+        return creditRequestsPage.getItemIssue();
+    }
+    public static String getItemTotal() throws InterruptedException {
+        return creditRequestsPage.getItemTotal();
+    }
+    public static String getItemCredit() throws InterruptedException {
+        return creditRequestsPage.getItemCredit();
+    }
+
+    public static String getCreditItemNameDP() throws InterruptedException {
+        return creditRequestsPage.getCreditItemNameDP();
+    }
+    public static String getItemCodeDP() throws InterruptedException {
+        return creditRequestsPage.getItemCodeDP();
+    }
+    public static String getItemPriceDP() throws InterruptedException {
+        return creditRequestsPage.getItemPriceDP();
+    }
+    public static String getItemQuantityDP() throws InterruptedException {
+        return creditRequestsPage.getItemQuantityDP();
+    }
+    public static String getItemIssueDP() throws InterruptedException {
+        return creditRequestsPage.getItemIssueDP();
+    }
+    public static String getItemTotalDP() throws InterruptedException {
+        return creditRequestsPage.getItemTotalDP();
+    }
+    public static String getItemCreditDP() throws InterruptedException {
+        return creditRequestsPage.getItemCreditDP();
+    }
 
 
 
