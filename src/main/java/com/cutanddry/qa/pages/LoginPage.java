@@ -167,6 +167,7 @@ public class LoginPage extends TestBase {
     }
 
     public void clickOperator(String operator){
+        restaurantUI.waitForVisibility(By.xpath(txt_operator.replace("OPERATOR_NAME",operator)));
         restaurantUI.click(By.xpath(txt_operator.replace("OPERATOR_NAME",operator)));
     }
 }
