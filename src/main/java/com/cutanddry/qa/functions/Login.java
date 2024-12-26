@@ -104,4 +104,12 @@ public class Login {
     public static void settingsWLGateKeeper() throws InterruptedException {
         loginPage.settingsWLGateKeeper();
     }
+
+    public static void logInToOperator(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOperator(operator);
+        loginPage.clickOnLoginAsClassicAndSwitchToNewTab();
+    }
+
+
 }

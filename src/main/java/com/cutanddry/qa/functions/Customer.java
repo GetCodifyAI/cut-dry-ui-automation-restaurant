@@ -36,6 +36,19 @@ public class Customer {
         customersPage.clickPlusQryFirstRowClassic();
         customersPage.clickPlusQryFirstRowClassic();
     }
+
+    public static void decreaseFirstRowQtyInClassic(int count) throws InterruptedException {
+        for(int i=0;i<count;i++){
+            customersPage.clickMinusQryFirstRowClassic();
+        }
+    }
+
+    public static void increaseFirstRowQtyInClassic(int count) throws InterruptedException {
+        for(int i=0;i<count;i++){
+            customersPage.clickPlusQryFirstRowClassic();
+        }
+    }
+
     @SneakyThrows
     public static void increaseCatalogQtyByThree(){
         customersPage.clickPlusCatalog();
@@ -94,6 +107,9 @@ public class Customer {
     public static Double getItemPriceCatalogSearch(){return customersPage.getItemPriceCatalogSearch();}
     public static String getItemQtyFirstRow(){
         return customersPage.getItemQtyFirstRow();
+    }
+    public static String getItemQtyFirstRowClassic(){
+        return customersPage.getItemQtyFirstRowClassic();
     }
     public static String getItemQtyCatalog(){
         return customersPage.getItemQtyCatalog();
@@ -459,6 +475,49 @@ public class Customer {
 
     public static void addItemFromCatalogIfNotAvailableInOG(String itemName){
         customersPage.clickItemFromCatalogIfNotAvailableInOG(itemName);
+    }
+
+    public static void clickAddNewItemFromOrderGuide(){
+        customersPage.clickAddNewItem();
+    }
+
+    public static boolean isAddItemsToOrderGuideOverlayDisplayed(){
+        return customersPage.isAddItemsToOrderGuideDisplayed();
+    }
+
+    public static void enterItemName(String itemName){
+        customersPage.setItemName(itemName);
+    }
+
+    public static void enterItemCode(String itemCode){
+        customersPage.setItemCode(itemCode);
+    }
+
+    public static void selectUnit(String unit){
+        customersPage.setUnits(unit);
+    }
+
+    public static void enterPrice(String unit,String Price){
+        customersPage.setPrice(unit,Price);
+    }
+
+    public static void selectAccountingCategory(String categoryName){
+        customersPage.setAccountingCategory(categoryName);
+    }
+
+    public static void saveItem(){
+        customersPage.clickSaveItemBtn();
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickOnNoDraftOrder();
+        }
+    }
+
+    public static boolean isAddItemDisplayedInOrderGuide(String itemName){
+        return customersPage.isAddItemDisplayed(itemName);
+    }
+
+    public static void editOrderFromReviewScreen(){
+        customersPage.clickEditOrder();
     }
 
 }

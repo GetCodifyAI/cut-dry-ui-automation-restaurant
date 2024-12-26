@@ -98,4 +98,7 @@ public class Dashboard {
         dashboardPage.clickOnCreditRequests();
     }
 
+    public static boolean isNavigatedToOperatorOrderGuide(String supplier) throws InterruptedException {
+        return dashboardPage.isNavigatedToOrderGuide(supplier);
+    }
 }
