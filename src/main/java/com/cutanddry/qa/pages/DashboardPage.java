@@ -32,6 +32,7 @@ public class DashboardPage extends LoginPage{
     By btn_credit_requests = By.xpath("//a[@data-for='sideNavSupplierMenuOptions' and @href='/credit-requests']");
     By users = By.xpath("//div[contains(text(),'Users')]");
     By tbx_msg = By.xpath("//input[@placeholder='Message...']");
+    String customerNameText = "//img[contains(@data-tip,'SUPPLIERNAME')]";
 
     public boolean isDashboardTextDisplayed(){
         try {
@@ -141,6 +142,11 @@ public class DashboardPage extends LoginPage{
     public boolean isNavigatedToMaxiesSLOrderGuide() throws InterruptedException {
         restaurantUI.waitForCustom(4000);
         return restaurantUI.isDisplayed(MaxiesSLTxt);
+    }
+
+    public boolean isNavigatedToOrderGuide(String Supplier) throws InterruptedException {
+        restaurantUI.waitForCustom(4000);
+        return restaurantUI.isDisplayed(By.xpath(customerNameText.replace("SUPPLIERNAME",Supplier)));
     }
 
     public void clickOnUsers(){

@@ -29,6 +29,7 @@ public class LoginPage extends TestBase {
     By txt_employee = By.xpath("//div[contains(text(), 'Employee - 274855811 - Employee - Restaurant(Test) - kwu333@gmail.com - null')]");
     String txt_bookkeeper = "(//div[contains(text(), 'BOOKKEEPERNAME')])[last()]";
     String txt_distributor = "(//div[contains(text(), 'DISTRIBUTOR_NAME')])[2]";
+    String txt_operator = "((//div[contains(text(), 'OPERATOR_NAME')])[last()])";
     By txt_adminWL = By.xpath("//div[contains(text(), 'Amir IFC WL - 246613671 - Owner - IFC Operator Demo - amir@cutanddry.com - 14082091996')]");
     By txt_managerWL = By.xpath("//div[contains(text(), 'CHEF GLENDA - 211953812 - Manager - 110 Reserve Bar - WOODLAND PARK -  - 17192353155')]");
     By txt_bookkeeperWL = By.xpath("//div[contains(text(), 'Brandon IFC White - 170465895 - Owner - IFC Operator Demo - brandon@cutanddry.com - 12345678910')]");
@@ -117,6 +118,12 @@ public class LoginPage extends TestBase {
 //        restaurantUI.waitForCustom(4000);
     }
 
+    public void clickOnLoginAsClassicAndSwitchToNewTab() throws InterruptedException {
+        restaurantUI.click(btn_LoginAsClassic);
+        restaurantUI.switchToNewTab();
+        restaurantUI.waitForCustom(3000);
+    }
+
     public void clickOnLoginAsWhiteLabel() throws InterruptedException {
         restaurantUI.click(btn_LoginAsWhiteLabel);
 //        restaurantUI.closeBrowser();
@@ -157,5 +164,9 @@ public class LoginPage extends TestBase {
             restaurantUI.click(lbl_activeVV);
             restaurantUI.waitForCustom(1000);
         }
+    }
+
+    public void clickOperator(String operator){
+        restaurantUI.click(By.xpath(txt_operator.replace("OPERATOR_NAME",operator)));
     }
 }

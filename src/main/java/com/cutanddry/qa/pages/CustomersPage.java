@@ -99,10 +99,10 @@ public class CustomersPage extends LoginPage {
     By caseOption = By.xpath("//div[contains(@class, 'cd_themed_select__option') and text()='Case']");
     String editItemBtn = "//div[contains(text(), 'ITEMNAME')]/../following-sibling::div[@class='col-2 col-lg-1 d-flex justify-content-end mt-1 align-items-center align-items-lg-start']//*[name()='svg' and @role='img']";
     By hideBtn = By.xpath("//button[contains(text(),'Hide Item')]");
-    String hiddenItem ="//div[text()='ITEMNAME']";
-    By showFilter = By.xpath("(//div[@class='cd_themed_select__value-container cd_themed_select__value-container--has-value css-1hwfws3'])[3]");
+    String hiddenItem ="//div[contains(text(),'ITEMNAME')]";
+    By showFilter = By.xpath("//div[contains(text(),'Show')]/..//input/../following-sibling::div/div");
     By activeAndHiddenOption = By.xpath("//div[contains(@class,'cd_themed_select__option css-yt9ioa-option') and text()='Active & Hidden Items']");
-    By onlyActiveItemsOption = By.xpath("//div[contains(@class,'cd_themed_select__option css-yt9ioa-option') and text()='Only Active Items']");
+    By onlyActiveItemsOption = By.xpath("(//div[contains(text(),'Only Active Items')])[last()]");
     By saveAndUnhideBtn = By.xpath("//button[@class='btn btn-primary btn-block'and contains(text(),'Save and Unhide Item')]");
     By catalogimg = By.xpath("//img[@class='card-img-top _1d49j2h' and contains(@src,'23ea1851c5077e4e1deab4c760fdf5dc5358634d47c19530b4d821f11e3f7650_PROD_0001_07628.JPG')]");
     String Item = "//div[@class='_3quvq7 _1vlidrf' and text()='ITEMNAME']";
@@ -125,8 +125,20 @@ public class CustomersPage extends LoginPage {
     String catalogCardAddToOGBtn = "//div[text()='ITEMCODE']/../../..//button[@data-tip='Add to Order Guide']";
     By btn_close_ = By.xpath("//button[contains(@class, 'close')]/span[text()='×']");
     By btn_increaseQtyFirstRowClassic = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'plus')])[1]");
+    By btn_decreaseQtyFirstRowClassic = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'minus')])[1]");
+    By tbx_itemQuantityFirstRowClassic = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'minus')]/../following-sibling::div/input)[1]");
     By lbl_caseMinNotMet = By.xpath("//h2[contains(text(), 'Case Minimum Not Met')]");
-
+    By addNewItemBtn = By.xpath("//*[contains(text(),'Add New Item')]");
+    By addItemsToOrderGuideTxt = By.xpath("//div[contains(text(),'Add Item To Order Guide')]");
+    By itemNameTextField = By.xpath("//label[contains(text(),'Item Name')]/following-sibling::input");
+    By itemCodeTextField = By.xpath("//*[contains(text(),'Item Code')]/../following-sibling::input");
+    String unitBtn = "//label[contains(text(),'Unit')]/../following::div[contains(text(),'UNIT')]";
+    String unitPrice = "//td[contains(text(),'UNIT')]/following-sibling::td/input";
+    By accountingCategoryDropdown = By.xpath("//*[contains(text(),'Accounting Category')]/../following-sibling::div/div/div");
+    String accountingCategory = "//div[contains(text(),'ACCOUNTINGCATAGORY')]";
+    By saveItemBtn = By.xpath("//button[contains(text(),'Save Item')]");
+    String addedItem = "//td[contains(text(),'ITEMCODE')]";
+    By editOrder = By.xpath("//a[contains(text(),'Edit Order')]");
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -171,6 +183,11 @@ public class CustomersPage extends LoginPage {
 
     public void clickPlusQryFirstRowClassic() throws InterruptedException {
         restaurantUI.click(btn_increaseQtyFirstRowClassic);
+        restaurantUI.waitForCustom(4000);
+    }
+
+    public void clickMinusQryFirstRowClassic() throws InterruptedException {
+        restaurantUI.click(btn_decreaseQtyFirstRowClassic);
         restaurantUI.waitForCustom(4000);
     }
 
@@ -230,6 +247,10 @@ public class CustomersPage extends LoginPage {
 
     public String getItemQtyFirstRow() {
         return restaurantUI.getText(tbx_itemQuantityFirstRow, "value");
+    }
+
+    public String getItemQtyFirstRowClassic() {
+        return restaurantUI.getText(tbx_itemQuantityFirstRowClassic, "value");
     }
 
     public String getItemQtyCatalog() {
@@ -825,4 +846,56 @@ public class CustomersPage extends LoginPage {
             throw new RuntimeException(e);
         }
     }
+
+
+    public void clickAddNewItem(){
+        restaurantUI.click(addNewItemBtn);
+    }
+
+    public boolean isAddItemsToOrderGuideDisplayed(){
+        return restaurantUI.isDisplayed(addItemsToOrderGuideTxt);
+    }
+
+    public void setItemName(String ItemName){
+        restaurantUI.sendKeys(itemNameTextField,ItemName);
+    }
+
+    public void setItemCode(String ItemCode){
+        restaurantUI.sendKeys(itemCodeTextField,ItemCode);
+    }
+
+    public void setUnits(String unit){
+        restaurantUI.click(By.xpath(unitBtn.replace("UNIT",unit)));
+    }
+
+    public void setPrice(String unit,String price){
+        restaurantUI.sendKeys(By.xpath(unitPrice.replace("UNIT",unit)),price);
+    }
+
+    public void setAccountingCategory(String categoryName){
+        restaurantUI.click(accountingCategoryDropdown);
+        restaurantUI.click(By.xpath(accountingCategory.replace("ACCOUNTINGCATAGORY",categoryName)));
+    }
+    
+    public void clickSaveItemBtn(){
+        restaurantUI.click(saveItemBtn);
+        try {
+            restaurantUI.waitForCustom(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.refreshPage();
+    }
+
+    public boolean isAddItemDisplayed(String itemCode){
+        return restaurantUI.isDisplayed(By.xpath(addedItem.replace("ITEMCODE",itemCode)));
+    }
+
+    public void clickEditOrder(){
+        restaurantUI.click(editOrder);
+    }
+
+
+
+
 }
