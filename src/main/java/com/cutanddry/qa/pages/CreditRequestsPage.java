@@ -36,6 +36,21 @@ public class CreditRequestsPage extends TestBase {
     By txt_declined_credit = By.xpath("//h2[@id='swal2-title' and text()='Credit Request Declined!']");
     By txt_credit_approved = By.xpath("//td/span[@Class='_1a5re9s' and text()='Credit Approved']");
     By txt_credit_declined = By.xpath("//td/span[@Class='_1a5re9s' and text()='Credit Declined']");
+    By lbl_itemName = By.xpath("(//td[contains(@class,'align-middle')])[2]");
+    By lbl_itemCode = By.xpath("(//td[contains(@class,'align-middle')])[3]");
+    By lbl_itemPrice = By.xpath("(//td[contains(@class,'align-middle')])[5]");
+    By lbl_itemQuantity = By.xpath("(//td[contains(@class,'align-middle')])[6]");
+    By lbl_itemIssue = By.xpath("(//td[contains(@class,'align-middle')])[7]");
+    By lbl_itemTotal = By.xpath("(//td[contains(@class,'align-middle')])[8]");
+    By lbl_itemCredit = By.xpath("(//td[contains(@class,'align-middle')])[9]");
+    By lbl_itemNameDP = By.xpath("(//table[@class='table table-hover']//td[contains(@class,'align-middle')])[2]");
+    By lbl_itemCodeDP = By.xpath("(//table[@class='table table-hover']//td[contains(@class,'align-middle')])[3]");
+    By lbl_itemPriceDP = By.xpath("(//table[@class='table table-hover']//td[contains(@class,'align-middle')])[5]");
+    By lbl_itemQuantityDP = By.xpath("(//table[@class='table table-hover']//td[contains(@class,'align-middle')])[6]");
+    By lbl_itemIssueDP = By.xpath("(//table[@class='table table-hover']//td[contains(@class,'align-middle')])[7]");
+    By lbl_itemTotalDP = By.xpath("(//table[@class='table table-hover']//td[contains(@class,'align-middle')])[8]");
+    By lbl_itemCreditDP = By.xpath("(//table[@class='table table-hover']//td[contains(@class,'align-middle')])[9]");
+
 
 
 
@@ -222,6 +237,78 @@ public class CreditRequestsPage extends TestBase {
         }
         return restaurantUI.isDisplayed(txt_credit_declined);
     }
+    public String getCreditItemName() throws InterruptedException {
+        restaurantUI.waitForElementEnabledState(lbl_itemName,true);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemName);
+    }
+    public String getItemCode() throws InterruptedException {
+        restaurantUI.waitForVisibility(lbl_itemCode);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemCode);
+    }
+    public String getItemPrice() throws InterruptedException {
+        restaurantUI.waitForVisibility(lbl_itemPrice);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemPrice);
+    }
+    public String getItemQuantity() throws InterruptedException {
+        restaurantUI.waitForVisibility(lbl_itemQuantity);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemQuantity);
+    }
+    public String getItemIssue() throws InterruptedException {
+        restaurantUI.waitForVisibility(lbl_itemIssue);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemIssue);
+    }
+    public String getItemTotal() throws InterruptedException {
+        restaurantUI.waitForVisibility(lbl_itemTotal);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemTotal);
+    }
+    public String getItemCredit() throws InterruptedException {
+        restaurantUI.waitForVisibility(lbl_itemCredit);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemCredit);
+    }
+    public String getCreditItemNameDP() throws InterruptedException {
+        restaurantUI.waitForElementEnabledState(lbl_itemNameDP,true);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemNameDP);
+    }
+    public String getItemCodeDP() throws InterruptedException {
+        restaurantUI.waitForVisibility(lbl_itemCodeDP);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemCodeDP);
+    }
+    public String getItemPriceDP() throws InterruptedException {
+        restaurantUI.waitForVisibility(lbl_itemPriceDP);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemPriceDP);
+    }
+    public String getItemQuantityDP() throws InterruptedException {
+        restaurantUI.waitForVisibility(lbl_itemQuantityDP);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemQuantityDP);
+    }
+    public String getItemIssueDP() throws InterruptedException {
+        restaurantUI.waitForVisibility(lbl_itemIssueDP);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemIssueDP);
+    }
+    public String getItemTotalDP() throws InterruptedException {
+        restaurantUI.waitForVisibility(lbl_itemTotalDP);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemTotalDP);
+    }
+    public String getItemCreditDP() throws InterruptedException {
+        restaurantUI.waitForVisibility(lbl_itemCreditDP);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemCreditDP);
+    }
+
+
 
 
 
