@@ -141,7 +141,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression2.xml" "-Drun.headless=true" "-Dtest.env=uat"
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression3.xml" "-Drun.headless=true" "-Dtest.env=uat"
     executor:
 
   daily-build-and-test-1:
@@ -252,7 +252,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression2.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true"
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression3.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true"
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts
@@ -268,7 +268,7 @@ workflows:
     triggers:
       - schedule:
           #cron: "30 18 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)
-          cron: "50 2 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)
+          cron: "36 3 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)
           filters:
             branches:
               only:
