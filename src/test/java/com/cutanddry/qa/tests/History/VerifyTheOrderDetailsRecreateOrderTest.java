@@ -32,7 +32,7 @@ public class VerifyTheOrderDetailsRecreateOrderTest extends TestBase {
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         itemName = Customer.getItemNameFirstRow();
-        Customer.increaseFirstRowQtyByOne();
+        Customer.increaseFirstRowQtyInClassic(1);
         Customer.checkoutItems();
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.submitOrder();
@@ -46,7 +46,7 @@ public class VerifyTheOrderDetailsRecreateOrderTest extends TestBase {
         History.clickMoreOptions();
         History.clickRecreateOrder();
         itemName = Customer.getItemNameFirstRow();
-        Customer.increaseFirstRowQtyByOne();
+        Customer.increaseFirstRowQtyInClassic(1);
         Customer.checkoutItems();
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.submitOrder();

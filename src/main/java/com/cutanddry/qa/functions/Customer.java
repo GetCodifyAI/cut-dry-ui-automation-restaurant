@@ -44,6 +44,9 @@ public class Customer {
     }
 
     public static void increaseFirstRowQtyInClassic(int count) throws InterruptedException {
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickOnNoDraftOrder();
+        }
         for(int i=0;i<count;i++){
             customersPage.clickPlusQryFirstRowClassic();
         }

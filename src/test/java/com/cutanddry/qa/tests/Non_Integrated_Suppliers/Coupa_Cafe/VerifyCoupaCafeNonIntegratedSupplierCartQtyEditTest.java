@@ -41,7 +41,7 @@ public class VerifyCoupaCafeNonIntegratedSupplierCartQtyEditTest {
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.increaseFirstRowQtyInClassic(2);
         softAssert.assertEquals(Customer.getItemPriceReviewCart(),Customer.getItemPriceReviewCartFirstRow()*3,"price error after increase");
-        Customer.decreaseFirstRowQtyInClassic(2);
+        Customer.decreaseFirstRowQtyInClassic(1);
         softAssert.assertEquals(Customer.getItemPriceReviewCart(),Customer.getItemPriceReviewCartFirstRow()*2,"price error after decrease");
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
