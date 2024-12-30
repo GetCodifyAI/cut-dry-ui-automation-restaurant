@@ -63,12 +63,12 @@ public class Login {
     }
     public static void loginAsManager(String operator) throws InterruptedException {
         loginPage.typeToSearchOnOperator(operator);
-        loginPage.clickOnManager();
+        loginPage.clickOperator(operator);
         loginPage.clickOnLoginAsClassic();
     }
     public static void loginAsEmployee(String operator) throws InterruptedException {
         loginPage.typeToSearchOnOperator(operator);
-        loginPage.clickOnEmployee();
+        loginPage.clickOperator(operator);
         loginPage.clickOnLoginAsClassic();
     }
     public static void loginAsBookkeeper(String operator) throws InterruptedException {
@@ -83,7 +83,7 @@ public class Login {
     }
     public static void loginAsAdminWL(String operator) throws InterruptedException {
         loginPage.typeToSearchOnOperator(operator);
-        loginPage.clickOnAdminWL();
+        loginPage.clickOperator(operator);
         loginPage.clickOnLoginAsWhiteLabel();
     }
     public static void loginAsManagerWL(String operator) throws InterruptedException {
