@@ -356,7 +356,7 @@ public class Customer {
     }
 
     public static boolean isDeletedSectionNotDisplayed(String sectionName){
-        return customersPage.isSectionDisplayed(sectionName);
+        return customersPage.isSectionNotDisplayed(sectionName);
     }
 
     public static void selectPkgFromUnitSelectionDropdown(){

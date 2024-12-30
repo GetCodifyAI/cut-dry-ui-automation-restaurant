@@ -658,6 +658,16 @@ public class CustomersPage extends LoginPage {
         return restaurantUI.isDisplayed(By.xpath(section.replace("SECTIONNAME",sectionName)));
     }
 
+    public boolean isSectionNotDisplayed(String sectionName){
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.waitForInvisibility(By.xpath(section.replace("SECTIONNAME",sectionName)));
+        return restaurantUI.isDisplayed(By.xpath(section.replace("SECTIONNAME",sectionName)));
+    }
+
     public void dragSectionToHigher(){
         restaurantUI.dragAndDrop(By.xpath("//div[contains(@class, '_11h2a11m') and @data-rbd-draggable-id='item-288275866']"),By.xpath("//div[@data-rbd-draggable-id='item-212365835']"));
 

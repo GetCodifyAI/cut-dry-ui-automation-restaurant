@@ -29,8 +29,8 @@ public class PayPage extends TestBase{
     By btn_remYesConfirmation = By.xpath("//button[contains(@class,'swal2-confirm')]");
     By txt_removeSuccessMsg = By.xpath("//h2[contains(text(),'Payment method has been removed')]");
     By btn_OK = By.xpath("//button[contains(@class,'swal2-confirm swal2-styled')]");
-    By btn_paymentSettingsRemove = By.xpath("//div[text()='TestKaty01']/following-sibling::div/button[contains(text(),'Edit')]");
-    By txt_paySettingsNickname = By.xpath("//h2[contains (text(),'Edit TestKaty01 2220')]");
+    String btn_paymentSettingsRemove ="//div[text()='NICKNAME']/following-sibling::div/button[contains(text(),'Edit')]";
+    String txt_paySettingsNickname = "//h2[contains (text(),'NICKNAME')]";
     By tbx_editNickname = By.xpath("(//input[contains(@class,'form-control')])[2]");
     By invoice = By.xpath("(//td[contains(@class,'align-middle')])[1]");
     By txt_invoiceId = By.xpath("//h2[contains(@class,'my-2 font-weight')]");
@@ -175,17 +175,17 @@ public class PayPage extends TestBase{
 
     public void clickOnOk(){restaurantUI.click(btn_OK);}
 
-    public void clickPaymentSettingsRemove(){
-        restaurantUI.click(btn_paymentSettingsRemove);
+    public void clickPaymentSettingsRemove(String nickName){
+        restaurantUI.click(By.xpath(btn_paymentSettingsRemove.replace("NICKNAME",nickName)));
     }
 
-    public boolean isPaymentSettingsNicknameTextDisplayed(){
+    public boolean isPaymentSettingsNicknameTextDisplayed(String Nickname){
         try {
-            restaurantUI.waitForVisibility(txt_paySettingsNickname);
+            restaurantUI.waitForVisibility(By.xpath(txt_paySettingsNickname.replace("NICKNAME",Nickname)));
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(txt_paySettingsNickname);
+        return restaurantUI.isDisplayed(By.xpath(txt_paySettingsNickname.replace("NICKNAME",Nickname)));
     }
 
     public void clickOnOneInvoice(){restaurantUI.click(invoice);}

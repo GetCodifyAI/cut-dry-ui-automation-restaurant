@@ -15,6 +15,8 @@ import org.testng.asserts.SoftAssert;
 public class VerifyEditRemovePaymentSettingsTest extends TestBase{
     static User user;
     String NickName = "TestEdit";
+    static String accountNumber = "2222220";
+    static String routeNumber = "321081669";
 
     @BeforeMethod
     public void setUp(){
@@ -28,9 +30,24 @@ public class VerifyEditRemovePaymentSettingsTest extends TestBase{
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Pay.navigateToPay();
+
+        //Adding payment method before removing
         Pay.paymentSettings();
-        Pay.clickOnPaymentSettingsRemoveOption();
-        softAssert.assertTrue(Pay.isPaymentSettingsNicknameTextDisplayed(),"error in text display");
+        Pay.addPaymentMethod();
+        softAssert.assertTrue(Pay.isAddPaymentMethodTextDisplayed(),"error in payment method title");
+        Pay.bankAccountOption();
+        softAssert.assertTrue(Pay.isAddBankAccountTextDisplayed(),"error in add bank account title");
+        Pay.addAccountNumber(accountNumber);
+        Pay.addRouteNumber(routeNumber);
+        Pay.selectAccountTypeOption();
+        Pay.addNickname(NickName);
+        softAssert.assertTrue(Pay.isPaymentMethodSuccessfullyAddedTxtDisplayed(),"Payment method not successfully added");
+        Pay.clickOkAndCloseAddPaymentMethodOverlay();
+
+        //Removing the payment method
+        Pay.paymentSettings();
+        Pay.clickOnPaymentSettingsRemoveOption(NickName);
+        softAssert.assertTrue(Pay.isPaymentSettingsNicknameTextDisplayed(NickName),"error in text display");
         Pay.clickOnRemovePaymentOption();
         softAssert.assertTrue(Pay.isRemoveConfirmationMessageDisplayed(),"error in text display");
         Pay.clickOnRemoveOption();

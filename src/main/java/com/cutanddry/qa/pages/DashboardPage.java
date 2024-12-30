@@ -146,6 +146,7 @@ public class DashboardPage extends LoginPage{
 
     public boolean isNavigatedToOrderGuide(String Supplier) throws InterruptedException {
         restaurantUI.waitForCustom(4000);
+        restaurantUI.waitForVisibility(By.xpath(customerNameText.replace("SUPPLIERNAME",Supplier)));
         return restaurantUI.isDisplayed(By.xpath(customerNameText.replace("SUPPLIERNAME",Supplier)));
     }
 
