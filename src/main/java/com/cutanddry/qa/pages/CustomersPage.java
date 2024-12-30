@@ -18,8 +18,8 @@ public class CustomersPage extends LoginPage {
     By btn_addToCart = By.xpath("//button[contains(@data-for,'tooltipundefined')]/ancestor::div[3]//div/button/*[contains(@data-icon,'plus')]");
     By tbx_itemQuantityFirstRow = By.xpath("//tr[1]//td[6]//input");
     By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[5]//div)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[5]//span)[1]");
-    By btn_increaseQtyCatalog = By.xpath("//div[contains(@class, 'd-flex') and contains(@class, 'btn-primary')]/*[name()='svg' and contains(@data-icon, 'plus')]");
-    By btn_decreaseQtyCatalog = By.xpath("//div[contains(@class, 'd-flex') and contains(@class, 'btn-primary')]/*[name()='svg' and @data-icon='minus']");
+    By btn_increaseQtyCatalog = By.xpath("//div[contains(@class, 'card-deck')]//*[name()='svg' and contains(@data-icon, 'plus')]");
+    By btn_decreaseQtyCatalog = By.xpath("//div[contains(@class, 'card-deck')]//*[name()='svg' and contains(@data-icon,'minus')]");
     By tbx_itemQuantityCatalog = By.xpath("//input[@type='number']");
     By lbl_itemPriceSearchCatalogList = By.xpath("//div[4]/div/div[1]/div/span[contains(text(), '$')]");
     By txt_addToCart = By.xpath("//button[contains(text(), 'Add to Cart')]");
@@ -220,6 +220,7 @@ public class CustomersPage extends LoginPage {
     }
 
     public void typeToSearchOnCatalog(String item) throws InterruptedException {
+        restaurantUI.waitForCustom(3000);
         restaurantUI.clearUsingJavaScript(tbx_catalogSearch);
         restaurantUI.click(tbx_catalogSearch);
         restaurantUI.waitForCustom(2000);
@@ -355,6 +356,15 @@ public class CustomersPage extends LoginPage {
     }
 
     public boolean isEditOrderGuideTextDisplayed() {
+        if(restaurantUI.isDisplayed(ratingOverlayIframe)){
+            restaurantUI.switchToFrameByElement(ratingOverlayIframe);
+            restaurantUI.click(ratingOverlayCloseBtn);
+            try {
+                restaurantUI.waitForCustom(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
         try {
             restaurantUI.waitForVisibility(txt_editOrderGuide);
         } catch (Exception e) {
