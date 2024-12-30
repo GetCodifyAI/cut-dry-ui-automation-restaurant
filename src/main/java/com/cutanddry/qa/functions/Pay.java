@@ -73,9 +73,9 @@ public class Pay {
 
     public static void clickOnOkOption(){PayPage.clickOnOk();}
 
-    public static void clickOnPaymentSettingsRemoveOption(){PayPage.clickPaymentSettingsRemove();}
+    public static void clickOnPaymentSettingsRemoveOption(String nickName){PayPage.clickPaymentSettingsRemove(nickName);}
 
-    public static boolean isPaymentSettingsNicknameTextDisplayed(){return PayPage.isPaymentSettingsNicknameTextDisplayed();}
+    public static boolean isPaymentSettingsNicknameTextDisplayed(String nickName){return PayPage.isPaymentSettingsNicknameTextDisplayed(nickName);}
 
     public static void clickOnInvoice(){PayPage.clickOnOneInvoice();}
 

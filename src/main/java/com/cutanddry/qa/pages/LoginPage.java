@@ -36,6 +36,7 @@ public class LoginPage extends TestBase {
     By txt_employeeWL = By.xpath("//div[contains(text(), 'Hadley Ifc Employee - 274597299 - Employee - IFC Operator Demo - hadley+employee@cutanddry.com - null')]");
     By lbl_activeVV = By.xpath("//tbody/tr[1]/td[3]/ul[2]/li/label/input[@value='active_for_all_vv']");
     By lbl_activeVVChecked = By.xpath("//tbody/tr[1]/td[3]/ul[2]/li/label/input[@value='active_for_all_vv' and @checked]");
+    By internalToolsBtn = By.xpath("//a[contains(text(),'Internal Tools') and contains(@href,'/internaltools')]");
 
     public void typeEmailOrMobile(String emailOrMobile){
         restaurantUI.sendKeys(txt_emailOrMobile,emailOrMobile);
@@ -170,4 +171,11 @@ public class LoginPage extends TestBase {
         restaurantUI.waitForVisibility(By.xpath(txt_operator.replace("OPERATOR_NAME",operator)));
         restaurantUI.click(By.xpath(txt_operator.replace("OPERATOR_NAME",operator)));
     }
+
+    public void clickOnInternalTools(){
+        restaurantUI.navigateToURL(Constants.LOGIN_AS_APP_URL);
+        restaurantUI.click(internalToolsBtn);
+    }
+
+
 }

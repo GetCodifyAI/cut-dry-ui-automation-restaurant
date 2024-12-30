@@ -111,5 +111,8 @@ public class Login {
         loginPage.clickOnLoginAsClassicAndSwitchToNewTab();
     }
 
+    public static void navigateToInternalTools(){
+        loginPage.clickOnInternalTools();
+    }
 
 }

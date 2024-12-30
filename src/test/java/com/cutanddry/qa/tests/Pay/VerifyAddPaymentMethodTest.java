@@ -3,6 +3,7 @@ package com.cutanddry.qa.tests.Pay;
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.Dashboard;
+import com.cutanddry.qa.functions.InternalTools;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.functions.Pay;
 import com.cutanddry.qa.utils.JsonUtil;
@@ -17,6 +18,8 @@ public class VerifyAddPaymentMethodTest extends TestBase {
     static String accountNumber = "2222220";
     static String routeNumber = "321081669";
     static String nickName = "TestKaty";
+    String distributor = "What Chefs Want - Rockies";
+    String payConfigs = "Enable FTNI Payment Gateway";
 
     @BeforeMethod
     public void setUp(){
@@ -29,6 +32,17 @@ public class VerifyAddPaymentMethodTest extends TestBase {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+
+        Login.navigateToInternalTools();
+        InternalTools.navigateToConfigureSupplier();
+        InternalTools.navigateToEditDetails(distributor);
+        InternalTools.navigateToPayDetails();
+        InternalTools.uncheckFromInternalTools(payConfigs);
+        InternalTools.saveConfig();
+        softAssert.assertTrue(InternalTools.isSuccessfulOverlayDisplayed(),"ERROR in saving the configs");
+        InternalTools.clickOkOnSuccessBtn();
+
+        Login.navigateToOperator();
         Pay.navigateToPay();
         softAssert.assertTrue(Pay.isPaySupplierTextDisplayed(),"error in text display");
         Pay.payOption();
