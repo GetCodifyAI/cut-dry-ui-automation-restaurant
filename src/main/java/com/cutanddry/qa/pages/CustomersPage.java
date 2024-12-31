@@ -642,10 +642,11 @@ public class CustomersPage extends LoginPage {
 
     public void TypeSectionName(String sectionName){
         try {
-            restaurantUI.waitForCustom(1500);
+            restaurantUI.waitForCustom(4000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        restaurantUI.waitForVisibility(sectionInput);
         restaurantUI.sendKeys(sectionInput,sectionName);
     }
 
