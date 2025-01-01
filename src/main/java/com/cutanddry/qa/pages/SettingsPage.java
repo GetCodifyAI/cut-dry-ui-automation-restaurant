@@ -12,7 +12,7 @@ public class SettingsPage extends LoginPage{
     By profileTextField = By.xpath("//label[contains(text(),'Name')]/following-sibling::div//input[@type='text']");
     By saveBtn = By.xpath("//button[contains(text(),'Save')]");
     By profileUpdateSuccessOverlay = By.xpath("//h2[contains(@class,'swal2-title') and contains(text(),'Profile updated successfully')]");
-    By restaurantBtn = By.xpath("//div[@class='fade _1v9d984k mt-5 show']//a[contains(text(),'Restaurant')]");
+    By businessBtn = By.xpath("//div[@class='fade _1v9d984k mt-5 show']//a[contains(text(),'Business')]");
     By restaurantNameTextField = By.xpath("//label[contains(text(),'Name')]/following-sibling::div//input[@class='form-control']");
     By companyDetailsUpdateSuccessOverlay = By.xpath("//h2[contains(@class,'swal2-title') and contains(text(),'Company details successfully edited.')]");
     By removeLogoBtn = By.xpath("//button[@class='mt-2 btn btn-link' and contains(text(),'Remove')]");
@@ -93,8 +93,8 @@ public class SettingsPage extends LoginPage{
         return restaurantUI.getAttributeValue(profileTextField,"value");
     }
 
-    public void clickOnRestuarent() throws InterruptedException {
-        restaurantUI.click(restaurantBtn);
+    public void clickOnBusiness() throws InterruptedException {
+        restaurantUI.click(businessBtn);
         restaurantUI.waitForCustom(1000);
     }
 

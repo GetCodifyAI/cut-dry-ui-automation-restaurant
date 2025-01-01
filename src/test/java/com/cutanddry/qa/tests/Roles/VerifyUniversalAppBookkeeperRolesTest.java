@@ -69,7 +69,7 @@ public class VerifyUniversalAppBookkeeperRolesTest extends TestBase {
         Login.navigateToOperator();
         Settings.clickOnProfileUnderSettings();
         softAssert.assertTrue(Settings.isNavigatedToProfileSetting(),"navigation to profile settings error");
-        Settings.clickOnRestaurantUnderSettings();
+        Settings.clickOnBusinessUnderSettings();
         softAssert.assertTrue(Settings.isNavigatedToRestaurantSettings(),"navigation to restaurant settings error");
         Settings.clickOnLocationsUnderSettings();
         softAssert.assertTrue(Settings.isNavigatedToLocationSettings(),"navigation to loc settings error");

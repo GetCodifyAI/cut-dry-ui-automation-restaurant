@@ -37,7 +37,7 @@ public class VerifyRestaurantUpdateTest extends TestBase {
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        Settings.clickOnRestaurantUnderSettings();
+        Settings.clickOnBusinessUnderSettings();
         Settings.editNameInRestaurant(restaurantName);
         Settings.saveRestaurantChanges();
         softAssert.assertTrue(Settings.isSuccessfulCompanyDetailsUpdateOverlayDisplayed(),"Error in Saving edited Company name");
