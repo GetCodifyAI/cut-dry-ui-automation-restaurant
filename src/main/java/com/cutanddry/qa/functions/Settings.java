@@ -78,9 +78,9 @@ public class Settings {
         return settingsPage.getUpdateName();
     }
 
-    public static void clickOnRestaurantUnderSettings() throws InterruptedException {
+    public static void clickOnBusinessUnderSettings() throws InterruptedException {
         settingsPage.clickOnSettings();
-        settingsPage.clickOnRestuarent();
+        settingsPage.clickOnBusiness();
     }
 
     public static void editNameInRestaurant(String restaurantName){
