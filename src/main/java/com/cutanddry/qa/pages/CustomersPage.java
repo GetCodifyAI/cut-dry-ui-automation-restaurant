@@ -5,8 +5,10 @@ import org.openqa.selenium.By;
 public class CustomersPage extends LoginPage {
 
     By lbl_itemNameList = By.xpath("//td//span/div[@data-tip='View Product Details']");
-    By btn_increaseQtyFirstRow = By.xpath("//tr[1]/td[6]/div/div/div/div[3]");
-    By btn_decreaseQtyFirstRow = By.xpath("//tr[1]/td[6]/div/div/div/div[1]");
+//    By btn_increaseQtyFirstRow = By.xpath("//tr[1]/td[6]/div/div/div/div[3]");
+By btn_increaseQtyFirstRow = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'plus')])[1]");
+//    By btn_decreaseQtyFirstRow = By.xpath("//tr[1]/td[6]/div/div/div/div[1]");
+By btn_decreaseQtyFirstRow = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'minus')])[1]");
     By btn_decreaseQtySecondRow = By.xpath("//tr[2]/td[6]/div/div/div/div[1]");
     By btn_increaseQtySecondRow = By.xpath("//tr[2]/td[6]/div/div/div/div[3]");
     By btn_checkout = By.xpath("//button[@data-for='cartCheckoutButton']");
@@ -16,8 +18,10 @@ public class CustomersPage extends LoginPage {
     By tbx_orderGuideSearch = By.xpath("//input[@placeholder='Search order guide...']");
     By lbl_catalogSearchItemList = By.xpath("(//button[contains(@data-for,'tooltipundefined')]/ancestor::div[2]/following-sibling::div[2]/div/div)[1]");
     By btn_addToCart = By.xpath("//button[contains(@data-for,'tooltipundefined')]/ancestor::div[3]//div/button/*[contains(@data-icon,'plus')]");
-    By tbx_itemQuantityFirstRow = By.xpath("//tr[1]//td[6]//input");
-    By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[5]//div)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[5]//span)[1]");
+//    By tbx_itemQuantityFirstRow = By.xpath("//tr[1]//td[6]//input");
+By tbx_itemQuantityFirstRow = By.xpath("(//*[@data-input ='quantityInput'])[1]");
+//    By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[5]//div)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[5]//span)[1]");
+By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[6]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[6]//span)[1]");
     By btn_increaseQtyCatalog = By.xpath("//div[contains(@class, 'card-deck')]//*[name()='svg' and contains(@data-icon, 'plus')]");
     By btn_decreaseQtyCatalog = By.xpath("//div[contains(@class, 'card-deck')]//*[name()='svg' and contains(@data-icon,'minus')]");
     By tbx_itemQuantityCatalog = By.xpath("//input[@type='number']");
@@ -263,7 +267,16 @@ public class CustomersPage extends LoginPage {
     }
 
     public Double getItemPriceFirstRow() {
-        return Double.valueOf(restaurantUI.getText(lbl_itemPriceFirstRow).replace("$", ""));
+        restaurantUI.waitForVisibility(lbl_itemPriceFirstRow);
+        String tagName = restaurantUI.getElement(lbl_itemPriceFirstRow).getTagName();
+        String priceText;
+        if (tagName.equals("input")) {
+            priceText = restaurantUI.getText(lbl_itemPriceFirstRow, "value");
+        } else {
+            priceText = restaurantUI.getText(lbl_itemPriceFirstRow);
+        }
+        return Double.valueOf(priceText.replace("$", "").trim());
+//        return Double.valueOf(restaurantUI.getText(lbl_itemPriceFirstRow).replace("$", ""));
     }
 
     public Double getItemPriceOnCheckoutButton() {

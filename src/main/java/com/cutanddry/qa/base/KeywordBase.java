@@ -627,5 +627,16 @@ public class KeywordBase {
         return this;
     }
 
+    public WebElement getElement(By locator) {
+        try {
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            logger.info("Successfully located element: {}", locator);
+            return element;
+        } catch (Exception e) {
+            logger.error("Failed to locate element: {}", locator, e);
+            return null;
+        }
+    }
+
 }
 
