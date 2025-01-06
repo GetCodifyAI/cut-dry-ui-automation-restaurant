@@ -44,7 +44,7 @@ public class EditProductQtyFrmOrderGuideTest extends TestBase {
     @AfterMethod
     public void tearDown(ITestResult result) {
         takeScreenshotOnFailure(result);
-        closeAllBrowsers();
+        closeAllBrowsersAtOnce();
     }
 
 }

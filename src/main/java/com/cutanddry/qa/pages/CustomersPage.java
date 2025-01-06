@@ -21,7 +21,10 @@ By btn_decreaseQtyFirstRow = By.xpath("(//tr/td//div[contains(@data-tip,'View Pr
 //    By tbx_itemQuantityFirstRow = By.xpath("//tr[1]//td[6]//input");
 By tbx_itemQuantityFirstRow = By.xpath("(//*[@data-input ='quantityInput'])[1]");
 //    By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[5]//div)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[5]//span)[1]");
-By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[6]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[6]//span)[1]");
+//By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[6]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[6]//span)[1]");
+By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-1]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-1]//span)[1])[1]");
+    By lbl_itemPriceFirstRow1 = By.xpath("((//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-1]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-1]//span)[1])[2]");
+
     By btn_increaseQtyCatalog = By.xpath("//div[contains(@class, 'card-deck')]//*[name()='svg' and contains(@data-icon, 'plus')]");
     By btn_decreaseQtyCatalog = By.xpath("//div[contains(@class, 'card-deck')]//*[name()='svg' and contains(@data-icon,'minus')]");
     By tbx_itemQuantityCatalog = By.xpath("//input[@type='number']");
@@ -32,6 +35,7 @@ By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product De
     By btn_decreaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[1]");
     By tbx_itemQuantityReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[2]/input");
     By lbl_itemPriceReviewCartFirstRow = By.xpath("//td//span//div[@data-tip='View Product Details']/ancestor::tr//td/span");
+    By lbl_cartItemUnitPrice = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//span)[1]");
     By btn_submitOrder = By.xpath("//button[contains(text(),'Submit')]");
     By btn_duplicateOrderYes = By.xpath("//button[contains(text(), 'Yes')]");
     By lbl_thankYouForOrder = By.xpath("//*[contains(text(),'Thank you for your order!')]");
@@ -251,6 +255,11 @@ By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product De
     }
 
     public String getItemQtyFirstRow() {
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         return restaurantUI.getText(tbx_itemQuantityFirstRow, "value");
     }
 
@@ -266,7 +275,7 @@ By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product De
         return Double.valueOf(restaurantUI.getText(lbl_itemPriceSearchCatalogList).replace("$", ""));
     }
 
-    public Double getItemPriceFirstRow() {
+   /* public Double getItemPriceFirstRow() {
         restaurantUI.waitForVisibility(lbl_itemPriceFirstRow);
         String tagName = restaurantUI.getElement(lbl_itemPriceFirstRow).getTagName();
         String priceText;
@@ -277,9 +286,38 @@ By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product De
         }
         return Double.valueOf(priceText.replace("$", "").trim());
 //        return Double.valueOf(restaurantUI.getText(lbl_itemPriceFirstRow).replace("$", ""));
+    }*/
+
+    public double getItemPriceFirstRow() {
+        try {
+            return extractPrice(lbl_itemPriceFirstRow);
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractPrice(lbl_itemPriceFirstRow1);
+        }
+    }
+
+    private double extractPrice(By priceLocator) {
+        restaurantUI.waitForVisibility(priceLocator);
+        String tagName = restaurantUI.getElement(priceLocator).getTagName();
+        String priceText;
+
+        if (tagName.equals("input")) {
+            priceText = restaurantUI.getText(priceLocator, "value");
+        } else {
+            priceText = restaurantUI.getText(priceLocator);
+        }
+
+        System.out.println("Extracted Price: " + priceText);
+        return Double.valueOf(priceText.replace("$", "").replace("/cs", "").replace("/pkg", "").trim());
     }
 
     public Double getItemPriceOnCheckoutButton() {
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         return Double.valueOf(restaurantUI.getText(btn_checkout).replace("$", ""));
     }
 
@@ -304,7 +342,18 @@ By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product De
     }
 
     public Double getItemPriceReviewCartFirstRow() {
-        return Double.valueOf(restaurantUI.getText(lbl_itemPriceReviewCartFirstRow).replace("$", ""));
+//        return Double.valueOf(restaurantUI.getText(lbl_itemPriceReviewCartFirstRow).replace("$", ""));
+        restaurantUI.waitForVisibility(lbl_cartItemUnitPrice);
+        String tagName = restaurantUI.getElement(lbl_cartItemUnitPrice).getTagName();
+        String priceText;
+        if (tagName.equals("input")) {
+            priceText = restaurantUI.getText(lbl_cartItemUnitPrice, "value");
+        } else {
+            priceText = restaurantUI.getText(lbl_cartItemUnitPrice);
+        }
+
+        return Double.valueOf(priceText.replace("$", "").replace("/cs", "").replace("/pkg", "").trim());
+
     }
 
     public boolean isDuplicatePopupDisplayed() {
