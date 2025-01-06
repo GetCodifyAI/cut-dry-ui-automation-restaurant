@@ -35,6 +35,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_decreaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[1]");
     By tbx_itemQuantityReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[2]/input");
     By lbl_itemPriceReviewCartFirstRow = By.xpath("//td//span//div[@data-tip='View Product Details']/ancestor::tr//td/span");
+    By lbl_cartItemUnitPrice = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//span)[1]");
     By btn_submitOrder = By.xpath("//button[contains(text(),'Submit')]");
     By btn_duplicateOrderYes = By.xpath("//button[contains(text(), 'Yes')]");
     By lbl_thankYouForOrder = By.xpath("//*[contains(text(),'Thank you for your order!')]");
@@ -341,7 +342,18 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
 
     public Double getItemPriceReviewCartFirstRow() {
-        return Double.valueOf(restaurantUI.getText(lbl_itemPriceReviewCartFirstRow).replace("$", ""));
+//        return Double.valueOf(restaurantUI.getText(lbl_itemPriceReviewCartFirstRow).replace("$", ""));
+        restaurantUI.waitForVisibility(lbl_cartItemUnitPrice);
+        String tagName = restaurantUI.getElement(lbl_cartItemUnitPrice).getTagName();
+        String priceText;
+        if (tagName.equals("input")) {
+            priceText = restaurantUI.getText(lbl_cartItemUnitPrice, "value");
+        } else {
+            priceText = restaurantUI.getText(lbl_cartItemUnitPrice);
+        }
+
+        return Double.valueOf(priceText.replace("$", "").replace("/cs", "").replace("/pkg", "").trim());
+
     }
 
     public boolean isDuplicatePopupDisplayed() {
