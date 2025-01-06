@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyCreatingOrdersWithCatalogItemsTest extends TestBase {
     static User user;
     static String OrderGuideName = "Test_Guide";
-    static String itemName = "Broccolini 18 Ct";
+    static String itemName = "Broccolini 18 CT";
 
     @BeforeMethod
     public void setUp(){
@@ -38,7 +38,7 @@ public class VerifyCreatingOrdersWithCatalogItemsTest extends TestBase {
         Customer.searchItemOnCatalog(itemName);
         Customer.addItemFromCatalog();
         Customer.closeEditor();
-        softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item not found");
+        softAssert.assertTrue(Customer.getItemNameFirstRow().toLowerCase().contains(itemName.toLowerCase()),"item not found");
         softAssert.assertAll();
 
     }

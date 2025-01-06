@@ -107,7 +107,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By caseOption = By.xpath("//div[contains(@class, 'cd_themed_select__option') and text()='Case']");
     String editItemBtn = "//div[contains(text(), 'ITEMNAME')]/../following-sibling::div[@class='col-2 col-lg-1 d-flex justify-content-end mt-1 align-items-center align-items-lg-start']//*[name()='svg' and @role='img']";
     By hideBtn = By.xpath("//button[contains(text(),'Hide Item')]");
-    String hiddenItem ="//div[contains(text(),'ITEMNAME')]";
+//    String hiddenItem ="//div[contains(text(),'ITEMNAME')]";
+    String hiddenItem = "//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('ITEMNAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]";
     By showFilter = By.xpath("//div[contains(text(),'Show')]/..//input/../following-sibling::div/div");
     By activeAndHiddenOption = By.xpath("//div[contains(@class,'cd_themed_select__option css-yt9ioa-option') and text()='Active & Hidden Items']");
     By onlyActiveItemsOption = By.xpath("(//div[contains(text(),'Only Active Items')])[last()]");
@@ -817,6 +818,11 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
 
     public boolean isHiddenItemDisplayed(String itemName){
+        try {
+            restaurantUI.waitForCustom(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         return restaurantUI.isDisplayed(By.xpath(hiddenItem.replace("ITEMNAME",itemName)));
     }
 

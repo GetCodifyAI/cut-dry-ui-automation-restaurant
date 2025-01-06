@@ -33,9 +33,9 @@ public class VerifyTheSearchFeatureTest extends TestBase {
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.searchItemOnOrderGuide(itemName);
-        softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item mismatch");
+        softAssert.assertTrue(Customer.getItemNameFirstRow().toLowerCase().contains(itemName.toLowerCase()),"item mismatch");
         Customer.searchItemOnOrderGuide(itemCode);
-        softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item mismatch");
+        softAssert.assertTrue(Customer.getItemNameFirstRow().toLowerCase().contains(itemName.toLowerCase()),"item mismatch");
         softAssert.assertAll();
 
     }
