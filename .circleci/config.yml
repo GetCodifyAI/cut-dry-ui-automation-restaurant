@@ -267,11 +267,11 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "58 12 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * feature/e2e_mubarak
+          cron: "55 14 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * feature/ahsan_bugfix
           filters:
             branches:
               only:
-                - feature/e2e_mubarak
+                - feature/ahsan_bugfix
     jobs:
       - nightly-build-and-test-1
       - nightly-build-and-test-2
