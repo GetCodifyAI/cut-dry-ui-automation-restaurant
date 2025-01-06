@@ -82,6 +82,15 @@ public class TestBase {
         }
     }
 
+    // Method to close the browser and clean up resources
+    public static void closeAllBrowsersAtOnce() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;  // Reset the driver to allow re-initialization in future tests
+            LOGGER.info("All browsers are closed.");
+        }
+    }
+
     public static void takeScreenshotOnFailure(ITestResult result) {
         if (ITestResult.FAILURE == result.getStatus()) {
             String testName = result.getName();
