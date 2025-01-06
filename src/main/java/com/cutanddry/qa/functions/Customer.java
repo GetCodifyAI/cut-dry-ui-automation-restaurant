@@ -103,7 +103,7 @@ public class Customer {
         }
         customersPage.typeToSearchOnOrderGuide(item);
     }
-    public static String getFirstElementFrmSearchResults(){return customersPage.getFirstItemNameFrmSearchResults();}
+    public static String getFirstElementFrmSearchResults(){return customersPage.getFirstItemNameFrmSearchResults().toLowerCase();}
     public static void addItemToCartCatalog()throws InterruptedException {
         customersPage.clickAddToCartCatalog();
     }

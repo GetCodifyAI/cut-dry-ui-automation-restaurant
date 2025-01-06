@@ -42,7 +42,7 @@ public class VerifyUniversalAppBookkeeperRolesTest extends TestBase {
         Customer.goToCatalog();
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
         Customer.searchItemOnCatalog(itemName);
-        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName), "item not found");
+        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName.toLowerCase()), "item not found");
         Customer.increaseCatalogQtyByThree();
         Customer.checkoutItems();
         Customer.submitOrder();
@@ -81,7 +81,7 @@ public class VerifyUniversalAppBookkeeperRolesTest extends TestBase {
     @AfterMethod
     public void tearDown(ITestResult result) {
         takeScreenshotOnFailure(result);
-        closeAllBrowsers();
+        closeAllBrowsersAtOnce();
     }
 
 }

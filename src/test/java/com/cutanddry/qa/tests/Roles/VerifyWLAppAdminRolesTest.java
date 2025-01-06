@@ -42,7 +42,7 @@ public class VerifyWLAppAdminRolesTest extends TestBase {
         Customer.goToCatalog();
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
         Customer.searchItemOnCatalog(itemName);
-        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName), "item not found");
+        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName.toLowerCase()), "item not found");
         Customer.increaseFirstRowQtyByOne();
         Customer.checkoutItems();
         Customer.submitOrder();
