@@ -50,7 +50,14 @@ public class HistoryPage extends TestBase {
     public void clickClose(){
         restaurantUI.click(btn_close);
     }
-    public void clickHistory(){ restaurantUI.click(btn_history); }
+    public void clickHistory(){
+        restaurantUI.click(btn_history);
+        try {
+            restaurantUI.waitForCustom(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public boolean isHistoryTextDisplayed(){
         try {

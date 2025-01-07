@@ -105,7 +105,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By unitSelectionDropdown = By.xpath("//tbody/tr/td[3]/div/div/div/div");
     By pkgOption = By.xpath("//div[contains(@class, 'cd_themed_select__option') and text()='Pkg']");
     By caseOption = By.xpath("//div[contains(@class, 'cd_themed_select__option') and text()='Case']");
-    String editItemBtn = "//div[contains(text(), 'ITEMNAME')]/../following-sibling::div[@class='col-2 col-lg-1 d-flex justify-content-end mt-1 align-items-center align-items-lg-start']//*[name()='svg' and @role='img']";
+    String editItemBtn = "//div[contains(translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('ITEMNAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]/../following-sibling::div//*[name()='svg' and @data-icon='pencil']";
     By hideBtn = By.xpath("//button[contains(text(),'Hide Item')]");
 //    String hiddenItem ="//div[contains(text(),'ITEMNAME')]";
     String hiddenItem = "//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('ITEMNAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]";
@@ -948,10 +948,12 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
 
 
     public void clickAddNewItem(){
+        restaurantUI.waitForVisibility(addNewItemBtn);
         restaurantUI.click(addNewItemBtn);
     }
 
     public boolean isAddItemsToOrderGuideDisplayed(){
+        restaurantUI.waitForVisibility(addItemsToOrderGuideTxt);
         return restaurantUI.isDisplayed(addItemsToOrderGuideTxt);
     }
 
