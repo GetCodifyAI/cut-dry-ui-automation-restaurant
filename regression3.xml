@@ -18,6 +18,7 @@
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderWithoutAddingAnyItemsTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromCatalogTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromPDPTest" />
         </classes>
     </test>
 </suite>
