@@ -522,5 +522,42 @@ public class Customer {
     public static void editOrderFromReviewScreen(){
         customersPage.clickEditOrder();
     }
+    public static String getItemCodeFirstRow() throws InterruptedException {
+        return customersPage.getItemCodeFirstRow();
+    }
+    public static double getActiveItemPriceFirstRow() throws InterruptedException {
+        return customersPage.getActiveItemPriceFirstRow();
+    }
+    public static void increaseFirstRowQtyCustom(int count) throws InterruptedException {
+        for (int i=0; i<count;i++){
+            customersPage.clickPlusQryFirstRow();
+        }
+    }
+    public static boolean isReviewOrderTextDisplayed(){
+        return customersPage.isReviewOrderTextDisplayed();
+    }
+    public static double getItemPriceOnCheckoutButtonViaPDP() throws InterruptedException {
+        return customersPage.getItemPriceOnCheckoutButtonViaPDP();
+    }
+    public static void clickOnPlusIconInCatalogPDP(int count, String name) {
+        for (int i=0; i<count;i++){
+            customersPage.clickOnPlusIconInCatalogPDP(name);
+        }
+    }
+    public static String getFirstElementFrmCatalogSearchResults(String name){
+        return customersPage.getFirstElementFrmCatalogSearchResults(name);
+    }
+    public static void clickOnProduct(String name){
+        customersPage.clickOnProduct(name);
+    }
+    public static boolean isProductDetailsDisplayed(){
+        return customersPage.isProductDetailsDisplayed();
+    }
+    public static void clickPlusSearchedSingleItem(int count) {
+        for (int i=0; i<count;i++){
+            customersPage.clickPlusSearchedSingleItem();
+        }
+    }
+    public static void clickCheckOutPDP(){customersPage.clickCheckOutPDP();}
 
 }
