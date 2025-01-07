@@ -17,6 +17,7 @@
             <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderEditTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderWithoutAddingAnyItemsTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromOrderGuideTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromCatalogTest" />
         </classes>
     </test>
 </suite>
