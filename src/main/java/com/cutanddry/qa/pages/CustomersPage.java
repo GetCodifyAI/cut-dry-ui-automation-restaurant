@@ -105,7 +105,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By unitSelectionDropdown = By.xpath("//tbody/tr/td[3]/div/div/div/div");
     By pkgOption = By.xpath("//div[contains(@class, 'cd_themed_select__option') and text()='Pkg']");
     By caseOption = By.xpath("//div[contains(@class, 'cd_themed_select__option') and text()='Case']");
-    String editItemBtn = "//div[contains(text(), 'ITEMNAME')]/../following-sibling::div[@class='col-2 col-lg-1 d-flex justify-content-end mt-1 align-items-center align-items-lg-start']//*[name()='svg' and @role='img']";
+    String editItemBtn = "//div[contains(translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('ITEMNAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]/../following-sibling::div//*[name()='svg' and @data-icon='pencil']";
     By hideBtn = By.xpath("//button[contains(text(),'Hide Item')]");
 //    String hiddenItem ="//div[contains(text(),'ITEMNAME')]";
     String hiddenItem = "//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('ITEMNAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]";
@@ -148,6 +148,16 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By saveItemBtn = By.xpath("//button[contains(text(),'Save Item')]");
     String addedItem = "//td[contains(text(),'ITEMCODE')]";
     By editOrder = By.xpath("//a[contains(text(),'Edit Order')]");
+    By lbl_itemCodeList = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[2])[1]");
+    By lbl_itemPriceList = By.xpath("((//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-1]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-1]//span)[1])[1]");
+    By txt_reviewOrder = By.xpath("//div[text()='Review Order']");
+    By btn_checkOutPDP = By.xpath("//button[@data-for='cartCheckoutButton' and contains(text(),'$')]");
+    String btn_catalogPDPPlusStable = "(//div[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')]/following::div//*[name()='svg' and contains(@data-icon, 'plus')])[1]";
+    String lbl_catalogSearchResultItemList = "(//div[contains(@class,'card-deck')]//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))])[last()]";
+    String txt_product = "//div[contains(@class,'_3quvq7 _1vlidrf' ) and contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]";
+    By lbl_productDetails = By.xpath("//span[text()='Product Details']");
+    By btn_catalogPlus = By.xpath("//*[name()='svg' and @data-icon='plus']");
+
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -938,10 +948,12 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
 
 
     public void clickAddNewItem(){
+        restaurantUI.waitForVisibility(addNewItemBtn);
         restaurantUI.click(addNewItemBtn);
     }
 
     public boolean isAddItemsToOrderGuideDisplayed(){
+        restaurantUI.waitForVisibility(addItemsToOrderGuideTxt);
         return restaurantUI.isDisplayed(addItemsToOrderGuideTxt);
     }
 
@@ -983,8 +995,53 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     public void clickEditOrder(){
         restaurantUI.click(editOrder);
     }
-
-
-
+    public String getItemCodeFirstRow() throws InterruptedException {
+        restaurantUI.waitForVisibility(lbl_itemCodeList);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_itemCodeList);
+    }
+    public double getActiveItemPriceFirstRow() throws InterruptedException {
+        try {
+            return extractPrice(lbl_itemPriceList);
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractPrice(lbl_itemPriceList);
+        }
+    }
+    public boolean isReviewOrderTextDisplayed(){
+        restaurantUI.waitForVisibility(txt_reviewOrder);
+        return restaurantUI.isDisplayed(txt_reviewOrder);
+    }
+    public Double getItemPriceOnCheckoutButtonViaPDP() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_checkOutPDP);
+        restaurantUI.waitForCustom(4000);
+        return Double.valueOf(restaurantUI.getText(btn_checkOutPDP).replace("$",""));
+    }
+    public void clickOnPlusIconInCatalogPDP(String name){
+        restaurantUI.waitForVisibility(By.xpath(btn_catalogPDPPlusStable.replace("NAME", name)));
+        restaurantUI.click(By.xpath(btn_catalogPDPPlusStable.replace("NAME", name)));
+    }
+    public String getFirstElementFrmCatalogSearchResults(String name){
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.waitForVisibility(By.xpath(lbl_catalogSearchResultItemList.replace("NAME", name)));
+        return restaurantUI.getText(By.xpath(lbl_catalogSearchResultItemList.replace("NAME", name))).toLowerCase();
+    }
+    public void clickOnProduct(String name){
+        restaurantUI.waitForVisibility(By.xpath(txt_product.replace("NAME", name)));
+        restaurantUI.clickUsingJavaScript(By.xpath(txt_product.replace("NAME", name)));
+    }
+    public boolean isProductDetailsDisplayed(){
+        return restaurantUI.isDisplayed(lbl_productDetails);
+    }
+    public void clickPlusSearchedSingleItem(){
+        restaurantUI.click(btn_catalogPlus);
+    }
+    public void clickCheckOutPDP(){
+        restaurantUI.click(btn_checkOutPDP);
+    }
 
 }
