@@ -11,11 +11,19 @@ public class SuppliersPage extends TestBase {
     By tbx_suppliers = By.xpath("//input[@placeholder='Supplier Name'][1]");
     By btn_continue= By.xpath("//button[b[text()='Continue']]");
     By btn_save= By.xpath("//button[text()='Save']");
-    By btn_testSupplier= By.xpath("//td[contains(text(), 'TestSupplier')]");
     By tbx_editSupplier = By.xpath("//input[@class='form-control']");
-    By btn_testSupplierEdit= By.xpath("//td[contains(text(), 'TestSupplierEdit')]");
     By btn_deleteSupplier= By.xpath("//button[text()='Delete Supplier']");
     By btn_yes= By.xpath("//button[contains(text(), 'Yes')]");
+    By txt_addSupplier = By.xpath("//div[contains(text(),'Add Your Suppliers')]");
+    By tbx_suppliers2 = By.xpath("(//input[@placeholder='Supplier Name'])[2]");
+    String addedSupplier = "//td[contains(text(), 'SUPPLIER')]";
+    By btn_ok = By.xpath("//button[text()='OK']");
+    By editSupplierPopUp = By.xpath("//div[contains(text(), 'Edit Supplier')]");
+    By btn_archivedSupplier= By.xpath("//button[text()='Archive Supplier']");
+    By btn_viewArchivedSupplier = By.xpath("//button[text()='View Archived Suppliers']");
+    By txt_archivedSupplier = By.xpath("//div[text()='Archived Suppliers']");
+    By btn_unArchived = By.xpath("//td[text()='TestSupplier07']/following-sibling::td[4]//button");
+    By btn_close = By.xpath("//button[@class='close']/span[text()='×']");
 
 
 
@@ -50,18 +58,10 @@ public class SuppliersPage extends TestBase {
         restaurantUI.click(btn_save);
         restaurantUI.waitForCustom(2000);
     }
-
-    public boolean isTestSupplierCreated(){
-        try {
-            restaurantUI.waitForVisibility(btn_testSupplier);
-        } catch (Exception e){
-            return false;
-        }
-        return restaurantUI.isDisplayed(btn_testSupplier);
-    }
-
-    public void clickOnTestSupplier() throws InterruptedException {
-        restaurantUI.click(btn_testSupplier);
+    public void clickOnOneSupplier(String supplier) throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        restaurantUI.waitForVisibility(By.xpath(addedSupplier.replace("SUPPLIER",supplier)));
+        restaurantUI.click(By.xpath(addedSupplier.replace("SUPPLIER",supplier)));
     }
 
     public void editSupplierName(String editSupplierName) throws InterruptedException {
@@ -71,20 +71,6 @@ public class SuppliersPage extends TestBase {
         restaurantUI.sendKeys(tbx_editSupplier,editSupplierName);
         restaurantUI.waitForCustom(2000);
     }
-
-    public boolean isTestSupplierEditCreated(){
-        try {
-            restaurantUI.waitForVisibility(btn_testSupplierEdit);
-        } catch (Exception e){
-            return false;
-        }
-        return restaurantUI.isDisplayed(btn_testSupplierEdit);
-    }
-
-    public void clickOnTestSupplierEdit() throws InterruptedException {
-        restaurantUI.click(btn_testSupplierEdit);
-    }
-
     public void clickOnDelete() throws InterruptedException {
         restaurantUI.click(btn_deleteSupplier);
         restaurantUI.waitForCustom(2000);
@@ -93,5 +79,65 @@ public class SuppliersPage extends TestBase {
     public void clickOnYes() throws InterruptedException {
         restaurantUI.click(btn_yes  );
         restaurantUI.waitForCustom(6000);
+    }
+    public boolean isAddSuppliersPopUpDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_addSupplier);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_addSupplier);
+    }
+    public void typeSupplierName2(String supplierName) throws InterruptedException {
+        restaurantUI.sendKeys(tbx_suppliers2,supplierName);
+        restaurantUI.waitForCustom(2000);
+    }
+    public boolean isAddedSupplierDisplayed(String supplier)throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        restaurantUI.waitForVisibility(By.xpath(addedSupplier.replace("SUPPLIER",supplier)));
+        return restaurantUI.isDisplayed(By.xpath(addedSupplier.replace("SUPPLIER",supplier)));
+    }
+    public void clickOk(){
+        restaurantUI.click(btn_ok);
+    }
+    public boolean isEditSuppliersPopUpDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(editSupplierPopUp);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(editSupplierPopUp);
+    }
+    public void clickOnArchived() throws InterruptedException {
+        restaurantUI.click(btn_archivedSupplier);
+        restaurantUI.waitForCustom(2000);
+    }
+    public void clickViewArchived(){
+        restaurantUI.waitForVisibility(btn_viewArchivedSupplier);
+        restaurantUI.click(btn_viewArchivedSupplier);
+    }
+    public boolean isArchivedSupplierPopUpDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_archivedSupplier);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_archivedSupplier);
+    }
+    public void clickUnarchived()throws InterruptedException{
+        restaurantUI.waitForVisibility(btn_unArchived);
+        restaurantUI.clickUsingJavaScript(btn_unArchived);
+        restaurantUI.waitForCustom(2000);
+    }
+    public void clickCloseArchived(){
+        restaurantUI.click(btn_close);
+    }
+    public boolean isArchivedSupplierDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(btn_unArchived);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(btn_unArchived);
     }
 }
