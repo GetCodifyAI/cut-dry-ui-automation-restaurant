@@ -23,6 +23,7 @@
             <class name="com.cutanddry.qa.tests.Suppliers.VerifyAddingMultipleSupplierTest" />
             <class name="com.cutanddry.qa.tests.Suppliers.VerifyViewArchivedSupplierTest" />
             <class name="com.cutanddry.qa.tests.Suppliers.VerifyArchivedSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyAddNewSupplierFlowWithASingleSupplierTest" />
         </classes>
     </test>
 </suite>
