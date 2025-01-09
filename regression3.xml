@@ -21,6 +21,7 @@
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromPDPTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromOrderGuideCatalogPDPTest" />
             <class name="com.cutanddry.qa.tests.Suppliers.VerifyAddingMultipleSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Suppliers.VerifyViewArchivedSupplierTest" />
         </classes>
     </test>
 </suite>
