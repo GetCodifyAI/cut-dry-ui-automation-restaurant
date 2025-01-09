@@ -206,6 +206,12 @@ public class Customer {
         customersPage.clickDropDownAlphabetical();
         customersPage.selectDropDownCustomerOrder();
     }
+
+    public static void sortItemsByCustomOrder() throws InterruptedException {
+        customersPage.clickOnSortDropdown();
+        customersPage.selectDropDownCustomerOrder();
+    }
+
     public static boolean isSeaFoodTextDisplayed(){return customersPage.isSeaFoodTextDisplayed();}
     public static void clickOnUploadFile(){
         customersPage.clickOnUploadFile();

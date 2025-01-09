@@ -33,6 +33,7 @@ public class VerifyEditOrderGuideSectionsTest extends TestBase {
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.goToEdit();
+        Customer.sortItemsByCustomOrder();
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
         Customer.editsection(sectionName);
         Customer.editSectionName(NewSectionName);

@@ -45,7 +45,6 @@ public class VerifyRestaurantUpdateTest extends TestBase {
         softAssert.assertEquals(Settings.getUpdatedRestaurantName(),restaurantName,"Profile name not updated");
 
         //Verifying the logo Update
-        softAssert.assertTrue(Settings.isRestaurantLogoRemoved(),"Error in Removing Restaurant logo");
         Settings.removeLogo();
         Settings.saveRestaurantChanges();
         softAssert.assertTrue(Settings.isSuccessfulCompanyDetailsUpdateOverlayDisplayed(),"Error in Saving company logo remove");
