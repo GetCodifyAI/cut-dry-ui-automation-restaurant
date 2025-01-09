@@ -14,7 +14,9 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyEditingSupplierTest extends TestBase {
     static User user;
-    static String SupplierName = "TestSupplierEdit";
+    static String SupplierName = "TestSupplier";
+    static String editSupplierName = "TestSupplierEdited";
+
     @BeforeMethod
     public void setUp() {
         initialization();
@@ -28,8 +30,11 @@ public class VerifyEditingSupplierTest extends TestBase {
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Suppliers.goToSuppliers();
         softAssert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"Supplier navigation error");
-        Suppliers.editSupplier(SupplierName);
-        softAssert.assertTrue(Suppliers.isSupplierEdited(),"error in supplier edit");
+        Suppliers.selectOneSupplier(SupplierName);
+        softAssert.assertTrue(Suppliers.isEditSuppliersPopUpDisplayed(),"Edit supplier pop up window not displayed");
+        Suppliers.editSupplierName(editSupplierName);
+        Suppliers.clickSave();
+        softAssert.assertTrue(Suppliers.isSupplierDisplayed(editSupplierName),"error in supplier edit");
         softAssert.assertAll();
     }
 

@@ -30,8 +30,13 @@ public class VerifyAddingSupplierTest extends TestBase {
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Suppliers.goToSuppliers();
         softAssert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"Supplier navigation error");
-        Suppliers.addSupplier(SupplierName);
-        softAssert.assertTrue(Suppliers.isSupplierCreated(),"error in supplier creation");
+        Suppliers.clickAddSupplier();
+        softAssert.assertTrue(Suppliers.isAddSuppliersPopUpDisplayed(),"Add supplier pop up window not displayed");
+        Suppliers.clickContinue();
+        Suppliers.enterSupplier(SupplierName);
+        Suppliers.clickContinue();
+        Suppliers.clickSave();
+        softAssert.assertTrue(Suppliers.isSupplierDisplayed(SupplierName),"error in supplier creation");
         softAssert.assertAll();
     }
 
