@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyAddNewSupplierFlowWithASingleSupplierTest extends TestBase {
     static User user;
-    static String SupplierName = "TestSupplier";
+    static String SupplierName = "TestSupplier4";
     @BeforeMethod
     public void setUp() {
         initialization();
