@@ -37,7 +37,7 @@ public class AddProductsFrmCatalogTest extends TestBase {
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName.toLowerCase()), "item not found");
         Customer.addItemToCartCatalog();
         Customer.checkoutItems();
-        softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item mismatch");
+        softAssert.assertTrue(Customer.getItemNameFirstRow().equalsIgnoreCase(itemName),"item mismatch");
         softAssert.assertAll();
 
     }
