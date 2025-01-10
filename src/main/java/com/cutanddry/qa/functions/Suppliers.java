@@ -55,20 +55,20 @@ public class Suppliers {
     public static void clickOnArchived() throws InterruptedException {
         suppliersPage.clickOnArchived();
     }
-    public static void clickViewArchived(){
+    public static void clickViewArchived()throws InterruptedException{
         suppliersPage.clickViewArchived();
     }
     public static boolean isArchivedSupplierPopUpDisplayed(){
         return suppliersPage.isArchivedSupplierPopUpDisplayed();
     }
-    public static void clickUnarchived()throws InterruptedException{
-        suppliersPage.clickUnarchived();
+    public static void clickUnarchived(String supplier)throws InterruptedException{
+        suppliersPage.clickUnarchived(supplier);
     }
     public static void clickCloseArchived(){
         suppliersPage.clickCloseArchived();
     }
-    public static boolean isArchivedSupplierDisplayed(){
-        return suppliersPage.isArchivedSupplierDisplayed();
+    public static boolean isArchivedSupplierDisplayed(String supplier)throws InterruptedException{
+        return suppliersPage.isArchivedSupplierDisplayed(supplier);
     }
 
 }

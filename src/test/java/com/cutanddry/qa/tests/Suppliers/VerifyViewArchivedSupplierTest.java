@@ -44,8 +44,8 @@ public class VerifyViewArchivedSupplierTest extends TestBase {
         Suppliers.clickOnArchived();
         Suppliers.clickViewArchived();
         softAssert.assertTrue(Suppliers.isArchivedSupplierPopUpDisplayed(),"Archived supplier pop up window not displayed");
-        softAssert.assertTrue(Suppliers.isArchivedSupplierDisplayed(),"Archived supplier not displayed");
-        Suppliers.clickUnarchived();
+        softAssert.assertTrue(Suppliers.isArchivedSupplierDisplayed(SupplierName),"Archived supplier not displayed");
+        Suppliers.clickUnarchived(SupplierName);
         Suppliers.clickCloseArchived();
         softAssert.assertTrue(Suppliers.isSupplierDisplayed(SupplierName),"error in supplier unarchived");
 

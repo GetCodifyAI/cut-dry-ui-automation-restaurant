@@ -20,9 +20,9 @@ public class SuppliersPage extends TestBase {
     By btn_ok = By.xpath("//button[text()='OK']");
     By editSupplierPopUp = By.xpath("//div[contains(text(), 'Edit Supplier')]");
     By btn_archivedSupplier= By.xpath("//button[text()='Archive Supplier']");
-    By btn_viewArchivedSupplier = By.xpath("//button[text()='View Archived Suppliers']");
+    By btn_viewArchivedSupplier = By.xpath("//button[contains(text(),'View Archived Suppliers')]");
     By txt_archivedSupplier = By.xpath("//div[text()='Archived Suppliers']");
-    By btn_unArchived = By.xpath("//td[text()='TestSupplier07']/following-sibling::td[4]//button");
+    String btn_unArchived = "//td[text()='SUPPLIER']/following-sibling::td[4]//button";
     By btn_close = By.xpath("//button[@class='close']/span[text()='×']");
 
 
@@ -112,9 +112,11 @@ public class SuppliersPage extends TestBase {
         restaurantUI.click(btn_archivedSupplier);
         restaurantUI.waitForCustom(2000);
     }
-    public void clickViewArchived(){
+    public void clickViewArchived()throws InterruptedException{
+        restaurantUI.waitForCustom(2000);
         restaurantUI.waitForVisibility(btn_viewArchivedSupplier);
-        restaurantUI.click(btn_viewArchivedSupplier);
+        restaurantUI.waitForClickability(btn_viewArchivedSupplier);
+        restaurantUI.clickUsingJavaScript(btn_viewArchivedSupplier);
     }
     public boolean isArchivedSupplierPopUpDisplayed(){
         try {
@@ -124,20 +126,21 @@ public class SuppliersPage extends TestBase {
         }
         return restaurantUI.isDisplayed(txt_archivedSupplier);
     }
-    public void clickUnarchived()throws InterruptedException{
-        restaurantUI.waitForVisibility(btn_unArchived);
-        restaurantUI.clickUsingJavaScript(btn_unArchived);
+    public void clickUnarchived(String supplier)throws InterruptedException{
+        restaurantUI.waitForVisibility(By.xpath(btn_unArchived.replace("SUPPLIER",supplier)));
+        restaurantUI.clickUsingJavaScript(By.xpath(btn_unArchived.replace("SUPPLIER",supplier)));
         restaurantUI.waitForCustom(2000);
     }
+
     public void clickCloseArchived(){
         restaurantUI.click(btn_close);
     }
-    public boolean isArchivedSupplierDisplayed(){
+    public boolean isArchivedSupplierDisplayed(String supplier)throws InterruptedException{
         try {
-            restaurantUI.waitForVisibility(btn_unArchived);
+            restaurantUI.waitForVisibility(By.xpath(btn_unArchived.replace("SUPPLIER",supplier)));
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(btn_unArchived);
+        return restaurantUI.isDisplayed(By.xpath(btn_unArchived.replace("SUPPLIER",supplier)));
     }
 }
