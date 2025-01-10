@@ -12,24 +12,24 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.util.function.Supplier;
-
-public class VerifyAddingSupplierTest extends TestBase {
+public class VerifyViewArchivedSupplierTest extends TestBase {
     static User user;
-    static String SupplierName = "TestSupplier";
+    static String SupplierName = "TestSupplier07";
+
     @BeforeMethod
     public void setUp() {
         initialization();
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-259")
-    public void verifyAddingSupplierTest() throws InterruptedException {
+    @Test(groups = "DOT-TC-956")
+    public void VerifyViewArchivedSupplier () throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Suppliers.goToSuppliers();
         softAssert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"Supplier navigation error");
+        //add supplier
         Suppliers.clickAddSupplier();
         softAssert.assertTrue(Suppliers.isAddSuppliersPopUpDisplayed(),"Add supplier pop up window not displayed");
         Suppliers.clickContinue();
@@ -37,6 +37,23 @@ public class VerifyAddingSupplierTest extends TestBase {
         Suppliers.clickContinue();
         Suppliers.clickSave();
         softAssert.assertTrue(Suppliers.isSupplierDisplayed(SupplierName),"error in supplier creation");
+
+        //Archived supplier
+        Suppliers.selectOneSupplier(SupplierName);
+        softAssert.assertTrue(Suppliers.isEditSuppliersPopUpDisplayed(),"Edit supplier pop up window not displayed");
+        Suppliers.clickOnArchived();
+        Suppliers.clickViewArchived();
+        softAssert.assertTrue(Suppliers.isArchivedSupplierPopUpDisplayed(),"Archived supplier pop up window not displayed");
+        softAssert.assertTrue(Suppliers.isArchivedSupplierDisplayed(SupplierName),"Archived supplier not displayed");
+        Suppliers.clickUnarchived(SupplierName);
+        Suppliers.clickCloseArchived();
+        softAssert.assertTrue(Suppliers.isSupplierDisplayed(SupplierName),"error in supplier unarchived");
+
+        //Delete supplier
+        Suppliers.selectOneSupplier(SupplierName);
+        softAssert.assertTrue(Suppliers.isEditSuppliersPopUpDisplayed(),"Edit supplier pop up window not displayed");
+        Suppliers.deleteSupplier();
+        softAssert.assertFalse(Suppliers.isSupplierDisplayed(SupplierName),"error in supplier delete");
         softAssert.assertAll();
     }
 

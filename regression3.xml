@@ -20,6 +20,13 @@
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromCatalogTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromPDPTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromOrderGuideCatalogPDPTest" />
+            <class name="com.cutanddry.qa.tests.Suppliers.VerifyAddingMultipleSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Suppliers.VerifyViewArchivedSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Suppliers.VerifyArchivedSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyAddNewSupplierFlowWithASingleSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyAddNewSupplierFlowWithMultipleSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyUploadOrderGuideItemListTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyDeletionOfTheCreatedSupplierTest" />
         </classes>
     </test>
 </suite>
