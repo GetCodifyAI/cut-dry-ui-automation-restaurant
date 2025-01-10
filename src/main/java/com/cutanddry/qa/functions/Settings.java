@@ -100,7 +100,9 @@ public class Settings {
     }
 
     public static void removeLogo(){
-        settingsPage.clickOnRemoveLogoBtn();
+        if(settingsPage.isLogoAvailable()) {
+            settingsPage.clickOnRemoveLogoBtn();
+        }
     }
 
     public static boolean isRestaurantLogoRemoved(){

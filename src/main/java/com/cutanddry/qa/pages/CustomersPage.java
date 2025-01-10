@@ -157,7 +157,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String txt_product = "//div[contains(@class,'_3quvq7 _1vlidrf' ) and contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]";
     By lbl_productDetails = By.xpath("//span[text()='Product Details']");
     By btn_catalogPlus = By.xpath("//*[name()='svg' and @data-icon='plus']");
-
+    By itemSort = By.xpath("//div[contains(text(),'Sort Items By:')]/..//*[name()='svg']");
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -510,6 +510,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
 
     public void clickDropDownAlphabetical() {
         restaurantUI.click(btn_sortAlphabetical);
+    }
+
+    public void clickOnSortDropdown(){
+        restaurantUI.click(itemSort);
     }
 
     public void selectDropDownCustomerOrder() throws InterruptedException {
