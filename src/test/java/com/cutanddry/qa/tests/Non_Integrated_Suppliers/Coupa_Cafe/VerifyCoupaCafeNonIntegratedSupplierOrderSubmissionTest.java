@@ -77,7 +77,7 @@ public class VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionTest {
         Customer.clickOnItemEditBtn(itemNameNew);
         Customer.clickOnItemHideBtn();
         Customer.clickOnItemHideConfirmationOverlay();
-        softAssert.assertFalse(Customer.isHiddenItemDisplayedOnGrid(itemNameNew),"ERROR in hiding the Item");
+        softAssert.assertFalse(Customer.isHiddenItemDisplayedOnGrid(itemCode),"ERROR in hiding the Item");
 
 
         softAssert.assertAll();

@@ -9,7 +9,7 @@ public class UsersPage extends LoginPage {
     By nameTextField = By.xpath("//div[@class='form-group']//label[contains(text(), 'Name')]/following-sibling::input");
     By emailTextField = By.xpath("//div[@class='form-group']//label[contains(text(), 'Email')]/following-sibling::input");
     By locationDropDown = By.xpath("//div[contains(@class,'themed_select__value-container--is-multi')]");
-    By employeeDropDown = By.xpath("//div[contains(@class,'themed_select__value-container--has-value')]");
+    By employeeDropDown = By.xpath("//label[contains(text(),'Role')]/../..//div[contains(@class,'themed_select__single-value')]");
     By employeeList = By.xpath("  //div[@class='themed_select__menu-list css-11unzgr']");
     String locationName = "//div[contains(@class,'themed_select__option css-yt9ioa-option') and contains(text(),'LOCATIONNAME')]";
     By addUserOverlayBtn = By.xpath("//button[contains(@class,'btn btn-primary btn-block') and contains(text(),'Add User')]");
