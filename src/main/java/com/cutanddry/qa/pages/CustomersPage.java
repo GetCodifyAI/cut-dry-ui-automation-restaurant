@@ -90,7 +90,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String btnOrderGuide = "//button[contains(text(), 'Order Guide')]";
     By btn_increaseQtyFirstRowDis = By.xpath("//tr[1]/td[8]/div/div/div/div[3]");
     By btn_pickup = By.xpath("//span[text()='Pickup']");
-    By txt_orderCutOffForPickUp = By.xpath("//span[contains(text(), '3:30am')]");
+    By txt_orderCutOffForPickUp = By.xpath("//span[contains(text(), '1:30am')]");
     By txt_errorSubmittingOrder= By.xpath("//div[text()='Error submitting order. Please try again.']");
     By orderCartDeletebtn = By.xpath("//td[@class='_xigbpq4 border-top border-bottom py-3']/*[name()='svg' and @data-icon='trash-can']");
     By totalValue = By.xpath("//tr[@class='_2ehv7q text-primary']/td[2]");
