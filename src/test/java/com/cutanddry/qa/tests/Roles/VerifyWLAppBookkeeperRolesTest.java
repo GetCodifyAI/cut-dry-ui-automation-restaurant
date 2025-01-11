@@ -36,7 +36,7 @@ public class VerifyWLAppBookkeeperRolesTest extends TestBase {
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigating to order guide edit error");
         Customer.clickOnBackBtnInEditOrderGuide();
         Customer.searchItemOnOrderGuide(itemName);
-        softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item mismatch");
+        softAssert.assertTrue(Customer.getItemNameFirstRow().equalsIgnoreCase(itemName),"item mismatch");
         Customer.increaseFirstRowQtyByThree();
         Customer.goToCatalog();
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
