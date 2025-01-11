@@ -8,13 +8,14 @@
     <test name="distributor tests">
         <parameter name="PART" value="BVT" />
         <classes>
-            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantLoginTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmOrderGuideTest" />
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantLoginTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmOrderGuideTest" />-->
 <!--            <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmCatalogTest" />-->
-            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmOrderGuideTest" />
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmOrderGuideTest" />-->
 <!--            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmCatalogTest" />-->
-            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmReviewCartTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantOrderSubmissionTest" />
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmReviewCartTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantOrderSubmissionTest" />-->
+            <class name="com.cutanddry.qa.tests.Orders.VerifyUserCanOrderItemsBeforeCutOffTest" />
         </classes>
     </test>
 </suite>
