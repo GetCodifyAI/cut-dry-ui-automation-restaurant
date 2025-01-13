@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 
 public class VerifyAddingSupplierTest extends TestBase {
     static User user;
-    static String SupplierName = "TestSupplier";
+    static String SupplierName = "TestSupplier1";
     @BeforeMethod
     public void setUp() {
         initialization();

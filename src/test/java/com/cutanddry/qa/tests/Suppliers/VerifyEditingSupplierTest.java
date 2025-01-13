@@ -14,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyEditingSupplierTest extends TestBase {
     static User user;
-    static String SupplierName = "TestSupplier";
+    static String SupplierName = "TestSupplier1";
     static String editSupplierName = "TestSupplierEdited";
 
     @BeforeMethod

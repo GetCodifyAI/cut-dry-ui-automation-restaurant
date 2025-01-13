@@ -40,7 +40,7 @@ public class VerifyDeletionOfTheCreatedSupplierTest extends TestBase {
         softAssert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
         softAssert.assertTrue(Order.isAddedNewSupplierDisplayed(SupplierName),"error in supplier creation");
 
-        Order.clickFinishSetup();
+        Order.clickFinishSetup(SupplierName);
         softAssert.assertTrue(Suppliers.isEditSuppliersPopUpDisplayed(),"Edit supplier pop up window not displayed");
         Suppliers.clickSave();
         softAssert.assertTrue(Order.isNavigateEditOrderGuide(),"edit order guide navigate error");
@@ -57,7 +57,7 @@ public class VerifyDeletionOfTheCreatedSupplierTest extends TestBase {
         Order.goToOrder();
         softAssert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
         softAssert.assertTrue(Order.isAddedNewSupplierDisplayed(SupplierName),"error in supplier creation");
-        Order.clickEditSupplier();
+        Order.clickEditSupplier(SupplierName);
         softAssert.assertTrue(Suppliers.isEditSuppliersPopUpDisplayed(),"Edit supplier pop up window not displayed");
         Suppliers.deleteSupplier();
 

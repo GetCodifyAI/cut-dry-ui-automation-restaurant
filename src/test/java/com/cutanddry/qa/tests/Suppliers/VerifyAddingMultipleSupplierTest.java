@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyAddingMultipleSupplierTest extends TestBase {
     static User user;
     static String SupplierName2 = "TestSupplier2";
-    static String SupplierName = "TestSupplier";
+    static String SupplierName = "TestSupplier1";
     @BeforeMethod
     public void setUp() {
         initialization();
@@ -41,10 +41,10 @@ public class VerifyAddingMultipleSupplierTest extends TestBase {
         Suppliers.selectOneSupplier(SupplierName);
         softAssert.assertTrue(Suppliers.isEditSuppliersPopUpDisplayed(),"Edit supplier pop up window not displayed");
         Suppliers.deleteSupplier();
+        softAssert.assertFalse(Suppliers.isSupplierDisplayed(SupplierName),"error in supplier delete");
         Suppliers.selectOneSupplier(SupplierName2);
         softAssert.assertTrue(Suppliers.isEditSuppliersPopUpDisplayed(),"Edit supplier pop up window not displayed");
         Suppliers.deleteSupplier();
-        softAssert.assertFalse(Suppliers.isSupplierDisplayed(SupplierName),"error in supplier delete");
         softAssert.assertFalse(Suppliers.isSupplierDisplayed(SupplierName2),"error in supplier delete");
         softAssert.assertAll();
     }

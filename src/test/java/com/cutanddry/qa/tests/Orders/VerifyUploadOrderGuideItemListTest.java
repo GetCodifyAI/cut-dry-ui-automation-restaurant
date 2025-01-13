@@ -40,7 +40,7 @@ public class VerifyUploadOrderGuideItemListTest extends TestBase {
         softAssert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
         softAssert.assertTrue(Order.isAddedNewSupplierDisplayed(SupplierName),"error in supplier creation");
 
-        Order.clickFinishSetup();
+        Order.clickFinishSetup(SupplierName);
         softAssert.assertTrue(Suppliers.isEditSuppliersPopUpDisplayed(),"Edit supplier pop up window not displayed");
         Suppliers.clickSave();
         softAssert.assertTrue(Order.isNavigateEditOrderGuide(),"edit order guide navigate error");
