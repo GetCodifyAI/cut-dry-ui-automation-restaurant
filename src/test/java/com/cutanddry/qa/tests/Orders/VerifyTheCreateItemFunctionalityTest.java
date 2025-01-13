@@ -27,7 +27,7 @@ public class VerifyTheCreateItemFunctionalityTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-939")
+    @Test(groups = "DOT-TC-941")
     public void VerifyTheCreateItemFunctionality() throws InterruptedException, URISyntaxException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
