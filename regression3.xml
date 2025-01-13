@@ -28,6 +28,7 @@
             <class name="com.cutanddry.qa.tests.Orders.VerifyUploadOrderGuideItemListTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyDeletionOfTheCreatedSupplierTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifySupplierFilteredByLocationTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyTheCreateItemFunctionalityTest" />
         </classes>
     </test>
 </suite>
