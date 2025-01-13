@@ -30,6 +30,7 @@
             <class name="com.cutanddry.qa.tests.Orders.VerifySupplierFilteredByLocationTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheCreateItemFunctionalityTest" />
             <class name="com.cutanddry.qa.tests.History.VerifyTheFilteringOrdersByOrderDateTest" />
+            <class name="com.cutanddry.qa.tests.History.VerifyTheFilteringOrdersByOrderStatusTest" />
         </classes>
     </test>
 </suite>
