@@ -46,6 +46,23 @@ public class HistoryPage extends TestBase {
     By txt_ok_edit_order = By.xpath("//h2[@id='swal2-title' and text()='Order edit request has been sent.']");
     By btn_recreate_order = By.xpath("//a[@class='_gozzbg dropdown-item' and text() ='Recreate Order']");
     By lastOrderId = By.xpath("(//tr[contains(@href,'/orders-revised/view-one')])[last()]//td[contains(text(),'#')]");
+    By lbl_orderDateDropdown = By.xpath("//label[contains(text(),'Order Date:')]/following-sibling::div");
+    By lbl_statusDropdown = By.xpath("//label[contains(text(),'Order Status:')]/following-sibling::div");
+    String days = "//div[text()='DATE']";
+    String date = "//td[text()='DATE']";
+    String sts = "//div[text()='STATUS']";
+    By txt_status = By.xpath("(//td[9])[1]/div[1]");
+    String status = "//td/div[text()='STATUS']";
+    By btn_uploadInvoices = By.xpath("//button[contains(text(),'Upload Invoice')]");
+    By txt_uploadInvoices = By.xpath("//div[contains(text(),'Upload & Scan Invoice')]");
+    By selectSupplierDropDown = By.xpath("//label[contains(text(),'Select the supplier of this order')]/following-sibling::div");
+    By restaurantLocationDropDown = By.xpath("//label[contains(text(),'To which restaurant location was this order for?')]/following-sibling::div");
+    By invoiceUploadedPopUp = By.xpath("//h2[text()='Invoice Uploaded']");
+    By btn_ok = By.xpath("//button[text()='OK']");
+    String dropDownOption = "//div[text()='OPTION']";
+    String locationDropDownOption = "//div[contains(@class,'themed_select__option') and text()='OPTION']";
+    By invoiceUploadStatus = By.xpath("(//td//span[text()='Invoice Upload'])[1]");
+
 
     public void clickClose(){
         restaurantUI.click(btn_close);
@@ -267,5 +284,96 @@ public class HistoryPage extends TestBase {
     public String getLastOrderReference(){
         return restaurantUI.getText(lastOrderId).split("#")[1];
     }
+    public String getLastWorkingDate() {
+        return restaurantUI.getLastWorkingDay();
+    }
+    public void selectOrderDate(String day){
+        restaurantUI.click(lbl_orderDateDropdown);
+        restaurantUI.waitForVisibility(By.xpath(days.replace("DATE", day)));
+        restaurantUI.click(By.xpath(days.replace("DATE", day)));
+    }
+    public boolean isOrderDateChanged(String day){
+        try {
+            restaurantUI.isDisplayed(By.xpath(days.replace("DATE", day)));
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(By.xpath(days.replace("DATE", day)));
+    }
+    public Boolean isFilteredOrdersCorrect(String OrdersDate){
+        try {
+            restaurantUI.waitForCustom(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.scrollToElementStable(By.xpath("("+ date.replace("DATE", OrdersDate) + ")" + "[last()]"));
+        return restaurantUI.isDisplayed(By.xpath("("+ date.replace("DATE", OrdersDate) + ")" + "[last()]"));
+    }
+    public void selectOrderStatus(String stat){
+        restaurantUI.click(lbl_statusDropdown);
+        restaurantUI.waitForVisibility(By.xpath(sts.replace("STATUS", stat)));
+        restaurantUI.click(By.xpath(sts.replace("STATUS", stat)));
+    }
+    public boolean isOrderStatusChanged(String stat){
+        try {
+            restaurantUI.isDisplayed(By.xpath(sts.replace("STATUS", stat)));
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(By.xpath(sts.replace("STATUS", stat)));
+    }
+    public Boolean isFilteredOrderStatusCorrect(String OrdersStatus){
+        try {
+            restaurantUI.waitForCustom(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        String s = restaurantUI.getText(txt_status);
+        restaurantUI.scrollToElement(By.xpath("("+ status.replace("STATUS", s) + ")" + "[last()]"));
+        return restaurantUI.validateFilteredElements(By.xpath(status.replace("STATUS", s)),OrdersStatus);
+    }
+    public void clickUploadInvoices()throws InterruptedException{
+        restaurantUI.click(btn_uploadInvoices);
+    }
+    public boolean isUploadInvoicesWindowDisplayed()throws InterruptedException{
+        try {
+            restaurantUI.waitForVisibility(txt_uploadInvoices);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_uploadInvoices);
+    }
+    public void selectSupplierInvoice(String option)throws InterruptedException{
+        restaurantUI.waitForVisibility(selectSupplierDropDown);
+        restaurantUI.click(selectSupplierDropDown);
+        restaurantUI.click(By.xpath(dropDownOption.replace("OPTION", option)));
+    }
+    public void selectRestaurantLocation(String option)throws InterruptedException{
+        restaurantUI.waitForVisibility(restaurantLocationDropDown);
+        restaurantUI.click(restaurantLocationDropDown);
+        restaurantUI.click(By.xpath(locationDropDownOption.replace("OPTION", option)));
+    }
+    public boolean isInvoicesUploadedPopUpDisplayed()throws InterruptedException{
+        try {
+            restaurantUI.waitForVisibility(invoiceUploadedPopUp);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(invoiceUploadedPopUp);
+    }
+    public void clickOkInvoice()throws InterruptedException{
+        restaurantUI.click(btn_ok);
+        restaurantUI.waitForCustom(2000);
+        restaurantUI.refreshPage();
+    }
+    public boolean isInvoicesUploadedStatusDisplayed()throws InterruptedException{
+        try {
+            restaurantUI.waitForVisibility(invoiceUploadStatus);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(invoiceUploadStatus);
+    }
+
 
 }

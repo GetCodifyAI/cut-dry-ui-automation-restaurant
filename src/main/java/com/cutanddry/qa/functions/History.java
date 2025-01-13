@@ -142,4 +142,46 @@ public class History {
     public static String getLastOrderRefNo(){
         return historyPage.getLastOrderReference();
     }
+    public static String getLastWorkingDate(){
+        return historyPage.getLastWorkingDate();
+    }
+    public static void selectOrderDate(String days) {
+        historyPage.selectOrderDate(days);
+    }
+    public static boolean isOrderDateChanged(String days){
+        return historyPage.isOrderDateChanged(days);
+    }
+    public static boolean validateFilteredOrders(String OrdersDate){
+        return historyPage.isFilteredOrdersCorrect(OrdersDate);
+    }
+    public static void selectOrderStatus(String sts) {
+        historyPage.selectOrderStatus(sts);
+    }
+    public static boolean isOrderStatusChanged(String days){
+        return historyPage.isOrderStatusChanged(days);
+    }
+    public static boolean validateOrdersStatus(String OrdersState){
+        return historyPage.isFilteredOrderStatusCorrect(OrdersState);
+    }
+    public static void clickUploadInvoices()throws InterruptedException{
+        historyPage.clickUploadInvoices();
+    }
+    public static boolean isUploadInvoicesWindowDisplayed()throws InterruptedException{
+        return historyPage.isUploadInvoicesWindowDisplayed();
+    }
+    public static void selectSupplierInvoice(String option)throws InterruptedException{
+        historyPage.selectSupplierInvoice(option);
+    }
+    public static void selectRestaurantLocation(String option)throws InterruptedException{
+        historyPage.selectRestaurantLocation(option);
+    }
+    public static boolean isInvoicesUploadedPopUpDisplayed()throws InterruptedException{
+        return historyPage.isInvoicesUploadedPopUpDisplayed();
+    }
+    public static void clickOkInvoice()throws InterruptedException{
+        historyPage.clickOkInvoice();
+    }
+    public static boolean isInvoicesUploadedStatusDisplayed()throws InterruptedException{
+        return historyPage.isInvoicesUploadedStatusDisplayed();
+    }
 }

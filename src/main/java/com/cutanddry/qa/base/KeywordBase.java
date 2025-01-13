@@ -12,7 +12,11 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.Duration;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -635,6 +639,65 @@ public class KeywordBase {
         } catch (Exception e) {
             logger.error("Failed to locate element: {}", locator, e);
             return null;
+        }
+    }
+    public static String getLastWorkingDay() {
+
+        ZonedDateTime yesterdayUTC = ZonedDateTime.now(ZoneOffset.UTC).minusDays(1);
+        if (yesterdayUTC.getDayOfWeek() == DayOfWeek.SUNDAY) {
+            yesterdayUTC = yesterdayUTC.minusDays(2);
+        } else if (yesterdayUTC.getDayOfWeek() == DayOfWeek.SATURDAY) {
+            yesterdayUTC = yesterdayUTC.minusDays(1);
+        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return yesterdayUTC.format(formatter);
+    }
+    public void scrollToElementStable(By by) {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            boolean elementFound = false;
+
+            while (!elementFound) {
+                js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+                Thread.sleep(1000);
+
+                if (driver.findElements(by).size() > 0) {
+                    elementFound = true;
+                }
+            }
+
+            WebElement targetElement = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+            js.executeScript("arguments[0].scrollIntoView(true);", targetElement);
+
+            logger.info("Scrolled to and found the element: {}", by);
+        } catch (Exception e) {
+            logger.error("Failed to find and scroll to the element: {}", by, e);
+        }
+    }
+    public boolean validateFilteredElements(By locator, String filterOption) {
+        try {
+            // Find all elements using the provided locator
+            List<WebElement> elements = driver.findElements(locator);
+
+            // Log total elements found
+            logger.info("Found " + elements.size() + " elements for locator: " + locator);
+
+            // Validate that all elements match the filter option
+            for (WebElement element : elements) {
+                String elementText = element.getText();
+                if (!elementText.equals(filterOption)) {
+                    logger.error("Validation failed for element text: " + elementText + " (Expected: " + filterOption + ")");
+                    return false; // Validation failed
+                }
+            }
+
+            // Log validation success
+            logger.info("All elements match the filter option: " + filterOption);
+            return true;
+        } catch (Exception e) {
+            logger.error("Error occurred while validating elements for locator: " + locator, e);
+            return false;
         }
     }
 
