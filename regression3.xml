@@ -31,6 +31,7 @@
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheCreateItemFunctionalityTest" />
             <class name="com.cutanddry.qa.tests.History.VerifyTheFilteringOrdersByOrderDateTest" />
             <class name="com.cutanddry.qa.tests.History.VerifyTheFilteringOrdersByOrderStatusTest" />
+            <class name="com.cutanddry.qa.tests.History.VerifyTheUploadInvoiceFunctionalityTest" />
         </classes>
     </test>
 </suite>
