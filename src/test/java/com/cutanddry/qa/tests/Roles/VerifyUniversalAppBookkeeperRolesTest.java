@@ -37,12 +37,12 @@ public class VerifyUniversalAppBookkeeperRolesTest extends TestBase {
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
         Customer.clickOnBackBtnInEditOrderGuide();
         Customer.searchItemOnOrderGuide(itemName);
-        softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item mismatch");
+        softAssert.assertTrue(Customer.getItemNameFirstRow().equalsIgnoreCase(itemName),"item mismatch");
         Customer.increaseFirstRowQtyBySixClassic();
         Customer.goToCatalog();
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
         Customer.searchItemOnCatalog(itemName);
-        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName.toLowerCase()), "item not found");
+        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().equalsIgnoreCase(itemName), "item not found");
         Customer.increaseCatalogQtyByThree();
         Customer.checkoutItems();
         Customer.submitOrder();

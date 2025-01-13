@@ -16,7 +16,7 @@ public class SuppliersPage extends TestBase {
     By btn_yes= By.xpath("//button[contains(text(), 'Yes')]");
     By txt_addSupplier = By.xpath("//div[contains(text(),'Add Your Suppliers')]");
     By tbx_suppliers2 = By.xpath("(//input[@placeholder='Supplier Name'])[2]");
-    String addedSupplier = "//td[contains(text(), 'SUPPLIER')]";
+    String addedSupplier = "//td[(text()= 'SUPPLIER')]";
     By btn_ok = By.xpath("//button[text()='OK']");
     By editSupplierPopUp = By.xpath("//div[contains(text(), 'Edit Supplier')]");
     By btn_archivedSupplier= By.xpath("//button[text()='Archive Supplier']");

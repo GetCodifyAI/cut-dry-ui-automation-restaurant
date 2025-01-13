@@ -12,7 +12,7 @@ By btn_decreaseQtyFirstRow = By.xpath("(//tr/td//div[contains(@data-tip,'View Pr
     By btn_decreaseQtySecondRow = By.xpath("//tr[2]/td[6]/div/div/div/div[1]");
     By btn_increaseQtySecondRow = By.xpath("//tr[2]/td[6]/div/div/div/div[3]");
     By btn_checkout = By.xpath("//button[@data-for='cartCheckoutButton']");
-    By txt_catalog = By.xpath("//div[text()='All Items']");
+    By txt_catalog = By.xpath("(//div[contains(text(), 'Category')]/ancestor::div[2]/following-sibling::div//div[contains(text(), 'All Items')])[1]");
     By btn_catalog = By.xpath("//div[text()='Catalog']");
     By tbx_catalogSearch = By.xpath("//input[@placeholder='Search catalog...']");
     By tbx_orderGuideSearch = By.xpath("//input[@placeholder='Search order guide...']");
@@ -80,8 +80,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_save = By.xpath("//button[contains(@class, 'btn btn-primary') and contains(text(), 'Save')]");
     By btn_previousDraftOrderNo = By.xpath("//div[contains(text(),'previous draft order')]/..//div[text()='No']");
     By btn_placeOrder = By.xpath("//a[contains(@class, 'btn-primary') and contains(text(), 'Place Order')]");
-    By btn_increaseQtyFirstRowInWL = By.xpath("//tr[2]/td[6]/div/div/div/div[3]");
-    By btn_decreaseQtyFirstRowInWL = By.xpath("//tr[2]/td[6]/div/div/div/div[1]");
+    By btn_increaseQtyFirstRowInWL = By.xpath("(//div[contains(@data-tip,'View Product Details')]/../../following::td//div/*[local-name()='svg' and @data-icon='plus'])[1]");
+    By btn_decreaseQtyFirstRowInWL = By.xpath("(//div[contains(@data-tip,'View Product Details')]/../../following::td//div/*[local-name()='svg' and @data-icon='minus'])[1]");
     By txt_foodServiceDistCenter = By.xpath("//span[text()='Food Service Distribution Centre']");
     By txt_retailDistCenter = By.xpath("//span[text()='Retail Distribution Centre']");
     String txt_orders = "(//div[contains(text(), 'Order #')])[NUM]";
@@ -90,7 +90,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String btnOrderGuide = "//button[contains(text(), 'Order Guide')]";
     By btn_increaseQtyFirstRowDis = By.xpath("//tr[1]/td[8]/div/div/div/div[3]");
     By btn_pickup = By.xpath("//span[text()='Pickup']");
-    By txt_orderCutOffForPickUp = By.xpath("//span[contains(text(), '3:30am')]");
+    By txt_orderCutOffForPickUp = By.xpath("//span[contains(text(), '1:30am')]");
     By txt_errorSubmittingOrder= By.xpath("//div[text()='Error submitting order. Please try again.']");
     By orderCartDeletebtn = By.xpath("//td[@class='_xigbpq4 border-top border-bottom py-3']/*[name()='svg' and @data-icon='trash-can']");
     By totalValue = By.xpath("//tr[@class='_2ehv7q text-primary']/td[2]");
@@ -130,7 +130,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String clearDeliveryDate = "//tr[td[contains(text(), 'DAY')]]//div[contains(@class, 'themed_select__control')]//div[contains(@class, 'themed_select__clear-indicator')]/*";
     By ratingOverlayIframe = By.xpath("//iframe[contains(@aria-label,'NPS Survey')]");
     By ratingOverlayCloseBtn = By.xpath("//div[contains(text(),'✕')]");
-    String itemNotFoundTxt = "//*[contains(text(),'ITEMCODE')]/following-sibling::div[contains(normalize-space(.), '0 Results')]";
+    String itemNotFoundTxt = "//div[contains(@data-tip,'View Product Details')]/..//div[contains(text(),'ITEMCODE')]";
     String catalogCardAddToOGBtn = "//div[text()='ITEMCODE']/../../..//button[@data-tip='Add to Order Guide']";
     By btn_close_ = By.xpath("//button[contains(@class, 'close')]/span[text()='×']");
     By btn_increaseQtyFirstRowClassic = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'plus')])[1]");
@@ -940,7 +940,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
 
     public void clickItemFromCatalogIfNotAvailableInOG(String itemName){
-        if(restaurantUI.isDisplayed(By.xpath(itemNotFoundTxt.replace("ITEMCODE",itemName.toLowerCase())))){
+        if(!restaurantUI.isDisplayed(By.xpath(itemNotFoundTxt.replace("ITEMCODE",itemName.toLowerCase())))){
             restaurantUI.click(By.xpath(catalogCardAddToOGBtn.replace("ITEMCODE",itemName)));
         }
         try {

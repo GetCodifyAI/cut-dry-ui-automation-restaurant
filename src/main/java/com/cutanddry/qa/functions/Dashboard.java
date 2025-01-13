@@ -64,7 +64,7 @@ public class Dashboard {
         dashboardPage.clickOnSupplier(supplierName);
         dashboardPage.clickOnHayes();
         if(dashboardPage.isDraftOrderPopUpDisplayed()){
-            dashboardPage.clickOnNoDraftOrder();
+            dashboardPage.clickNoBtnOnDraftCheckOverlay();
         }
     }
 
