@@ -14,17 +14,21 @@ import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-public class VerifyDeletionOfTheCreatedSupplierTest extends TestBase {
+public class VerifyTheCreateItemFunctionalityTest extends TestBase {
     static User user;
-    static String SupplierName = "TestSupplier3";
+    static String SupplierName = "TestNovaShop";
+    static String addItemName = "Chicken Soup";
+    static String addItemCode = "254254";
+    static String addItemPrice = "$50";
+    static String addItemPar = "5";
     @BeforeMethod
     public void setUp() {
         initialization();
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-942")
-    public void VerifyDeletionOfTheCreatedSupplier() throws InterruptedException, URISyntaxException {
+    @Test(groups = "DOT-TC-941")
+    public void VerifyTheCreateItemFunctionality() throws InterruptedException, URISyntaxException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
@@ -44,20 +48,21 @@ public class VerifyDeletionOfTheCreatedSupplierTest extends TestBase {
         softAssert.assertTrue(Suppliers.isEditSuppliersPopUpDisplayed(),"Edit supplier pop up window not displayed");
         Suppliers.clickSave();
         softAssert.assertTrue(Order.isNavigateEditOrderGuide(),"edit order guide navigate error");
-        Order.clickUploadFile();
-        Customer.uploadFile(Paths.get(Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource("excelFiles/TestSupplier_Template.xlsx")).toURI()).toString());
-        Order.clickNext();
-        Order.clickConfirm();
-        Order.clickOK();
-        Order.clickOK();
+        Order.clickCreateItems();
+        softAssert.assertTrue(Order.isAddItemToOrderGuidePopUpDisplayed(),"Add item to order guide pop up not displayed");
+        Order.addItemName(addItemName);
+        Order.addItemCode(addItemCode);
+        Order.addItemPrice(addItemPrice);
+        Order.addItemPar(addItemPar);
+        Order.clickAccountingCategory();
+        Order.clickSaveItem();
         softAssert.assertTrue(Order.isNavigateEditOrderGuide(),"edit order guide navigate error");
         softAssert.assertTrue(Order.isNewlyAddedOrderGuideDisplayed()," order guide added error");
 
         //delete supplier
-        Order.goToOrder();
-        softAssert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
-        softAssert.assertTrue(Order.isAddedNewSupplierDisplayed(SupplierName),"error in supplier creation");
-        Order.clickEditSupplier(SupplierName);
+        Suppliers.goToSuppliers();
+        softAssert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"Supplier navigation error");
+        Suppliers.selectOneSupplier(SupplierName);
         softAssert.assertTrue(Suppliers.isEditSuppliersPopUpDisplayed(),"Edit supplier pop up window not displayed");
         Suppliers.deleteSupplier();
 

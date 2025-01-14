@@ -21,8 +21,8 @@ public class Order {
     public static void selectOneSupplier(String editSupplierName) throws InterruptedException {
         orderPage.clickOnOneSupplier(editSupplierName);
     }
-    public static void clickFinishSetup(){
-        orderPage.clickFinishSetup();
+    public static void clickFinishSetup(String supplier)throws InterruptedException{
+        orderPage.clickFinishSetup(supplier);
     }
     public static boolean isNavigateEditOrderGuide(){
         return orderPage.isNavigateEditOrderGuide();
@@ -42,9 +42,43 @@ public class Order {
     public static boolean isNewlyAddedOrderGuideDisplayed(){
         return orderPage.isNewlyAddedOrderGuideDisplayed();
     }
-    public static void clickEditSupplier()throws InterruptedException{
-        orderPage.clickThreeDotDropDown();
+    public static void clickEditSupplier(String supplier)throws InterruptedException{
+        orderPage.clickThreeDotDropDown(supplier);
         orderPage.clickEditSupplierOption();
+    }
+    public static void clickCreateItems(){
+        orderPage.clickCreateItems();
+    }
+    public static boolean isAddItemToOrderGuidePopUpDisplayed(){
+        return orderPage.isAddItemToOrderGuidePopUpDisplayed();
+    }
+    public static void addItemName(String itemName) throws InterruptedException{
+        orderPage.addItemName(itemName);
+    }
+    public static void addItemCode(String itemCode) throws InterruptedException{
+        orderPage.addItemCode(itemCode);
+    }
+    public static void addItemPrice(String itemPrice) throws InterruptedException{
+        orderPage.addItemPrice(itemPrice);
+    }
+    public static void addItemPar(String itemPar) throws InterruptedException{
+        orderPage.addItemPar(itemPar);
+    }
+    public static void clickAccountingCategory() throws InterruptedException{
+        orderPage.clickAccountingCategoryDropDown();
+        orderPage.clickAccountingCategoryOption();
+    }
+    public static void clickSaveItem()throws InterruptedException{
+        orderPage.clickSaveItem();
+    }
+    public static void clickLocationFilter(){
+        orderPage.clickLocationFilter();
+    }
+    public static void clickOnLocationOption(String location)throws InterruptedException{
+        orderPage.clickOnLocationOption(location);
+    }
+    public static boolean isLocationFilterWork(String location){
+        return orderPage.isLocationFilterWork(location);
     }
 
 
