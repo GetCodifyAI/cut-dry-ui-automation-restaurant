@@ -294,11 +294,10 @@ public class HistoryPage extends TestBase {
     }
     public boolean isOrderDateChanged(String day){
         try {
-            restaurantUI.isDisplayed(By.xpath(days.replace("DATE", day)));
+            return restaurantUI.isDisplayed(By.xpath(days.replace("DATE", day)));
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(By.xpath(days.replace("DATE", day)));
     }
     public Boolean isFilteredOrdersCorrect(String OrdersDate){
         try {
@@ -306,7 +305,7 @@ public class HistoryPage extends TestBase {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        restaurantUI.scrollToElementStable(By.xpath("("+ date.replace("DATE", OrdersDate) + ")" + "[last()]"));
+        //restaurantUI.scrollToElementStable(By.xpath("("+ date.replace("DATE", OrdersDate) + ")" + "[last()]"));
         return restaurantUI.isDisplayed(By.xpath("("+ date.replace("DATE", OrdersDate) + ")" + "[last()]"));
     }
     public void selectOrderStatus(String stat){
