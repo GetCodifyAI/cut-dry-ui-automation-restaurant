@@ -115,4 +115,9 @@ public class Pay {
         return PayPage.isAutoPaySettingsHighlighted();
     }
 
+    public static void clickNextOnBatchPaymentOverlay(){
+        if(PayPage.isBatchPaymentOverlayDisplayed()) {
+            PayPage.clickNextButton();
+        }
+    }
 }
