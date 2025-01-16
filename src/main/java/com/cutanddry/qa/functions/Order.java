@@ -80,6 +80,21 @@ public class Order {
     public static boolean isLocationFilterWork(String location){
         return orderPage.isLocationFilterWork(location);
     }
+    public static void clickOnCheckIn() {
+        orderPage.clickOnCheckIn();
+    }
+    public static boolean isCheckInOrderIdDisplayed(String orderId) throws InterruptedException {
+        return orderPage.isCheckInOrderIdDisplayed(orderId);
+    }
+    public static void clickOnCheckInAll() {
+        orderPage.clickOnCheckInAll();
+    }
+    public static boolean isCheckInAllPopupDisplayed() {
+        return orderPage.isCheckInAllPopupDisplayed();
+    }
+    public static boolean isOrderStatusDisplayed(String status) throws InterruptedException {
+        return orderPage.isOrderStatusDisplayed(status);
+    }
 
 
 }

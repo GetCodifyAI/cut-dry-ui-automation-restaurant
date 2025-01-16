@@ -176,6 +176,9 @@ public class LoginPage extends TestBase {
         restaurantUI.navigateToURL(Constants.LOGIN_AS_APP_URL);
         restaurantUI.click(internalToolsBtn);
     }
+    public void switchIntoNewTab(){
+        restaurantUI.OpenNewTabAndSwitchToIt();
+    }
 
 
 }
