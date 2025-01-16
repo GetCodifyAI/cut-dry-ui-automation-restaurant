@@ -34,6 +34,7 @@
             <class name="com.cutanddry.qa.tests.History.VerifyTheUploadInvoiceFunctionalityTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaCatalogTest" />
+            <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaPDPTest" />
         </classes>
     </test>
 </suite>
