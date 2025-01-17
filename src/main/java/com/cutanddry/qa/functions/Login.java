@@ -114,5 +114,8 @@ public class Login {
     public static void navigateToInternalTools(){
         loginPage.clickOnInternalTools();
     }
+    public static void switchIntoNewTab(){
+        loginPage.switchIntoNewTab();
+    }
 
 }

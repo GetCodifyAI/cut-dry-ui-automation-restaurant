@@ -28,6 +28,11 @@ public class OrderPage extends LoginPage{
     By locationFilter = By.xpath("//div[contains(@class, ' css-2b097c-container')]");
     String locationOption = "//div[contains(@class,'themed_select__option ') and contains(text(), 'LOCATION')]";
     String addedLocation = "//td//span[contains(text(), 'LOCATION')]";
+    By btn_checkIn = By.xpath("//button[contains(text(),'Check-In Order')]");
+    String checkInTitle = "//h2[contains(text(),'Check-In Order #ORDER_ID')]";
+    By btn_checkInAll = By.xpath("//button[contains(text(),'Check-In All')]");
+    By lbl_checkInAllPopup = By.xpath("//h2[contains(text(),'Check-in all items?')]");
+    String lbl_orderStatus = "//div[contains(text(),'Order Status: STATUS')]";
 
 
     public void clickAddNewSupplier(){
@@ -147,6 +152,32 @@ public class OrderPage extends LoginPage{
             return false;
         }
         return restaurantUI.isDisplayed(By.xpath(addedLocation.replace("LOCATION",location)));
+    }
+    public void clickOnCheckIn() {
+        restaurantUI.waitForClickability(btn_checkIn);
+        restaurantUI.click(btn_checkIn);
+    }
+    public boolean isCheckInOrderIdDisplayed(String orderId) throws InterruptedException {
+        restaurantUI.waitForVisibility(By.xpath(checkInTitle.replace("ORDER_ID", orderId)));
+        restaurantUI.waitForCustom(4000);
+        return restaurantUI.isDisplayed(By.xpath(checkInTitle.replace("ORDER_ID", orderId)));
+    }
+    public void clickOnCheckInAll() {
+        restaurantUI.waitForClickability(btn_checkInAll);
+        restaurantUI.click(btn_checkInAll);
+    }
+    public boolean isCheckInAllPopupDisplayed() {
+        try {
+            restaurantUI.waitForVisibility(lbl_checkInAllPopup);
+            return restaurantUI.isDisplayed(lbl_checkInAllPopup);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    public boolean isOrderStatusDisplayed(String status) throws InterruptedException {
+        restaurantUI.waitForVisibility(By.xpath(lbl_orderStatus.replace("STATUS", status)));
+        restaurantUI.waitForCustom(4000);
+        return restaurantUI.isDisplayed(By.xpath(lbl_orderStatus.replace("STATUS", status)));
     }
 
 

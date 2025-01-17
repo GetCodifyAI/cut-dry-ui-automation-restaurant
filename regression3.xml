@@ -32,6 +32,10 @@
             <class name="com.cutanddry.qa.tests.History.VerifyTheFilteringOrdersByOrderDateTest" />
             <class name="com.cutanddry.qa.tests.History.VerifyTheFilteringOrdersByOrderStatusTest" />
             <class name="com.cutanddry.qa.tests.History.VerifyTheUploadInvoiceFunctionalityTest" />
+            <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaOrderGuideTest" />
+            <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaCatalogTest" />
+            <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaPDPTest" />
+            <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaOrderGuideCatalogAndPDPTest" />
         </classes>
     </test>
 </suite>
