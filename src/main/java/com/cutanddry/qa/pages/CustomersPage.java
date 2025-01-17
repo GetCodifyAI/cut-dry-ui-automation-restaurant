@@ -169,6 +169,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String specificOrderRecord = "//tr/td[text()='ORDER_ID']";
     String orderTitle = "//h2[contains(text(),'Order #ORDER_ID')]";
     By btn_addToCartPDP = By.xpath("//button[contains(@class,'d-flex align-items-center justify-content-center cdbutton _1g89unu _du1frc text-nowrap w-100 btn btn-outline-primary btn-sm' ) and contains(text(), 'Add to Cart')]");
+    By lbl_pickUp = By.xpath("//span[text()='Pickup/Will Call']");
+    By sel_pickup = By.xpath("//span[text()='Pickup/Will Call']/preceding-sibling::div//*[contains(@data-icon, 'circle')]");
+    By lbl_mailDelivery = By.xpath("//span[text()='Mail Delivery']");
+    By sel_mailDelivery = By.xpath("//span[text()='Mail Delivery']/preceding-sibling::div//*[contains(@data-icon, 'circle')]");
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -1119,6 +1123,32 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
     public void clickAddToCart(){
         restaurantUI.click(btn_addToCartPDP);
+    }
+    public void selectPickUpWillCall(){
+        restaurantUI.waitForVisibility(lbl_pickUp);
+        restaurantUI.click(lbl_pickUp);
+    }
+    public boolean isPickUpOptionSelected() {
+        try {
+            restaurantUI.waitForVisibility(sel_pickup);
+            String dataIconValue = restaurantUI.getText(sel_pickup, "data-icon").trim(); // Use getAttribute to fetch the attribute value
+            return dataIconValue.equals("circle-check");
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    public void selectMailDelivery(){
+        restaurantUI.waitForVisibility(lbl_mailDelivery);
+        restaurantUI.click(lbl_mailDelivery);
+    }
+    public boolean isMailDeliveryOptionSelected() {
+        try {
+            restaurantUI.waitForVisibility(sel_mailDelivery);
+            String dataIconValue = restaurantUI.getText(sel_mailDelivery, "data-icon").trim(); // Use getAttribute to fetch the attribute value
+            return dataIconValue.equals("circle-check");
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 
