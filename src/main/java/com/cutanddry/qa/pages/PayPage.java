@@ -41,7 +41,7 @@ public class PayPage extends TestBase{
     By btn_paidTab = By.xpath("//a[contains(translate(text(), 'ABCDEFGHIJKLMNOpQRSTUVWXYZ', 'abcdefghijklmnoPqrstuvwxyz'), 'Paid')]");
     By btn_threeDots = By.xpath("(//button[contains(@class,'_g0pr2tf border-0')])[1]");
     By btn_downloadReceipt = By.xpath("(//a[contains(@class,'dropdown-item')])[1]");
-    By btn_statusPaid = By.xpath("(//div[contains(@class,'themed_select__dropdown-indicator css-tlfecz-indicatorContainer')])[2]");
+    By btn_statusPaid = By.xpath("(//div[contains(text(),'Status')]//div[contains(@class,'themed_select__placeholder')])[last()]");
     By paidInvoice = By.xpath("//div[contains(text(),'Paid')]");
     By statusPaid = By.xpath("//div[contains(text(),'Paid')]");
     By txt_filteredStatus = By.xpath("//td[@class='align-middle' and text()='Paid']");
@@ -55,6 +55,8 @@ public class PayPage extends TestBase{
     By txt_downloadInvoice = By.xpath("//h2[@id='swal2-title']");
     By btn_ok = By.xpath("//button[@class='swal2-confirm swal2-styled' and text()='OK']");
     By paymentMethodSuccessTxt = By.xpath("//h2[contains(text(),'Payment method has been added successfully.')]");
+    By batchPaymentTxt = By.xpath("//div[contains(text(),'Batch Payment')]");
+    By nextBtn = By.xpath("//button[contains(text(),'Next')]");
 
     public void clickOnPay(){restaurantUI.click(btn_pay);}
 
@@ -297,5 +299,17 @@ public class PayPage extends TestBase{
         return restaurantUI.isDisplayed(txt_highlightAutoPay);
     }
 
+    public boolean isBatchPaymentOverlayDisplayed(){
+        return restaurantUI.isDisplayed(batchPaymentTxt);
+    }
+
+    public void clickNextButton(){
+        restaurantUI.click(nextBtn);
+        try {
+            restaurantUI.waitForCustom(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
