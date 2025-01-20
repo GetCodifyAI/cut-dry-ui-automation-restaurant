@@ -37,6 +37,7 @@ public class LoginPage extends TestBase {
     By lbl_activeVV = By.xpath("//tbody/tr[1]/td[3]/ul[2]/li/label/input[@value='active_for_all_vv']");
     By lbl_activeVVChecked = By.xpath("//tbody/tr[1]/td[3]/ul[2]/li/label/input[@value='active_for_all_vv' and @checked]");
     By internalToolsBtn = By.xpath("//a[contains(text(),'Internal Tools') and contains(@href,'/internaltools')]");
+    By txt_jenniferBlue = By.xpath("//div[contains(text(), 'Jennifer Blue')]");
 
     public void typeEmailOrMobile(String emailOrMobile){
         restaurantUI.sendKeys(txt_emailOrMobile,emailOrMobile);
@@ -178,6 +179,9 @@ public class LoginPage extends TestBase {
     }
     public void switchIntoNewTab(){
         restaurantUI.OpenNewTabAndSwitchToIt();
+    }
+    public void closePreviousTab()throws InterruptedException{
+        restaurantUI.CloseAllPreviousTabAndSwitchToNew();
     }
 
 

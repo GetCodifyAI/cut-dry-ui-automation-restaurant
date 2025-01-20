@@ -13,7 +13,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class PlaceDeliveryOrderViaOrderGuideTest extends TestBase {
+public class PlacePickUpOrderViaOrderGuideCatalogAndPDPTest extends TestBase {
     static User user;
     String itemName,searchItemCode,orderId;
     static double itemPrice;
@@ -28,8 +28,8 @@ public class PlaceDeliveryOrderViaOrderGuideTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-919")
-    public void PlaceDeliveryOrderViaOrderGuide() throws InterruptedException {
+    @Test(groups = "DOT-TC-927")
+    public void PlacePickUpOrderViaOrderGuideCatalogAndPDP() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         // Restaurant Flows
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
@@ -38,16 +38,33 @@ public class PlaceDeliveryOrderViaOrderGuideTest extends TestBase {
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+
+        // Add the product via Order Guide
         itemName = Customer.getItemNameFirstRow();
         searchItemCode = Customer.getItemCodeFirstRow();
         itemPrice = Customer.getActiveItemPriceFirstRow();
-        Customer.increaseFirstRowQtyCustom(1);
+        Customer.clickOnPlusIconInCatalogPDP(1, itemName);
         softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),itemPrice,"The item has not been selected.");
-        Customer.checkoutItems();
+
+        // Add the product via Catalog
+        Customer.goToCatalog();
+        Customer.searchItemOnCatalog(searchItemCode);
+        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName.toLowerCase()), "item not found");
+        Customer.clickOnPlusIconInCatalogPDP(1, itemName);
+        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),itemPrice*2,"The item has not been selected.");
+
+        // Add the product via PDP
+        Customer.clickOnProduct(itemName);
+        softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
+        Customer.clickOnPlusIconInCatalogPDP(1, itemName);
+        softAssert.assertEquals(Math.round(Customer.getItemPriceOnCheckoutButtonViaPDP() * 100.0) / 100.0,
+                Math.round(itemPrice * 3 * 100.0) / 100.0, "The item has not been selected.");
+        Customer.clickCheckOutPDP();
 
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
         softAssert.assertEquals(Customer.getItemNameFirstRow(), itemName, "The item selected by the user is different from what is shown on the order review page.");
-        softAssert.assertTrue(Customer.isDeliveryOptionSelected(), "The expected fulfillment type is not selected.");
+        Customer.selectPickUpWillCall();
+        softAssert.assertTrue(Customer.isPickUpOptionSelected(), "The expected fulfillment type is not selected.");
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
         orderId = Customer.getSuccessOrderId();
