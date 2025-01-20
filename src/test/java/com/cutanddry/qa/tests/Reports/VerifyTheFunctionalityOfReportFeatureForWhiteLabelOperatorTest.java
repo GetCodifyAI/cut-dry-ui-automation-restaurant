@@ -15,6 +15,8 @@ import org.testng.asserts.SoftAssert;
 public class VerifyTheFunctionalityOfReportFeatureForWhiteLabelOperatorTest extends TestBase {
     static User user;
     static String OperatorName = "Stephanie Collins";
+    static String report = "monthly expenses by vendor";
+    static String reportName = "Monthly expenses by Vendor";
 
     @BeforeMethod
     public void setUp(){
@@ -32,9 +34,9 @@ public class VerifyTheFunctionalityOfReportFeatureForWhiteLabelOperatorTest exte
         restaurantUI.switchToNewTab();
         Dashboard.navigateToReports();
         softAssert.assertTrue(Reports.disabledGenerateReport(),"error in  generate report button");
-        Reports.selectMonthlyExpensesByVendor();
+        Reports.selectTheReport(report);
         Reports.generateReport();
-        softAssert.assertTrue(Reports.isMonthlyExpensesByVendorDisplayed(),"error in  generating table");
+        softAssert.assertTrue(Reports.isGeneratedReportDisplayed(reportName),"error in  generating table");
         Reports.selectCsv();
         softAssert.assertTrue(Reports.isCSVTextDisplayed(),"error in selecting csv file");
         Reports.generateReport();
