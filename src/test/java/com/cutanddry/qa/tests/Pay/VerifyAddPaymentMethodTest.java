@@ -47,6 +47,7 @@ public class VerifyAddPaymentMethodTest extends TestBase {
         softAssert.assertTrue(Pay.isPaySupplierTextDisplayed(),"error in text display");
         Pay.payOption();
         softAssert.assertTrue(Pay.isInvoiceIDNoDisplayed(),"error in invoice ID number");
+        Pay.clickNextOnBatchPaymentOverlay();
         Pay.addPaymentMethod();
         softAssert.assertTrue(Pay.isAddPaymentMethodTextDisplayed(),"error in payment method title");
         Pay.bankAccountOption();

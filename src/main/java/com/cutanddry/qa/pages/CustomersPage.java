@@ -158,6 +158,22 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By lbl_productDetails = By.xpath("//span[text()='Product Details']");
     By btn_catalogPlus = By.xpath("//*[name()='svg' and @data-icon='plus']");
     By itemSort = By.xpath("//div[contains(text(),'Sort Items By:')]/..//*[name()='svg']");
+    By sel_delivery = By.xpath("//span[text()='Delivery']/preceding-sibling::div//*[contains(@data-icon, 'circle')]");
+    By txt_orderId = By.xpath("//div[contains(text(),'Order #')]");
+    By txt_customers = By.xpath("//h2[text()='Customers']");
+    String btnCustomerOrderGuide = "//td[text()='CODE']/../td[8]//button";
+    String businessName = "//td/following-sibling::td[contains(text(),'CUSTOMERID')]/following-sibling::td[1]";
+    String SelectCustomerByCode = "//td[contains(text(),'CODE')]";
+    String txt_customerProfile = "//div[contains(@class, 'd-flex') and contains(text(), 'BUSINESSNAME')]";
+    By tb_orders = By.xpath("//a[text()='Orders' and @role='tab']");
+    String specificOrderRecord = "//tr/td[text()='ORDER_ID']";
+    String orderTitle = "//h2[contains(text(),'Order #ORDER_ID')]";
+    By btn_addToCartPDP = By.xpath("//button[contains(@class,'d-flex align-items-center justify-content-center cdbutton _1g89unu _du1frc text-nowrap w-100 btn btn-outline-primary btn-sm' ) and contains(text(), 'Add to Cart')]");
+    By lbl_pickUp = By.xpath("//span[text()='Pickup/Will Call']");
+    By sel_pickup = By.xpath("//span[text()='Pickup/Will Call']/preceding-sibling::div//*[contains(@data-icon, 'circle')]");
+    By lbl_mailDelivery = By.xpath("//span[text()='Mail Delivery']");
+    By sel_mailDelivery = By.xpath("//span[text()='Mail Delivery']/preceding-sibling::div//*[contains(@data-icon, 'circle')]");
+    By btn_montanaPlaceOrder = By.xpath("//button[contains(@class, 'btn-primary') and contains(text(), 'Place Order')]");
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -492,6 +508,12 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
 
     public void clickOnCloseEditor() {
         restaurantUI.click(btn_closeEditor);
+        restaurantUI.refreshPage();
+        try {
+            restaurantUI.waitForCustom(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void clickOnRemoveFromOrderGuide() throws InterruptedException {
@@ -1047,5 +1069,92 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     public void clickCheckOutPDP(){
         restaurantUI.click(btn_checkOutPDP);
     }
+
+    public boolean isDeliveryOptionSelected() {
+        try {
+            restaurantUI.waitForVisibility(sel_delivery);
+            String dataIconValue = restaurantUI.getText(sel_delivery, "data-icon").trim(); // Use getAttribute to fetch the attribute value
+            return dataIconValue.equals("circle-check");
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    public String getOrderedId() {
+        String orderId = restaurantUI.getText(txt_orderId);
+        return orderId.substring(orderId.indexOf("#") + 1).trim();
+    }
+    public boolean isCustomersTextDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_customers);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_customers);
+    }
+    public boolean isCustomerSearchResultByCodeDisplayed(String code) throws InterruptedException {
+        restaurantUI.waitForElementEnabledState(By.xpath(btnCustomerOrderGuide.replace("CODE", code)), true);
+        restaurantUI.waitForCustom(4000);
+        return restaurantUI.isDisplayed(By.xpath(btnCustomerOrderGuide.replace("CODE", code)));
+    }
+    public String getBusinessName(String customerId){
+        restaurantUI.waitForVisibility(By.xpath(businessName.replace("CUSTOMERID",customerId)));
+        return restaurantUI.getText(By.xpath(businessName.replace("CUSTOMERID",customerId)));
+    }
+    public void ClickOnCustomer(String code){
+        restaurantUI.click(By.xpath(SelectCustomerByCode.replace("CODE", code)));
+    }
+    public boolean isCustomerProfileDisplayed(String businessName){
+        try {
+            restaurantUI.waitForVisibility(By.xpath(txt_customerProfile.replace("BUSINESSNAME",businessName)));
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(By.xpath(txt_customerProfile.replace("BUSINESSNAME",businessName)));
+    }
+    public void clickOnOrdersTab() {
+        restaurantUI.click(tb_orders);
+    }
+    public void clickOnSpecificRecord(String orderId) {
+        restaurantUI.click(By.xpath(specificOrderRecord.replace("ORDER_ID", orderId)));
+    }
+    public boolean isOrderIdDisplayed(String orderId) throws InterruptedException {
+        restaurantUI.waitForVisibility(By.xpath(orderTitle.replace("ORDER_ID", orderId)));
+        restaurantUI.waitForCustom(4000);
+        return restaurantUI.isDisplayed(By.xpath(orderTitle.replace("ORDER_ID", orderId)));
+    }
+    public void clickAddToCart(){
+        restaurantUI.click(btn_addToCartPDP);
+    }
+    public void selectPickUpWillCall(){
+        restaurantUI.waitForVisibility(lbl_pickUp);
+        restaurantUI.click(lbl_pickUp);
+    }
+    public boolean isPickUpOptionSelected() {
+        try {
+            restaurantUI.waitForVisibility(sel_pickup);
+            String dataIconValue = restaurantUI.getText(sel_pickup, "data-icon").trim(); // Use getAttribute to fetch the attribute value
+            return dataIconValue.equals("circle-check");
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    public void selectMailDelivery(){
+        restaurantUI.waitForVisibility(lbl_mailDelivery);
+        restaurantUI.click(lbl_mailDelivery);
+    }
+    public boolean isMailDeliveryOptionSelected() {
+        try {
+            restaurantUI.waitForVisibility(sel_mailDelivery);
+            String dataIconValue = restaurantUI.getText(sel_mailDelivery, "data-icon").trim(); // Use getAttribute to fetch the attribute value
+            return dataIconValue.equals("circle-check");
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    public void clickOnMontanaPlaceOrder() {
+        restaurantUI.waitForVisibility(btn_montanaPlaceOrder);
+        restaurantUI.click(btn_montanaPlaceOrder);
+    }
+
 
 }

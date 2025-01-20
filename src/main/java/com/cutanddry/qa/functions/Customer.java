@@ -565,5 +565,55 @@ public class Customer {
         }
     }
     public static void clickCheckOutPDP(){customersPage.clickCheckOutPDP();}
+    public static boolean isDeliveryOptionSelected() {
+        return customersPage.isDeliveryOptionSelected();
+    }
+    public static String getSuccessOrderId() {
+        return customersPage.getOrderedId();
+    }
+    public static boolean isCustomersTextDisplayed(){
+        return customersPage.isCustomersTextDisplayed();
+    }
+    public static boolean isCustomerSearchResultByCodeDisplayed(String code) throws InterruptedException {
+        return customersPage.isCustomerSearchResultByCodeDisplayed(code);
+    }
+    public static String getBusinessNameFromCustomers(String CustomerCode){
+        return customersPage.getBusinessName(CustomerCode);
+    }
+    public static void SelectCustomer(String code){
+        customersPage.ClickOnCustomer(code);
+    }
+    public static boolean isCustomerProfileDisplayed(String CustomerName){
+        return customersPage.isCustomerProfileDisplayed(CustomerName);
+    }
+    public static void clickOnOrdersTab(){
+        customersPage.clickOnOrdersTab();
+    }
+    public static void clickOnSpecificRecord(String orderId) throws InterruptedException {
+        customersPage.clickOnSpecificRecord(orderId);
+
+    }
+    public static boolean isOrderIdDisplayed(String orderId) throws InterruptedException {
+        return customersPage.isOrderIdDisplayed(orderId);
+    }
+    public static void clickAddToCartPDP(){customersPage.clickAddToCart();}
+    public static void selectPickUpWillCall(){
+        customersPage.selectPickUpWillCall();
+    }
+    public static boolean isPickUpOptionSelected() {
+        return customersPage.isPickUpOptionSelected();
+    }
+    public static void selectMailDelivery(){
+        customersPage.selectMailDelivery();
+    }
+    public static boolean isMailDeliveryOptionSelected() {
+        return customersPage.isMailDeliveryOptionSelected();
+    }
+    public static void navigateMontanaOrder() throws InterruptedException{
+        customersPage.clickOnMontanaPlaceOrder();
+        if (customersPage.isPreviousDraftOrderNoDisplayed()){
+            customersPage.clickPreviousDraftOrderNo();
+        }
+    }
 
 }
