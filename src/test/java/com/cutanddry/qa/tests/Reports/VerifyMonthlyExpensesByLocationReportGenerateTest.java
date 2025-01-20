@@ -16,6 +16,7 @@ public class VerifyMonthlyExpensesByLocationReportGenerateTest extends TestBase 
     static User user;
     static String report = "monthly expenses by location";
     static String reportName = "Monthly expenses by Location";
+    static String location = "Hayes";
 
 
     @BeforeMethod
@@ -35,6 +36,8 @@ public class VerifyMonthlyExpensesByLocationReportGenerateTest extends TestBase 
         Reports.selectTheReport(report);
         Reports.generateReport();
         softAssert.assertTrue(Reports.isGeneratedReportDisplayed(reportName),"error in  generating table");
+        Reports.searchData(location);
+        softAssert.assertTrue(Reports.isSearchResultDisplayed(location),"generate report not successfully");
         softAssert.assertAll();
 
     }

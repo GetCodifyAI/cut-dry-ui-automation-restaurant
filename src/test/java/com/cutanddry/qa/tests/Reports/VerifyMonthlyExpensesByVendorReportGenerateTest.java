@@ -16,6 +16,7 @@ public class VerifyMonthlyExpensesByVendorReportGenerateTest extends TestBase {
     static User user;
     static String report = "monthly expenses by vendor";
     static String reportName = "Monthly expenses by vendor";
+    static String vendorName = "Independent Foods Co";
 
 
     @BeforeMethod
@@ -35,6 +36,8 @@ public class VerifyMonthlyExpensesByVendorReportGenerateTest extends TestBase {
         Reports.selectTheReport(report);
         Reports.generateReport();
         softAssert.assertTrue(Reports.isGeneratedReportDisplayed(reportName),"error in  generating table");
+        Reports.searchData(vendorName);
+        softAssert.assertTrue(Reports.isSearchResultDisplayed(vendorName),"generate report not successfully");
         softAssert.assertAll();
 
     }
