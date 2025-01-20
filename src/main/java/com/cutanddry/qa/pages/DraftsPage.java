@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class DraftsPage extends LoginPage{
     String firstDraftOrder = "(//td[contains(text(),'SUPPLIER')]/parent::tr[contains(@href,'/place-order')])[1]";
     By txt_drafts = By.xpath("//li[contains(text(),'Drafts')]");
-    String txt_lastDraft = "(//tbody/tr[contains(@href, 'place-order') and contains(@href, 'draftId')]/td[9][contains(text(), 'TOTAL')])[1]";
+    String txt_lastDraft = "(//tbody/tr[contains(@href, 'place-order') and contains(@href, 'draftId')]//td[contains(text(), 'TOTAL')])[1]";
     By btn_editOrder = By.xpath("//a[contains(text(),'Edit Order')]");
 
 
