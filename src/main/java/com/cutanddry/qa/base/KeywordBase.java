@@ -700,6 +700,44 @@ public class KeywordBase {
             return false;
         }
     }
+    public KeywordBase CloseAllPreviousTabAndSwitchToNew() {
+        // Save the original tab handle
+        originalTab = driver.getWindowHandle();
+
+        // Get the list of all existing window handles
+        Set<String> existingWindows = driver.getWindowHandles();
+
+        // Open a new tab using JavaScript
+        ((JavascriptExecutor) driver).executeScript("window.open();");
+
+        // Wait until the number of windows increases by 1
+        wait.until(ExpectedConditions.numberOfWindowsToBe(existingWindows.size() + 1));
+
+        // Get the updated list of all window handles
+        Set<String> windowHandles = driver.getWindowHandles();
+
+        // Find and switch to the new tab
+        for (String windowHandle : windowHandles) {
+            if (!existingWindows.contains(windowHandle)) {
+                secondTab = windowHandle;
+                driver.switchTo().window(secondTab);
+                logger.info("Switched to new tab: {}", secondTab);
+                break;
+            }
+        }
+
+        // Close all previously opened tabs
+        for (String windowHandle : existingWindows) {
+            driver.switchTo().window(windowHandle);
+            driver.close(); // Close the tab
+        }
+
+        // Switch back to the newly opened tab to keep it active
+        driver.switchTo().window(secondTab);
+
+        return this;
+    }
+
 
 }
 

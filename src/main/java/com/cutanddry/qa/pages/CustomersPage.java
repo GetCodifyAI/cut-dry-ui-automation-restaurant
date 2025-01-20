@@ -173,6 +173,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By sel_pickup = By.xpath("//span[text()='Pickup/Will Call']/preceding-sibling::div//*[contains(@data-icon, 'circle')]");
     By lbl_mailDelivery = By.xpath("//span[text()='Mail Delivery']");
     By sel_mailDelivery = By.xpath("//span[text()='Mail Delivery']/preceding-sibling::div//*[contains(@data-icon, 'circle')]");
+    By btn_montanaPlaceOrder = By.xpath("//button[contains(@class, 'btn-primary') and contains(text(), 'Place Order')]");
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -1149,6 +1150,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         } catch (Exception e) {
             return false;
         }
+    }
+    public void clickOnMontanaPlaceOrder() {
+        restaurantUI.waitForVisibility(btn_montanaPlaceOrder);
+        restaurantUI.click(btn_montanaPlaceOrder);
     }
 
 

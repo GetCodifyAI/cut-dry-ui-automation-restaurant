@@ -609,5 +609,11 @@ public class Customer {
     public static boolean isMailDeliveryOptionSelected() {
         return customersPage.isMailDeliveryOptionSelected();
     }
+    public static void navigateMontanaOrder() throws InterruptedException{
+        customersPage.clickOnMontanaPlaceOrder();
+        if (customersPage.isPreviousDraftOrderNoDisplayed()){
+            customersPage.clickPreviousDraftOrderNo();
+        }
+    }
 
 }

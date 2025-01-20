@@ -40,6 +40,7 @@
             <class name="com.cutanddry.qa.tests.E2E.PlaceMailDeliveryOrderViaCatalogTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlaceMailDeliveryOrderViaPDPTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlaceMailDeliveryOrderViaOrderGuideCatalogAndPDPTest" />
+            <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaOrderGuideTest" />
         </classes>
     </test>
 </suite>
