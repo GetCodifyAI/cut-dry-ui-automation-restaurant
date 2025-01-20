@@ -77,6 +77,7 @@ public class PlaceDeliveryOrderViaOrderGuideTest extends TestBase {
 
         softAssert.assertTrue(Customer.isOrderIdDisplayed(orderId), "The user is unable to navigate back to the Order Details page.");
         softAssert.assertTrue(Order.isOrderStatusDisplayed(checkingStatus), "The user is unable to navigate back to the Order Details page.");
+        Login.closePreviousTab();
         softAssert.assertAll();
 
     }
