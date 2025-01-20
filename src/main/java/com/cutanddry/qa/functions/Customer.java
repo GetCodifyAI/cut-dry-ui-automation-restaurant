@@ -597,5 +597,17 @@ public class Customer {
         return customersPage.isOrderIdDisplayed(orderId);
     }
     public static void clickAddToCartPDP(){customersPage.clickAddToCart();}
+    public static void selectPickUpWillCall(){
+        customersPage.selectPickUpWillCall();
+    }
+    public static boolean isPickUpOptionSelected() {
+        return customersPage.isPickUpOptionSelected();
+    }
+    public static void selectMailDelivery(){
+        customersPage.selectMailDelivery();
+    }
+    public static boolean isMailDeliveryOptionSelected() {
+        return customersPage.isMailDeliveryOptionSelected();
+    }
 
 }
