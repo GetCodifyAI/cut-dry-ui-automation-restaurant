@@ -47,6 +47,7 @@
             <class name="com.cutanddry.qa.tests.Reports.VerifyMonthlyExpensesByVendorReportGenerateTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyMonthlyExpensesByLocationReportGenerateTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyExpensesByProductReportGenerateTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyExpensesByEmployeeReportGenerateTest" />
         </classes>
     </test>
 </suite>
