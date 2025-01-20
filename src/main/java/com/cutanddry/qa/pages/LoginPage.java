@@ -31,7 +31,7 @@ public class LoginPage extends TestBase {
     String txt_distributor = "(//div[contains(text(), 'DISTRIBUTOR_NAME')])[2]";
     String txt_operator = "((//div[contains(text(), 'OPERATOR_NAME')])[last()])";
     By txt_adminWL = By.xpath("//div[contains(text(), 'Amir IFC WL - 246613671 - Owner - IFC Operator Demo - amir@cutanddry.com - 14082091996')]");
-    By txt_managerWL = By.xpath("//div[contains(text(), 'CHEF GLENDA - 211953812 - Manager - 110 Reserve Bar - WOODLAND PARK -  - 17192353155')]");
+    By txt_managerWL = By.xpath("//div[contains(text(), 'CHEF GLENDA - 211953812 - Owner - 110 Reserve Bar - WOODLAND PARK -  - 17192353155')]");
     By txt_bookkeeperWL = By.xpath("//div[contains(text(), 'Brandon IFC White - 170465895 - Owner - IFC Operator Demo - brandon@cutanddry.com - 12345678910')]");
     By txt_employeeWL = By.xpath("//div[contains(text(), 'Hadley Ifc Employee - 274597299 - Employee - IFC Operator Demo - hadley+employee@cutanddry.com - null')]");
     By lbl_activeVV = By.xpath("//tbody/tr[1]/td[3]/ul[2]/li/label/input[@value='active_for_all_vv']");
