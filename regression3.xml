@@ -49,6 +49,7 @@
             <class name="com.cutanddry.qa.tests.Reports.VerifyExpensesByProductReportGenerateTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyExpensesByEmployeeReportGenerateTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyInvoiceDownloadZipFileReportGenerateTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyLocationQuantitySummaryReportGenerateTest" />
         </classes>
     </test>
 </suite>
