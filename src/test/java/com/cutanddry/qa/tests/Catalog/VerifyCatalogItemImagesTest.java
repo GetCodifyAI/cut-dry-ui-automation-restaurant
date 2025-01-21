@@ -15,6 +15,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyCatalogItemImagesTest extends TestBase {
     static User user;
     String ItemName = "Artichoke";
+    String image = "https://ordering-supplies-images-1.s3.us-east-2.amazonaws.com/85dc6381a542e87867e8901119e9424a.jpg";
 
     @BeforeMethod
     public void setUp(){
@@ -34,7 +35,7 @@ public class VerifyCatalogItemImagesTest extends TestBase {
         Customer.goToCatalog();
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"ERROR in navigating to catalog page");
         Customer.searchItemOnCatalog(ItemName);
-        softAssert.assertTrue(Customer.CatalogImagesDisplayed(),"Error in displaying catalog images ");
+        softAssert.assertTrue(Customer.CatalogImagesDisplayed(image),"Error in displaying catalog images ");
 
 
         softAssert.assertAll();

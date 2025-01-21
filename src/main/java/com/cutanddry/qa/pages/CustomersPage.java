@@ -113,7 +113,6 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By activeAndHiddenOption = By.xpath("//div[contains(@class,'cd_themed_select__option css-yt9ioa-option') and text()='Active & Hidden Items']");
     By onlyActiveItemsOption = By.xpath("(//div[contains(text(),'Only Active Items')])[last()]");
     By saveAndUnhideBtn = By.xpath("//button[@class='btn btn-primary btn-block'and contains(text(),'Save and Unhide Item')]");
-    By catalogimg = By.xpath("//img[@class='card-img-top _1d49j2h' and contains(@src,'23ea1851c5077e4e1deab4c760fdf5dc5358634d47c19530b4d821f11e3f7650_PROD_0001_07628.JPG')]");
     String Item = "//div[@class='_3quvq7 _1vlidrf' and text()='ITEMNAME']";
     String itemNamePdpView = "//div[contains(@class,'mb-0 pt-2 d-flex align-items-center mont _1wrelxt _1vlidrf') and contains(text(),'ITEMNAME')]";
     By itemPricePdpView = By.xpath("//span[@class='_1u7yq58']");
@@ -174,6 +173,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By lbl_mailDelivery = By.xpath("//span[text()='Mail Delivery']");
     By sel_mailDelivery = By.xpath("//span[text()='Mail Delivery']/preceding-sibling::div//*[contains(@data-icon, 'circle')]");
     By btn_montanaPlaceOrder = By.xpath("//button[contains(@class, 'btn-primary') and contains(text(), 'Place Order')]");
+    String catalogImage ="//img[@class='card-img-top _1d49j2h' and contains(@src,'IMG')]";
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -881,9 +881,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.click(saveAndUnhideBtn);
     }
 
-    public boolean isCatalogPageImagesDisplayed(){
-        restaurantUI.waitForVisibility(catalogimg);
-        return restaurantUI.isDisplayed(catalogimg);
+    public boolean isCatalogPageImagesDisplayed(String img)throws InterruptedException{
+        restaurantUI.waitForVisibility(By.xpath(catalogImage.replace("IMG",img)));
+        return restaurantUI.isDisplayed(By.xpath(catalogImage.replace("IMG",img)));
     }
 
     public void clickItemOnCatalog(String itemName){
