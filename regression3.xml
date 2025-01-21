@@ -44,6 +44,11 @@
             <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaCatalogTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaPDPTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaOrderGuideCatalogAndPDPTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyMonthlyExpensesByVendorReportGenerateTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyMonthlyExpensesByLocationReportGenerateTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyExpensesByProductReportGenerateTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyExpensesByEmployeeReportGenerateTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyInvoiceDownloadZipFileReportGenerateTest" />
         </classes>
     </test>
 </suite>

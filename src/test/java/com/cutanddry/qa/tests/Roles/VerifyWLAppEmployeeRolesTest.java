@@ -21,7 +21,7 @@ public class VerifyWLAppEmployeeRolesTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-645")
-    public void VerifyUniversalAppAdminRoles() throws InterruptedException {
+    public void VerifyWLAppEmployeeRoles() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
