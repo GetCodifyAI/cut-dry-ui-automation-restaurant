@@ -14,6 +14,7 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
     static User user;
     static String itemName = "Flowers Edible Assortment Organic";
     static String OperatorName = "CHEF GLENDA";
+    static String name = "CHEF GLENDA - 211953812 - Owner - 110 Reserve Bar - WOODLAND PARK -  - 17192353155";
 
     @BeforeMethod
     public void setUp(){
@@ -29,6 +30,7 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
         Login.loginAsManagerWL(OperatorName);
+        Login.clickManager(name);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
