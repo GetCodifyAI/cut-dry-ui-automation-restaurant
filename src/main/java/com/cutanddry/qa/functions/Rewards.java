@@ -67,5 +67,18 @@ public class Rewards {
             RewardsPage.clickOnMayBeLaterTxt();
         }
     }
+    public static boolean isRewardsTextDisplayed(){
+        return RewardsPage.isRewardsTextDisplayed();
+    }
+    public static void selectRewardsFilter(String dropDown ,String dropDownOption)throws InterruptedException{
+        RewardsPage.clickRewardDropDown(dropDown);
+        RewardsPage.clickRewardDropDownOption(dropDownOption);
+    }
+    public static boolean isResultDisplayed(String result){
+        return RewardsPage.isResultDisplayed(result);
+    }
+    public static boolean isRewardsStatusDisplayed(String status){
+        return RewardsPage.isRewardsStatusDisplayed(status);
+    }
 }
 
