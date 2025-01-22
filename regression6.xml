@@ -32,6 +32,7 @@
             <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheDistributorsWithRewardsTest" />
             <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheRewardTypeTest" />
             <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheRewardStatusTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheOrderExportFileGenerateTest" />
         </classes>
     </test>
 </suite>

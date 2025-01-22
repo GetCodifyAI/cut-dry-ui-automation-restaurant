@@ -44,6 +44,11 @@ public class SettingsPage extends LoginPage{
     By txt_restaurant = By.xpath("//h2[text()='Company Settings']");
     By txt_locations = By.xpath("//h2[text()='Locations']");
     By btn_settings_ = By.xpath("//a[contains(@data-tip, 'Settings')]");
+    By exportBtn = By.xpath("//div[@class='fade _1v9d984k mt-5 show']//a[contains(text(),'Export')]");
+    By txt_exportData = By.xpath("//h2[text()='Export Data']");
+    By selectExportTypeDropDown = By.xpath("//span[text()='Select Export Type']");
+    String exportTypeOption = "//a[text()='TYPE']";
+    By btn_generateExport = By.xpath("//button[text()='Generate Export']");
 
     public void clickOnSettings(){
         restaurantUI.click(btn_settings);
@@ -243,6 +248,28 @@ public class SettingsPage extends LoginPage{
 
     public boolean isCategoryDeleted(String categoryName){
        return restaurantUI.isDisplayed(By.xpath(addedCategoryCodeOrName.replace("CATEGORYCODE",categoryName)));
+    }
+    public void clickOnExportBtn() throws InterruptedException {
+        restaurantUI.click(exportBtn);
+        restaurantUI.waitForCustom(1000);
+    }
+    public boolean isExportDataTextDisplayed()throws InterruptedException{
+        try {
+            restaurantUI.waitForVisibility(txt_exportData);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_exportData);
+    }
+    public void clickExportTypeDropDown()throws InterruptedException{
+        restaurantUI.click(selectExportTypeDropDown);
+    }
+    public void clickExportTypeOption(String type)throws InterruptedException{
+        restaurantUI.waitForVisibility(By.xpath(exportTypeOption.replace("TYPE",type)));
+        restaurantUI.click(By.xpath(exportTypeOption.replace("TYPE",type)));
+    }
+    public void clickGenerateExport()throws InterruptedException{
+        restaurantUI.click(btn_generateExport);
     }
 
 

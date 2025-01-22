@@ -236,6 +236,19 @@ public class Settings {
     public static boolean isCategoryDeleted(String categoryName){
         return settingsPage.isCategoryDeleted(categoryName);
     }
-
+    public static void clickOnExportUnderSettings() throws InterruptedException {
+        settingsPage.clickOnSettings();
+        settingsPage.clickOnExportBtn();
+    }
+    public static boolean isExportDataTextDisplayed()throws InterruptedException{
+        return settingsPage.isExportDataTextDisplayed();
+    }
+    public static void selectExportType(String type)throws InterruptedException{
+        settingsPage.clickExportTypeDropDown();
+        settingsPage.clickExportTypeOption(type);
+    }
+    public static void clickGenerateExport()throws InterruptedException{
+        settingsPage.clickGenerateExport();
+    }
 
 }
