@@ -410,8 +410,8 @@ public class Customer {
         customersPage.clickShowOnlyActiveItems();
     }
 
-    public static boolean CatalogImagesDisplayed(){
-        return customersPage.isCatalogPageImagesDisplayed();
+    public static boolean CatalogImagesDisplayed(String img)throws InterruptedException{
+        return customersPage.isCatalogPageImagesDisplayed(img);
     }
 
     public static void ClickOnItem(String itemName){
