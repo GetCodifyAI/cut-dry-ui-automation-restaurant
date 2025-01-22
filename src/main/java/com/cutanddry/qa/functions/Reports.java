@@ -15,9 +15,9 @@ public class Reports {
         return ReportsPage.isDisabledGenerateReportButtonDisplayed();
     }
 
-    public static void selectMonthlyExpensesByVendor(){
+    public static void selectTheReport(String report){
         ReportsPage.clickOnDropdownReportType();
-        ReportsPage.clickOnMonthlyExpensesByVendor();
+        ReportsPage.clickOnReportTypeOption(report);
     }
     public static void clickOnDropdownReportType(){
         ReportsPage.clickOnDropdownReportType();
@@ -25,8 +25,8 @@ public class Reports {
     public static boolean isReportTypeDisplayed(String txt){
         return ReportsPage.isReportTypeDisplayed(txt);
     }
-    public static boolean isMonthlyExpensesByVendorDisplayed(){
-        return ReportsPage.isMonthlyExpensesByVendorDisplayed();
+    public static boolean isGeneratedReportDisplayed(String report){
+        return ReportsPage.isGeneratedReportDisplayed(report);
     }
 
     public static void selectCsv(){
@@ -40,5 +40,11 @@ public class Reports {
 
     public static void turnOnReportsForWhiteLabelCustomersFromGateKeeperIfNotEnabled(){
         ReportsPage.turnOnReportsForWhiteLabelCustomers();
+    }
+    public static void searchData(String text){
+        ReportsPage.searchData(text);
+    }
+    public static boolean isSearchResultDisplayed(String result){
+        return ReportsPage.isSearchResultDisplayed(result);
     }
 }

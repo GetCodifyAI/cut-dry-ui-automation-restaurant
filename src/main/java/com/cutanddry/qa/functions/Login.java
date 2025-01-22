@@ -88,7 +88,9 @@ public class Login {
     }
     public static void loginAsManagerWL(String operator) throws InterruptedException {
         loginPage.typeToSearchOnOperator(operator);
-        loginPage.clickOnManagerWL();
+    }
+    public static void clickManager(String name)throws InterruptedException{
+        loginPage.clickOnManagerWL(name);
         loginPage.clickOnLoginAsWhiteLabel();
     }
     public static void loginAsEmployeeWL(String operator) throws InterruptedException {

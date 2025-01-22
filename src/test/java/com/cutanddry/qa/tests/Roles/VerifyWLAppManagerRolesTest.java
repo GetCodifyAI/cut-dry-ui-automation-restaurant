@@ -14,6 +14,7 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
     static User user;
     static String itemName = "Flowers Edible Assortment Organic";
     static String OperatorName = "CHEF GLENDA";
+    static String name = "CHEF GLENDA - 211953812 - Owner - 110 Reserve Bar - WOODLAND PARK -  - 17192353155";
 
     @BeforeMethod
     public void setUp(){
@@ -22,13 +23,14 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-646")
-    public void VerifyUniversalAppAdminRoles() throws InterruptedException {
+    public void VerifyWLAppManagerRoles() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
         Login.loginAsManagerWL(OperatorName);
+        Login.clickManager(name);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
