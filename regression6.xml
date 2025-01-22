@@ -30,6 +30,7 @@
             <class name="com.cutanddry.qa.tests.Reports.VerifyDailyExpensesReportGenerateTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyInvoiceDetailsQuickBooksCompatibleReportGenerateTest" />
             <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheDistributorsWithRewardsTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheRewardTypeTest" />
         </classes>
     </test>
 </suite>
