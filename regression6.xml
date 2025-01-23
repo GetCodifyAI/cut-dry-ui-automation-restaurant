@@ -29,6 +29,12 @@
             <class name="com.cutanddry.qa.tests.Reports.VerifyInvoiceDetailsReportGenerateTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyDailyExpensesReportGenerateTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyInvoiceDetailsQuickBooksCompatibleReportGenerateTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheDistributorsWithRewardsTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheRewardTypeTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheRewardStatusTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheOrderExportFileGenerateTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheOrderExportWithPricesFileGenerateTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheProductExportFileGenerateTest" />
         </classes>
     </test>
 </suite>

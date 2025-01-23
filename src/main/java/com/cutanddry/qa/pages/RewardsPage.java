@@ -15,12 +15,17 @@ public class RewardsPage extends TestBase {
     By text_visibilityOfSupplier = By.xpath("//h4[contains(text(),'Connect to Performance')]");
     By btn_launchpad = By.xpath("//button[contains(text(),'Go to Launchpad')]");
     By text_beplLaunchpad = By.xpath("//p[contains(text(),'Welcome to')]");
-    By btn_selectDateRange = By.xpath("//div[contains(@class,'themed_select')]");
+    By btn_selectDateRange = By.xpath("//label[text()='Date Range']/following-sibling::div");
     By btn_selectAllDates = By.xpath("//div[text()='All']");
     By link_orderID = By.xpath("(//a[contains(@href,'orders-revised')])[1]");
     String viewOrderName = "//div[text() = 'itemName']";
     By promotioOverlay = By.xpath("//*[contains(text(),'You could be earning more!')]");
     By mayBeLaterTxt = By.xpath("//*[contains(text(),'Maybe Later')]");
+    By txt_rewards = By.xpath("//div[text()='Cut+Dry Rewards']");
+    String rewardsDropDown = "//label[text()='DROPDOWN']/following-sibling::*//div[contains(text(),'Select...')]";
+    String dropDownOption = "//div[contains(text(),'DROPDOWNOPTION')]";
+    String dropDownResult = "//td[contains(text(),'RESULT')]";
+    String rewardsStatus = "//button[contains(text(),'STATUS')]";
 
     public void clickOnLearnMore(){restaurantUI.click(link_learnMore);
     }
@@ -110,6 +115,38 @@ public class RewardsPage extends TestBase {
 
     public void clickOnMayBeLaterTxt(){
         restaurantUI.click(mayBeLaterTxt);
+    }
+    public boolean isRewardsTextDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_rewards);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_rewards);
+    }
+    public void clickRewardDropDown(String dropDown)throws InterruptedException{
+        restaurantUI.waitForVisibility(By.xpath(rewardsDropDown.replace("DROPDOWN",dropDown)));
+        restaurantUI.click(By.xpath(rewardsDropDown.replace("DROPDOWN",dropDown)));
+    }
+    public void clickRewardDropDownOption(String Option)throws InterruptedException{
+        restaurantUI.waitForVisibility(By.xpath(dropDownOption.replace("DROPDOWNOPTION",Option)));
+        restaurantUI.click(By.xpath(dropDownOption.replace("DROPDOWNOPTION",Option)));
+    }
+    public boolean isResultDisplayed(String result){
+        try {
+            restaurantUI.waitForVisibility(By.xpath(dropDownResult.replace("RESULT",result)));
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(By.xpath(dropDownResult.replace("RESULT",result)));
+    }
+    public boolean isRewardsStatusDisplayed(String status){
+        try {
+            restaurantUI.waitForVisibility(By.xpath(rewardsStatus.replace("STATUS",status)));
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(By.xpath(rewardsStatus.replace("STATUS",status)));
     }
 
 }
