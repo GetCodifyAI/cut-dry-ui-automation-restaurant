@@ -486,11 +486,11 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "22 13 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * feature/ahsan_bugfix
+          cron: "30 18 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * feature/ahsan_bugfix
           filters:
             branches:
               only:
-                - feature/reports
+                - main
     jobs:
       - nightly-build-and-test-1
       - nightly-build-and-test-2
