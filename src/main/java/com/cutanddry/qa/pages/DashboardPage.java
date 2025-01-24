@@ -34,8 +34,8 @@ public class DashboardPage extends LoginPage{
     By users = By.xpath("//div[contains(text(),'Users')]");
     By tbx_msg = By.xpath("//input[@placeholder='Message...']");
     String customerNameText = "//img[contains(@data-tip,'SUPPLIERNAME')]";
-    By locationFilter = By.xpath("//div[contains(@class, ' css-2b097c-container')]");
-    By locationOption = By.xpath("//div[contains(@class,'themed_select__option ') and contains(text(), 'All Locations')]");
+    By locationFilter = By.xpath("(//div[text()='Place Order']/following-sibling::div//div)[1]");
+    By locationOption = By.xpath("//div[text()='Place Order']/following-sibling::*//div[contains(@id,'react-select') and contains(text(), 'All Locations')]");
 
     public boolean isDashboardTextDisplayed(){
         try {
