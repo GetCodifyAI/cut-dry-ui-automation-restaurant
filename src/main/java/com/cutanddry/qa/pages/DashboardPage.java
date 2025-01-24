@@ -34,6 +34,8 @@ public class DashboardPage extends LoginPage{
     By users = By.xpath("//div[contains(text(),'Users')]");
     By tbx_msg = By.xpath("//input[@placeholder='Message...']");
     String customerNameText = "//img[contains(@data-tip,'SUPPLIERNAME')]";
+    By locationFilter = By.xpath("(//div[text()='Place Order']/following-sibling::div//div)[1]");
+    By locationOption = By.xpath("//div[text()='Place Order']/following-sibling::*//div[contains(@id,'react-select') and contains(text(), 'All Locations')]");
 
     public boolean isDashboardTextDisplayed(){
         try {
@@ -172,6 +174,14 @@ public class DashboardPage extends LoginPage{
     }
     public void clickOnCreditRequests(){
         restaurantUI.click(btn_credit_requests);
+    }
+    public void clickLocationFilter(){
+        restaurantUI.click(locationFilter);
+    }
+    public void clickOnLocationOption() throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        restaurantUI.waitForVisibility(locationOption);
+        restaurantUI.click(locationOption);
     }
 
 }

@@ -89,7 +89,7 @@ public class Customer {
     }
     public static boolean isUserNavigatedToCatalog(){return customersPage.isCatalogTextDisplayed();}
 
-    public static void goToCatalog(){
+    public static void goToCatalog()throws InterruptedException{
         customersPage.clickOnCatalogButton();
     }
     @SneakyThrows
