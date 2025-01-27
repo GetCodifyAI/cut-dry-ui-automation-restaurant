@@ -6,14 +6,14 @@ public class Constants {
     public static boolean CREATE_CYCLE = Boolean.parseBoolean(System.getProperty("create.cycle","false"));
     public static String BROWSER_NAME = System.getProperty("test.browser", "chrome");
     public static boolean RUN_HEADLESS = Boolean.parseBoolean(System.getProperty("run.headless", "false"));
-    public static String TEST_ENV = System.getProperty("test.env", "uat");
+    public static String TEST_ENV = System.getProperty("test.env", "stag");
     public static String SLACK_TOKEN = System.getProperty("slack.token", "***");
     public static String SLACK_CHANNEL = System.getProperty("slack.channel", "#ui-automation-tests");
     public static String MAIN_URL = baseDomain();
     public static String SEC_URL = secDomain();
-    public static String WHITELABEL_APP_URL = "https://sutters-uat.staging.cutanddry.com/";
-    public static String LOGIN_AS_APP_URL = "https://app-uat.staging.cutanddry.com/internaltools/loginas";
-    public static String GATE_KEEPER_URL ="https://app-uat.staging.cutanddry.com/gatekeeperadmin";
+    public static String WHITELABEL_APP_URL = whiteLableAppURL();
+    public static String LOGIN_AS_APP_URL = loginAsDomain();
+    public static String GATE_KEEPER_URL =gateKeeperURL();
     public static String SLACK_WEBHOOK = System.getenv("SLACK_WEBHOOK");
 
     //slackToken=***
@@ -24,6 +24,8 @@ public class Constants {
             MAIN_URL = "https://app-uat.staging.cutanddry.com/";
         } else if (TEST_ENV.equalsIgnoreCase("PROD")){
             MAIN_URL = "https://app.cutanddry.com/";
+        } else if (TEST_ENV.equalsIgnoreCase("STAG")) {
+            MAIN_URL = "https://app-guava.staging.cutanddry.com/";
         }
         return MAIN_URL;
     }
@@ -33,8 +35,43 @@ public class Constants {
             SEC_URL = "https://supplier-"+TEST_ENV+".staging.cutanddry.com/";
         } else if (TEST_ENV.equalsIgnoreCase("")){
             //implement for other env here
+        }else if (TEST_ENV.equalsIgnoreCase("STAG")){
+            SEC_URL = "https://supplier-guava.staging.cutanddry.com/";
         }
         return SEC_URL;
+    }
+
+    private static String loginAsDomain() {
+        if (TEST_ENV.equalsIgnoreCase("UAT")) {
+            LOGIN_AS_APP_URL = "https://app-uat.staging.cutanddry.com/internaltools/loginas";
+        } else if (TEST_ENV.equalsIgnoreCase("PROD")) {
+            LOGIN_AS_APP_URL = "https://app.cutanddry.com/internaltools/loginas";
+        } else if (TEST_ENV.equalsIgnoreCase("STAG")) {
+            LOGIN_AS_APP_URL = "https://app-guava.staging.cutanddry.com/internaltools/loginas";
+        }
+        return LOGIN_AS_APP_URL;
+    }
+
+    private static String gateKeeperURL() {
+        if (TEST_ENV.equalsIgnoreCase("UAT")) {
+            GATE_KEEPER_URL = "https://app-uat.staging.cutanddry.com/gatekeeperadmin";
+        } else if (TEST_ENV.equalsIgnoreCase("PROD")) {
+            GATE_KEEPER_URL = "https://app.cutanddry.com/gatekeeperadmin";
+        } else if (TEST_ENV.equalsIgnoreCase("STAG")) {
+            GATE_KEEPER_URL = "https://app-uat.staging.cutanddry.com/gatekeeperadmin";
+        }
+        return GATE_KEEPER_URL;
+    }
+
+    private static String whiteLableAppURL() {
+        if (TEST_ENV.equalsIgnoreCase("UAT")) {
+            WHITELABEL_APP_URL = "https://sutters-uat.staging.cutanddry.com/";
+        } else if (TEST_ENV.equalsIgnoreCase("PROD")) {
+            WHITELABEL_APP_URL = "https://sutters-uat.staging.cutanddry.com/";
+        } else if (TEST_ENV.equalsIgnoreCase("STAG")) {
+            WHITELABEL_APP_URL = "https://sutters-uat.staging.cutanddry.com/";
+        }
+        return WHITELABEL_APP_URL;
     }
 
 }
