@@ -19,7 +19,7 @@ public class LoginPage extends TestBase {
     By tbx_operatorSearch = By.xpath("//input[@id='react-select-5-input']");
     By txt_joshuaClayton = By.xpath("//div[contains(text(), 'Jonathan Allen - 75761700')]");
     By txt_stephanieCollins = By.xpath("//div[contains(text(), 'Stephanie Collins - 176617582')]");
-    By txt_bermudaBiologicalStation= By.xpath("//div[contains(text(), '(explorer) - Bermuda Biological Station - 196795960')]");
+    By txt_bermudaBiologicalStation= By.xpath("//div[contains(text(), '(explorer) - Bermuda Biological Station -')]");
     By btn_LoginAsClassic = By.xpath("//a[contains(text(), 'Login As (classic)')]");
     By btn_LoginAsWhiteLabel = By.xpath("//a[contains(text(), 'Login As (white-label)')]");
     By tbx_distributorSearch = By.xpath("//input[@id='react-select-2-input']");
