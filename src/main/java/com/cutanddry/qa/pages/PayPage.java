@@ -46,8 +46,8 @@ public class PayPage extends TestBase{
     By statusPaid = By.xpath("//div[contains(text(),'Paid')]");
     By txt_filteredStatus = By.xpath("//td[@class='align-middle' and text()='Paid']");
     By btn_printReceipt = By.xpath("//a[@class='dropdown-item']//span[text()='Print Receipt']");
-    By btn_selectPaidInvoice = By.xpath("(//div[contains(text(),'Payment Date')]/ancestor::thead/following-sibling::tbody/tr[contains(@class,'_13xlah4')]//div[contains(@class,'align-middle _du1frc')])[1]");
-    By btn_selectOutstandingInvoice =By.xpath("(//div[contains(text(),'Due Date')]/ancestor::thead/following-sibling::tbody/tr[contains(@class,'_13xlah4')]//div[contains(@class,'align-middle _du1frc')])[1]");
+    By btn_selectPaidInvoice = By.xpath("(//div[contains(text(),'Payment Date')]/ancestor::thead/following-sibling::tbody/tr//div)[1]");
+    By btn_selectOutstandingInvoice =By.xpath("(//div[contains(text(),'Due Date')]/ancestor::thead/following-sibling::tbody/tr//div)[1]");
     By btn_autoPay = By.xpath("//button[@class='mr-1 font-weight-bold btn btn-primary' and text()='Enable Auto Pay']");
     By txt_highlightAutoPay = By.xpath("//a[@data-rb-event-key='Auto Pay Settings' and @aria-selected='true' and contains(@class, 'nav-link')]");
     By btn_batchAction = By.xpath("//button[@class='dropdown-toggle btn btn-outline-primary']");
@@ -221,7 +221,7 @@ public class PayPage extends TestBase{
 
     public void clickOnPaidTab()throws InterruptedException{
         restaurantUI.click(btn_paidTab);
-        restaurantUI.waitForCustom(100);
+       // restaurantUI.waitForCustom(100);
     }
 
     public void clickOnPaidInvoiceStatus()throws InterruptedException{
@@ -270,7 +270,8 @@ public class PayPage extends TestBase{
         restaurantUI.clickUsingJavaScript(btn_selectOutstandingInvoice);
     }
 
-    public void clickBatchActions(){
+    public void clickBatchActions()throws InterruptedException{
+        restaurantUI.waitForCustom(3000);
         restaurantUI.click(btn_batchAction);
     }
     public void clickDownloadInvoices(){
