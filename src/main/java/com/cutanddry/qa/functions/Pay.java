@@ -103,7 +103,7 @@ public class Pay {
     public static void clickOnOneInvoicePrintReceipt(){PayPage.clickOnOneInvoicePrintReceipt();}
     public static void clickSelectPaidInvoice()throws InterruptedException{PayPage.clickSelectPaidInvoice();}
     public static void clickSelectOutstandingPaidInvoice()throws InterruptedException{PayPage.clickSelectOutstandingInvoice();}
-    public static void clickBatchActions(){PayPage.clickBatchActions();}
+    public static void clickBatchActions()throws InterruptedException{PayPage.clickBatchActions();}
     public static void clickDownloadInvoices(){PayPage.clickDownloadInvoices();}
     public static boolean isInvoicesSentPopUpDisplayed(){
         return PayPage.isInvoicesSentPopUpDisplayed();
