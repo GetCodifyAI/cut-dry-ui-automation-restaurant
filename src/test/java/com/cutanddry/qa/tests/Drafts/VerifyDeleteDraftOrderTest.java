@@ -26,8 +26,8 @@ public class VerifyDeleteDraftOrderTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-936")
-    public void VerifySubmitDraftOrderByAddingItemsFromCatalog() throws InterruptedException {
+    @Test(groups = "DOT-TC-986")
+    public void VerifyDeleteDraftOrder() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
