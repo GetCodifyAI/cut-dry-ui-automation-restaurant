@@ -72,6 +72,9 @@ jobs:
       - run:
           name: Build and run nightly tests
           command: mvn clean test "-Dsurefire.suiteXmlFiles=regression1.xml" "-Drun.headless=true" "-Dtest.env=uat"
+      - store_artifacts:
+          path: target/surefire-reports
+          destination: daily-build-and-test-artifacts
     executor:
 
   nightly-build-and-test-2:
@@ -107,6 +110,9 @@ jobs:
       - run:
           name: Build and run nightly tests
           command: mvn clean test "-Dsurefire.suiteXmlFiles=regression2.xml" "-Drun.headless=true" "-Dtest.env=uat"
+      - store_artifacts:
+          path: target/surefire-reports
+          destination: daily-build-and-test-artifacts
     executor:
 
   nightly-build-and-test-3:
@@ -142,6 +148,9 @@ jobs:
       - run:
           name: Build and run nightly tests
           command: mvn clean test "-Dsurefire.suiteXmlFiles=regression3.xml" "-Drun.headless=true" "-Dtest.env=uat"
+      - store_artifacts:
+          path: target/surefire-reports
+          destination: daily-build-and-test-artifacts
     executor:
 
   nightly-build-and-test-4:
@@ -177,6 +186,9 @@ jobs:
       - run:
           name: Build and run nightly tests
           command: mvn clean test "-Dsurefire.suiteXmlFiles=regression4.xml" "-Drun.headless=true" "-Dtest.env=uat"
+      - store_artifacts:
+          path: target/surefire-reports
+          destination: daily-build-and-test-artifacts
     executor:
 
   nightly-build-and-test-5:
@@ -212,6 +224,9 @@ jobs:
       - run:
           name: Build and run nightly tests
           command: mvn clean test "-Dsurefire.suiteXmlFiles=regression5.xml" "-Drun.headless=true" "-Dtest.env=uat"
+      - store_artifacts:
+          path: target/surefire-reports
+          destination: daily-build-and-test-artifacts
     executor:
 
   nightly-build-and-test-6:
@@ -247,6 +262,9 @@ jobs:
       - run:
           name: Build and run nightly tests
           command: mvn clean test "-Dsurefire.suiteXmlFiles=regression6.xml" "-Drun.headless=true" "-Dtest.env=uat"
+      - store_artifacts:
+          path: target/surefire-reports
+          destination: daily-build-and-test-artifacts
     executor:
 
   daily-build-and-test-1:
