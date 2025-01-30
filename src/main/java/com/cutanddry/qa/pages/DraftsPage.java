@@ -75,5 +75,9 @@ public class DraftsPage extends LoginPage{
         }
         return restaurantUI.isDisplayed(By.xpath(txt_reference.replace("NUMBER", number)));
     }
+    public void clickFirstDraft()throws InterruptedException{
+        restaurantUI.waitForVisibility(referenceNum);
+        restaurantUI.click(referenceNum);
+    }
 
 }

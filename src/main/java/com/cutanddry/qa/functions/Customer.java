@@ -83,8 +83,11 @@ public class Customer {
     }
     public static String getItemNameSecondRow(){return customersPage.getItemNameSecondRow();}
     @SneakyThrows
-    public static void checkoutItems(){
+    public static void checkoutItems()throws InterruptedException{
         customersPage.clickOnCheckoutButton();
+        if (customersPage.isSubstitutionTextDisplayed()){
+           customersPage.clickDoNotSubstitute();
+        }
         Thread.sleep(4000);
     }
     public static boolean isUserNavigatedToCatalog(){return customersPage.isCatalogTextDisplayed();}
@@ -613,6 +616,17 @@ public class Customer {
         customersPage.clickOnMontanaPlaceOrder();
         if (customersPage.isPreviousDraftOrderNoDisplayed()){
             customersPage.clickPreviousDraftOrderNo();
+        }
+    }
+    public static void clickViewOrderInDraft(){
+        customersPage.clickViewOrderInDraft();
+    }
+    public static boolean isSentApprovalDisplayed(){
+        return customersPage.isSentApprovalDisplayed();
+    }
+    public static void clickOnPlusIconOrderGuideItem(int count) {
+        for (int i=0; i<count;i++){
+            customersPage.clickOnPlusIconOrderGuideItem();
         }
     }
 

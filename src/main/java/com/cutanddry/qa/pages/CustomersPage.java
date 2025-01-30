@@ -174,6 +174,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By sel_mailDelivery = By.xpath("//span[text()='Mail Delivery']/preceding-sibling::div//*[contains(@data-icon, 'circle')]");
     By btn_montanaPlaceOrder = By.xpath("//button[contains(@class, 'btn-primary') and contains(text(), 'Place Order')]");
     String catalogImage ="//img[@class='card-img-top _1d49j2h' and contains(@src,'IMG')]";
+    By btn_doNotSubstitute = By.xpath("//button[text()='Do Not Substitute']");
+    By btn_viewOrderInDraft = By.xpath("//button[text()='View Order in Drafts']");
+    By txt_sentApproval = By.xpath("//strong[contains(text(),'Sent for approval!')]");
+    By btn_increaseQtyOrderGuide = By.xpath("(//div//*[local-name()='svg' and @data-icon='plus'])[2]");
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -1154,6 +1158,25 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     public void clickOnMontanaPlaceOrder() {
         restaurantUI.waitForVisibility(btn_montanaPlaceOrder);
         restaurantUI.click(btn_montanaPlaceOrder);
+    }
+    public void clickDoNotSubstitute()throws InterruptedException{
+        restaurantUI.waitForVisibility(btn_doNotSubstitute);
+        restaurantUI.click(btn_doNotSubstitute);
+    }
+    public void clickViewOrderInDraft() {
+        restaurantUI.waitForVisibility(btn_viewOrderInDraft);
+        restaurantUI.click(btn_viewOrderInDraft);
+    }
+    public boolean isSentApprovalDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(txt_sentApproval);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(txt_sentApproval);
+    }
+    public void clickOnPlusIconOrderGuideItem(){
+        restaurantUI.click(btn_increaseQtyOrderGuide);
     }
 
 

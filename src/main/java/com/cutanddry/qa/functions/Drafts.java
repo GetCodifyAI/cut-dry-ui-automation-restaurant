@@ -1,9 +1,11 @@
 package com.cutanddry.qa.functions;
 
+import com.cutanddry.qa.pages.CustomersPage;
 import com.cutanddry.qa.pages.DraftsPage;
 
 public class Drafts {
     static DraftsPage draftsPage = new DraftsPage();
+    static CustomersPage customersPage = new CustomersPage();
 
     public static void selectFirstDraftOrder(String Supplier){
         draftsPage.clickFirstDraftOrder(Supplier);
@@ -37,6 +39,12 @@ public class Drafts {
     }
     public static boolean isReferenceNumberDisplayed(String number)throws InterruptedException{
        return draftsPage.isReferenceNumberDisplayed(number);
+    }
+    public static void clickFirstDraft()throws InterruptedException{
+        draftsPage.clickFirstDraft();
+        if (customersPage.isSubstitutionTextDisplayed()){
+            customersPage.clickDoNotSubstitute();
+        }
     }
 
 
