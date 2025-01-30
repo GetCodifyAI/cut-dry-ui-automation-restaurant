@@ -14,7 +14,7 @@ public class Constants {
     public static String WHITELABEL_APP_URL = whiteLableAppURL();
     public static String LOGIN_AS_APP_URL = loginAsDomain();
     public static String GATE_KEEPER_URL =gateKeeperURL();
-    public static String SLACK_WEBHOOK = System.getenv("SLACK_WEBHOOK");
+    public static String SLACK_WEBHOOK = System.getenv("STAGING_SLACK_WEBHOOK");
 
     //slackToken=***
     //slackChannel=#ui-automation-tests
