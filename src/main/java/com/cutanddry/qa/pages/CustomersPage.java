@@ -577,6 +577,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
 
     public void clickOnConfirm() {
+        restaurantUI.waitForVisibility(btn_confirm);
         restaurantUI.waitForClickability(btn_confirm);
         restaurantUI.click(btn_confirm);
     }
@@ -586,6 +587,11 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
 
     public boolean isSubstitutionTextDisplayed() {
+        try {
+            restaurantUI.waitForVisibility(txt_substitutions);
+        } catch (Exception e) {
+            return false;
+        }
         return restaurantUI.isDisplayed(txt_substitutions);
     }
 
