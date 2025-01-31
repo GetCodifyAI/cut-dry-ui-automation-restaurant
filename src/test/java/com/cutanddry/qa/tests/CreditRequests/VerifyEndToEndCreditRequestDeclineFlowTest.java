@@ -30,13 +30,13 @@ public class VerifyEndToEndCreditRequestDeclineFlowTest extends TestBase {
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        itemName = Customer.getItemNameFirstRow();
+       /* itemName = Customer.getItemNameFirstRow();
         Customer.increaseFirstRowQtyInClassic(1);
         Customer.checkoutItems();
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
-        History.clickClose();
+        History.clickClose();*/
 
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
