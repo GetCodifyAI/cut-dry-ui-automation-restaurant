@@ -35,6 +35,8 @@
             <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheOrderExportFileGenerateTest" />
             <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheOrderExportWithPricesFileGenerateTest" />
             <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheProductExportFileGenerateTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifyDeleteDraftOrderTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifyPendingApprovalsAreClickableTest" />
         </classes>
     </test>
 </suite>
