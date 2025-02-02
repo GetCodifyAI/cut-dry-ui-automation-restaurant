@@ -22,14 +22,14 @@ public class HistoryPage extends TestBase {
     String filter_result = "//tr//td[3]//div[text()='LOCATION']";
     By btn_more_options = By.xpath("//button[@class='dropdown-toggle btn btn-link']");
     By btn_print_order =By.xpath("//a[@class='_gozzbg dropdown-item' and text() ='Print Order']");
-    By txt_order_section = By.xpath("//h2[@class='mb-0 _1vx3fhy' and starts-with(text(), 'Order #')]");
+    By txt_order_section = By.xpath("//h2[starts-with(text(), 'Order #')]");
     By btn_add_note =By.xpath("//div[@class='col-auto col']");
     By txt_add_note = By.xpath("//div[@class = 'mont modal-title h4' and text()='Add Order Notes']");
     By btn_textarea =By.xpath("//textarea[@class = 'form-control']");
     By btn_save_changes =By.xpath("//button[@class='mt-2 btn btn-primary btn-block' and text() = 'Save Changes']");
     String order_note_result ="//span[@class='_14u1hku _du1frc' and text()='NOTE']";
     By btn_checkin = By.xpath("//button[@class = 'mr-3 btn btn-outline-primary' and text() = 'Check-In Order']");
-    By txt_checkin_order_section = By.xpath("//h2[@class='mb-0 _1vx3fhy' and starts-with(text(), 'Check-In Order #')]");
+    By txt_checkin_order_section = By.xpath("//h2[starts-with(text(), 'Check-In Order #')]");
     By btn_checkin_all = By.xpath("//button[@class = 'btn btn-primary' and text()='Check-In All']");
     By txt_chekin_popup = By.xpath("//h2[@id = 'swal2-title' and text()='Check-in all items?']");
     By btn_confirm =By.xpath("//button[@class = 'swal2-confirm swal2-styled' and text()='Confirm']");
