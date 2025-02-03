@@ -113,7 +113,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By activeAndHiddenOption = By.xpath("//div[contains(@class,'cd_themed_select__option css-yt9ioa-option') and text()='Active & Hidden Items']");
     By onlyActiveItemsOption = By.xpath("(//div[contains(text(),'Only Active Items')])[last()]");
     By saveAndUnhideBtn = By.xpath("//button[@class='btn btn-primary btn-block'and contains(text(),'Save and Unhide Item')]");
-    String Item = "//div[@class='_3quvq7 _1vlidrf' and text()='ITEMNAME']";
+    String Item = "//div[text()='ITEMNAME']";
     String itemNamePdpView = "//div[contains(@class,'mb-0 pt-2 d-flex align-items-center mont _1wrelxt _1vlidrf') and contains(text(),'ITEMNAME')]";
     By itemPricePdpView = By.xpath("//span[@class='_1u7yq58']");
     String ItemPriceCatalogView = "//div[contains(@class, '_13kb1gk')]//div[text()= 'ITEMNAME']//ancestor::div[contains(@class, '_13kb1gk')]//div[@class='_btf6h0']//div[@class='_5kaapu']";
