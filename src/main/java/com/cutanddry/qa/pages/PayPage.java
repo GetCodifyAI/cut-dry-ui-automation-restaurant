@@ -50,13 +50,14 @@ public class PayPage extends TestBase{
     By btn_selectOutstandingInvoice =By.xpath("(//div[contains(text(),'Due Date')]/ancestor::thead/following-sibling::tbody/tr//div)[1]");
     By btn_autoPay = By.xpath("//button[@class='mr-1 font-weight-bold btn btn-primary' and text()='Enable Auto Pay']");
     By txt_highlightAutoPay = By.xpath("//a[@data-rb-event-key='Auto Pay Settings' and @aria-selected='true' and contains(@class, 'nav-link')]");
-    By btn_batchAction = By.xpath("//button[@class='dropdown-toggle btn btn-outline-primary']");
+    By btn_batchAction = By.xpath("//button[text()='Batch Actions(1)']");
     By btn_downloadInvoice = By.xpath("//a[@class='dropdown-item' and text()='Download Invoices']");
     By txt_downloadInvoice = By.xpath("//h2[@id='swal2-title']");
     By btn_ok = By.xpath("//button[@class='swal2-confirm swal2-styled' and text()='OK']");
     By paymentMethodSuccessTxt = By.xpath("//h2[contains(text(),'Payment method has been added successfully.')]");
     By batchPaymentTxt = By.xpath("//div[contains(text(),'Batch Payment')]");
     By nextBtn = By.xpath("//button[contains(text(),'Next')]");
+    By navigatePaidTab = By.xpath("//a[@aria-selected='true' and text()='Paid']");
 
     public void clickOnPay(){restaurantUI.click(btn_pay);}
 
@@ -221,7 +222,7 @@ public class PayPage extends TestBase{
 
     public void clickOnPaidTab()throws InterruptedException{
         restaurantUI.click(btn_paidTab);
-       // restaurantUI.waitForCustom(100);
+        restaurantUI.waitForCustom(2000);
     }
 
     public void clickOnPaidInvoiceStatus()throws InterruptedException{
@@ -262,7 +263,8 @@ public class PayPage extends TestBase{
         restaurantUI.click(btn_printReceipt);
     }
     public void clickSelectPaidInvoice() throws InterruptedException{
-        restaurantUI.waitForCustom(2000);
+        restaurantUI.waitForCustom(3000);
+        restaurantUI.waitForClickability(btn_selectPaidInvoice);
         restaurantUI.clickUsingJavaScript(btn_selectPaidInvoice);
     }
     public void clickSelectOutstandingInvoice() throws InterruptedException{
@@ -271,7 +273,7 @@ public class PayPage extends TestBase{
     }
 
     public void clickBatchActions()throws InterruptedException{
-        restaurantUI.waitForCustom(3000);
+        restaurantUI.waitForVisibility(btn_batchAction);
         restaurantUI.click(btn_batchAction);
     }
     public void clickDownloadInvoices(){
@@ -311,6 +313,14 @@ public class PayPage extends TestBase{
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+    public boolean isNavigatePaidDisplayed(){
+        try {
+            restaurantUI.waitForVisibility(navigatePaidTab);
+        } catch (Exception e){
+            return false;
+        }
+        return restaurantUI.isDisplayed(navigatePaidTab);
     }
 }
 
