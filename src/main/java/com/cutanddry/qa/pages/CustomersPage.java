@@ -16,7 +16,8 @@ By btn_decreaseQtyFirstRow = By.xpath("(//tr/td//div[contains(@data-tip,'View Pr
     By btn_catalog = By.xpath("//div[text()='Catalog']");
     By tbx_catalogSearch = By.xpath("//input[@placeholder='Search catalog...']");
     By tbx_orderGuideSearch = By.xpath("//input[@placeholder='Search order guide...']");
-    By lbl_catalogSearchItemList = By.xpath("(//button[contains(@data-for,'tooltipundefined')]/ancestor::div[2]/following-sibling::div[2]/div/div)[1]");
+    //By lbl_catalogSearchItemList = By.xpath("(//button[contains(@data-for,'tooltipundefined')]/ancestor::div[2]/following-sibling::div[2]/div/div)[1]");
+    By lbl_catalogSearchItemList = By.xpath("(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div[2]/div/div)[1]");
     By btn_addToCart = By.xpath("//button[contains(@data-for,'tooltipundefined')]/ancestor::div[3]//div/button/*[contains(@data-icon,'plus')]");
 //    By tbx_itemQuantityFirstRow = By.xpath("//tr[1]//td[6]//input");
 By tbx_itemQuantityFirstRow = By.xpath("(//*[@data-input ='quantityInput'])[1]");
@@ -151,7 +152,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By lbl_itemPriceList = By.xpath("((//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-1]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-1]//span)[1])[1]");
     By txt_reviewOrder = By.xpath("//div[text()='Review Order']");
     By btn_checkOutPDP = By.xpath("//button[@data-for='cartCheckoutButton' and contains(text(),'$')]");
-    String btn_catalogPDPPlusStable = "(//div[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')]/following::div//*[name()='svg' and contains(@data-icon, 'plus')])[1]";
+//    String btn_catalogPDPPlusStable = "(//div[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')]/following::div//*[name()='svg' and contains(@data-icon, 'plus')])[1]";
+    String btn_catalogPDPPlusStable = "(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//*[name()='svg' and contains(@data-icon, 'plus')]";
     String lbl_catalogSearchResultItemList = "(//div[contains(@class,'card-deck')]//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))])[last()]";
     String txt_product = "//div[contains(@class,'_3quvq7 _1vlidrf' ) and contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]";
     By lbl_productDetails = By.xpath("//span[text()='Product Details']");
