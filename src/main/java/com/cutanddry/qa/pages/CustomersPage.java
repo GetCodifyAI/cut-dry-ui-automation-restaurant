@@ -154,6 +154,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_checkOutPDP = By.xpath("//button[@data-for='cartCheckoutButton' and contains(text(),'$')]");
 //    String btn_catalogPDPPlusStable = "(//div[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')]/following::div//*[name()='svg' and contains(@data-icon, 'plus')])[1]";
     String btn_catalogPDPPlusStable = "(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//*[name()='svg' and contains(@data-icon, 'plus')]";
+    String btn_catalogPDPMinusStable = "(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//*[name()='svg' and contains(@data-icon, 'minus')]";
     String lbl_catalogSearchResultItemList = "(//div[contains(@class,'card-deck')]//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))])[last()]";
     String txt_product = "//div[contains(@class,'_3quvq7 _1vlidrf' ) and contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]";
     By lbl_productDetails = By.xpath("//span[text()='Product Details']");
@@ -1058,6 +1059,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     public void clickOnPlusIconInCatalogPDP(String name){
         restaurantUI.waitForVisibility(By.xpath(btn_catalogPDPPlusStable.replace("NAME", name)));
         restaurantUI.click(By.xpath(btn_catalogPDPPlusStable.replace("NAME", name)));
+    }
+    public void clickOnMinusIconInCatalogPDP(String name){
+        restaurantUI.waitForVisibility(By.xpath(btn_catalogPDPMinusStable.replace("NAME", name)));
+        restaurantUI.click(By.xpath(btn_catalogPDPMinusStable.replace("NAME", name)));
     }
     public String getFirstElementFrmCatalogSearchResults(String name){
         try {
