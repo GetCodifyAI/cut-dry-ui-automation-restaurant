@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheFilteringOrdersByOrderDateTest extends TestBase {
     static User user;
-    String date = "Last 7 Days";
+    String date = "Yesterday";
     static String expectedDate;
 
     @BeforeMethod
