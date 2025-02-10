@@ -21,7 +21,8 @@ public class ReportsPage extends TestBase {
     By dataRangeDropDown = By.xpath("//input[contains(@class,'date-range')]");
     String dataRangeOption = "//li[contains(text(),'Last 3 months')]";
     By searchBox = By.xpath("//input[@type='search']");
-    String searchResult = "//td[text()='RESULT']";
+  //  String searchResult = "//td[text()='RESULT']";
+    String searchResult = "//td[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'RESULT')]";
 
 
     public boolean isReportingTextDisplayed(){

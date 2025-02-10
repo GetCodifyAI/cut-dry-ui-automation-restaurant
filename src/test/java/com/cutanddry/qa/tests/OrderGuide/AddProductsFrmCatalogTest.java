@@ -35,7 +35,7 @@ public class AddProductsFrmCatalogTest extends TestBase {
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
         Customer.searchItemOnCatalog(itemName);
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName.toLowerCase()), "item not found");
-        Customer.addItemToCartCatalog();
+        Customer.clickOnPlusIconInCatalogPDP(1, itemName);
         Customer.checkoutItems();
         softAssert.assertTrue(Customer.getItemNameFirstRow().equalsIgnoreCase(itemName),"item mismatch");
         softAssert.assertAll();

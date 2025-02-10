@@ -16,7 +16,7 @@ public class VerifyMonthlyExpensesByVendorReportGenerateTest extends TestBase {
     static User user;
     static String report = "monthly expenses by vendor";
     static String reportName = "Monthly expenses by vendor";
-    static String vendorName = "Independent Foods Co";
+    static String vendorName = "independent foods co";
 
 
     @BeforeMethod

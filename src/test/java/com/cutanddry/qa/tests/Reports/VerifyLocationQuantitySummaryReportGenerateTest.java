@@ -16,7 +16,7 @@ public class VerifyLocationQuantitySummaryReportGenerateTest extends TestBase {
     static User user;
     static String report = "location quantity summary";
     static String reportName = "Location Quantity Summary";
-    static String productName = "Artichoke -24CT";
+    static String productName = "artichoke -24ct";
 
 
     @BeforeMethod

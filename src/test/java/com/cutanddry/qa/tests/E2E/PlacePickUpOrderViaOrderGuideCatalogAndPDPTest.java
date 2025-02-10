@@ -43,7 +43,7 @@ public class PlacePickUpOrderViaOrderGuideCatalogAndPDPTest extends TestBase {
         itemName = Customer.getItemNameFirstRow();
         searchItemCode = Customer.getItemCodeFirstRow();
         itemPrice = Customer.getActiveItemPriceFirstRow();
-        Customer.clickOnPlusIconInCatalogPDP(1, itemName);
+        Customer.increaseFirstRowQtyCustom(1);
         softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),itemPrice,"The item has not been selected.");
 
         // Add the product via Catalog

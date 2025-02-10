@@ -25,7 +25,7 @@ public class Constants {
         } else if (TEST_ENV.equalsIgnoreCase("PROD")){
             MAIN_URL = "https://app.cutanddry.com/";
         } else if (TEST_ENV.equalsIgnoreCase("STAG")) {
-            MAIN_URL = "https://app-guava.staging.cutanddry.com/";
+            MAIN_URL = "https://app-classic.staging.cutanddry.com/";
         }
         return MAIN_URL;
     }
@@ -36,7 +36,7 @@ public class Constants {
         } else if (TEST_ENV.equalsIgnoreCase("")){
             //implement for other env here
         }else if (TEST_ENV.equalsIgnoreCase("STAG")){
-            SEC_URL = "https://supplier-guava.staging.cutanddry.com/";
+            SEC_URL = "https://supplier-classic.staging.cutanddry.com/";
         }
         return SEC_URL;
     }
@@ -47,7 +47,7 @@ public class Constants {
         } else if (TEST_ENV.equalsIgnoreCase("PROD")) {
             LOGIN_AS_APP_URL = "https://app.cutanddry.com/internaltools/loginas";
         } else if (TEST_ENV.equalsIgnoreCase("STAG")) {
-            LOGIN_AS_APP_URL = "https://app-guava.staging.cutanddry.com/internaltools/loginas";
+            LOGIN_AS_APP_URL = "https://app-classic.staging.cutanddry.com/internaltools/loginas";
         }
         return LOGIN_AS_APP_URL;
     }

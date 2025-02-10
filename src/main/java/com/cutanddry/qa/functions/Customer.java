@@ -553,6 +553,11 @@ public class Customer {
             customersPage.clickOnPlusIconInCatalogPDP(name);
         }
     }
+    public static void clickOnMinusIconInCatalogPDP(int count, String name) {
+        for (int i=0; i<count;i++){
+            customersPage.clickOnMinusIconInCatalogPDP(name);
+        }
+    }
     public static String getFirstElementFrmCatalogSearchResults(String name){
         return customersPage.getFirstElementFrmCatalogSearchResults(name);
     }

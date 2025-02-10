@@ -65,6 +65,7 @@ public class HistoryPage extends TestBase {
 
 
     public void clickClose(){
+        restaurantUI.waitForVisibility(btn_close);
         restaurantUI.click(btn_close);
     }
     public void clickHistory(){

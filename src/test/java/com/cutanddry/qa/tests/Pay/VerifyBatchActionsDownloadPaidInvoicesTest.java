@@ -29,6 +29,7 @@ public class VerifyBatchActionsDownloadPaidInvoicesTest extends TestBase{
         Pay.navigateToPay();
         softAssert.assertTrue(Pay.isPaySupplierTextDisplayed(),"error in text display");
         Pay.clickOnPaidInvoiceTab();
+        softAssert.assertTrue(Pay.isNavigatePaidDisplayed(),"navigate error paid tab");
         Pay.clickSelectPaidInvoice();
         Pay.clickBatchActions();
         Pay.clickDownloadInvoices();

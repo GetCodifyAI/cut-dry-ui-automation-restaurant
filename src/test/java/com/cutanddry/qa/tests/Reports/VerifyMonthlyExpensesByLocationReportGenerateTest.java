@@ -16,7 +16,7 @@ public class VerifyMonthlyExpensesByLocationReportGenerateTest extends TestBase 
     static User user;
     static String report = "monthly expenses by location";
     static String reportName = "Monthly expenses by Location";
-    static String location = "Hayes";
+    static String location = "hayes";
 
 
     @BeforeMethod
