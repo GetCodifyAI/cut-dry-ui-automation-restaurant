@@ -15,9 +15,8 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyPendingApprovalsAreClickableTest extends TestBase {
     static User user;
-    String OperatorName = "239448705";
-    String itemName = "J. Hungerford Smith Chocolate";
-    String AdminName = "nayanake+ifctest101";
+    String OperatorName = "hadley+employee";
+    String AdminName = "ayendra+ifccopdemo";
     static String referenceNum;
 
 
@@ -40,8 +39,7 @@ public class VerifyPendingApprovalsAreClickableTest extends TestBase {
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.searchItemOnOrderGuide(itemName);
-        Customer.increaseFirstRowQtyInClassic(3);
+        Customer.increaseFirstRowQtyInClassic(1);
         Customer.checkoutItems();
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isSentApprovalDisplayed(),"sent approval pop up not display");
