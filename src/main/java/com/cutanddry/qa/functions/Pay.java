@@ -101,7 +101,11 @@ public class Pay {
         return PayPage.isPaymentSettingsDisplayed();
     }
     public static void clickOnOneInvoicePrintReceipt(){PayPage.clickOnOneInvoicePrintReceipt();}
-    public static void clickSelectPaidInvoice()throws InterruptedException{PayPage.clickSelectPaidInvoice();}
+    public static void clickSelectPaidInvoice()throws InterruptedException{
+        if (PayPage.isNavigatePaidDisplayed()){
+            PayPage.clickSelectPaidInvoice();
+        }
+    }
     public static void clickSelectOutstandingPaidInvoice()throws InterruptedException{PayPage.clickSelectOutstandingInvoice();}
     public static void clickBatchActions()throws InterruptedException{PayPage.clickBatchActions();}
     public static void clickDownloadInvoices(){PayPage.clickDownloadInvoices();}
@@ -119,5 +123,8 @@ public class Pay {
         if(PayPage.isBatchPaymentOverlayDisplayed()) {
             PayPage.clickNextButton();
         }
+    }
+    public static boolean isNavigatePaidDisplayed(){
+        return PayPage.isNavigatePaidDisplayed();
     }
 }
