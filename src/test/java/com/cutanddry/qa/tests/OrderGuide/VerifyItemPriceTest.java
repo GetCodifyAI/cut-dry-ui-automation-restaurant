@@ -14,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyItemPriceTest extends TestBase {
     static User user;
-    String ItemName = "J. Hungerford Smith Chocolate Cone Coating";
+    String ItemName = "Chocolate Cone Coating";
 
     @BeforeMethod
     public void setUp(){
