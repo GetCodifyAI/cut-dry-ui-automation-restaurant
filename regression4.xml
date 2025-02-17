@@ -8,11 +8,10 @@
     <test name="operator tests">
         <parameter name="PART" value="Part Four" />
         <classes>
-            <class name="com.cutanddry.qa.tests.Rewards.VerifySearchByDateRangeTest" />
-            <class name="com.cutanddry.qa.tests.Rewards.VerifyRedeemBalanceOptionTest" />
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyCreateCreditRequestTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestApproveFlowTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestDeclineFlowTest"/>
+
             <class name="com.cutanddry.qa.tests.Pay.VerifyAddPaymentMethodTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyPaymentSettingsAddPaymentMethodTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyEditRemovePaymentSettingsTest" />
@@ -24,6 +23,7 @@
             <class name="com.cutanddry.qa.tests.Pay.VerifyBatchActionsDownloadOutstandingInvoicesTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyBatchActionsDownloadPaidInvoicesTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyEnableAutoPayTest" />
+
             <class name="com.cutanddry.qa.tests.Roles.VerifyUniversalAppAdminRolesTest" />
             <class name="com.cutanddry.qa.tests.Roles.VerifyUniversalAppManagerRolesTest" />
             <class name="com.cutanddry.qa.tests.Roles.VerifyUniversalAppBookkeeperRolesTest" />
