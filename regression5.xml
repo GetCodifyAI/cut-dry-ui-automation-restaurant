@@ -15,23 +15,27 @@
             <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierCartDeleteTest" />
             <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderGuideItemHideTest" />
             <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderEditTest" />
+
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierOrderSubmissionTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierOrderGuideEditTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierCartEditTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierCartDeleteTest" />
+
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderWithoutAddingAnyItemsTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromCatalogTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromPDPTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromOrderGuideCatalogPDPTest" />
-            <class name="com.cutanddry.qa.tests.Suppliers.VerifyAddingMultipleSupplierTest" />
-            <class name="com.cutanddry.qa.tests.Suppliers.VerifyViewArchivedSupplierTest" />
-            <class name="com.cutanddry.qa.tests.Suppliers.VerifyArchivedSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifyDeleteDraftOrderTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifyPendingApprovalsAreClickableTest" />
+
             <class name="com.cutanddry.qa.tests.Orders.VerifyAddNewSupplierFlowWithASingleSupplierTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyAddNewSupplierFlowWithMultipleSupplierTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyUploadOrderGuideItemListTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyDeletionOfTheCreatedSupplierTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifySupplierFilteredByLocationTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheCreateItemFunctionalityTest" />
-            <class name="com.cutanddry.qa.tests.History.VerifyTheFilteringOrdersByOrderDateTest" />
-            <class name="com.cutanddry.qa.tests.History.VerifyTheFilteringOrdersByOrderStatusTest" />
-            <class name="com.cutanddry.qa.tests.History.VerifyTheUploadInvoiceFunctionalityTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyUserCanOrderItemsBeforeCutOffTest" />
         </classes>
     </test>
 </suite>

@@ -8,10 +8,9 @@
     <test name="operator tests">
         <parameter name="PART" value="Part Two" />
         <classes>
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyItemPriceTest" />
             <class name="com.cutanddry.qa.tests.Catalog.VerifyCatalogItemImagesTest" />
             <class name="com.cutanddry.qa.tests.Catalog.VerifyItemDescriptionTest" />
-            <class name="com.cutanddry.qa.tests.Orders.VerifyUserCanOrderItemsBeforeCutOffTest" />
+
             <class name="com.cutanddry.qa.tests.Settings.VerifyThatTheUsersCannotOrderItemsAfterTheCutOffTimeTest" />
             <class name="com.cutanddry.qa.tests.Settings.VerifyThatTheUsersCanOrderItemsBeforeTheCutOffTimeTest" />
             <class name="com.cutanddry.qa.tests.Settings.Accounting.VeryAddingAccountCategoryTest" />
@@ -22,15 +21,20 @@
             <class name="com.cutanddry.qa.tests.Settings.Location.VerifyDeleteLocationTest" />
             <class name="com.cutanddry.qa.tests.Settings.Profile.VerifyProfileUpdateTest" />
             <class name="com.cutanddry.qa.tests.Settings.Restaurant.VerifyRestaurantUpdateTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheOrderExportFileGenerateTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheOrderExportWithPricesFileGenerateTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheProductExportFileGenerateTest" />
+
             <class name="com.cutanddry.qa.tests.SignIn.VerifyWhiteLabelForgotPasswordValidTest" />
             <class name="com.cutanddry.qa.tests.SignIn.VerifyWhiteLabelForgotPasswordInvalidTest" />
             <class name="com.cutanddry.qa.tests.SignIn.VerifyWhiteLabelForgotPasswordUnauthorizedTest" />
+            <class name="com.cutanddry.qa.tests.SignIn.VerifyForgotPasswordValidTest" />
+            <class name="com.cutanddry.qa.tests.SignIn.VerifyForgotPasswordInvalidTest" />
+            <class name="com.cutanddry.qa.tests.SignIn.VerifyForgotPasswordUnauthorizedTest" />
+
             <class name="com.cutanddry.qa.tests.Approvals.VerifyOrderApprovalTurnOnFeatureTest" />
             <class name="com.cutanddry.qa.tests.Approvals.VerifyOrderApprovalChangesTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForClassicOperatorTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForWhiteLabelOperatorTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForClassicOperatorTestTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForWhiteLabelOperatorTest" />
+
             <class name="com.cutanddry.qa.tests.MultiCart.VerifyCreatedOrdersFromMultipleCartsTest" />
             <class name="com.cutanddry.qa.tests.MultiCart.VerifyGroupingProductsIntoTwoCartsTest" />
         </classes>
