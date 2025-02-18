@@ -634,5 +634,6 @@ public class Customer {
             customersPage.clickOnPlusIconOrderGuideItem();
         }
     }
+    public static boolean isUserNavigatedToChefGlendaCatalog(){return customersPage.isUserNavigatedToChefGlendaCatalog();}
 
 }
