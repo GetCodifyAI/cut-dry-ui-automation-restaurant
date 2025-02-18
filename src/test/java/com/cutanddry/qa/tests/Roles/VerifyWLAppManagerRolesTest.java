@@ -33,14 +33,14 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
         Login.clickManager(name);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error order");
         Customer.goToEdit();
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigating to order guide edit error");
         Customer.clickOnBackBtnInEditOrderGuide();
         Customer.searchItemOnOrderGuide(itemName);
         Customer.increaseFirstRowQtyByOneInWL();
         Customer.goToCatalog();
-        softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
+        softAssert.assertTrue(Customer.isUserNavigatedToChefGlendaCatalog(),"navigation error catalog");
         Customer.searchItemOnCatalog(itemName);
         Customer.increaseCatalogQtyByThree();
         Customer.checkoutItems();
@@ -74,10 +74,10 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
         softAssert.assertAll();
     }
 
-    @AfterMethod
-    public void tearDown(ITestResult result) {
-        takeScreenshotOnFailure(result);
-        closeAllBrowsers();
-    }
+//    @AfterMethod
+//    public void tearDown(ITestResult result) {
+//        takeScreenshotOnFailure(result);
+//        closeAllBrowsers();
+//    }
 
 }
