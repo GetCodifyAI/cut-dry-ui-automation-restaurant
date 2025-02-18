@@ -36,4 +36,15 @@ public class Catalog {
     public static void clickBackToCatalog(){
         catalogPage.clickOnBackToCatalog();
     }
+    public static void ClickOnMultiUomDropDownOG(String code)throws InterruptedException{
+        catalogPage.ClickOnMultiUomDropDownOG(code);
+    }
+    public static void clickOGAddToCartPlusIcon(int count,String code, String uom) throws InterruptedException{
+        for (int i=0; i<count;i++){
+            catalogPage.clickOGAddToCartPlusIcon(code,uom);
+        }
+    }
+    public static double getOGPriceUOM(String code,String uom) throws InterruptedException {
+        return catalogPage.getOGPriceUOM(code,uom);
+    }
 }

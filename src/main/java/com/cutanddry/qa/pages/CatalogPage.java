@@ -12,6 +12,10 @@ public class CatalogPage extends LoginPage {
     By btn_addToCart = By.xpath("(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//button[text()='Add to Cart']");
     String getPriceUOM = "((//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::*//div//span[contains(@class,'price')])[UOM]";
     By btn_backToCatalog = By.xpath("//button[contains(text(),'Back')]");
+    String multiUomDropDownOG = "(//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg'])[1]";
+    String btn_OGAddToCartPlusQuantity ="(//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='plus'])[UOM]";
+    String getOGPriceUOM ="(//td[text()='CODE']/ancestor::tr/td[5]/div/div/div/div/span[contains(@class,'prioritizedPrice')])[UOM]";
+    By multiUomOption =By.xpath("//div[text()='Multiple Units']");
 
 
     public void ClickOnMultiUomDropDown(String name)throws InterruptedException{
@@ -73,6 +77,25 @@ public class CatalogPage extends LoginPage {
         restaurantUI.waitForVisibility(btn_backToCatalog);
         restaurantUI.waitForClickability(btn_backToCatalog);
         restaurantUI.clickUsingJavaScript(btn_backToCatalog);
+    }
+    public void ClickOnMultiUomDropDownOG(String code)throws InterruptedException{
+        restaurantUI.waitForVisibility(By.xpath(multiUomDropDownOG.replace("CODE", code)));
+        restaurantUI.click(By.xpath(multiUomDropDownOG.replace("CODE", code)));
+        restaurantUI.click(multiUomOption);
+        restaurantUI.waitForCustom(3000);
+    }
+    public void clickOGAddToCartPlusIcon(String code,String uom)throws InterruptedException{
+        restaurantUI.waitForVisibility(By.xpath(btn_OGAddToCartPlusQuantity.replace("CODE", code).replace("UOM", uom)));
+        restaurantUI.click(By.xpath(btn_OGAddToCartPlusQuantity.replace("CODE", code).replace("UOM", uom)));
+        restaurantUI.waitForCustom(2000);
+    }
+    public double getOGPriceUOM(String code ,String uom) throws InterruptedException {
+        try {
+            return extractPrice(By.xpath(getOGPriceUOM.replace("CODE", code).replace("UOM", uom)));
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractPrice(By.xpath(getOGPriceUOM.replace("CODE", code).replace("UOM", uom)));
+        }
     }
 
 }

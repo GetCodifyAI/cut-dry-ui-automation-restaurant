@@ -25,7 +25,7 @@ public class Constants {
         } else if (TEST_ENV.equalsIgnoreCase("PROD")){
             MAIN_URL = "https://app.cutanddry.com/";
         } else if (TEST_ENV.equalsIgnoreCase("STAG")) {
-            MAIN_URL = "https://app-classic.staging.cutanddry.com/";
+            MAIN_URL = "https://app-guava.staging.cutanddry.com/";
         }
         return MAIN_URL;
     }
@@ -36,7 +36,7 @@ public class Constants {
         } else if (TEST_ENV.equalsIgnoreCase("")){
             //implement for other env here
         }else if (TEST_ENV.equalsIgnoreCase("STAG")){
-            SEC_URL = "https://supplier-classic.staging.cutanddry.com/";
+            SEC_URL = "https://supplier-guava.staging.cutanddry.com/";
         }
         return SEC_URL;
     }
@@ -47,7 +47,7 @@ public class Constants {
         } else if (TEST_ENV.equalsIgnoreCase("PROD")) {
             LOGIN_AS_APP_URL = "https://app.cutanddry.com/internaltools/loginas";
         } else if (TEST_ENV.equalsIgnoreCase("STAG")) {
-            LOGIN_AS_APP_URL = "https://app-classic.staging.cutanddry.com/internaltools/loginas";
+            LOGIN_AS_APP_URL = "https://app-guava.staging.cutanddry.com/internaltools/loginas";
         }
         return LOGIN_AS_APP_URL;
     }
@@ -58,7 +58,7 @@ public class Constants {
         } else if (TEST_ENV.equalsIgnoreCase("PROD")) {
             GATE_KEEPER_URL = "https://app.cutanddry.com/gatekeeperadmin";
         } else if (TEST_ENV.equalsIgnoreCase("STAG")) {
-            GATE_KEEPER_URL = "https://app-uat.staging.cutanddry.com/gatekeeperadmin";
+            GATE_KEEPER_URL = "https://app-guava.staging.cutanddry.com/gatekeeperadmin";
         }
         return GATE_KEEPER_URL;
     }
@@ -69,7 +69,7 @@ public class Constants {
         } else if (TEST_ENV.equalsIgnoreCase("PROD")) {
             WHITELABEL_APP_URL = "https://sutters-uat.staging.cutanddry.com/";
         } else if (TEST_ENV.equalsIgnoreCase("STAG")) {
-            WHITELABEL_APP_URL = "https://sutters-uat.staging.cutanddry.com/";
+            WHITELABEL_APP_URL = "https://sutters-guava.staging.cutanddry.com/";
         }
         return WHITELABEL_APP_URL;
     }
