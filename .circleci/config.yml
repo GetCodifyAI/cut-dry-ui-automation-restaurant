@@ -499,23 +499,23 @@ workflows:
   version: 2
   build-and-test:
     jobs:
-#      - build-and-test
+     - build-and-test
 
   scheduled-test-1:
     triggers:
       - schedule:
-#          cron: "31 04 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * staging_regression
+          cron: "24 07 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * staging_regression
           filters:
             branches:
               only:
-                - staging_regression
+                - viranga_dev
     jobs:
-#      - nightly-build-and-test-1
-#      - nightly-build-and-test-2
-#      - nightly-build-and-test-3
-#      - nightly-build-and-test-4
-#      - nightly-build-and-test-5
-#      - nightly-build-and-test-6
+      - nightly-build-and-test-1
+      - nightly-build-and-test-2
+      - nightly-build-and-test-3
+      - nightly-build-and-test-4
+      - nightly-build-and-test-5
+      - nightly-build-and-test-6
 
   scheduled-test-2:
     triggers:
