@@ -151,7 +151,7 @@ public class History {
     public static boolean isOrderDateChanged(String days){
         return historyPage.isOrderDateChanged(days);
     }
-    public static boolean validateFilteredOrders(String OrdersDate){
+    public static boolean validateFilteredOrders(String OrdersDate) throws InterruptedException {
         return historyPage.isFilteredOrdersCorrect(OrdersDate);
     }
     public static void selectOrderStatus(String sts) {

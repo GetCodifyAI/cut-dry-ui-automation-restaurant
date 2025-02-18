@@ -300,7 +300,7 @@ public class HistoryPage extends TestBase {
             return false;
         }
     }
-    public Boolean isFilteredOrdersCorrect(String OrdersDate){
+    public Boolean isFilteredOrdersCorrectOld(String OrdersDate){
         try {
             restaurantUI.waitForCustom(2000);
         } catch (InterruptedException e) {
@@ -309,6 +309,17 @@ public class HistoryPage extends TestBase {
         //restaurantUI.scrollToElementStable(By.xpath("("+ date.replace("DATE", OrdersDate) + ")" + "[last()]"));
         return restaurantUI.isDisplayed(By.xpath("("+ date.replace("DATE", OrdersDate) + ")" + "[last()]"));
     }
+
+    public Boolean isFilteredOrdersCorrect(String OrdersDate) throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        By orderDateXPath = By.xpath("(" + date.replace("DATE", OrdersDate) + ")[last()]");
+        restaurantUI.scrollToElementStable(orderDateXPath, 5);
+        if (restaurantUI.isDisplayed(orderDateXPath, 5)) {
+            return true;
+        }
+        return false;
+    }
+
     public void selectOrderStatus(String stat){
         restaurantUI.click(lbl_statusDropdown);
         restaurantUI.waitForVisibility(By.xpath(sts.replace("STATUS", stat)));
