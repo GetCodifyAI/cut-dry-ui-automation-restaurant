@@ -60,6 +60,50 @@ public class KeywordBase {
         return this;
     }
 
+    // Click on an element using By object
+    public KeywordBase clickWithFallback(By by) {
+        try {
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(by));
+            element.click();
+            logger.info("Clicked on element: {}", by);
+        } catch (Exception e1) {
+            logger.warn("Standard click failed on element: {}. Attempting JavaScript click...", by, e1);
+            try {
+                WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(by));
+                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+                logger.info("Clicked using JavaScript on element: {}", by);
+            } catch (Exception e2) {
+                logger.error("Failed to click on element: {} using both standard and JavaScript methods.", by, e2);
+            }
+        }
+        return this;
+    }
+
+    // Click on an element using By object with fallback to JavaScript click, scrolling, and hover
+    public KeywordBase clickWithScrollAndHover(By by) {
+        try {
+            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(by));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+            element = wait.until(ExpectedConditions.elementToBeClickable(by));
+            element.click();
+            logger.info("Clicked on element: {}", by);
+        } catch (Exception e1) {
+            logger.warn("Standard click failed on element: {}. Attempting hover and JavaScript click...", by, e1);
+            try {
+                WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(by));
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+
+                Actions actions = new Actions(driver);
+                actions.moveToElement(element).perform();
+                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+                logger.info("Clicked using JavaScript on element: {}", by);
+            } catch (Exception e2) {
+                logger.error("Failed to click on element: {} using standard, hover, and JavaScript methods.", by, e2);
+            }
+        }
+        return this;
+    }
+
     // Send keys to hidden element using By object
     public KeywordBase sendKeysHiddenElements(By by, String data) {
         try {
@@ -159,6 +203,24 @@ public class KeywordBase {
             return isDisplayed;
         } catch (NoSuchElementException e) {
             logger.warn("Element not found: {}", by, e);
+            return false;
+        } catch (Exception e) {
+            logger.error("Failed to check if element is displayed: {}", by, e);
+            return false;
+        }
+    }
+
+    // Verify if an element is displayed with a custom wait time
+    public boolean isDisplayed(By by, int timeoutInSeconds) {
+        try {
+            WebDriverWait customWait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+            WebElement element = customWait.until(ExpectedConditions.visibilityOfElementLocated(by));
+
+            boolean isDisplayed = element.isDisplayed();
+            logger.info("Element is displayed: {}", by);
+            return isDisplayed;
+        } catch (TimeoutException e) {
+            logger.warn("Element not found within {} seconds: {}", timeoutInSeconds, by);
             return false;
         } catch (Exception e) {
             logger.error("Failed to check if element is displayed: {}", by, e);
@@ -675,6 +737,46 @@ public class KeywordBase {
             logger.error("Failed to find and scroll to the element: {}", by, e);
         }
     }
+
+    public void scrollToElementStable(By by, int timeoutInSeconds) {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            boolean elementFound = false;
+            int maxAttempts = 10;
+            int attempt = 0;
+            long lastHeight = 0;
+
+            while (!elementFound && attempt < maxAttempts) {
+                long newHeight = (long) js.executeScript("return document.documentElement.scrollHeight");
+
+                if (newHeight == lastHeight) {
+                    break;
+                }
+
+                js.executeScript("window.scrollTo(0, document.documentElement.scrollHeight);");
+                Thread.sleep(1000);
+                lastHeight = newHeight;
+                attempt++;
+
+                if (!driver.findElements(by).isEmpty()) {
+                    elementFound = true;
+                    break;
+                }
+            }
+
+            if (elementFound) {
+                WebDriverWait customWait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+                WebElement targetElement = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+                js.executeScript("arguments[0].scrollIntoView(true);", targetElement);
+                logger.info("Scrolled to and found the element: {}", by);
+            } else {
+                logger.warn("Element not found after scrolling {} times: {}", attempt, by);
+            }
+        } catch (Exception e) {
+            logger.error("Failed to find and scroll to the element: {}", by, e);
+        }
+    }
+
     public boolean validateFilteredElements(By locator, String filterOption) {
         try {
             // Find all elements using the provided locator
