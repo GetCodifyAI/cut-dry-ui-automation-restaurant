@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheFilteringOrdersByOrderDateTest extends TestBase {
     static User user;
-    String date = "Yesterday";
+    String date = "Last 7 Days";
     static String expectedDate;
 
     @BeforeMethod
@@ -27,6 +27,7 @@ public class VerifyTheFilteringOrdersByOrderDateTest extends TestBase {
     public void VerifyTheFilteringOrdersByOrderDate() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         expectedDate = History.getLastWorkingDate();
+        System.out.println(expectedDate);
 
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
