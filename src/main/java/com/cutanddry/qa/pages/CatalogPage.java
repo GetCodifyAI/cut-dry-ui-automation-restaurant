@@ -16,6 +16,7 @@ public class CatalogPage extends LoginPage {
     String btn_OGAddToCartPlusQuantity ="(//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='plus'])[UOM]";
     String getOGPriceUOM ="(//td[text()='CODE']/ancestor::tr/td[5]/div/div/div/div/span[contains(@class,'prioritizedPrice')])[UOM]";
     By multiUomOption =By.xpath("//div[text()='Multiple Units']");
+    String txt_orderIdMulti = "(//div[contains(text(),'Order #')])[UOM]";
 
 
     public void ClickOnMultiUomDropDown(String name)throws InterruptedException{
@@ -73,7 +74,6 @@ public class CatalogPage extends LoginPage {
         return Double.valueOf(priceText.replace("$", "").replace("/cs", "").replace("/pkg", "").trim());
     }
     public void clickOnBackToCatalog(){
-        restaurantUI.refreshPage();
         restaurantUI.waitForVisibility(btn_backToCatalog);
         restaurantUI.waitForClickability(btn_backToCatalog);
         restaurantUI.clickUsingJavaScript(btn_backToCatalog);
@@ -96,6 +96,10 @@ public class CatalogPage extends LoginPage {
             System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
             return extractPrice(By.xpath(getOGPriceUOM.replace("CODE", code).replace("UOM", uom)));
         }
+    }
+    public String getMultiOrderedId(String uom) {
+        String orderId = restaurantUI.getText(By.xpath(txt_orderIdMulti.replace("UOM", uom)));
+        return orderId.substring(orderId.indexOf("#") + 1).trim();
     }
 
 }

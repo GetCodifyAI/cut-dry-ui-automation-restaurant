@@ -33,7 +33,7 @@ public class Catalog {
     public static double getPDPPriceUOM(String uom) throws InterruptedException {
         return catalogPage.getPDPPriceUOM(uom);
     }
-    public static void clickBackToCatalog(){
+    public static void clickBack(){
         catalogPage.clickOnBackToCatalog();
     }
     public static void ClickOnMultiUomDropDownOG(String code)throws InterruptedException{
@@ -46,5 +46,8 @@ public class Catalog {
     }
     public static double getOGPriceUOM(String code,String uom) throws InterruptedException {
         return catalogPage.getOGPriceUOM(code,uom);
+    }
+    public static String getMultiOrderedId(String uom) {
+        return catalogPage.getMultiOrderedId(uom);
     }
 }
