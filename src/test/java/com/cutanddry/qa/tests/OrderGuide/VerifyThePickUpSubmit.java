@@ -23,7 +23,7 @@ public class VerifyThePickUpSubmit extends TestBase {
     }
 
     @Test(groups = "DOT-TC-164")
-    public void verifyThePickUpDisplay() throws InterruptedException {
+    public void verifyThePickUpSubmit() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();

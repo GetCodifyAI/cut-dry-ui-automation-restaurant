@@ -16,13 +16,15 @@ public class LoginPage extends TestBase {
     By txt_invalidEmailOrMobile = By.xpath("//div[text()='Error']");
     By btn_ok = By.xpath("//button[text()='Ok']");
     By btn_tryAgain = By.xpath("//button[text()='Try Again']");
-    By tbx_operatorSearch = By.xpath("//input[@id='react-select-5-input']");
+    //By tbx_operatorSearch = By.xpath("//input[@id='react-select-5-input']");
+    By tbx_operatorSearch = By.xpath("//button[contains(text(),'Re-Index')]/following-sibling::*//div/input");
     By txt_joshuaClayton = By.xpath("//div[contains(text(), 'Jonathan Allen - 75761700')]");
     By txt_stephanieCollins = By.xpath("//div[contains(text(), 'Stephanie Collins - 176617582')]");
     By txt_bermudaBiologicalStation= By.xpath("//div[contains(text(), '(explorer) - Bermuda Biological Station -')]");
     By btn_LoginAsClassic = By.xpath("//a[contains(text(), 'Login As (classic)')]");
     By btn_LoginAsWhiteLabel = By.xpath("//a[contains(text(), 'Login As (white-label)')]");
-    By tbx_distributorSearch = By.xpath("//input[@id='react-select-2-input']");
+   // By tbx_distributorSearch = By.xpath("//input[@id='react-select-2-input']");
+    By tbx_distributorSearch = By.xpath("//h5[contains(text(),'Distributor Portal')]/following-sibling::*//div/input");
     By txt_sunriseFoods = By.xpath("//div[contains(text(), '195998346 - Cut+Dry Agent - Sunrise Food Service Inc')]");
     By btn_LoginAsSupplier = By.xpath("//a[contains(text(), 'Login As (supplier)')]");
     By txt_manager = By.xpath("//div[contains(text(), 'Aselabookkeeper4 - 131583036 - Manager - Restaurant(Test) - asela+bookkeeper4@cutanddry.com - null')]");
