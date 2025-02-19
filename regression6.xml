@@ -20,6 +20,7 @@
             <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaCatalogTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaPDPTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaOrderGuideCatalogAndPDPTest" />
+
             <class name="com.cutanddry.qa.tests.Reports.VerifyMonthlyExpensesByVendorReportGenerateTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyMonthlyExpensesByLocationReportGenerateTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyExpensesByProductReportGenerateTest" />
@@ -29,14 +30,10 @@
             <class name="com.cutanddry.qa.tests.Reports.VerifyInvoiceDetailsReportGenerateTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyDailyExpensesReportGenerateTest" />
             <class name="com.cutanddry.qa.tests.Reports.VerifyInvoiceDetailsQuickBooksCompatibleReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheDistributorsWithRewardsTest" />
-            <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheRewardTypeTest" />
-            <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheRewardStatusTest" />
-            <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheOrderExportFileGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheOrderExportWithPricesFileGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheProductExportFileGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Drafts.VerifyDeleteDraftOrderTest" />
-            <class name="com.cutanddry.qa.tests.Drafts.VerifyPendingApprovalsAreClickableTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForClassicOperatorTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForWhiteLabelOperatorTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForClassicOperatorTestTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForWhiteLabelOperatorTest" />
         </classes>
     </test>
 </suite>
