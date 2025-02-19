@@ -43,8 +43,6 @@ public class VerifyEditQuantitiesFunctionalityInCatalogPDPTest extends TestBase 
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(searchItemName.toLowerCase()), "item not found");
         Customer.clickOnPlusIconInCatalogPDP(1, searchItemName);
         Customer.clickOnProduct(searchItemName);
-//        Catalog.ClickOnMultiUomDropDown(searchItemName);
-//        Catalog.ClickOnMultiUomDropDownOption(uomDropDownOption);
         softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
         itemPriceUOM1 = Catalog.getPDPPriceUOM(uom1);
         itemPriceUOM2 = Catalog.getPDPPriceUOM(uom2);
