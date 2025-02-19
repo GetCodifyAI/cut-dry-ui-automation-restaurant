@@ -499,37 +499,37 @@ workflows:
   version: 2
   build-and-test:
     jobs:
-#      - build-and-test
+      - build-and-test
 
   scheduled-test-1:
     triggers:
       - schedule:
-#          cron: "31 04 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * staging_regression
+          cron: "30 20 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 20 * * * staging_regression
           filters:
             branches:
               only:
                 - staging_regression
     jobs:
-#      - nightly-build-and-test-1
-#      - nightly-build-and-test-2
-#      - nightly-build-and-test-3
-#      - nightly-build-and-test-4
-#      - nightly-build-and-test-5
-#      - nightly-build-and-test-6
+      - nightly-build-and-test-1
+      - nightly-build-and-test-2
+      - nightly-build-and-test-3
+      - nightly-build-and-test-4
+      - nightly-build-and-test-5
+      - nightly-build-and-test-6
 
   scheduled-test-2:
     triggers:
       - schedule:
-#          cron: "45 05 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC)
+          cron: "59 04 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC)
           filters:
             branches:
               only:
-                - main
+                - staging_regression
     jobs:
-#      - daily-build-and-test-1
-#      - daily-build-and-test-2
-#      - daily-build-and-test-3
-#      - daily-build-and-test-4
-#      - daily-build-and-test-5
-#      - daily-build-and-test-6
+      - daily-build-and-test-1
+      - daily-build-and-test-2
+      - daily-build-and-test-3
+      - daily-build-and-test-4
+      - daily-build-and-test-5
+      - daily-build-and-test-6
 
