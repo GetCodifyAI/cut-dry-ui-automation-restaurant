@@ -25,7 +25,7 @@ public class VerifyTheFunctionalityOfReportFeatureForWhiteLabelOperatorTest exte
     }
 
     @Test(groups = "DOT-TC-172")
-    public void verifyReportFeatureForClassicOperatorTest()throws InterruptedException {
+    public void VerifyTheFunctionalityOfReportFeatureForWhiteLabelOperator()throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
