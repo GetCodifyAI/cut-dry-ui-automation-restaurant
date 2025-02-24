@@ -23,8 +23,8 @@ By btn_decreaseQtyFirstRow = By.xpath("(//tr/td//div[contains(@data-tip,'View Pr
 By tbx_itemQuantityFirstRow = By.xpath("(//*[@data-input ='quantityInput'])[1]");
 //    By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[5]//div)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[5]//span)[1]");
 //By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[6]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[6]//span)[1]");
-By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-1]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-1]//span)[1])[1]");
-    By lbl_itemPriceFirstRow1 = By.xpath("((//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-1]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-1]//span)[1])[2]");
+By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-2]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-2]//span)[1])[1]");
+    By lbl_itemPriceFirstRow1 = By.xpath("((//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-2]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-2]//span)[1])[2]");
 
     By btn_increaseQtyCatalog = By.xpath("//div[contains(@class, 'card-deck')]//*[name()='svg' and contains(@data-icon, 'plus')]");
     By btn_decreaseQtyCatalog = By.xpath("//div[contains(@class, 'card-deck')]//*[name()='svg' and contains(@data-icon,'minus')]");
@@ -32,8 +32,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By lbl_itemPriceSearchCatalogList = By.xpath("//div[4]/div/div[1]/div/span[contains(text(), '$')]");
     By txt_addToCart = By.xpath("//button[contains(text(), 'Add to Cart')]");
     By lbl_itemPriceReviewCart = By.xpath("//tbody[2]/tr[2]/td[2]");
-    By btn_increaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[3]");
-    By btn_decreaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[1]");
+    By btn_increaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div/div[3]");
+    By btn_decreaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div/div[1]");
     By tbx_itemQuantityReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[2]/input");
     By lbl_itemPriceReviewCartFirstRow = By.xpath("//td//span//div[@data-tip='View Product Details']/ancestor::tr//td/span");
     By lbl_cartItemUnitPrice = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//span)[1]");
