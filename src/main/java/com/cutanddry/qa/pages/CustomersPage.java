@@ -116,7 +116,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By saveAndUnhideBtn = By.xpath("//button[@class='btn btn-primary btn-block'and contains(text(),'Save and Unhide Item')]");
     String Item = "//div[text()='ITEMNAME']";
     String itemNamePdpView = "//div[contains(@class,'mb-0 pt-2 d-flex align-items-center mont _1wrelxt _1vlidrf') and contains(text(),'ITEMNAME')]";
-    By itemPricePdpView = By.xpath("//span[@class='_1u7yq58']");
+    String itemPricePdpView = "(//div[text()='Artichoke -24CT']/following-sibling::div//span)[1]";
     String ItemPriceCatalogView = "//div[contains(@class, '_13kb1gk')]//div[text()= 'ITEMNAME']//ancestor::div[contains(@class, '_13kb1gk')]//div[@class='_btf6h0']//div[@class='_5kaapu']";
     By deliveryDate = By.xpath("//div[@class='text-truncate']");
     String customerCodeOnGrid = "//tr[@class='_du1frc']/td[text()='CUSTOMERCODE']";
@@ -918,8 +918,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         return restaurantUI.getText(By.xpath(Item.replace("ITEMNAME",itemName)));
     }
 
-    public String getPDPViewItemPrice(){
-        return restaurantUI.getText(itemPricePdpView);
+    public String getPDPViewItemPrice(String itemName){
+        return restaurantUI.getText(By.xpath(itemPricePdpView.replace("ITEMNAME",itemName)));
     }
 
     public String getCatalogViewItemPrice(String itemName){

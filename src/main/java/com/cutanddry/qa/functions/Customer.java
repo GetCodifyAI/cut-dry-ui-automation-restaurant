@@ -433,8 +433,8 @@ public class Customer {
         return customersPage.getCatalogViewItemName(itemName);
     }
 
-    public static String pdpViewItemCost(){
-        return customersPage.getPDPViewItemPrice();
+    public static String pdpViewItemCost(String itemName){
+        return customersPage.getPDPViewItemPrice(itemName);
     }
 
     public static String catalogViewItemPrice(String itemName){

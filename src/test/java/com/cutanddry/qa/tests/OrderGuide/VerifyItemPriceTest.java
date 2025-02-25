@@ -15,6 +15,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyItemPriceTest extends TestBase {
     static User user;
     String ItemName = "Artichoke -24CT";
+    static String PDPViewItemPrice;
 
     @BeforeMethod
     public void setUp(){
@@ -35,11 +36,11 @@ public class VerifyItemPriceTest extends TestBase {
         Customer.goToCatalog();
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"ERROR in navigating to catalog page");
         Customer.searchItemOnCatalog(ItemName);
-        Customer.ClickOnItem(ItemName);
+        Customer.clickOnProduct(ItemName);
         softAssert.assertTrue(Customer.isNavigatedToPDP(ItemName),"Error In Navigating to PDP");
-        String PDPviewItemPrice = Customer.pdpViewItemCost();
+        PDPViewItemPrice = Customer.pdpViewItemCost(ItemName);
         Customer.clickOnBackBtnInEditOrderGuide();
-        softAssert.assertEquals(Customer.catalogViewItemPrice(ItemName),PDPviewItemPrice,"Item Prices Mismatched");
+        softAssert.assertEquals(Customer.catalogViewItemPrice(ItemName),PDPViewItemPrice,"Item Prices Mismatched");
 
 
         softAssert.assertAll();
