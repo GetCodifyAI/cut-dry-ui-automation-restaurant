@@ -116,7 +116,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By saveAndUnhideBtn = By.xpath("//button[@class='btn btn-primary btn-block'and contains(text(),'Save and Unhide Item')]");
     String Item = "//div[text()='ITEMNAME']";
     String itemNamePdpView = "//div[contains(@class,'mb-0 pt-2 d-flex align-items-center mont _1wrelxt _1vlidrf') and contains(text(),'ITEMNAME')]";
-    String itemPricePdpView = "(//div[text()='Artichoke -24CT']/following-sibling::div//span)[1]";
+    String itemPricePdpView = "(//div[text()='ITEMNAME']/following-sibling::div//span)[1]";
     String ItemPriceCatalogView = "//div[contains(@class, '_13kb1gk')]//div[text()= 'ITEMNAME']//ancestor::div[contains(@class, '_13kb1gk')]//div[@class='_btf6h0']//div[@class='_5kaapu']";
     By deliveryDate = By.xpath("//div[@class='text-truncate']");
     String customerCodeOnGrid = "//tr[@class='_du1frc']/td[text()='CUSTOMERCODE']";
