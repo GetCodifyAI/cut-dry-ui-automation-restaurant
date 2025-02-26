@@ -93,7 +93,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_pickup = By.xpath("//span[text()='Pickup']");
     By txt_orderCutOffForPickUp = By.xpath("//span[contains(text(), '1:30am')]");
     By txt_errorSubmittingOrder= By.xpath("//div[text()='Error submitting order. Please try again.']");
-    By orderCartDeletebtn = By.xpath("//td[@class='_xigbpq4 border-top border-bottom py-3']/*[name()='svg' and @data-icon='trash-can']");
+    By orderCartDeletebtn = By.xpath("//td//*[name()='svg' and @data-icon='trash-can']");
     By totalValue = By.xpath("//tr[@class='_2ehv7q text-primary']/td[2]");
     By selectedSections = By.xpath("//a[contains(@class,'_1ccoy1o text-decoration-none dropdown-item') and contains(text(),'Add Section')]");
     By sectionInput = By.xpath("//label[contains(text(),'Section Name')]/following-sibling::input[@id='sectionName']");
@@ -170,7 +170,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By tb_orders = By.xpath("//a[text()='Orders' and @role='tab']");
     String specificOrderRecord = "//tr/td[text()='ORDER_ID']";
     String orderTitle = "//h2[contains(text(),'Order #ORDER_ID')]";
-    By btn_addToCartPDP = By.xpath("//button[contains(@class,'d-flex align-items-center justify-content-center cdbutton _1g89unu _du1frc text-nowrap w-100 btn btn-outline-primary btn-sm' ) and contains(text(), 'Add to Cart')]");
+    By btn_addToCartPDP = By.xpath("(//button[contains(text(), 'Add to Cart')])[1]");
     By lbl_pickUp = By.xpath("//span[text()='Pickup/Will Call']");
     By sel_pickup = By.xpath("//span[text()='Pickup/Will Call']/preceding-sibling::div//*[contains(@data-icon, 'circle')]");
     By lbl_mailDelivery = By.xpath("//span[text()='Mail Delivery']");
