@@ -34,7 +34,7 @@ public class VerifyItemDescriptionTest extends TestBase {
         Customer.goToCatalog();
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"ERROR in navigating to catalog page");
         Customer.searchItemOnCatalog(ItemName);
-        Customer.ClickOnItem(ItemName);
+        Customer.clickOnProduct(ItemName);
         softAssert.assertTrue(Customer.isNavigatedToPDP(ItemName),"Error In Navigating to PDP");
         String PDPviewItemName = Customer.pdpViewItemName(ItemName);
         Customer.clickOnBackBtnInEditOrderGuide();
