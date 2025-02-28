@@ -70,7 +70,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_next = By.xpath("//button[contains(text(), 'Next')]");
     By btn_confirm = By.xpath("//button[contains(text(), 'Confirm')]");
     By txt_successfulOrderGuide = By.xpath("//h2[contains(text(), 'Order guide updated successfully')]");
-    By txt_substitutions = By.xpath("//div[contains(text(), 'Substitutions (1 of 1)')]");
+    By txt_substitutions = By.xpath("//div[contains(text(), 'Set a Substitute')]");
     By txt_invalidDeliveryDate = By.xpath("//h2[text()='Error! Invalid Delivery Date']");
     By btn_close = By.xpath("//button[contains(text(), 'Close')]");
     By btn_deliveryDate = By.xpath("//div[@class='cd_themed_select__control css-sa5o0q-control']");
@@ -91,7 +91,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String btnOrderGuide = "//button[contains(text(), 'Order Guide')]";
     By btn_increaseQtyFirstRowDis = By.xpath("//tr[1]/td[8]/div/div/div/div[3]");
     By btn_pickup = By.xpath("//span[text()='Pickup']");
-    By txt_orderCutOffForPickUp = By.xpath("//span[contains(text(), '1:30am')]");
+   // By txt_orderCutOffForPickUp = By.xpath("//span[contains(text(), '1:30am')]");
+    String txt_orderCutOffForPickUp = "//span[contains(text(), 'TIME')]";
     By txt_errorSubmittingOrder= By.xpath("//div[text()='Error submitting order. Please try again.']");
     By orderCartDeletebtn = By.xpath("//td//*[name()='svg' and @data-icon='trash-can']");
     By totalValue = By.xpath("//tr[@class='_2ehv7q text-primary']/td[2]");
@@ -724,9 +725,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.click(btn_pickup);
         restaurantUI.waitForCustom(4000);
     }
-    public boolean isOrderCutOffDisplayed() {
+    public boolean isOrderCutOffDisplayed(String time) {
         try {
-            return restaurantUI.isDisplayed(txt_orderCutOffForPickUp);
+            return restaurantUI.isDisplayed(By.xpath(txt_orderCutOffForPickUp.replace("TIME",time)));
         } catch (Exception e) {
             return false;
         }

@@ -16,6 +16,7 @@ public class VerifyTheCutOffTimeForPickup extends TestBase {
     static User user;
     static String OperatorName = "sunrise Food";
     static String customerId = "Testayendras Bakery - Testayendras Bakery";
+    static String cutOffTime = "8:00pm";
     @BeforeMethod
     public void setUp(){
         initialization();
@@ -36,7 +37,7 @@ public class VerifyTheCutOffTimeForPickup extends TestBase {
         Customer.checkoutItems();
         softAssert.assertTrue(Customer.isPickUpTextDisplayed(),"Pick up text error");
         Customer.clickOnPickup();
-        softAssert.assertTrue(Customer.isOrderCutOffDisplayed(),"Pick up cut off error");
+        softAssert.assertTrue(Customer.isOrderCutOffDisplayed(cutOffTime),"Pick up cut off error");
         softAssert.assertAll();
     }
 
