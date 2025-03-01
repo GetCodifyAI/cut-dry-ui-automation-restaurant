@@ -305,8 +305,8 @@ public class Customer {
     public static boolean isPickUpTextDisplayed(){
         return customersPage.isPickupTextDisplayed();
     }
-    public static boolean isOrderCutOffDisplayed(){
-        return customersPage.isOrderCutOffDisplayed();
+    public static boolean isOrderCutOffDisplayed(String time){
+        return customersPage.isOrderCutOffDisplayed(time);
     }
     public static boolean isSubmittingErrorDisplayed(){
         return customersPage.isSubmittingErrorDisplayed();
