@@ -36,7 +36,7 @@ public class TestNGListener implements ITestListener {
     @Override
     public void onFinish(ITestContext context) {
 //        String environment = System.getProperty("test.env", "uat");
-        SlackNotifier.sendSlackAlert(totalTests, passedTests, failedTests, TEST_ENV, passedTestCases, failedTestCases,PART);
+        //SlackNotifier.sendSlackAlert(totalTests, passedTests, failedTests, TEST_ENV, passedTestCases, failedTestCases,PART);
     }
 
     // Implement other ITestListener methods if needed
