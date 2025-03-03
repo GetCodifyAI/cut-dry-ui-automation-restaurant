@@ -182,7 +182,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_viewOrderInDraft = By.xpath("//button[text()='View Order in Drafts']");
     By txt_sentApproval = By.xpath("//strong[contains(text(),'Sent for approval!')]");
     By btn_increaseQtyOrderGuide = By.xpath("(//div//*[local-name()='svg' and @data-icon='plus'])[2]");
-    By txt_glendaCatalog = By.xpath("//div[contains(text(), 'All Items')]");
+    By txt_glendaCatalog = By.xpath("//div[contains(text(), 'Brand')]");
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
