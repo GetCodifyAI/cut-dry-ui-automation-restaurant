@@ -14,6 +14,7 @@ By btn_decreaseQtyFirstRow = By.xpath("(//tr/td//div[contains(@data-tip,'View Pr
     By btn_checkout = By.xpath("//button[@data-for='cartCheckoutButton']");
     By txt_catalog = By.xpath("//div[contains(text(), 'Item Type')]");
     By btn_catalog = By.xpath("//div[text()='Catalog']");
+    By btn_catalogToOrderGuide = By.xpath("//div[text()='Order Guide']");
     By tbx_catalogSearch = By.xpath("//input[@placeholder='Search catalog...']");
     By tbx_orderGuideSearch = By.xpath("//input[@placeholder='Search order guide...']");
     //By lbl_catalogSearchItemList = By.xpath("(//button[contains(@data-for,'tooltipundefined')]/ancestor::div[2]/following-sibling::div[2]/div/div)[1]");
@@ -261,6 +262,15 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
 
     public void clickOnCatalogButton() {
         restaurantUI.click(btn_catalog);
+    }
+    public void clickOrderGuideTab(){
+        restaurantUI.waitForVisibility(btn_catalogToOrderGuide);
+        try {
+            restaurantUI.waitForCustom(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.click(btn_catalogToOrderGuide);
     }
 
     public void typeToSearchOnCatalog(String item) throws InterruptedException {
@@ -510,9 +520,11 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.click(btn_addFromCatalog);
     }
 
-    public void clickOnAddTOOrderGuide() {
+    public void clickOnAddTOOrderGuide() throws InterruptedException{
         restaurantUI.waitForVisibility(btn_addToOrderGuide);
-        restaurantUI.click(btn_addToOrderGuide);
+        restaurantUI.waitForClickability(btn_addToOrderGuide);
+        restaurantUI.clickUsingJavaScript(btn_addToOrderGuide);
+        restaurantUI.waitForCustom(2000);
     }
 
     public void clickOnCloseEditor() {
