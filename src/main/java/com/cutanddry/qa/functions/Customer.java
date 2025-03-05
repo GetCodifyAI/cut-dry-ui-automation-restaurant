@@ -95,6 +95,9 @@ public class Customer {
     public static void goToCatalog()throws InterruptedException{
         customersPage.clickOnCatalogButton();
     }
+    public static void clickOnOrderGuideTab() {
+        customersPage.clickOrderGuideTab();
+    }
     @SneakyThrows
     public static void searchItemOnCatalog(String item){
         customersPage.typeToSearchOnCatalog(item);
@@ -184,7 +187,7 @@ public class Customer {
     public static void createOrderFromCatalog(){
         customersPage.clickOnAddFromCatalog();
     }
-    public static void addItemFromCatalog(){
+    public static void addItemFromCatalog()throws InterruptedException{
         customersPage.clickOnAddTOOrderGuide();
     }
     public static void closeEditor(){

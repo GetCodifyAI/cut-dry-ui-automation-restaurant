@@ -69,12 +69,12 @@ public class VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionTest {
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
-
         Customer.clickClose();
+
         Dashboard.selectSupplier(supplierName);
         Customer.goToEdit();
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
-        Customer.clickOnItemEditBtn(itemNameNew);
+        Customer.clickOnItemEditBtn(itemCode);
         Customer.clickOnItemHideBtn();
         Customer.clickOnItemHideConfirmationOverlay();
         softAssert.assertFalse(Customer.isHiddenItemDisplayedOnGrid(itemCode),"ERROR in hiding the Item");
