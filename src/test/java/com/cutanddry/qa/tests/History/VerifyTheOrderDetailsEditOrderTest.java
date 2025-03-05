@@ -37,7 +37,7 @@ public class VerifyTheOrderDetailsEditOrderTest extends TestBase {
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
-        History.clickClose();
+        Customer.clickClose();
 
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
