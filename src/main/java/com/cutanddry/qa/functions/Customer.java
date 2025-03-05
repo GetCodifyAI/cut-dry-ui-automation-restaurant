@@ -142,6 +142,7 @@ public class Customer {
         if (customersPage.caseMinNotMetDisplayed()){
             customersPage.clickYesDuplicatePopup();
         }
+        Thread.sleep(4000);
         if (customersPage.isDuplicatePopupDisplayed()){
             customersPage.clickYesDuplicatePopup();
         }
@@ -363,7 +364,7 @@ public class Customer {
         customersPage.clickOnDeleteBtn();
     }
 
-    public static void selectYesOnDeleteConfirmationOverlay(){
+    public static void selectYesOnDeleteConfirmationOverlay() throws InterruptedException {
         customersPage.clickYesOnConfirmationOverlay();
     }
 
@@ -396,7 +397,7 @@ public class Customer {
         customersPage.clickOnHideBtn();
     }
 
-    public static void clickOnItemHideConfirmationOverlay(){
+    public static void clickOnItemHideConfirmationOverlay() throws InterruptedException {
         customersPage.clickYesOnConfirmationOverlay();
     }
 
