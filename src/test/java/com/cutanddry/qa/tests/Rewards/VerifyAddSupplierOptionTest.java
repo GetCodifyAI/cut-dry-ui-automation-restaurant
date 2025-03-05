@@ -31,9 +31,9 @@ public class VerifyAddSupplierOptionTest extends TestBase{
         Dashboard.navigateToRewards();
         Rewards.closePromotionOverlayIfDisplayed();
         Rewards.addSupplier();
-//        softAssert.assertTrue(Rewards.isConnectYourSupplierTextDisplayed(),"missed match the supplier text");
-//        Rewards.connectSupplier();
-//        softAssert.assertTrue(Rewards.isSupplierTextDisplayed(),"missed match the connect supplier text");
+        softAssert.assertTrue(Rewards.isConnectYourSupplierTextDisplayed(),"missed match the supplier text");
+        Rewards.connectSupplier();
+        softAssert.assertTrue(Rewards.isSupplierTextDisplayed(),"missed match the connect supplier text");
         softAssert.assertAll();
 
     }
