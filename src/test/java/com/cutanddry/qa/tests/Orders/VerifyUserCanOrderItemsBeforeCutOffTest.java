@@ -75,7 +75,7 @@ public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
 
         //getting the delivery date and asserting
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEE, MMM dd");
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEE, MMM d");
         String formattedDeliveryDate = tomorrowDate.format(dateFormatter);
         softAssert.assertEquals(Customer.getDeliveryDateOnReviewCart(),formattedDeliveryDate,"Delivery date mismatch");
 
@@ -88,10 +88,21 @@ public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
 
         //If Running on CircleCI This part should run
         ZonedDateTime convertedTime = currentTime.withZoneSameInstant(ZoneId.of("UTC")).plusMinutes(4);
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMM d, h:mma 'UTC'");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMM dd, h:mma 'UTC'");
         String cutOffTimeInReviewCart = convertedTime.format(dateTimeFormatter).replace("AM", "am").replace("PM", "pm");
 
         softAssert.assertEquals(Customer.getOrderCutOffOnReviewCart(),cutOffTimeInReviewCart,"Cutoff time mismatch");
+
+        // Locally run
+
+//        ZonedDateTime convertedTime = currentTime.withZoneSameInstant(ZoneId.of("Asia/Kolkata")).plusMinutes(4);
+//        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMM dd, h:mma 'GMT+5:30'");
+//        String cutOffTimeInReviewCart = convertedTime.format(dateTimeFormatter)
+//                .replace("AM", "am")
+//                .replace("PM", "pm");
+//
+//        softAssert.assertEquals(Customer.getOrderCutOffOnReviewCart(), cutOffTimeInReviewCart, "Cutoff time mismatch");
+
 
         Customer.submitOrderAfterDeliveryTime();
         softAssert.assertTrue(Customer.isInvalidDeliveryTextDisplayed(),"Delivery time error");
