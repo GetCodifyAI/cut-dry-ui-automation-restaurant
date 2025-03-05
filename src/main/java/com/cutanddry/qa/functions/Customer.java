@@ -30,11 +30,11 @@ public class Customer {
     }
     public static void increaseFirstRowQtyBySixClassic() throws InterruptedException {
         customersPage.clickPlusQryFirstRowClassic();
-        customersPage.clickPlusQryFirstRowClassic();
-        customersPage.clickPlusQryFirstRowClassic();
-        customersPage.clickPlusQryFirstRowClassic();
-        customersPage.clickPlusQryFirstRowClassic();
-        customersPage.clickPlusQryFirstRowClassic();
+//        customersPage.clickPlusQryFirstRowClassic();
+//        customersPage.clickPlusQryFirstRowClassic();
+//        customersPage.clickPlusQryFirstRowClassic();
+//        customersPage.clickPlusQryFirstRowClassic();
+//        customersPage.clickPlusQryFirstRowClassic();
     }
 
     public static void decreaseFirstRowQtyInClassic(int count) throws InterruptedException {
