@@ -604,13 +604,6 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
 
     public boolean isSubstitutionTextDisplayed() {
-//        boolean x = true ;
-//        try {
-////            restaurantUI.waitForVisibility(txt_substitutions);
-//            restaurantUI.isDisplayed(txt_substitutions);
-//        } catch (Exception e) {
-//            x = false;
-//        }
         return restaurantUI.isDisplayed(txt_substitutions);
     }
 
