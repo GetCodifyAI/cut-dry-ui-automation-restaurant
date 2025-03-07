@@ -21,19 +21,24 @@
             <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaPDPTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaOrderGuideCatalogAndPDPTest" />
 
-            <class name="com.cutanddry.qa.tests.Reports.VerifyMonthlyExpensesByVendorReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyMonthlyExpensesByLocationReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyExpensesByProductReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyExpensesByEmployeeReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyInvoiceDownloadZipFileReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyLocationQuantitySummaryReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyInvoiceDetailsReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyDailyExpensesReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyInvoiceDetailsQuickBooksCompatibleReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForClassicOperatorTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForWhiteLabelOperatorTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForClassicOperatorTestTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForWhiteLabelOperatorTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderWithoutAddingAnyItemsTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromOrderGuideTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromCatalogTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromPDPTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromOrderGuideCatalogPDPTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifyDeleteDraftOrderTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifyPendingApprovalsAreClickableTest" />
+
+            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyCreateCreditRequestTest"/>
+            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestApproveFlowTest"/>
+            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestDeclineFlowTest"/>
+
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierOrderSubmissionTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierOrderGuideEditTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierCartEditTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierCartDeleteTest" />
+
+
         </classes>
     </test>
 </suite>
