@@ -17,14 +17,6 @@
             <class name="com.cutanddry.qa.tests.Suppliers.VerifyViewArchivedSupplierTest" />
             <class name="com.cutanddry.qa.tests.Suppliers.VerifyArchivedSupplierTest" />
 
-            <class name="com.cutanddry.qa.tests.Orders.VerifyAddNewSupplierFlowWithASingleSupplierTest" />
-            <class name="com.cutanddry.qa.tests.Orders.VerifyAddNewSupplierFlowWithMultipleSupplierTest" />
-            <class name="com.cutanddry.qa.tests.Orders.VerifyUploadOrderGuideItemListTest" />
-            <class name="com.cutanddry.qa.tests.Orders.VerifyDeletionOfTheCreatedSupplierTest" />
-            <class name="com.cutanddry.qa.tests.Orders.VerifySupplierFilteredByLocationTest" />
-            <class name="com.cutanddry.qa.tests.Orders.VerifyTheCreateItemFunctionalityTest" />
-            <class name="com.cutanddry.qa.tests.Orders.VerifyUserCanOrderItemsBeforeCutOffTest" />
-
             <class name="com.cutanddry.qa.tests.units.VerifyOrderItemUnitsTest" />
 
             <class name="com.cutanddry.qa.tests.History.VerifyTheOrderSearchFeatureTest"/>
@@ -41,6 +33,14 @@
             <class name="com.cutanddry.qa.tests.History.VerifyTheFilteringOrdersByOrderStatusTest" />
             <class name="com.cutanddry.qa.tests.History.VerifyTheUploadInvoiceFunctionalityTest" />
 
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyAddSupplierOptionTest" />
+            <!-- <class name="com.cutanddry.qa.tests.Rewards.VerifyLaunchPadOptionTest" /> -->
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyRewardsFeatureForLearnMoreOptionTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifySearchByDateRangeTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyRedeemBalanceOptionTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheDistributorsWithRewardsTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheRewardTypeTest" />
+            <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheRewardStatusTest" />
         </classes>
     </test>
 </suite>
