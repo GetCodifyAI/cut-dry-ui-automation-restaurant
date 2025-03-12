@@ -8,9 +8,8 @@
     <test name="operator tests">
         <parameter name="PART" value="Part Four" />
         <classes>
-            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyCreateCreditRequestTest"/>
-            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestApproveFlowTest"/>
-            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestDeclineFlowTest"/>
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyCatalogItemImagesTest" />
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyItemDescriptionTest" />
 
             <class name="com.cutanddry.qa.tests.Pay.VerifyAddPaymentMethodTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyPaymentSettingsAddPaymentMethodTest" />
