@@ -14,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyCatalogItemImagesTest extends TestBase {
     static User user;
-    String ItemName = "Artichoke";
+    String ItemName = "Artichoke -24CT";
     String image = "https://ordering-supplies-images-1.s3.us-east-2.amazonaws.com/85dc6381a542e87867e8901119e9424a.jpg";
 
     @BeforeMethod
