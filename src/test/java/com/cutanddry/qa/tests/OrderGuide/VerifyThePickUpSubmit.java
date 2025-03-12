@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyThePickUpSubmit extends TestBase {
     static User user;
     static String OperatorName = "sunrise Food";
-    static String customerId = "Testayendras Bakery - Testayendras Bakery";
+    static String customerId = "6253";
     @BeforeMethod
     public void setUp(){
         initialization();
@@ -32,7 +32,8 @@ public class VerifyThePickUpSubmit extends TestBase {
         Dashboard.navigateToCustomers();
         Customer.searchCustomerByCode(customerId);
         Customer.clickOnOrderGuide(customerId);
-        Customer.increaseFirstRowQtyCustomDis(2);
+        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Customer.increaseFirstRowQtyCustom(2);
         Customer.checkoutItems();
         softAssert.assertTrue(Customer.isPickUpTextDisplayed(),"Pick up text error");
         Customer.clickOnPickup();

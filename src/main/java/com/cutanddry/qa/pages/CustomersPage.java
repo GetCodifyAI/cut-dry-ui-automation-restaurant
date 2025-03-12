@@ -604,11 +604,6 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
 
     public boolean isSubstitutionTextDisplayed() {
-        try {
-            restaurantUI.waitForVisibility(txt_substitutions);
-        } catch (Exception e) {
-            return false;
-        }
         return restaurantUI.isDisplayed(txt_substitutions);
     }
 
@@ -823,13 +818,14 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.click(sectionDeleteBtn);
     }
 
-    public void clickYesOnConfirmationOverlay(){
+    public void clickYesOnConfirmationOverlay() throws InterruptedException {
         restaurantUI.click(deleteConfirmationYesBtn);
         try {
             restaurantUI.waitForCustom(4000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        restaurantUI.waitForCustom(4000);
     }
 
     public void clickPkgOption(){

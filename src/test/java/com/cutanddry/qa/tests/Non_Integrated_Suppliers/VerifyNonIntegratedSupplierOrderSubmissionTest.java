@@ -32,7 +32,7 @@ public class VerifyNonIntegratedSupplierOrderSubmissionTest extends TestBase {
         softAssert.assertTrue(Dashboard.isNavigatedToMaxiesSLPage(),"ERROR in Navigating to Maxies SL Page");
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         itemName = Customer.getItemNameFirstRow();
-        Customer.increaseFirstRowQtyByOne();
+        Customer.increaseFirstRowQtyCustom(15);
         Customer.checkoutItems();
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.submitOrder();

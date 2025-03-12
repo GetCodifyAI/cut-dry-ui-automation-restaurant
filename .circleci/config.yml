@@ -4,6 +4,7 @@ jobs:
   build-and-test:
     docker:
       - image: cimg/base:stable
+    resource_class: xlarge
     steps:
       - checkout
       - run:
@@ -42,6 +43,7 @@ jobs:
   nightly-build-and-test-1:
     docker:
       - image: cimg/base:stable
+    resource_class: xlarge
     steps:
       - checkout
       - run:
@@ -80,6 +82,7 @@ jobs:
   nightly-build-and-test-2:
     docker:
       - image: cimg/base:stable
+    resource_class: xlarge
     steps:
       - checkout
       - run:
@@ -118,6 +121,7 @@ jobs:
   nightly-build-and-test-3:
     docker:
       - image: cimg/base:stable
+    resource_class: xlarge
     steps:
       - checkout
       - run:
@@ -156,6 +160,7 @@ jobs:
   nightly-build-and-test-4:
     docker:
       - image: cimg/base:stable
+    resource_class: xlarge
     steps:
       - checkout
       - run:
@@ -194,6 +199,7 @@ jobs:
   nightly-build-and-test-5:
     docker:
       - image: cimg/base:stable
+    resource_class: xlarge
     steps:
       - checkout
       - run:
@@ -232,6 +238,7 @@ jobs:
   nightly-build-and-test-6:
     docker:
       - image: cimg/base:stable
+    resource_class: xlarge
     steps:
       - checkout
       - run:
@@ -270,6 +277,7 @@ jobs:
   daily-build-and-test-1:
     docker:
       - image: cimg/base:stable
+    resource_class: xlarge
     steps:
       - checkout
       - run:
@@ -308,6 +316,7 @@ jobs:
   daily-build-and-test-2:
     docker:
       - image: cimg/base:stable
+    resource_class: xlarge
     steps:
       - checkout
       - run:
@@ -346,6 +355,7 @@ jobs:
   daily-build-and-test-3:
     docker:
       - image: cimg/base:stable
+    resource_class: xlarge
     steps:
       - checkout
       - run:
@@ -384,6 +394,7 @@ jobs:
   daily-build-and-test-4:
     docker:
       - image: cimg/base:stable
+    resource_class: xlarge
     steps:
       - checkout
       - run:
@@ -422,6 +433,7 @@ jobs:
   daily-build-and-test-5:
     docker:
       - image: cimg/base:stable
+    resource_class: xlarge
     steps:
       - checkout
       - run:
@@ -460,6 +472,7 @@ jobs:
   daily-build-and-test-6:
     docker:
       - image: cimg/base:stable
+    resource_class: xlarge
     steps:
       - checkout
       - run:
