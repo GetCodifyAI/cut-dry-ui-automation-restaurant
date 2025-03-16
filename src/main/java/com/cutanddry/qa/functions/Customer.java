@@ -640,4 +640,55 @@ public class Customer {
     }
     public static boolean isUserNavigatedToChefGlendaCatalog(){return customersPage.isUserNavigatedToChefGlendaCatalog();}
 
+    public static String getItemNameFirstMultiOUM() throws InterruptedException {
+        return customersPage.getItemNameFirstMultiOUM();
+    }
+
+    public static String getItemNameFirstMultiOUMLB() throws InterruptedException {
+        return customersPage.getItemNameFirstMultiOUMLB();
+    }
+
+    public static String getItemCodeFirstMultiOUM() throws InterruptedException {
+        return customersPage.getItemCodeFirstMultiOUM();
+    }
+
+    public static String getItemCodeFirstMultiOUMLB() throws InterruptedException {
+        return customersPage.getItemCodeFirstMultiOUMLB();
+    }
+
+    public static double getActiveItemPriceFirstMultiOUMRowStable() throws InterruptedException {
+        return customersPage.getActiveItemPriceFirstMultiOUMRowStable();
+    }
+
+    public static String getItemUOMQuantity(String code,String uom){
+        return customersPage.getItemUOMQuantity(code,uom);
+    }
+
+    public static void ClickOnMultiUomDropDownOG(String code)throws InterruptedException{
+        customersPage.ClickOnMultiUomDropDownOG(code);
+    }
+    public static void clickOGAddToCartPlusIcon(int count,String code, String uom) throws InterruptedException{
+        for (int i=0; i<count;i++){
+            customersPage.clickOGAddToCartPlusIcon(code,uom);
+        }
+    }
+
+    public static void clickAddToCartMinusIcon(int count,String code, String uom) throws InterruptedException {
+        for (int i=0; i<count;i++){
+            customersPage.clickAddToCartMinusIcon(code,uom);
+        }
+    }
+
+    public static double getActiveItemPriceMultiOUM(String position) throws InterruptedException {
+        return customersPage.getActiveItemPriceMultiOUM(position);
+    }
+
+    public static double getItemPriceOnMultiOUMCheckout() throws InterruptedException {
+        return customersPage.getItemPriceOnMultiOUMCheckout();
+    }
+
+    public static double getItemPriceReviewCartMultiUOM(String position) throws InterruptedException {
+        return customersPage.getItemPriceReviewCartMultiUOM(position);
+    }
+
 }
