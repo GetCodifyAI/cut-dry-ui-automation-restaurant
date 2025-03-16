@@ -639,5 +639,11 @@ public class Customer {
         }
     }
     public static boolean isUserNavigatedToChefGlendaCatalog(){return customersPage.isUserNavigatedToChefGlendaCatalog();}
+    public static void clickOnPlaceOrderSW() {
+        customersPage.clickOnPlaceOrderSW();
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickNoBtnOnDraftCheckOverlay();
+        }
+    }
 
 }
