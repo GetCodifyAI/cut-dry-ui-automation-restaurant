@@ -190,4 +190,10 @@ public class History {
     public static double getItemCountOnReviewMultiOUM() throws InterruptedException {
         return historyPage.getItemCountOnReviewMultiOUM();
     }
+    public static boolean isOrderIdDisplayed(String orderId) throws InterruptedException {
+        return historyPage.isOrderIdDisplayed(orderId);
+    }
+    public static double getItemPriceOnSubmittedOrder() throws InterruptedException {
+        return historyPage.getItemPriceOnSubmittedOrder();
+    }
 }
