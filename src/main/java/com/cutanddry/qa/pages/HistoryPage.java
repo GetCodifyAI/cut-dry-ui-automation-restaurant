@@ -42,7 +42,7 @@ public class HistoryPage extends TestBase {
     By btn_edit_quantity = By.xpath("(//div[contains(@class,'align-middle')]/*[contains(@data-icon,'plus')])[1]");
     By btn_submit_edit_order = By.xpath("//button[@id='submit-order-button' and text()='Submit Order Edits']");
     By txt_review_order = By.xpath("//div[@class='d-flex align-items-center _5h4pkd _11zeigs' and text()='Review Order']");
-    By btn_ok_edit_order = By.xpath("//button[@class='swal2-confirm swal2-styled' and text()='OK']");
+    By btn_ok_edit_order = By.xpath("//button[text()='OK']");
     By txt_ok_edit_order = By.xpath("//h2[@id='swal2-title' and text()='Order edit request has been sent.']");
     By btn_recreate_order = By.xpath("//a[@class='_gozzbg dropdown-item' and text() ='Recreate Order']");
     By lastOrderId = By.xpath("(//tr[contains(@href,'/orders-revised/view-one')])[last()]//td[contains(text(),'#')]");
@@ -64,6 +64,8 @@ public class HistoryPage extends TestBase {
     By invoiceUploadStatus = By.xpath("(//td//span[text()='Invoice Upload'])[1]");
     By btn_orderCheckoutReview = By.xpath("//div[contains(text(), 'Total')]/../following-sibling::td[normalize-space()!='']");
     By btn_orderItemCountReview = By.xpath("//div[contains(text(), 'Items')]/../following-sibling::td[normalize-space()!='']");
+    String orderTitle = "//h2[contains(text(),'Order #ORDER_ID')]";
+    By btn_submittedOrderTotal = By.xpath("(//div[contains(text(), 'Total')]/../following-sibling::td[normalize-space()!=''])[last()]");
 
 
 
@@ -398,6 +400,18 @@ public class HistoryPage extends TestBase {
     public Double getItemCountOnReviewMultiOUM() throws InterruptedException {
         restaurantUI.waitForVisibility(btn_orderItemCountReview);
         String priceText = restaurantUI.getText(btn_orderItemCountReview);
+        return Double.valueOf(priceText);
+    }
+
+    public boolean isOrderIdDisplayed(String orderId) throws InterruptedException {
+        restaurantUI.waitForVisibility(By.xpath(orderTitle.replace("ORDER_ID", orderId)));
+        restaurantUI.waitForCustom(4000);
+        return restaurantUI.isDisplayed(By.xpath(orderTitle.replace("ORDER_ID", orderId)));
+    }
+
+    public Double getItemPriceOnSubmittedOrder() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_submittedOrderTotal);
+        String priceText = restaurantUI.getText(btn_submittedOrderTotal).replace("$", "").replace(",", "");
         return Double.valueOf(priceText);
     }
 
