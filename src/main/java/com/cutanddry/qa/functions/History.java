@@ -184,4 +184,16 @@ public class History {
     public static boolean isInvoicesUploadedStatusDisplayed()throws InterruptedException{
         return historyPage.isInvoicesUploadedStatusDisplayed();
     }
+    public static double getItemPriceOnMultiOUM() throws InterruptedException {
+        return historyPage.getItemPriceOnMultiOUM();
+    }
+    public static double getItemCountOnReviewMultiOUM() throws InterruptedException {
+        return historyPage.getItemCountOnReviewMultiOUM();
+    }
+    public static boolean isOrderIdDisplayed(String orderId) throws InterruptedException {
+        return historyPage.isOrderIdDisplayed(orderId);
+    }
+    public static double getItemPriceOnSubmittedOrder() throws InterruptedException {
+        return historyPage.getItemPriceOnSubmittedOrder();
+    }
 }

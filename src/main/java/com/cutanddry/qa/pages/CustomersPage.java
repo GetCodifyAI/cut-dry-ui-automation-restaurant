@@ -187,9 +187,33 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_placeOrderSW = By.xpath("//button[contains(text(), 'Place Order')]");
 
 
+    By lbl_firstMultiOUMItemName = By.xpath("(//*[local-name()='svg' and @data-icon='chevron-down'])[2]/ancestor::tr/td//span/div[@data-tip='View Product Details']");
+    By lbl_firstMultiOUMItemCode = By.xpath("(//*[local-name()='svg' and @data-icon='chevron-down'])[2]/ancestor::tr/td[2]");
+    By lbl_itemPriceListMultiOUM = By.xpath("(((//*[local-name()='svg' and @data-icon='chevron-down'])[2]/ancestor::tr/td[last()-2]//input)[1] | ((//*[local-name()='svg' and @data-icon='chevron-down'])[2]/ancestor::tr/td[last()-2]//span)[1])[1]");
+    By lbl_itemPriceListMultiOUM1 = By.xpath("((//*[local-name()='svg' and @data-icon='chevron-down'])[2]/ancestor::tr/td[last()-2]/div/div/div)[1] | ((//*[local-name()='svg' and @data-icon='chevron-down'])[2]/ancestor::tr/td[last()-2]//span)[1])[2]");
+
+    String lbl_firstMultiOUMItemCodeLB = "(//*[local-name()='svg' and @data-icon='chevron-down'])/ancestor::tr/td[COUNT]//div[contains(text(),'LB')]/ancestor::td/parent::tr/td[2]";
+    String lbl_firstMultiOUMItemNameLB = "(//*[local-name()='svg' and @data-icon='chevron-down'])/ancestor::tr/td[COUNT]//div[contains(text(),'LB')]/ancestor::td/parent::tr/td//span/div[@data-tip='View Product Details']";
+    By lbl_orderGuideTableColumn = By.xpath("//table/thead/tr/td");
+    String lbl_orderGuideTableColumnName = "//table/thead/tr/td[COUNT]";
+
+    By lbl_itemCodeLists = By.xpath("//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[2]");
+    String lbl_ListsMultiOUMExist = "//td//span//div[@data-tip='View Product Details']/ancestor::tbody/tr[ROW_COUNT]/td//*[local-name()='svg' and @data-icon='chevron-down']";
+    String lbl_firstSingleOUMItemName = "//td//span//div[@data-tip='View Product Details']/ancestor::tbody/tr[ROW_COUNT]/td//span/div[@data-tip='View Product Details']";
+    String lbl_firstSingleOUMItemCode = "//td//span//div[@data-tip='View Product Details']/ancestor::tbody/tr[ROW_COUNT]/td[2]";
+
+    String tbx_itemQuantityUOM = "(//td[text()='CODE']/following-sibling::*//div/input[@data-input ='quantityInput'])[UOM]";
+    String multiUomDropDownOG = "(//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg'])[1]";
+    String btn_OGAddToCartPlusQuantity ="(//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='plus'])[UOM]";
+    String btn_OGRemoveToCartMinusQuantity ="(//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='minus'])[UOM]";
+    By multiUomOption =By.xpath("//div[text()='Multiple Units']");
+    String lbl_itemPriceMultiOUM = "((//button/*[local-name()='svg' and @data-icon='chevron-up'])[1]/ancestor::tr/td[last()-2]//input)[UOM] | ((//button/*[local-name()='svg' and @data-icon='chevron-up'])[1]/ancestor::tr/td[last()-2]//span)[UOM]";
+    By btn_orderCheckoutReview = By.xpath("//button[contains(@data-tip, 'Click here to checkout')][normalize-space()!='']");
+    String lbl_cartItemUnitPriceReviewMultiUOM = "(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//input)[UOM] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//span)[UOM]";
+
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
-        restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
-        restaurantUI.waitForCustom(2000);
+        /*restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
+        restaurantUI.waitForCustom(2000);*/
         return restaurantUI.isDisplayed(btn_previousDraftOrderNo);
     }
 
@@ -286,6 +310,12 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
 
     public void typeToSearchOnOrderGuide(String item) {
         restaurantUI.sendKeys(tbx_orderGuideSearch, item);
+        try {
+            restaurantUI.waitForCustom(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public String getFirstItemNameFrmSearchResults() {
@@ -405,11 +435,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
 
     public boolean isDuplicatePopupDisplayed() {
-        try {
-            return restaurantUI.isDisplayed(btn_duplicateOrderYes);
-        } catch (Exception e) {
-            return false;
-        }
+        return restaurantUI.isDisplayed(btn_duplicateOrderYes);
     }
 
     public void clickYesDuplicatePopup() throws InterruptedException {
@@ -656,7 +682,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
 
     public boolean isRatingOverlayDisplayed(){
-        return restaurantUI.isDisplayed(ratingOverlayIframe);
+        return restaurantUI.isDisplayed(ratingOverlayIframe,5);
     }
 
     public void clickCloseRatingOverlay(){
@@ -1210,5 +1236,123 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.click(btn_placeOrderSW );
     }
 
+    public String getItemNameFirstMultiOUM() throws InterruptedException {
+        restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemName,3);
+        restaurantUI.waitForElementEnabledState(lbl_firstMultiOUMItemName,true);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_firstMultiOUMItemName);
+    }
+
+
+    public String getItemCodeFirstMultiOUM() throws InterruptedException {
+        restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemCode,3);
+        restaurantUI.waitForVisibility(lbl_firstMultiOUMItemCode);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_firstMultiOUMItemCode);
+    }
+
+    private double extractPriceStable(By priceLocator) throws InterruptedException {
+        restaurantUI.waitForVisibility(priceLocator);
+        String tagName = restaurantUI.getElement(priceLocator).getTagName();
+        String priceText;
+
+        if (tagName.equals("input")) {
+            priceText = restaurantUI.getText(priceLocator, "value");
+        } else if (tagName.equals("div")) {
+            priceText = restaurantUI.getText(priceLocator);
+        } else {
+            priceText = restaurantUI.getText(priceLocator);
+        }
+
+        System.out.println("Extracted Price: " + priceText);
+        priceText = priceText.replace("$", "").replace(",", "").split("/")[0].trim();
+
+        return Double.valueOf(priceText);
+    }
+
+    public double getActiveItemPriceFirstMultiOUMRowStable() throws InterruptedException {
+        try {
+            return extractPriceStable(lbl_itemPriceListMultiOUM);
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractPriceStable(lbl_itemPriceListMultiOUM1);
+        }
+    }
+
+    public String getItemCodeFirstMultiOUMLB() throws InterruptedException {
+        int totalColumnCount = restaurantUI.countElements(lbl_orderGuideTableColumn);
+
+        for (int i = 1; i <= totalColumnCount; i++) {
+            String columnName = restaurantUI.getText(By.xpath(lbl_orderGuideTableColumnName.replace("COUNT", String.valueOf(i))));
+            if ("price".equalsIgnoreCase(columnName)) {
+                restaurantUI.waitForVisibility(By.xpath(lbl_firstMultiOUMItemCodeLB.replace("COUNT", String.valueOf(i))));
+                restaurantUI.waitForCustom(3000);
+                return restaurantUI.getText(By.xpath(lbl_firstMultiOUMItemCodeLB.replace("COUNT", String.valueOf(i))));
+            }
+        }
+        return null;
+    }
+
+    public String getItemNameFirstMultiOUMLB() throws InterruptedException {
+        int totalColumnCount = restaurantUI.countElements(lbl_orderGuideTableColumn);
+
+        for (int i = 1; i <= totalColumnCount; i++) {
+            String columnName = restaurantUI.getText(By.xpath(lbl_orderGuideTableColumnName.replace("COUNT", String.valueOf(i))));
+            if ("price".equalsIgnoreCase(columnName)) {
+                restaurantUI.scrollToElementStable(By.xpath(lbl_firstMultiOUMItemNameLB.replace("COUNT", String.valueOf(i))),3);
+                restaurantUI.waitForVisibility(By.xpath(lbl_firstMultiOUMItemNameLB.replace("COUNT", String.valueOf(i))));
+                restaurantUI.waitForCustom(3000);
+                return restaurantUI.getText(By.xpath(lbl_firstMultiOUMItemNameLB.replace("COUNT", String.valueOf(i))));
+            }
+        }
+        return null;
+    }
+
+    public String getItemUOMQuantity(String code,String uom){
+        return restaurantUI.getText(By.xpath(tbx_itemQuantityUOM.replace("CODE", code).replace("UOM", uom)), "value");
+    }
+
+    public void ClickOnMultiUomDropDownOG(String code)throws InterruptedException{
+        restaurantUI.waitForVisibility(By.xpath(multiUomDropDownOG.replace("CODE", code)));
+        restaurantUI.click(By.xpath(multiUomDropDownOG.replace("CODE", code)));
+        restaurantUI.click(multiUomOption);
+        restaurantUI.waitForCustom(3000);
+    }
+    public void clickOGAddToCartPlusIcon(String code,String uom)throws InterruptedException{
+        restaurantUI.waitForVisibility(By.xpath(btn_OGAddToCartPlusQuantity.replace("CODE", code).replace("UOM", uom)));
+        restaurantUI.click(By.xpath(btn_OGAddToCartPlusQuantity.replace("CODE", code).replace("UOM", uom)));
+        restaurantUI.waitForCustom(3000);
+    }
+
+    public void clickAddToCartMinusIcon(String code,String uom) throws InterruptedException {
+        restaurantUI.waitForVisibility(By.xpath(btn_OGRemoveToCartMinusQuantity.replace("CODE", code).replace("UOM", uom)));
+        restaurantUI.click(By.xpath(btn_OGRemoveToCartMinusQuantity.replace("CODE", code).replace("UOM", uom)));
+        restaurantUI.waitForCustom(3000);
+    }
+
+    public double getActiveItemPriceMultiOUM(String position) throws InterruptedException {
+        return extractPriceStable(By.xpath(lbl_itemPriceMultiOUM.replace("UOM", position)));
+    }
+
+    public Double getItemPriceOnMultiOUMCheckout() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_orderCheckoutReview);
+        restaurantUI.waitForCustom(4000);
+        String priceText = restaurantUI.getText(btn_orderCheckoutReview).replace("$", "").replace(",", "");
+        return Double.valueOf(priceText);
+    }
+
+    public Double getItemPriceReviewCartMultiUOM(String position) {
+        restaurantUI.waitForVisibility(By.xpath(lbl_cartItemUnitPriceReviewMultiUOM.replace("UOM", position)));
+        String tagName = restaurantUI.getElement(By.xpath(lbl_cartItemUnitPriceReviewMultiUOM.replace("UOM", position))).getTagName();
+        String priceText;
+        if (tagName.equals("input")) {
+            priceText = restaurantUI.getText(By.xpath(lbl_cartItemUnitPriceReviewMultiUOM.replace("UOM", position)), "value");
+        } else {
+            priceText = restaurantUI.getText(By.xpath(lbl_cartItemUnitPriceReviewMultiUOM.replace("UOM", position)));
+        }
+
+        return Double.valueOf(priceText.replace("$", "").replace("/cs", "").replace("/pkg", "").trim());
+
+    }
 
 }
