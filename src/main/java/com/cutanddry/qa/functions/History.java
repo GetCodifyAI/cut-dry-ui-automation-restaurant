@@ -184,4 +184,10 @@ public class History {
     public static boolean isInvoicesUploadedStatusDisplayed()throws InterruptedException{
         return historyPage.isInvoicesUploadedStatusDisplayed();
     }
+    public static double getItemPriceOnMultiOUM() throws InterruptedException {
+        return historyPage.getItemPriceOnMultiOUM();
+    }
+    public static double getItemCountOnReviewMultiOUM() throws InterruptedException {
+        return historyPage.getItemCountOnReviewMultiOUM();
+    }
 }
