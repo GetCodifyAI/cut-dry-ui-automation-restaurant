@@ -268,8 +268,11 @@ public class Customer {
         customersPage.clickOnSave();
     }
 
-    public static void clickOnPlaceOrder() {
+    public static void clickOnPlaceOrder() throws InterruptedException {
         customersPage.clickOnPlaceOrder();
+        if (customersPage.isPreviousDraftOrderNoDisplayed()){
+            customersPage.clickPreviousDraftOrderNo();
+        }
     }
 
     public static void increaseFirstRowQtyByOneInWL() throws InterruptedException {
@@ -639,6 +642,12 @@ public class Customer {
         }
     }
     public static boolean isUserNavigatedToChefGlendaCatalog(){return customersPage.isUserNavigatedToChefGlendaCatalog();}
+    public static void clickOnPlaceOrderSW() {
+        customersPage.clickOnPlaceOrderSW();
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickNoBtnOnDraftCheckOverlay();
+        }
+    }
 
     public static String getItemNameFirstMultiOUM() throws InterruptedException {
         return customersPage.getItemNameFirstMultiOUM();

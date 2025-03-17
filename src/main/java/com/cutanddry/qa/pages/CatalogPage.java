@@ -19,6 +19,15 @@ public class CatalogPage extends LoginPage {
     String txt_orderIdMulti = "(//div[contains(text(),'Order #')])[UOM]";
     By getTotalItemCount = By.xpath("//td[text()='Items:']/following-sibling::td");
     By getTotalItemPrice = By.xpath("//td[text()='Total:']/following-sibling::td");
+    By getTotalEndlessAislePriceReviewOrder = By.xpath("//td[contains(text(),'Endless Aisle Total')]/following-sibling::td");
+    By getTotalEndlessAisleSubTotalPriceReviewOrder = By.xpath("//td[contains(text(),'Endless Aisle Subtotal')]/following-sibling::td");
+    By getSubTotalOrderPrice = By.xpath("//div[contains(text(),'Subtotal')]/../following-sibling::td");
+    By getTotalPriceReviewOrder = By.xpath("//td[contains(text(),'Total')]/following-sibling::td");
+    By getTotalQuantityReviewOrder = By.xpath("//td[contains(text(),'Items')]/following-sibling::td");
+    By getDeliveryFeesReviewOrder = By.xpath("//td[contains(text(),'Delivery Fee')]/following-sibling::td");
+    By getTotalOrderQuantity = By.xpath("//div[contains(text(),'Items')]/../following-sibling::td");
+    By getTotalOrderPrice = By.xpath("//div[contains(text(),'Total')]/../following-sibling::td");
+
 
 
     public void ClickOnMultiUomDropDown(String name)throws InterruptedException{
@@ -114,6 +123,60 @@ public class CatalogPage extends LoginPage {
     public String getTotalItemCount() throws InterruptedException {
         restaurantUI.waitForElementEnabledState(getTotalItemCount,true);
         return restaurantUI.getText(getTotalItemCount);
+    }
+    public double getTotalEndlessAislePriceInReviewOrder() throws InterruptedException {
+        try {
+            return extractPrice(getTotalEndlessAislePriceReviewOrder);
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractPrice(getTotalEndlessAislePriceReviewOrder);
+        }
+    }
+    public double getTotalEndlessAisleSubTotalPriceInReviewOrder() throws InterruptedException {
+        try {
+            return extractPrice(getTotalEndlessAisleSubTotalPriceReviewOrder);
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractPrice(getTotalEndlessAisleSubTotalPriceReviewOrder);
+        }
+    }
+    public double getSubTotalPriceInOrder() throws InterruptedException {
+        try {
+            return extractPrice(getSubTotalOrderPrice);
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractPrice(getSubTotalOrderPrice);
+        }
+    }
+    public double getTotalPriceInReviewOrder() throws InterruptedException {
+        try {
+            return extractPrice(getTotalPriceReviewOrder);
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractPrice(getTotalPriceReviewOrder);
+        }
+    }
+    public String getTotalQuantityInReviewOrder(){
+        return restaurantUI.getText(getTotalQuantityReviewOrder);
+    }
+    public double getDeliveryFeesPriceInReviewOrder() throws InterruptedException {
+        try {
+            return extractPrice(getDeliveryFeesReviewOrder);
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractPrice(getDeliveryFeesReviewOrder);
+        }
+    }
+    public String getTotalQuantityInOrder(){
+        return restaurantUI.getText(getTotalOrderQuantity);
+    }
+    public double getTotalPriceInOrder() throws InterruptedException {
+        try {
+            return extractPrice(getTotalOrderPrice);
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractPrice(getTotalOrderPrice);
+        }
     }
 
 }

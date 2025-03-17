@@ -184,6 +184,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txt_sentApproval = By.xpath("//strong[contains(text(),'Sent for approval!')]");
     By btn_increaseQtyOrderGuide = By.xpath("(//div//*[local-name()='svg' and @data-icon='plus'])[2]");
     By txt_glendaCatalog = By.xpath("//div[contains(text(), 'Brand')]");
+    By btn_placeOrderSW = By.xpath("//button[contains(text(), 'Place Order')]");
+
 
     By lbl_firstMultiOUMItemName = By.xpath("(//*[local-name()='svg' and @data-icon='chevron-down'])[2]/ancestor::tr/td//span/div[@data-tip='View Product Details']");
     By lbl_firstMultiOUMItemCode = By.xpath("(//*[local-name()='svg' and @data-icon='chevron-down'])[2]/ancestor::tr/td[2]");
@@ -1229,6 +1231,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
     public boolean isUserNavigatedToChefGlendaCatalog() {
         return restaurantUI.isDisplayed(txt_glendaCatalog);
+    }
+    public void clickOnPlaceOrderSW() {
+        restaurantUI.click(btn_placeOrderSW );
     }
 
     public String getItemNameFirstMultiOUM() throws InterruptedException {

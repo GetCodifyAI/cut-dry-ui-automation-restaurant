@@ -17,7 +17,6 @@ import java.util.Objects;
 
 public class VerifyEditingOrdersWithUploadingExcelFileTest extends TestBase {
     static User user;
-    static String itemName = "Broccolini 18 Ct";
 
     @BeforeMethod
     public void setUp(){
