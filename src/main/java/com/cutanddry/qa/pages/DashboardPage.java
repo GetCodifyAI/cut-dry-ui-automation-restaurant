@@ -86,11 +86,7 @@ public class DashboardPage extends LoginPage{
         return restaurantUI.isDisplayed(txt_OrderGuide);
     }
     public boolean isTestAutomationPopupDisplayed(){
-        try {
-            return restaurantUI.isDisplayed(btn_TestAutomation);
-        } catch (Exception e){
-            return false;
-        }
+        return restaurantUI.isDisplayed(btn_TestAutomation,5);
     }
     public void clickOnTestAutomationPopup(){
         restaurantUI.waitForClickability(btn_TestAutomation);

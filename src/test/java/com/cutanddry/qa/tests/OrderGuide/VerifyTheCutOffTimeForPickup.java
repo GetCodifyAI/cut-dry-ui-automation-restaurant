@@ -16,7 +16,7 @@ public class VerifyTheCutOffTimeForPickup extends TestBase {
     static User user;
     static String OperatorName = "sunrise Food";
     static String customerId = "5983";
-    static String cutOffTime = "8:00pm";
+    static String cutOffTime = "7:00pm";
     @BeforeMethod
     public void setUp(){
         initialization();
