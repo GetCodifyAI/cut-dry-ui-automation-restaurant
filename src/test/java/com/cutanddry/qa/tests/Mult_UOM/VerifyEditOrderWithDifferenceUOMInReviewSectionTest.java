@@ -17,7 +17,8 @@ public class VerifyEditOrderWithDifferenceUOMInReviewSectionTest extends TestBas
     String uomDropDownOption = "Multiple Units";
     String uom1 = "1";
     String uom2 = "2";
-    static double itemPriceUOM1 ,itemPriceUOM2,totalPrice1;
+    static double itemPriceUOM1 ,itemPriceUOM2,totalPrice1,totalItemPriceReviewOrder;
+    String orderId,totalItemQuantityReviewOrder;
 
 
     @BeforeMethod
@@ -59,17 +60,24 @@ public class VerifyEditOrderWithDifferenceUOMInReviewSectionTest extends TestBas
 
         Customer.clickCheckOutPDP();
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
+        totalItemPriceReviewOrder = Catalog.getTotalPriceInReviewOrder();
+        totalItemQuantityReviewOrder = Catalog.getTotalQuantityInReviewOrder();
         softAssert.assertEquals(Catalog.getTotalItemCount(),"4","item count not equal");
         softAssert.assertEquals(Math.round(Catalog.getTotalPriceUOM() * 100.0) / 100.0,
                 ((Math.round(totalPrice1 * 100.0) / 100.0)*2), "Total price not correct");
 
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
+        orderId = Customer.getSuccessOrderId();
         Customer.clickClose();
 
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        History.searchOrderID(orderId);
+        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
         History.clickOnFirstItemOfOrderHistory();
+        softAssert.assertEquals(Catalog.getTotalQuantityInOrder(),totalItemQuantityReviewOrder,"order quantity not successfully submitted");
+        softAssert.assertEquals(Catalog.getTotalPriceInOrder(),totalItemPriceReviewOrder,"order not successfully submitted");
         softAssert.assertAll();
 
     }

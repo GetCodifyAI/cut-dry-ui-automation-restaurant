@@ -12,7 +12,6 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyMultiCartItemsSelectMultipleUOMItemFromPDPTest extends TestBase {
     static User user;
-    String searchItemCode = "27457";
     String itemName = "A/P Deo Men Adventure";
     String itemName2 = "Hacomat Season";
 
@@ -42,6 +41,8 @@ public class VerifyMultiCartItemsSelectMultipleUOMItemFromPDPTest extends TestBa
         restaurantUI.switchToNewTab();
         Customer.clickOnPlaceOrder();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Customer.goToCatalog();
+        Customer.searchItemOnCatalog(itemName);
         Customer.clickOnProduct(itemName);
         softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
         itemPriceUOM1 = Catalog.getPDPPriceUOM(uom1);
@@ -53,6 +54,7 @@ public class VerifyMultiCartItemsSelectMultipleUOMItemFromPDPTest extends TestBa
                 ((Math.round(itemPriceUOM1 * 100.0) / 100.0)+(Math.round(itemPriceUOM2 * 100.0) / 100.0)), "The Retail items have not been selected.");
         Catalog.clickBack();
 
+        Customer.searchItemOnCatalog(itemName2);
         Customer.clickOnProduct(itemName2);
         softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
         item2PriceUOM1 = Catalog.getPDPPriceUOM(uom1);
@@ -77,7 +79,16 @@ public class VerifyMultiCartItemsSelectMultipleUOMItemFromPDPTest extends TestBa
         History.searchOrderID(orderId1);
         softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId1), "Order ID not found in the table.");
         History.clickOnFirstItemOfOrderHistory();
+        softAssert.assertEquals(Catalog.getTotalQuantityInOrder(),"2","order quantity not successfully submitted");
+        softAssert.assertEquals(Catalog.getTotalPriceInOrder(),totalItemPrice1,"order not successfully submitted");
 
+        Catalog.clickBack();
+        History.searchOrderID(orderId2);
+        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId2), "Order ID not found in the table.");
+        History.clickOnFirstItemOfOrderHistory();
+        softAssert.assertEquals(Catalog.getTotalQuantityInOrder(),"2","order quantity not successfully submitted");
+        softAssert.assertEquals(Math.round(Catalog.getTotalPriceInOrder() * 100.0) / 100.0,
+                ((Math.round(item2PriceUOM1 * 100.0) / 100.0)+(Math.round(item2PriceUOM2 * 100.0) / 100.0)), "The item has not been selected.");
         softAssert.assertAll();
 
     }

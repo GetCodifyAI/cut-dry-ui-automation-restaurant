@@ -16,6 +16,19 @@
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheDeleteItemsProductsFromMultipleUOMsInTheReviewOrderSectionTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithEditFlowTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithDraftOrderTest" />
+
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyEditQuantitiesFunctionalityInCatalogTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifySelectMultipleUOMItemFromCatalogOnlyTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheNavigationToThePDPWhenSelectingMultipleUnitsTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyEditQuantitiesFunctionalityInCatalogPDPTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyEditOrderWithDifferenceUOMInReviewSectionTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyMultiCartItemsSelectMultipleUOMItemFromPDPTest" />
+
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheDeliveryFeesSelectMultipleUOMTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEndlessAisleShippingFeesSelectMultipleUOMTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMJustInTimeItemAndDraftEditTest" />
+
+
         </classes>
     </test>
 </suite>

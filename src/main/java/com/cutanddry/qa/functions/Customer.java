@@ -268,8 +268,11 @@ public class Customer {
         customersPage.clickOnSave();
     }
 
-    public static void clickOnPlaceOrder() {
+    public static void clickOnPlaceOrder() throws InterruptedException {
         customersPage.clickOnPlaceOrder();
+        if (customersPage.isPreviousDraftOrderNoDisplayed()){
+            customersPage.clickPreviousDraftOrderNo();
+        }
     }
 
     public static void increaseFirstRowQtyByOneInWL() throws InterruptedException {
