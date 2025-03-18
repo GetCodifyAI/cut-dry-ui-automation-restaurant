@@ -273,6 +273,7 @@ public class Customer {
         if (customersPage.isPreviousDraftOrderNoDisplayed()){
             customersPage.clickPreviousDraftOrderNo();
         }
+        Thread.sleep(3000);
     }
 
     public static void increaseFirstRowQtyByOneInWL() throws InterruptedException {
@@ -579,7 +580,9 @@ public class Customer {
             customersPage.clickPlusSearchedSingleItem();
         }
     }
-    public static void clickCheckOutPDP(){customersPage.clickCheckOutPDP();}
+    public static void clickCheckOutPDP(){
+        customersPage.clickCheckOutPDP();
+    }
     public static boolean isDeliveryOptionSelected() {
         return customersPage.isDeliveryOptionSelected();
     }
@@ -698,6 +701,19 @@ public class Customer {
 
     public static double getItemPriceReviewCartMultiUOM(String position) throws InterruptedException {
         return customersPage.getItemPriceReviewCartMultiUOM(position);
+    }
+    public static void submitOrderRebate() throws InterruptedException {
+        customersPage.submitOrder();
+        if (customersPage.caseMinNotMetDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
+        if (customersPage.isDuplicatePopupDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
+        Thread.sleep(4000);
+        if (customersPage.isCombinedPopupDisplayed()){
+            customersPage.clickContinueCombined();
+        }
     }
 
 }

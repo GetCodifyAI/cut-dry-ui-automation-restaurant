@@ -27,6 +27,8 @@ public class CatalogPage extends LoginPage {
     By getDeliveryFeesReviewOrder = By.xpath("//td[contains(text(),'Delivery Fee')]/following-sibling::td");
     By getTotalOrderQuantity = By.xpath("//div[contains(text(),'Items')]/../following-sibling::td");
     By getTotalOrderPrice = By.xpath("//div[contains(text(),'Total')]/../following-sibling::td");
+    By itemTypeDropDown = By.xpath("//div[contains(text(), 'Item Type')]");
+    By itemTypeDropDownOption = By.xpath("//div[contains(text(), 'Item Type')]/../../following-sibling::div//*[name()='svg' and @data-icon='square']/following-sibling::div[contains(text(), 'Special Order')]");
 
 
 
@@ -177,6 +179,10 @@ public class CatalogPage extends LoginPage {
             System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
             return extractPrice(getTotalOrderPrice);
         }
+    }
+    public void clickItemType()throws InterruptedException{
+        restaurantUI.click(itemTypeDropDown);
+        restaurantUI.click(itemTypeDropDownOption);
     }
 
 }

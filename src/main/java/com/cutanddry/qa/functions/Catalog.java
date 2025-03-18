@@ -80,4 +80,5 @@ public class Catalog {
     public static double getTotalPriceInOrder() throws InterruptedException {
         return catalogPage.getTotalPriceInOrder();
     }
+    public static void clickItemType()throws InterruptedException{catalogPage.clickItemType();}
 }
