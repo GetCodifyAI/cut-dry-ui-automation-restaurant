@@ -26,8 +26,8 @@ public class VerifyThSelectMultipleUOMAvailableRebateItemAndSubmissionTest exten
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-1037")
-    public void VerifyThSelectMultipleUOMSpecialOrderItemAndSubmission() throws InterruptedException {
+    @Test(groups = "DOT-TC-1040")
+    public void VerifyThSelectMultipleUOMAvailableRebateItemAndSubmission() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
