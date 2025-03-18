@@ -210,6 +210,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String lbl_itemPriceMultiOUM = "((//button/*[local-name()='svg' and @data-icon='chevron-up'])[1]/ancestor::tr/td[last()-2]//input)[UOM] | ((//button/*[local-name()='svg' and @data-icon='chevron-up'])[1]/ancestor::tr/td[last()-2]//span)[UOM]";
     By btn_orderCheckoutReview = By.xpath("//button[contains(@data-tip, 'Click here to checkout')][normalize-space()!='']");
     String lbl_cartItemUnitPriceReviewMultiUOM = "(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//input)[UOM] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//span)[UOM]";
+    By combinedOrderPopUp = By.xpath("//div[contains(text(), 'Do you want to combine your orders?')]");
+    By combinedOrderContinue = By.xpath("//button[contains(text(), 'Continue')]");
+
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         /*restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -1353,6 +1356,12 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
 
         return Double.valueOf(priceText.replace("$", "").replace("/cs", "").replace("/pkg", "").trim());
 
+    }
+    public boolean isCombinedPopupDisplayed() {
+        return restaurantUI.isDisplayed(combinedOrderPopUp);
+    }
+    public void clickContinueCombined(){
+        restaurantUI.click(combinedOrderContinue);
     }
 
 }
