@@ -268,8 +268,12 @@ public class Customer {
         customersPage.clickOnSave();
     }
 
-    public static void clickOnPlaceOrder() {
+    public static void clickOnPlaceOrder() throws InterruptedException {
         customersPage.clickOnPlaceOrder();
+        if (customersPage.isPreviousDraftOrderNoDisplayed()){
+            customersPage.clickPreviousDraftOrderNo();
+        }
+        Thread.sleep(3000);
     }
 
     public static void increaseFirstRowQtyByOneInWL() throws InterruptedException {
@@ -576,7 +580,9 @@ public class Customer {
             customersPage.clickPlusSearchedSingleItem();
         }
     }
-    public static void clickCheckOutPDP(){customersPage.clickCheckOutPDP();}
+    public static void clickCheckOutPDP(){
+        customersPage.clickCheckOutPDP();
+    }
     public static boolean isDeliveryOptionSelected() {
         return customersPage.isDeliveryOptionSelected();
     }
@@ -639,6 +645,12 @@ public class Customer {
         }
     }
     public static boolean isUserNavigatedToChefGlendaCatalog(){return customersPage.isUserNavigatedToChefGlendaCatalog();}
+    public static void clickOnPlaceOrderSW() {
+        customersPage.clickOnPlaceOrderSW();
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickNoBtnOnDraftCheckOverlay();
+        }
+    }
 
     public static String getItemNameFirstMultiOUM() throws InterruptedException {
         return customersPage.getItemNameFirstMultiOUM();
@@ -689,6 +701,19 @@ public class Customer {
 
     public static double getItemPriceReviewCartMultiUOM(String position) throws InterruptedException {
         return customersPage.getItemPriceReviewCartMultiUOM(position);
+    }
+    public static void submitOrderRebate() throws InterruptedException {
+        customersPage.submitOrder();
+        if (customersPage.caseMinNotMetDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
+        if (customersPage.isDuplicatePopupDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
+        Thread.sleep(4000);
+        if (customersPage.isCombinedPopupDisplayed()){
+            customersPage.clickContinueCombined();
+        }
     }
 
 }

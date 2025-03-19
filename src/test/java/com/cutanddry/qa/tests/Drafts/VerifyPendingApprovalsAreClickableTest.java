@@ -39,7 +39,7 @@ public class VerifyPendingApprovalsAreClickableTest extends TestBase {
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.increaseFirstRowQtyInClassic(1);
+        Customer.increaseFirstRowQtyInClassic(11);
         Customer.checkoutItems();
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isSentApprovalDisplayed(),"sent approval pop up not display");

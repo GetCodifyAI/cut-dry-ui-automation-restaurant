@@ -56,4 +56,29 @@ public class Catalog {
     public static String getTotalItemCount() throws InterruptedException {
         return catalogPage.getTotalItemCount();
     }
+    public static double getTotalEndlessAislePriceInReviewOrder() throws InterruptedException {
+        return catalogPage.getTotalEndlessAislePriceInReviewOrder();
+    }
+    public static double getTotalEndlessAisleSubTotalPriceInReviewOrder() throws InterruptedException {
+        return catalogPage.getTotalEndlessAisleSubTotalPriceInReviewOrder();
+    }
+    public static double getSubTotalPriceInOrder() throws InterruptedException {
+        return catalogPage.getSubTotalPriceInOrder();
+    }
+    public static double getTotalPriceInReviewOrder() throws InterruptedException {
+        return catalogPage.getTotalPriceInReviewOrder();
+    }
+    public static String getTotalQuantityInReviewOrder(){
+        return catalogPage.getTotalQuantityInReviewOrder();
+    }
+    public static double getDeliveryFeesPriceInReviewOrder() throws InterruptedException {
+        return catalogPage.getDeliveryFeesPriceInReviewOrder();
+    }
+    public static String getTotalQuantityInOrder(){
+        return catalogPage.getTotalQuantityInOrder();
+    }
+    public static double getTotalPriceInOrder() throws InterruptedException {
+        return catalogPage.getTotalPriceInOrder();
+    }
+    public static void clickItemType()throws InterruptedException{catalogPage.clickItemType();}
 }

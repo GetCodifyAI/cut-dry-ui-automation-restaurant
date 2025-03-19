@@ -2,10 +2,7 @@ package com.cutanddry.qa.tests.Mult_UOM;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
-import com.cutanddry.qa.functions.Catalog;
-import com.cutanddry.qa.functions.Customer;
-import com.cutanddry.qa.functions.Dashboard;
-import com.cutanddry.qa.functions.Login;
+import com.cutanddry.qa.functions.*;
 import com.cutanddry.qa.utils.JsonUtil;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -13,16 +10,16 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifySelectMultipleUOMItemFromOGCatalogAndPDPTest extends TestBase {
+public class VerifyThSelectMultipleUOMJustInTimeItemAndSubmissionTest extends TestBase {
     static User user;
-    String searchItemName = "Organic Bananas - 2 LB";
-    String searchItemCde = "00529";
-    String searchItemCode = "01409";
+    String searchItemName = "Beef New York 14OZ Cca C/C";
+    String searchItemCde = "10088";
+    String OperatorName = "katdmejia2@gmail.com";
     String uomDropDownOption = "Multiple Units";
     String uom1 = "1";
     String uom2 = "2";
-    static double itemOGPriceUOM1 ,itemOGPriceUOM2,itemPriceUOM1,itemPriceUOM2,totalOGItemPrice;
-
+    static double itemPriceUOM1 ,itemPriceUOM2,totalPDPItemPrice;
+    String orderId,totalItemQuantityReviewOrder;
 
 
     @BeforeMethod
@@ -31,26 +28,18 @@ public class VerifySelectMultipleUOMItemFromOGCatalogAndPDPTest extends TestBase
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-1052")
-    public void VerifyEditQuantitiesFunctionalityInCatalog() throws InterruptedException {
+    @Test(groups = "DOT-TC-1039")
+    public void VerifyThSelectMultipleUOMJustInTimeItemAndSubmission() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
-        Dashboard.navigateToIndependentFoodsCo();
-        Dashboard.navigateToOrderGuide();
+        Login.navigateToLoginAs();
+        Login.loginAsAdminWL(OperatorName);
+        restaurantUI.switchToNewTab();
+
+        Customer.clickOnPlaceOrder();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Catalog.ClickOnMultiUomDropDownOG(searchItemCode);
-//        Catalog.ClickOnMultiUomDropDownOption(uomDropDownOption);
-        Catalog.clickOGAddToCartPlusIcon(1,searchItemCode, uom2);
-        Catalog.clickOGAddToCartPlusIcon(1,searchItemCode, uom1);
-        itemOGPriceUOM1 = Catalog.getOGPriceUOM(searchItemCode,uom1);
-        itemOGPriceUOM2 = Catalog.getOGPriceUOM(searchItemCode,uom2);
-        totalOGItemPrice =Customer.getItemPriceOnCheckoutButton();
-        softAssert.assertEquals(Math.round(totalOGItemPrice * 100.0) / 100.0,
-                ((Math.round(itemOGPriceUOM1 * 100.0) / 100.0)+(Math.round(itemOGPriceUOM2 * 100.0) / 100.0)), "The item has not been selected.");
-
-
         Customer.goToCatalog();
         Customer.searchItemOnCatalog(searchItemCde);
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(searchItemName.toLowerCase()), "item not found");
@@ -61,13 +50,24 @@ public class VerifySelectMultipleUOMItemFromOGCatalogAndPDPTest extends TestBase
         itemPriceUOM2 = Catalog.getPDPPriceUOM(uom2);
         Catalog.clickAddToCartPlusIcon(1, uom1);
         Catalog.clickAddToCartPlusIcon(1, uom2);
-        softAssert.assertEquals(Math.round(Customer.getItemPriceOnCheckoutButtonViaPDP() * 100.0) / 100.0,
-                ((Math.round(itemPriceUOM1 * 100.0) / 100.0)+(Math.round(itemPriceUOM2 * 100.0) / 100.0)+(Math.round(totalOGItemPrice * 100.0) / 100.0)), "The item has not been selected.");
+        totalPDPItemPrice = Customer.getItemPriceOnCheckoutButtonViaPDP();
+        softAssert.assertEquals(Math.round(totalPDPItemPrice * 10.0) / 10.0,
+                (Math.round((itemPriceUOM1 + itemPriceUOM2) * 10.0) / 10.0), "The item has not been selected.");
         Customer.clickCheckOutPDP();
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
+        totalItemQuantityReviewOrder = Catalog.getTotalQuantityInReviewOrder();
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
+        orderId = Customer.getSuccessOrderId();
         Customer.clickClose();
+
+        History.goToHistory();
+        softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        History.searchOrderID(orderId);
+        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
+        History.clickOnFirstItemOfOrderHistory();
+        softAssert.assertEquals(Catalog.getTotalQuantityInOrder(),totalItemQuantityReviewOrder,"order quantity not successfully submitted");
+        softAssert.assertEquals(Catalog.getTotalPriceInOrder(),totalPDPItemPrice, 0.01,"order not successfully submitted");
         softAssert.assertAll();
 
     }

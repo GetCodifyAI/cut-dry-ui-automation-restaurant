@@ -184,6 +184,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txt_sentApproval = By.xpath("//strong[contains(text(),'Sent for approval!')]");
     By btn_increaseQtyOrderGuide = By.xpath("(//div//*[local-name()='svg' and @data-icon='plus'])[2]");
     By txt_glendaCatalog = By.xpath("//div[contains(text(), 'Brand')]");
+    By btn_placeOrderSW = By.xpath("//button[contains(text(), 'Place Order')]");
+
 
     By lbl_firstMultiOUMItemName = By.xpath("(//*[local-name()='svg' and @data-icon='chevron-down'])[2]/ancestor::tr/td//span/div[@data-tip='View Product Details']");
     By lbl_firstMultiOUMItemCode = By.xpath("(//*[local-name()='svg' and @data-icon='chevron-down'])[2]/ancestor::tr/td[2]");
@@ -208,6 +210,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String lbl_itemPriceMultiOUM = "((//button/*[local-name()='svg' and @data-icon='chevron-up'])[1]/ancestor::tr/td[last()-2]//input)[UOM] | ((//button/*[local-name()='svg' and @data-icon='chevron-up'])[1]/ancestor::tr/td[last()-2]//span)[UOM]";
     By btn_orderCheckoutReview = By.xpath("//button[contains(@data-tip, 'Click here to checkout')][normalize-space()!='']");
     String lbl_cartItemUnitPriceReviewMultiUOM = "(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//input)[UOM] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//span)[UOM]";
+    By combinedOrderPopUp = By.xpath("//div[contains(text(), 'Do you want to combine your orders?')]");
+    By combinedOrderContinue = By.xpath("//button[contains(text(), 'Continue')]");
+
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         /*restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -1230,6 +1235,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     public boolean isUserNavigatedToChefGlendaCatalog() {
         return restaurantUI.isDisplayed(txt_glendaCatalog);
     }
+    public void clickOnPlaceOrderSW() {
+        restaurantUI.click(btn_placeOrderSW );
+    }
 
     public String getItemNameFirstMultiOUM() throws InterruptedException {
         restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemName,3);
@@ -1348,6 +1356,12 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
 
         return Double.valueOf(priceText.replace("$", "").replace("/cs", "").replace("/pkg", "").trim());
 
+    }
+    public boolean isCombinedPopupDisplayed() {
+        return restaurantUI.isDisplayed(combinedOrderPopUp);
+    }
+    public void clickContinueCombined(){
+        restaurantUI.click(combinedOrderContinue);
     }
 
 }
