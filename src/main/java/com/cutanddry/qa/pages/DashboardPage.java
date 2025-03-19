@@ -23,7 +23,7 @@ public class DashboardPage extends LoginPage{
     By btn_pay = By.xpath("//a[contains(@data-tip, 'View Invoices')]");
     By txt_drafts = By.xpath("//div[contains(text(), 'Drafts')]");
     By txt_chats = By.xpath("//li[contains(text(), 'Your Suppliers')]");
-    By txt_pay = By.xpath("//h2[contains(text(), 'Pay')]");
+    By txt_pay = By.xpath("//h2[contains(text(), 'Invoices')]");
     By btn_customers = By.xpath("//a[@data-tip='Customers']");
     By btn_order = By.xpath("//a[@data-tip='Place Order']");
     String supplierTxt = "//tr[@class='_du1frc _14u3xd3 py-3']//div[text()='SUPPLIERNAME']";
