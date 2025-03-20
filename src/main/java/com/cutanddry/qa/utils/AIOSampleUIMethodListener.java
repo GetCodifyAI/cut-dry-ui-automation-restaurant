@@ -21,8 +21,10 @@ public class AIOSampleUIMethodListener implements IInvokedMethodListener {
         if (isFirstInvocation) {
             // This block will only run once, before the first test method
             System.out.println("Creating test cycle...");
+            String partValue = testResult.getTestContext().getCurrentXmlTest().getParameter("PART");
             // Place your one-time setup code here
-            newCycleKey = AioAPIHelper.createCycle(PROJECT_KEY);
+//            newCycleKey = AioAPIHelper.createCycle(PROJECT_KEY);
+            newCycleKey = AioAPIHelper.createCycle(PROJECT_KEY, partValue);
             System.out.println("Created cycle name: "+newCycleKey);
             isFirstInvocation = false;
         }
