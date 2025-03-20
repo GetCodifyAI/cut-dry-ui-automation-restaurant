@@ -22,7 +22,7 @@ public class AioAPIHelper {
     private static final String IMPORT_RESULTS = "/project/{projectKey}/testcycle/{cycleKey}/import/results?type={type}";
     private static final String UPLOAD_RUN_ATTACHMENT = "/project/{projectKey}/testcycle/{cycleKey}/testcase/{caseKey}/attachment";
     private static RequestSpecification defaultRequestSpec;
-    private static SimpleDateFormat formatter = new SimpleDateFormat("dd_MM_yyyy");
+    private static SimpleDateFormat formatter = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss");
     private static String todayDate = formatter.format(new Date());
 
     static  {
@@ -50,9 +50,10 @@ public class AioAPIHelper {
         doMultipartPost(UPLOAD_RUN_ATTACHMENT, f, null, projectKey, cycleKey, caseKey);
     }
 
-    public static String createCycle(String projectKey) {
+    public static String createCycle(String projectKey, String partValue) {
         Map<String, Object> newCycleDetails = new HashMap<>();
-        newCycleDetails.put("title", "AUTOMATED_EXECUTION_OPERATOR_"+todayDate);
+//        newCycleDetails.put("title", "AUTOMATED_EXECUTION_OPERATOR_"+todayDate);
+        newCycleDetails.put("title", "AUTOMATED_EXECUTION_OPERATOR_"+ partValue.toUpperCase()+"_"+todayDate);
 //        newCycleDetails.put("objective", "Trial Run");
 //        Map<String, String> folderDetails = Collections.singletonMap("ID","2");
 //        newCycleDetails.put("folder", folderDetails);
