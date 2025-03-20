@@ -212,6 +212,13 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String lbl_cartItemUnitPriceReviewMultiUOM = "(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//input)[UOM] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//span)[UOM]";
     By combinedOrderPopUp = By.xpath("//div[contains(text(), 'Do you want to combine your orders?')]");
     By combinedOrderContinue = By.xpath("//button[contains(text(), 'Continue')]");
+    By txtSetSubstitution = By.xpath("//div[contains(text(),'Item Substitution')]");
+    By btn_chooseSub = By.xpath("(//button[contains(text(),'Choose Sub')])[last()]");
+    By btn_selectSub = By.xpath("//div[contains(text(), 'Substitute with:')]/preceding-sibling::*[1][local-name()='svg' and @data-icon='circle']");
+    By btn_closeSub = By.xpath("//*[local-name()='svg' and @data-icon='xmark']");
+    By btn_editSub = By.xpath("(//*[local-name()='svg' and @data-icon='edit'])[last()]");
+    By btn_notSelectSub = By.xpath("//div[contains(text(), 'Not Selected')]/preceding-sibling::*[1][local-name()='svg' and @data-icon='circle']");
+    By btn_saveSelection = By.xpath("//button[normalize-space(text())='Save Selection']");
 
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
@@ -1362,6 +1369,29 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
     public void clickContinueCombined(){
         restaurantUI.click(combinedOrderContinue);
+    }
+    public boolean isSetSubstitutionTextDisplayed()throws InterruptedException{
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.isDisplayed(txtSetSubstitution);
+    }
+    public void clickChooseSub(){
+        restaurantUI.click(btn_chooseSub);
+    }
+    public void clickSelectSub(){
+        restaurantUI.click(btn_selectSub);
+    }
+    public void clickCloseSub(){
+        restaurantUI.click(btn_closeSub);
+    }
+    public void clickEditSub(){
+        restaurantUI.click(btn_editSub);
+    }
+    public void clickRemovePreviousSub(){
+        restaurantUI.click(btn_notSelectSub);
+    }
+    public void clickSaveSelection(){
+        restaurantUI.waitForVisibility(btn_saveSelection);
+        restaurantUI.click(btn_saveSelection);
     }
 
 }

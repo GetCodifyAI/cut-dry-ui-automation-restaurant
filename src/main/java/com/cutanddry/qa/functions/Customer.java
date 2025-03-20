@@ -715,5 +715,26 @@ public class Customer {
             customersPage.clickContinueCombined();
         }
     }
+    public static boolean isSetSubstitutionTextDisplayed()throws InterruptedException{
+        return customersPage.isSetSubstitutionTextDisplayed();
+    }
+    public static void clickChooseSub(){
+        customersPage.clickChooseSub();
+    }
+    public static void clickSelectSub(){
+        customersPage.clickSelectSub();
+    }
+    public static void clickCloseSub(){
+        customersPage.clickCloseSub();
+    }
+    public static void clickEditSub(){
+        customersPage.clickEditSub();
+    }
+    public static void clickRemovePreviousSub(){
+        customersPage.clickRemovePreviousSub();
+    }
+    public static void clickSaveSelection(){
+        customersPage.clickSaveSelection();
+    }
 
 }
