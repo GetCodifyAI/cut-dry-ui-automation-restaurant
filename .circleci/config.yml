@@ -612,11 +612,11 @@ workflows:
   scheduled-test-2:
     triggers:
       - schedule:
-          cron: "00 09 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC)
+          cron: "05 09 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC)
           filters:
             branches:
               only:
-                - main
+                - feature/ahsan_bugfix
     jobs:
       - daily-build-and-test-1
       - daily-build-and-test-2
