@@ -839,6 +839,20 @@ public class KeywordBase {
 
         return this;
     }
+    // Method to check if a checkbox is selected, given its locator
+    public boolean isCheckboxOrRadioBtnSelected(By checkboxLocator) {
+        try {
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(checkboxLocator));
+
+            WebElement checkbox = driver.findElement(checkboxLocator);
+
+            return checkbox.isSelected();
+        } catch (TimeoutException e) {
+
+            return false;
+        }
+    }
 
 
 }

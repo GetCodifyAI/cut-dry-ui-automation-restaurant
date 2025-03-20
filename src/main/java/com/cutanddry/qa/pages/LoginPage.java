@@ -181,7 +181,7 @@ public class LoginPage extends TestBase {
         restaurantUI.click(internalToolsBtn);
     }
     public void switchIntoNewTab(){
-        restaurantUI.OpenNewTabAndSwitchToIt();
+        restaurantUI.switchToNewTab();
     }
     public void closePreviousTab()throws InterruptedException{
         restaurantUI.CloseAllPreviousTabAndSwitchToNew();

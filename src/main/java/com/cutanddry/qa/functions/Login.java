@@ -119,5 +119,8 @@ public class Login {
     public static void closePreviousTab()throws InterruptedException{
         loginPage.closePreviousTab();
     }
+    public static void switchIntoNewTab()throws InterruptedException{
+        loginPage.switchIntoNewTab();
+    }
 
 }

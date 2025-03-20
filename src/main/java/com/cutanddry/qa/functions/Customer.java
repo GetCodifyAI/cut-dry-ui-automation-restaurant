@@ -736,5 +736,23 @@ public class Customer {
     public static void clickSaveSelection(){
         customersPage.clickSaveSelection();
     }
+    public static boolean isTopCategoryPicksDisplayed(){
+        return customersPage.isTopCategoryPicksDisplayed();
+    }
+    public static boolean isCompareSimilarItemsDisplayed(){
+        return customersPage.isCompareSimilarItemsDisplayed();
+    }
+    public static boolean isRecommendedForYouItemNameDisplayed(String code){
+        return customersPage.isRecommendedForYouItemNameDisplayed(code);
+    }
+    public static boolean isRecommendedBySalesRepDisplayed(String code){
+        return customersPage.isRecommendedBySalesRepDisplayed(code);
+    }
+    public static boolean isDontForgetToOrderDisplayed(){
+        return customersPage.isDontForgetToOrderDisplayed();
+    }
+    public static boolean isMoreFromThisBrandDisplayed(){
+        return customersPage.isMoreFromThisBrandDisplayed();
+    }
 
 }
