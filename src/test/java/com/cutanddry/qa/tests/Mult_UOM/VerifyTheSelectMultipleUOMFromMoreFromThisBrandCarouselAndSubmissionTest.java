@@ -29,7 +29,7 @@ public class VerifyTheSelectMultipleUOMFromMoreFromThisBrandCarouselAndSubmissio
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-1003")
+    @Test(groups = "DOT-TC-1010")
     public void VerifyTheSelectMultipleUOMFromMoreFromThisBrandCarouselAndSubmission() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());

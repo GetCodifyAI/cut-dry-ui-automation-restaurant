@@ -20,7 +20,7 @@ public class VerifyTheSelectMultipleUOMFromRecommendedBySalesRepCarouselAndSubmi
     String uom2 = "2";
     static double itemPriceUOM1 ,itemPriceUOM2,totalItemPriceReviewOrder,itemPrice;
     String orderId,totalItemQuantityReviewOrder,itemName,searchItemCode;
-    static String salesRep = "mashan";
+    static String salesRep = "Eshan Deane";
 
 
     @BeforeMethod
@@ -29,7 +29,7 @@ public class VerifyTheSelectMultipleUOMFromRecommendedBySalesRepCarouselAndSubmi
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-1003")
+    @Test(groups = "DOT-TC-1007")
     public void VerifyTheSelectMultipleUOMFromRecommendedBySalesRepCarouselAndSubmission() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());

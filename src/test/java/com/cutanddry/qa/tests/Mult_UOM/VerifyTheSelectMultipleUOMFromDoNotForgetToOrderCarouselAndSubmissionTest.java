@@ -27,7 +27,7 @@ public class VerifyTheSelectMultipleUOMFromDoNotForgetToOrderCarouselAndSubmissi
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-1003")
+    @Test(groups = "DOT-TC-1009")
     public void VerifyTheSelectMultipleUOMFromDoNotForgetToOrderCarouselAndSubmission() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
