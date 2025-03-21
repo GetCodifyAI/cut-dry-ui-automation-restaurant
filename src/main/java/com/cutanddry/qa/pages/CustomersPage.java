@@ -219,6 +219,12 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_editSub = By.xpath("(//*[local-name()='svg' and @data-icon='edit'])[last()]");
     By btn_notSelectSub = By.xpath("//div[contains(text(), 'Not Selected')]/preceding-sibling::*[1][local-name()='svg' and @data-icon='circle']");
     By btn_saveSelection = By.xpath("//button[normalize-space(text())='Save Selection']");
+    By lbl_topCategoryPicks = By.xpath("//div[text()='Top Category Picks']");
+    By section_compareSimilar = By.xpath("//div[text()='Compare Similar Items']");
+    String lbl_recommendedForYouItem = "//div[contains(text(), 'Recommended for You')]//following-sibling::div//div[text()='CODE']";
+    String lbl_recommendedBySalesRep = "//div[contains(text(), 'Recommended by')]//following-sibling::div//div[contains(text(), 'CODE')]";
+    By section_dontForget = By.xpath("//div[text()=\"Don't Forget to Order\"]");
+    By section_moreFromThisBrand = By.xpath("//div[contains(text(), 'More From')]");
 
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
@@ -1392,6 +1398,25 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     public void clickSaveSelection(){
         restaurantUI.waitForVisibility(btn_saveSelection);
         restaurantUI.click(btn_saveSelection);
+    }
+    public boolean isTopCategoryPicksDisplayed(){
+        return restaurantUI.isDisplayed(lbl_topCategoryPicks);
+    }
+    public boolean isCompareSimilarItemsDisplayed(){
+        return restaurantUI.isDisplayed(section_compareSimilar);
+    }
+    public boolean isRecommendedForYouItemNameDisplayed(String code){
+        return restaurantUI.isDisplayed(By.xpath(lbl_recommendedForYouItem.replace("CODE",code )));
+    }
+    public boolean isRecommendedBySalesRepDisplayed(String code) {
+        return restaurantUI.isDisplayed(By.xpath(lbl_recommendedBySalesRep.replace("CODE", '#'+code)));
+    }
+    public boolean isDontForgetToOrderDisplayed(){
+        restaurantUI.scrollToElement(section_dontForget);
+        return restaurantUI.isDisplayed(section_dontForget);
+    }
+    public boolean isMoreFromThisBrandDisplayed(){
+        return restaurantUI.isDisplayed(section_moreFromThisBrand);
     }
 
 }
