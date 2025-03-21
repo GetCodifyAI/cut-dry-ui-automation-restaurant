@@ -854,6 +854,13 @@ public class KeywordBase {
         }
     }
 
+    public String executeJSForText(By locator) {
+        return (String) ((JavascriptExecutor) driver).executeScript(
+                "return arguments[0] ? arguments[0].textContent.trim() : '';",
+                driver.findElement(locator)
+        );
+    }
+
 
 }
 
