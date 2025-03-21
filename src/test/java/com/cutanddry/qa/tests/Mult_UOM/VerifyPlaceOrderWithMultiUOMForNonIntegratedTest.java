@@ -7,6 +7,7 @@ import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.History;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -34,11 +35,11 @@ public class VerifyPlaceOrderWithMultiUOMForNonIntegratedTest extends TestBase {
     public void VerifyPlaceOrderWithMultiUOMForNonIntegrated() throws InterruptedException {
         softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Login.navigateToLoginAs();
         Login.logInToOperator(userName);
         Dashboard.selectSupplier(supplierName);
-        softAssert.assertTrue(Dashboard.isNavigatedToOperatorOrderGuide(supplierName),"ERROR in Navigating to Suppliers page");
+        Assert.assertTrue(Dashboard.isNavigatedToOperatorOrderGuide(supplierName),"ERROR in Navigating to Suppliers page");
         Customer.sortItemsByCustomOrder();
 
         multiItemName = Customer.getItemNameFirstMultiOUMCoupa();
@@ -65,7 +66,7 @@ public class VerifyPlaceOrderWithMultiUOMForNonIntegratedTest extends TestBase {
         Customer.clickClose();
 
         History.goToHistory();
-        softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.clickOnFirstItemOfOrderHistory();
         totalHistoryItemPrice = History.getItemPriceOnMultiOUM();
         softAssert.assertEquals(Math.round(totalHistoryItemPrice * 100.0) / 100.0,Math.round(totalOGItemPrice * 100.0) / 100.0);
