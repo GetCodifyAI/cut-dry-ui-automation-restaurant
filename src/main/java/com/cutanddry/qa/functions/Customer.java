@@ -582,6 +582,13 @@ public class Customer {
     }
     public static void clickCheckOutPDP(){
         customersPage.clickCheckOutPDP();
+        try {
+            if(customersPage.isSetSubstitutionTextDisplayed()){
+                customersPage.clickCloseSub();
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
     public static boolean isDeliveryOptionSelected() {
         return customersPage.isDeliveryOptionSelected();
@@ -754,5 +761,20 @@ public class Customer {
     public static boolean isMoreFromThisBrandDisplayed(){
         return customersPage.isMoreFromThisBrandDisplayed();
     }
+    public static String getItemNameFirstMultiOUMCoupa() throws InterruptedException {
+        return customersPage.getItemNameFirstMultiOUMCoupa();
+    }
+
+
+    public static String getItemCodeFirstMultiOUMCoupa() throws InterruptedException {
+        return customersPage.getItemCodeFirstMultiOUMCoupa();
+    }
+
+
+    public static double getActiveItemPriceFirstMultiOUMRowStableCoupa() throws InterruptedException {
+        return customersPage.getActiveItemPriceFirstMultiOUMRowStableCoupa();
+    }
+
+    public static String getFirstElementFrmCatalogSearchResults(){return customersPage.getFirstItemNameFrmSearchResults();}
 
 }

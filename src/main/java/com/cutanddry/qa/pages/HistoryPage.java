@@ -66,8 +66,10 @@ public class HistoryPage extends TestBase {
     By btn_orderItemCountReview = By.xpath("//div[contains(text(), 'Items')]/../following-sibling::td[normalize-space()!='']");
     String orderTitle = "//h2[contains(text(),'Order #ORDER_ID')]";
     By btn_submittedOrderTotal = By.xpath("(//div[contains(text(), 'Total')]/../following-sibling::td[normalize-space()!=''])[last()]");
-
-
+    By lbl_orderTableColumn = By.xpath("//table/thead/tr/th");
+    String lbl_orderTableColumnName = "//table/thead/tr/th[COUNT]/span";
+    By lbl_orderTableRow = By.xpath("//tbody/tr");
+    String lbl_orderTableRef = "//tbody/tr[TR_COUNT]/td[TH_COUNT]";
 
     public void clickClose(){
         restaurantUI.waitForVisibility(btn_close);
@@ -413,6 +415,54 @@ public class HistoryPage extends TestBase {
         restaurantUI.waitForVisibility(btn_submittedOrderTotal);
         String priceText = restaurantUI.getText(btn_submittedOrderTotal).replace("$", "").replace(",", "");
         return Double.valueOf(priceText);
+    }
+
+   /* public void clickOnOrder(String orderId) {
+        for (int i = 1; i <= restaurantUI.countElements(lbl_orderTableColumn); i++) {
+            if ("Reference".equalsIgnoreCase(restaurantUI.getText(By.xpath(lbl_orderTableColumnName.replace("COUNT", String.valueOf(i)))))) {
+                for (int j = 1; j <= restaurantUI.countElements(lbl_orderTableRow); j++) {
+                    String xpath = lbl_orderTableRef.replace("TR_COUNT", String.valueOf(j)).replace("TH_COUNT", String.valueOf(i));
+
+                    String referenceData;
+                    try {
+                        referenceData = restaurantUI.getText(2,By.xpath(xpath)).trim();
+                    } catch (Exception e) {
+                        continue;
+                    }
+
+                    if (!referenceData.isEmpty() && orderId.equalsIgnoreCase(referenceData.replace("Order",""))) {
+                        restaurantUI.click(By.xpath(xpath));
+                        return;
+                    }
+                }
+            }
+        }
+    }*/
+
+    public void clickOnOrder(String orderId) {
+        int maxRecords = 15;
+        for (int i = 1; i <= restaurantUI.countElements(lbl_orderTableColumn); i++) {
+            String columnName = restaurantUI.executeJSForText(By.xpath(lbl_orderTableColumnName.replace("COUNT", String.valueOf(i))));
+
+            if ("Reference".equalsIgnoreCase(columnName)) {
+                int totalRows = Math.min(restaurantUI.countElements(lbl_orderTableRow), maxRecords);
+                for (int j = 1; j <= totalRows; j++) {
+                    String xpath = lbl_orderTableRef.replace("TR_COUNT", String.valueOf(j)).replace("TH_COUNT", String.valueOf(i));
+
+                    String referenceData;
+                    try {
+                        referenceData = restaurantUI.executeJSForText(By.xpath(xpath));
+                    } catch (Exception e) {
+                        continue;
+                    }
+
+                    if (!referenceData.isEmpty() && orderId.equalsIgnoreCase(referenceData.replace("Order", "").trim())) {
+                        restaurantUI.click(By.xpath(xpath));  // You can replace this with JS click if needed
+                        return;
+                    }
+                }
+            }
+        }
     }
 
 }
