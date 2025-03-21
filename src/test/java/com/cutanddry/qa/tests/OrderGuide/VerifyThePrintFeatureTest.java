@@ -30,7 +30,7 @@ public class VerifyThePrintFeatureTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.clickOnPrint();
         softAssert.assertTrue(Customer.isPrintFriendlyPopupDisplayed(),"print friendly popup error");
         Customer.printOrderGuide();

@@ -31,7 +31,7 @@ public class AddProductsFrmCatalogTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.goToCatalog();
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
         Customer.searchItemOnCatalog(itemName);

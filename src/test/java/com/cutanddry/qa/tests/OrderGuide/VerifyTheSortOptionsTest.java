@@ -31,7 +31,7 @@ public class VerifyTheSortOptionsTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.sortByItemCategory();
         softAssert.assertTrue(Customer.isSeaFoodTextDisplayed(),"sort error for item category");
         Customer.sortByAlphabet();

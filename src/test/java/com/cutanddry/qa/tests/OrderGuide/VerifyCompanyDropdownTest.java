@@ -30,7 +30,7 @@ public class VerifyCompanyDropdownTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.clickCompanyDropdown();
         softAssert.assertTrue(Customer.isCompanyDropdownTextDisplayed(),"dropdown error");
         softAssert.assertAll();

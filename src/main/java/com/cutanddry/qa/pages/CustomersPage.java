@@ -1466,5 +1466,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
 
         return Double.valueOf(priceText);
     }
+    public void refreshCustomersPage(){
+        restaurantUI.refreshPage();
+    }
 
 }
