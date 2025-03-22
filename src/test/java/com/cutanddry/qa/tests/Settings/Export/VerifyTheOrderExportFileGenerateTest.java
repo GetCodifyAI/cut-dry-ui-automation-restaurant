@@ -7,6 +7,7 @@ import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.functions.Settings;
 import com.cutanddry.qa.functions.Users;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -28,7 +29,7 @@ public class VerifyTheOrderExportFileGenerateTest extends TestBase {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Settings.clickOnExportUnderSettings();
         softAssert.assertTrue(Settings.isExportDataTextDisplayed(),"navigate to the export setting not successfully");
         Settings.selectExportType(type);

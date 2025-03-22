@@ -4,6 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.*;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -26,14 +27,15 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
     public void VerifyWLAppManagerRoles() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
         Login.loginAsManagerWL(OperatorName);
         Login.clickManager(name);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error order");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error order");
+
         Customer.goToEdit();
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigating to order guide edit error");
         Customer.clickOnBackBtnInEditOrderGuide();
@@ -47,6 +49,7 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
         Customer.clickClose();
+
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"navigation to history error");
         Dashboard.navigateToDrafts();
@@ -59,6 +62,7 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
         softAssert.assertTrue(Settings.isNavigatedToRestaurantSettings(),"navigation to restaurant settings error");
         Settings.clickOnLocationsUnderSettings();
         softAssert.assertTrue(Settings.isNavigatedToLocationSettings(),"navigation to loc settings error");
+
         restaurantUI.switchToNewTab();
         restaurantUI.switchToNewTab();
         Dashboard.navigateToUsers();
@@ -77,7 +81,7 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
     @AfterMethod
     public void tearDown(ITestResult result) {
         takeScreenshotOnFailure(result);
-        closeAllBrowsers();
+        closeAllBrowsersAtOnce();
     }
 
 }

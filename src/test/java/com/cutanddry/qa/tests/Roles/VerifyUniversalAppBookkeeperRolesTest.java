@@ -4,6 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.*;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -25,14 +26,15 @@ public class VerifyUniversalAppBookkeeperRolesTest extends TestBase {
     public void VerifyUniversalAppBookkeeperRoles() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Login.navigateToLoginAs();
         Login.loginAsBookkeeper(OperatorName);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+
         Customer.goToEdit();
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
         Customer.clickOnBackBtnInEditOrderGuide();
@@ -48,6 +50,7 @@ public class VerifyUniversalAppBookkeeperRolesTest extends TestBase {
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
         Customer.clickClose();
+
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"navigation to history error");
         Dashboard.navigateToDrafts();
@@ -64,6 +67,7 @@ public class VerifyUniversalAppBookkeeperRolesTest extends TestBase {
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Employee"),"users error");
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Bookkeeper"),"users error");
         Customer.clickClose();
+
         Support.goToSupportPage();
         softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
         Login.navigateToOperator();

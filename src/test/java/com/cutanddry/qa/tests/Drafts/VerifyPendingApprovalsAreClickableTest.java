@@ -7,6 +7,7 @@ import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Drafts;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -31,20 +32,20 @@ public class VerifyPendingApprovalsAreClickableTest extends TestBase {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
 
         //Login as Employee
         Login.navigateToLoginAs();
         Login.loginAsAdminWL(OperatorName);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.increaseFirstRowQtyInClassic(11);
         Customer.checkoutItems();
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isSentApprovalDisplayed(),"sent approval pop up not display");
         Customer.clickViewOrderInDraft();
-        softAssert.assertTrue(Drafts.isUserNavigatedToDrafts(),"navigation error");
+        Assert.assertTrue(Drafts.isUserNavigatedToDrafts(),"navigation error");
         referenceNum = Drafts.getReferenceNum();
         Login.closePreviousTab();
 
@@ -53,7 +54,7 @@ public class VerifyPendingApprovalsAreClickableTest extends TestBase {
         Login.loginAsAdminWL(AdminName);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToDrafts();
-        softAssert.assertTrue(Drafts.isUserNavigatedToDrafts(),"navigation error");
+        Assert.assertTrue(Drafts.isUserNavigatedToDrafts(),"navigation error");
         softAssert.assertEquals(Drafts.getReferenceNum(),referenceNum,"draft matching error");
         Drafts.clickFirstDraft();
         Customer.submitOrder();
@@ -61,7 +62,7 @@ public class VerifyPendingApprovalsAreClickableTest extends TestBase {
         Customer.clickClose();
 
         Dashboard.navigateToDrafts();
-        softAssert.assertTrue(Drafts.isUserNavigatedToDrafts(),"navigation error");
+        Assert.assertTrue(Drafts.isUserNavigatedToDrafts(),"navigation error");
         softAssert.assertFalse(Drafts.isReferenceNumberDisplayed(referenceNum),"approve draft not successfully ");
         softAssert.assertAll();
     }
