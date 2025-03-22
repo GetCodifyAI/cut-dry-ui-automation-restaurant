@@ -6,6 +6,7 @@ import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.History;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -31,11 +32,12 @@ public class VerifyCoupaCafeNonIntegratedSupplierOrderEditTest {
         String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(), "login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(), "login error");
         Login.navigateToLoginAs();
         Login.logInToOperator(userName);
         Dashboard.selectSupplier(supplierName);
-        softAssert.assertTrue(Dashboard.isNavigatedToOperatorOrderGuide(supplierName), "ERROR in Navigating to Suppliers page");
+        Assert.assertTrue(Dashboard.isNavigatedToOperatorOrderGuide(supplierName), "ERROR in Navigating to Suppliers page");
+
         itemName = Customer.getItemNameFirstRow();
         Customer.increaseFirstRowQtyInClassic(1);
         Customer.checkoutItems();
@@ -46,7 +48,7 @@ public class VerifyCoupaCafeNonIntegratedSupplierOrderEditTest {
         Customer.clickClose();
 
         History.goToHistory();
-        softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.clickOnFirstItemOfOrderHistory();
         softAssert.assertTrue(History.isOrderSectionDisplayed(),"Order section not display");
         History.clickEditOrder();

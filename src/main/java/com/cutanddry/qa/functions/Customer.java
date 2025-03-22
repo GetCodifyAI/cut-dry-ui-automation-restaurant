@@ -600,7 +600,15 @@ public class Customer {
         return customersPage.isCustomersTextDisplayed();
     }
     public static boolean isCustomerSearchResultByCodeDisplayed(String code) throws InterruptedException {
-        return customersPage.isCustomerSearchResultByCodeDisplayed(code);
+//        return customersPage.isCustomerSearchResultByCodeDisplayed(code);
+        if (customersPage.isCustomerSearchResultByCodeDisplayed(code)) {
+            return true;
+        } else {
+            customersPage.refreshCustomersPage();
+            customersPage.clickOnSearchCustomers();
+            customersPage.typeOnSearchCustomers(code);
+            return customersPage.isCustomerSearchResultByCodeDisplayed(code);
+        }
     }
     public static String getBusinessNameFromCustomers(String CustomerCode){
         return customersPage.getBusinessName(CustomerCode);

@@ -4,6 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.*;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -35,13 +36,13 @@ public class VerifyThSelectMultipleUOMJustInTimeItemAndDraftEditTest extends Tes
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Login.navigateToLoginAs();
         Login.loginAsAdminWL(OperatorName);
         restaurantUI.switchToNewTab();
 
         Customer.clickOnPlaceOrder();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.goToCatalog();
         Customer.searchItemOnCatalog(searchItemCde);
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(searchItemName.toLowerCase()), "item not found");
@@ -59,7 +60,7 @@ public class VerifyThSelectMultipleUOMJustInTimeItemAndDraftEditTest extends Tes
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
 
         Dashboard.navigateToDrafts();
-        softAssert.assertTrue(Drafts.isUserNavigatedToDrafts(),"navigation error");
+        Assert.assertTrue(Drafts.isUserNavigatedToDrafts(),"navigation error");
         softAssert.assertTrue(Drafts.isLastDraftDisplayed(String.valueOf(totalPDPItemPrice)),"draft creating error");
         Drafts.clickDraft(String.valueOf(totalPDPItemPrice));
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
@@ -83,7 +84,7 @@ public class VerifyThSelectMultipleUOMJustInTimeItemAndDraftEditTest extends Tes
         Customer.clickClose();
 
         History.goToHistory();
-        softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.searchOrderID(orderId);
         softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
         History.clickOnFirstItemOfOrderHistory();

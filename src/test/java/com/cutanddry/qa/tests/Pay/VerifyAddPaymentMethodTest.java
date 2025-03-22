@@ -7,6 +7,7 @@ import com.cutanddry.qa.functions.InternalTools;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.functions.Pay;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -31,7 +32,7 @@ public class VerifyAddPaymentMethodTest extends TestBase {
     public void VerifyAddPaymentMethod()throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
 
         Login.navigateToInternalTools();
         InternalTools.navigateToConfigureSupplier();
@@ -44,7 +45,7 @@ public class VerifyAddPaymentMethodTest extends TestBase {
 
         Login.navigateToOperator();
         Pay.navigateToPay();
-        softAssert.assertTrue(Pay.isPaySupplierTextDisplayed(),"error in text display");
+        Assert.assertTrue(Pay.isPaySupplierTextDisplayed(),"error in text display");
         Pay.payOption();
         softAssert.assertTrue(Pay.isInvoiceIDNoDisplayed(),"error in invoice ID number");
         Pay.clickNextOnBatchPaymentOverlay();

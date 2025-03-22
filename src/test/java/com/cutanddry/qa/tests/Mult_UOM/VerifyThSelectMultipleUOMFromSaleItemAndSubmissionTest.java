@@ -4,6 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.*;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -17,7 +18,7 @@ public class VerifyThSelectMultipleUOMFromSaleItemAndSubmissionTest extends Test
     String uomDropDownOption = "Multiple Units";
     String uom1 = "1";
     String uom2 = "2";
-    String uom3 = "3";
+//    String uom3 = "3";
     static double itemPriceUOM1 ,itemPriceUOM2,totalItemPrice;
     String orderId,totalItemQuantityReviewOrder;
 
@@ -33,10 +34,11 @@ public class VerifyThSelectMultipleUOMFromSaleItemAndSubmissionTest extends Test
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+
         Customer.goToCatalog();
         Customer.searchItemOnCatalog(searchItemCde);
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(searchItemName.toLowerCase()), "item not found");
@@ -44,7 +46,7 @@ public class VerifyThSelectMultipleUOMFromSaleItemAndSubmissionTest extends Test
         Catalog.ClickOnMultiUomDropDownOption(uomDropDownOption);
         softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
         itemPriceUOM1 = Catalog.getPDPPriceUOM(uom1);
-        itemPriceUOM2 = Catalog.getPDPPriceUOM(uom3);
+        itemPriceUOM2 = Catalog.getPDPPriceUOM(uom2);
         Catalog.clickAddToCartPlusIcon(1, uom1);
         Catalog.clickAddToCartPlusIcon(1, uom2);
         totalItemPrice = Customer.getItemPriceOnCheckoutButtonViaPDP();
@@ -59,7 +61,7 @@ public class VerifyThSelectMultipleUOMFromSaleItemAndSubmissionTest extends Test
         Customer.clickClose();
 
         History.goToHistory();
-        softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.searchOrderID(orderId);
         softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
         History.clickOnFirstItemOfOrderHistory();

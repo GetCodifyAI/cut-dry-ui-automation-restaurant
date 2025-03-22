@@ -4,6 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.*;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -34,10 +35,10 @@ public class VerifyProductWithDifferentCombinationsOfUOMsCanBeAddedFromCatalogIn
         softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.sortItemsByCustomOrder();
 
         multiItemName = Customer.getItemNameFirstMultiOUM();
@@ -74,7 +75,6 @@ public class VerifyProductWithDifferentCombinationsOfUOMsCanBeAddedFromCatalogIn
         totalPDPItemPrice = Customer.getItemPriceOnCheckoutButtonViaPDP();
         softAssert.assertEquals(Math.round(totalPDPItemPrice * 100.0) / 100.0,
                 ((Math.round(itemPriceUOM1 * 100.0) / 100.0)+(Math.round(itemPriceUOM2 * 100.0) / 100.0)+Math.round(subTotalPDPItemPrice * 100.0) / 100.0), "The item has not been selected at 2nd item.");
-        System.out.println(totalPDPItemPrice);
 
 
 
@@ -88,14 +88,12 @@ public class VerifyProductWithDifferentCombinationsOfUOMsCanBeAddedFromCatalogIn
         Customer.clickClose();
 
         History.goToHistory();
-        softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.clickOnFirstItemOfOrderHistory();
         totalHistoryItemPrice = History.getItemPriceOnMultiOUM();
         totalHistoryItemCount = History.getItemCountOnReviewMultiOUM();
         softAssert.assertEquals(Math.round(totalHistoryItemPrice * 100.0) / 100.0,Math.round(totalPDPItemPrice * 100.0) / 100.0,"The product total price on the 'Review Order' page is not matched with the ordered product details under the 'History' page.");
         softAssert.assertEquals(totalHistoryItemCount,4.0,"The product units on the 'Review Order' page should be matched with the ordered product details under the 'History' page.");
-        System.out.println(totalHistoryItemPrice);
-        System.out.println(totalPDPItemPrice);
         softAssert.assertAll();
 
     }

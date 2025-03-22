@@ -7,6 +7,7 @@ import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.functions.Order;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -34,10 +35,10 @@ public class PlacePickUpOrderViaOrderGuideCatalogAndPDPTest extends TestBase {
         // Restaurant Flows
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 
         // Add the product via Order Guide
         itemName = Customer.getItemNameFirstRow();
@@ -74,9 +75,9 @@ public class PlacePickUpOrderViaOrderGuideCatalogAndPDPTest extends TestBase {
         Login.navigateToLoginAs();
         Login.goToDistributor(Dp_Name);
         Dashboard.isUserNavigatedToDistributorDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(),"login error");
         Dashboard.navigateToCustomers();
-        softAssert.assertTrue(Customer.isCustomersTextDisplayed(),"customer section not display");
+        Assert.assertTrue(Customer.isCustomersTextDisplayed(),"customer section not display");
         Customer.searchCustomerByCode(customerCode);
         softAssert.assertTrue(Customer.isCustomerSearchResultByCodeDisplayed(customerCode),"customer not found");
         String BusinessName = Customer.getBusinessNameFromCustomers(customerCode);

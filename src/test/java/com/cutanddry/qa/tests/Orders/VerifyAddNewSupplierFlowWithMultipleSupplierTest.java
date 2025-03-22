@@ -7,6 +7,7 @@ import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.functions.Order;
 import com.cutanddry.qa.functions.Suppliers;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -27,9 +28,10 @@ public class VerifyAddNewSupplierFlowWithMultipleSupplierTest extends TestBase {
     public void VerifyAddNewSupplierFlowWithMultipleSupplier() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+
         Order.goToOrder();
-        softAssert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
+        Assert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
         Order.clickAddNewSupplier();
         softAssert.assertTrue(Suppliers.isAddSuppliersPopUpDisplayed(),"Add supplier pop up window not displayed");
         Suppliers.clickContinue();
@@ -37,14 +39,15 @@ public class VerifyAddNewSupplierFlowWithMultipleSupplierTest extends TestBase {
         Suppliers.enterSupplier2(SupplierName2);
         Suppliers.clickContinue();
         Suppliers.clickOk();
+
         Order.goToOrder();
-        softAssert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
+        Assert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
         softAssert.assertTrue(Order.isAddedNewSupplierDisplayed(SupplierName),"error in supplier creation");
         softAssert.assertTrue(Order.isAddedNewSupplierDisplayed(SupplierName2),"error in supplier creation");
 
         //delete supplier
         Suppliers.goToSuppliers();
-        softAssert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"Supplier navigation error");
+        Assert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"Supplier navigation error");
         Suppliers.selectOneSupplier(SupplierName);
         softAssert.assertTrue(Suppliers.isEditSuppliersPopUpDisplayed(),"Edit supplier pop up window not displayed");
         Suppliers.deleteSupplier();
@@ -53,7 +56,7 @@ public class VerifyAddNewSupplierFlowWithMultipleSupplierTest extends TestBase {
         Suppliers.deleteSupplier();
 
         Order.goToOrder();
-        softAssert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
+        Assert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
         softAssert.assertFalse(Order.isAddedNewSupplierDisplayed(SupplierName),"error in supplier creation");
         softAssert.assertFalse(Order.isAddedNewSupplierDisplayed(SupplierName2),"error in supplier creation");
         softAssert.assertAll();

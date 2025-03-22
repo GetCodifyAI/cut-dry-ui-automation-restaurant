@@ -33,8 +33,9 @@ public class CatalogPage extends LoginPage {
 
 
     public void ClickOnMultiUomDropDown(String name)throws InterruptedException{
-        restaurantUI.waitForVisibility(By.xpath(multiUomDropDown.replace("NAME", name)));
+//        restaurantUI.waitForVisibility(By.xpath(multiUomDropDown.replace("NAME", name)));
         restaurantUI.click(By.xpath(multiUomDropDown.replace("NAME", name)));
+        restaurantUI.clickUsingJavaScript(By.xpath(multiUomDropDown.replace("NAME", name)));
     }
     public void ClickOnMultiUomDropDownOption(String option){
         restaurantUI.waitForVisibility(By.xpath(multiUomDropDownOption.replace("OPTION", option)));

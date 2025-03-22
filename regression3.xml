@@ -41,6 +41,14 @@
             <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheDistributorsWithRewardsTest" />
             <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheRewardTypeTest" />
             <class name="com.cutanddry.qa.tests.Rewards.VerifyFilterOptionOfTheRewardStatusTest" />
+
+            <class name="com.cutanddry.qa.tests.Orders.VerifyAddNewSupplierFlowWithASingleSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyAddNewSupplierFlowWithMultipleSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyUploadOrderGuideItemListTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyDeletionOfTheCreatedSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifySupplierFilteredByLocationTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyTheCreateItemFunctionalityTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyUserCanOrderItemsBeforeCutOffTest" />
         </classes>
     </test>
 </suite>
