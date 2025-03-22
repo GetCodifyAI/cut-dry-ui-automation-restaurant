@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 
 public class VerifyAddingSupplierTest extends TestBase {
     static User user;
-    static String SupplierName = "TestSupplier1";
+    static String SupplierName = "TestSupplier"+generateDynamicValue();
     @BeforeMethod
     public void setUp() {
         initialization();
@@ -38,6 +38,11 @@ public class VerifyAddingSupplierTest extends TestBase {
         Suppliers.clickContinue();
         Suppliers.clickSave();
         softAssert.assertTrue(Suppliers.isSupplierDisplayed(SupplierName),"error in supplier creation");
+
+        // Post request
+        Suppliers.selectOneSupplier(SupplierName);
+        Suppliers.deleteSupplier();
+
         softAssert.assertAll();
     }
 

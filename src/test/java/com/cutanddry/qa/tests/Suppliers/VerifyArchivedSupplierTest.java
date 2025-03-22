@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyArchivedSupplierTest extends TestBase {
     static User user;
-    static String SupplierName = "TestSupplier07";
+    static String SupplierName = "TestSupplier07"+generateDynamicValue();
 
     @BeforeMethod
     public void setUp() {

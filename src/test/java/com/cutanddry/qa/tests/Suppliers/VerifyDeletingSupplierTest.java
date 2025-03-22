@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyDeletingSupplierTest extends TestBase {
     static User user;
-    static String editSupplierName = "TestSupplierEdited";
+    static String SupplierName = "TestSupplier"+generateDynamicValue();
 
     @BeforeMethod
     public void setUp() {
@@ -30,10 +30,20 @@ public class VerifyDeletingSupplierTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Suppliers.goToSuppliers();
         Assert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"Supplier navigation error");
-        Suppliers.selectOneSupplier(editSupplierName);
+
+        // Pre-Request
+        Suppliers.clickAddSupplier();
+        Suppliers.clickContinue();
+        Suppliers.enterSupplier(SupplierName);
+        Suppliers.clickContinue();
+        Suppliers.clickSave();
+        softAssert.assertTrue(Suppliers.isSupplierDisplayed(SupplierName),"error in supplier creation");
+
+        // Test
+        Suppliers.selectOneSupplier(SupplierName);
         softAssert.assertTrue(Suppliers.isEditSuppliersPopUpDisplayed(),"Edit supplier pop up window not displayed");
         Suppliers.deleteSupplier();
-        softAssert.assertFalse(Suppliers.isSupplierDisplayed(editSupplierName),"error in supplier delete");
+        softAssert.assertFalse(Suppliers.isSupplierDisplayed(SupplierName),"error in supplier delete");
         softAssert.assertAll();
     }
 

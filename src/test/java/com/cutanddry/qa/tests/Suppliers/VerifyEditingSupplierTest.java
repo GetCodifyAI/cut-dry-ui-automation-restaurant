@@ -15,8 +15,8 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyEditingSupplierTest extends TestBase {
     static User user;
-    static String SupplierName = "TestSupplier1";
-    static String editSupplierName = "TestSupplierEdited";
+    static String SupplierName = "TestSupplier"+generateDynamicValue();
+    static String editSupplierName = "TestSupplierEdited"+generateDynamicValue();
 
     @BeforeMethod
     public void setUp() {
@@ -31,11 +31,26 @@ public class VerifyEditingSupplierTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Suppliers.goToSuppliers();
         Assert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"Supplier navigation error");
+
+        // Pre-Request
+        Suppliers.clickAddSupplier();
+        Suppliers.clickContinue();
+        Suppliers.enterSupplier(SupplierName);
+        Suppliers.clickContinue();
+        Suppliers.clickSave();
+        softAssert.assertTrue(Suppliers.isSupplierDisplayed(SupplierName),"error in supplier creation");
+
+        // Test
         Suppliers.selectOneSupplier(SupplierName);
         softAssert.assertTrue(Suppliers.isEditSuppliersPopUpDisplayed(),"Edit supplier pop up window not displayed");
         Suppliers.editSupplierName(editSupplierName);
         Suppliers.clickSave();
         softAssert.assertTrue(Suppliers.isSupplierDisplayed(editSupplierName),"error in supplier edit");
+
+        // Post request
+        Suppliers.selectOneSupplier(editSupplierName);
+        Suppliers.deleteSupplier();
+
         softAssert.assertAll();
     }
 
