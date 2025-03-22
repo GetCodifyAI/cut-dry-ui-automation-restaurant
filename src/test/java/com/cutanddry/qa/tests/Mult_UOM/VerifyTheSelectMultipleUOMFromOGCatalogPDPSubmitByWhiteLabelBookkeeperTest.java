@@ -92,7 +92,7 @@ public class VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelBookkee
     @AfterMethod
     public void tearDown(ITestResult result) {
         takeScreenshotOnFailure(result);
-        closeAllBrowsers();
+        closeAllBrowsersAtOnce();
     }
 
 }

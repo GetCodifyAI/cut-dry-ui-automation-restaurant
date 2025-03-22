@@ -18,7 +18,7 @@ public class VerifyThSelectMultipleUOMFromSaleItemAndSubmissionTest extends Test
     String uomDropDownOption = "Multiple Units";
     String uom1 = "1";
     String uom2 = "2";
-    String uom3 = "3";
+//    String uom3 = "3";
     static double itemPriceUOM1 ,itemPriceUOM2,totalItemPrice;
     String orderId,totalItemQuantityReviewOrder;
 
@@ -38,6 +38,7 @@ public class VerifyThSelectMultipleUOMFromSaleItemAndSubmissionTest extends Test
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+
         Customer.goToCatalog();
         Customer.searchItemOnCatalog(searchItemCde);
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(searchItemName.toLowerCase()), "item not found");
@@ -45,7 +46,7 @@ public class VerifyThSelectMultipleUOMFromSaleItemAndSubmissionTest extends Test
         Catalog.ClickOnMultiUomDropDownOption(uomDropDownOption);
         softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
         itemPriceUOM1 = Catalog.getPDPPriceUOM(uom1);
-        itemPriceUOM2 = Catalog.getPDPPriceUOM(uom3);
+        itemPriceUOM2 = Catalog.getPDPPriceUOM(uom2);
         Catalog.clickAddToCartPlusIcon(1, uom1);
         Catalog.clickAddToCartPlusIcon(1, uom2);
         totalItemPrice = Customer.getItemPriceOnCheckoutButtonViaPDP();

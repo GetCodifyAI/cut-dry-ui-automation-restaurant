@@ -18,7 +18,7 @@ public class VerifyTheBehaviourWhenAddingSubstituteItemForMultiUOMItemTest exten
     String uomDropDownOption = "Multiple Units";
     String uom1 = "1";
     String uom2 = "2";
-    String uom3 = "3";
+//    String uom3 = "3";
     static double itemPriceUOM1 ,itemPriceUOM2, totalItemPrice;
 
 
@@ -45,7 +45,7 @@ public class VerifyTheBehaviourWhenAddingSubstituteItemForMultiUOMItemTest exten
         Catalog.ClickOnMultiUomDropDownOption(uomDropDownOption);
         softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
         itemPriceUOM1 = Catalog.getPDPPriceUOM(uom1);
-        itemPriceUOM2 = Catalog.getPDPPriceUOM(uom3);
+        itemPriceUOM2 = Catalog.getPDPPriceUOM(uom2);
         Catalog.clickAddToCartPlusIcon(1, uom1);
         Catalog.clickAddToCartPlusIcon(1, uom2);
         totalItemPrice = Customer.getItemPriceOnCheckoutButtonViaPDP();

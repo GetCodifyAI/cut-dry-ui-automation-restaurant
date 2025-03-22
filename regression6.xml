@@ -11,7 +11,6 @@
             <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaCatalogTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaPDPTest" />
-            <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaOrderGuideCatalogAndPDPTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlaceMailDeliveryOrderViaOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlaceMailDeliveryOrderViaCatalogTest" />
 
@@ -30,7 +29,6 @@
             <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForWhiteLabelOperatorTest" />
 
             <class name="com.cutanddry.qa.tests.E2E.PlaceMailDeliveryOrderViaPDPTest" />
-            <class name="com.cutanddry.qa.tests.E2E.PlaceMailDeliveryOrderViaOrderGuideCatalogAndPDPTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaCatalogTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaPDPTest" />
