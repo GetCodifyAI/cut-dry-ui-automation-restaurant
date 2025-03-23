@@ -596,7 +596,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "30 18 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev
+          cron: "30 18 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
@@ -614,7 +614,7 @@ workflows:
   scheduled-test-1-sub1:
     triggers:
       - schedule:
-          cron: "20 19 * * *"  # This will run nightly-build-and-test at 2:00 AM IST (08:30 PM UTC) -- 45 06 * * *
+          cron: "20 19 * * *"  # This will run nightly-build-and-test at 2:00 AM IST (08:30 PM UTC) -- 45 06 * * *  ahsan_dev  20 19
           filters:
             branches:
               only:
@@ -625,7 +625,7 @@ workflows:
   scheduled-test-1-sub2:
     triggers:
       - schedule:
-          cron: "50 19 * * *"  # This will run nightly-build-and-test at 2:00 AM IST (08:30 PM UTC) -- 15 07 * * *
+          cron: "50 19 * * *"  # This will run nightly-build-and-test at 2:00 AM IST (08:30 PM UTC) -- 15 07 * * * ahsan_dev  50 19
           filters:
             branches:
               only:
@@ -648,6 +648,26 @@ workflows:
       - daily-build-and-test-3
       - daily-build-and-test-4
       - daily-build-and-test-5
+
+  scheduled-test-2-sub1:
+    triggers:
+      - schedule:
+          cron: "15 07 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC)
+          filters:
+            branches:
+              only:
+                - main
+    jobs:
       - daily-build-and-test-6
+
+  scheduled-test-2-sub2:
+    triggers:
+      - schedule:
+          cron: "45 07 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC)
+          filters:
+            branches:
+              only:
+                - main
+    jobs:
       - daily-build-and-test-7
 
