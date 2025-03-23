@@ -46,9 +46,10 @@ public class CatalogPage extends LoginPage {
         restaurantUI.click(By.xpath(btn_addToCartPlusQuantity.replace("UOM", uom)));
         restaurantUI.waitForCustom(2000);
     }
-    public void clickAddToCartMinusIcon(String uom){
+    public void clickAddToCartMinusIcon(String uom) throws InterruptedException {
         restaurantUI.waitForVisibility(By.xpath(btn_addToCartMinusQuantity.replace("UOM", uom)));
         restaurantUI.click(By.xpath(btn_addToCartMinusQuantity.replace("UOM", uom)));
+        restaurantUI.waitForCustom(4000);
     }
     public void ClickOnEditQuantities(String name)throws InterruptedException{
         restaurantUI.waitForVisibility(By.xpath(btn_editQuantities.replace("NAME", name)));
