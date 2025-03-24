@@ -48,7 +48,6 @@
 
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyOrderApprovalForOrderWithMultiUOMTest" />
 
-
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheBehaviourWhenAddingSubstituteItemForMultiUOMItemTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheAddingSubstituteItemForMultipleUOMDraftAndEditOrderTest" />
 

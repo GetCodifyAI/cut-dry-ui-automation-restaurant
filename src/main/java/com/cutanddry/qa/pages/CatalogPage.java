@@ -29,6 +29,22 @@ public class CatalogPage extends LoginPage {
     By getTotalOrderPrice = By.xpath("//div[contains(text(),'Total')]/../following-sibling::td");
     By itemTypeDropDown = By.xpath("//div[contains(text(), 'Item Type')]");
     By itemTypeDropDownOption = By.xpath("//div[contains(text(), 'Item Type')]/../../following-sibling::div//*[name()='svg' and @data-icon='square']/following-sibling::div[contains(text(), 'Special Order')]");
+    By txt_catalog = By.xpath("//div[contains(text(),'Manage Catalog')]");
+    By searchField = By.xpath("//div//input[contains(@placeholder,'Find Item in Catalog')]");
+    String itemInTheGrid = "//tr[contains(@class,'_du1frc')]//td[text()='ITEMCODE']";
+    By ItemCodeInCatalogData = By.xpath("//div[contains(@class, 'form-group') and contains(.//label, 'Item Code')]//div[contains(@class, 'col-sm-8')]");
+    By substituteTab = By.xpath("//a[contains(text(),'Substitutes')]");
+    String deleteSubstituteItemBtn = "//div[@class='align-items-center my-1 row']//div[contains(text(),'ITEMCODE')]//following-sibling::div[contains(@class,'col-md')]/*";
+    By saveChangesBtn = By.xpath("//button[text()='Save']");
+    By addSubstitutionsBtn = By.xpath("//button[contains(text(),'+ Add Substitution')]");
+    By selectSubstituteTxtField = By.xpath("//div[@class= ' css-1wa3eu0-placeholder' and text()='Select...']");
+    By substituteItemInputField = By.xpath("//div[@class=' css-1wa3eu0-placeholder' and text()='Select...']/following::input[@type='text' and @aria-autocomplete='list']");
+    String selectItemFromDropdown = "(//div[contains(text(),'ITEMCODE')])[last()]";
+    By substituteAddBtn = By.xpath("//button[contains(text(),'Add')]");
+    By substituteCancelBtn = By.xpath("//button[contains(text(),'Cancel')]");
+    String substituteItemNameTxt = "//div[contains(text(),\"ITEMNAME\")]";
+    By successOverlay = By.xpath("//div[contains(text(),'successfully saved!')]");
+    By btn_deleteSubstitute = By.xpath("//div/*[local-name()='svg' and @data-icon='circle-xmark']");
 
 
 
@@ -185,6 +201,92 @@ public class CatalogPage extends LoginPage {
     public void clickItemType()throws InterruptedException{
         restaurantUI.click(itemTypeDropDown);
         restaurantUI.click(itemTypeDropDownOption);
+    }
+    public boolean isCatalogTextDisplayed() {
+        restaurantUI.waitForVisibility(txt_catalog);
+        return restaurantUI.isDisplayed(txt_catalog);
+    }
+    public void clickSearchItemInCatalog(String itemName){
+        restaurantUI.click(searchField);
+        restaurantUI.sendKeys(searchField,itemName);
+    }
+    public void clickonItemOnCatalogPage(String itemCode){
+        try {
+            restaurantUI.waitForCustom(7000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.waitForVisibility(By.xpath(itemInTheGrid.replace("ITEMCODE",itemCode)));
+        restaurantUI.click(By.xpath(itemInTheGrid.replace("ITEMCODE",itemCode)));
+    }
+    public String getItemCodeFromCatalogDataPage(){
+        restaurantUI.waitForVisibility(ItemCodeInCatalogData);
+        return restaurantUI.getText(ItemCodeInCatalogData);
+    }
+    public void clickOnSubstituteTab(){
+        restaurantUI.click(substituteTab);
+    }
+    public boolean isDeleteSubstituteItemDisplayed(String itemCode){
+        return  restaurantUI.isDisplayed(By.xpath(deleteSubstituteItemBtn.replace("ITEMCODE",itemCode)));
+    }
+    public void clickOnDeleteSubstituteItemBtn(String itemCode){
+        try {
+            restaurantUI.waitForCustom(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.click(By.xpath(deleteSubstituteItemBtn.replace("ITEMCODE",itemCode)));
+    }
+    public void clickOnSaveChangesBtn(){
+        restaurantUI.waitForVisibility(saveChangesBtn);
+        restaurantUI.click(saveChangesBtn);
+    }
+    public void clickAddSubstitutionBtn(){
+        restaurantUI.waitForVisibility(addSubstitutionsBtn);
+        restaurantUI.scrollToElement(addSubstitutionsBtn);
+        restaurantUI.click(addSubstitutionsBtn);
+    }
+    public String getSubstituteItemName(String substituteItem){
+        restaurantUI.click(selectSubstituteTxtField);
+        restaurantUI.sendKeys(substituteItemInputField,substituteItem);
+        restaurantUI.waitForVisibility(By.xpath(selectItemFromDropdown.replace("ITEMCODE",substituteItem)));
+        restaurantUI.waitForClickability(By.xpath(selectItemFromDropdown.replace("ITEMCODE",substituteItem)));
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        String ItemName = restaurantUI.getText(By.xpath(selectItemFromDropdown.replace("ITEMCODE",substituteItem)));
+        String cleanedItemName = ItemName.split(":")[1].split("\\(")[0].trim();
+        restaurantUI.click(substituteCancelBtn);
+        restaurantUI.click(substituteAddBtn);
+        return cleanedItemName;
+    }
+    public void searchSubstituteItem(String substituteItem){
+        restaurantUI.click(selectSubstituteTxtField);
+        restaurantUI.sendKeysWaitAndSelectDropdownOptionByEnter(substituteItemInputField,substituteItem);
+    }
+    public void addSubstitutionsBtn(){
+        restaurantUI.click(substituteAddBtn);
+    }
+    public boolean isSuccessOverlayDisplayed(){
+        restaurantUI.waitForVisibility(successOverlay);
+        boolean isDisplayed = restaurantUI.isDisplayed(successOverlay);
+        if (isDisplayed) {
+            restaurantUI.waitForInvisibility(successOverlay);
+        }
+        return isDisplayed;
+    }
+    public boolean isSubstituteItemDisplayed(String substituteItem){
+        try {
+            restaurantUI.waitForCustom(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return restaurantUI.isDisplayed(By.xpath(substituteItemNameTxt.replace("ITEMNAME",substituteItem)));
+    }
+    public void deleteSubstitute(){
+        restaurantUI.click(btn_deleteSubstitute);
     }
 
 }

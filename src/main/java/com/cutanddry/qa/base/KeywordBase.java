@@ -860,6 +860,26 @@ public class KeywordBase {
                 driver.findElement(locator)
         );
     }
+    public KeywordBase sendKeysWaitAndSelectDropdownOptionByEnter(By inputFieldLocator, String text) {
+        try {
+            Actions actions = new Actions(driver);
+
+            //Wait until the input field is visible and send keys
+            WebElement inputField = wait.until(ExpectedConditions.visibilityOfElementLocated(inputFieldLocator));
+            actions.moveToElement(inputField).click().sendKeys(text).perform();
+
+            //Wait for 2 seconds to allow the dropdown to load
+            Thread.sleep(2000);
+
+            //Press Enter to select the option
+            actions.sendKeys(Keys.ENTER).perform();
+
+            logger.info("Sent keys to input field: {} with text: {} and selected the dropdown option with Enter key", inputFieldLocator, text);
+        } catch (Exception e) {
+            logger.error("Failed to send keys to input field: {} with text: {} and select the dropdown option", inputFieldLocator, text, e);
+        }
+        return this;
+    }
 
 
 }

@@ -16,8 +16,8 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyPendingApprovalsAreClickableTest extends TestBase {
     static User user;
-    String OperatorName = "hadley+employee";
-    String AdminName = "ayendra+ifccopdemo";
+    String OperatorName = "employee@cutanddry.com";
+    String AdminName = "Brandon IFC White";
     static String referenceNum;
 
 
@@ -31,16 +31,16 @@ public class VerifyPendingApprovalsAreClickableTest extends TestBase {
     public void VerifyPendingApprovalsAreClickable() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
+        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.isUserNavigatedToDashboard();
-        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
-
-        //Login as Employee
+        Login.settingsWLGateKeeper();
         Login.navigateToLoginAs();
         Login.loginAsAdminWL(OperatorName);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
-        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.increaseFirstRowQtyInClassic(11);
+        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+
+        Customer.increaseFirstRowQtyInClassic(3);
         Customer.checkoutItems();
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isSentApprovalDisplayed(),"sent approval pop up not display");

@@ -785,4 +785,11 @@ public class Customer {
 
     public static String getFirstElementFrmCatalogSearchResults(){return customersPage.getFirstItemNameFrmSearchResults();}
 
+    public static boolean isAddSubstitutionTextDisplayed() throws InterruptedException {
+        return customersPage.isAddSubstitutionTextDisplayed();
+    }
+    public static void clickSubstitution()throws InterruptedException{
+        customersPage.clickSubstitution();
+    }
+
 }

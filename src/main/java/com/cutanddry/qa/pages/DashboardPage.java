@@ -36,6 +36,7 @@ public class DashboardPage extends LoginPage{
     String customerNameText = "//img[contains(@data-tip,'SUPPLIERNAME')]";
     By locationFilter = By.xpath("(//div[text()='Place Order']/following-sibling::div//div)[1]");
     By locationOption = By.xpath("//div[text()='Place Order']/following-sibling::*//div[contains(@id,'react-select') and contains(text(), 'All Locations')]");
+    By btn_catalog = By.xpath("//a[@data-tip='View Catalog']");
 
     public boolean isDashboardTextDisplayed(){
         try {
@@ -178,6 +179,9 @@ public class DashboardPage extends LoginPage{
         restaurantUI.waitForCustom(2000);
         restaurantUI.waitForVisibility(locationOption);
         restaurantUI.click(locationOption);
+    }
+    public void clickOnCatalog(){
+        restaurantUI.click(btn_catalog);
     }
 
 }

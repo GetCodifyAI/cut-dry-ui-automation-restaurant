@@ -103,4 +103,7 @@ public class Dashboard {
     public static boolean isNavigatedToOperatorOrderGuide(String supplier) throws InterruptedException {
         return dashboardPage.isNavigatedToOrderGuide(supplier);
     }
+    public static void navigateToCatalog() {
+        dashboardPage.clickOnCatalog();
+    }
 }
