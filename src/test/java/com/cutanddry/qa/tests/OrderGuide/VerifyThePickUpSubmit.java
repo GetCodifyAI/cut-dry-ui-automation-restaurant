@@ -16,7 +16,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyThePickUpSubmit extends TestBase {
     static User user;
     static String OperatorName = "sunrise Food";
-    static String customerId = "6253";
+    static String customerId = "6353";  // 6253
     @BeforeMethod
     public void setUp(){
         initialization();
