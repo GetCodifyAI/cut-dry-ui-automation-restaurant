@@ -57,6 +57,9 @@
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromRecommendedBySalesRepCarouselAndSubmissionTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromDoNotForgetToOrderCarouselAndSubmissionTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromMoreFromThisBrandCarouselAndSubmissionTest" />
+
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCustomOrderGuideSectionTest"/>
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyWhiteLabelCustomOrderGuideSectionTest"/>
         </classes>
     </test>
 </suite>
