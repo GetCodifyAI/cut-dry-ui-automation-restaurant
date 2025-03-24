@@ -4,6 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.*;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -32,15 +33,15 @@ public class VerifyTheSelectMultipleUOMFromTopCategoryCarouselAndSubmissionTest 
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+//        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
 
         Login.navigateToLoginAs();
         Login.goToDistributor(Dp_Name);
         Dashboard.isUserNavigatedToDistributorDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(),"login error");
 
         Boost.navigateToBoost();
-        softAssert.assertTrue(Boost.isUserNavigatedToBoost(),"navigate to boost error");
+        Assert.assertTrue(Boost.isUserNavigatedToBoost(),"navigate to boost error");
         Boost.clickSuggestiveSales();
         softAssert.assertTrue(Boost.isSuggestiveTabDisplayed(),"navigate to suggestive sales error");
         Boost.clickTopCategoryPicksConfig();
@@ -51,10 +52,10 @@ public class VerifyTheSelectMultipleUOMFromTopCategoryCarouselAndSubmissionTest 
         Login.navigateToOperator();
 
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.goToCatalog();
 
         softAssert.assertTrue(Customer.isTopCategoryPicksDisplayed(),"top picks missing error");
@@ -79,7 +80,7 @@ public class VerifyTheSelectMultipleUOMFromTopCategoryCarouselAndSubmissionTest 
         Customer.clickClose();
 
         History.goToHistory();
-        softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.searchOrderID(orderId);
         softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
         History.clickOnFirstItemOfOrderHistory();

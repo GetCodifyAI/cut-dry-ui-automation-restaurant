@@ -8,8 +8,13 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,6 +24,7 @@ public class TestBase {
     protected static JavascriptExecutor js;
     protected static KeywordBase restaurantUI;
     protected static WebDriverWait wait;
+    private static final DecimalFormat df = new DecimalFormat("#.###");
 
     // Initialization method to set up the WebDriver and other components
     public static void initialization() {
@@ -58,8 +64,8 @@ public class TestBase {
                     }
                     driver = new ChromeDriver(chromeOptions);
                     js = (JavascriptExecutor) driver;
-                    wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
+                    wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
                     driver.get(Constants.SEC_URL);
                     restaurantUI = new KeywordBase(driver, wait);  // Initialize KeywordBase here
 
@@ -112,6 +118,51 @@ public class TestBase {
 
             driver = null;  // Reset the driver to allow re-initialization in future tests
             LOGGER.info("All browsers are closed.");
+        }
+    }
+
+    public static int generateDynamicValue() {
+        // Generate a random number between 1 and 100 (or any range you want)
+        return (int) (Math.random() * 1000) + 1;
+    }
+
+    public static String generateThreeDigitValue() {
+        int randomNumber = (int) (Math.random() * 1000) + 1;
+        return String.format("%03d", randomNumber);
+    }
+
+    public static String generateUTCCurrentDateFormatted() {
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date today = new Date();
+        return formatter.format(today);
+    }
+
+    public static String generateUTCYesterdayDateFormatted() {
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getTimeZone("UTC"));
+        calendar.add(Calendar.DAY_OF_YEAR, -1); // Subtract 1 day
+
+        return formatter.format(calendar.getTime());
+    }
+
+    public static String formatDouble(double value) {
+        return df.format(value);
+    }
+
+    public static String formatStringDouble(String value) {
+        try {
+            double doubleValue = Double.parseDouble(value); // Convert String to double
+            if (doubleValue == (long) doubleValue) {
+                return String.valueOf((long) doubleValue); // Remove decimal if it's .00
+            } else {
+                return new DecimalFormat("#.##").format(doubleValue); // Keep up to 2 decimals
+            }
+        } catch (NumberFormatException e) {
+            return "Invalid number"; // Handle invalid input
         }
     }
 

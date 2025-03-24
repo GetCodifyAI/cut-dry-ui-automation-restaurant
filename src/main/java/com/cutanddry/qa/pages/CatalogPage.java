@@ -10,7 +10,7 @@ public class CatalogPage extends LoginPage {
     String btn_editQuantities = "//div[text()='Organic Bananas - 2 LB']/../../following-sibling::*//div//button[text()='Edit Quantities']";
     String btn_addToCartMinusQuantity = "((//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::*//*[name()='svg' and contains(@data-icon, 'minus')])[UOM]";
     By btn_addToCart = By.xpath("(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//button[text()='Add to Cart']");
-    String getPriceUOM = "((//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::*//div//span[contains(text(),'$')])[UOM]";
+    String getPriceUOM = "((//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::*//div//span[contains(text(),'$')][1])[UOM]";
     By btn_backToCatalog = By.xpath("//button[contains(text(),'Back')]");
     String multiUomDropDownOG = "(//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg'])[1]";
     String btn_OGAddToCartPlusQuantity ="(//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='plus'])[UOM]";
@@ -33,8 +33,9 @@ public class CatalogPage extends LoginPage {
 
 
     public void ClickOnMultiUomDropDown(String name)throws InterruptedException{
-        restaurantUI.waitForVisibility(By.xpath(multiUomDropDown.replace("NAME", name)));
+//        restaurantUI.waitForVisibility(By.xpath(multiUomDropDown.replace("NAME", name)));
         restaurantUI.click(By.xpath(multiUomDropDown.replace("NAME", name)));
+        restaurantUI.clickUsingJavaScript(By.xpath(multiUomDropDown.replace("NAME", name)));
     }
     public void ClickOnMultiUomDropDownOption(String option){
         restaurantUI.waitForVisibility(By.xpath(multiUomDropDownOption.replace("OPTION", option)));
@@ -45,9 +46,10 @@ public class CatalogPage extends LoginPage {
         restaurantUI.click(By.xpath(btn_addToCartPlusQuantity.replace("UOM", uom)));
         restaurantUI.waitForCustom(2000);
     }
-    public void clickAddToCartMinusIcon(String uom){
+    public void clickAddToCartMinusIcon(String uom) throws InterruptedException {
         restaurantUI.waitForVisibility(By.xpath(btn_addToCartMinusQuantity.replace("UOM", uom)));
         restaurantUI.click(By.xpath(btn_addToCartMinusQuantity.replace("UOM", uom)));
+        restaurantUI.waitForCustom(4000);
     }
     public void ClickOnEditQuantities(String name)throws InterruptedException{
         restaurantUI.waitForVisibility(By.xpath(btn_editQuantities.replace("NAME", name)));

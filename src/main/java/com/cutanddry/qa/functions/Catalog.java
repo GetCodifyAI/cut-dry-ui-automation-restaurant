@@ -16,7 +16,7 @@ public class Catalog {
             catalogPage.clickAddToCartPlusIcon(uom);
         }
     }
-    public static void clickAddToCartMinusIcon(int count, String name) {
+    public static void clickAddToCartMinusIcon(int count, String name) throws InterruptedException {
         for (int i=0; i<count;i++){
             catalogPage.clickAddToCartMinusIcon(name);
         }

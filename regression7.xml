@@ -16,6 +16,9 @@
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheDeleteItemsProductsFromMultipleUOMsInTheReviewOrderSectionTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithEditFlowTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithDraftOrderTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSideTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyPlaceOrderWithMultiUOMForNonIntegratedTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyProductWithDifferentCombinationsOfUOMsCanBeAddedFromCatalogInOrderReviewSectionTest" />
 
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyEditQuantitiesFunctionalityInCatalogTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifySelectMultipleUOMItemFromCatalogOnlyTest" />

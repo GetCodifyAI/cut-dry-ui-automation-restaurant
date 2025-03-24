@@ -4,6 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.*;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -27,19 +28,20 @@ public class VerifyUploadOrderGuideItemListTest extends TestBase {
     public void VerifyUploadOrderGuideItemList() throws InterruptedException, URISyntaxException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+
         Order.goToOrder();
-        softAssert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
+        Assert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
         Order.clickAddNewSupplier();
         softAssert.assertTrue(Suppliers.isAddSuppliersPopUpDisplayed(),"Add supplier pop up window not displayed");
         Suppliers.clickContinue();
         Suppliers.enterSupplier(SupplierName);
         Suppliers.clickContinue();
         Suppliers.clickSave();
-        Order.goToOrder();
-        softAssert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
-        softAssert.assertTrue(Order.isAddedNewSupplierDisplayed(SupplierName),"error in supplier creation");
 
+        Order.goToOrder();
+        Assert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
+        softAssert.assertTrue(Order.isAddedNewSupplierDisplayed(SupplierName),"error in supplier creation");
         Order.clickFinishSetup(SupplierName);
         softAssert.assertTrue(Suppliers.isEditSuppliersPopUpDisplayed(),"Edit supplier pop up window not displayed");
         Suppliers.clickSave();
@@ -55,13 +57,13 @@ public class VerifyUploadOrderGuideItemListTest extends TestBase {
 
         //delete supplier
         Suppliers.goToSuppliers();
-        softAssert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"Supplier navigation error");
+        Assert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"Supplier navigation error");
         Suppliers.selectOneSupplier(SupplierName);
         softAssert.assertTrue(Suppliers.isEditSuppliersPopUpDisplayed(),"Edit supplier pop up window not displayed");
         Suppliers.deleteSupplier();
 
         Order.goToOrder();
-        softAssert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
+        Assert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
         softAssert.assertFalse(Order.isAddedNewSupplierDisplayed(SupplierName),"error in supplier creation");
         softAssert.assertAll();
     }
