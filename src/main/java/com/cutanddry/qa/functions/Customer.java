@@ -730,8 +730,8 @@ public class Customer {
             customersPage.clickContinueCombined();
         }
     }
-    public static boolean isSetSubstitutionTextDisplayed()throws InterruptedException{
-        return customersPage.isSetSubstitutionTextDisplayed();
+    public static boolean isSetSubstitutionPopUPDisplayed()throws InterruptedException{
+        return customersPage.isSetSubstitutionPopUpDisplayed();
     }
     public static void clickChooseSub(){
         customersPage.clickChooseSub();
@@ -790,6 +790,9 @@ public class Customer {
     }
     public static void clickSubstitution()throws InterruptedException{
         customersPage.clickSubstitution();
+    }
+    public static boolean isSetSubstitutionTextDisplayed() throws InterruptedException {
+        return customersPage.isSetSubstitutionTextDisplayed();
     }
 
 }

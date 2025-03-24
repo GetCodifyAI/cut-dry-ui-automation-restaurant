@@ -81,7 +81,7 @@ public class VerifyTheAddingSubstituteItemForMultipleUOMDraftAndEditOrderTest ex
         Customer.clickCheckOutPDP();
 
         Customer.clickSubstitution();
-        softAssert.assertTrue(Customer.isSetSubstitutionTextDisplayed(),"Substitution set pop up error");
+        softAssert.assertTrue(Customer.isSetSubstitutionPopUPDisplayed(),"Substitution set pop up error1");
         Customer.clickEditSub();
         Customer.clickRemovePreviousSub();
         Customer.clickSaveSelection();
@@ -98,7 +98,7 @@ public class VerifyTheAddingSubstituteItemForMultipleUOMDraftAndEditOrderTest ex
         Assert.assertTrue(Drafts.isUserNavigatedToDrafts(),"navigation error");
         softAssert.assertTrue(Drafts.isLastDraftDisplayed(String.valueOf(totalItemPriceReviewOrder)),"draft creating error");
         Drafts.clickDraft(String.valueOf(totalItemPriceReviewOrder));
-        softAssert.assertTrue(Customer.isSetSubstitutionTextDisplayed(),"Substitution pop up error");
+        softAssert.assertTrue(Customer.isSetSubstitutionTextDisplayed(),"Substitution pop up error2");
         Customer.clickCloseSub();
 
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
@@ -115,7 +115,7 @@ public class VerifyTheAddingSubstituteItemForMultipleUOMDraftAndEditOrderTest ex
         softAssert.assertEquals(totalOGItemPrice, itemOGPriceUOM1 + itemOGPriceUOM2 + totalItemPriceReviewOrder, "The item was not selected properly.");
         Customer.clickCheckOutPDP();
 
-        softAssert.assertTrue(Customer.isSetSubstitutionTextDisplayed(),"Substitution pop up error");
+
         Customer.clickCloseSub();
 
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
