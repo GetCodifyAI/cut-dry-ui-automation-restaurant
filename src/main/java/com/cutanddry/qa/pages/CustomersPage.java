@@ -218,6 +218,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By combinedOrderPopUp = By.xpath("//div[contains(text(), 'Do you want to combine your orders?')]");
     By combinedOrderContinue = By.xpath("//button[contains(text(), 'Continue')]");
     By txtSetSubstitution = By.xpath("//div[contains(text(),'Item Substitution')]");
+    By txtSetSubstitutionPopUp = By.xpath("//div[contains(text(),'Set Substitute Items')]");
     By btn_chooseSub = By.xpath("(//button[contains(text(),'Choose Sub')])[last()]");
     By btn_selectSub = By.xpath("//div[contains(text(), 'Substitute with:')]/preceding-sibling::*[1][local-name()='svg' and @data-icon='circle']");
     By btn_closeSub = By.xpath("//*[local-name()='svg' and @data-icon='xmark']");
@@ -1477,6 +1478,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
     public void clickSubstitution()throws InterruptedException{
         restaurantUI.click(txtSubstitution);
+    }
+    public boolean isSetSubstitutionPopUpDisplayed()throws InterruptedException{
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.isDisplayed(txtSetSubstitutionPopUp);
     }
 
 }
