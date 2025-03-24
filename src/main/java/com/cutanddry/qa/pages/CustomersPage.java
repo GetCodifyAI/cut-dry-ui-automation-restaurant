@@ -1259,7 +1259,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
 
     public String getItemNameFirstMultiOUM() throws InterruptedException {
-        restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemName,3);
+//        restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemName,3);
+        restaurantUI.scrollToElementAccurate(lbl_firstMultiOUMItemName,2);
         restaurantUI.waitForElementEnabledState(lbl_firstMultiOUMItemName,true);
         restaurantUI.waitForCustom(3000);
         return restaurantUI.getText(lbl_firstMultiOUMItemName);
@@ -1267,7 +1268,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
 
 
     public String getItemCodeFirstMultiOUM() throws InterruptedException {
-        restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemCode,3);
+//        restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemCode,3);
         restaurantUI.waitForVisibility(lbl_firstMultiOUMItemCode);
         restaurantUI.waitForCustom(3000);
         return restaurantUI.getText(lbl_firstMultiOUMItemCode);
