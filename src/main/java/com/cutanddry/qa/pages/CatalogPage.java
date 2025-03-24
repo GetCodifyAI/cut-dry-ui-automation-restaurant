@@ -44,7 +44,7 @@ public class CatalogPage extends LoginPage {
     public void clickAddToCartPlusIcon(String uom)throws InterruptedException{
         restaurantUI.waitForVisibility(By.xpath(btn_addToCartPlusQuantity.replace("UOM", uom)));
         restaurantUI.click(By.xpath(btn_addToCartPlusQuantity.replace("UOM", uom)));
-        restaurantUI.waitForCustom(2000);
+        restaurantUI.waitForCustom(4000);
     }
     public void clickAddToCartMinusIcon(String uom) throws InterruptedException {
         restaurantUI.waitForVisibility(By.xpath(btn_addToCartMinusQuantity.replace("UOM", uom)));
