@@ -10,18 +10,20 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalBookkeeperTest extends TestBase {
+public class VerifyOrderApprovalForOrderWithMultiUOMTest extends TestBase {
     static User user;
-    String searchItemName2 = "Organic Bananas - 2 LB";
-    String searchItemCode = "01409";
-    String searchItemCode2 = "00529";
-    String OperatorName = "universal@cutanddry";
+    String searchItemName2 = "Carrot - Baby Peeled - 1 LB";
+    String searchItemCode2 = "01409";
+    String searchItemCode = "00529";
+    String OperatorName = "employee@cutanddry.com";
+    String AdminName = "Brandon IFC White";
     String uomDropDownOption = "Multiple Units";
     String uom1 = "1";
     String uom2 = "2";
     static double itemPriceUOM1 ,itemPriceUOM2,totalPDPItemPrice,totalItemPriceReviewOrder;
     static double itemOGPriceUOM1,itemOGPriceUOM2,totalOGItemPrice;
-    String orderId,totalItemQuantityReviewOrder;
+    String totalItemQuantityReviewOrder;
+    static String referenceNum;
 
 
     @BeforeMethod
@@ -30,17 +32,17 @@ public class VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalBookkeep
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-1015")
-    public void VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalBookkeeper() throws InterruptedException {
+    @Test(groups = "DOT-TC-1053")
+    public void VerifyOrderApprovalForOrderWithMultiUOM() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Dashboard.isUserNavigatedToDashboard();
+        Login.settingsWLGateKeeper();
         Login.navigateToLoginAs();
-        Login.loginAsBookkeeper(OperatorName);
+        Login.loginAsAdminWL(OperatorName);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
-        Dashboard.navigateToIndependentFoodsCo();
-        Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 
         // Added Multi OUM Item OG
@@ -73,17 +75,28 @@ public class VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalBookkeep
         totalItemPriceReviewOrder = Catalog.getTotalPriceInReviewOrder();
         totalItemQuantityReviewOrder = Catalog.getTotalQuantityInReviewOrder();
         Customer.submitOrder();
+        softAssert.assertTrue(Customer.isSentApprovalDisplayed(),"sent approval pop up not display");
+        Customer.clickViewOrderInDraft();
+        softAssert.assertTrue(Drafts.isUserNavigatedToDrafts(),"navigation error");
+        referenceNum = Drafts.getReferenceNum();
+        softAssert.assertTrue(Drafts.isLastDraftDisplayed(String.valueOf(totalItemPriceReviewOrder)),"draft creating error");
+        Login.closePreviousTab();
+
+        //Login as Admin
+        Login.navigateToLoginAs();
+        Login.loginAsAdminWL(AdminName);
+        restaurantUI.switchToNewTab();
+        Dashboard.navigateToDrafts();
+        softAssert.assertTrue(Drafts.isUserNavigatedToDrafts(),"navigation error");
+        softAssert.assertEquals(Drafts.getReferenceNum(),referenceNum,"draft matching error");
+        Drafts.clickFirstDraft();
+        Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
-        orderId = Customer.getSuccessOrderId();
         Customer.clickClose();
 
-        History.goToHistory();
-        softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
-        History.searchOrderID(orderId);
-        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
-        History.clickOnFirstItemOfOrderHistory();
-        softAssert.assertEquals(Catalog.getTotalQuantityInOrder(),totalItemQuantityReviewOrder,"order quantity not successfully submitted");
-        softAssert.assertEquals(Catalog.getTotalPriceInOrder(),totalItemPriceReviewOrder,"order not successfully submitted");
+        Dashboard.navigateToDrafts();
+        softAssert.assertTrue(Drafts.isUserNavigatedToDrafts(),"navigation error");
+        softAssert.assertFalse(Drafts.isReferenceNumberDisplayed(referenceNum),"approve draft not successfully ");
         softAssert.assertAll();
 
     }
