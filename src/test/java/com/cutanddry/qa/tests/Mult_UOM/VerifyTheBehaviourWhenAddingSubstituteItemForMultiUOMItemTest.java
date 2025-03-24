@@ -15,7 +15,9 @@ public class VerifyTheBehaviourWhenAddingSubstituteItemForMultiUOMItemTest exten
     static User user;
     String searchItemName = "Beef - Striploin Creekstone Masterchef 0X1";
     String searchItemCde = "00132";
+    String substituteItemCode = "01922";
     String uomDropDownOption = "Multiple Units";
+    static String Dp_Name = "47837013 - Brandon IFC Cut+Dry Agent - Independent Foods Co";
     String uom1 = "1";
     String uom2 = "2";
 //    String uom3 = "3";
@@ -32,6 +34,31 @@ public class VerifyTheBehaviourWhenAddingSubstituteItemForMultiUOMItemTest exten
     public void VerifyTheBehaviourWhenAddingSubstituteItemForMultiUOMItem() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
+        Dashboard.isUserNavigatedToDashboard();
+//        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+
+        Login.navigateToLoginAs();
+        Login.goToDistributor(Dp_Name);
+        Dashboard.isUserNavigatedToDistributorDashboard();
+        Assert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(),"login error");
+
+        // Add substitute
+        Dashboard.navigateToCatalog();
+        softAssert.assertTrue(Catalog.isUserNavigatedToCatalog(),"navigation error");
+        Catalog.searchItemInCatalog(searchItemCde);
+        Catalog.selectItemFromGrid(searchItemCde);
+        softAssert.assertEquals(Catalog.getItemcodeInCatalogData(),searchItemCde,"Error in getting Item Code");
+        Catalog.navigateToSubstituteTab();
+        Catalog.removeExistingItem(substituteItemCode);
+        Catalog.addSubstitutions();
+        String SubstituteItemName = Catalog.getSubstituteItemName(substituteItemCode);
+        Catalog.searchAndAddSubstituteItem(substituteItemCode);
+        Catalog.saveChanges();
+        softAssert.assertTrue(Catalog.successOverlayDisplayed(),"Error in saving the changes after adding  substitute");
+        softAssert.assertTrue(Catalog.isAddedSubstituteItemDisplayedInPage(SubstituteItemName),"Error in adding substitute items");
+
+
+        Login.navigateToOperator();
         Dashboard.isUserNavigatedToDashboard();
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
@@ -51,7 +78,24 @@ public class VerifyTheBehaviourWhenAddingSubstituteItemForMultiUOMItemTest exten
         totalItemPrice = Customer.getItemPriceOnCheckoutButtonViaPDP();
         softAssert.assertEquals(Math.round(Customer.getItemPriceOnCheckoutButtonViaPDP() * 100.0) / 100.0,(Math.round((itemPriceUOM1 + itemPriceUOM2) * 100.0) / 100.0), "The item has not been selected.");
         Customer.clickCheckOutPDP();
-        softAssert.assertTrue(Customer.isSetSubstitutionTextDisplayed(),"Substitution pop up error");
+        softAssert.assertTrue(Customer.isAddSubstitutionTextDisplayed(),"Substitution pop up error");
+
+
+        // Distributor Flows
+        Login.navigateToLoginAs();
+        Login.goToDistributor(Dp_Name);
+        Login.switchIntoNewTab();
+        Dashboard.isUserNavigatedToDistributorDashboard();
+        Assert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(),"login error");
+        Dashboard.navigateToCatalog();
+        softAssert.assertTrue(Catalog.isUserNavigatedToCatalog(),"navigation error");
+        Catalog.searchItemInCatalog(searchItemCde);
+        Catalog.selectItemFromGrid(searchItemCde);
+        softAssert.assertEquals(Catalog.getItemcodeInCatalogData(),searchItemCde,"Error in getting Item Code");
+        Catalog.navigateToSubstituteTab();
+        Catalog.deleteSubstitute();
+        Catalog.saveChanges();
+        softAssert.assertTrue(Catalog.successOverlayDisplayed(),"Error in Removing substitute item");
         softAssert.assertAll();
 
     }

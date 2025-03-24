@@ -230,6 +230,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String lbl_recommendedBySalesRep = "//div[contains(text(), 'Recommended by')]//following-sibling::div//div[contains(text(), 'CODE')]";
     By section_dontForget = By.xpath("//div[text()=\"Don't Forget to Order\"]");
     By section_moreFromThisBrand = By.xpath("//div[contains(text(), 'More From')]");
+    By txtSubstitution = By.xpath("//div[contains(text(),'Substitution')]");
 
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
@@ -1469,6 +1470,13 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
     public void refreshCustomersPage(){
         restaurantUI.refreshPage();
+    }
+    public boolean isAddSubstitutionTextDisplayed()throws InterruptedException{
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.isDisplayed(txtSubstitution);
+    }
+    public void clickSubstitution()throws InterruptedException{
+        restaurantUI.click(txtSubstitution);
     }
 
 }

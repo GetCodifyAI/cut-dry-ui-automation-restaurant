@@ -13,7 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyWLAppEmployeeRolesTest extends TestBase {
     static User user;
-    static String OperatorName = "Hadley Ifc Employee";
+    String OperatorName = "employee@cutanddry.com";
 
     @BeforeMethod
     public void setUp(){
@@ -28,12 +28,12 @@ public class VerifyWLAppEmployeeRolesTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
-        Login.loginAsEmployeeWL(OperatorName);
+        Login.loginAsAdminWL(OperatorName);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 
-        Customer.increaseSecondRowQtyByOne();
+        Customer.increaseFirstRowQtyCustom(1);
         Customer.checkoutItems();
         Customer.submitOrder();
         Customer.clickClose();

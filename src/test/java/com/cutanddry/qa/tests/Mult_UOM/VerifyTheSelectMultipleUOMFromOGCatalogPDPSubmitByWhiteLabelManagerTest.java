@@ -10,12 +10,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalBookkeeperTest extends TestBase {
+public class VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelManagerTest extends TestBase {
     static User user;
-    String searchItemName2 = "Organic Bananas - 2 LB";
-    String searchItemCode = "01409";
-    String searchItemCode2 = "00529";
-    String OperatorName = "universal@cutanddry";
+    String searchItemName2 = "Carrot - Baby Peeled - 1 LB";
+    String searchItemCode2 = "01409";
+    String searchItemCode = "00529";
+    String OperatorName = "manager@cutanddry.com";
     String uomDropDownOption = "Multiple Units";
     String uom1 = "1";
     String uom2 = "2";
@@ -30,17 +30,17 @@ public class VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalBookkeep
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-1015")
-    public void VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalBookkeeper() throws InterruptedException {
+    @Test(groups = "DOT-TC-1018")
+    public void VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelManager() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Dashboard.isUserNavigatedToDashboard();
+        Login.settingsWLGateKeeper();
         Login.navigateToLoginAs();
-        Login.loginAsBookkeeper(OperatorName);
+        Login.loginAsAdminWL(OperatorName);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
-        Dashboard.navigateToIndependentFoodsCo();
-        Dashboard.navigateToOrderGuide();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 
         // Added Multi OUM Item OG
