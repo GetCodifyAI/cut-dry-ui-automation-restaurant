@@ -248,10 +248,9 @@ public class Customer {
             customersPage.clickYesDuplicatePopup();
         }
     }
-
-    public static void selectDeliveryDateFirstLine()throws InterruptedException{
+    public static void selectDeliveryDateLine(String date)throws InterruptedException{
         customersPage.clickOnDeliveryDate();
-        customersPage.selectDeliveryDateFirstLine();
+        customersPage.selectDeliveryDateLine(date);
 
     }
     public static void selectDeliveryDateSecondLine() throws InterruptedException {

@@ -74,7 +74,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txt_substitutions = By.xpath("//div[contains(text(), 'Set a Substitute')]");
     By txt_invalidDeliveryDate = By.xpath("//h2[text()='Error! Invalid Delivery Date']");
     By btn_close = By.xpath("//button[contains(text(), 'Close')]");
-    By btn_deliveryDate = By.xpath("//div[@class='cd_themed_select__control css-sa5o0q-control']");
+//    By btn_deliveryDate = By.xpath("//div[@class='cd_themed_select__control css-sa5o0q-control']");
+    By btn_deliveryDate = By.xpath("//div[text()='Delivery Date:']/../following-sibling::div//*[name()='svg' and @data-icon='calendar-date-vect']");
     By btn_selectDeliveryDateFirstLine = By.xpath("(//div[contains(@class, 'cd_themed_select__option')])[1]");
     By btn_selectDeliveryDateSecondLine = By.xpath("(//div[contains(@class, 'cd_themed_select__option')])[2]");
     By btn_orderGuideSettings = By.xpath("//a[contains(text(), 'Order Guide Settings')]");
@@ -232,6 +233,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By section_dontForget = By.xpath("//div[text()=\"Don't Forget to Order\"]");
     By section_moreFromThisBrand = By.xpath("//div[contains(text(), 'More From')]");
     By txtSubstitution = By.xpath("//div[contains(text(),'Substitution')]");
+
+    String dynamicToXPath = "(//div[contains(@class,'react-datepicker__day--highlighted')]/preceding::div[contains(@class, 'react-datepicker__day') and text()='DAY'])[last()]";
 
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
@@ -678,9 +681,13 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.click(btn_deliveryDate);
     }
 
-    public void selectDeliveryDateFirstLine() {
-        restaurantUI.click(btn_selectDeliveryDateFirstLine);
+    public void selectDeliveryDateLine(String date) throws InterruptedException {
+        By lbl_selectStartDate = By.xpath(dynamicToXPath.replace("DAY", date));
+        restaurantUI.waitForVisibility(lbl_selectStartDate);
+        restaurantUI.click(lbl_selectStartDate);
+        restaurantUI.waitForCustom(5000);
     }
+    
     public void selectDeliveryDateSecondLine()  throws InterruptedException {
         restaurantUI.waitForCustom(4000);
         restaurantUI.click(btn_selectDeliveryDateSecondLine);
