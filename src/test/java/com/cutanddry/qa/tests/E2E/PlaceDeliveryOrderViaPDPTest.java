@@ -7,6 +7,7 @@ import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.functions.Order;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -34,10 +35,11 @@ public class PlaceDeliveryOrderViaPDPTest extends TestBase {
         // Restaurant Flows
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+
         itemName = Customer.getItemNameFirstRow();
         searchItemCode = Customer.getItemCodeFirstRow();
         itemPrice = Customer.getActiveItemPriceFirstRow();
@@ -50,7 +52,6 @@ public class PlaceDeliveryOrderViaPDPTest extends TestBase {
         Customer.clickAddToCartPDP();
         softAssert.assertEquals(Customer.getItemPriceOnCheckoutButtonViaPDP(),itemPrice,"The item has not been selected.");
         Customer.clickCheckOutPDP();
-
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
         softAssert.assertEquals(Customer.getItemNameFirstRow(), itemName, "The item selected by the user is different from what is shown on the order review page.");
         softAssert.assertTrue(Customer.isDeliveryOptionSelected(), "The expected fulfillment type is not selected.");
@@ -63,9 +64,9 @@ public class PlaceDeliveryOrderViaPDPTest extends TestBase {
         Login.navigateToLoginAs();
         Login.goToDistributor(Dp_Name);
         Dashboard.isUserNavigatedToDistributorDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(),"login error");
         Dashboard.navigateToCustomers();
-        softAssert.assertTrue(Customer.isCustomersTextDisplayed(),"customer section not display");
+        Assert.assertTrue(Customer.isCustomersTextDisplayed(),"customer section not display");
         Customer.searchCustomerByCode(customerCode);
         softAssert.assertTrue(Customer.isCustomerSearchResultByCodeDisplayed(customerCode),"customer not found");
         String BusinessName = Customer.getBusinessNameFromCustomers(customerCode);

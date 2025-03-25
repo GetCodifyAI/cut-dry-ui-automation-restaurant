@@ -16,6 +16,9 @@
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheDeleteItemsProductsFromMultipleUOMsInTheReviewOrderSectionTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithEditFlowTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithDraftOrderTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSideTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyPlaceOrderWithMultiUOMForNonIntegratedTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyProductWithDifferentCombinationsOfUOMsCanBeAddedFromCatalogInOrderReviewSectionTest" />
 
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyEditQuantitiesFunctionalityInCatalogTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifySelectMultipleUOMItemFromCatalogOnlyTest" />
@@ -39,9 +42,24 @@
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalEmployeeTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelAdminTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelBookkeeperTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalBookkeeperTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelManagerTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelEmployeeTest" />
+
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyOrderApprovalForOrderWithMultiUOMTest" />
 
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheBehaviourWhenAddingSubstituteItemForMultiUOMItemTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheAddingSubstituteItemForMultipleUOMDraftAndEditOrderTest" />
+
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromTopCategoryCarouselAndSubmissionTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromCompareSimilarItemsCarouselAndSubmissionTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromRecommendedForCustomerCarouselAndSubmissionTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromRecommendedBySalesRepCarouselAndSubmissionTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromDoNotForgetToOrderCarouselAndSubmissionTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromMoreFromThisBrandCarouselAndSubmissionTest" />
+
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCustomOrderGuideSectionTest"/>
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyWhiteLabelCustomOrderGuideSectionTest"/>
         </classes>
     </test>
 </suite>

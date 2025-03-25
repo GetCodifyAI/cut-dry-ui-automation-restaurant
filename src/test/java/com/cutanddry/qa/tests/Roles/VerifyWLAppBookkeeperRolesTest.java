@@ -4,6 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.*;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -25,13 +26,14 @@ public class VerifyWLAppBookkeeperRolesTest extends TestBase {
     public void VerifyWLAppBookkeeperRoles() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
         Login.loginAsBookkeeperWL(OperatorName);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+
         Customer.goToEdit();
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigating to order guide edit error");
         Customer.clickOnBackBtnInEditOrderGuide();
@@ -47,6 +49,7 @@ public class VerifyWLAppBookkeeperRolesTest extends TestBase {
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
         Customer.clickClose();
+
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"navigation to history error");
         Dashboard.navigateToDrafts();
@@ -71,6 +74,7 @@ public class VerifyWLAppBookkeeperRolesTest extends TestBase {
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Employee"),"users error");
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Bookkeeper"),"users error");
         Customer.clickClose();
+
         Dashboard.navigateToReports();
         softAssert.assertTrue(Reports.disabledGenerateReport(),"error in  generate report button");
         Reports.generateReport();

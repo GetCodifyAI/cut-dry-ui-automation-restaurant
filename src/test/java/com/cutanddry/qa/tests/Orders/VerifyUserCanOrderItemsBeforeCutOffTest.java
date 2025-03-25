@@ -6,6 +6,7 @@ import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -21,6 +22,7 @@ import java.time.format.DateTimeFormatter;
 public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
     static User user;
     String customerId = "21259";
+    static String expectedDate;
 
     @BeforeMethod
     public void setUp(){
@@ -34,7 +36,8 @@ public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDisDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDisDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDisDashboard(),"login error");
+
         Dashboard.navigateToCustomers();
         Customer.searchCustomerByCode(customerId);
         Customer.selectCustomer(customerId);
@@ -65,10 +68,10 @@ public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
 
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         itemName = Customer.getItemNameFirstRow();
         Customer.increaseFirstRowQtyByOne();
         Customer.checkoutItems();
@@ -107,7 +110,8 @@ public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
         Customer.submitOrderAfterDeliveryTime();
         softAssert.assertTrue(Customer.isInvalidDeliveryTextDisplayed(),"Delivery time error");
         Customer.closeDeliveryPopup();
-        Customer.selectDeliveryDateSecondLine();
+        expectedDate = generateUTCTomorrowDateFormatted();
+        Customer.selectDeliveryDateLine(expectedDate);
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"Error in order submit");
         closeAllBrowsers();
@@ -118,6 +122,7 @@ public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
         user = JsonUtil.readUserLogin();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDisDashboard();
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToCustomers();
         Customer.searchCustomerByCode(customerId);
         Customer.selectCustomer(customerId);

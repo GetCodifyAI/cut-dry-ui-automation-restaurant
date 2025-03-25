@@ -4,6 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.*;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -30,10 +31,10 @@ public class VerifyTheSelectionOfMultipleUOMsFromTheOrderGuideSectionAndOrderSub
         softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.sortItemsByCustomOrder();
 
         singleItemName = Customer.getItemNameFirstRow();
@@ -63,7 +64,7 @@ public class VerifyTheSelectionOfMultipleUOMsFromTheOrderGuideSectionAndOrderSub
         Customer.clickClose();
 
         History.goToHistory();
-        softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.clickOnFirstItemOfOrderHistory();
         totalHistoryItemPrice = History.getItemPriceOnMultiOUM();
         softAssert.assertEquals(Math.round(totalHistoryItemPrice * 100.0) / 100.0,Math.round(totalOGItemPrice * 100.0) / 100.0);

@@ -196,4 +196,7 @@ public class History {
     public static double getItemPriceOnSubmittedOrder() throws InterruptedException {
         return historyPage.getItemPriceOnSubmittedOrder();
     }
+    public static void clickOnOrder(String orderId) throws InterruptedException {
+        historyPage.clickOnOrder(orderId);
+    }
 }

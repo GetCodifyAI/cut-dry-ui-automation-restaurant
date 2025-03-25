@@ -4,6 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.*;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -15,10 +16,12 @@ public class VerifyTheAddingSubstituteItemForMultipleUOMDraftAndEditOrderTest ex
     String searchItemName = "Beef - Striploin Creekstone Masterchef 0X1";
     String searchItemCde = "00132";
     String searchItemCode = "01409";
+    String substituteItemCode = "01922";
     String uomDropDownOption = "Multiple Units";
+    static String Dp_Name = "47837013 - Brandon IFC Cut+Dry Agent - Independent Foods Co";
     String uom1 = "1";
     String uom2 = "2";
-    String uom3 = "3";
+//    String uom3 = "3";
     static double itemPriceUOM1 ,itemPriceUOM2,itemOGPriceUOM1,itemOGPriceUOM2,totalOGItemPrice, totalItemPrice,totalItemPriceReviewOrder;
     static String totalItemQuantityReviewOrder,orderId;
 
@@ -34,10 +37,35 @@ public class VerifyTheAddingSubstituteItemForMultipleUOMDraftAndEditOrderTest ex
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+
+        Login.navigateToLoginAs();
+        Login.goToDistributor(Dp_Name);
+        Dashboard.isUserNavigatedToDistributorDashboard();
+        Assert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(),"login error");
+
+        // Add substitute
+        Dashboard.navigateToCatalog();
+        softAssert.assertTrue(Catalog.isUserNavigatedToCatalog(),"navigation error");
+        Catalog.searchItemInCatalog(searchItemCde);
+        Catalog.selectItemFromGrid(searchItemCde);
+        softAssert.assertEquals(Catalog.getItemcodeInCatalogData(),searchItemCde,"Error in getting Item Code");
+        Catalog.navigateToSubstituteTab();
+        Catalog.removeExistingItem(searchItemCde);
+        Catalog.addSubstitutions();
+        String SubstituteItemName = Catalog.getSubstituteItemName(substituteItemCode);
+        Catalog.searchAndAddSubstituteItem(substituteItemCode);
+        Catalog.saveChanges();
+        softAssert.assertTrue(Catalog.successOverlayDisplayed(),"Error in saving the changes after adding  substitute");
+        softAssert.assertTrue(Catalog.isAddedSubstituteItemDisplayedInPage(SubstituteItemName),"Error in adding substitute items");
+
+
+        Login.navigateToOperator();
+        Dashboard.isUserNavigatedToDashboard();
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+
         Customer.goToCatalog();
         Customer.searchItemOnCatalog(searchItemCde);
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(searchItemName.toLowerCase()), "item not found");
@@ -45,14 +73,15 @@ public class VerifyTheAddingSubstituteItemForMultipleUOMDraftAndEditOrderTest ex
         Catalog.ClickOnMultiUomDropDownOption(uomDropDownOption);
         softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
         itemPriceUOM1 = Catalog.getPDPPriceUOM(uom1);
-        itemPriceUOM2 = Catalog.getPDPPriceUOM(uom3);
+        itemPriceUOM2 = Catalog.getPDPPriceUOM(uom2);
         Catalog.clickAddToCartPlusIcon(1, uom1);
         Catalog.clickAddToCartPlusIcon(1, uom2);
         totalItemPrice = Customer.getItemPriceOnCheckoutButtonViaPDP();
         softAssert.assertEquals(Math.round(Customer.getItemPriceOnCheckoutButtonViaPDP() * 100.0) / 100.0,(Math.round((itemPriceUOM1 + itemPriceUOM2) * 100.0) / 100.0), "The item has not been selected.");
         Customer.clickCheckOutPDP();
-        softAssert.assertTrue(Customer.isSetSubstitutionTextDisplayed(),"Substitution pop up error");
 
+        Customer.clickSubstitution();
+        softAssert.assertTrue(Customer.isSetSubstitutionPopUPDisplayed(),"Substitution set pop up error1");
         Customer.clickEditSub();
         Customer.clickRemovePreviousSub();
         Customer.clickSaveSelection();
@@ -66,10 +95,10 @@ public class VerifyTheAddingSubstituteItemForMultipleUOMDraftAndEditOrderTest ex
         totalItemQuantityReviewOrder = Catalog.getTotalQuantityInReviewOrder();
 
         Dashboard.navigateToDrafts();
-        softAssert.assertTrue(Drafts.isUserNavigatedToDrafts(),"navigation error");
+        Assert.assertTrue(Drafts.isUserNavigatedToDrafts(),"navigation error");
         softAssert.assertTrue(Drafts.isLastDraftDisplayed(String.valueOf(totalItemPriceReviewOrder)),"draft creating error");
         Drafts.clickDraft(String.valueOf(totalItemPriceReviewOrder));
-        softAssert.assertTrue(Customer.isSetSubstitutionTextDisplayed(),"Substitution pop up error");
+        softAssert.assertTrue(Customer.isSetSubstitutionTextDisplayed(),"Substitution pop up error2");
         Customer.clickCloseSub();
 
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
@@ -86,7 +115,7 @@ public class VerifyTheAddingSubstituteItemForMultipleUOMDraftAndEditOrderTest ex
         softAssert.assertEquals(totalOGItemPrice, itemOGPriceUOM1 + itemOGPriceUOM2 + totalItemPriceReviewOrder, "The item was not selected properly.");
         Customer.clickCheckOutPDP();
 
-        softAssert.assertTrue(Customer.isSetSubstitutionTextDisplayed(),"Substitution pop up error");
+
         Customer.clickCloseSub();
 
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
@@ -98,12 +127,28 @@ public class VerifyTheAddingSubstituteItemForMultipleUOMDraftAndEditOrderTest ex
         Customer.clickClose();
 
         History.goToHistory();
-        softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.searchOrderID(orderId);
         softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
         History.clickOnFirstItemOfOrderHistory();
         softAssert.assertEquals(Catalog.getTotalQuantityInOrder(),totalItemQuantityReviewOrder,"order quantity not successfully submitted");
         softAssert.assertEquals(Catalog.getTotalPriceInOrder(),totalItemPriceReviewOrder,"order not successfully submitted");
+
+        // Distributor Flows
+        Login.navigateToLoginAs();
+        Login.goToDistributor(Dp_Name);
+        Login.switchIntoNewTab();
+        Dashboard.isUserNavigatedToDistributorDashboard();
+        Assert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(),"login error");
+        Dashboard.navigateToCatalog();
+        softAssert.assertTrue(Catalog.isUserNavigatedToCatalog(),"navigation error");
+        Catalog.searchItemInCatalog(searchItemCde);
+        Catalog.selectItemFromGrid(searchItemCde);
+        softAssert.assertEquals(Catalog.getItemcodeInCatalogData(),searchItemCde,"Error in getting Item Code");
+        Catalog.navigateToSubstituteTab();
+        Catalog.deleteSubstitute();
+        Catalog.saveChanges();
+        softAssert.assertTrue(Catalog.successOverlayDisplayed(),"Error in Removing substitute item");
         softAssert.assertAll();
 
     }

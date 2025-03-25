@@ -248,10 +248,9 @@ public class Customer {
             customersPage.clickYesDuplicatePopup();
         }
     }
-
-    public static void selectDeliveryDateFirstLine()throws InterruptedException{
+    public static void selectDeliveryDateLine(String date)throws InterruptedException{
         customersPage.clickOnDeliveryDate();
-        customersPage.selectDeliveryDateFirstLine();
+        customersPage.selectDeliveryDateLine(date);
 
     }
     public static void selectDeliveryDateSecondLine() throws InterruptedException {
@@ -582,6 +581,13 @@ public class Customer {
     }
     public static void clickCheckOutPDP(){
         customersPage.clickCheckOutPDP();
+        try {
+            if(customersPage.isSetSubstitutionTextDisplayed()){
+                customersPage.clickCloseSub();
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
     public static boolean isDeliveryOptionSelected() {
         return customersPage.isDeliveryOptionSelected();
@@ -593,7 +599,15 @@ public class Customer {
         return customersPage.isCustomersTextDisplayed();
     }
     public static boolean isCustomerSearchResultByCodeDisplayed(String code) throws InterruptedException {
-        return customersPage.isCustomerSearchResultByCodeDisplayed(code);
+//        return customersPage.isCustomerSearchResultByCodeDisplayed(code);
+        if (customersPage.isCustomerSearchResultByCodeDisplayed(code)) {
+            return true;
+        } else {
+            customersPage.refreshCustomersPage();
+            customersPage.clickOnSearchCustomers();
+            customersPage.typeOnSearchCustomers(code);
+            return customersPage.isCustomerSearchResultByCodeDisplayed(code);
+        }
     }
     public static String getBusinessNameFromCustomers(String CustomerCode){
         return customersPage.getBusinessName(CustomerCode);
@@ -715,8 +729,8 @@ public class Customer {
             customersPage.clickContinueCombined();
         }
     }
-    public static boolean isSetSubstitutionTextDisplayed()throws InterruptedException{
-        return customersPage.isSetSubstitutionTextDisplayed();
+    public static boolean isSetSubstitutionPopUPDisplayed()throws InterruptedException{
+        return customersPage.isSetSubstitutionPopUpDisplayed();
     }
     public static void clickChooseSub(){
         customersPage.clickChooseSub();
@@ -735,6 +749,53 @@ public class Customer {
     }
     public static void clickSaveSelection(){
         customersPage.clickSaveSelection();
+    }
+    public static boolean isTopCategoryPicksDisplayed(){
+        return customersPage.isTopCategoryPicksDisplayed();
+    }
+    public static boolean isCompareSimilarItemsDisplayed(){
+        return customersPage.isCompareSimilarItemsDisplayed();
+    }
+    public static boolean isRecommendedForYouItemNameDisplayed(String code){
+        return customersPage.isRecommendedForYouItemNameDisplayed(code);
+    }
+    public static boolean isRecommendedBySalesRepDisplayed(String code){
+        return customersPage.isRecommendedBySalesRepDisplayed(code);
+    }
+    public static boolean isDontForgetToOrderDisplayed(){
+        return customersPage.isDontForgetToOrderDisplayed();
+    }
+    public static boolean isMoreFromThisBrandDisplayed(){
+        return customersPage.isMoreFromThisBrandDisplayed();
+    }
+    public static String getItemNameFirstMultiOUMCoupa() throws InterruptedException {
+        return customersPage.getItemNameFirstMultiOUMCoupa();
+    }
+
+
+    public static String getItemCodeFirstMultiOUMCoupa() throws InterruptedException {
+        return customersPage.getItemCodeFirstMultiOUMCoupa();
+    }
+
+
+    public static double getActiveItemPriceFirstMultiOUMRowStableCoupa() throws InterruptedException {
+        return customersPage.getActiveItemPriceFirstMultiOUMRowStableCoupa();
+    }
+
+    public static String getFirstElementFrmCatalogSearchResults(){return customersPage.getFirstItemNameFrmSearchResults();}
+
+    public static boolean isAddSubstitutionTextDisplayed() throws InterruptedException {
+        return customersPage.isAddSubstitutionTextDisplayed();
+    }
+    public static void clickSubstitution()throws InterruptedException{
+        customersPage.clickSubstitution();
+    }
+    public static boolean isSetSubstitutionTextDisplayed() throws InterruptedException {
+        return customersPage.isSetSubstitutionTextDisplayed();
+    }
+
+    public static String IsCustomOrderTextDisplayed() throws InterruptedException {
+        return customersPage.IsCustomOrderTextDisplayed();
     }
 
 }

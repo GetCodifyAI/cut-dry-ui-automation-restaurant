@@ -7,6 +7,7 @@ import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -36,10 +37,10 @@ public class VerifyTheEditQuantityOfMultipleUOMsInThePDPSectionFromTheOperatorSi
         softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.sortItemsByCustomOrder();
 
         multiItemName = Customer.getItemNameFirstMultiOUM();
@@ -55,14 +56,16 @@ public class VerifyTheEditQuantityOfMultipleUOMsInThePDPSectionFromTheOperatorSi
         softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
         itemPriceUOM1 = Catalog.getPDPPriceUOM(uom1);
         itemPriceUOM2 = Catalog.getPDPPriceUOM(uom2);
-        Catalog.clickAddToCartPlusIcon(1, uom1);
-        Catalog.clickAddToCartPlusIcon(1, uom2);
+        Catalog.clickAddToCartPlusIcon(2, uom1);
+        Catalog.clickAddToCartPlusIcon(2, uom2);
         softAssert.assertEquals(Math.round(Customer.getItemPriceOnCheckoutButtonViaPDP() * 100.0) / 100.0,
-                ((Math.round(itemPriceUOM1 * 100.0) / 100.0)+(Math.round(itemPriceUOM2 * 100.0) / 100.0)+(Math.round(totalOGItemPrice * 100.0) / 100.0)), "The item has not been selected.");
+                ((Math.round(itemPriceUOM1 * 100.0)*2 / 100.0)+(Math.round(itemPriceUOM2 * 100.0)*2 / 100.0)), "The item has not been selected.");
 
         Catalog.clickAddToCartMinusIcon(1, uom1);
-        Catalog.clickAddToCartMinusIcon(1, uom1);
-        softAssert.assertEquals(Math.round(Customer.getItemPriceOnCheckoutButtonViaPDP() * 100.0) / 100.0, 0.00, "The item price is not $0.00.");
+        Catalog.clickAddToCartMinusIcon(1, uom2);
+//        softAssert.assertEquals(Math.round(Customer.getItemPriceOnCheckoutButtonViaPDP() * 100.0) / 100.0, 0.00, "The item price is not $0.00.");
+        softAssert.assertEquals(Math.round(Customer.getItemPriceOnCheckoutButtonViaPDP() * 100.0) / 100.0,
+                ((Math.round(itemPriceUOM1 * 100.0) / 100.0)+(Math.round(itemPriceUOM2 * 100.0) / 100.0)), "The item has not been selected.");
 
         softAssert.assertAll();
 

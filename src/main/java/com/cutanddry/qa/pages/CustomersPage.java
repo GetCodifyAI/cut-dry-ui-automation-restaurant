@@ -74,7 +74,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txt_substitutions = By.xpath("//div[contains(text(), 'Set a Substitute')]");
     By txt_invalidDeliveryDate = By.xpath("//h2[text()='Error! Invalid Delivery Date']");
     By btn_close = By.xpath("//button[contains(text(), 'Close')]");
-    By btn_deliveryDate = By.xpath("//div[@class='cd_themed_select__control css-sa5o0q-control']");
+//    By btn_deliveryDate = By.xpath("//div[@class='cd_themed_select__control css-sa5o0q-control']");
+    By btn_deliveryDate = By.xpath("//div[text()='Delivery Date:']/../following-sibling::div//*[name()='svg' and @data-icon='calendar-date-vect']");
     By btn_selectDeliveryDateFirstLine = By.xpath("(//div[contains(@class, 'cd_themed_select__option')])[1]");
     By btn_selectDeliveryDateSecondLine = By.xpath("(//div[contains(@class, 'cd_themed_select__option')])[2]");
     By btn_orderGuideSettings = By.xpath("//a[contains(text(), 'Order Guide Settings')]");
@@ -192,6 +193,11 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By lbl_itemPriceListMultiOUM = By.xpath("(((//*[local-name()='svg' and @data-icon='chevron-down'])[2]/ancestor::tr/td[last()-2]//input)[1] | ((//*[local-name()='svg' and @data-icon='chevron-down'])[2]/ancestor::tr/td[last()-2]//span)[1])[1]");
     By lbl_itemPriceListMultiOUM1 = By.xpath("((//*[local-name()='svg' and @data-icon='chevron-down'])[2]/ancestor::tr/td[last()-2]/div/div/div)[1] | ((//*[local-name()='svg' and @data-icon='chevron-down'])[2]/ancestor::tr/td[last()-2]//span)[1])[2]");
 
+    By lbl_firstMultiOUMItemNameCoupa = By.xpath("(//*[local-name()='svg' and @data-icon='chevron-down'])[1]/ancestor::tr/td//span/div[@data-tip='View Product Details']");
+    By lbl_firstMultiOUMItemCodeCoupa = By.xpath("(//*[local-name()='svg' and @data-icon='chevron-down'])[1]/ancestor::tr/td[2]");
+    By lbl_itemPriceListMultiOUMCoupa = By.xpath("(((//*[local-name()='svg' and @data-icon='chevron-down'])[1]/ancestor::tr/td[last()-2]//input)[1] | ((//*[local-name()='svg' and @data-icon='chevron-down'])[1]/ancestor::tr/td[last()-2]//span)[1])[1]");
+    By lbl_itemPriceListMultiOUM1Coupa = By.xpath("((//*[local-name()='svg' and @data-icon='chevron-down'])[1]/ancestor::tr/td[last()-2]/div/div/div)[1] | ((//*[local-name()='svg' and @data-icon='chevron-down'])[1]/ancestor::tr/td[last()-2]//span)[1])[2]");
+
     String lbl_firstMultiOUMItemCodeLB = "(//*[local-name()='svg' and @data-icon='chevron-down'])/ancestor::tr/td[COUNT]//div[contains(text(),'LB')]/ancestor::td/parent::tr/td[2]";
     String lbl_firstMultiOUMItemNameLB = "(//*[local-name()='svg' and @data-icon='chevron-down'])/ancestor::tr/td[COUNT]//div[contains(text(),'LB')]/ancestor::td/parent::tr/td//span/div[@data-tip='View Product Details']";
     By lbl_orderGuideTableColumn = By.xpath("//table/thead/tr/td");
@@ -207,18 +213,28 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String btn_OGAddToCartPlusQuantity ="(//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='plus'])[UOM]";
     String btn_OGRemoveToCartMinusQuantity ="(//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='minus'])[UOM]";
     By multiUomOption =By.xpath("//div[text()='Multiple Units']");
-    String lbl_itemPriceMultiOUM = "((//button/*[local-name()='svg' and @data-icon='chevron-up'])[1]/ancestor::tr/td[last()-2]//input)[UOM] | ((//button/*[local-name()='svg' and @data-icon='chevron-up'])[1]/ancestor::tr/td[last()-2]//span)[UOM]";
+    String lbl_itemPriceMultiOUM = "((//button/*[local-name()='svg' and @data-icon='chevron-up'])[1]/ancestor::tr/td[last()-2]//input)[UOM] | ((//button/*[local-name()='svg' and @data-icon='chevron-up'])[1]/ancestor::tr/td[last()-2]//span[1])[UOM]";
     By btn_orderCheckoutReview = By.xpath("//button[contains(@data-tip, 'Click here to checkout')][normalize-space()!='']");
-    String lbl_cartItemUnitPriceReviewMultiUOM = "(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//input)[UOM] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//span)[UOM]";
+    String lbl_cartItemUnitPriceReviewMultiUOM = "(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//input)[UOM] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[3]//span[1])[UOM]";
     By combinedOrderPopUp = By.xpath("//div[contains(text(), 'Do you want to combine your orders?')]");
     By combinedOrderContinue = By.xpath("//button[contains(text(), 'Continue')]");
     By txtSetSubstitution = By.xpath("//div[contains(text(),'Item Substitution')]");
+    By txtSetSubstitutionPopUp = By.xpath("//div[contains(text(),'Set Substitute Items')]");
     By btn_chooseSub = By.xpath("(//button[contains(text(),'Choose Sub')])[last()]");
     By btn_selectSub = By.xpath("//div[contains(text(), 'Substitute with:')]/preceding-sibling::*[1][local-name()='svg' and @data-icon='circle']");
     By btn_closeSub = By.xpath("//*[local-name()='svg' and @data-icon='xmark']");
     By btn_editSub = By.xpath("(//*[local-name()='svg' and @data-icon='edit'])[last()]");
     By btn_notSelectSub = By.xpath("//div[contains(text(), 'Not Selected')]/preceding-sibling::*[1][local-name()='svg' and @data-icon='circle']");
     By btn_saveSelection = By.xpath("//button[normalize-space(text())='Save Selection']");
+    By lbl_topCategoryPicks = By.xpath("//div[text()='Top Category Picks']");
+    By section_compareSimilar = By.xpath("//div[text()='Compare Similar Items']");
+    String lbl_recommendedForYouItem = "//div[contains(text(), 'Recommended for You')]//following-sibling::div//div[text()='CODE']";
+    String lbl_recommendedBySalesRep = "//div[contains(text(), 'Recommended by')]//following-sibling::div//div[contains(text(), 'CODE')]";
+    By section_dontForget = By.xpath("//div[text()=\"Don't Forget to Order\"]");
+    By section_moreFromThisBrand = By.xpath("//div[contains(text(), 'More From')]");
+    By txtSubstitution = By.xpath("//div[contains(text(),'Substitution')]");
+
+    String dynamicToXPath = "(//div[contains(@class,'react-datepicker__day--highlighted')]/preceding::div[contains(@class, 'react-datepicker__day') and text()='DAY'])[last()]";
 
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
@@ -665,9 +681,13 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.click(btn_deliveryDate);
     }
 
-    public void selectDeliveryDateFirstLine() {
-        restaurantUI.click(btn_selectDeliveryDateFirstLine);
+    public void selectDeliveryDateLine(String date) throws InterruptedException {
+        By lbl_selectStartDate = By.xpath(dynamicToXPath.replace("DAY", date));
+        restaurantUI.waitForVisibility(lbl_selectStartDate);
+        restaurantUI.click(lbl_selectStartDate);
+        restaurantUI.waitForCustom(5000);
     }
+    
     public void selectDeliveryDateSecondLine()  throws InterruptedException {
         restaurantUI.waitForCustom(4000);
         restaurantUI.click(btn_selectDeliveryDateSecondLine);
@@ -1247,15 +1267,24 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
 
     public String getItemNameFirstMultiOUM() throws InterruptedException {
-        restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemName,3);
+//        restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemName,3);
+        restaurantUI.scrollToElementAccurate(lbl_firstMultiOUMItemName,2);
         restaurantUI.waitForElementEnabledState(lbl_firstMultiOUMItemName,true);
         restaurantUI.waitForCustom(3000);
         return restaurantUI.getText(lbl_firstMultiOUMItemName);
     }
 
+    public String IsCustomOrderTextDisplayed() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_sortCustomOrder);
+        restaurantUI.waitForCustom(4000);
+        String dropdownText = restaurantUI.getText(btn_sortCustomOrder);
+        return dropdownText;
+
+    }
+
 
     public String getItemCodeFirstMultiOUM() throws InterruptedException {
-        restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemCode,3);
+//        restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemCode,3);
         restaurantUI.waitForVisibility(lbl_firstMultiOUMItemCode);
         restaurantUI.waitForCustom(3000);
         return restaurantUI.getText(lbl_firstMultiOUMItemCode);
@@ -1392,6 +1421,82 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     public void clickSaveSelection(){
         restaurantUI.waitForVisibility(btn_saveSelection);
         restaurantUI.click(btn_saveSelection);
+    }
+    public boolean isTopCategoryPicksDisplayed(){
+        return restaurantUI.isDisplayed(lbl_topCategoryPicks);
+    }
+    public boolean isCompareSimilarItemsDisplayed(){
+        return restaurantUI.isDisplayed(section_compareSimilar);
+    }
+    public boolean isRecommendedForYouItemNameDisplayed(String code){
+        return restaurantUI.isDisplayed(By.xpath(lbl_recommendedForYouItem.replace("CODE",code )));
+    }
+    public boolean isRecommendedBySalesRepDisplayed(String code) {
+        return restaurantUI.isDisplayed(By.xpath(lbl_recommendedBySalesRep.replace("CODE", '#'+code)));
+    }
+    public boolean isDontForgetToOrderDisplayed(){
+        restaurantUI.scrollToElement(section_dontForget);
+        return restaurantUI.isDisplayed(section_dontForget);
+    }
+    public boolean isMoreFromThisBrandDisplayed(){
+        return restaurantUI.isDisplayed(section_moreFromThisBrand);
+    }
+
+    public String getItemNameFirstMultiOUMCoupa() throws InterruptedException {
+        restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemNameCoupa,3);
+        restaurantUI.waitForElementEnabledState(lbl_firstMultiOUMItemNameCoupa,true);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_firstMultiOUMItemNameCoupa);
+    }
+
+
+    public String getItemCodeFirstMultiOUMCoupa() throws InterruptedException {
+        restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemCodeCoupa,3);
+        restaurantUI.waitForVisibility(lbl_firstMultiOUMItemCodeCoupa);
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.getText(lbl_firstMultiOUMItemCodeCoupa);
+    }
+
+    public double getActiveItemPriceFirstMultiOUMRowStableCoupa() throws InterruptedException {
+        try {
+            return extractPriceStable(lbl_itemPriceListMultiOUMCoupa);
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractPriceStable(lbl_itemPriceListMultiOUM1Coupa);
+        }
+    }
+
+    private double extractPriceStableCoupa(By priceLocator) throws InterruptedException {
+        restaurantUI.waitForVisibility(priceLocator);
+        String tagName = restaurantUI.getElement(priceLocator).getTagName();
+        String priceText;
+
+        if (tagName.equals("input")) {
+            priceText = restaurantUI.getText(priceLocator, "value");
+        } else if (tagName.equals("div")) {
+            priceText = restaurantUI.getText(priceLocator);
+        } else {
+            priceText = restaurantUI.getText(priceLocator);
+        }
+
+        System.out.println("Extracted Price: " + priceText);
+        priceText = priceText.replace("$", "").replace(",", "").split("/")[0].trim();
+
+        return Double.valueOf(priceText);
+    }
+    public void refreshCustomersPage(){
+        restaurantUI.refreshPage();
+    }
+    public boolean isAddSubstitutionTextDisplayed()throws InterruptedException{
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.isDisplayed(txtSubstitution);
+    }
+    public void clickSubstitution()throws InterruptedException{
+        restaurantUI.click(txtSubstitution);
+    }
+    public boolean isSetSubstitutionPopUpDisplayed()throws InterruptedException{
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.isDisplayed(txtSetSubstitutionPopUp);
     }
 
 }

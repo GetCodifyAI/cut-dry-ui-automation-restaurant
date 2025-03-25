@@ -16,7 +16,7 @@ public class Catalog {
             catalogPage.clickAddToCartPlusIcon(uom);
         }
     }
-    public static void clickAddToCartMinusIcon(int count, String name) {
+    public static void clickAddToCartMinusIcon(int count, String name) throws InterruptedException {
         for (int i=0; i<count;i++){
             catalogPage.clickAddToCartMinusIcon(name);
         }
@@ -81,4 +81,48 @@ public class Catalog {
         return catalogPage.getTotalPriceInOrder();
     }
     public static void clickItemType()throws InterruptedException{catalogPage.clickItemType();}
+    public static boolean isUserNavigatedToCatalog(){
+        return catalogPage.isCatalogTextDisplayed();
+    }
+    public static void searchItemInCatalog(String itemName){
+        catalogPage.clickSearchItemInCatalog(itemName);
+    }
+    public static void selectItemFromGrid(String itemCode){
+        catalogPage.clickonItemOnCatalogPage(itemCode);
+    }
+    public static String getItemcodeInCatalogData(){
+        return catalogPage.getItemCodeFromCatalogDataPage();
+    }
+    public static void navigateToSubstituteTab(){
+        catalogPage.clickOnSubstituteTab();
+    }
+    public static void removeExistingItem(String ItemCode){
+        if (catalogPage.isDeleteSubstituteItemDisplayed(ItemCode)) {
+            catalogPage.clickOnDeleteSubstituteItemBtn(ItemCode);
+            catalogPage.clickOnSaveChangesBtn();
+        }
+
+    }
+    public static void addSubstitutions(){
+        catalogPage.clickAddSubstitutionBtn();
+    }
+    public static String getSubstituteItemName(String ItemCode){
+        return catalogPage.getSubstituteItemName(ItemCode);
+    }
+    public static void searchAndAddSubstituteItem(String ItemCode){
+        catalogPage.searchSubstituteItem(ItemCode);
+        catalogPage.addSubstitutionsBtn();
+    }
+    public static void saveChanges(){
+        catalogPage.clickOnSaveChangesBtn();
+    }
+    public static boolean successOverlayDisplayed(){
+        return catalogPage.isSuccessOverlayDisplayed();
+    }
+    public static boolean isAddedSubstituteItemDisplayedInPage(String ItemCode){
+        return catalogPage.isSubstituteItemDisplayed(ItemCode);
+    }
+    public static void deleteSubstitute(){
+        catalogPage.deleteSubstitute();
+    }
 }

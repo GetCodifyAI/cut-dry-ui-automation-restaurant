@@ -6,6 +6,7 @@ import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -30,7 +31,7 @@ public class VerifyOrderApprovalChangesTest extends TestBase {
         Login.navigateToLoginAs();
         Login.goToOperatorJoshuaClayton(OperatorName);
         restaurantUI.switchToNewTab();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         softAssert.assertTrue(Dashboard.isApprovalsTabDisplayed(),"approvals tab error");
         Dashboard.navigateToCooksCompanyProduce();
         Customer.goToEdit();

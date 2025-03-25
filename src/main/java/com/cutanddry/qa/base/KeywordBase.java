@@ -839,6 +839,88 @@ public class KeywordBase {
 
         return this;
     }
+    // Method to check if a checkbox is selected, given its locator
+    public boolean isCheckboxOrRadioBtnSelected(By checkboxLocator) {
+        try {
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(checkboxLocator));
+
+            WebElement checkbox = driver.findElement(checkboxLocator);
+
+            return checkbox.isSelected();
+        } catch (TimeoutException e) {
+
+            return false;
+        }
+    }
+
+    public String executeJSForText(By locator) {
+        return (String) ((JavascriptExecutor) driver).executeScript(
+                "return arguments[0] ? arguments[0].textContent.trim() : '';",
+                driver.findElement(locator)
+        );
+    }
+    public KeywordBase sendKeysWaitAndSelectDropdownOptionByEnter(By inputFieldLocator, String text) {
+        try {
+            Actions actions = new Actions(driver);
+
+            //Wait until the input field is visible and send keys
+            WebElement inputField = wait.until(ExpectedConditions.visibilityOfElementLocated(inputFieldLocator));
+            actions.moveToElement(inputField).click().sendKeys(text).perform();
+
+            //Wait for 2 seconds to allow the dropdown to load
+            Thread.sleep(2000);
+
+            //Press Enter to select the option
+            actions.sendKeys(Keys.ENTER).perform();
+
+            logger.info("Sent keys to input field: {} with text: {} and selected the dropdown option with Enter key", inputFieldLocator, text);
+        } catch (Exception e) {
+            logger.error("Failed to send keys to input field: {} with text: {} and select the dropdown option", inputFieldLocator, text, e);
+        }
+        return this;
+    }
+
+    public void scrollToElementAccurate(By by, int timeoutInSeconds) {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            boolean elementFound = false;
+            int maxAttempts = 10;
+            int attempt = 0;
+            long lastHeight = 0;
+
+            while (!elementFound && attempt < maxAttempts) {
+                long newHeight = (long) js.executeScript("return document.documentElement.scrollHeight");
+
+                if (newHeight == lastHeight) {
+                    break;
+                }
+
+                js.executeScript("window.scrollBy(0, window.innerHeight / 2);");
+                Thread.sleep(500);
+                lastHeight = newHeight;
+                attempt++;
+
+                if (!driver.findElements(by).isEmpty()) {
+                    elementFound = true;
+                    break;
+                }
+            }
+
+            if (elementFound) {
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+                WebElement targetElement = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+
+                js.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", targetElement);
+
+                logger.info("Scrolled to and found the element: {}", by);
+            } else {
+                logger.warn("Element not found after scrolling {} times: {}", attempt, by);
+            }
+        } catch (Exception e) {
+            logger.error("Failed to find and scroll to the element: {}", by, e);
+        }
+    }
 
 
 }

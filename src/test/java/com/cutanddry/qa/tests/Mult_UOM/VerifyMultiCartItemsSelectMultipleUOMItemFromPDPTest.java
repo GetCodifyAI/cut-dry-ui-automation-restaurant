@@ -4,6 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.*;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -34,13 +35,14 @@ public class VerifyMultiCartItemsSelectMultipleUOMItemFromPDPTest extends TestBa
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
 
         Login.navigateToLoginAs();
         Login.goToOperatorBermudaBiologicalStation(OperatorName);
         restaurantUI.switchToNewTab();
         Customer.clickOnPlaceOrder();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+
         Customer.goToCatalog();
         Customer.searchItemOnCatalog(itemName);
         Customer.clickOnProduct(itemName);
@@ -75,7 +77,7 @@ public class VerifyMultiCartItemsSelectMultipleUOMItemFromPDPTest extends TestBa
         Customer.clickClose();
 
         History.goToHistory();
-        softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.searchOrderID(orderId1);
         softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId1), "Order ID not found in the table.");
         History.clickOnFirstItemOfOrderHistory();

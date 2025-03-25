@@ -38,6 +38,8 @@
 
             <class name="com.cutanddry.qa.tests.MultiCart.VerifyCreatedOrdersFromMultipleCartsTest" />
             <class name="com.cutanddry.qa.tests.MultiCart.VerifyGroupingProductsIntoTwoCartsTest" />
+
+            <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaOrderGuideCatalogAndPDPTest" />
         </classes>
     </test>
 </suite>
