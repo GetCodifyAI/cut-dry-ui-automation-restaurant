@@ -1,9 +1,4 @@
 version: 2.1
-executors:
-  default-executor:
-    docker:
-      - image: cimg/base:stable
-    working_directory: ~/workspace
 
 jobs:
   build-and-test:
@@ -81,11 +76,7 @@ jobs:
           command: mvn clean test "-Dsurefire.suiteXmlFiles=regression1.xml" "-Drun.headless=true" "-Dtest.env=uat"
       - store_artifacts:
           path: target/surefire-reports
-          destination: nightly-build-and-test-1-reports
-      - persist_to_workspace:
-          root: .
-          paths:
-            - target/surefire-reports
+          destination: nightly-build-and-test-reports
     executor:
 
   nightly-build-and-test-2:
@@ -127,50 +118,11 @@ jobs:
           destination: daily-build-and-test-artifacts
       - store_artifacts:
           path: target/surefire-reports
-          destination: nightly-build-and-test-2-reports
-      - persist_to_workspace:
-          root: .
-          paths:
-            - target/surefire-reports
-    executor:
-
-  calculate-pass-fail-rate:
-    executor: default-executor
-    steps:
-      - checkout
-      - attach_workspace:
-          at: /workspace
+          destination: nightly-build-and-test-reports
       - run:
-          name: Process Test Results and Calculate Pass/Fail Rate
-          command: |
-            # Combine all surefire report files into a single directory
-            cp -r /workspace/target/surefire-reports/* /tmp/surefire-reports
-            
-            # Calculate the pass and fail tests from the surefire reports
-            FAILED_TESTS=$(grep -r 'Failed' /tmp/surefire-reports | wc -l)
-            TOTAL_TESTS=$(grep -r 'Tests run:' /tmp/surefire-reports | wc -l)
-            PASSED_TESTS=$((TOTAL_TESTS - FAILED_TESTS))
-            
-            # Calculate Pass Rate and Fail Rate
-            PASS_RATE=$(echo "scale=2; ($PASSED_TESTS / $TOTAL_TESTS) * 100" | bc)
-            FAIL_RATE=$(echo "scale=2; ($FAILED_TESTS / $TOTAL_TESTS) * 100" | bc)
-            
-            # Send Slack notification with the calculated rates
-            curl -X POST -H 'Content-type: application/json' --data "{
-              \"text\": \"*Test Execution Summary for ${PART} - ${TEST_ENV}*\",
-              \"attachments\": [
-                {
-                  \"title\": \"Test Results\",
-                  \"fields\": [
-                    {\"title\": \"Total Tests\", \"value\": \"${TOTAL_TESTS}\", \"short\": true},
-                    {\"title\": \"Passed\", \"value\": \"${PASSED_TESTS}\", \"short\": true},
-                    {\"title\": \"Failed\", \"value\": \"${FAILED_TESTS}\", \"short\": true},
-                    {\"title\": \"Pass Rate\", \"value\": \"${PASS_RATE}%\", \"short\": true},
-                    {\"title\": \"Fail Rate\", \"value\": \"${FAIL_RATE}%\", \"short\": true}
-                  ]
-                }
-              ]
-            }" https://hooks.slack.com/services/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
+          name: Send Slack Notification
+          command: mvn exec:java -Dexec.mainClass="com.cutanddry.qa.utils.SlackNotifierFinal"
+    executor:
 
 workflows:
   version: 2
@@ -181,7 +133,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "24 12 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "08 17 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
@@ -189,14 +141,3 @@ workflows:
     jobs:
       - nightly-build-and-test-1
       - nightly-build-and-test-2
-
-  scheduled-test-1-1:
-    triggers:
-      - schedule:
-          cron: "28 12 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
-          filters:
-            branches:
-              only:
-                - pass_fail_matrix
-    jobs:
-      - calculate-pass-fail-rate
