@@ -1274,6 +1274,14 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         return restaurantUI.getText(lbl_firstMultiOUMItemName);
     }
 
+    public String IsCustomOrderTextDisplayed() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_sortCustomOrder);
+        restaurantUI.waitForCustom(4000);
+        String dropdownText = restaurantUI.getText(btn_sortCustomOrder);
+        return dropdownText;
+
+    }
+
 
     public String getItemCodeFirstMultiOUM() throws InterruptedException {
 //        restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemCode,3);

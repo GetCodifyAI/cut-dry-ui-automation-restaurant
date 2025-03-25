@@ -794,4 +794,8 @@ public class Customer {
         return customersPage.isSetSubstitutionTextDisplayed();
     }
 
+    public static String IsCustomOrderTextDisplayed() throws InterruptedException {
+        return customersPage.IsCustomOrderTextDisplayed();
+    }
+
 }
