@@ -79,7 +79,9 @@ jobs:
           destination: daily-build-and-test-artifacts
       - run:
           name: Send Slack Notification
-          command: mvn exec:java -Dexec.mainClass="com.cutanddry.qa.utils.SlackNotifierFinal"
+          command: |
+            mvn clean install -DskipTests
+            mvn exec:java -Dexec.mainClass="com.cutanddry.qa.utils.SlackNotifierFinal"
     executor:
 
   nightly-build-and-test-2:
@@ -121,7 +123,9 @@ jobs:
           destination: daily-build-and-test-artifacts
       - run:
           name: Send Slack Notification
-          command: mvn exec:java -Dexec.mainClass="com.cutanddry.qa.utils.SlackNotifierFinal"
+          command: |
+            mvn clean install -DskipTests
+            mvn exec:java -Dexec.mainClass="com.cutanddry.qa.utils.SlackNotifierFinal"
     executor:
 
 workflows:
@@ -133,7 +137,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "16 17 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "32 17 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
