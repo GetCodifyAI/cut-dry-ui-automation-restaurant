@@ -1,8 +1,12 @@
 package com.cutanddry.qa.utils;
 
+import org.json.JSONObject;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +39,19 @@ public class TestNGListener implements ITestListener {
 
     @Override
     public void onFinish(ITestContext context) {
+        PART = context.getCurrentXmlTest().getParameter("PART");
+
+        JSONObject resultJson = new JSONObject();
+        resultJson.put("totalTests", totalTests);
+        resultJson.put("passedTests", passedTests);
+        resultJson.put("failedTests", failedTests);
+        resultJson.put("PART", PART);
+
+        try (FileWriter file = new FileWriter("test-results.json")) {
+            file.write(resultJson.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 //        String environment = System.getProperty("test.env", "uat");
         SlackNotifier.sendSlackAlert(totalTests, passedTests, failedTests, TEST_ENV, passedTestCases, failedTestCases,PART);
     }
