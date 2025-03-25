@@ -1,6 +1,5 @@
 package com.cutanddry.qa.utils;
 
-import org.json.JSONObject;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -41,17 +40,6 @@ public class TestNGListener implements ITestListener {
     public void onFinish(ITestContext context) {
         PART = context.getCurrentXmlTest().getParameter("PART");
 
-        JSONObject resultJson = new JSONObject();
-        resultJson.put("totalTests", totalTests);
-        resultJson.put("passedTests", passedTests);
-        resultJson.put("failedTests", failedTests);
-        resultJson.put("PART", PART);
-
-        try (FileWriter file = new FileWriter("test-results.json")) {
-            file.write(resultJson.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 //        String environment = System.getProperty("test.env", "uat");
         SlackNotifier.sendSlackAlert(totalTests, passedTests, failedTests, TEST_ENV, passedTestCases, failedTestCases,PART);
     }

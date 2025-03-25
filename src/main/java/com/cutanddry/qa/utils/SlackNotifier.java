@@ -24,37 +24,8 @@ public class SlackNotifier {
     // Update this with the actual URL where the report is hosted
     private static final String REPORT_URL = "https://app.circleci.com/pipelines/github/GetCodifyAI/cut-and-dry?branch=master";
 
-    int totalTests = 0, passedTests = 0, failedTests = 0;
-    List<String> passedTestCases = new ArrayList<>();
-    List<String> failedTestCases = new ArrayList<>();
-
     public static void sendSlackAlert(int totalTests, int passedTests, int failedTests, String environment, List<String> passedTestCases, List<String> failedTestCases, String PART) {
         try {
-            File folder = new File("/tmp/test-results");
-            File[] files = folder.listFiles();
-
-            if (files != null) {
-                for (File file : files) {
-                    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                        StringBuilder jsonContent = new StringBuilder();
-                        String line;
-                        while ((line = reader.readLine()) != null) {
-                            jsonContent.append(line);
-                        }
-
-                        JSONObject testResults = new JSONObject(jsonContent.toString());
-                        totalTests += testResults.getInt("totalTests");
-                        passedTests += testResults.getInt("passedTests");
-                        failedTests += testResults.getInt("failedTests");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            double passRate = ((double) passedTests / totalTests) * 100;
-            double failRate = ((double) failedTests / totalTests) * 100;
-
             // Construct the JSON payload
             String payload = "{"
                     + "\"blocks\": ["
@@ -100,12 +71,6 @@ public class SlackNotifier {
                     + "\"text\": \"*Failed Test Cases:*\\n" + String.join(", ", failedTestCases) + "\""
                     + "}"
                     + "},"
-                    + "{ \"type\": \"section\", \"text\": { \"type\": \"mrkdwn\", \"text\": \"*Final Test Execution Summary!*\" } },"
-                    + "{ \"type\": \"section\", \"fields\": ["
-                    + "{ \"type\": \"mrkdwn\", \"text\": \"*Total Tests:*\\n" + totalTests + "\" },"
-                    + "{ \"type\": \"mrkdwn\", \"text\": \"*Passed:*\\n" + passedTests + " (" + String.format("%.2f", passRate) + "%)\" },"
-                    + "{ \"type\": \"mrkdwn\", \"text\": \"*Failed:*\\n" + failedTests + " (" + String.format("%.2f", failRate) + "%)\" }"
-                    + "] },"
                     + "{"
                     + "\"type\": \"section\","
                     + "\"text\": {"

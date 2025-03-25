@@ -1,4 +1,9 @@
 version: 2.1
+executors:
+  default-executor:
+    docker:
+      - image: cimg/base:stable
+    working_directory: ~/workspace
 
 jobs:
   build-and-test:
@@ -74,17 +79,13 @@ jobs:
       - run:
           name: Build and run nightly tests
           command: mvn clean test "-Dsurefire.suiteXmlFiles=regression1.xml" "-Drun.headless=true" "-Dtest.env=uat"
-      - run:
-          name: "Save test results"
-          command: |
-            mkdir -p /tmp/test-results
-            cp test-results.json /tmp/test-results/
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
       - store_artifacts:
           path: target/surefire-reports
-          destination: daily-build-and-test-artifacts
+          destination: nightly-build-and-test-1-reports
+      - persist_to_workspace:
+          root: .
+          paths:
+            - target/surefire-reports
     executor:
 
   nightly-build-and-test-2:
@@ -121,488 +122,55 @@ jobs:
       - run:
           name: Build and run nightly tests
           command: mvn clean test "-Dsurefire.suiteXmlFiles=regression2.xml" "-Drun.headless=true" "-Dtest.env=uat"
-      - run:
-          name: "Save test results"
-          command: |
-            mkdir -p /tmp/test-results
-            if [ -f test-results.json ]; then cp test-results.json /tmp/test-results/; fi
-            if [ -d target/surefire-reports ]; then cp -r target/surefire-reports /tmp/test-results/; fi
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: daily-build-and-test-artifacts
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts
+      - store_artifacts:
+          path: target/surefire-reports
+          destination: nightly-build-and-test-2-reports
+      - persist_to_workspace:
+          root: .
+          paths:
+            - target/surefire-reports
     executor:
 
-  nightly-build-and-test-3:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+  calculate-pass-fail-rate:
+    executor: default-executor
     steps:
       - checkout
+      - attach_workspace:
+          at: /workspace
       - run:
-          name: Install Java 22
+          name: Process Test Results and Calculate Pass/Fail Rate
           command: |
-            sudo apt-get update && sudo apt-get install -y wget
-            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
-            sudo mkdir -p /usr/lib/jvm
-            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
-            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
-            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-            java -version
-      - run:
-          name: Install Maven
-          command: |
-            sudo apt-get install -y maven
-            mvn -version
-      - run:
-          name: Install Chrome
-          command: |
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-            google-chrome --version
-      - run:
-          name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression3.xml" "-Drun.headless=true" "-Dtest.env=uat"
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: daily-build-and-test-artifacts
-    executor:
-
-  nightly-build-and-test-4:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
-    steps:
-      - checkout
-      - run:
-          name: Install Java 22
-          command: |
-            sudo apt-get update && sudo apt-get install -y wget
-            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
-            sudo mkdir -p /usr/lib/jvm
-            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
-            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
-            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-            java -version
-      - run:
-          name: Install Maven
-          command: |
-            sudo apt-get install -y maven
-            mvn -version
-      - run:
-          name: Install Chrome
-          command: |
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-            google-chrome --version
-      - run:
-          name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression4.xml" "-Drun.headless=true" "-Dtest.env=uat"
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: daily-build-and-test-artifacts
-    executor:
-
-  nightly-build-and-test-5:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
-    steps:
-      - checkout
-      - run:
-          name: Install Java 22
-          command: |
-            sudo apt-get update && sudo apt-get install -y wget
-            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
-            sudo mkdir -p /usr/lib/jvm
-            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
-            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
-            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-            java -version
-      - run:
-          name: Install Maven
-          command: |
-            sudo apt-get install -y maven
-            mvn -version
-      - run:
-          name: Install Chrome
-          command: |
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-            google-chrome --version
-      - run:
-          name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression5.xml" "-Drun.headless=true" "-Dtest.env=uat"
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: daily-build-and-test-artifacts
-    executor:
-
-  nightly-build-and-test-6:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
-    steps:
-      - checkout
-      - run:
-          name: Install Java 22
-          command: |
-            sudo apt-get update && sudo apt-get install -y wget
-            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
-            sudo mkdir -p /usr/lib/jvm
-            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
-            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
-            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-            java -version
-      - run:
-          name: Install Maven
-          command: |
-            sudo apt-get install -y maven
-            mvn -version
-      - run:
-          name: Install Chrome
-          command: |
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-            google-chrome --version
-      - run:
-          name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression6.xml" "-Drun.headless=true" "-Dtest.env=uat"
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: daily-build-and-test-artifacts
-    executor:
-
-  nightly-build-and-test-7:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
-    steps:
-      - checkout
-      - run:
-          name: Install Java 22
-          command: |
-            sudo apt-get update && sudo apt-get install -y wget
-            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
-            sudo mkdir -p /usr/lib/jvm
-            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
-            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
-            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-            java -version
-      - run:
-          name: Install Maven
-          command: |
-            sudo apt-get install -y maven
-            mvn -version
-      - run:
-          name: Install Chrome
-          command: |
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-            google-chrome --version
-      - run:
-          name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression7.xml" "-Drun.headless=true" "-Dtest.env=uat"
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: daily-build-and-test-artifacts
-    executor:
-
-  daily-build-and-test-1:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
-    steps:
-      - checkout
-      - run:
-          name: Install Java 22
-          command: |
-            sudo apt-get update && sudo apt-get install -y wget
-            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
-            sudo mkdir -p /usr/lib/jvm
-            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
-            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
-            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-            java -version
-      - run:
-          name: Install Maven
-          command: |
-            sudo apt-get install -y maven
-            mvn -version
-      - run:
-          name: Install Chrome
-          command: |
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-            google-chrome --version
-      - run:
-          name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression1.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true"
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: daily-build-and-test-artifacts
-    executor:
-
-  daily-build-and-test-2:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
-    steps:
-      - checkout
-      - run:
-          name: Install Java 22
-          command: |
-            sudo apt-get update && sudo apt-get install -y wget
-            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
-            sudo mkdir -p /usr/lib/jvm
-            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
-            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
-            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-            java -version
-      - run:
-          name: Install Maven
-          command: |
-            sudo apt-get install -y maven
-            mvn -version
-      - run:
-          name: Install Chrome
-          command: |
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-            google-chrome --version
-      - run:
-          name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression2.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true"
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: daily-build-and-test-artifacts
-    executor:
-
-  daily-build-and-test-3:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
-    steps:
-      - checkout
-      - run:
-          name: Install Java 22
-          command: |
-            sudo apt-get update && sudo apt-get install -y wget
-            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
-            sudo mkdir -p /usr/lib/jvm
-            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
-            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
-            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-            java -version
-      - run:
-          name: Install Maven
-          command: |
-            sudo apt-get install -y maven
-            mvn -version
-      - run:
-          name: Install Chrome
-          command: |
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-            google-chrome --version
-      - run:
-          name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression3.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true"
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: daily-build-and-test-artifacts
-    executor:
-
-  daily-build-and-test-4:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
-    steps:
-      - checkout
-      - run:
-          name: Install Java 22
-          command: |
-            sudo apt-get update && sudo apt-get install -y wget
-            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
-            sudo mkdir -p /usr/lib/jvm
-            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
-            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
-            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-            java -version
-      - run:
-          name: Install Maven
-          command: |
-            sudo apt-get install -y maven
-            mvn -version
-      - run:
-          name: Install Chrome
-          command: |
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-            google-chrome --version
-      - run:
-          name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression4.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true"
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: daily-build-and-test-artifacts
-    executor:
-
-  daily-build-and-test-5:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
-    steps:
-      - checkout
-      - run:
-          name: Install Java 22
-          command: |
-            sudo apt-get update && sudo apt-get install -y wget
-            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
-            sudo mkdir -p /usr/lib/jvm
-            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
-            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
-            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-            java -version
-      - run:
-          name: Install Maven
-          command: |
-            sudo apt-get install -y maven
-            mvn -version
-      - run:
-          name: Install Chrome
-          command: |
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-            google-chrome --version
-      - run:
-          name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression5.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true"
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: daily-build-and-test-artifacts
-    executor:
-
-  daily-build-and-test-6:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
-    steps:
-      - checkout
-      - run:
-          name: Install Java 22
-          command: |
-            sudo apt-get update && sudo apt-get install -y wget
-            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
-            sudo mkdir -p /usr/lib/jvm
-            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
-            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
-            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-            java -version
-      - run:
-          name: Install Maven
-          command: |
-            sudo apt-get install -y maven
-            mvn -version
-      - run:
-          name: Install Chrome
-          command: |
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-            google-chrome --version
-      - run:
-          name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression6.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true"
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: daily-build-and-test-artifacts
-    executor:
-
-  daily-build-and-test-7:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
-    steps:
-      - checkout
-      - run:
-          name: Install Java 22
-          command: |
-            sudo apt-get update && sudo apt-get install -y wget
-            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
-            sudo mkdir -p /usr/lib/jvm
-            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
-            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
-            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-            java -version
-      - run:
-          name: Install Maven
-          command: |
-            sudo apt-get install -y maven
-            mvn -version
-      - run:
-          name: Install Chrome
-          command: |
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-            google-chrome --version
-      - run:
-          name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression7.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true"
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: daily-build-and-test-artifacts
-    executor:
-
+            # Combine all surefire report files into a single directory
+            cp -r /workspace/target/surefire-reports/* /tmp/surefire-reports
+            
+            # Calculate the pass and fail tests from the surefire reports
+            FAILED_TESTS=$(grep -r 'Failed' /tmp/surefire-reports | wc -l)
+            TOTAL_TESTS=$(grep -r 'Tests run:' /tmp/surefire-reports | wc -l)
+            PASSED_TESTS=$((TOTAL_TESTS - FAILED_TESTS))
+            
+            # Calculate Pass Rate and Fail Rate
+            PASS_RATE=$(echo "scale=2; ($PASSED_TESTS / $TOTAL_TESTS) * 100" | bc)
+            FAIL_RATE=$(echo "scale=2; ($FAILED_TESTS / $TOTAL_TESTS) * 100" | bc)
+            
+            # Send Slack notification with the calculated rates
+            curl -X POST -H 'Content-type: application/json' --data "{
+              \"text\": \"*Test Execution Summary for ${PART} - ${TEST_ENV}*\",
+              \"attachments\": [
+                {
+                  \"title\": \"Test Results\",
+                  \"fields\": [
+                    {\"title\": \"Total Tests\", \"value\": \"${TOTAL_TESTS}\", \"short\": true},
+                    {\"title\": \"Passed\", \"value\": \"${PASSED_TESTS}\", \"short\": true},
+                    {\"title\": \"Failed\", \"value\": \"${FAILED_TESTS}\", \"short\": true},
+                    {\"title\": \"Pass Rate\", \"value\": \"${PASS_RATE}%\", \"short\": true},
+                    {\"title\": \"Fail Rate\", \"value\": \"${FAIL_RATE}%\", \"short\": true}
+                  ]
+                }
+              ]
+            }" https://hooks.slack.com/services/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
 
 workflows:
   version: 2
@@ -613,7 +181,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "20 11 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "13 12 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
@@ -621,68 +189,7 @@ workflows:
     jobs:
       - nightly-build-and-test-1
       - nightly-build-and-test-2
-#      - nightly-build-and-test-3
-#      - nightly-build-and-test-4
-#      - nightly-build-and-test-5
-
-
-  scheduled-test-1-sub1:
-    triggers:
-      - schedule:
-          cron: "20 19 * * *"  # This will run nightly-build-and-test at 2:00 AM IST (08:30 PM UTC) -- 45 06 * * *  ahsan_dev  20 19
-          filters:
-            branches:
-              only:
-                - main
-    jobs:
-      - nightly-build-and-test-6
-
-  scheduled-test-1-sub2:
-    triggers:
-      - schedule:
-          cron: "50 19 * * *"  # This will run nightly-build-and-test at 2:00 AM IST (08:30 PM UTC) -- 15 07 * * * ahsan_dev  50 19
-          filters:
-            branches:
-              only:
-                - main
-    jobs:
-      - nightly-build-and-test-7
-
-
-  scheduled-test-2:
-    triggers:
-      - schedule:
-          cron: "25 06 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC)
-          filters:
-            branches:
-              only:
-                - main
-    jobs:
-      - daily-build-and-test-1
-      - daily-build-and-test-2
-      - daily-build-and-test-3
-      - daily-build-and-test-4
-      - daily-build-and-test-5
-
-  scheduled-test-2-sub1:
-    triggers:
-      - schedule:
-          cron: "15 07 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC)
-          filters:
-            branches:
-              only:
-                - main
-    jobs:
-      - daily-build-and-test-6
-
-  scheduled-test-2-sub2:
-    triggers:
-      - schedule:
-          cron: "45 07 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC)
-          filters:
-            branches:
-              only:
-                - main
-    jobs:
-      - daily-build-and-test-7
-
+      - calculate-pass-fail-rate:
+          requires:
+            - nightly-build-and-test-1
+            - nightly-build-and-test-2
