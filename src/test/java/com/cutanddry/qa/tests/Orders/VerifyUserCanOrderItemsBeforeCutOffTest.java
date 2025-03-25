@@ -22,6 +22,7 @@ import java.time.format.DateTimeFormatter;
 public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
     static User user;
     String customerId = "21259";
+    static String expectedDate;
 
     @BeforeMethod
     public void setUp(){
@@ -109,7 +110,8 @@ public class VerifyUserCanOrderItemsBeforeCutOffTest extends TestBase {
         Customer.submitOrderAfterDeliveryTime();
         softAssert.assertTrue(Customer.isInvalidDeliveryTextDisplayed(),"Delivery time error");
         Customer.closeDeliveryPopup();
-        Customer.selectDeliveryDateSecondLine();
+        expectedDate = generateUTCTomorrowDateFormatted();
+        Customer.selectDeliveryDateLine(expectedDate);
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"Error in order submit");
         closeAllBrowsers();

@@ -165,5 +165,24 @@ public class TestBase {
             return "Invalid number"; // Handle invalid input
         }
     }
+    public static String generateUTCTomorrowDateFormatted() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd");
+        formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getTimeZone("UTC"));
+        calendar.add(Calendar.DAY_OF_YEAR, +2); // add 1 day
+
+        return formatter.format(calendar.getTime());
+    }
+    public static String generateUTCTodayDateFormatted() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd");
+        formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        return formatter.format(calendar.getTime());
+    }
 
 }
