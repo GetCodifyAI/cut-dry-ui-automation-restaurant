@@ -125,10 +125,11 @@ jobs:
           name: "Save test results"
           command: |
             mkdir -p /tmp/test-results
-            cp test-results.json /tmp/test-results/
+            if [ -f test-results.json ]; then cp test-results.json /tmp/test-results/; fi
+            if [ -d target/surefire-reports ]; then cp -r target/surefire-reports /tmp/test-results/; fi
       - store_artifacts:
           path: /tmp/test-results
-          destination: test-results
+          destination: daily-build-and-test-artifacts
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts
@@ -612,7 +613,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "46 10 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "19 11 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
