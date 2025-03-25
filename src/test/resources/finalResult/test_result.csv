@@ -1,0 +1,4 @@
+Execution Date,Execution Time,Suite Name,Part,Total Test Cases,Passed Count,Failed Count,Failed TCs
+2025-03-25,22:03:42,operator tests,Part One,2,1,1,addProductsFrmOrderGuide
+Total, , , ,2,1,1,N/A
+Percentage, , , , ,50.00%,50.00%,N/A

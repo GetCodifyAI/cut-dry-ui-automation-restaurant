@@ -76,7 +76,10 @@ jobs:
           command: mvn clean test "-Dsurefire.suiteXmlFiles=regression1.xml" "-Drun.headless=true" "-Dtest.env=uat"
       - store_artifacts:
           path: target/surefire-reports
-          destination: nightly-build-and-test-reports
+          destination: daily-build-and-test-artifacts
+      - run:
+          name: Send Slack Notification
+          command: mvn exec:java -Dexec.mainClass="com.cutanddry.qa.utils.SlackNotifierFinal"
     executor:
 
   nightly-build-and-test-2:
@@ -116,9 +119,6 @@ jobs:
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: nightly-build-and-test-reports
       - run:
           name: Send Slack Notification
           command: mvn exec:java -Dexec.mainClass="com.cutanddry.qa.utils.SlackNotifierFinal"
@@ -133,7 +133,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "08 17 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "17 17 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
