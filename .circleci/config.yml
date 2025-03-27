@@ -180,7 +180,7 @@ jobs:
             # Send the test results to Slack
       - slack/notify:
           channel: "test-alerts" # Replace with your Slack channel
-          text: "${SLACK_MESSAGE}"
+          template: "${SLACK_MESSAGE}"
             
 
 #  nightly-build-and-test-3:
