@@ -169,6 +169,13 @@ jobs:
             echo "Combined Pass Rate: $PASS_RATE%"
             echo "Fail Rate: $FAIL_RATE%"
             
+            echo "TOTAL=$TOTAL" >> $BASH_ENV
+            echo "PASSED=$PASSED" >> $BASH_ENV
+            echo "FAILED=$FAILED" >> $BASH_ENV
+            echo "PASS_RATE=$PASS_RATE" >> $BASH_ENV
+            echo "FAIL_RATE=$FAIL_RATE" >> $BASH_ENV
+            source $BASH_ENV
+            
             # Set environment variables for Slack notification
             export SLACK_MESSAGE="Total tests run: $TOTAL\nPassed: $PASSED\nFailed: $FAILED\nPass Rate: $PASS_RATE%\nFail Rate: $FAIL_RATE%"
 
@@ -189,7 +196,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "Test Results:\nTotal: *${TOTAL}*\n✅ Passed: *${PASSED}*\n❌ Failed: *${FAILED}*\n📊 Pass Rate: *${PASS_RATE}%*"
+                    "text": "Test Results:\nTotal: *${TOTAL:-N/A}*\n✅ Passed: *${PASSED:-N/A}*\n❌ Failed: *${FAILED:-N/A}*\n📊 Pass Rate: *${PASS_RATE:-N/A}%*"
                   }
                 }
               ]
@@ -233,7 +240,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "56 15 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "05 16 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
