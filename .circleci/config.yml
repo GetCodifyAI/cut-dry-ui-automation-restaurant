@@ -181,7 +181,19 @@ jobs:
       - slack/notify:
           channel: "#test-alerts" # Replace with your Slack channel
           template: "${SLACK_MESSAGE}"
-          message: "${SLACK_MESSAGE}"
+          event: always
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "Test Results:\nTotal: *${TOTAL}*\n✅ Passed: *${PASSED}*\n❌ Failed: *${FAILED}*\n📊 Pass Rate: *${PASS_RATE}%*"
+                  }
+                }
+              ]
+            }
             
 
 #  nightly-build-and-test-3:
@@ -221,7 +233,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "08 14 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "56 15 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
