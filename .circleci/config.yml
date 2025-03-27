@@ -124,16 +124,48 @@ jobs:
           command: |
             echo "Processing test results from workspace..."
             find ~/workspace -name '*.xml' -print
+            
             if [ -z "$(find ~/workspace -name '*.xml')" ]; then
-              echo "No test result XMLs found! Exiting..."
+               echo "No test result XMLs found! Exiting..."
+               exit 1
+            fi
+            TOTAL=0
+            PASSED=0
+            FAILED=0
+            
+            for FILE in ~/workspace/*.xml; do
+              TESTS=$(grep -oP '(?<=tests=")[0-9]+' "$FILE" | head -1)
+              FAILURES=$(grep -oP '(?<=failures=")[0-9]+' "$FILE" | head -1)
+              ERRORS=$(grep -oP '(?<=errors=")[0-9]+' "$FILE" | head -1)
+
+              TESTS=${TESTS:-0}
+              FAILURES=${FAILURES:-0}
+              ERRORS=${ERRORS:-0}
+
+              PASSED_IN_FILE=$((TESTS - FAILURES - ERRORS))
+
+              TOTAL=$((TOTAL + TESTS))
+              PASSED=$((PASSED + PASSED_IN_FILE))
+              FAILED=$((FAILED + FAILURES + ERRORS))
+            done
+            
+            if [ "$TOTAL" -eq 0 ]; then
+              echo "No tests found in any XML files! Exiting..."
               exit 1
             fi
-            PASS=$(grep -oP '(?<=<testsuite tests=")[^"]*(?=".*errors="0")' ~/workspace/*.xml | wc -l)
-            TOTAL=$(grep -oP '(?<=<testsuite tests=")[^"]*' ~/workspace/*.xml | awk '{s+=$1} END {print s}')
-            FAIL=$(($TOTAL - $PASS))
-            RATE=$(echo "scale=2; ($PASS / $TOTAL) * 100" | bc)
-            echo "Total tests run: $TOTAL, Passed: $PASS, Failed: $FAIL, Combined Pass rate: $RATE%"
+            
+            PASS_RATE=$(echo "scale=2; ($PASSED / $TOTAL) * 100" | bc)
 
+            echo "Total tests run: $TOTAL"
+            echo "Passed: $PASSED"
+            echo "Failed: $FAILED"
+            echo "Combined Pass Rate: $PASS_RATE%"
+
+            if [ "$FAILED" -gt 0 ]; then
+              echo "Some tests failed."
+              exit 1  # Fails the job if any tests fail
+            fi
+            
 
 #  nightly-build-and-test-3:
 #    docker:
@@ -172,7 +204,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "52 10 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "02 11 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
