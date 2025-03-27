@@ -76,7 +76,11 @@ jobs:
           command: mvn clean test "-Dsurefire.suiteXmlFiles=regression1.xml" "-Drun.headless=true" "-Dtest.env=uat"
       - store_artifacts:
           path: target/surefire-reports
-          destination: nightly-build-and-test-artifacts
+          destination: nightly-build-and-test-artifacts-1
+      - persist_to_workspace:
+          root: /workspace
+          paths:
+            - nightly-build-and-test-artifacts-1
     executor:
 
   nightly-build-and-test-2:
@@ -115,7 +119,11 @@ jobs:
           command: mvn clean test "-Dsurefire.suiteXmlFiles=regression2.xml" "-Drun.headless=true" "-Dtest.env=uat"
       - store_artifacts:
           path: target/surefire-reports
-          destination: nightly-build-and-test-artifacts
+          destination: nightly-build-and-test-artifacts-2
+      - persist_to_workspace:
+          root: /workspace
+          paths:
+            - nightly-build-and-test-artifacts-2
     executor:
 
   calculate-pass-fail-rate:
@@ -123,24 +131,24 @@ jobs:
       - image: cimg/base:stable
     resource_class: xlarge
     steps:
+      - attach_workspace:
+          at: /workspace
       - run:
           name: Calculate Combined Pass/Fail Rate
           command: |
-            # Combine results from both regression tests
-            PASS1=$(grep -oP '(?<=<testsuite tests=")[^"]*(?=".*errors="0")' target/surefire-reports/TEST-*.xml | wc -l)
-            PASS2=$(grep -oP '(?<=<testsuite tests=")[^"]*(?=".*errors="0")' nightly-build-and-test-artifacts-1/TEST-*.xml | wc -l)
-            PASS3=$(grep -oP '(?<=<testsuite tests=")[^"]*(?=".*errors="0")' nightly-build-and-test-artifacts-2/TEST-*.xml | wc -l)
-
-            TOTAL1=$(grep -oP '(?<=<testsuite tests=")[^"]*' target/surefire-reports/TEST-*.xml | awk '{s+=$1} END {print s}')
-            TOTAL2=$(grep -oP '(?<=<testsuite tests=")[^"]*' nightly-build-and-test-artifacts-1/TEST-*.xml | awk '{s+=$1} END {print s}')
-            TOTAL3=$(grep -oP '(?<=<testsuite tests=")[^"]*' nightly-build-and-test-artifacts-2/TEST-*.xml | awk '{s+=$1} END {print s}')
-
+            # Now the test results are available at /workspace/nightly-build-and-test-artifacts-1 and /workspace/nightly-build-and-test-artifacts-2
+            PASS1=$(grep -oP '(?<=<testsuite tests=")[^"]*(?=".*errors="0")' /workspace/nightly-build-and-test-artifacts-1/TEST-*.xml | wc -l)
+            PASS2=$(grep -oP '(?<=<testsuite tests=")[^"]*(?=".*errors="0")' /workspace/nightly-build-and-test-artifacts-2/TEST-*.xml | wc -l)
+            
+            TOTAL1=$(grep -oP '(?<=<testsuite tests=")[^"]*' /workspace/nightly-build-and-test-artifacts-1/TEST-*.xml | awk '{s+=$1} END {print s}')
+            TOTAL2=$(grep -oP '(?<=<testsuite tests=")[^"]*' /workspace/nightly-build-and-test-artifacts-2/TEST-*.xml | awk '{s+=$1} END {print s}')
+            
             # Calculate the combined pass/fail rate
-            TOTAL=$(($TOTAL1 + $TOTAL2 + $TOTAL3))
-            PASS=$(($PASS1 + $PASS2 + $PASS3))
+            TOTAL=$(($TOTAL1 + $TOTAL2))
+            PASS=$(($PASS1 + $PASS2))
             FAIL=$(($TOTAL - $PASS))
             RATE=$(echo "scale=2; ($PASS / $TOTAL) * 100" | bc)
-
+            
             echo "Total tests run: $TOTAL, Passed: $PASS, Failed: $FAIL, Combined Pass rate: $RATE%"
 
 #  nightly-build-and-test-3:
@@ -183,7 +191,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "29 08 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "43 08 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
