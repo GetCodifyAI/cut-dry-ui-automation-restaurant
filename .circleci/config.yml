@@ -79,9 +79,9 @@ jobs:
           destination: nightly-build-and-test-artifacts-1
       - run:
           name: Prepare workspace directory
-          command: mkdir -p /workspace
+          command: mkdir -p ~/workspace
       - persist_to_workspace:
-          root: target/surefire-reports
+          root: ~/workspace
           paths:
             - TEST-*.xml
     executor:
@@ -124,10 +124,17 @@ jobs:
           path: target/surefire-reports
           destination: nightly-build-and-test-artifacts-2
       - run:
+          name: Debug User and Permissions
+          command: |
+            whoami
+            ls -ld /
+            ls -ld /workspace || echo "Workspace directory does not exist"
+            ls -ld ~/workspace || echo "Home workspace does not exist"
+      - run:
           name: Prepare workspace directory
-          command: mkdir -p /workspace
+          command: mkdir -p ~/workspace
       - persist_to_workspace:
-          root: target/surefire-reports
+          root: ~/workspace
           paths:
             - TEST-*.xml
     executor:
@@ -197,7 +204,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "15 10 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "23 10 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
