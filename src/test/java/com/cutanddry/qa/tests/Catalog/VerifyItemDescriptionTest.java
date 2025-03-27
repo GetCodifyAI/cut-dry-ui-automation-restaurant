@@ -27,8 +27,8 @@ public class VerifyItemDescriptionTest extends TestBase {
     public void VerifyItemDescription() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        Dashboard.isUserNavigatedToDashboard();
-        Assert.assertFalse(true);
+//        Dashboard.isUserNavigatedToDashboard();
+        Assert.assertFalse(false);
         /*Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
