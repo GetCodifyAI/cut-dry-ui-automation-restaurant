@@ -178,7 +178,7 @@ jobs:
             fi
             
             # Send the test results to Slack
-      - slack/send:
+      - slack/notify:
           channel: "test-alerts" # Replace with your Slack channel
           token: $SLACK_WEBHOOK
           message: $SLACK_MESSAGE
