@@ -46,11 +46,13 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
-            cp -v target/surefire-reports/TEST-*.xml ~/workspace/ || echo "No test result XMLs found!"
+            for file in target/surefire-reports/TEST-*.xml; do
+              [ -f "$file" ] && cp "$file" ~/workspace/nightly-build-and-test-1_$(basename "$file")
+            done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - TEST-*.xml
+            - nightly-build-and-test-1_TEST-*.xml
 
     executor:
 
@@ -98,11 +100,13 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
-            cp -v target/surefire-reports/TEST-*.xml ~/workspace/ || echo "No test result XMLs found!"
+            for file in target/surefire-reports/TEST-*.xml; do
+              [ -f "$file" ] && cp "$file" ~/workspace/nightly-build-and-test-2_$(basename "$file")
+            done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - TEST-*.xml
+            - nightly-build-and-test-2_TEST-*.xml
     executor:
 
   calculate-pass-fail-rate:
@@ -119,13 +123,13 @@ jobs:
           name: Calculate Combined Pass/Fail Rate
           command: |
             echo "Processing test results from workspace..."
-            find ~/workspace -name 'TEST-*.xml' -print
-            if [ -z "$(find ~/workspace -name 'TEST-*.xml')" ]; then
+            find ~/workspace -name '*.xml' -print
+            if [ -z "$(find ~/workspace -name '*.xml')" ]; then
               echo "No test result XMLs found! Exiting..."
               exit 1
             fi
-            PASS=$(grep -oP '(?<=<testsuite tests=")[^"]*(?=".*errors="0")' ~/workspace/TEST-*.xml | wc -l)
-            TOTAL=$(grep -oP '(?<=<testsuite tests=")[^"]*' ~/workspace/TEST-*.xml | awk '{s+=$1} END {print s}')
+            PASS=$(grep -oP '(?<=<testsuite tests=")[^"]*(?=".*errors="0")' ~/workspace/*.xml | wc -l)
+            TOTAL=$(grep -oP '(?<=<testsuite tests=")[^"]*' ~/workspace/*.xml | awk '{s+=$1} END {print s}')
             FAIL=$(($TOTAL - $PASS))
             RATE=$(echo "scale=2; ($PASS / $TOTAL) * 100" | bc)
             echo "Total tests run: $TOTAL, Passed: $PASS, Failed: $FAIL, Combined Pass rate: $RATE%"
@@ -168,7 +172,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "36 10 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "52 10 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
