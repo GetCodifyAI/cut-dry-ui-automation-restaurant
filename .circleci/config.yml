@@ -118,44 +118,61 @@ jobs:
           destination: nightly-build-and-test-artifacts
     executor:
 
-  nightly-build-and-test-3:
+  calculate-pass-fail-rate:
     docker:
       - image: cimg/base:stable
     resource_class: xlarge
     steps:
-      - checkout
       - run:
-          name: Install Java 22
+          name: Calculate Combined Pass/Fail Rate
           command: |
-            sudo apt-get update && sudo apt-get install -y wget
-            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
-            sudo mkdir -p /usr/lib/jvm
-            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
-            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
-            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-            java -version
-      - run:
-          name: Install Maven
-          command: |
-            sudo apt-get install -y maven
-            mvn -version
-      - run:
-          name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression9.xml" "-Drun.headless=true" "-Dtest.env=uat"
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: nightly-build-and-test-artifacts
-    executor:
+            # Combine results from both regression tests
+            PASS1=$(grep -oP '(?<=<testsuite tests=")[^"]*(?=".*errors="0")' target/surefire-reports/TEST-*.xml | wc -l)
+            PASS2=$(grep -oP '(?<=<testsuite tests=")[^"]*(?=".*errors="0")' nightly-build-and-test-artifacts-1/TEST-*.xml | wc -l)
+            PASS3=$(grep -oP '(?<=<testsuite tests=")[^"]*(?=".*errors="0")' nightly-build-and-test-artifacts-2/TEST-*.xml | wc -l)
 
-  delay-job:
-    docker:
-      - image: your-docker-image
-    steps:
-      - run:
-          name: Sleep for 5 minutes
-          command: sleep 300  # Sleep for 600 seconds (10 minutes)
+            TOTAL1=$(grep -oP '(?<=<testsuite tests=")[^"]*' target/surefire-reports/TEST-*.xml | awk '{s+=$1} END {print s}')
+            TOTAL2=$(grep -oP '(?<=<testsuite tests=")[^"]*' nightly-build-and-test-artifacts-1/TEST-*.xml | awk '{s+=$1} END {print s}')
+            TOTAL3=$(grep -oP '(?<=<testsuite tests=")[^"]*' nightly-build-and-test-artifacts-2/TEST-*.xml | awk '{s+=$1} END {print s}')
+
+            # Calculate the combined pass/fail rate
+            TOTAL=$(($TOTAL1 + $TOTAL2 + $TOTAL3))
+            PASS=$(($PASS1 + $PASS2 + $PASS3))
+            FAIL=$(($TOTAL - $PASS))
+            RATE=$(echo "scale=2; ($PASS / $TOTAL) * 100" | bc)
+
+            echo "Total tests run: $TOTAL, Passed: $PASS, Failed: $FAIL, Combined Pass rate: $RATE%"
+
+#  nightly-build-and-test-3:
+#    docker:
+#      - image: cimg/base:stable
+#    resource_class: xlarge
+#    steps:
+#      - checkout
+#      - run:
+#          name: Install Java 22
+#          command: |
+#            sudo apt-get update && sudo apt-get install -y wget
+#            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
+#            sudo mkdir -p /usr/lib/jvm
+#            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
+#            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
+#            sudo update-alternatives --config java
+#            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
+#            source $BASH_ENV
+#            java -version
+#      - run:
+#          name: Install Maven
+#          command: |
+#            sudo apt-get install -y maven
+#            mvn -version
+#      - run:
+#          name: Build and run nightly tests
+#          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression9.xml" "-Drun.headless=true" "-Dtest.env=uat"
+#      - store_artifacts:
+#          path: target/surefire-reports
+#          destination: nightly-build-and-test-artifacts
+#    executor:
 
 workflows:
   version: 2
@@ -166,7 +183,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "47 06 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "26 07 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
@@ -174,16 +191,15 @@ workflows:
     jobs:
       - nightly-build-and-test-1
       - nightly-build-and-test-2
-      - delay-job
-      - nightly-build-and-test-3
+      - calculate-pass-fail-rate
 
-  scheduled-test-2:
-    triggers:
-      - schedule:
-          cron: "52 06 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
-          filters:
-            branches:
-              only:
-                - pass_fail_matrix
-    jobs:
-      - nightly-build-and-test-3
+#  scheduled-test-2:
+#    triggers:
+#      - schedule:
+#          cron: "52 06 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+#          filters:
+#            branches:
+#              only:
+#                - pass_fail_matrix
+#    jobs:
+#      - nightly-build-and-test-3

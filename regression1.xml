@@ -11,30 +11,6 @@
         <classes>
             <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantLoginTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmOrderGuideTest" />
-            <!--<class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmCatalogTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmOrderGuideTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmCatalogTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmReviewCartTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantOrderSubmissionTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyItemPriceTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCompanyDropdownTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCreatingOrdersWithCatalogItemsTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyExportingOrderGuideEditFeatureTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePrintFeatureTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyAddingOrderGuideSectionsTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditOrderGuideSectionsTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyOrderGuideSectionDeleteTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyHidingAnItemFromOrderGuideTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyUnhideItemsFromOrderGuideTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSearchFeatureTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCreatingOrdersWithUploadingExcelFileTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrderGuideWithCatalogItemsTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrdersImportingOrderGuideTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrdersWithUploadingExcelFileTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSortOptionsTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheCutOffTimeForPickup" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePickUpDisplayTerm" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePickUpSubmit" />-->
         </classes>
     </test>
 </suite>
