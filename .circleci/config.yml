@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  slack: circleci/slack@4.2.2
+  slack: circleci/slack@5.1.1
 
 jobs:
 
@@ -221,7 +221,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "27 12 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "29 12 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
