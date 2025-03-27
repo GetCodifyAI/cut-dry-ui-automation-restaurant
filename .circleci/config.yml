@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  slack: circleci/slack@4.2.2
 
 jobs:
 
@@ -166,38 +168,20 @@ jobs:
             echo "Failed: $FAILED"
             echo "Combined Pass Rate: $PASS_RATE%"
             echo "Fail Rate: $FAIL_RATE%"
+            
+            # Set environment variables for Slack notification
+            export SLACK_MESSAGE="Total tests run: $TOTAL\nPassed: $PASSED\nFailed: $FAILED\nPass Rate: $PASS_RATE%\nFail Rate: $FAIL_RATE%"
 
             if [ "$FAILED" -gt 0 ]; then
               echo "Some tests failed."
               exit 1  # Fails the job if any tests fail
             fi
-
-  send-slack-notification:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
-    steps:
-      - attach_workspace:
-          at: ~/workspace
-      - run:
-          name: Install curl for Slack Notification
-          command: |
-            sudo apt-get update && sudo apt-get install -y curl
-      - run:
-          name: Send Slack Notification
-          command: |
-            curl -X POST -H 'Content-type: application/json' --data '{
-              "text": "*Test Results Notification*",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "*Test Run Completed*\nTotal tests: $PASSED/$TOTAL\nPass Rate: $PASS_RATE%\nFail Rate: $FAIL_RATE%"
-                  }
-                }
-              ]
-            }' $SLACK_WEBHOOK_URL
+            
+            # Send the test results to Slack
+      - slack/send:
+          channel: "test-alerts" # Replace with your Slack channel
+          token: $SLACK_WEBHOOK
+          message: << pipeline.parameters.SLACK_MESSAGE >>
             
 
 #  nightly-build-and-test-3:
@@ -237,7 +221,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "18 12 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "27 12 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
@@ -249,6 +233,3 @@ workflows:
           requires:
             - nightly-build-and-test-1
             - nightly-build-and-test-2
-      - send-slack-notification:
-          requires:
-            - calculate-pass-fail-rate
