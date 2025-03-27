@@ -80,10 +80,10 @@ jobs:
       - run:
           name: Prepare workspace directory
           command: mkdir -p /workspace
-            - persist_to_workspace:
-                root: target/surefire-reports
-                paths:
-                  - TEST-*.xml
+      - persist_to_workspace:
+          root: target/surefire-reports
+          paths:
+            - TEST-*.xml
     executor:
 
   nightly-build-and-test-2:
@@ -126,10 +126,10 @@ jobs:
       - run:
           name: Prepare workspace directory
           command: mkdir -p /workspace
-            - persist_to_workspace:
-                root: target/surefire-reports
-                paths:
-                  - TEST-*.xml
+      - persist_to_workspace:
+          root: target/surefire-reports
+          paths:
+            - TEST-*.xml
     executor:
 
   calculate-pass-fail-rate:
@@ -197,7 +197,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "11 10 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "15 10 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
