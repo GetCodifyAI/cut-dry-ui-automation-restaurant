@@ -184,7 +184,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "17 08 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "20 08 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
@@ -196,7 +196,6 @@ workflows:
           requires:
             - nightly-build-and-test-1
             - nightly-build-and-test-2
-          type: run-on-failure
 
 #  scheduled-test-2:
 #    triggers:
