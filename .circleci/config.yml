@@ -143,12 +143,19 @@ jobs:
             mvn -version
       - run:
           name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression3.xml" "-Drun.headless=true" "-Dtest.env=uat"
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression9.xml" "-Drun.headless=true" "-Dtest.env=uat"
       - store_artifacts:
           path: target/surefire-reports
           destination: nightly-build-and-test-artifacts
     executor:
 
+  delay-job:
+    docker:
+      - image: your-docker-image
+    steps:
+      - run:
+          name: Sleep for 5 minutes
+          command: sleep 300  # Sleep for 600 seconds (10 minutes)
 
 workflows:
   version: 2
@@ -159,7 +166,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "30 06 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "45 06 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
@@ -167,11 +174,13 @@ workflows:
     jobs:
       - nightly-build-and-test-1
       - nightly-build-and-test-2
+      - delay-job
+      - nightly-build-and-test-3
 
   scheduled-test-2:
     triggers:
       - schedule:
-          cron: "35 06 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "50 06 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
