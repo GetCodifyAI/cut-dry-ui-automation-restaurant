@@ -180,8 +180,7 @@ jobs:
             # Send the test results to Slack
       - slack/notify:
           channel: "test-alerts" # Replace with your Slack channel
-          token: $SLACK_WEBHOOK
-          message: $SLACK_MESSAGE
+          message: << pipeline.parameters.SLACK_MESSAGE >>
             
 
 #  nightly-build-and-test-3:
