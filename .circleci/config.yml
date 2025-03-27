@@ -122,6 +122,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     resource_class: xlarge
+    type: run-on-failure
     steps:
       - run:
           name: Calculate Combined Pass/Fail Rate
