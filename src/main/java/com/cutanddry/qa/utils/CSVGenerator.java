@@ -93,7 +93,11 @@ public class CSVGenerator implements ITestListener {
 
         updateGlobalCounts();
 
-        generateFinalCSVReport();
+//        generateFinalCSVReport();
+        if (testResults.size() == 2) { // Assuming 5 regression XMLs
+            generateFinalCSVReport();
+            testResults.clear(); // Clear for next job run
+        }
 
     }
 
