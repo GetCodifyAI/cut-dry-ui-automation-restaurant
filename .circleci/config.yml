@@ -196,7 +196,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "Test Results:\nTotal: *${TOTAL:-N/A}*\n✅ Passed: *${PASSED:-N/A}*\n❌ Failed: *${FAILED:-N/A}*\n📊 Pass Rate: *${PASS_RATE:-N/A}*\n📉 Fail Rate: *${$FAIL_RATE:-N/A}%*"
+                    "text": "Test Results:\nTotal: *${TOTAL:-N/A}*\n✅ Passed: *${PASSED:-N/A}*\n❌ Failed: *${FAILED:-N/A}*\n📊 Pass Rate: *${PASS_RATE:-N/A}%*"
                   }
                 }
               ]
