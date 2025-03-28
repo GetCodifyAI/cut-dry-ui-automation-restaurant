@@ -41,6 +41,21 @@ jobs:
       - store_artifacts:
           path: target/surefire-reports
           destination: nightly-build-and-test-artifacts-1
+      - run:
+          name: Verify Test Results Exist
+          command: ls -R target/surefire-reports || echo "Test results missing!"
+      - run:
+          name: Copy test results to workspace
+          command: |
+            mkdir -p ~/workspace
+            for file in target/surefire-reports/TEST-*.xml; do
+              [ -f "$file" ] && cp "$file" ~/workspace/nightly-build-and-test-1_$(basename "$file")
+            done
+      - persist_to_workspace:
+          root: ~/workspace
+          paths:
+            - nightly-build-and-test-1_TEST-*.xml
+
     executor:
 
   nightly-build-and-test-2:
@@ -80,6 +95,20 @@ jobs:
       - store_artifacts:
           path: target/surefire-reports
           destination: nightly-build-and-test-artifacts-2
+      - run:
+          name: Verify Test Results Exist
+          command: ls -R target/surefire-reports || echo "Test results missing!"
+      - run:
+          name: Copy test results to workspace
+          command: |
+            mkdir -p ~/workspace
+            for file in target/surefire-reports/TEST-*.xml; do
+              [ -f "$file" ] && cp "$file" ~/workspace/nightly-build-and-test-2_$(basename "$file")
+            done
+      - persist_to_workspace:
+          root: ~/workspace
+          paths:
+            - nightly-build-and-test-2_TEST-*.xml
     executor:
 
   calculate-pass-fail-rate:
@@ -87,42 +116,49 @@ jobs:
       - image: cimg/base:stable
     resource_class: xlarge
     steps:
+      - attach_workspace:
+          at: ~/workspace
       - run:
           name: Install bc for calculations
           command: |
             sudo apt-get update && sudo apt-get install -y bc
       - run:
-          name: Fetch Test Results from Artifacts
-          command: |
-            mkdir -p ~/test-results
-            curl -o ~/test-results/nightly-build-and-test-1-results.tar.gz "$CIRCLE_ARTIFACTS/nightly-build-and-test-artifacts-1"
-            curl -o ~/test-results/nightly-build-and-test-2-results.tar.gz "$CIRCLE_ARTIFACTS/nightly-build-and-test-artifacts-2"
-            tar -xzvf ~/test-results/*.tar.gz -C ~/test-results/
+          name: Debug Workspace Contents
+          command: ls -R ~/workspace
       - run:
           name: Calculate Combined Pass/Fail Rate
           command: |
-            echo "Processing test results..."
-            find ~/test-results -name '*.xml' -print
+            echo "Processing test results from workspace..."
+            find ~/workspace -name '*.xml' -print
             
+            if [ -z "$(find ~/workspace -name '*.xml')" ]; then
+               echo "No test result XMLs found! Exiting..."
+               exit 1
+            fi
             TOTAL=0
             PASSED=0
             FAILED=0
             
-            for FILE in ~/test-results/*.xml; do
+            for FILE in ~/workspace/*.xml; do
               TESTS=$(grep -oP '(?<=tests=")[0-9]+' "$FILE" | head -1)
               FAILURES=$(grep -oP '(?<=failures=")[0-9]+' "$FILE" | head -1)
               ERRORS=$(grep -oP '(?<=errors=")[0-9]+' "$FILE" | head -1)
-            
+
               TESTS=${TESTS:-0}
               FAILURES=${FAILURES:-0}
               ERRORS=${ERRORS:-0}
-            
+
               PASSED_IN_FILE=$((TESTS - FAILURES - ERRORS))
-            
+
               TOTAL=$((TOTAL + TESTS))
               PASSED=$((PASSED + PASSED_IN_FILE))
               FAILED=$((FAILED + FAILURES + ERRORS))
             done
+            
+            if [ "$TOTAL" -eq 0 ]; then
+              echo "No tests found in any XML files! Exiting..."
+              exit 1
+            fi
             
             PASS_RATE=$(echo "scale=2; ($PASSED / $TOTAL) * 100" | bc)
             FAIL_RATE=$(echo "scale=2; ($FAILED / $TOTAL) * 100" | bc)
@@ -167,13 +203,44 @@ jobs:
             }
             
 
+#  nightly-build-and-test-3:
+#    docker:
+#      - image: cimg/base:stable
+#    resource_class: xlarge
+#    steps:
+#      - checkout
+#      - run:
+#          name: Install Java 22
+#          command: |
+#            sudo apt-get update && sudo apt-get install -y wget
+#            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
+#            sudo mkdir -p /usr/lib/jvm
+#            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
+#            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
+#            sudo update-alternatives --config java
+#            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
+#            source $BASH_ENV
+#            java -version
+#      - run:
+#          name: Install Maven
+#          command: |
+#            sudo apt-get install -y maven
+#            mvn -version
+#      - run:
+#          name: Build and run nightly tests
+#          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression9.xml" "-Drun.headless=true" "-Dtest.env=uat"
+#      - store_artifacts:
+#          path: target/surefire-reports
+#          destination: nightly-build-and-test-artifacts
+#    executor:
+
 workflows:
   version: 2
 
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "51 12 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "28 12 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
@@ -189,7 +256,7 @@ workflows:
   scheduled-test-1-sub:
     triggers:
       - schedule:
-          cron: "55 12 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "30 12 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
