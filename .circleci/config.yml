@@ -95,8 +95,7 @@ jobs:
           name: Fetch Test Results from Artifacts
           command: |
             mkdir -p ~/test-results
-            curl -o ~/test-results/nightly-build-and-test-1-results.tar.gz "$CIRCLE_ARTIFACTS/nightly-build-and-test-artifacts-1"
-            curl -o ~/test-results/nightly-build-and-test-2-results.tar.gz "$CIRCLE_ARTIFACTS/nightly-build-and-test-artifacts-2"
+            circleci-agent artifacts download --destination ~/test-results/
             tar -xzvf ~/test-results/*.tar.gz -C ~/test-results/
       - run:
           name: Calculate Combined Pass/Fail Rate
@@ -173,7 +172,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "53 12 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "04 13 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
@@ -189,7 +188,7 @@ workflows:
   scheduled-test-1-sub:
     triggers:
       - schedule:
-          cron: "58 12 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "08 13 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
