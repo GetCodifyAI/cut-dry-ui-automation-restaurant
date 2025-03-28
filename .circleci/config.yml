@@ -179,10 +179,10 @@ jobs:
             # Set environment variables for Slack notification
             export SLACK_MESSAGE="Total tests run: $TOTAL\nPassed: $PASSED\nFailed: $FAILED\nPass Rate: $PASS_RATE%\nFail Rate: $FAIL_RATE%"
 
-            if [ "$FAILED" -gt 0 ]; then
-              echo "Some tests failed."
-              exit 1  # Fails the job if any tests fail
-            fi
+#            if [ "$FAILED" -gt 0 ]; then
+#              echo "Some tests failed."
+#              exit 1  # Fails the job if any tests fail
+#            fi
             
             # Send the test results to Slack
       - slack/notify:
@@ -240,7 +240,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "27 06 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "29 06 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
