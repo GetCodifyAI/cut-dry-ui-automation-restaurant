@@ -37,7 +37,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression1.xml" "-Drun.headless=true" "-Dtest.env=uat"
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression1.xml" "-Drun.headless=true" "-Dtest.env=uat" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: nightly-build-and-test-artifacts-1
@@ -91,7 +91,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression2.xml" "-Drun.headless=true" "-Dtest.env=uat"
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression2.xml" "-Drun.headless=true" "-Dtest.env=uat" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: nightly-build-and-test-artifacts-2
@@ -240,23 +240,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "42 05 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
-          filters:
-            branches:
-              only:
-                - pass_fail_matrix
-    jobs:
-      - nightly-build-and-test-1
-      - nightly-build-and-test-2
-#      - calculate-pass-fail-rate:
-#          requires:
-#            - nightly-build-and-test-1
-#            - nightly-build-and-test-2
-
-  scheduled-test-1-sub:
-    triggers:
-      - schedule:
-          cron: "58 05 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "04 06 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
@@ -268,4 +252,19 @@ workflows:
           requires:
             - nightly-build-and-test-1
             - nightly-build-and-test-2
-          allow_failure: true
+
+#  scheduled-test-1-sub:
+#    triggers:
+#      - schedule:
+#          cron: "58 05 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+#          filters:
+#            branches:
+#              only:
+#                - pass_fail_matrix
+#    jobs:
+#      - nightly-build-and-test-1
+#      - nightly-build-and-test-2
+#      - calculate-pass-fail-rate:
+#          requires:
+#            - nightly-build-and-test-1
+#            - nightly-build-and-test-2

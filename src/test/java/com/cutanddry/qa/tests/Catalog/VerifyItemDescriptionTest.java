@@ -28,7 +28,7 @@ public class VerifyItemDescriptionTest extends TestBase {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
 //        Dashboard.isUserNavigatedToDashboard();
-        Assert.assertFalse(false);
+        Assert.assertFalse(true);
         /*Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
