@@ -14,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyWLAppBookkeeperRolesTest extends TestBase {
     static User user;
     static String itemName = "Artichoke -24ct";
-    static String OperatorName = "Brandon IFC White";
+    static String OperatorName = "Ayendra IFC WL";
 
     @BeforeMethod
     public void setUp(){
@@ -29,7 +29,7 @@ public class VerifyWLAppBookkeeperRolesTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
-        Login.loginAsBookkeeperWL(OperatorName);
+        Login.loginAsAdminWL(OperatorName);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
