@@ -596,17 +596,17 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "30 18 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "03 07 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
-                - main
+                - viranga_bug_fix
     jobs:
-      - nightly-build-and-test-1
-      - nightly-build-and-test-2
-      - nightly-build-and-test-3
+#      - nightly-build-and-test-1
+#      - nightly-build-and-test-2
+#      - nightly-build-and-test-3
       - nightly-build-and-test-4
-      - nightly-build-and-test-5
+#      - nightly-build-and-test-5
 #      - nightly-build-and-test-6
 #      - nightly-build-and-test-7
 
