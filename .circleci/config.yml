@@ -41,13 +41,6 @@ jobs:
       - run:
           name: Install ChromeDriver
           command: |
-            # Install Google Chrome
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-            google-chrome --version
-
             # Install ChromeDriver version 135.0.7049.42
             CHROMEDRIVER_URL="https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.42/linux64/chromedriver-linux64.zip"
             wget $CHROMEDRIVER_URL
@@ -65,6 +58,16 @@ jobs:
             tar -xvzf apache-jmeter-5.4.1.tgz
             export JMETER_HOME=$PWD/apache-jmeter-5.4.1
             export PATH=$JMETER_HOME/bin:$PATH
+            echo "JMETER_HOME is set to $JMETER_HOME"
+            echo "Listing contents of the JMeter bin directory:"
+            ls -la $JMETER_HOME/bin
+            # Check if the jmeter binary exists
+            if [ -f "$JMETER_HOME/bin/jmeter" ]; then
+              echo "JMeter binary found!"
+            else
+              echo "JMeter binary not found!"
+            fi
+            jmeter -v
 
   run-jmeter-test:
     executor: jmeter-executor  # Use the jmeter-executor defined above
@@ -73,7 +76,6 @@ jobs:
       - run:
           name: Run JMeter Test
           command: |
-            export JMETER_HOME=$PWD/apache-jmeter-5.4.1
             $JMETER_HOME/bin/jmeter -n -t jmeter-tests/login_test_plan.jmx -l results/test_results.jtl -e -o results/report
 
 
