@@ -235,6 +235,15 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txtSubstitution = By.xpath("//div[contains(text(),'Substitution')]");
 
     String dynamicToXPath = "(//div[contains(@class,'react-datepicker__day--highlighted')]/preceding::div[contains(@class, 'react-datepicker__day') and text()='DAY'])[last()]";
+    By txt_popupAlertOrderMin = By.xpath("//h2[text()='Order Minimum Not Met']");
+    By txt_minOrderBanner = By.xpath("//div[contains(text(), 'Add a few more items worth') and contains(text(), 'to meet minimum order amount')]");
+    By btn_OK = By.xpath("//button[text()='OK']");
+    By btn_yes = By.xpath("//button[text()='Yes']");
+    By btn_invoice = By.xpath("//a[text()='Invoices']");
+    By cb_inInvoiceTable = By.xpath("//table/tbody/tr[1]/td[1]//div[contains(@class, '_du1frc')]");
+
+
+
 
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
@@ -1497,6 +1506,30 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     public boolean isSetSubstitutionPopUpDisplayed()throws InterruptedException{
         restaurantUI.waitForCustom(2000);
         return restaurantUI.isDisplayed(txtSetSubstitutionPopUp);
+    }
+    public boolean isOrderMinPopupDisplayed(){
+        restaurantUI.waitForVisibility(txt_popupAlertOrderMin);
+        return restaurantUI.isDisplayed(txt_popupAlertOrderMin);
+    }
+    public boolean isMinOrderBannerDisplayed(){
+        restaurantUI.waitForVisibility(txt_minOrderBanner);
+//        restaurantUI.waitForVisibility(txt_minOrderBanner);
+        restaurantUI.refreshPage();
+        return restaurantUI.isDisplayed(txt_minOrderBanner);
+    }
+    public void clickOK(){
+        restaurantUI.waitForClickability(btn_OK);
+        restaurantUI.click(btn_OK);
+    }
+    public void clickOnYes(){
+        restaurantUI.waitForVisibility(btn_yes);
+        restaurantUI.click(btn_yes);
+    }
+    public void clickonInvoice(){
+        restaurantUI.click(btn_invoice);
+    }
+    public boolean isFirstRecordDisplayed(){
+        return restaurantUI.isDisplayed(cb_inInvoiceTable);
     }
 
 }
