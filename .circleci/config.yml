@@ -62,14 +62,18 @@ jobs:
             echo "Listing contents of the JMeter bin directory:"
             ls -la $JMETER_HOME/bin
             if [ -f "$JMETER_HOME/bin/jmeter" ]; then
-              echo "JMeter binary found!"
+            echo "JMeter binary found!"
             else
-              echo "JMeter binary not found!"
+            echo "JMeter binary not found!"
             fi
             jmeter -v
-            # Persist JMETER_HOME to the environment for subsequent jobs
+            # Persist JMETER_HOME to the workspace for subsequent jobs
             echo "export JMETER_HOME=$PWD/apache-jmeter-5.4.1" >> $BASH_ENV
             echo "export PATH=$JMETER_HOME/bin:$PATH" >> $BASH_ENV
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - $JMETER_HOME
 
   run-jmeter-test:
     executor: jmeter-executor  # Use the jmeter-executor defined above
@@ -78,8 +82,7 @@ jobs:
       - run:
           name: Run JMeter Test
           command: |
-            source $BASH_ENV  # Ensure the environment variables are sourced
-            $JMETER_HOME/bin/jmeter -n -t jmeter-tests/login_test_plan.jmx -l results/test_results.jtl -e -o results/report
+            source /workspace/$JMETER_HOME/bin/jmeter -n -t jmeter-tests/login_test_plan.jmx -l results/test_results.jtl -e -o results/report
 
 
 
