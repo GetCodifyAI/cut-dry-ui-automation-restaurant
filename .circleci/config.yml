@@ -1,13 +1,16 @@
 version: 2.1
-orbs:
-  slack: circleci/slack@5.1.1
+
+executors:
+  jmeter-executor:
+    docker:
+      - image: cimg/base:stable
+    working_directory: ~/repo
+    resource_class: xlarge
 
 jobs:
 
-  nightly-build-and-test-1:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+  install-jmeter:
+    executor: jmeter-executor
     steps:
       - checkout
       - run:
@@ -36,233 +39,42 @@ jobs:
             sudo apt-get install -y google-chrome-stable
             google-chrome --version
       - run:
-          name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression1.xml" "-Drun.headless=true" "-Dtest.env=uat" || true
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: nightly-build-and-test-artifacts-1
-      - run:
-          name: Verify Test Results Exist
-          command: ls -R target/surefire-reports || echo "Test results missing!"
-      - run:
-          name: Copy test results to workspace
+          name: Install ChromeDriver
           command: |
-            mkdir -p ~/workspace
-            for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/nightly-build-and-test-1_$(basename "$file")
-            done
-      - persist_to_workspace:
-          root: ~/workspace
-          paths:
-            - nightly-build-and-test-1_TEST-*.xml
+            CHROME_VERSION=$(google-chrome-stable --version | sed 's/Google Chrome //')
+            CHROME_DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
+            wget https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
+            unzip chromedriver_linux64.zip
+            sudo mv chromedriver /usr/local/bin/
+            sudo chmod +x /usr/local/bin/chromedriver
+      - run:
+          name: Ensure results directory exists
+          command: mkdir -p results
+      - run:
+          name: Install JMeter
+          command: |
+            wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.4.1.tgz
+            tar -xvzf apache-jmeter-5.4.1.tgz
+            export JMETER_HOME=$PWD/apache-jmeter-5.4.1
+            export PATH=$JMETER_HOME/bin:$PATH
 
-    executor:
-
-  nightly-build-and-test-2:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+  run-jmeter-test:
+    executor: jmeter-executor  # Use the jmeter-executor defined above
     steps:
-      - checkout
+      - checkout  # Checkout the code from your repository
       - run:
-          name: Install Java 22
+          name: Run JMeter Test
           command: |
-            sudo apt-get update && sudo apt-get install -y wget
-            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
-            sudo mkdir -p /usr/lib/jvm
-            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
-            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
-            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-            java -version
-      - run:
-          name: Install Maven
-          command: |
-            sudo apt-get install -y maven
-            mvn -version
-      - run:
-          name: Install Chrome
-          command: |
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-            google-chrome --version
-      - run:
-          name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression2.xml" "-Drun.headless=true" "-Dtest.env=uat" || true
-      - store_artifacts:
-          path: target/surefire-reports
-          destination: nightly-build-and-test-artifacts-2
-      - run:
-          name: Verify Test Results Exist
-          command: ls -R target/surefire-reports || echo "Test results missing!"
-      - run:
-          name: Copy test results to workspace
-          command: |
-            mkdir -p ~/workspace
-            for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/nightly-build-and-test-2_$(basename "$file")
-            done
-      - persist_to_workspace:
-          root: ~/workspace
-          paths:
-            - nightly-build-and-test-2_TEST-*.xml
-    executor:
+            export JMETER_HOME=$PWD/apache-jmeter-5.4.1
+            $JMETER_HOME/bin/jmeter -n -t jmeter-tests/login_test_plan.jmx -l results/test_results.jtl -e -o results/report
 
-  calculate-pass-fail-rate:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
-    steps:
-      - attach_workspace:
-          at: ~/workspace
-      - run:
-          name: Install bc for calculations
-          command: |
-            sudo apt-get update && sudo apt-get install -y bc
-      - run:
-          name: Debug Workspace Contents
-          command: ls -R ~/workspace
-      - run:
-          name: Calculate Combined Pass/Fail Rate
-          command: |
-            echo "Processing test results from workspace..."
-            find ~/workspace -name '*.xml' -print
-            
-            if [ -z "$(find ~/workspace -name '*.xml')" ]; then
-               echo "No test result XMLs found! Exiting..."
-               exit 1
-            fi
-            TOTAL=0
-            PASSED=0
-            FAILED=0
-            
-            for FILE in ~/workspace/*.xml; do
-              TESTS=$(grep -oP '(?<=tests=")[0-9]+' "$FILE" | head -1)
-              FAILURES=$(grep -oP '(?<=failures=")[0-9]+' "$FILE" | head -1)
-              ERRORS=$(grep -oP '(?<=errors=")[0-9]+' "$FILE" | head -1)
 
-              TESTS=${TESTS:-0}
-              FAILURES=${FAILURES:-0}
-              ERRORS=${ERRORS:-0}
-
-              PASSED_IN_FILE=$((TESTS - FAILURES - ERRORS))
-
-              TOTAL=$((TOTAL + TESTS))
-              PASSED=$((PASSED + PASSED_IN_FILE))
-              FAILED=$((FAILED + FAILURES + ERRORS))
-            done
-            
-            if [ "$TOTAL" -eq 0 ]; then
-              echo "No tests found in any XML files! Exiting..."
-              exit 1
-            fi
-            
-            PASS_RATE=$(echo "scale=2; ($PASSED / $TOTAL) * 100" | bc)
-            FAIL_RATE=$(echo "scale=2; ($FAILED / $TOTAL) * 100" | bc)
-
-            echo "Total tests run: $TOTAL"
-            echo "Passed: $PASSED"
-            echo "Failed: $FAILED"
-            echo "Combined Pass Rate: $PASS_RATE%"
-            echo "Fail Rate: $FAIL_RATE%"
-            
-            echo "TOTAL=$TOTAL" >> $BASH_ENV
-            echo "PASSED=$PASSED" >> $BASH_ENV
-            echo "FAILED=$FAILED" >> $BASH_ENV
-            echo "PASS_RATE=$PASS_RATE" >> $BASH_ENV
-            echo "FAIL_RATE=$FAIL_RATE" >> $BASH_ENV
-            source $BASH_ENV
-            
-            # Set environment variables for Slack notification
-            export SLACK_MESSAGE="Total tests run: $TOTAL\nPassed: $PASSED\nFailed: $FAILED\nPass Rate: $PASS_RATE%\nFail Rate: $FAIL_RATE%"
-
-#            if [ "$FAILED" -gt 0 ]; then
-#              echo "Some tests failed."
-#              exit 1  # Fails the job if any tests fail
-#            fi
-            
-            # Send the test results to Slack
-      - slack/notify:
-          channel: "#test-alerts" # Replace with your Slack channel
-          template: "${SLACK_MESSAGE}"
-          event: always
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "Test Results:\nTotal: *${TOTAL:-N/A}*\n✅ Passed: *${PASSED:-N/A}*\n❌ Failed: *${FAILED:-N/A}*\n📊 Pass Rate: *${PASS_RATE:-N/A}*\n📉 Fail Rate: *${FAIL_RATE:-N/A}%*"
-                  }
-                }
-              ]
-            }
-            
-
-#  nightly-build-and-test-3:
-#    docker:
-#      - image: cimg/base:stable
-#    resource_class: xlarge
-#    steps:
-#      - checkout
-#      - run:
-#          name: Install Java 22
-#          command: |
-#            sudo apt-get update && sudo apt-get install -y wget
-#            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
-#            sudo mkdir -p /usr/lib/jvm
-#            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
-#            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-#            sudo update-alternatives --config java
-#            echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
-#            source $BASH_ENV
-#            java -version
-#      - run:
-#          name: Install Maven
-#          command: |
-#            sudo apt-get install -y maven
-#            mvn -version
-#      - run:
-#          name: Build and run nightly tests
-#          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression9.xml" "-Drun.headless=true" "-Dtest.env=uat"
-#      - store_artifacts:
-#          path: target/surefire-reports
-#          destination: nightly-build-and-test-artifacts
-#    executor:
 
 workflows:
   version: 2
-
-  scheduled-test-1:
-    triggers:
-      - schedule:
-          cron: "23 13 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
-          filters:
-            branches:
-              only:
-                - pass_fail_matrix
+  test:
     jobs:
-      - nightly-build-and-test-1
-      - nightly-build-and-test-2
-      - calculate-pass-fail-rate:
+      - install-jmeter
+      - run-jmeter-test:
           requires:
-            - nightly-build-and-test-1
-            - nightly-build-and-test-2
-
-#  scheduled-test-1-sub:
-#    triggers:
-#      - schedule:
-#          cron: "30 12 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
-#          filters:
-#            branches:
-#              only:
-#                - pass_fail_matrix
-#    jobs:
-#      - calculate-pass-fail-rate:
-#          requires:
-#            - nightly-build-and-test-1
-#            - nightly-build-and-test-2
+            - install-jmeter

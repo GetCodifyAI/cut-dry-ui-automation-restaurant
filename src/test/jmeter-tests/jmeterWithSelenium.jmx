@@ -1,0 +1,1964 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan">
+      <boolProp name="TestPlan.serialize_threadgroups">true</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Order Guide Loading Time">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">0</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig guiclass="com.googlecode.jmeter.plugins.webdriver.config.gui.ChromeDriverConfigGui" testclass="com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig" testname="Chrome Driver">
+          <boolProp name="WebDriverConfig.acceptinsecurecerts">false</boolProp>
+          <boolProp name="WebDriverConfig.reset_per_iteration">false</boolProp>
+          <stringProp name="WebDriverConfig.driver_path">/usr/local/bin/chromedriver</stringProp>
+          <boolProp name="WebDriverConfig.dev_mode">false</boolProp>
+          <boolProp name="WebDriverConfig.headless">true</boolProp>
+          <boolProp name="WebDriverConfig.maximize_browser">true</boolProp>
+          <stringProp name="ChromeDriverConfig.additional_args">--incognito,--window-size=1920,1080,--disable-blink-features=AutomationControlled</stringProp>
+          <stringProp name="ChromeDriverConfig.binary_path"></stringProp>
+          <stringProp name="WebDriverConfig.proxy_type">SYSTEM</stringProp>
+          <stringProp name="WebDriverConfig.proxy_pac_url"></stringProp>
+          <stringProp name="WebDriverConfig.http_host"></stringProp>
+          <intProp name="WebDriverConfig.http_port">8080</intProp>
+          <boolProp name="WebDriverConfig.use_http_for_all_protocols">true</boolProp>
+          <stringProp name="WebDriverConfig.https_host"></stringProp>
+          <intProp name="WebDriverConfig.https_port">8080</intProp>
+          <boolProp name="WebDriverConfig.use_ftp_proxy">true</boolProp>
+          <stringProp name="WebDriverConfig.ftp_host"></stringProp>
+          <intProp name="WebDriverConfig.ftp_port">8080</intProp>
+          <boolProp name="WebDriverConfig.use_socks_proxy">true</boolProp>
+          <stringProp name="WebDriverConfig.socks_host"></stringProp>
+          <intProp name="WebDriverConfig.socks_port">8080</intProp>
+          <stringProp name="WebDriverConfig.no_proxy">localhost</stringProp>
+          <stringProp name="WebDriverConfig.custom_capabilites"></stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig>
+        <hashTree/>
+        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="Once Only Controller"/>
+        <hashTree>
+          <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Login the DP">
+            <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+
+
+WDS.browser.get(&quot;https://app.cutanddry.com/&quot;)
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+def emailField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(&quot;//input[@placeholder=&apos;Email or mobile&apos;]&quot;)))
+emailField.clear()
+emailField.sendKeys(&quot;415-505-5531&quot;)
+
+def passwordField = WDS.browser.findElement(By.xpath(&quot;//input[@placeholder=&apos;Password&apos;]&quot;))
+passwordField.clear()
+passwordField.sendKeys(&quot;NovaN@123&quot;)
+
+WDS.browser.findElement(By.xpath(&quot;//button[@type=&apos;submit&apos;]&quot;)).click()
+Thread.sleep(3000)
+wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[text()=&apos;Place Order&apos;]&quot;)))
+</stringProp>
+            <stringProp name="WebDriverSampler.parameters"></stringProp>
+            <stringProp name="WebDriverSampler.language">groovy</stringProp>
+          </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+          <hashTree/>
+        </hashTree>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+        </LoopController>
+        <hashTree>
+          <CriticalSectionController guiclass="CriticalSectionControllerGui" testclass="CriticalSectionController" testname="Critical Section Controller">
+            <stringProp name="CriticalSectionController.lockName">global_lock</stringProp>
+          </CriticalSectionController>
+          <hashTree>
+            <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Clear the Reports Folder">
+              <stringProp name="WebDriverSampler.script">import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+
+
+// Define CSV file path
+def csvFilePath = &quot;results/Order_Guide_Load_Times.csv&quot;
+
+// Initialize the CSV file
+def csvFile = new File(csvFilePath)
+
+// Delete the existing CSV file at the start of the script (only if it exists)
+if (csvFile.exists()) {
+    csvFile.delete()
+}
+</stringProp>
+              <stringProp name="WebDriverSampler.parameters"></stringProp>
+              <stringProp name="WebDriverSampler.language">groovy</stringProp>
+            </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+            <hashTree/>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Dicarlo ">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+            </TransactionController>
+            <hashTree>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Search the customer" enabled="true">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+ String DP = &quot;dicarlo&quot;
+ String customer = &quot;Uncle Tony&apos;s Pizza&quot;
+
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Navigate to internal login page
+WDS.browser.get(&quot;https://internal.cutanddry.com/internaltools/loginas&quot;)
+Thread.sleep(3000)
+
+def loginAsField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//h5[text()=&apos;Distributor Portal Quick Links&apos;]/following-sibling::div//div[text()=&apos;Select User...&apos;]/following::input[@type=&apos;text&apos;][1]&quot;)))
+Thread.sleep(1000)
+loginAsField.clear()
+loginAsField.sendKeys(DP)
+Thread.sleep(3000)
+
+// Click the distributor portal option
+def customersOP = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[contains(@class, &apos;themed_select__option&apos;) and contains(translate(text(), &apos;ABCDEFGHIJKLMNOPQRSTUVWXYZ&apos;, &apos;abcdefghijklmnopqrstuvwxyz&apos;), &apos;&quot;+DP+&quot;&apos;)]&quot;)))
+customersOP.click()
+Thread.sleep(3000)
+
+// Get the Login As link URL and navigate to it
+def textElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[contains(text(), &apos;Login As (supplier)&apos;)]&quot;)))
+def loginURL = textElement.getAttribute(&quot;href&quot;)
+WDS.browser.get(loginURL)
+wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//li[contains(text(),&apos;Dashboard&apos;)]&quot;)))
+
+def customersLink = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[@data-tip=&apos;Customers&apos;]&quot;)))
+customersLink.click()
+Thread.sleep(3000)
+
+def customerField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//input[@placeholder=&apos;Search Customers&apos;]&quot;)))
+customerField.clear()
+customerField.sendKeys(customer)
+Thread.sleep(3000)
+
+
+// Store dynamic values
+WDS.props.put(&quot;opName&quot;, &quot;Dicarlo&quot;) 
+WDS.props.put(&quot;OGName&quot;, &quot;Uncle Tony&apos;s Pizza&quot;) 
+WDS.props.put(&quot;count&quot;, &quot;116&quot;) </stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Load the Order Guide - Dicarlo">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+
+String customerID = &quot;200326&quot;
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Start measuring Order Guide load time
+def orderGuideLoadStart = System.currentTimeMillis()
+
+def orderButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(&quot;//td[text()=&apos;&quot;+customerID+&quot;&apos;]/../td[8]//button&quot;)))
+//orderButton.click()
+JavascriptExecutor js = (JavascriptExecutor) WDS.browser;
+js.executeScript(&quot;arguments[0].click();&quot;, orderButton);
+
+// Wait for the table to be present
+def orderTable = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[@id=&apos;react-boot-root&apos;]//table&quot;)))
+
+def firstImageLocator = By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)
+def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(firstImageLocator))
+firstImage = WDS.browser.findElement(firstImageLocator)
+// Wait for the first image inside the table to be fully loaded
+//def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)))
+
+// Ensure the first image is fully loaded (check naturalWidth &gt; 0 using JavaScript)
+wait.until {
+    def imageLoaded = (Boolean) ((JavascriptExecutor) WDS.browser).executeScript(
+        &quot;return arguments[0].complete &amp;&amp; arguments[0].naturalWidth &gt; 0&quot;, 
+        firstImage
+    )
+    return imageLoaded
+}
+
+
+//// Wait for all images inside the table to be fully loaded
+//def images = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(&quot;//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img&quot;)))
+//
+//// Ensure all images are fully loaded (check naturalWidth &gt; 0 using JavaScript)
+//wait.until {
+//    def allImagesLoaded = images.every { img -&gt;
+//        def imageLoaded = (Boolean) ((JavascriptExecutor) WDS.browser).executeScript(
+//            &quot;return arguments[0].complete &amp;&amp; arguments[0].naturalWidth &gt; 0&quot;, 
+//            img
+//        )
+//        return imageLoaded
+//    }
+//    return allImagesLoaded
+//}
+
+
+
+// Measure Order Guide loading time
+def orderGuideLoadEnd = System.currentTimeMillis()
+def orderGuideLoadTime = orderGuideLoadEnd - orderGuideLoadStart
+WDS.log.info(&quot;Order Guide Load Time: &quot; + orderGuideLoadTime + &quot; ms&quot;)
+
+// Store load time in JMeter properties 
+WDS.props.put(&quot;orderGuideLoadStart&quot;, orderGuideLoadStart.toString())
+WDS.props.put(&quot;orderGuideLoadEnd&quot;, orderGuideLoadEnd.toString())
+WDS.props.put(&quot;orderGuideLoadTime&quot;, orderGuideLoadTime.toString())</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Handles CSV Writing" enabled="true">
+                <stringProp name="WebDriverSampler.script">import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+// Retrieve stored values from JMeter properties
+def opName = WDS.props.get(&quot;opName&quot;) 
+def OGName = WDS.props.get(&quot;OGName&quot;) 
+def count = WDS.props.get(&quot;count&quot;)
+def orderGuideLoadStart = Long.parseLong(WDS.props.get(&quot;orderGuideLoadStart&quot;))
+def orderGuideLoadEnd = Long.parseLong(WDS.props.get(&quot;orderGuideLoadEnd&quot;))
+def orderGuideLoadTime = Long.parseLong(WDS.props.get(&quot;orderGuideLoadTime&quot;))
+
+// Define CSV file path
+def csvFilePath = &quot;results/Order_Guide_Load_Times.csv&quot;
+
+// Initialize the CSV file
+def csvFile = new File(csvFilePath)
+
+// Delete the existing CSV file at the start of the script (only if it exists)
+//if (csvFile.exists()) {
+//    csvFile.delete()
+//}
+
+// Ensure parent directory exists
+
+def parentDir = csvFile.getParentFile()
+if (!parentDir.exists()) {
+    parentDir.mkdirs()
+}
+
+// Format timestamps
+def formatter = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;)
+def startTimeFormatted = formatter.format(new Date(orderGuideLoadStart))
+def endTimeFormatted = formatter.format(new Date(orderGuideLoadEnd))
+
+// Prepare CSV data
+def csvData = &quot;${opName},${OGName},${count},${startTimeFormatted},${endTimeFormatted},${orderGuideLoadTime}\n&quot;
+
+// Check if file exists, otherwise create it with a header
+if (!csvFile.exists()) {
+    csvFile.write(&quot;Operator Name,OG Name,SKU Count,Start Time,End Time,Load Time (ms)\n&quot;)
+}
+
+// Append new data
+csvFile.append(csvData)
+
+// Overwrite the file
+//csvFile.write(csvData)
+
+WDS.log.info(&quot;Order Guide Load Time saved to CSV: &quot; + csvFilePath)</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+            </hashTree>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Hillcrest " enabled="true">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+            </TransactionController>
+            <hashTree>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Search the customer" enabled="true">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+ String DP = &quot;hillcrest&quot;
+ String customer = &quot;Akronym Public House&quot;
+
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Navigate to internal login page
+WDS.browser.get(&quot;https://internal.cutanddry.com/internaltools/loginas&quot;)
+Thread.sleep(3000)
+
+def loginAsField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//h5[text()=&apos;Distributor Portal Quick Links&apos;]/following-sibling::div//div[text()=&apos;Select User...&apos;]/following::input[@type=&apos;text&apos;][1]&quot;)))
+Thread.sleep(1000)
+loginAsField.clear()
+loginAsField.sendKeys(DP)
+Thread.sleep(3000)
+
+// Click the distributor portal option
+def customersOP = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[contains(@class, &apos;themed_select__option&apos;) and contains(translate(text(), &apos;ABCDEFGHIJKLMNOPQRSTUVWXYZ&apos;, &apos;abcdefghijklmnopqrstuvwxyz&apos;), &apos;&quot;+DP+&quot;&apos;)]&quot;)))
+customersOP.click()
+Thread.sleep(3000)
+
+// Get the Login As link URL and navigate to it
+def textElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[contains(text(), &apos;Login As (supplier)&apos;)]&quot;)))
+def loginURL = textElement.getAttribute(&quot;href&quot;)
+WDS.browser.get(loginURL)
+wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//li[contains(text(),&apos;Dashboard&apos;)]&quot;)))
+
+def customersLink = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[@data-tip=&apos;Customers&apos;]&quot;)))
+customersLink.click()
+Thread.sleep(3000)
+
+def customerField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//input[@placeholder=&apos;Search Customers&apos;]&quot;)))
+customerField.clear()
+customerField.sendKeys(customer)
+Thread.sleep(3000)
+
+// Store dynamic values
+WDS.props.put(&quot;opName&quot;, &quot;Hillcrest&quot;) 
+WDS.props.put(&quot;OGName&quot;, &quot;Akronym Public House&quot;) 
+WDS.props.put(&quot;count&quot;, &quot;1231&quot;)</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Load the Order Guide - Hillcrest">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+
+String customerID = &quot;980&quot;
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Start measuring Order Guide load time
+def orderGuideLoadStart = System.currentTimeMillis()
+
+def orderButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(&quot;//td[text()=&apos;&quot;+customerID+&quot;&apos;]/../td[8]//button&quot;)))
+//orderButton.click()
+JavascriptExecutor js = (JavascriptExecutor) WDS.browser;
+js.executeScript(&quot;arguments[0].click();&quot;, orderButton);
+
+// Wait for the table to be present
+def orderTable = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[@id=&apos;react-boot-root&apos;]//table&quot;)))
+
+def firstImageLocator = By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)
+def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(firstImageLocator))
+firstImage = WDS.browser.findElement(firstImageLocator)
+// Wait for the first image inside the table to be fully loaded
+//def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)))
+
+// Ensure the first image is fully loaded (check naturalWidth &gt; 0 using JavaScript)
+wait.until {
+    def imageLoaded = (Boolean) ((JavascriptExecutor) WDS.browser).executeScript(
+        &quot;return arguments[0].complete &amp;&amp; arguments[0].naturalWidth &gt; 0&quot;, 
+        firstImage
+    )
+    return imageLoaded
+}
+
+// Measure Order Guide loading time
+def orderGuideLoadEnd = System.currentTimeMillis()
+def orderGuideLoadTime = orderGuideLoadEnd - orderGuideLoadStart
+WDS.log.info(&quot;Order Guide Load Time: &quot; + orderGuideLoadTime + &quot; ms&quot;)
+
+// Store load time in JMeter properties 
+WDS.props.put(&quot;orderGuideLoadStart&quot;, orderGuideLoadStart.toString())
+WDS.props.put(&quot;orderGuideLoadEnd&quot;, orderGuideLoadEnd.toString())
+WDS.props.put(&quot;orderGuideLoadTime&quot;, orderGuideLoadTime.toString())
+</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Handles CSV Writing" enabled="true">
+                <stringProp name="WebDriverSampler.script">import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+// Retrieve stored values from JMeter properties
+def opName = WDS.props.get(&quot;opName&quot;) 
+def OGName = WDS.props.get(&quot;OGName&quot;) 
+def count = WDS.props.get(&quot;count&quot;)
+def orderGuideLoadStart = Long.parseLong(WDS.props.get(&quot;orderGuideLoadStart&quot;))
+def orderGuideLoadEnd = Long.parseLong(WDS.props.get(&quot;orderGuideLoadEnd&quot;))
+def orderGuideLoadTime = Long.parseLong(WDS.props.get(&quot;orderGuideLoadTime&quot;))
+
+// Define CSV file path
+def csvFilePath = &quot;results/Order_Guide_Load_Times.csv&quot;
+
+// Ensure parent directory exists
+def csvFile = new File(csvFilePath)
+def parentDir = csvFile.getParentFile()
+if (!parentDir.exists()) {
+    parentDir.mkdirs()
+}
+
+// Format timestamps
+def formatter = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;)
+def startTimeFormatted = formatter.format(new Date(orderGuideLoadStart))
+def endTimeFormatted = formatter.format(new Date(orderGuideLoadEnd))
+
+// Prepare CSV data
+def csvData = &quot;${opName},${OGName},${count},${startTimeFormatted},${endTimeFormatted},${orderGuideLoadTime}\n&quot;
+
+// Check if file exists, otherwise create it with a header
+if (!csvFile.exists()) {
+    csvFile.write(&quot;Operator Name,OG Name,SKU Count,Start Time,End Time,Load Time (ms)\n&quot;)
+}
+
+// Append new data
+csvFile.append(csvData)
+
+// Overwrite the file
+//csvFile.write(csvData)
+
+WDS.log.info(&quot;Order Guide Load Time saved to CSV: &quot; + csvFilePath)</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+            </hashTree>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Birite " enabled="true">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+            </TransactionController>
+            <hashTree>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Search the customer">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+ String DP = &quot;birite&quot;
+ String customer = &quot;Twelvemonth&quot;
+
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Navigate to internal login page
+WDS.browser.get(&quot;https://internal.cutanddry.com/internaltools/loginas&quot;)
+Thread.sleep(3000)
+
+def loginAsField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//h5[text()=&apos;Distributor Portal Quick Links&apos;]/following-sibling::div//div[text()=&apos;Select User...&apos;]/following::input[@type=&apos;text&apos;][1]&quot;)))
+Thread.sleep(1000)
+loginAsField.clear()
+loginAsField.sendKeys(DP)
+Thread.sleep(3000)
+
+// Click the distributor portal option
+def customersOP = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[contains(@class, &apos;themed_select__option&apos;) and contains(translate(text(), &apos;ABCDEFGHIJKLMNOPQRSTUVWXYZ&apos;, &apos;abcdefghijklmnopqrstuvwxyz&apos;), &apos;&quot;+DP+&quot;&apos;)]&quot;)))
+customersOP.click()
+Thread.sleep(3000)
+
+// Get the Login As link URL and navigate to it
+def textElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[contains(text(), &apos;Login As (supplier)&apos;)]&quot;)))
+def loginURL = textElement.getAttribute(&quot;href&quot;)
+WDS.browser.get(loginURL)
+wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//li[contains(text(),&apos;Dashboard&apos;)]&quot;)))
+
+def customersLink = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[@data-tip=&apos;Customers&apos;]&quot;)))
+customersLink.click()
+Thread.sleep(3000)
+
+def customerField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//input[@placeholder=&apos;Search Customers&apos;]&quot;)))
+customerField.clear()
+customerField.sendKeys(customer)
+Thread.sleep(3000)
+
+// Store dynamic values
+WDS.props.put(&quot;opName&quot;, &quot;Birite&quot;) 
+WDS.props.put(&quot;OGName&quot;, &quot;Twelvemonth&quot;) 
+WDS.props.put(&quot;count&quot;, &quot;294&quot;) </stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Load the Order Guide - Birite">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+
+String customerID = &quot;20220711&quot;
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Start measuring Order Guide load time
+def orderGuideLoadStart = System.currentTimeMillis()
+
+def orderButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(&quot;//td[text()=&apos;&quot;+customerID+&quot;&apos;]/../td[8]//button&quot;)))
+//orderButton.click()
+JavascriptExecutor js = (JavascriptExecutor) WDS.browser;
+js.executeScript(&quot;arguments[0].click();&quot;, orderButton);
+
+// Wait for the table to be present
+def orderTable = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[@id=&apos;react-boot-root&apos;]//table&quot;)))
+
+def firstImageLocator = By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)
+def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(firstImageLocator))
+firstImage = WDS.browser.findElement(firstImageLocator)
+// Wait for the first image inside the table to be fully loaded
+//def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)))
+
+// Ensure the first image is fully loaded (check naturalWidth &gt; 0 using JavaScript)
+wait.until {
+    def imageLoaded = (Boolean) ((JavascriptExecutor) WDS.browser).executeScript(
+        &quot;return arguments[0].complete &amp;&amp; arguments[0].naturalWidth &gt; 0&quot;, 
+        firstImage
+    )
+    return imageLoaded
+}
+
+
+// Measure Order Guide loading time
+def orderGuideLoadEnd = System.currentTimeMillis()
+def orderGuideLoadTime = orderGuideLoadEnd - orderGuideLoadStart
+WDS.log.info(&quot;Order Guide Load Time: &quot; + orderGuideLoadTime + &quot; ms&quot;)
+
+// Store load time in JMeter properties 
+WDS.props.put(&quot;orderGuideLoadStart&quot;, orderGuideLoadStart.toString())
+WDS.props.put(&quot;orderGuideLoadEnd&quot;, orderGuideLoadEnd.toString())
+WDS.props.put(&quot;orderGuideLoadTime&quot;, orderGuideLoadTime.toString())
+
+</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Handles CSV Writing" enabled="true">
+                <stringProp name="WebDriverSampler.script">import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+// Retrieve stored values from JMeter properties
+def opName = WDS.props.get(&quot;opName&quot;) 
+def OGName = WDS.props.get(&quot;OGName&quot;) 
+def count = WDS.props.get(&quot;count&quot;)
+def orderGuideLoadStart = Long.parseLong(WDS.props.get(&quot;orderGuideLoadStart&quot;))
+def orderGuideLoadEnd = Long.parseLong(WDS.props.get(&quot;orderGuideLoadEnd&quot;))
+def orderGuideLoadTime = Long.parseLong(WDS.props.get(&quot;orderGuideLoadTime&quot;))
+
+// Define CSV file path
+def csvFilePath = &quot;results/Order_Guide_Load_Times.csv&quot;
+
+// Ensure parent directory exists
+def csvFile = new File(csvFilePath)
+def parentDir = csvFile.getParentFile()
+if (!parentDir.exists()) {
+    parentDir.mkdirs()
+}
+
+// Format timestamps
+def formatter = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;)
+def startTimeFormatted = formatter.format(new Date(orderGuideLoadStart))
+def endTimeFormatted = formatter.format(new Date(orderGuideLoadEnd))
+
+// Prepare CSV data
+def csvData = &quot;${opName},${OGName},${count},${startTimeFormatted},${endTimeFormatted},${orderGuideLoadTime}\n&quot;
+
+// Check if file exists, otherwise create it with a header
+if (!csvFile.exists()) {
+    csvFile.write(&quot;Operator Name,OG Name,SKU Count,Start Time,End Time,Load Time (ms)\n&quot;)
+}
+
+// Append new data
+csvFile.append(csvData)
+
+// Overwrite the file
+//csvFile.write(csvData)
+
+WDS.log.info(&quot;Order Guide Load Time saved to CSV: &quot; + csvFilePath)</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+            </hashTree>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Maplevale">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+            </TransactionController>
+            <hashTree>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Search the customer">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+ String DP = &quot;maplevale&quot;
+ String customer = &quot;Kcs Rustic Inn LLC&quot;
+
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Navigate to internal login page
+WDS.browser.get(&quot;https://internal.cutanddry.com/internaltools/loginas&quot;)
+Thread.sleep(3000)
+
+def loginAsField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//h5[text()=&apos;Distributor Portal Quick Links&apos;]/following-sibling::div//div[text()=&apos;Select User...&apos;]/following::input[@type=&apos;text&apos;][1]&quot;)))
+Thread.sleep(1000)
+loginAsField.clear()
+loginAsField.sendKeys(DP)
+Thread.sleep(3000)
+
+// Click the distributor portal option
+def customersOP = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[contains(@class, &apos;themed_select__option&apos;) and contains(translate(text(), &apos;ABCDEFGHIJKLMNOPQRSTUVWXYZ&apos;, &apos;abcdefghijklmnopqrstuvwxyz&apos;), &apos;&quot;+DP+&quot;&apos;)]&quot;)))
+customersOP.click()
+Thread.sleep(3000)
+
+// Get the Login As link URL and navigate to it
+def textElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[contains(text(), &apos;Login As (supplier)&apos;)]&quot;)))
+def loginURL = textElement.getAttribute(&quot;href&quot;)
+WDS.browser.get(loginURL)
+wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//li[contains(text(),&apos;Dashboard&apos;)]&quot;)))
+
+def customersLink = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[@data-tip=&apos;Customers&apos;]&quot;)))
+customersLink.click()
+Thread.sleep(3000)
+
+def customerField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//input[@placeholder=&apos;Search Customers&apos;]&quot;)))
+customerField.clear()
+customerField.sendKeys(customer)
+Thread.sleep(3000)
+
+// Store dynamic values
+WDS.props.put(&quot;opName&quot;, &quot;Maplevale&quot;) 
+WDS.props.put(&quot;OGName&quot;, &quot;Kcs Rustic Inn LLC&quot;) 
+WDS.props.put(&quot;count&quot;, &quot;243&quot;) </stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Load the Order Guide - Maplevale">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+
+String customerID = &quot;37242&quot;
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Start measuring Order Guide load time
+def orderGuideLoadStart = System.currentTimeMillis()
+
+def orderButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(&quot;//td[text()=&apos;&quot;+customerID+&quot;&apos;]/../td[8]//button&quot;)))
+//orderButton.click()
+JavascriptExecutor js = (JavascriptExecutor) WDS.browser;
+js.executeScript(&quot;arguments[0].click();&quot;, orderButton);
+
+// Wait for the table to be present
+def orderTable = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[@id=&apos;react-boot-root&apos;]//table&quot;)))
+
+def firstImageLocator = By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)
+def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(firstImageLocator))
+firstImage = WDS.browser.findElement(firstImageLocator)
+// Wait for the first image inside the table to be fully loaded
+//def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)))
+
+// Ensure the first image is fully loaded (check naturalWidth &gt; 0 using JavaScript)
+wait.until {
+    def imageLoaded = (Boolean) ((JavascriptExecutor) WDS.browser).executeScript(
+        &quot;return arguments[0].complete &amp;&amp; arguments[0].naturalWidth &gt; 0&quot;, 
+        firstImage
+    )
+    return imageLoaded
+}
+
+
+// Measure Order Guide loading time
+def orderGuideLoadEnd = System.currentTimeMillis()
+def orderGuideLoadTime = orderGuideLoadEnd - orderGuideLoadStart
+WDS.log.info(&quot;Order Guide Load Time: &quot; + orderGuideLoadTime + &quot; ms&quot;)
+
+// Store load time in JMeter properties 
+WDS.props.put(&quot;orderGuideLoadStart&quot;, orderGuideLoadStart.toString())
+WDS.props.put(&quot;orderGuideLoadEnd&quot;, orderGuideLoadEnd.toString())
+WDS.props.put(&quot;orderGuideLoadTime&quot;, orderGuideLoadTime.toString())
+
+</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Handles CSV Writing" enabled="true">
+                <stringProp name="WebDriverSampler.script">import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+// Retrieve stored values from JMeter properties
+def opName = WDS.props.get(&quot;opName&quot;) 
+def OGName = WDS.props.get(&quot;OGName&quot;) 
+def count = WDS.props.get(&quot;count&quot;)
+def orderGuideLoadStart = Long.parseLong(WDS.props.get(&quot;orderGuideLoadStart&quot;))
+def orderGuideLoadEnd = Long.parseLong(WDS.props.get(&quot;orderGuideLoadEnd&quot;))
+def orderGuideLoadTime = Long.parseLong(WDS.props.get(&quot;orderGuideLoadTime&quot;))
+
+// Define CSV file path
+def csvFilePath = &quot;results/Order_Guide_Load_Times.csv&quot;
+
+// Ensure parent directory exists
+def csvFile = new File(csvFilePath)
+def parentDir = csvFile.getParentFile()
+if (!parentDir.exists()) {
+    parentDir.mkdirs()
+}
+
+// Format timestamps
+def formatter = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;)
+def startTimeFormatted = formatter.format(new Date(orderGuideLoadStart))
+def endTimeFormatted = formatter.format(new Date(orderGuideLoadEnd))
+
+// Prepare CSV data
+def csvData = &quot;${opName},${OGName},${count},${startTimeFormatted},${endTimeFormatted},${orderGuideLoadTime}\n&quot;
+
+// Check if file exists, otherwise create it with a header
+if (!csvFile.exists()) {
+    csvFile.write(&quot;Operator Name,OG Name,SKU Count,Start Time,End Time,Load Time (ms)\n&quot;)
+}
+
+// Append new data
+csvFile.append(csvData)
+
+// Overwrite the file
+//csvFile.write(csvData)
+
+WDS.log.info(&quot;Order Guide Load Time saved to CSV: &quot; + csvFilePath)</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+            </hashTree>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="WCW - Need to check" enabled="true">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+            </TransactionController>
+            <hashTree>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Search the customer" enabled="true">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+ String DP = &quot;138629491&quot;
+ String customer = &quot;Denver art museum -Avendra&quot;
+
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Navigate to internal login page
+WDS.browser.get(&quot;https://internal.cutanddry.com/internaltools/loginas&quot;)
+Thread.sleep(3000)
+
+def loginAsField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//h5[text()=&apos;Distributor Portal Quick Links&apos;]/following-sibling::div//div[text()=&apos;Select User...&apos;]/following::input[@type=&apos;text&apos;][1]&quot;)))
+Thread.sleep(1000)
+loginAsField.clear()
+loginAsField.sendKeys(DP)
+Thread.sleep(3000)
+
+// Click the distributor portal option
+def customersOP = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[contains(@class, &apos;themed_select__option&apos;) and contains(translate(text(), &apos;ABCDEFGHIJKLMNOPQRSTUVWXYZ&apos;, &apos;abcdefghijklmnopqrstuvwxyz&apos;), &apos;&quot;+DP+&quot;&apos;)]&quot;)))
+customersOP.click()
+Thread.sleep(3000)
+
+// Get the Login As link URL and navigate to it
+def textElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[contains(text(), &apos;Login As (supplier)&apos;)]&quot;)))
+def loginURL = textElement.getAttribute(&quot;href&quot;)
+WDS.browser.get(loginURL)
+wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//li[contains(text(),&apos;Dashboard&apos;)]&quot;)))
+
+def customersLink = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[@data-tip=&apos;Customers&apos;]&quot;)))
+customersLink.click()
+Thread.sleep(3000)
+
+def customerField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//input[@placeholder=&apos;Search Customers&apos;]&quot;)))
+customerField.clear()
+customerField.sendKeys(customer)
+Thread.sleep(3000)
+
+// Store dynamic values
+WDS.props.put(&quot;opName&quot;, &quot;WCW&quot;) 
+WDS.props.put(&quot;OGName&quot;, &quot;Denver art museum -Avendra&quot;) 
+WDS.props.put(&quot;count&quot;, &quot;969&quot;) </stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Load the Order Guide">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+
+String customerID = &quot;DEARMU&quot;
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Start measuring Order Guide load time
+def orderGuideLoadStart = System.currentTimeMillis()
+
+def orderButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(&quot;//td[text()=&apos;&quot;+customerID+&quot;&apos;]/../td[8]//button&quot;)))
+//orderButton.click()
+JavascriptExecutor js = (JavascriptExecutor) WDS.browser;
+js.executeScript(&quot;arguments[0].click();&quot;, orderButton);
+
+// Wait for the table to be present
+def orderTable = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[@id=&apos;react-boot-root&apos;]//table&quot;)))
+
+def firstImageLocator = By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)
+def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(firstImageLocator))
+firstImage = WDS.browser.findElement(firstImageLocator)
+// Wait for the first image inside the table to be fully loaded
+//def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)))
+
+// Ensure the first image is fully loaded (check naturalWidth &gt; 0 using JavaScript)
+wait.until {
+    def imageLoaded = (Boolean) ((JavascriptExecutor) WDS.browser).executeScript(
+        &quot;return arguments[0].complete &amp;&amp; arguments[0].naturalWidth &gt; 0&quot;, 
+        firstImage
+    )
+    return imageLoaded
+}
+
+
+// Measure Order Guide loading time
+def orderGuideLoadEnd = System.currentTimeMillis()
+def orderGuideLoadTime = orderGuideLoadEnd - orderGuideLoadStart
+WDS.log.info(&quot;Order Guide Load Time: &quot; + orderGuideLoadTime + &quot; ms&quot;)
+
+// Store load time in JMeter properties 
+WDS.props.put(&quot;orderGuideLoadStart&quot;, orderGuideLoadStart.toString())
+WDS.props.put(&quot;orderGuideLoadEnd&quot;, orderGuideLoadEnd.toString())
+WDS.props.put(&quot;orderGuideLoadTime&quot;, orderGuideLoadTime.toString())
+</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Handles CSV Writing" enabled="true">
+                <stringProp name="WebDriverSampler.script">import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+// Retrieve stored values from JMeter properties
+def opName = WDS.props.get(&quot;opName&quot;) 
+def OGName = WDS.props.get(&quot;OGName&quot;) 
+def count = WDS.props.get(&quot;count&quot;)
+def orderGuideLoadStart = Long.parseLong(WDS.props.get(&quot;orderGuideLoadStart&quot;))
+def orderGuideLoadEnd = Long.parseLong(WDS.props.get(&quot;orderGuideLoadEnd&quot;))
+def orderGuideLoadTime = Long.parseLong(WDS.props.get(&quot;orderGuideLoadTime&quot;))
+
+// Define CSV file path
+def csvFilePath = &quot;results/Order_Guide_Load_Times.csv&quot;
+
+// Ensure parent directory exists
+def csvFile = new File(csvFilePath)
+def parentDir = csvFile.getParentFile()
+if (!parentDir.exists()) {
+    parentDir.mkdirs()
+}
+
+// Format timestamps
+def formatter = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;)
+def startTimeFormatted = formatter.format(new Date(orderGuideLoadStart))
+def endTimeFormatted = formatter.format(new Date(orderGuideLoadEnd))
+
+// Prepare CSV data
+def csvData = &quot;${opName},${OGName},${count},${startTimeFormatted},${endTimeFormatted},${orderGuideLoadTime}\n&quot;
+
+// Check if file exists, otherwise create it with a header
+if (!csvFile.exists()) {
+    csvFile.write(&quot;Operator Name,OG Name,SKU Count,Start Time,End Time,Load Time (ms)\n&quot;)
+}
+
+// Append new data
+csvFile.append(csvData)
+
+// Overwrite the file
+//csvFile.write(csvData)
+
+WDS.log.info(&quot;Order Guide Load Time saved to CSV: &quot; + csvFilePath)</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+            </hashTree>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="John Gross &amp; Co " enabled="true">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+            </TransactionController>
+            <hashTree>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Search the customer">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+ String DP = &quot;john gross &amp; co&quot;
+ String customer = &quot;Masonic Club house&quot;
+
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Navigate to internal login page
+WDS.browser.get(&quot;https://internal.cutanddry.com/internaltools/loginas&quot;)
+Thread.sleep(3000)
+
+def loginAsField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//h5[text()=&apos;Distributor Portal Quick Links&apos;]/following-sibling::div//div[text()=&apos;Select User...&apos;]/following::input[@type=&apos;text&apos;][1]&quot;)))
+Thread.sleep(1000)
+loginAsField.clear()
+loginAsField.sendKeys(DP)
+Thread.sleep(3000)
+
+// Click the distributor portal option
+def customersOP = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[contains(@class, &apos;themed_select__option&apos;) and contains(translate(text(), &apos;ABCDEFGHIJKLMNOPQRSTUVWXYZ&apos;, &apos;abcdefghijklmnopqrstuvwxyz&apos;), &apos;&quot;+DP+&quot;&apos;)]&quot;)))
+customersOP.click()
+Thread.sleep(3000)
+
+// Get the Login As link URL and navigate to it
+def textElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[contains(text(), &apos;Login As (supplier)&apos;)]&quot;)))
+def loginURL = textElement.getAttribute(&quot;href&quot;)
+WDS.browser.get(loginURL)
+wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//li[contains(text(),&apos;Dashboard&apos;)]&quot;)))
+
+def customersLink = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[@data-tip=&apos;Customers&apos;]&quot;)))
+customersLink.click()
+Thread.sleep(3000)
+
+def customerField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//input[@placeholder=&apos;Search Customers&apos;]&quot;)))
+customerField.clear()
+customerField.sendKeys(customer)
+Thread.sleep(3000)
+
+// Store dynamic values
+WDS.props.put(&quot;opName&quot;, &quot;John Gross &amp; Co&quot;) 
+WDS.props.put(&quot;OGName&quot;, &quot;Masonic Club house&quot;) 
+WDS.props.put(&quot;count&quot;, &quot;1766&quot;)</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Load the Order Guide - John Gross &amp; Co ">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+
+String customerID = &quot;30077&quot;
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Start measuring Order Guide load time
+def orderGuideLoadStart = System.currentTimeMillis()
+
+def orderButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(&quot;//td[text()=&apos;&quot;+customerID+&quot;&apos;]/../td[8]//button&quot;)))
+//orderButton.click()
+JavascriptExecutor js = (JavascriptExecutor) WDS.browser;
+js.executeScript(&quot;arguments[0].click();&quot;, orderButton);
+
+// Wait for the table to be present
+def orderTable = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[@id=&apos;react-boot-root&apos;]//table&quot;)))
+
+def firstImageLocator = By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)
+def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(firstImageLocator))
+firstImage = WDS.browser.findElement(firstImageLocator)
+// Wait for the first image inside the table to be fully loaded
+//def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)))
+
+// Ensure the first image is fully loaded (check naturalWidth &gt; 0 using JavaScript)
+wait.until {
+    def imageLoaded = (Boolean) ((JavascriptExecutor) WDS.browser).executeScript(
+        &quot;return arguments[0].complete &amp;&amp; arguments[0].naturalWidth &gt; 0&quot;, 
+        firstImage
+    )
+    return imageLoaded
+}
+
+
+// Measure Order Guide loading time
+def orderGuideLoadEnd = System.currentTimeMillis()
+def orderGuideLoadTime = orderGuideLoadEnd - orderGuideLoadStart
+WDS.log.info(&quot;Order Guide Load Time: &quot; + orderGuideLoadTime + &quot; ms&quot;)
+
+// Store load time in JMeter properties 
+WDS.props.put(&quot;orderGuideLoadStart&quot;, orderGuideLoadStart.toString())
+WDS.props.put(&quot;orderGuideLoadEnd&quot;, orderGuideLoadEnd.toString())
+WDS.props.put(&quot;orderGuideLoadTime&quot;, orderGuideLoadTime.toString())
+
+ </stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Handles CSV Writing" enabled="true">
+                <stringProp name="WebDriverSampler.script">import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+// Retrieve stored values from JMeter properties
+def opName = WDS.props.get(&quot;opName&quot;) 
+def OGName = WDS.props.get(&quot;OGName&quot;) 
+def count = WDS.props.get(&quot;count&quot;)
+def orderGuideLoadStart = Long.parseLong(WDS.props.get(&quot;orderGuideLoadStart&quot;))
+def orderGuideLoadEnd = Long.parseLong(WDS.props.get(&quot;orderGuideLoadEnd&quot;))
+def orderGuideLoadTime = Long.parseLong(WDS.props.get(&quot;orderGuideLoadTime&quot;))
+
+// Define CSV file path
+def csvFilePath = &quot;results/Order_Guide_Load_Times.csv&quot;
+
+// Ensure parent directory exists
+def csvFile = new File(csvFilePath)
+def parentDir = csvFile.getParentFile()
+if (!parentDir.exists()) {
+    parentDir.mkdirs()
+}
+
+// Format timestamps
+def formatter = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;)
+def startTimeFormatted = formatter.format(new Date(orderGuideLoadStart))
+def endTimeFormatted = formatter.format(new Date(orderGuideLoadEnd))
+
+// Prepare CSV data
+def csvData = &quot;${opName},${OGName},${count},${startTimeFormatted},${endTimeFormatted},${orderGuideLoadTime}\n&quot;
+
+// Check if file exists, otherwise create it with a header
+if (!csvFile.exists()) {
+    csvFile.write(&quot;Operator Name,OG Name,SKU Count,Start Time,End Time,Load Time (ms)\n&quot;)
+}
+
+// Append new data
+csvFile.append(csvData)
+
+// Overwrite the file
+//csvFile.write(csvData)
+
+WDS.log.info(&quot;Order Guide Load Time saved to CSV: &quot; + csvFilePath)</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+            </hashTree>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Chef&apos;s Kitchen " enabled="true">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+            </TransactionController>
+            <hashTree>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Search the customer" enabled="true">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+ String DP = &quot;165144548&quot; //chef&apos;s kitchen
+ String customer = &quot;Aa Dollar plus - Rtl&quot;
+
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Navigate to internal login page
+WDS.browser.get(&quot;https://internal.cutanddry.com/internaltools/loginas&quot;)
+Thread.sleep(3000)
+
+def loginAsField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//h5[text()=&apos;Distributor Portal Quick Links&apos;]/following-sibling::div//div[text()=&apos;Select User...&apos;]/following::input[@type=&apos;text&apos;][1]&quot;)))
+Thread.sleep(1000)
+loginAsField.clear()
+loginAsField.sendKeys(DP)
+Thread.sleep(3000)
+
+// Click the distributor portal option
+def customersOP = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[contains(@class, &apos;themed_select__option&apos;) and contains(translate(text(), &apos;ABCDEFGHIJKLMNOPQRSTUVWXYZ&apos;, &apos;abcdefghijklmnopqrstuvwxyz&apos;), &apos;&quot;+DP+&quot;&apos;)]&quot;)))
+customersOP.click()
+Thread.sleep(3000)
+
+// Get the Login As link URL and navigate to it
+def textElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[contains(text(), &apos;Login As (supplier)&apos;)]&quot;)))
+def loginURL = textElement.getAttribute(&quot;href&quot;)
+WDS.browser.get(loginURL)
+wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//li[contains(text(),&apos;Dashboard&apos;)]&quot;)))
+
+def customersLink = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[@data-tip=&apos;Customers&apos;]&quot;)))
+customersLink.click()
+Thread.sleep(3000)
+
+def customerField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//input[@placeholder=&apos;Search Customers&apos;]&quot;)))
+customerField.clear()
+customerField.sendKeys(customer)
+Thread.sleep(3000)
+
+// Store dynamic values
+WDS.props.put(&quot;opName&quot;, &quot;Chef&apos;s Kitchen&quot;) 
+WDS.props.put(&quot;OGName&quot;, &quot;Aa Dollar plus - Rtl&quot;) 
+WDS.props.put(&quot;count&quot;, &quot;394&quot;) </stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Load the Order Guide - Chef&apos;s Kitchen ">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+
+String customerID = &quot;RTL363&quot;
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Start measuring Order Guide load time
+def orderGuideLoadStart = System.currentTimeMillis()
+
+def orderButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(&quot;//td[text()=&apos;&quot;+customerID+&quot;&apos;]/../td[8]//button&quot;)))
+//orderButton.click()
+JavascriptExecutor js = (JavascriptExecutor) WDS.browser;
+js.executeScript(&quot;arguments[0].click();&quot;, orderButton);
+
+// Wait for the table to be present
+def orderTable = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[@id=&apos;react-boot-root&apos;]//table&quot;)))
+
+def firstImageLocator = By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)
+def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(firstImageLocator))
+firstImage = WDS.browser.findElement(firstImageLocator)
+// Wait for the first image inside the table to be fully loaded
+//def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)))
+
+// Ensure the first image is fully loaded (check naturalWidth &gt; 0 using JavaScript)
+wait.until {
+    def imageLoaded = (Boolean) ((JavascriptExecutor) WDS.browser).executeScript(
+        &quot;return arguments[0].complete &amp;&amp; arguments[0].naturalWidth &gt; 0&quot;, 
+        firstImage
+    )
+    return imageLoaded
+}
+
+
+// Measure Order Guide loading time
+def orderGuideLoadEnd = System.currentTimeMillis()
+def orderGuideLoadTime = orderGuideLoadEnd - orderGuideLoadStart
+WDS.log.info(&quot;Order Guide Load Time: &quot; + orderGuideLoadTime + &quot; ms&quot;)
+
+// Store load time in JMeter properties 
+WDS.props.put(&quot;orderGuideLoadStart&quot;, orderGuideLoadStart.toString())
+WDS.props.put(&quot;orderGuideLoadEnd&quot;, orderGuideLoadEnd.toString())
+WDS.props.put(&quot;orderGuideLoadTime&quot;, orderGuideLoadTime.toString())
+
+</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Handles CSV Writing" enabled="true">
+                <stringProp name="WebDriverSampler.script">import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+// Retrieve stored values from JMeter properties
+def opName = WDS.props.get(&quot;opName&quot;) 
+def OGName = WDS.props.get(&quot;OGName&quot;) 
+def count = WDS.props.get(&quot;count&quot;)
+def orderGuideLoadStart = Long.parseLong(WDS.props.get(&quot;orderGuideLoadStart&quot;))
+def orderGuideLoadEnd = Long.parseLong(WDS.props.get(&quot;orderGuideLoadEnd&quot;))
+def orderGuideLoadTime = Long.parseLong(WDS.props.get(&quot;orderGuideLoadTime&quot;))
+
+// Define CSV file path
+def csvFilePath = &quot;results/Order_Guide_Load_Times.csv&quot;
+
+// Ensure parent directory exists
+def csvFile = new File(csvFilePath)
+def parentDir = csvFile.getParentFile()
+if (!parentDir.exists()) {
+    parentDir.mkdirs()
+}
+
+// Format timestamps
+def formatter = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;)
+def startTimeFormatted = formatter.format(new Date(orderGuideLoadStart))
+def endTimeFormatted = formatter.format(new Date(orderGuideLoadEnd))
+
+// Prepare CSV data
+def csvData = &quot;${opName},${OGName},${count},${startTimeFormatted},${endTimeFormatted},${orderGuideLoadTime}\n&quot;
+
+// Check if file exists, otherwise create it with a header
+if (!csvFile.exists()) {
+    csvFile.write(&quot;Operator Name,OG Name,SKU Count,Start Time,End Time,Load Time (ms)\n&quot;)
+}
+
+// Append new data
+csvFile.append(csvData)
+
+// Overwrite the file
+//csvFile.write(csvData)
+
+WDS.log.info(&quot;Order Guide Load Time saved to CSV: &quot; + csvFilePath)</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+            </hashTree>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Vitco " enabled="true">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+            </TransactionController>
+            <hashTree>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Search the customer" enabled="true">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+ String DP = &quot;vitco&quot;
+ String customer = &quot;Spencers Rosedale HWY&quot;
+
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Navigate to internal login page
+WDS.browser.get(&quot;https://internal.cutanddry.com/internaltools/loginas&quot;)
+Thread.sleep(3000)
+
+def loginAsField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//h5[text()=&apos;Distributor Portal Quick Links&apos;]/following-sibling::div//div[text()=&apos;Select User...&apos;]/following::input[@type=&apos;text&apos;][1]&quot;)))
+Thread.sleep(1000)
+loginAsField.clear()
+loginAsField.sendKeys(DP)
+Thread.sleep(3000)
+
+// Click the distributor portal option
+def customersOP = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[contains(@class, &apos;themed_select__option&apos;) and contains(translate(text(), &apos;ABCDEFGHIJKLMNOPQRSTUVWXYZ&apos;, &apos;abcdefghijklmnopqrstuvwxyz&apos;), &apos;&quot;+DP+&quot;&apos;)]&quot;)))
+customersOP.click()
+Thread.sleep(3000)
+
+// Get the Login As link URL and navigate to it
+def textElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[contains(text(), &apos;Login As (supplier)&apos;)]&quot;)))
+def loginURL = textElement.getAttribute(&quot;href&quot;)
+WDS.browser.get(loginURL)
+wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//li[contains(text(),&apos;Dashboard&apos;)]&quot;)))
+
+def customersLink = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[@data-tip=&apos;Customers&apos;]&quot;)))
+customersLink.click()
+Thread.sleep(3000)
+
+def customerField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//input[@placeholder=&apos;Search Customers&apos;]&quot;)))
+customerField.clear()
+customerField.sendKeys(customer)
+Thread.sleep(3000)
+
+// Store dynamic values
+WDS.props.put(&quot;opName&quot;, &quot;Vitco&quot;) 
+WDS.props.put(&quot;OGName&quot;, &quot;Spencers Rosedale HWY&quot;) 
+WDS.props.put(&quot;count&quot;, &quot;237&quot;) </stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Load the Order Guide - Vitco">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+
+String customerID = &quot;1528&quot;
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Start measuring Order Guide load time
+def orderGuideLoadStart = System.currentTimeMillis()
+
+def orderButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(&quot;//td[text()=&apos;&quot;+customerID+&quot;&apos;]/../td[8]//button&quot;)))
+//orderButton.click()
+JavascriptExecutor js = (JavascriptExecutor) WDS.browser;
+js.executeScript(&quot;arguments[0].click();&quot;, orderButton);
+
+// Wait for the table to be present
+def orderTable = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[@id=&apos;react-boot-root&apos;]//table&quot;)))
+
+def firstImageLocator = By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)
+def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(firstImageLocator))
+firstImage = WDS.browser.findElement(firstImageLocator)
+// Wait for the first image inside the table to be fully loaded
+//def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)))
+
+// Ensure the first image is fully loaded (check naturalWidth &gt; 0 using JavaScript)
+wait.until {
+    def imageLoaded = (Boolean) ((JavascriptExecutor) WDS.browser).executeScript(
+        &quot;return arguments[0].complete &amp;&amp; arguments[0].naturalWidth &gt; 0&quot;, 
+        firstImage
+    )
+    return imageLoaded
+}
+
+
+// Measure Order Guide loading time
+def orderGuideLoadEnd = System.currentTimeMillis()
+def orderGuideLoadTime = orderGuideLoadEnd - orderGuideLoadStart
+WDS.log.info(&quot;Order Guide Load Time: &quot; + orderGuideLoadTime + &quot; ms&quot;)
+
+// Store load time in JMeter properties 
+WDS.props.put(&quot;orderGuideLoadStart&quot;, orderGuideLoadStart.toString())
+WDS.props.put(&quot;orderGuideLoadEnd&quot;, orderGuideLoadEnd.toString())
+WDS.props.put(&quot;orderGuideLoadTime&quot;, orderGuideLoadTime.toString())
+
+</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Handles CSV Writing" enabled="true">
+                <stringProp name="WebDriverSampler.script">import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+// Retrieve stored values from JMeter properties
+def opName = WDS.props.get(&quot;opName&quot;) 
+def OGName = WDS.props.get(&quot;OGName&quot;) 
+def count = WDS.props.get(&quot;count&quot;)
+def orderGuideLoadStart = Long.parseLong(WDS.props.get(&quot;orderGuideLoadStart&quot;))
+def orderGuideLoadEnd = Long.parseLong(WDS.props.get(&quot;orderGuideLoadEnd&quot;))
+def orderGuideLoadTime = Long.parseLong(WDS.props.get(&quot;orderGuideLoadTime&quot;))
+
+// Define CSV file path
+def csvFilePath = &quot;results/Order_Guide_Load_Times.csv&quot;
+
+// Ensure parent directory exists
+def csvFile = new File(csvFilePath)
+def parentDir = csvFile.getParentFile()
+if (!parentDir.exists()) {
+    parentDir.mkdirs()
+}
+
+// Format timestamps
+def formatter = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;)
+def startTimeFormatted = formatter.format(new Date(orderGuideLoadStart))
+def endTimeFormatted = formatter.format(new Date(orderGuideLoadEnd))
+
+// Prepare CSV data
+def csvData = &quot;${opName},${OGName},${count},${startTimeFormatted},${endTimeFormatted},${orderGuideLoadTime}\n&quot;
+
+// Check if file exists, otherwise create it with a header
+if (!csvFile.exists()) {
+    csvFile.write(&quot;Operator Name,OG Name,SKU Count,Start Time,End Time,Load Time (ms)\n&quot;)
+}
+
+// Append new data
+csvFile.append(csvData)
+
+// Overwrite the file
+//csvFile.write(csvData)
+
+WDS.log.info(&quot;Order Guide Load Time saved to CSV: &quot; + csvFilePath)</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+            </hashTree>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Cream co " enabled="true">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+            </TransactionController>
+            <hashTree>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Search the customer" enabled="true">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+ String DP = &quot;cream co&quot;
+ String customer = &quot;Kevin Cimino Samples&quot;
+
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Navigate to internal login page
+WDS.browser.get(&quot;https://internal.cutanddry.com/internaltools/loginas&quot;)
+Thread.sleep(3000)
+
+def loginAsField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//h5[text()=&apos;Distributor Portal Quick Links&apos;]/following-sibling::div//div[text()=&apos;Select User...&apos;]/following::input[@type=&apos;text&apos;][1]&quot;)))
+Thread.sleep(1000)
+loginAsField.clear()
+loginAsField.sendKeys(DP)
+Thread.sleep(3000)
+
+// Click the distributor portal option
+def customersOP = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[contains(@class, &apos;themed_select__option&apos;) and contains(translate(text(), &apos;ABCDEFGHIJKLMNOPQRSTUVWXYZ&apos;, &apos;abcdefghijklmnopqrstuvwxyz&apos;), &apos;&quot;+DP+&quot;&apos;)]&quot;)))
+customersOP.click()
+Thread.sleep(3000)
+
+// Get the Login As link URL and navigate to it
+def textElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[contains(text(), &apos;Login As (supplier)&apos;)]&quot;)))
+def loginURL = textElement.getAttribute(&quot;href&quot;)
+WDS.browser.get(loginURL)
+wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//li[contains(text(),&apos;Dashboard&apos;)]&quot;)))
+
+def customersLink = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//a[@data-tip=&apos;Customers&apos;]&quot;)))
+customersLink.click()
+Thread.sleep(3000)
+
+def customerField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//input[@placeholder=&apos;Search Customers&apos;]&quot;)))
+customerField.clear()
+customerField.sendKeys(customer)
+Thread.sleep(3000)
+
+// Store dynamic values
+WDS.props.put(&quot;opName&quot;, &quot;Cream co&quot;) 
+WDS.props.put(&quot;OGName&quot;, &quot;Kevin Cimino Samples&quot;) 
+WDS.props.put(&quot;count&quot;, &quot;63&quot;) </stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Load the Order Guide - Cream co ">
+                <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import java.time.Duration
+import org.openqa.selenium.JavascriptExecutor
+
+import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+
+String customerID = &quot;CU10509:5 Kevin Cimino Samples&quot;
+def wait = new WebDriverWait(WDS.browser, Duration.ofSeconds(30))
+
+
+// Start measuring Order Guide load time
+def orderGuideLoadStart = System.currentTimeMillis()
+
+def orderButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(&quot;//td[text()=&apos;&quot;+customerID+&quot;&apos;]/../td[8]//button&quot;)))
+//orderButton.click()
+JavascriptExecutor js = (JavascriptExecutor) WDS.browser;
+js.executeScript(&quot;arguments[0].click();&quot;, orderButton);
+
+// Wait for the table to be present
+def orderTable = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;//div[@id=&apos;react-boot-root&apos;]//table&quot;)))
+
+def firstImageLocator = By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)
+def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(firstImageLocator))
+firstImage = WDS.browser.findElement(firstImageLocator)
+// Wait for the first image inside the table to be fully loaded
+//def firstImage = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(&quot;(//div[@id=&apos;react-boot-root&apos;]//table/tbody/tr//img)[1]&quot;)))
+
+// Ensure the first image is fully loaded (check naturalWidth &gt; 0 using JavaScript)
+wait.until {
+    def imageLoaded = (Boolean) ((JavascriptExecutor) WDS.browser).executeScript(
+        &quot;return arguments[0].complete &amp;&amp; arguments[0].naturalWidth &gt; 0&quot;, 
+        firstImage
+    )
+    return imageLoaded
+}
+
+
+// Measure Order Guide loading time
+def orderGuideLoadEnd = System.currentTimeMillis()
+def orderGuideLoadTime = orderGuideLoadEnd - orderGuideLoadStart
+WDS.log.info(&quot;Order Guide Load Time: &quot; + orderGuideLoadTime + &quot; ms&quot;)
+
+// Store load time in JMeter properties 
+WDS.props.put(&quot;orderGuideLoadStart&quot;, orderGuideLoadStart.toString())
+WDS.props.put(&quot;orderGuideLoadEnd&quot;, orderGuideLoadEnd.toString())
+WDS.props.put(&quot;orderGuideLoadTime&quot;, orderGuideLoadTime.toString())
+
+</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+              <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Handles CSV Writing" enabled="true">
+                <stringProp name="WebDriverSampler.script">import java.text.SimpleDateFormat
+import java.io.FileWriter
+import java.io.BufferedWriter
+
+// Retrieve stored values from JMeter properties
+def opName = WDS.props.get(&quot;opName&quot;) 
+def OGName = WDS.props.get(&quot;OGName&quot;) 
+def count = WDS.props.get(&quot;count&quot;)
+def orderGuideLoadStart = Long.parseLong(WDS.props.get(&quot;orderGuideLoadStart&quot;))
+def orderGuideLoadEnd = Long.parseLong(WDS.props.get(&quot;orderGuideLoadEnd&quot;))
+def orderGuideLoadTime = Long.parseLong(WDS.props.get(&quot;orderGuideLoadTime&quot;))
+
+// Define CSV file path
+def csvFilePath = &quot;results/Order_Guide_Load_Times.csv&quot;
+
+// Ensure parent directory exists
+def csvFile = new File(csvFilePath)
+def parentDir = csvFile.getParentFile()
+if (!parentDir.exists()) {
+    parentDir.mkdirs()
+}
+
+// Format timestamps
+def formatter = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;)
+def startTimeFormatted = formatter.format(new Date(orderGuideLoadStart))
+def endTimeFormatted = formatter.format(new Date(orderGuideLoadEnd))
+
+// Prepare CSV data
+def csvData = &quot;${opName},${OGName},${count},${startTimeFormatted},${endTimeFormatted},${orderGuideLoadTime}\n&quot;
+
+// Check if file exists, otherwise create it with a header
+if (!csvFile.exists()) {
+    csvFile.write(&quot;Operator Name,OG Name,SKU Count,Start Time,End Time,Load Time (ms)\n&quot;)
+}
+
+// Append new data
+csvFile.append(csvData)
+
+// Overwrite the file
+//csvFile.write(csvData)
+
+WDS.log.info(&quot;Order Guide Load Time saved to CSV: &quot; + csvFilePath)</stringProp>
+                <stringProp name="WebDriverSampler.parameters"></stringProp>
+                <stringProp name="WebDriverSampler.language">groovy</stringProp>
+              </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Email Sending Thread" enabled="false">
+        <stringProp name="TestPlan.comments">Please cross-check the report before running this thread.</stringProp>
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">0</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <stringProp name="LoopController.loops">9</stringProp>
+        </LoopController>
+        <hashTree>
+          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
+            <stringProp name="CounterConfig.start">1</stringProp>
+            <stringProp name="CounterConfig.end"></stringProp>
+            <stringProp name="CounterConfig.incr">1</stringProp>
+            <stringProp name="CounterConfig.name">iteration_number</stringProp>
+            <stringProp name="CounterConfig.format"></stringProp>
+            <boolProp name="CounterConfig.per_user">false</boolProp>
+          </CounterConfig>
+          <hashTree/>
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+            <stringProp name="delimiter">,</stringProp>
+            <stringProp name="fileEncoding"></stringProp>
+            <stringProp name="filename">results/Order_Guide_Load_Times.csv</stringProp>
+            <boolProp name="ignoreFirstLine">true</boolProp>
+            <boolProp name="quotedData">false</boolProp>
+            <boolProp name="recycle">true</boolProp>
+            <stringProp name="shareMode">shareMode.group</stringProp>
+            <boolProp name="stopThread">false</boolProp>
+            <stringProp name="variableNames">operator_name,og_name,sku_count,start_time,end_time,load_time</stringProp>
+          </CSVDataSet>
+          <hashTree/>
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">// Get values from CSV Data Set Config
+String operatorName = vars.get(&quot;operator_name&quot;);
+String ogName = vars.get(&quot;og_name&quot;);
+String loadTime = vars.get(&quot;load_time&quot;);
+
+// Ensure loadTime is valid before proceeding
+double loadTimeValue = 0;
+int counter = Integer.parseInt(vars.get(&quot;iteration_number&quot;));
+try {
+    loadTimeValue = Double.parseDouble(loadTime);  // Convert loadTime to a number
+} catch (NumberFormatException e) {
+    loadTimeValue = -1;  // Use -1 if parsing fails
+}
+
+// Format values for storage (one-time calculation)
+String formattedLoadTime = (loadTimeValue &gt;= 0) ? String.format(&quot;%.3f&quot;, loadTimeValue / 1000.0) : &quot;N/A&quot;;
+// Log for debugging
+log.info(&quot;Formatted loadTimeValue: &quot; + formattedLoadTime);
+
+// Convert formatted string back to a double for comparison (if required)
+double formattedLoadTimeValue = 0;
+if (!formattedLoadTime.equals(&quot;N/A&quot;)) {
+    formattedLoadTimeValue = Double.parseDouble(formattedLoadTime);
+}
+
+// Adjust the threshold for status check
+String status = (formattedLoadTimeValue &gt;= 0 &amp;&amp; formattedLoadTimeValue &lt;= 15.000) ? &quot;Pass&quot; : &quot;Fail&quot;;  // Example threshold
+
+
+// Store values separately for each of the 9 records
+for (int i = 1; i &lt;= 1; i++) {
+    vars.put(&quot;response_time_&quot; + counter, formattedLoadTime);
+    vars.put(&quot;status_&quot; + counter, status);
+
+    // Log for debugging
+    log.info(&quot;Stored response_time_&quot; + counter + &quot;: &quot; + formattedLoadTime);
+    log.info(&quot;Stored status_&quot; + counter + &quot;: &quot; + status);
+
+}</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PreProcessor>
+          <hashTree/>
+          <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="  ${response_time_1}${status_1}  ${response_time_2}${status_2}   ${response_time_3}${status_3}   ${response_time_4}${status_4}   ${response_time_5}${status_5}   ${response_time_6}${status_6}   ${response_time_7}${status_7}   ${response_time_8}${status_8}   ${response_time_9}${status_9} " enabled="true">
+            <boolProp name="displayJMeterProperties">false</boolProp>
+            <boolProp name="displayJMeterVariables">true</boolProp>
+            <boolProp name="displaySystemProperties">false</boolProp>
+          </DebugSampler>
+          <hashTree/>
+        </hashTree>
+        <SmtpSampler guiclass="SmtpSamplerGui" testclass="SmtpSampler" testname="SMTP Sampler">
+          <stringProp name="TestPlan.comments">Outlook: smtp.office365.com/Yahoo: smtp.mail.yahoo.com -- 587 (for TLS)/465 (for SSL)/25 (for non-secure, not recommended)</stringProp>
+          <stringProp name="SMTPSampler.server">smtp.gmail.com</stringProp>
+          <stringProp name="SMTPSampler.serverPort">465</stringProp>
+          <stringProp name="SMTPSampler.mailFrom">ahsan@cutanddry.com</stringProp>
+          <stringProp name="SMTPSampler.replyTo"></stringProp>
+          <stringProp name="SMTPSampler.receiverTo">ahsan@cutanddry.com</stringProp>
+          <stringProp name="SMTPSampler.receiverCC"></stringProp>
+          <stringProp name="SMTPSampler.receiverBCC"></stringProp>
+          <stringProp name="SMTPSampler.subject">Automated Daily Performance Load Time Report - ${__time(MM/dd/yyyy,)}</stringProp>
+          <stringProp name="SMTPSampler.suppressSubject">false</stringProp>
+          <stringProp name="SMTPSampler.include_timestamp">false</stringProp>
+          <stringProp name="SMTPSampler.message">&lt;html lang=&quot;en&quot;&gt;
+&lt;body style=&quot;font-family: Roboto, sans-serif; color: rgb(13,13,13);&quot;&gt;
+
+    &lt;h2 style=&quot;font-size: 17pt; line-height: 1.6; margin-top: 18pt; margin-bottom: 0pt; padding-bottom: 4pt;&quot;&gt;1. Executive Summary&lt;/h2&gt;
+    &lt;p style=&quot;font-size: 12pt; line-height: 1.38; margin-bottom: 15pt;&quot;&gt;This report presents the results of daily performance load time testing for the following distributors: 
+        Dicarlo, Hillcrest, Birite, Maplevale, WCW, and John Gross &amp; Co. The performance tests were conducted by 
+        &lt;strong&gt;JMeter&lt;/strong&gt; to assess the responsiveness and reliability of their systems under various load conditions.
+    &lt;/p&gt;
+
+    &lt;h2 style=&quot;font-size: 17pt; line-height: 1.6; margin-top: 18pt; margin-bottom: 0pt; padding-bottom: 1pt;&quot;&gt;2. Performance Load Time Testing&lt;/h2&gt;
+
+    &lt;h3 style=&quot;font-size: 16.5pt; line-height: 1.92; margin-bottom: 4pt; padding-top: 1pt;&quot;&gt;Objective&lt;/h3&gt;
+    &lt;p style=&quot;font-size: 12pt; line-height: 1.38; margin-bottom: 15pt;&quot;&gt;The objective of the performance load time testing is to measure the time taken for each distributor&apos;s order guide to respond.&lt;/p&gt;
+
+    &lt;h3 style=&quot;font-size: 16.5pt; line-height: 1.92; margin-bottom: 4pt; padding-top: 10pt;&quot;&gt;Test Environment&lt;/h3&gt;
+    &lt;ul style=&quot;margin: 0; padding-left: 15px;&quot;&gt;
+        &lt;li style=&quot;font-size: 12pt; margin-top: 6pt;&quot;&gt;Test Tool: JMeter&lt;/li&gt;
+        &lt;li style=&quot;font-size: 12pt; margin-top: 6pt;&quot;&gt;Threshold: 15 Seconds (Pass/Fail)&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;h3 style=&quot;font-size: 16.5pt; line-height: 1.92; margin-bottom: 4pt; padding-top: 10pt;&quot;&gt;Results [Production]&lt;/h3&gt;
+    &lt;table style=&quot;width: 100%; border-collapse: collapse; margin-top: 10pt;&quot;&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #c9daf8;&quot;&gt;Operator Name&lt;/th&gt;
+                &lt;th style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #c9daf8;&quot;&gt;OG Name&lt;/th&gt;
+                &lt;th style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #c9daf8;&quot;&gt;SKU Count&lt;/th&gt;
+                &lt;th style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #c9daf8;&quot;&gt;Average Response Time (seconds)&lt;/th&gt;
+                &lt;th style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #c9daf8;&quot;&gt;Comment&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;Dicarlo&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;Uncle Tony&apos;s Pizza&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;116&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt; ${response_time_1} seconds&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${status_1}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;Hillcrest&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;Akronym Public House&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;1231&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${response_time_2}  seconds&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${status_2}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;Birite&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;Twelvemonth&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;294&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${response_time_3}  seconds&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${status_3}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;Maplevale&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;Kcs Rustic Inn LLC&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;243&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${response_time_4}  seconds&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${status_4}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;WCW&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;Denver art museum -Avendra&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;969&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${response_time_5}  seconds&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${status_5}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;John Gross &amp; Co&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;Masonic Club house&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;1766&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${response_time_6}  seconds&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${status_6}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;Chef&apos;s Kitchen&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;Aa Dollar plus - Rtl&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;394&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${response_time_7}  seconds&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${status_7}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;Vitco&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;Spencers Rosedale HWY&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;237&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${response_time_8} seconds&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${status_8}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;Cream co&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;Kevin Cimino Samples&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;63&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${response_time_9}  seconds&lt;/td&gt;
+                &lt;td style=&quot;border: 1px solid #ddd; padding: 8px; text-align: left;&quot;&gt;${status_9}&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+
+    &lt;h3 style=&quot;font-size: 16.5pt; line-height: 1.92; margin-bottom: 4pt; padding-top: 10pt;&quot;&gt;Additional Comments&lt;/h3&gt;
+    &lt;li style=&quot;font-size: 12pt; margin-top: 6pt;&quot;&gt;The performance load time results presented in this report are averages from five separate test runs at each load level to ensure accuracy and consistency.&lt;/li&gt;
+        &lt;li style=&quot;font-size: 12pt; margin-top: 6pt;&quot;&gt;Please note that this load time is defined up to only the initial set of items loaded for an order guide.&lt;/li&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</stringProp>
+          <stringProp name="SMTPSampler.plainBody">true</stringProp>
+          <stringProp name="SMTPSampler.attachFile"></stringProp>
+          <stringProp name="SMTPSampler.useSSL">true</stringProp>
+          <stringProp name="SMTPSampler.useStartTLS">false</stringProp>
+          <stringProp name="SMTPSampler.trustAllCerts">false</stringProp>
+          <stringProp name="SMTPSampler.enforceStartTLS">false</stringProp>
+          <stringProp name="SMTPSampler.useLocalTrustStore">false</stringProp>
+          <stringProp name="SMTPSampler.trustStoreToUse"></stringProp>
+          <stringProp name="SMTPSampler.tlsProtocols"></stringProp>
+          <boolProp name="SMTPSampler.use_eml">false</boolProp>
+          <stringProp name="SMTPSampler.emlMessageToSend"></stringProp>
+          <stringProp name="SMTPSampler.useAuth">true</stringProp>
+          <stringProp name="SMTPSampler.password">ymme ving lzrp nhae</stringProp>
+          <stringProp name="SMTPSampler.username">qereports@cutanddry.com</stringProp>
+          <stringProp name="SMTPSampler.messageSizeStatistics">false</stringProp>
+          <stringProp name="SMTPSampler.enableDebug">false</stringProp>
+          <collectionProp name="SMTPSampler.headerFields">
+            <elementProp name="Content-Type" elementType="Argument">
+              <stringProp name="Argument.name">Content-Type</stringProp>
+              <stringProp name="Argument.value">text/html; charset=UTF-8</stringProp>
+            </elementProp>
+          </collectionProp>
+        </SmtpSampler>
+        <hashTree/>
+        <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="Assertion Results" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
