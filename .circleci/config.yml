@@ -41,26 +41,20 @@ jobs:
       - run:
           name: Install ChromeDriver
           command: |
-            # Get the installed version of Google Chrome
-            CHROME_VERSION=$(google-chrome-stable --version | awk '{print $3}')
-            echo "Installed Chrome version: $CHROME_VERSION"
+            # Install Google Chrome
+            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+            sudo apt-get update
+            sudo apt-get install -y google-chrome-stable
+            google-chrome --version
 
-            # Get the corresponding ChromeDriver version
-            CHROME_DRIVER_VERSION=$(curl -sS "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
-
-            # Check if the ChromeDriver version is found
-            if [ -z "$CHROME_DRIVER_VERSION" ]; then
-              echo "Error: Unable to fetch the ChromeDriver version for Chrome $CHROME_VERSION"
-              exit 1
-            fi
-
-            echo "Downloading ChromeDriver version: $CHROME_DRIVER_VERSION"
-
-            # Download ChromeDriver for the installed version
-            wget "https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip"
-            unzip chromedriver_linux64.zip
+            # Install ChromeDriver version 135.0.7049.42
+            CHROMEDRIVER_URL="https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.42/linux64/chromedriver-linux64.zip"
+            wget $CHROMEDRIVER_URL
+            unzip chromedriver-linux64.zip
             sudo mv chromedriver /usr/local/bin/
             sudo chmod +x /usr/local/bin/chromedriver
+            chromedriver --version
       - run:
           name: Ensure results directory exists
           command: mkdir -p results
