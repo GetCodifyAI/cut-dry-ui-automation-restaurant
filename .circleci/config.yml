@@ -52,7 +52,7 @@ jobs:
             CHROMEDRIVER_URL="https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.42/linux64/chromedriver-linux64.zip"
             wget $CHROMEDRIVER_URL
             unzip chromedriver-linux64.zip
-            sudo mv chromedriver /usr/local/bin/
+            sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
             sudo chmod +x /usr/local/bin/chromedriver
             chromedriver --version
       - run:
