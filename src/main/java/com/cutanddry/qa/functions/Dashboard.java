@@ -106,4 +106,7 @@ public class Dashboard {
     public static void navigateToCatalog() {
         dashboardPage.clickOnCatalog();
     }
+    public static void navigateToOrderSettings() {
+        dashboardPage.clickOnOrderSettings();
+    }
 }

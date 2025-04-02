@@ -58,6 +58,18 @@ public class PayPage extends TestBase{
     By batchPaymentTxt = By.xpath("//div[contains(text(),'Batch Payment')]");
     By nextBtn = By.xpath("//button[contains(text(),'Next')]");
     By navigatePaidTab = By.xpath("//a[@aria-selected='true' and text()='Paid']");
+    By cutAndDryPayToggleStable = By.xpath("//div[contains(text(), 'Cut+Dry Pay')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
+    By cutAndDryPayToggleStable1 = By.xpath("//div[contains(text(), 'Cut+Dry Pay')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+    By btn_markInvoiceYes = By.xpath("//button[contains(text(),'Yes')]");
+    String cbox_invoiceRecord = "//div[contains(text(),'Due Date')]/ancestor::table/tbody/tr[ROW_COUNT]/td[1]//*[name()='svg']";
+    By btn_createBatch = By.xpath("(//button[contains(text(),'Create Batch')])[1]");
+    By creditMemoDisplay = By.xpath("//div[text()='Credit Memos (0)']");
+    By txt_batchPayment = By.xpath("//div[text()='Batch Payment']");
+    String selectInvoice = "//div[contains(text(),'Due Date')]/ancestor::table/tbody/tr/td[text()='INVOICEID']";
+    By downloadInvoice = By.xpath("(//h2[contains(text(),'Invoice')]/../../../following-sibling::div[2]//*[local-name()='svg'])[1]");
+    By PrintInvoice = By.xpath("(//h2[contains(text(),'Invoice')]/../../../following-sibling::div[2]//*[local-name()='svg'])[2]");
+
+
 
     public void clickOnPay(){restaurantUI.click(btn_pay);}
 
@@ -321,6 +333,48 @@ public class PayPage extends TestBase{
             return false;
         }
         return restaurantUI.isDisplayed(navigatePaidTab);
+    }
+    public void clickCutAndDryPayToggle(boolean enable) {
+
+        String handlePosition = restaurantUI.getElement(cutAndDryPayToggleStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(66px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(cutAndDryPayToggleStable1);
+            restaurantUI.click(btn_markInvoiceYes);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(cutAndDryPayToggleStable1);
+            restaurantUI.click(btn_markInvoiceYes);
+        }
+    }
+    public void clickOnInvoiceRecord(int rowNo) {
+        String row_count = String.valueOf(rowNo);
+        By lbl_invoiceRecord = By.xpath(cbox_invoiceRecord.replace("ROW_COUNT", row_count));
+        restaurantUI.waitForVisibility(lbl_invoiceRecord);
+        restaurantUI.click(lbl_invoiceRecord);
+    }
+    public void clickCreateBatch()throws InterruptedException{
+        restaurantUI.waitForVisibility(btn_createBatch);
+        restaurantUI.click(btn_createBatch);
+    }
+    public boolean isBatchPaymentDisplayed()throws InterruptedException{
+        return restaurantUI.isDisplayed(txt_batchPayment);
+    }
+    public boolean isCreditMemoDisplayed()throws InterruptedException{
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.isDisplayed(creditMemoDisplay);
+    }
+    public void clickSelectInvoice(String invoice){
+        restaurantUI.scrollToElement(By.xpath(selectInvoice.replace("INVOICEID",invoice)));
+        restaurantUI.click(By.xpath(selectInvoice.replace("INVOICEID",invoice)));
+    }
+    public void clickDownloadInvoice()throws InterruptedException{
+        restaurantUI.click(downloadInvoice);
+        restaurantUI.waitForCustom(2000);
+    }
+    public void clickPrintInvoice()throws InterruptedException{
+        restaurantUI.click(PrintInvoice);
+        restaurantUI.waitForCustom(2000);
     }
 }
 

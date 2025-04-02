@@ -49,6 +49,12 @@ public class SettingsPage extends LoginPage{
     By selectExportTypeDropDown = By.xpath("//span[text()='Select Export Type']");
     String exportTypeOption = "//a[text()='TYPE']";
     By btn_generateExport = By.xpath("//button[text()='Generate Export']");
+    By txt_orderSettings = By.xpath("//li[contains(text(),'Order Settings')]");
+    By tbx_orderMinimum = By.xpath("//label[text()='Order Minimum ($)']/following-sibling::div//input");
+    By sel_OrderMinimums = By.xpath("//*[contains(text(),'Order Minimums')]/preceding-sibling::input");
+
+
+
 
     public void clickOnSettings(){
         restaurantUI.click(btn_settings);
@@ -270,6 +276,36 @@ public class SettingsPage extends LoginPage{
     }
     public void clickGenerateExport()throws InterruptedException{
         restaurantUI.click(btn_generateExport);
+    }
+    public boolean isOrderSettingsTextDisplayed() throws InterruptedException {
+        try {
+            restaurantUI.waitForVisibility(txt_orderSettings);
+        } catch (Exception e){
+            return false;
+        }
+        restaurantUI.waitForCustom(4000);
+        return restaurantUI.isDisplayed(txt_orderSettings);
+    }
+    public void enterOrderMinimum(String amount) throws InterruptedException {
+        restaurantUI.clear(tbx_orderMinimum);
+        restaurantUI.waitForCustom(1000);
+        restaurantUI.sendKeys(tbx_orderMinimum, amount);
+        restaurantUI.waitForCustom(3000);
+    }
+    public void setOrderMinimums(boolean select) {
+        restaurantUI.waitForVisibility(sel_OrderMinimums);
+        boolean isSelected = restaurantUI.isCheckboxOrRadioBtnSelected(sel_OrderMinimums);
+
+        if (select && !isSelected) {
+            restaurantUI.click(sel_OrderMinimums); // Select the checkbox
+        } else if (!select && isSelected) {
+            restaurantUI.click(sel_OrderMinimums); // Deselect the checkbox
+        }
+        try {
+            restaurantUI.waitForCustom(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

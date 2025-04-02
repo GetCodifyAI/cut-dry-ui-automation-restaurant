@@ -70,6 +70,9 @@ public class HistoryPage extends TestBase {
     String lbl_orderTableColumnName = "//table/thead/tr/th[COUNT]/span";
     By lbl_orderTableRow = By.xpath("//tbody/tr");
     String lbl_orderTableRef = "//tbody/tr[TR_COUNT]/td[TH_COUNT]";
+    By btn_invoice = By.xpath("//a[@role='tab' and @data-rb-event-key='Invoice']");
+    By btn_downloadInvoice = By.xpath("//button[contains(text(),'Download Invoice')]");
+    By btn_printInvoice = By.xpath("//button[contains(text(),'Print Invoice')]");
 
     public void clickClose(){
         restaurantUI.waitForVisibility(btn_close);
@@ -463,6 +466,15 @@ public class HistoryPage extends TestBase {
                 }
             }
         }
+    }
+    public void clickOnInvoiceTab(){
+        restaurantUI.click(btn_invoice);
+    }
+    public void clickOnDownloadInvoice(){
+        restaurantUI.click(btn_downloadInvoice);
+    }
+    public void clickOnPrintInvoice(){
+        restaurantUI.click(btn_printInvoice);
     }
 
 }

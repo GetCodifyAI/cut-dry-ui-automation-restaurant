@@ -250,5 +250,17 @@ public class Settings {
     public static void clickGenerateExport()throws InterruptedException{
         settingsPage.clickGenerateExport();
     }
+    public static boolean isOrderSettingsTextDisplayed() throws InterruptedException {
+        return settingsPage.isOrderSettingsTextDisplayed();
+    }
+    public static void enterOrderMinimum(String item) throws InterruptedException {
+        settingsPage.enterOrderMinimum(item);
+    }
+    public static void setOrderMinimums(boolean selection) {
+        settingsPage.setOrderMinimums(selection);
+    }
+    public static void clickOnSaveChanges() throws InterruptedException {
+        settingsPage.clickOnSaveChanges();
+    }
 
 }
