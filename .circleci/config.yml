@@ -84,6 +84,12 @@ jobs:
       - run:
           name: Run JMeter Test
           command: |
+            # Check if the workspace exists and is properly mounted
+            if [ -d "/workspace/apache-jmeter-5.4.1" ]; then
+              echo "Workspace JMeter directory found!"
+            else
+              echo "Workspace JMeter directory not found!"
+            fi
             export JMETER_HOME=/workspace/apache-jmeter-5.4.1
             export PATH=$JMETER_HOME/bin:$PATH
             $JMETER_HOME/bin/jmeter -n -t jmeter-tests/login_test_plan.jmx -l results/test_results.jtl -e -o results/report
