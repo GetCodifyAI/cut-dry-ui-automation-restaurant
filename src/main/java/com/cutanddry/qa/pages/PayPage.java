@@ -1,7 +1,10 @@
 package com.cutanddry.qa.pages;
 
 import com.cutanddry.qa.base.TestBase;
+import com.cutanddry.qa.common.Constants;
 import org.openqa.selenium.By;
+
+import java.util.Date;
 
 public class PayPage extends TestBase{
 
@@ -69,6 +72,19 @@ public class PayPage extends TestBase{
     By downloadInvoice = By.xpath("(//h2[contains(text(),'Invoice')]/../../../following-sibling::div[2]//*[local-name()='svg'])[1]");
     By PrintInvoice = By.xpath("(//h2[contains(text(),'Invoice')]/../../../following-sibling::div[2]//*[local-name()='svg'])[2]");
 
+
+    By publicPayView = By.xpath("//*[contains(text(),'Payment Summary')]");
+    By firstUnpaidInvoice = By.xpath("//tbody/tr[td[5][text()='Unpaid']]/td[2]");
+    By btn_cardOption = By.xpath("//div[contains(text(),'Card')]");
+    By cardNumber = By.xpath("//input[@id='ccnumber']");
+    By cardCVV = By.xpath("//input[@id='cvv']");
+    By cardExp = By.xpath("//input[contains(@name,'ccexp')]");
+    By cardZipCode = By.xpath("//label[contains(text(),'Zip Code')]/following-sibling::input");
+    By switchIframeCardNumber = By.xpath("//iframe[contains(@id,'CollectJSInlineccnumber')]");
+    By switchIframeCardExp = By.xpath("//iframe[contains(@id,'CollectJSInlineccexp')]");
+    By switchIframeCardCVV = By.xpath("//iframe[contains(@id,'CollectJSInlinecvv')]");
+    By btn_publicPay = By.xpath("//button[contains(@class,'btn-block') and not(@disabled)]");
+    By transactionRejectedPopUp = By.xpath("//*[contains(text(),'Transaction was rejected by gateway.')]");
 
 
     public void clickOnPay(){restaurantUI.click(btn_pay);}
@@ -376,5 +392,43 @@ public class PayPage extends TestBase{
         restaurantUI.click(PrintInvoice);
         restaurantUI.waitForCustom(2000);
     }
+    public void navigateToPublicPayView(){
+        restaurantUI.navigateToURL(Constants.PUBLIC_PAY_URL);
+    }
+    public boolean isNavigatedToPublicPayView(){
+        return restaurantUI.isDisplayed(publicPayView);
+    }
+    public void openUnpaidInvoice(){
+        restaurantUI.click(firstUnpaidInvoice);
+    }
+    public void clickOnCardOption(){
+        restaurantUI.click(btn_cardOption);
+    }
+    public void enterCardNumber(String cardNum)throws InterruptedException {
+        restaurantUI.switchToFrameByElement(switchIframeCardNumber);
+        restaurantUI.sendKeys(cardNumber,cardNum);
+        restaurantUI.switchToDefaultContent();
+    }
+    public void enterCVVNumber(String cvvNumber)throws InterruptedException{
+        restaurantUI.switchToFrameByElement(switchIframeCardCVV);
+        restaurantUI.sendKeys(cardCVV,cvvNumber);
+        restaurantUI.switchToDefaultContent();
+    }
+    public void enterZipCode(String zipCode)throws InterruptedException{
+        restaurantUI.sendKeys(cardZipCode,zipCode);
+        restaurantUI.waitForCustom(800);
+    }
+    public void enterExpirationDate(String expiriationDate)throws InterruptedException{
+        restaurantUI.switchToFrameByElement(switchIframeCardExp);
+        restaurantUI.sendKeys(cardExp,expiriationDate);
+        restaurantUI.switchToDefaultContent();
+    }
+    public void clickOnPublicPay(){
+        restaurantUI.click(btn_publicPay);
+    }
+    public boolean isTransactionRejectedPopUpDisplayed(){
+        return restaurantUI.isDisplayed(transactionRejectedPopUp);
+    }
+
 }
 
