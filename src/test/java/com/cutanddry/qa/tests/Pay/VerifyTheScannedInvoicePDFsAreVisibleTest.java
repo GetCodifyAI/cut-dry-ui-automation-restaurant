@@ -16,7 +16,7 @@ public class VerifyTheScannedInvoicePDFsAreVisibleTest extends TestBase {
     static String Dp_Name = "96939129 - Cut+Dry Agent - Hillcrest Foodservice";
     static String customerId = "21172";
     String operator = "Marc Glassman ";
-    static String scanInvoiceId = "2817219";
+    static String scanInvoiceId = "2745242";
 
 
     @BeforeMethod
