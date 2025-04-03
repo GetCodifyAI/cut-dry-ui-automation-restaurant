@@ -127,4 +127,35 @@ public class Pay {
     public static boolean isNavigatePaidDisplayed(){
         return PayPage.isNavigatePaidDisplayed();
     }
+
+    public static void navigateToPublicPayView(){
+        PayPage.navigateToPublicPayView();
+    }
+    public static boolean isNavigatedToPublicPayView(){
+        return PayPage.isNavigatedToPublicPayView();
+    }
+    public static void openUnpaidInvoice(){
+        PayPage.openUnpaidInvoice();
+    }
+    public static void clickOnCardOption(){
+        PayPage.clickOnCardOption();
+    }
+    public static void enterCardNumber(String cardNumber)throws InterruptedException{
+        PayPage.enterCardNumber(cardNumber);
+    }
+    public static void enterCVV(String cvvNumber)throws InterruptedException{
+        PayPage.enterCVVNumber(cvvNumber);
+    }
+    public static void enterZipCode(String zipCode)throws InterruptedException{
+        PayPage.enterZipCode(zipCode);
+    }
+    public static void enterExpirationDate(String expiriationDate)throws InterruptedException{
+        PayPage.enterExpirationDate(expiriationDate);
+    }
+    public static void clickOnPublicPay(){
+        PayPage.clickOnPublicPay();
+    }
+    public static boolean isTransactionRejectedPopUpDisplayed(){
+        return PayPage.isTransactionRejectedPopUpDisplayed();
+    }
 }
