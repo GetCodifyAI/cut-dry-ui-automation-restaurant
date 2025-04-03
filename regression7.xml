@@ -68,6 +68,9 @@
             <class name="com.cutanddry.qa.tests.Pay.VerifyTheScannedInvoicePDFsAreVisibleTest"/>
             <class name="com.cutanddry.qa.tests.History.VerifyTheInvoiceDownloadAndPrintFeatureTest"/>
 
+            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyReportIssueButtonIsEnabledTest"/>
+            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyReportIssueButtonIsDisabledTest"/>
+
         </classes>
     </test>
 </suite>
