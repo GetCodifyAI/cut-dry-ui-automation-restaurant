@@ -32,6 +32,24 @@ public class InternalTools {
     public static void clickOkOnSuccessBtn(){
         internalToolsPage.clickOK();
     }
+    public static void navigateToOrderingSettingsTab(){
+        internalToolsPage.clickOnOrderingSettings();
+    }
+    public static void TurnOnOrderMinimumGloballyToggle(boolean status){
+        internalToolsPage.clickTurnOnOrderMinimumGloballyToggle(status);
+    }
+    public static void clickOnOrderMinimumDropdown(String type){
+        internalToolsPage.clickOnOrderMinimumDropdown(type);
+    }
+    public static void enterOrderMinimum(String min){
+        internalToolsPage.enterOrderMinimum(min);
+    }
+    public static void clickSave(){
+        internalToolsPage.clickSaveBtn();
+    }
+    public static void clickCreditMemoCheckbox(boolean status){
+        internalToolsPage.clickCreditMemoCheckbox(status);
+    }
 
 
 }

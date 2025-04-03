@@ -127,6 +127,32 @@ public class Pay {
     public static boolean isNavigatePaidDisplayed(){
         return PayPage.isNavigatePaidDisplayed();
     }
+    public static void clickCutAndDryPayToggle(boolean status){
+        PayPage.clickCutAndDryPayToggle(status);
+    }
+    public static void clickOnInvoiceRecord(int rowCount) {
+        for (int i = 1; i <= rowCount; i++) {
+            PayPage.clickOnInvoiceRecord(i);
+        }
+    }
+    public static void clickCreateBatch() throws InterruptedException {
+        PayPage.clickCreateBatch();
+    }
+    public static boolean isBatchPaymentDisplayed() throws InterruptedException {
+        return PayPage.isBatchPaymentDisplayed();
+    }
+    public static boolean isCreditMemoDisplayed() throws InterruptedException {
+        return PayPage.isCreditMemoDisplayed();
+    }
+    public static void clickSelectInvoice(String invoice){
+        PayPage.clickSelectInvoice(invoice);
+    }
+    public static void clickDownloadInvoice() throws InterruptedException {
+        PayPage.clickDownloadInvoice();
+    }
+    public static void clickPrintInvoice() throws InterruptedException {
+        PayPage.clickPrintInvoice();
+    }
 
     public static void navigateToPublicPayView(){
         PayPage.navigateToPublicPayView();

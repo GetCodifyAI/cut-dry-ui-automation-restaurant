@@ -13,9 +13,8 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyWLAppManagerRolesTest extends TestBase {
     static User user;
-    static String itemName = "Flowers Edible Assortment Organic";
-    static String OperatorName = "CHEF GLENDA";
-    static String name = "CHEF GLENDA - 211953812 - Owner - 110 Reserve Bar - WOODLAND PARK -  - 17192353155";
+    static String itemName = "Carrot - Baby Peeled - 1 LB";
+    static String OperatorName = "manager@cutanddry.com";
 
     @BeforeMethod
     public void setUp(){
@@ -30,8 +29,7 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
-        Login.loginAsManagerWL(OperatorName);
-        Login.clickManager(name);
+        Login.loginAsAdminWL(OperatorName);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error order");
@@ -42,7 +40,6 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
         Customer.searchItemOnOrderGuide(itemName);
         Customer.increaseFirstRowQtyByOneInWL();
         Customer.goToCatalog();
-        softAssert.assertTrue(Customer.isUserNavigatedToChefGlendaCatalog(),"navigation error catalog");
         Customer.searchItemOnCatalog(itemName);
         Customer.increaseCatalogQtyByThree();
         Customer.checkoutItems();

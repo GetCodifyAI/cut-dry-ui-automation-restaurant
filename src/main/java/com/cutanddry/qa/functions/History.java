@@ -199,4 +199,13 @@ public class History {
     public static void clickOnOrder(String orderId) throws InterruptedException {
         historyPage.clickOnOrder(orderId);
     }
+    public static void clickOnInvoiceTab(){
+        historyPage.clickOnInvoiceTab();
+    }
+    public static void clickOnDownloadInvoice(){
+        historyPage.clickOnDownloadInvoice();
+    }
+    public static void clickOnPrintInvoice(){
+        historyPage.clickOnPrintInvoice();
+    }
 }

@@ -37,6 +37,9 @@ public class DashboardPage extends LoginPage{
     By locationFilter = By.xpath("(//div[text()='Place Order']/following-sibling::div//div)[1]");
     By locationOption = By.xpath("//div[text()='Place Order']/following-sibling::*//div[contains(@id,'react-select') and contains(text(), 'All Locations')]");
     By btn_catalog = By.xpath("//a[@data-tip='View Catalog']");
+    By btn_settings = By.xpath("//a[@role='button' and contains(text(), 'Settings')]");
+    By btn_orderSettings = By.xpath("//div[@arrowprops]//a[text()='Orders']");
+
 
     public boolean isDashboardTextDisplayed(){
         try {
@@ -182,6 +185,12 @@ public class DashboardPage extends LoginPage{
     }
     public void clickOnCatalog(){
         restaurantUI.click(btn_catalog);
+    }
+    public void clickOnOrderSettings(){
+        restaurantUI.scrollToElement(btn_settings);
+        restaurantUI.clickUsingJavaScript(btn_settings);
+        restaurantUI.hoverOverElement(btn_orderSettings);
+        restaurantUI.clickWithFallback(btn_orderSettings);
     }
 
 }

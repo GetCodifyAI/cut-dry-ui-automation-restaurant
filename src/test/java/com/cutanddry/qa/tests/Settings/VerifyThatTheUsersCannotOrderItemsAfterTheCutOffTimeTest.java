@@ -17,6 +17,8 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyThatTheUsersCannotOrderItemsAfterTheCutOffTimeTest extends TestBase {
     static User user;
+    static String expectedDate;
+    static String todayDate;
 
 
     @BeforeMethod
@@ -47,11 +49,14 @@ public class VerifyThatTheUsersCannotOrderItemsAfterTheCutOffTimeTest extends Te
         Customer.increaseFirstRowQtyByOne();
         Customer.checkoutItems();
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
-        Customer.selectDeliveryDateFirstLine();
+        expectedDate = generateUTCTomorrowDateFormatted();
+        todayDate = generateUTCTodayDateFormatted();
+
+        Customer.selectDeliveryDateLine(todayDate);
         Customer.submitOrderAfterDeliveryTime();
         softAssert.assertTrue(Customer.isInvalidDeliveryTextDisplayed(),"Delivery time error");
         Customer.closeDeliveryPopup();
-        Customer.selectDeliveryDateSecondLine();
+        Customer.selectDeliveryDateLine(expectedDate);
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
         softAssert.assertAll();

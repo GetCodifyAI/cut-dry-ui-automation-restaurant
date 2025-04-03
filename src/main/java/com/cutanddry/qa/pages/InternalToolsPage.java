@@ -11,6 +11,20 @@ public class InternalToolsPage extends TestBase {
     By saveBtn = By.xpath("//button[contains(text(),'Run Invoice Sync')]/following-sibling::button[contains(text(),'Save')]");
     By successOverlay = By.xpath("//h2[contains(text(),'Succcess')]");
     By okBtn = By.xpath("//button[contains(text(),'OK')]");
+    By OrderingSettingsTab = By.xpath("//a[contains(text(),'Ordering Settings')]");
+    By orderMinimumGloballyToggleStable = By.xpath("//div[contains(text(), 'Enable Soft/Hard order minimum globally')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
+    By orderMinimumGloballyToggleStable1 = By.xpath("//div[contains(text(), 'Enable Soft/Hard order minimum globally')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+    By orderMinimumDropDown = By.xpath("//div[text()='Order minimum type: ']/following-sibling::div/div");
+    String orderMinimumDropDownOption = "(//div[text()='TYPE'])[last()]";
+    By addOrderMinimum = By.xpath("//div[contains(text(),'Soft order Minimum Surcharge')]/following-sibling::div/input");
+    By SaveBtn = By.xpath("//div[@class='text-right col']//button[text()='Save']");
+    By checkboxLocatorCreditMemo = By.xpath("//label[contains(text(),'Enable Auto Apply Credit Memos')]/..//input");
+
+
+
+
+
+
 
     public void clickConfigureSuppliers(){
         restaurantUI.click(configureSupplierLink);
@@ -41,6 +55,50 @@ public class InternalToolsPage extends TestBase {
 
     public void clickOK(){
         restaurantUI.click(okBtn);
+    }
+    public void clickOnOrderingSettings(){
+        restaurantUI.waitForVisibility(OrderingSettingsTab);
+        restaurantUI.click(OrderingSettingsTab);
+        try {
+            restaurantUI.waitForCustom(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void clickTurnOnOrderMinimumGloballyToggle(boolean enable) {
+
+        String handlePosition = restaurantUI.getElement(orderMinimumGloballyToggleStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(29px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(orderMinimumGloballyToggleStable1);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(orderMinimumGloballyToggleStable1);
+        }
+    }
+    public void clickOnOrderMinimumDropdown(String type){
+        restaurantUI.click(orderMinimumDropDown);
+        restaurantUI.click(By.xpath(orderMinimumDropDownOption.replace("TYPE",type)));
+    }
+    public void enterOrderMinimum(String minimum){
+        restaurantUI.click(addOrderMinimum);
+        restaurantUI.clear(addOrderMinimum);
+        restaurantUI.sendKeys(addOrderMinimum,minimum);
+    }
+    public void clickSaveBtn(){
+        restaurantUI.scrollToElement(SaveBtn);
+        restaurantUI.waitForVisibility(SaveBtn);
+        restaurantUI.clickUsingJavaScript(SaveBtn);
+    }
+    public void clickCreditMemoCheckbox(boolean enable) {
+
+        boolean isChecked = restaurantUI.getElement(checkboxLocatorCreditMemo).isSelected();
+
+        if (enable && !isChecked) {
+            restaurantUI.click(checkboxLocatorCreditMemo); // Check the box if not checked
+        } else if (!enable && isChecked) {
+            restaurantUI.click(checkboxLocatorCreditMemo); // Uncheck the box if already checked
+        }
     }
 
 

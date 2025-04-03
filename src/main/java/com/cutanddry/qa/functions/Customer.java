@@ -248,10 +248,9 @@ public class Customer {
             customersPage.clickYesDuplicatePopup();
         }
     }
-
-    public static void selectDeliveryDateFirstLine()throws InterruptedException{
+    public static void selectDeliveryDateLine(String date)throws InterruptedException{
         customersPage.clickOnDeliveryDate();
-        customersPage.selectDeliveryDateFirstLine();
+        customersPage.selectDeliveryDateLine(date);
 
     }
     public static void selectDeliveryDateSecondLine() throws InterruptedException {
@@ -797,6 +796,31 @@ public class Customer {
 
     public static String IsCustomOrderTextDisplayed() throws InterruptedException {
         return customersPage.IsCustomOrderTextDisplayed();
+    }
+    public static void submitOrderMinimum(){
+        customersPage.submitOrder();
+    }
+    public static boolean isOrderMinPopupDisplayed(){
+        return customersPage.isOrderMinPopupDisplayed();
+    }
+    public static boolean isMinOrderBannerDisplayed(){
+        return customersPage.isMinOrderBannerDisplayed();
+    }
+    public static void clickOkOrderMinimum() throws InterruptedException {
+        customersPage.clickOK();
+        if (customersPage.isDuplicatePopupDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
+    }
+    public static void clickYesOrderMinimum() throws InterruptedException {
+        customersPage.clickOnYes();
+        if (customersPage.isDuplicatePopupDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
+    }
+    public static void clickOnInvoice(){
+        customersPage.clickonInvoice();
+        customersPage.isFirstRecordDisplayed();
     }
 
 }
