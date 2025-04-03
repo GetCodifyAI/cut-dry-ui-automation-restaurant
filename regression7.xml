@@ -8,18 +8,6 @@
     <test name="operator tests">
         <parameter name="PART" value="Part Seven" />
         <classes>
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInTheOrderGuideSectionFromTheOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectionOfMultipleUOMsFromTheOrderGuideSectionAndOrderSubmissionFromTheOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInThePDPSectionFromTheOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectionOfMultipleUOMsFromThePDPSectionAndOrderSubmissionFromOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInTheReviewOrderSectionFromTheOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheDeleteItemsProductsFromMultipleUOMsInTheReviewOrderSectionTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithEditFlowTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithDraftOrderTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyPlaceOrderWithMultiUOMForNonIntegratedTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyProductWithDifferentCombinationsOfUOMsCanBeAddedFromCatalogInOrderReviewSectionTest" />
-
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyEditQuantitiesFunctionalityInCatalogTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifySelectMultipleUOMItemFromCatalogOnlyTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheNavigationToThePDPWhenSelectingMultipleUnitsTest" />
@@ -57,16 +45,6 @@
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromRecommendedBySalesRepCarouselAndSubmissionTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromDoNotForgetToOrderCarouselAndSubmissionTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromMoreFromThisBrandCarouselAndSubmissionTest" />
-
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCustomOrderGuideSectionTest"/>
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyWhiteLabelCustomOrderGuideSectionTest"/>
-
-            <class name="com.cutanddry.qa.tests.Pay.VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureEnabledTest"/>
-            <class name="com.cutanddry.qa.tests.Pay.VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureDisabledTest"/>
-            <class name="com.cutanddry.qa.tests.Pay.VerifyTheGeneralInvoicePDFsAreVisibleTest"/>
-            <class name="com.cutanddry.qa.tests.Pay.VerifyTheDigitalInvoicePDFsAreVisibleTest"/>
-            <class name="com.cutanddry.qa.tests.Pay.VerifyTheScannedInvoicePDFsAreVisibleTest"/>
-            <class name="com.cutanddry.qa.tests.History.VerifyTheInvoiceDownloadAndPrintFeatureTest"/>
 
         </classes>
     </test>

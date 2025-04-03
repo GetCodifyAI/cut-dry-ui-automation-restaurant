@@ -51,5 +51,15 @@ public class InternalTools {
         internalToolsPage.clickCreditMemoCheckbox(status);
     }
 
+    public static void enableReportIssueOptionToggle(boolean status){
+        internalToolsPage.enableReportIssueOptionToggle(status);
+    }
+    public static void disableHideCheckInOptionToggle(boolean status){
+        internalToolsPage.disableHideCheckInOptionToggle(status);
+    }
+    public static boolean isSuccessPopUpDisplayed(){
+        return internalToolsPage.isSuccessPopUpDisplayed();
+    }
+
 
 }

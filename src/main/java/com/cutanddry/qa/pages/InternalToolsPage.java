@@ -19,6 +19,13 @@ public class InternalToolsPage extends TestBase {
     By addOrderMinimum = By.xpath("//div[contains(text(),'Soft order Minimum Surcharge')]/following-sibling::div/input");
     By SaveBtn = By.xpath("//div[@class='text-right col']//button[text()='Save']");
     By checkboxLocatorCreditMemo = By.xpath("//label[contains(text(),'Enable Auto Apply Credit Memos')]/..//input");
+    By reportIssueOptionToggleStable = By.xpath("//div[contains(text(), 'Enable Report Issue Option:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
+    By reportIssueOptionToggleStable1 = By.xpath("//div[contains(text(), 'Enable Report Issue Option:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+    By hideCheckInOptionToggleStable = By.xpath("//div[contains(text(), 'Hide Check-In Option:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
+    By hideCheckInOptionToggleStable1 = By.xpath("//div[contains(text(), 'Hide Check-In Option:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+    By successPopUp = By.xpath("//h2[contains(text(),'Success')]");
+
+
 
 
 
@@ -99,6 +106,31 @@ public class InternalToolsPage extends TestBase {
         } else if (!enable && isChecked) {
             restaurantUI.click(checkboxLocatorCreditMemo); // Uncheck the box if already checked
         }
+    }
+    public void enableReportIssueOptionToggle(boolean enable) {
+
+        String handlePosition = restaurantUI.getElement(reportIssueOptionToggleStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(29px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(reportIssueOptionToggleStable1);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(reportIssueOptionToggleStable1);
+        }
+    }
+    public void disableHideCheckInOptionToggle(boolean enable) {
+
+        String handlePosition = restaurantUI.getElement(hideCheckInOptionToggleStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(29px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(hideCheckInOptionToggleStable1);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(hideCheckInOptionToggleStable1);
+        }
+    }
+    public boolean isSuccessPopUpDisplayed(){
+        return restaurantUI.isDisplayed(successPopUp);
     }
 
 

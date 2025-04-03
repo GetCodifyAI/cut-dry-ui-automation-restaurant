@@ -129,6 +129,9 @@ public class CreditRequests {
     public static String getItemCreditDP() throws InterruptedException {
         return creditRequestsPage.getItemCreditDP();
     }
+    public static boolean isReportIssueButtonDisplayed() throws InterruptedException {
+        return creditRequestsPage.isReportIssueButtonDisplayed();
+    }
 
 
 

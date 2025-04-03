@@ -4,7 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import org.openqa.selenium.By;
 
 public class CreditRequestsPage extends TestBase {
-    By btn_report_issue = By.xpath("//button[@class='mr-3 btn btn-outline-danger']");
+    By btn_report_issue = By.xpath("//button[text()='Report Issue']");
     By txt_report_issue = By.xpath("//h2[@class='mb-0 _1vx3fhy' and text()='Which items had an issue?']");
     By btn_first_row = By.xpath("//tr[@class='_du1frc']");
     By txt_tell_us = By.xpath("//div[@class='mont modal-title h4' and text()='Tell us more...']");
@@ -306,6 +306,9 @@ public class CreditRequestsPage extends TestBase {
         restaurantUI.waitForVisibility(lbl_itemCreditDP);
         restaurantUI.waitForCustom(3000);
         return restaurantUI.getText(lbl_itemCreditDP);
+    }
+    public boolean isReportIssueButtonDisplayed(){
+        return restaurantUI.isDisplayed(btn_report_issue);
     }
 
 

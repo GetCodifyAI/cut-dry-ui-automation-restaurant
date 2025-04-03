@@ -68,7 +68,7 @@ public class PayPage extends TestBase{
     By btn_createBatch = By.xpath("(//button[contains(text(),'Create Batch')])[1]");
     By creditMemoDisplay = By.xpath("//div[text()='Credit Memos (0)']");
     By txt_batchPayment = By.xpath("//div[text()='Batch Payment']");
-    String selectInvoice = "//div[contains(text(),'Due Date')]/ancestor::table/tbody/tr/td[text()='INVOICEID']";
+    String selectInvoice = "//div[contains(text(),'Invoice Id')]/ancestor::table/tbody/tr/td[text()='INVOICEID']";
     By downloadInvoice = By.xpath("(//h2[contains(text(),'Invoice')]/../../../following-sibling::div[2]//*[local-name()='svg'])[1]");
     By PrintInvoice = By.xpath("(//h2[contains(text(),'Invoice')]/../../../following-sibling::div[2]//*[local-name()='svg'])[2]");
 
@@ -382,7 +382,7 @@ public class PayPage extends TestBase{
     }
     public void clickSelectInvoice(String invoice){
         restaurantUI.scrollToElement(By.xpath(selectInvoice.replace("INVOICEID",invoice)));
-        restaurantUI.click(By.xpath(selectInvoice.replace("INVOICEID",invoice)));
+        restaurantUI.clickUsingJavaScript(By.xpath(selectInvoice.replace("INVOICEID",invoice)));
     }
     public void clickDownloadInvoice()throws InterruptedException{
         restaurantUI.click(downloadInvoice);
