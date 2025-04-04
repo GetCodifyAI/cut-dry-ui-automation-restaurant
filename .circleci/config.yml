@@ -77,7 +77,6 @@ jobs:
             mkdir -p $JMETER_PLUGINS_FOLDER
 
             # Download WebDriver Plugin JAR
-#            wget -q -O $JMETER_PLUGINS_FOLDER/jmeter-plugins-webdriver.jar https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-webdriver/3.3/jmeter-plugins-webdriver-3.3.jar
             wget -q -O $JMETER_LIB_EXT/jmeter-plugins-webdriver-4.1.jar https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-webdriver/4.1/jmeter-plugins-webdriver-4.1.jar
             # Verify the WebDriver plugin is installed
             ls -la $JMETER_PLUGINS_FOLDER
