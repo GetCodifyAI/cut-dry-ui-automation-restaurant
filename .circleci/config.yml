@@ -42,7 +42,8 @@ jobs:
           name: Install ChromeDriver
           command: |
             # Install ChromeDriver version 135.0.7049.42
-            CHROMEDRIVER_URL="https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.42/linux64/chromedriver-linux64.zip"
+#            CHROMEDRIVER_URL="https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.42/linux64/chromedriver-linux64.zip"
+            CHROMEDRIVER_URL="https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.52/linux64/chromedriver-linux64.zip"
             wget $CHROMEDRIVER_URL
             unzip chromedriver-linux64.zip
             sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
@@ -77,8 +78,8 @@ jobs:
             mkdir -p $JMETER_PLUGINS_FOLDER
 
             # Download WebDriver Plugin JAR
-            wget -q -O $JMETER_PLUGINS_FOLDER/jmeter-plugins-webdriver.jar https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-webdriver/3.3/jmeter-plugins-webdriver-3.3.jar
-
+#            wget -q -O $JMETER_PLUGINS_FOLDER/jmeter-plugins-webdriver.jar https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-webdriver/3.3/jmeter-plugins-webdriver-3.3.jar
+            wget -q -O $JMETER_LIB_EXT/jmeter-plugins-webdriver-4.1.jar https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-webdriver/4.1/jmeter-plugins-webdriver-4.1.jar
             # Verify the WebDriver plugin is installed
             ls -la $JMETER_PLUGINS_FOLDER
       - run:
@@ -97,6 +98,10 @@ jobs:
             # Download Selenium JARs
             wget -q -O $JMETER_LIB_EXT/selenium-server-4.10.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-server/3.141.59/selenium-server-3.141.59.jar
             wget -q -O $JMETER_LIB_EXT/selenium-api-4.10.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-api/4.10.0/selenium-api-4.10.0.jar
+
+#            new 2 line
+            wget -q -O $JMETER_LIB_EXT/selenium-chrome-driver-4.10.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-chrome-driver/4.10.0/selenium-chrome-driver-4.10.0.jar
+            wget -q -O $JMETER_LIB_EXT/selenium-java-4.10.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-java/4.10.0/selenium-java-4.10.0.jar
 
             # Verify installation
             ls -la $JMETER_LIB_EXT
