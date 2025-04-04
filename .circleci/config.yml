@@ -72,7 +72,7 @@ jobs:
           command: |
             export JMETER_HOME=$PWD/apache-jmeter-5.4.1
             export PATH=$JMETER_HOME/bin:$PATH
-            $JMETER_HOME/bin/jmeter -n -t jmeter-tests/login_test_plan.jmx -l results/test_results.jtl -e -o results/report
+            $JMETER_HOME/bin/jmeter -n -t src/test/jmeter-tests/jmeterWithSelenium.jmx -l results/test_results.jtl -e -o results/report
 
 
 
