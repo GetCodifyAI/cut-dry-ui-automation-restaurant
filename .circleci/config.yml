@@ -89,6 +89,7 @@ jobs:
           command: |
             JMETER_HOME="$PWD/apache-jmeter-5.4.1"
             JMETER_LIB_EXT="$JMETER_HOME/lib/ext"
+            sudo chmod -R 777 $JMETER_LIB_EXT
 
             # Ensure JMeter Plugins directory exists
             mkdir -p $JMETER_LIB_EXT
