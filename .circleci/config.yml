@@ -70,10 +70,30 @@ jobs:
       - run:
           name: Install JMeter WebDriver Plugin
           command: |
-            JMETER_PLUGINS_FOLDER="$PWD/apache-jmeter-5.4.1/lib/ext"
+            JMETER_HOME="$PWD/apache-jmeter-5.4.1"
+            JMETER_PLUGINS_FOLDER="$JMETER_HOME/lib/ext"
+            JMETER_LIB_FOLDER="$JMETER_HOME/lib"
+
+            # Ensure JMeter Plugins directory exists
+            mkdir -p $JMETER_PLUGINS_FOLDER
+
+            # Download Plugin Manager JAR
             wget -q -O $JMETER_PLUGINS_FOLDER/jmeter-plugins-manager.jar https://jmeter-plugins.org/get/
+
+            # Download and place cmdrunner.jar (required for PluginsManagerCMD.sh)
+            wget -q -O $JMETER_LIB_FOLDER/cmdrunner-2.3.jar https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.3/cmdrunner-2.3.jar
+            chmod +x $JMETER_LIB_FOLDER/cmdrunner-2.3.jar
+
+            # Install WebDriver Plugin using Plugin Manager
             java -cp $JMETER_PLUGINS_FOLDER/jmeter-plugins-manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
-            $PWD/apache-jmeter-5.4.1/bin/PluginsManagerCMD.sh install webdriver
+            $JMETER_HOME/bin/PluginsManagerCMD.sh install webdriver
+
+            # Verify WebDriver plugin is installed
+            ls -la $JMETER_PLUGINS_FOLDER
+      - run:
+          name: Verify WebDriver Plugin Installation
+          command: |
+            ls -la $PWD/apache-jmeter-5.4.1/lib/ext
       - run:
           name: Run JMeter Test
           command: |
