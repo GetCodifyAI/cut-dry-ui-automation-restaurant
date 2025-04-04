@@ -155,11 +155,21 @@ jobs:
 
             echo "Apache Commons Exec installation completed."
       - run:
+          name: Verify ChromeDriver
+          command: |
+            which chromedriver
+            chromedriver --version
+      - run:
+          name: Debug WebDriver
+          command: |
+            apache-jmeter-5.6.3/bin/jmeter -n -t src/test/jmeter-tests/jmeterWithSelenium.jmx -Jwebdriver.verbose=true
+      - run:
           name: Run JMeter Test
           command: |            
             export JMETER_HOME=$PWD/apache-jmeter-5.6.3
             export PATH=$JMETER_HOME/bin:$PATH
-            $JMETER_HOME/bin/jmeter -n -t src/test/jmeter-tests/jmeterWithSelenium.jmx -l results/test_results.jtl -e -o results/report
+            $JMETER_HOME/bin/jmeter -n -t src/test/jmeter-tests/jmeterWithSelenium.jmx -l results/test_results.jtl -e -o results/report -j jmeter.log -Jlog_level.jmeter=DEBUG
+            cat jmeter.log
 
 
 
