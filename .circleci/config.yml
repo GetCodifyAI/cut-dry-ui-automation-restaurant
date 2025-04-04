@@ -9,7 +9,7 @@ executors:
 
 jobs:
 
-  install-jmeter:
+  jmeter-test:
     executor: jmeter-executor
     steps:
       - checkout
@@ -67,39 +67,17 @@ jobs:
               echo "JMeter binary not found!"
             fi
             jmeter -v
-            # Persist JMETER_HOME to the workspace for subsequent jobs
-            echo "export JMETER_HOME=$PWD/apache-jmeter-5.4.1" >> $BASH_ENV
-            echo "export PATH=$JMETER_HOME/bin:$PATH" >> $BASH_ENV
-      - persist_to_workspace:
-          root: ~/repo
-          paths:
-            - apache-jmeter-5.4.1
-
-  run-jmeter-test:
-    executor: jmeter-executor  # Use the jmeter-executor defined above
-    steps:
-      - checkout  # Checkout the code from your repository
-      - attach_workspace:
-          at: /workspace
       - run:
           name: Run JMeter Test
           command: |
-            # Check if the workspace exists and is properly mounted
-            if [ -d "/workspace/apache-jmeter-5.4.1" ]; then
-              echo "Workspace JMeter directory found!"
-            else
-              echo "Workspace JMeter directory not found!"
-            fi
-            export JMETER_HOME=/workspace/apache-jmeter-5.4.1
+            export JMETER_HOME=$PWD/apache-jmeter-5.4.1
             export PATH=$JMETER_HOME/bin:$PATH
             $JMETER_HOME/bin/jmeter -n -t jmeter-tests/login_test_plan.jmx -l results/test_results.jtl -e -o results/report
+
 
 
 workflows:
   version: 2
   test:
     jobs:
-      - install-jmeter
-      - run-jmeter-test:
-          requires:
-            - install-jmeter
+      - jmeter-test
