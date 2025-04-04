@@ -54,9 +54,9 @@ jobs:
       - run:
           name: Install JMeter
           command: |
-            wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.4.1.tgz
-            tar -xvzf apache-jmeter-5.4.1.tgz
-            export JMETER_HOME=$PWD/apache-jmeter-5.4.1
+            wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz
+            tar -xvzf apache-jmeter-5.6.3.tgz
+            export JMETER_HOME=$PWD/apache-jmeter-5.6.3
             export PATH=$JMETER_HOME/bin:$PATH
             echo "JMETER_HOME is set to $JMETER_HOME"
             echo "Listing contents of the JMeter bin directory:"
@@ -70,25 +70,25 @@ jobs:
       - run:
           name: Manually Install WebDriver Plugin
           command: |
-            JMETER_HOME="$PWD/apache-jmeter-5.4.1"
+            JMETER_HOME="$PWD/apache-jmeter-5.6.3"
             JMETER_PLUGINS_FOLDER="$JMETER_HOME/lib/ext"
 
             # Ensure JMeter Plugins directory exists
             mkdir -p $JMETER_PLUGINS_FOLDER
 
             # Download WebDriver Plugin JAR
-            wget -q -O $JMETER_PLUGINS_FOLDER/jmeter-plugins-webdriver-4.1.jar https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-webdriver/4.13.0.2/jmeter-plugins-webdriver-4.13.0.2.jar
+            wget -q -O $JMETER_PLUGINS_FOLDER/jmeter-plugins-webdriver-4.13.0.2.jar https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-webdriver/4.13.0.2/jmeter-plugins-webdriver-4.13.0.2.jar
             # Verify the WebDriver plugin is installed
             ls -la $JMETER_PLUGINS_FOLDER
 
       - run:
           name: Verify WebDriver Plugin Installation
           command: |
-            ls -la $PWD/apache-jmeter-5.4.1/lib/ext
+            ls -la $PWD/apache-jmeter-5.6.3/lib/ext
       - run:
           name: Manually Download Selenium JARs
           command: |
-            JMETER_HOME="$PWD/apache-jmeter-5.4.1"
+            JMETER_HOME="$PWD/apache-jmeter-5.6.3"
             JMETER_LIB_EXT="$JMETER_HOME/lib/ext"
             sudo chmod -R 777 $JMETER_LIB_EXT
 
@@ -106,12 +106,12 @@ jobs:
       - run:
           name: Verify Installed JARs
           command: |
-            ls -la $PWD/apache-jmeter-5.4.1/lib/ext
+            ls -la $PWD/apache-jmeter-5.6.3/lib/ext
 
       - run:
           name: Run JMeter Test
           command: |            
-            export JMETER_HOME=$PWD/apache-jmeter-5.4.1
+            export JMETER_HOME=$PWD/apache-jmeter-5.6.3
             export PATH=$JMETER_HOME/bin:$PATH
             $JMETER_HOME/bin/jmeter -n -t src/test/jmeter-tests/jmeterWithSelenium.jmx -l results/test_results.jtl -e -o results/report
 
