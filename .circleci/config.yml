@@ -75,11 +75,13 @@ jobs:
 
             # Ensure JMeter Plugins directory exists
             mkdir -p $JMETER_PLUGINS_FOLDER
+            sudo chown -R $USER:$USER $JMETER_PLUGINS_FOLDER
 
             # Download WebDriver Plugin JAR
-            sudo wget -q -O $JMETER_LIB_EXT/jmeter-plugins-webdriver-4.1.jar https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-webdriver/4.1/jmeter-plugins-webdriver-4.1.jar
+            wget -q -O $JMETER_PLUGINS_FOLDER/jmeter-plugins-webdriver-4.1.jar https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-webdriver/4.1/jmeter-plugins-webdriver-4.1.jar
             # Verify the WebDriver plugin is installed
             ls -la $JMETER_PLUGINS_FOLDER
+            sudo chmod 644 $JMETER_PLUGINS_FOLDER/jmeter-plugins-webdriver-4.1.jar
       - run:
           name: Verify WebDriver Plugin Installation
           command: |
