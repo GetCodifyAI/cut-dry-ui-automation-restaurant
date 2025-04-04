@@ -114,6 +114,24 @@ jobs:
             # Verify installation
             ls -la $JMETER_LIB_EXT
       - run:
+          name: Install Guava Library
+          command: |
+            # Define JMeter paths
+            JMETER_HOME="$PWD/apache-jmeter-5.6.3"
+            JMETER_LIB_EXT="$JMETER_HOME/lib/ext"
+
+            # Ensure the JMeter lib/ext directory exists
+            mkdir -p $JMETER_LIB_EXT
+
+            # Install Guava version 31.1-jre
+            GUAVA_URL="https://repo1.maven.org/maven2/com/google/guava/guava/31.1-jre/guava-31.1-jre.jar"
+            wget -q -O $JMETER_LIB_EXT/guava-31.1-jre.jar $GUAVA_URL
+
+            # Verify installation
+            ls -la $JMETER_LIB_EXT
+
+            echo "Guava installation completed."
+      - run:
           name: Verify Installed JARs
           command: |
             ls -la $PWD/apache-jmeter-5.6.3/lib/ext
