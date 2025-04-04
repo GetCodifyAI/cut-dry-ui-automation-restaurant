@@ -103,6 +103,13 @@ jobs:
             wget -q -O $JMETER_LIB_EXT/selenium-remote-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-remote-driver/4.13.0/selenium-remote-driver-4.13.0.jar
             wget -q -O $JMETER_LIB_EXT/selenium-support-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-support/4.13.0/selenium-support-4.13.0.jar
             wget -q -O $JMETER_LIB_EXT/selenium-chromium-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-chromium-driver/4.13.0/selenium-chromium-driver-4.13.0.jar
+            wget -q -O $JMETER_LIB_EXT/selenium-edge-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-edge-driver/4.13.0/selenium-edge-driver-4.13.0.jar
+            wget -q -O $JMETER_LIB_EXT/selenium-firefox-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-firefox-driver/4.13.0/selenium-firefox-driver-4.13.0.jar
+            wget -q -O $JMETER_LIB_EXT/selenium-http-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-http/4.13.0/selenium-http-4.13.0.jar
+            wget -q -O $JMETER_LIB_EXT/selenium-ie-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-ie-driver/4.13.0/selenium-ie-driver-4.13.0.jar
+            wget -q -O $JMETER_LIB_EXT/selenium-json-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-json/4.13.0/selenium-json-4.13.0.jar
+            wget -q -O $JMETER_LIB_EXT/selenium-os-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-os/4.13.0/selenium-os-4.13.0.jar
+            wget -q -O $JMETER_LIB_EXT/selenium-java-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-java/4.13.0/selenium-java-4.13.0.jar
 
             # Verify installation
             ls -la $JMETER_LIB_EXT
