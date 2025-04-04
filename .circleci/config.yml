@@ -41,7 +41,7 @@ jobs:
       - run:
           name: Install ChromeDriver
           command: |
-            # Install ChromeDriver version 135.0.7049.42
+            # Install ChromeDriver version 135.0.7049.52
             CHROMEDRIVER_URL="https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.52/linux64/chromedriver-linux64.zip"
             wget $CHROMEDRIVER_URL
             unzip chromedriver-linux64.zip
