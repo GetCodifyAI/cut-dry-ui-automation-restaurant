@@ -107,23 +107,7 @@ jobs:
 
       - run:
           name: Run JMeter Test
-          command: |
-            #!/bin/bash
-            JMETER_HOME=$PWD/apache-jmeter-5.4.1
-            JMETER_LIB_EXT="$JMETER_HOME/lib/ext"
-  
-            # Ensure JMeter Plugins directory exists
-            mkdir -p $JMETER_LIB_EXT
-  
-            # Download Selenium JARs (Latest compatible versions)
-            wget -q -O $JMETER_LIB_EXT/selenium-server.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-server/4.10.0/selenium-server-4.10.0.jar
-            wget -q -O $JMETER_LIB_EXT/selenium-api.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-api/4.10.0/selenium-api-4.10.0.jar
-            wget -q -O $JMETER_LIB_EXT/selenium-chrome-driver.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-chrome-driver/4.10.0/selenium-chrome-driver-4.10.0.jar
-            
-            # Verify Installation
-            ls -la $JMETER_LIB_EXT
-            
-            
+          command: |            
             export JMETER_HOME=$PWD/apache-jmeter-5.4.1
             export PATH=$JMETER_HOME/bin:$PATH
             $JMETER_HOME/bin/jmeter -n -t src/test/jmeter-tests/jmeterWithSelenium.jmx -l results/test_results.jtl -e -o results/report
