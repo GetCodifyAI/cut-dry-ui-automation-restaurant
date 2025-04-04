@@ -137,6 +137,24 @@ jobs:
             ls -la $PWD/apache-jmeter-5.6.3/lib/ext
 
       - run:
+          name: Install Apache Commons Exec
+          command: |
+            # Define JMeter paths
+            JMETER_HOME="$PWD/apache-jmeter-5.6.3"
+            JMETER_LIB="$JMETER_HOME/lib"
+
+            # Ensure the JMeter lib directory exists
+            mkdir -p $JMETER_LIB
+
+            # Install Apache Commons Exec (latest stable version 1.3)
+            COMMONS_EXEC_URL="https://repo1.maven.org/maven2/org/apache/commons/commons-exec/1.3/commons-exec-1.3.jar"
+            wget -q -O $JMETER_LIB/commons-exec-1.3.jar $COMMONS_EXEC_URL
+
+            # Verify installation
+            ls -la $JMETER_LIB
+
+            echo "Apache Commons Exec installation completed."
+      - run:
           name: Run JMeter Test
           command: |            
             export JMETER_HOME=$PWD/apache-jmeter-5.6.3
