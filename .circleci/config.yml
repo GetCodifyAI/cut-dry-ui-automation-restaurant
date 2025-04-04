@@ -68,6 +68,13 @@ jobs:
             fi
             jmeter -v
       - run:
+          name: Install JMeter WebDriver Plugin
+          command: |
+            JMETER_PLUGINS_FOLDER="$PWD/apache-jmeter-5.4.1/lib/ext"
+            wget -q -O $JMETER_PLUGINS_FOLDER/jmeter-plugins-manager.jar https://jmeter-plugins.org/get/
+            java -cp $JMETER_PLUGINS_FOLDER/jmeter-plugins-manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
+            $PWD/apache-jmeter-5.4.1/bin/PluginsManagerCMD.sh install webdriver
+      - run:
           name: Run JMeter Test
           command: |
             export JMETER_HOME=$PWD/apache-jmeter-5.4.1
