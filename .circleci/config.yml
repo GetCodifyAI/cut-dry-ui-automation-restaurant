@@ -86,6 +86,25 @@ jobs:
           command: |
             ls -la $PWD/apache-jmeter-5.4.1/lib/ext
       - run:
+          name: Manually Download Selenium JARs
+          command: |
+            JMETER_HOME="$PWD/apache-jmeter-5.4.1"
+            JMETER_LIB_EXT="$JMETER_HOME/lib/ext"
+
+            # Ensure JMeter Plugins directory exists
+            mkdir -p $JMETER_LIB_EXT
+
+            # Download Selenium JARs
+            wget -q -O $JMETER_LIB_EXT/selenium-server-4.10.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-server/4.10.0/selenium-server-4.10.0.jar
+            wget -q -O $JMETER_LIB_EXT/selenium-api-4.10.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-api/4.10.0/selenium-api-4.10.0.jar
+
+            # Verify installation
+            ls -la $JMETER_LIB_EXT
+      - run:
+          name: Verify Installed JARs
+          command: |
+            ls -la $PWD/apache-jmeter-5.4.1/lib/ext
+      - run:
           name: Run JMeter Test
           command: |
             export JMETER_HOME=$PWD/apache-jmeter-5.4.1
