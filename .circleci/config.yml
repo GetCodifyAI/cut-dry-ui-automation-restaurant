@@ -26,11 +26,6 @@ jobs:
             source $BASH_ENV
             java -version
       - run:
-          name: Install Maven
-          command: |
-            sudo apt-get install -y maven
-            mvn -version
-      - run:
           name: Install Chrome
           command: |
             wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -41,7 +36,6 @@ jobs:
       - run:
           name: Install ChromeDriver
           command: |
-            # Install ChromeDriver version 135.0.7049.52
             CHROMEDRIVER_URL="https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.52/linux64/chromedriver-linux64.zip"
             wget $CHROMEDRIVER_URL
             unzip chromedriver-linux64.zip
@@ -51,6 +45,11 @@ jobs:
       - run:
           name: Ensure results directory exists
           command: mkdir -p results
+      - run:
+          name: Verify ChromeDriver
+          command: |
+            which chromedriver
+            chromedriver --version
       - run:
           name: Install JMeter
           command: |
@@ -68,43 +67,16 @@ jobs:
             fi
             jmeter -v
       - run:
-          name: Verify ChromeDriver
-          command: |
-            which chromedriver
-            chromedriver --version
-#      - run:
-#          name: Download PluginsManagerCMD.bat and PluginsManagerCMD.sh
-#          command: |
-#            mkdir -p apache-jmeter-5.6.3/bin
-#            wget https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/1.10/PluginsManagerCMD.bat -O apache-jmeter-5.6.3/bin/PluginsManagerCMD.bat
-#            wget https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/1.10/PluginsManagerCMD.sh -O apache-jmeter-5.6.3/bin/PluginsManagerCMD.sh
-      - run:
           name: Install JMeter Plugin Manager
           command: |
             wget https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/1.10/jmeter-plugins-manager-1.10.jar -O apache-jmeter-5.6.3/lib/ext/JMeterPlugins-Manager.jar
             wget https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.3/cmdrunner-2.3.jar -O apache-jmeter-5.6.3/lib/cmdrunner-2.3.jar
-#      - run:
-#          name: Generate PluginsManagerCMD.jar
-#          command: |
-#            java -cp "apache-jmeter-5.6.3/lib/ext/JMeterPlugins-Manager.jar:apache-jmeter-5.6.3/lib/*" org.jmeterplugins.repository.PluginManagerCMDInstaller
-##            ls -lh apache-jmeter-5.6.3/lib/ext/PluginsManagerCMD.jar
-#      - run:
-#          name: Install WebDriver Plugin
-#          command: |
-#            java -cp "apache-jmeter-5.6.3/lib/*:apache-jmeter-5.6.3/lib/ext/*" org.jmeterplugins.repository.PluginManagerCMD install jpgc-webdriver
       - run:
           name: Download and Install WebDriver Plugin
           command: |
-            # Download the jpgc-webdriver plugin .zip
             wget https://jmeter-plugins.org/files/packages/jpgc-webdriver-4.13.0.2.zip -O jpgc-webdriver.zip
-            
-            # Unzip the package
             unzip jpgc-webdriver.zip -d apache-jmeter-5.6.3
-            
-            # Move all JAR files from the 'lib' folder into the JMeter's 'lib' folder
             mv -n apache-jmeter-5.6.3/lib/*.jar apache-jmeter-5.6.3/lib/
-  
-            # Move all JAR files from the 'lib/ext' folder into the JMeter's 'lib/ext' folder
             mv -n apache-jmeter-5.6.3/lib/ext/*.jar apache-jmeter-5.6.3/lib/ext/
       - run:
           name: Download Groovy 4.0.25 JAR
@@ -118,10 +90,6 @@ jobs:
             ls -lh apache-jmeter-5.6.3/lib/
             ls -lh apache-jmeter-5.6.3/bin/
             chmod -R 755 apache-jmeter-5.6.3/lib/ext/
-      - run:
-          name: Debug WebDriver
-          command: |
-            apache-jmeter-5.6.3/bin/jmeter -n -t src/test/jmeter-tests/jmeterWithSelenium.jmx -Jwebdriver.verbose=true
       - run:
           name: Run JMeter Test
           command: |            
