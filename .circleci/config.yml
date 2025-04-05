@@ -942,9 +942,9 @@ jobs:
                 PASSED_IN_FILE=0
               fi
 
-              TOTAL=$((TOTAL + ACTUAL_TOTAL - 1))
+              TOTAL=$((TOTAL + ACTUAL_TOTAL))
               PASSED=$((PASSED + PASSED_IN_FILE))
-              FAILED=$((FAILED + FAILURES + (ERRORS/2) -1))
+              FAILED=$((FAILED + FAILURES + (ERRORS/2)))
             done
 
             if [ "$TOTAL" -eq 0 ]; then
