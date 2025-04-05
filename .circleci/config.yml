@@ -42,14 +42,14 @@ jobs:
             sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
             sudo chmod +x /usr/local/bin/chromedriver
             chromedriver --version
-      - run:
-          name: Ensure results directory exists
-          command: mkdir -p results
-      - run:
-          name: Verify ChromeDriver
-          command: |
-            which chromedriver
-            chromedriver --version
+#      - run:
+#          name: Ensure results directory exists
+#          command: mkdir -p results
+#      - run:
+#          name: Verify ChromeDriver
+#          command: |
+#            which chromedriver
+#            chromedriver --version
       - run:
           name: Install JMeter
           command: |
