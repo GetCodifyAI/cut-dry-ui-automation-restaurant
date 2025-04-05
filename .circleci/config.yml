@@ -73,6 +73,12 @@ jobs:
             which chromedriver
             chromedriver --version
       - run:
+          name: Download PluginsManagerCMD.bat and PluginsManagerCMD.sh
+          command: |
+            mkdir -p apache-jmeter-5.6.3/bin
+            wget https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/1.10/PluginsManagerCMD.bat -O apache-jmeter-5.6.3/bin/PluginsManagerCMD.bat
+            wget https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/1.10/PluginsManagerCMD.sh -O apache-jmeter-5.6.3/bin/PluginsManagerCMD.sh
+      - run:
           name: Install JMeter Plugin Manager
           command: |
             wget https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/1.10/jmeter-plugins-manager-1.10.jar -O apache-jmeter-5.6.3/lib/ext/JMeterPlugins-Manager.jar
