@@ -109,7 +109,7 @@ jobs:
       - run:
           name: Download Groovy 4.0.25 JAR
           command: |
-            wget https://repo.maven.apache.org/maven2/org/codehaus/groovy/groovy-all/4.0.25/groovy-all-4.0.25.jar -O /opt/jmeter/lib/groovy-all-4.0.25.jar
+            wget https://repo.maven.apache.org/maven2/org/codehaus/groovy/groovy-all/4.0.25/groovy-all-4.0.25.jar -O apache-jmeter-5.6.3/lib/groovy-all-4.0.25.jar
       - run:
           name: Verify files
           command: |
