@@ -167,8 +167,8 @@ jobs:
             - run:
                 name: Install WebDriver Plugin via PluginManagerCMD
                 command: |
-                  java -cp jmeter/lib/ext/JMeterPlugins-Manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
-                  java -cp jmeter/lib/ext/PluginsManagerCMD.jar org.jmeterplugins.repository.PluginManagerCMD install jpgc-webdriver
+                  java -cp apache-jmeter-5.6.3/lib/ext/JMeterPlugins-Manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
+                  java -cp apache-jmeter-5.6.3/lib/ext/PluginsManagerCMD.jar org.jmeterplugins.repository.PluginManagerCMD install jpgc-webdriver
 
       - run:
           name: Debug WebDriver
