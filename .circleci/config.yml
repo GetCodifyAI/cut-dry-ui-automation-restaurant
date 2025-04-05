@@ -164,9 +164,17 @@ jobs:
           command: |
             wget https://jmeter-plugins.org/get/ -O apache-jmeter-5.6.3/lib/ext/JMeterPlugins-Manager.jar
       - run:
-          name: Install WebDriver Plugin via PluginManagerCMD
+          name: Generate PluginsManagerCMD.jar
           command: |
-            java -cp "apache-jmeter-5.6.3/lib/ext/JMeterPlugins-Manager.jar:apache-jmeter-5.6.3/lib/*:apache-jmeter-5.6.3/lib/ext/*" org.jmeterplugins.repository.PluginManagerCMD install jpgc-webdriver
+            java -cp "apache-jmeter-5.6.3/lib/ext/JMeterPlugins-Manager.jar:apache-jmeter-5.6.3/lib/*" org.jmeterplugins.repository.PluginManagerCMDInstaller
+      - run:
+          name: Install WebDriver Plugin
+          command: |
+            java -cp "apache-jmeter-5.6.3/lib/ext/JMeterPlugins-Manager.jar:apache-jmeter-5.6.3/lib/ext/PluginsManagerCMD.jar:apache-jmeter-5.6.3/lib/*:apache-jmeter-5.6.3/lib/ext/*" org.jmeterplugins.repository.PluginManagerCMD install jpgc-webdriver
+#      - run:
+#          name: Install WebDriver Plugin via PluginManagerCMD
+#          command: |
+#            java -cp apache-jmeter-5.6.3/lib/ext/JMeterPlugins-Manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
 #            java -cp apache-jmeter-5.6.3/lib/ext/PluginsManagerCMD.jar org.jmeterplugins.repository.PluginManagerCMD install jpgc-webdriver
       - run:
           name: Debug WebDriver
