@@ -87,7 +87,7 @@ jobs:
           name: Generate PluginsManagerCMD.jar
           command: |
             java -cp "apache-jmeter-5.6.3/lib/ext/JMeterPlugins-Manager.jar:apache-jmeter-5.6.3/lib/*" org.jmeterplugins.repository.PluginManagerCMDInstaller
-            ls -lh apache-jmeter-5.6.3/lib/ext/PluginsManagerCMD.jar
+#            ls -lh apache-jmeter-5.6.3/lib/ext/PluginsManagerCMD.jar
       - run:
           name: Install WebDriver Plugin
           command: |
