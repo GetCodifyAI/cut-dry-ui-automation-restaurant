@@ -67,98 +67,109 @@ jobs:
               echo "JMeter binary not found!"
             fi
             jmeter -v
-      - run:
-          name: Manually Install WebDriver Plugin
-          command: |
-            JMETER_HOME="$PWD/apache-jmeter-5.6.3"
-            JMETER_PLUGINS_FOLDER="$JMETER_HOME/lib/ext"
-
-            # Ensure JMeter Plugins directory exists
-            mkdir -p $JMETER_PLUGINS_FOLDER
-
-            # Download WebDriver Plugin JAR
-            wget -q -O $JMETER_PLUGINS_FOLDER/jmeter-plugins-webdriver-4.13.0.2.jar https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-webdriver/4.13.0.2/jmeter-plugins-webdriver-4.13.0.2.jar
-            # Verify the WebDriver plugin is installed
-            ls -la $JMETER_PLUGINS_FOLDER
-
-      - run:
-          name: Verify WebDriver Plugin Installation
-          command: |
-            ls -la $PWD/apache-jmeter-5.6.3/lib
-      - run:
-          name: Manually Download Selenium JARs
-          command: |
-            JMETER_HOME="$PWD/apache-jmeter-5.6.3"
-            JMETER_LIB_EXT="$JMETER_HOME/lib/ext"
-            sudo chmod -R 777 $JMETER_LIB_EXT
-
-            # Ensure JMeter Plugins directory exists
-            mkdir -p $JMETER_LIB_EXT
-
-            # Download Selenium JARs
-            wget -q -O $JMETER_LIB_EXT/selenium-server-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-server/3.141.59/selenium-server-3.141.59.jar
-            wget -q -O $JMETER_LIB_EXT/selenium-api-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-api/4.13.0/selenium-api-4.13.0.jar
-            wget -q -O $JMETER_LIB_EXT/selenium-chrome-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-chrome-driver/4.13.0/selenium-chrome-driver-4.13.0.jar
-            wget -q -O $JMETER_LIB_EXT/selenium-java-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-java/4.13.0/selenium-java-4.13.0.jar
-            wget -q -O $JMETER_LIB_EXT/selenium-remote-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-remote-driver/4.13.0/selenium-remote-driver-4.13.0.jar
-            wget -q -O $JMETER_LIB_EXT/selenium-support-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-support/4.13.0/selenium-support-4.13.0.jar
-            wget -q -O $JMETER_LIB_EXT/selenium-chromium-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-chromium-driver/4.13.0/selenium-chromium-driver-4.13.0.jar
-            wget -q -O $JMETER_LIB_EXT/selenium-edge-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-edge-driver/4.13.0/selenium-edge-driver-4.13.0.jar
-            wget -q -O $JMETER_LIB_EXT/selenium-firefox-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-firefox-driver/4.13.0/selenium-firefox-driver-4.13.0.jar
-            wget -q -O $JMETER_LIB_EXT/selenium-http-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-http/4.13.0/selenium-http-4.13.0.jar
-            wget -q -O $JMETER_LIB_EXT/selenium-ie-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-ie-driver/4.13.0/selenium-ie-driver-4.13.0.jar
-            wget -q -O $JMETER_LIB_EXT/selenium-json-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-json/4.13.0/selenium-json-4.13.0.jar
-            wget -q -O $JMETER_LIB_EXT/selenium-os-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-os/4.13.0/selenium-os-4.13.0.jar
-            wget -q -O $JMETER_LIB_EXT/selenium-java-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-java/4.13.0/selenium-java-4.13.0.jar
-
-            # Verify installation
-            ls -la $JMETER_LIB_EXT
-      - run:
-          name: Install Guava Library
-          command: |
-            # Define JMeter paths
-            JMETER_HOME="$PWD/apache-jmeter-5.6.3"
-            JMETER_LIB_EXT="$JMETER_HOME/lib/ext"
-
-            # Ensure the JMeter lib/ext directory exists
-            mkdir -p $JMETER_LIB_EXT
-
-            # Install Guava version 31.1-jre
-            GUAVA_URL="https://repo1.maven.org/maven2/com/google/guava/guava/31.1-jre/guava-31.1-jre.jar"
-            wget -q -O $JMETER_LIB_EXT/guava-31.1-jre.jar $GUAVA_URL
-
-            # Verify installation
-            ls -la $JMETER_LIB_EXT
-
-            echo "Guava installation completed."
-      - run:
-          name: Verify Installed JARs
-          command: |
-            ls -la $PWD/apache-jmeter-5.6.3/lib/ext
-
-      - run:
-          name: Install Apache Commons Exec
-          command: |
-            # Define JMeter paths
-            JMETER_HOME="$PWD/apache-jmeter-5.6.3"
-            JMETER_LIB="$JMETER_HOME/lib"
-
-            # Ensure the JMeter lib directory exists
-            mkdir -p $JMETER_LIB
-
-            # Install Apache Commons Exec (latest stable version 1.3)
-            COMMONS_EXEC_URL="https://repo1.maven.org/maven2/org/apache/commons/commons-exec/1.3/commons-exec-1.3.jar"
-            wget -q -O $JMETER_LIB/commons-exec-1.3.jar $COMMONS_EXEC_URL
-
-            # Verify installation
-            ls -la $JMETER_LIB
-
-            echo "Apache Commons Exec installation completed."
+#      - run:
+#          name: Manually Install WebDriver Plugin
+#          command: |
+#            JMETER_HOME="$PWD/apache-jmeter-5.6.3"
+#            JMETER_PLUGINS_FOLDER="$JMETER_HOME/lib/ext"
+#
+#            # Ensure JMeter Plugins directory exists
+#            mkdir -p $JMETER_PLUGINS_FOLDER
+#
+#            # Download WebDriver Plugin JAR
+#            wget -q -O $JMETER_PLUGINS_FOLDER/jmeter-plugins-webdriver-4.13.0.2.jar https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-webdriver/4.13.0.2/jmeter-plugins-webdriver-4.13.0.2.jar
+#            # Verify the WebDriver plugin is installed
+#            ls -la $JMETER_PLUGINS_FOLDER
+#
+#      - run:
+#          name: Verify WebDriver Plugin Installation
+#          command: |
+#            ls -la $PWD/apache-jmeter-5.6.3/lib
+#      - run:
+#          name: Manually Download Selenium JARs
+#          command: |
+#            JMETER_HOME="$PWD/apache-jmeter-5.6.3"
+#            JMETER_LIB_EXT="$JMETER_HOME/lib/ext"
+#            sudo chmod -R 777 $JMETER_LIB_EXT
+#
+#            # Ensure JMeter Plugins directory exists
+#            mkdir -p $JMETER_LIB_EXT
+#
+#            # Download Selenium JARs
+#            wget -q -O $JMETER_LIB_EXT/selenium-server-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-server/3.141.59/selenium-server-3.141.59.jar
+#            wget -q -O $JMETER_LIB_EXT/selenium-api-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-api/4.13.0/selenium-api-4.13.0.jar
+#            wget -q -O $JMETER_LIB_EXT/selenium-chrome-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-chrome-driver/4.13.0/selenium-chrome-driver-4.13.0.jar
+#            wget -q -O $JMETER_LIB_EXT/selenium-java-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-java/4.13.0/selenium-java-4.13.0.jar
+#            wget -q -O $JMETER_LIB_EXT/selenium-remote-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-remote-driver/4.13.0/selenium-remote-driver-4.13.0.jar
+#            wget -q -O $JMETER_LIB_EXT/selenium-support-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-support/4.13.0/selenium-support-4.13.0.jar
+#            wget -q -O $JMETER_LIB_EXT/selenium-chromium-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-chromium-driver/4.13.0/selenium-chromium-driver-4.13.0.jar
+#            wget -q -O $JMETER_LIB_EXT/selenium-edge-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-edge-driver/4.13.0/selenium-edge-driver-4.13.0.jar
+#            wget -q -O $JMETER_LIB_EXT/selenium-firefox-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-firefox-driver/4.13.0/selenium-firefox-driver-4.13.0.jar
+#            wget -q -O $JMETER_LIB_EXT/selenium-http-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-http/4.13.0/selenium-http-4.13.0.jar
+#            wget -q -O $JMETER_LIB_EXT/selenium-ie-driver-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-ie-driver/4.13.0/selenium-ie-driver-4.13.0.jar
+#            wget -q -O $JMETER_LIB_EXT/selenium-json-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-json/4.13.0/selenium-json-4.13.0.jar
+#            wget -q -O $JMETER_LIB_EXT/selenium-os-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-os/4.13.0/selenium-os-4.13.0.jar
+#            wget -q -O $JMETER_LIB_EXT/selenium-java-4.13.0.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-java/4.13.0/selenium-java-4.13.0.jar
+#
+#            # Verify installation
+#            ls -la $JMETER_LIB_EXT
+#      - run:
+#          name: Install Guava Library
+#          command: |
+#            # Define JMeter paths
+#            JMETER_HOME="$PWD/apache-jmeter-5.6.3"
+#            JMETER_LIB_EXT="$JMETER_HOME/lib/ext"
+#
+#            # Ensure the JMeter lib/ext directory exists
+#            mkdir -p $JMETER_LIB_EXT
+#
+#            # Install Guava version 31.1-jre
+#            GUAVA_URL="https://repo1.maven.org/maven2/com/google/guava/guava/31.1-jre/guava-31.1-jre.jar"
+#            wget -q -O $JMETER_LIB_EXT/guava-31.1-jre.jar $GUAVA_URL
+#
+#            # Verify installation
+#            ls -la $JMETER_LIB_EXT
+#
+#            echo "Guava installation completed."
+#      - run:
+#          name: Verify Installed JARs
+#          command: |
+#            ls -la $PWD/apache-jmeter-5.6.3/lib/ext
+#
+#      - run:
+#          name: Install Apache Commons Exec
+#          command: |
+#            # Define JMeter paths
+#            JMETER_HOME="$PWD/apache-jmeter-5.6.3"
+#            JMETER_LIB="$JMETER_HOME/lib"
+#
+#            # Ensure the JMeter lib directory exists
+#            mkdir -p $JMETER_LIB
+#
+#            # Install Apache Commons Exec (latest stable version 1.3)
+#            COMMONS_EXEC_URL="https://repo1.maven.org/maven2/org/apache/commons/commons-exec/1.3/commons-exec-1.3.jar"
+#            wget -q -O $JMETER_LIB/commons-exec-1.3.jar $COMMONS_EXEC_URL
+#
+#            # Verify installation
+#            ls -la $JMETER_LIB
+#
+#            echo "Apache Commons Exec installation completed."
       - run:
           name: Verify ChromeDriver
           command: |
             which chromedriver
             chromedriver --version
+      - run:
+          name: Install JMeter Plugin Manager
+          command: |
+            wget https://jmeter-plugins.org/get/ -O jmeter/lib/ext/JMeterPlugins-Manager.jar
+
+            - run:
+                name: Install WebDriver Plugin via PluginManagerCMD
+                command: |
+                  java -cp jmeter/lib/ext/JMeterPlugins-Manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
+                  java -cp jmeter/lib/ext/PluginsManagerCMD.jar org.jmeterplugins.repository.PluginManagerCMD install jpgc-webdriver
+
       - run:
           name: Debug WebDriver
           command: |
