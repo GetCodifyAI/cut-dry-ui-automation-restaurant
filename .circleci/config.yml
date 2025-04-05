@@ -83,13 +83,6 @@ jobs:
           command: |
             wget https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/1.10/jmeter-plugins-manager-1.10.jar -O apache-jmeter-5.6.3/lib/ext/JMeterPlugins-Manager.jar
             wget https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.3/cmdrunner-2.3.jar -O apache-jmeter-5.6.3/lib/cmdrunner-2.3.jar
-      - run:
-          name: Verify files
-          command: |
-            ls -lh apache-jmeter-5.6.3/lib/ext/
-            ls -lh apache-jmeter-5.6.3/lib/
-            ls -lh apache-jmeter-5.6.3/bin/
-            chmod -R 755 apache-jmeter-5.6.3/lib/ext/
 #      - run:
 #          name: Generate PluginsManagerCMD.jar
 #          command: |
@@ -103,7 +96,7 @@ jobs:
           name: Download and Install WebDriver Plugin
           command: |
             # Download the jpgc-webdriver plugin .zip
-            wget https://jmeter-plugins.org/files/packages/jpgc-webdriver-4.13.0.0.zip -O jpgc-webdriver.zip
+            wget https://jmeter-plugins.org/files/packages/jpgc-webdriver-4.13.0.2.zip -O jpgc-webdriver.zip
             
             # Unzip the package
             unzip jpgc-webdriver.zip -d apache-jmeter-5.6.3
@@ -113,6 +106,17 @@ jobs:
   
             # Move all JAR files from the 'lib/ext' folder into the JMeter's 'lib/ext' folder
             mv -n apache-jmeter-5.6.3/lib/ext/*.jar apache-jmeter-5.6.3/lib/ext/
+      - run:
+          name: Download Groovy 4.0.25 JAR
+          command: |
+            wget https://repo.maven.apache.org/maven2/org/codehaus/groovy/groovy-all/4.0.25/groovy-all-4.0.25.jar -O /opt/jmeter/lib/groovy-all-4.0.25.jar
+      - run:
+          name: Verify files
+          command: |
+            ls -lh apache-jmeter-5.6.3/lib/ext/
+            ls -lh apache-jmeter-5.6.3/lib/
+            ls -lh apache-jmeter-5.6.3/bin/
+            chmod -R 755 apache-jmeter-5.6.3/lib/ext/
       - run:
           name: Debug WebDriver
           command: |
