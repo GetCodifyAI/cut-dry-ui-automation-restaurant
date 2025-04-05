@@ -109,10 +109,10 @@ jobs:
             unzip jpgc-webdriver.zip -d apache-jmeter-5.6.3
             
             # Move all JAR files from the 'lib' folder into the JMeter's 'lib' folder
-            mv apache-jmeter-5.6.3/lib/*.jar apache-jmeter-5.6.3/lib/
+            mv -n apache-jmeter-5.6.3/lib/*.jar apache-jmeter-5.6.3/lib/
   
             # Move all JAR files from the 'lib/ext' folder into the JMeter's 'lib/ext' folder
-            mv apache-jmeter-5.6.3/lib/ext/*.jar apache-jmeter-5.6.3/lib/ext/
+            mv -n apache-jmeter-5.6.3/lib/ext/*.jar apache-jmeter-5.6.3/lib/ext/
       - run:
           name: Debug WebDriver
           command: |
