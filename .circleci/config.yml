@@ -162,7 +162,7 @@ jobs:
       - run:
           name: Install JMeter Plugin Manager
           command: |
-            wget https://jmeter-plugins.org/get/ -O jmeter/lib/ext/JMeterPlugins-Manager.jar
+            wget https://jmeter-plugins.org/get/ -O apache-jmeter-5.6.3/lib/ext/JMeterPlugins-Manager.jar
 
             - run:
                 name: Install WebDriver Plugin via PluginManagerCMD
