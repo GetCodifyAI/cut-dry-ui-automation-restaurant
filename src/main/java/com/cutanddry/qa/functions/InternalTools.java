@@ -60,6 +60,12 @@ public class InternalTools {
     public static boolean isSuccessPopUpDisplayed(){
         return internalToolsPage.isSuccessPopUpDisplayed();
     }
+    public static void clickPayEnabledToggle(boolean status){
+        internalToolsPage.clickPayEnabledToggle(status);
+    }
+    public static void addCustomerToPayDisable(String name) throws InterruptedException {
+        internalToolsPage.addCustomerToPayDisable(name);
+    }
 
 
 }
