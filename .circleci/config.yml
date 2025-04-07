@@ -952,8 +952,8 @@ jobs:
               exit 1
             fi
 
-            PASS_RATE=$(echo "scale=2; ($PASSED / $TOTAL) * 100" | bc)
-            FAIL_RATE=$(echo "scale=2; ($FAILED / $TOTAL) * 100" | bc)
+            PASS_RATE=$(echo "scale=2; ($PASSED / $TOTAL) * 100.0" | bc)
+            FAIL_RATE=$(echo "scale=2; ($FAILED / $TOTAL) * 100.0" | bc)
 
             echo "Total tests run: $TOTAL"
             echo "Passed: $PASSED"
