@@ -822,5 +822,10 @@ public class Customer {
         customersPage.clickonInvoice();
         customersPage.isFirstRecordDisplayed();
     }
+    public static void editStatusSubstitutionsAccess(String status){
+        customersPage.clickEditSubstitutionsAccess();
+        customersPage.editSubstitutionStatus(status);
+        customersPage.saveCatalogAccessChanges();
+    }
 
 }

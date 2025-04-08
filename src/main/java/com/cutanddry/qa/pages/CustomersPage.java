@@ -241,6 +241,12 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_yes = By.xpath("//button[text()='Yes']");
     By btn_invoice = By.xpath("//a[text()='Invoices']");
     By cb_inInvoiceTable = By.xpath("//table/tbody/tr[1]/td[1]//div[contains(@class, '_du1frc')]");
+    By substitutionsAccessEditBtn = By.xpath("//div[contains(text(), 'Substitutions')]//following-sibling::div//div//*[name()='svg' and contains(@data-icon, 'pen-to-square')]");
+    By substitutionDropDown = By.xpath("//div[contains(text(), 'Substitutions')]//following-sibling::div/div/div/div");
+    String substitutionOption = "//div[contains(text(), 'Substitutions')]//following-sibling::*//div[text()='STATUS']";
+    By Savebtn = By.xpath("//button[normalize-space(text())='Save']");
+
+
 
 
 
@@ -1530,6 +1536,24 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
     public boolean isFirstRecordDisplayed(){
         return restaurantUI.isDisplayed(cb_inInvoiceTable);
+    }
+    public void clickEditSubstitutionsAccess(){
+        restaurantUI.waitForVisibility(substitutionsAccessEditBtn);
+        restaurantUI.scrollToElement(substitutionsAccessEditBtn);
+        restaurantUI.click(substitutionsAccessEditBtn);
+    }
+    public void editSubstitutionStatus(String status){
+        restaurantUI.click(substitutionDropDown);
+        restaurantUI.waitForVisibility(By.xpath(substitutionOption.replace("STATUS", status)));
+        restaurantUI.click(By.xpath(substitutionOption.replace("STATUS", status)));
+    }
+    public void saveCatalogAccessChanges(){
+        restaurantUI.clickWithScrollAndHover(Savebtn);
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
