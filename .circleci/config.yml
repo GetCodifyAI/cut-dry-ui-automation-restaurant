@@ -86,13 +86,14 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
+            PART_NAME="Part_One"
             for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/nightly-build-and-test-1_$(basename "$file")
+              [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_nightly-build-and-test-1_$(basename "$file")
             done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - nightly-build-and-test-1_TEST-*.xml
+            - Part_One_nightly-build-and-test-1_TEST-*.xml
     executor:
 
   nightly-build-and-test-2:
@@ -139,13 +140,14 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
+            PART_NAME="Part_Two"
             for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/nightly-build-and-test-2_$(basename "$file")
+              [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_nightly-build-and-test-2_$(basename "$file")
             done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - nightly-build-and-test-2_TEST-*.xml
+            - Part_Two_nightly-build-and-test-2_TEST-*.xml
     executor:
 
   nightly-build-and-test-3:
@@ -192,13 +194,14 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
+            PART_NAME="Part_Three"
             for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/nightly-build-and-test-3_$(basename "$file")
+              [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_nightly-build-and-test-3_$(basename "$file")
             done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - nightly-build-and-test-3_TEST-*.xml
+            - Part_Three_nightly-build-and-test-3_TEST-*.xml
     executor:
 
   nightly-build-and-test-4:
@@ -245,13 +248,14 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
+            PART_NAME="Part_Four"
             for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/nightly-build-and-test-4_$(basename "$file")
+              [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_nightly-build-and-test-4_$(basename "$file")
             done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - nightly-build-and-test-4_TEST-*.xml
+            - Part_Four_nightly-build-and-test-4_TEST-*.xml
     executor:
 
   nightly-build-and-test-5:
@@ -298,13 +302,14 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
+            PART_NAME="Part_Five"
             for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/nightly-build-and-test-5_$(basename "$file")
+              [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_nightly-build-and-test-5_$(basename "$file")
             done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - nightly-build-and-test-5_TEST-*.xml
+            - Part_Five_nightly-build-and-test-5_TEST-*.xml
     executor:
 
   nightly-build-and-test-6:
@@ -351,13 +356,14 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
+            PART_NAME="Part_Six"
             for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/nightly-build-and-test-6_$(basename "$file")
+              [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_nightly-build-and-test-6_$(basename "$file")
             done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - nightly-build-and-test-6_TEST-*.xml
+            - Part_Six_nightly-build-and-test-6_TEST-*.xml
     executor:
 
   nightly-build-and-test-7:
@@ -404,13 +410,14 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
+            PART_NAME="Part_Seven"
             for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/nightly-build-and-test-7_$(basename "$file")
+              [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_nightly-build-and-test-7_$(basename "$file")
             done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - nightly-build-and-test-7_TEST-*.xml
+            - Part_Seven_nightly-build-and-test-7_TEST-*.xml
     executor:
 
   nightly-build-and-test-8:
@@ -457,13 +464,14 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
+            PART_NAME="Part_Eight"
             for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/nightly-build-and-test-8_$(basename "$file")
+              [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_nightly-build-and-test-8_$(basename "$file")
             done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - nightly-build-and-test-8_TEST-*.xml
+            - Part_Eight_nightly-build-and-test-8_TEST-*.xml
     executor:
 
   daily-build-and-test-1:
@@ -510,13 +518,14 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
+            PART_NAME="Part_One"
             for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/daily-build-and-test-1_$(basename "$file")
+              [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_daily-build-and-test-1_$(basename "$file")
             done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - daily-build-and-test-1_TEST-*.xml
+            - Part_One_daily-build-and-test-1_TEST-*.xml
     executor:
 
   daily-build-and-test-2:
@@ -563,13 +572,14 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
+            PART_NAME="Part_Two"
             for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/daily-build-and-test-2_$(basename "$file")
+              [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_daily-build-and-test-2_$(basename "$file")
             done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - daily-build-and-test-2_TEST-*.xml
+            - Part_Two_daily-build-and-test-2_TEST-*.xml
     executor:
 
   daily-build-and-test-3:
@@ -616,13 +626,14 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
+            PART_NAME="Part_Three"
             for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/daily-build-and-test-3_$(basename "$file")
+              [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_daily-build-and-test-3_$(basename "$file")
             done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - daily-build-and-test-3_TEST-*.xml
+            - Part_Three_daily-build-and-test-3_TEST-*.xml
     executor:
 
   daily-build-and-test-4:
@@ -669,13 +680,14 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
+            PART_NAME="Part_Four"
             for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/daily-build-and-test-4_$(basename "$file")
+              [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_daily-build-and-test-4_$(basename "$file")
             done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - daily-build-and-test-4_TEST-*.xml
+            - Part_Four_daily-build-and-test-4_TEST-*.xml
     executor:
 
   daily-build-and-test-5:
@@ -722,13 +734,14 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
+            PART_NAME="Part_Five"
             for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/daily-build-and-test-5_$(basename "$file")
+              [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_daily-build-and-test-5_$(basename "$file")
             done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - daily-build-and-test-5_TEST-*.xml
+            - Part_Five_daily-build-and-test-5_TEST-*.xml
     executor:
 
   daily-build-and-test-6:
@@ -775,13 +788,14 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
+            PART_NAME="Part_Six"
             for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/daily-build-and-test-6_$(basename "$file")
+              [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_daily-build-and-test-6_$(basename "$file")
             done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - daily-build-and-test-6_TEST-*.xml
+            - Part_Six_daily-build-and-test-6_TEST-*.xml
     executor:
 
   daily-build-and-test-7:
@@ -828,13 +842,14 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
+            PART_NAME="Part_Seven"
             for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/daily-build-and-test-7_$(basename "$file")
+              [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_daily-build-and-test-7_$(basename "$file")
             done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - daily-build-and-test-7_TEST-*.xml
+            - Part_Seven_daily-build-and-test-7_TEST-*.xml
     executor:
 
   daily-build-and-test-8:
@@ -881,13 +896,14 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
+            PART_NAME="Part_Eight"
             for file in target/surefire-reports/TEST-*.xml; do
-              [ -f "$file" ] && cp "$file" ~/workspace/daily-build-and-test-8_$(basename "$file")
+              [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_daily-build-and-test-8_$(basename "$file")
             done
       - persist_to_workspace:
           root: ~/workspace
           paths:
-            - daily-build-and-test-8_TEST-*.xml
+            - Part_Eight_daily-build-and-test-8_TEST-*.xml
     executor:
 
 
@@ -915,11 +931,20 @@ jobs:
                echo "No test result XMLs found! Exiting..."
                exit 1
             fi
+            
+            declare -A PART_TOTAL
+            declare -A PART_PASS
+            declare -A PART_FAIL
+            
             TOTAL=0
             PASSED=0
             FAILED=0
 
             for FILE in ~/workspace/*.xml; do
+              
+              PART=$(basename "$FILE" | cut -d'_' -f1,2)
+              PART=${PART:-Unknown}
+              
               TESTS=$(grep -oP '(?<=tests=")[0-9]+' "$FILE" | head -1)
               FAILURES=$(grep -oP '(?<=failures=")[0-9]+' "$FILE" | head -1)
               ERRORS=$(grep -oP '(?<=errors=")[0-9]+' "$FILE" | head -1)
@@ -945,6 +970,11 @@ jobs:
               TOTAL=$((TOTAL + ACTUAL_TOTAL))
               PASSED=$((PASSED + PASSED_IN_FILE))
               FAILED=$((FAILED + FAILURES + (ERRORS/2)))
+            
+              PART_TOTAL[$PART]=$((PART_TOTAL[$PART] + ACTUAL_TOTAL))
+              PART_PASS[$PART]=$((PART_PASS[$PART] + PASSED_IN_FILE))
+              PART_FAIL[$PART]=$((PART_FAIL[$PART] + FAILURES + (ERRORS / 2)))
+            
             done
 
             if [ "$TOTAL" -eq 0 ]; then
@@ -967,9 +997,29 @@ jobs:
             echo "PASS_RATE=$PASS_RATE" >> $BASH_ENV
             echo "FAIL_RATE=$FAIL_RATE" >> $BASH_ENV
             source $BASH_ENV
+            
+            # Build PART breakdown summary
+            PART_SUMMARY=""
+              for part in "${!PART_TOTAL[@]}"; do
+                total=${PART_TOTAL[$part]}
+                pass=${PART_PASS[$part]}
+                if [ "$total" -gt 0 ]; then
+                  rate=$(echo "scale=2; ($pass / $total) * 100.0" | bc)
+                else
+                  rate="0.00"
+                fi
+                PART_SUMMARY+=" • *$part*: ✅ $pass / $total,  $rate% | "
+              done
+            
+            # 🔥 Escape special chars for JSON safety
+            PART_SUMMARY_ESCAPED=$(echo -n "$PART_SUMMARY" | sed ':a;N;$!ba;s/\n/\\n/g' | sed 's/"/\\"/g')
 
             # Set environment variables for Slack notification
-            export SLACK_MESSAGE="Total tests run: $TOTAL\nPassed: $PASSED\nFailed: $FAILED\nPass Rate: $PASS_RATE%\nFail Rate: $FAIL_RATE%"
+            export SLACK_MESSAGE="Total tests run: $TOTAL\nPassed: $PASSED\nFailed: $FAILED\nPass Rate: $PASS_RATE%\nFail Rate: $FAIL_RATE%*\n📉 Fail Rate: *$FAIL_RATE%*\n\n*Per PART breakdown:*\n$PART_SUMMARY"
+            
+            # Export escaped part summary for use in Slack block
+            echo "PART_SUMMARY_ESCAPED=\"$PART_SUMMARY_ESCAPED\"" >> $BASH_ENV
+            source $BASH_ENV
 
           # Send the test results to Slack
       - slack/notify:
@@ -983,7 +1033,14 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "Test Results:\nTotal: *${TOTAL:-N/A}*\n✅ Passed: *${PASSED:-N/A}*\n❌ Failed: *${FAILED:-N/A}*\n📊 Pass Rate: *${PASS_RATE:-N/A}*\n📉 Fail Rate: *${FAIL_RATE:-N/A}%*"
+                    "text": "Test Results for Operator:\nTotal: *${TOTAL:-N/A}*\n✅ Passed: *${PASSED:-N/A}*\n❌ Failed: *${FAILED:-N/A}*\n📊 Pass Rate: *${PASS_RATE:-N/A}*\n📉 Fail Rate: *${FAIL_RATE:-N/A}%*"
+                  }
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Per PART breakdown:*\n${PART_SUMMARY_ESCAPED}"
                   }
                 }
               ]
