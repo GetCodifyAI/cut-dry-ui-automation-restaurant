@@ -34,7 +34,6 @@
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyReportIssueButtonIsDisabledTest"/>
 
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifySubstituteItemsNotDisplayedIfTurnedOffCustomerProfileTest"/>
-
             <class name="com.cutanddry.qa.tests.Pay.VerifyTotalUnpaidInvoiceBalanceTest"/>
 
         </classes>
