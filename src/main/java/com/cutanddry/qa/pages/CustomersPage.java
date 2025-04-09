@@ -246,13 +246,6 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String substitutionOption = "//div[contains(text(), 'Substitutions')]//following-sibling::*//div[text()='STATUS']";
     By Savebtn = By.xpath("//button[normalize-space(text())='Save']");
 
-
-
-
-
-    By txt_editItem = By.xpath("//div[contains(text(), 'Edit Item')]");
-
-
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         /*restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
         restaurantUI.waitForCustom(2000);*/
