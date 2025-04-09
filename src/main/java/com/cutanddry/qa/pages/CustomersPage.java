@@ -57,7 +57,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_submitOrderGuide = By.xpath("//button[contains(text(), 'Submit')]");
     By btn_addFromCatalog = By.xpath("//div[contains(text(), 'Add from Catalog')]");
     By btn_addToOrderGuide = By.xpath("//button[@data-tip='Add to Order Guide']");
-    By btn_closeEditor = By.xpath("//button[contains(text(), 'Close Editor')]");
+    By btn_closeEditor = By.xpath("//*[contains(text(), 'Close Editor')]");
     By btn_removeFromOrderGuide = By.xpath("//button[@data-tip='Remove from Order Guide']");
     By btn_sortCustomOrder = By.xpath("//div[contains(@class, 'cd_themed_select__single-value') and text()='Custom Order']");
     By btn_sortItemCategory = By.xpath("//div[contains(@class, 'cd_themed_select__single-value') and text()='Item Categories']");
@@ -209,7 +209,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String lbl_firstSingleOUMItemCode = "//td//span//div[@data-tip='View Product Details']/ancestor::tbody/tr[ROW_COUNT]/td[2]";
 
     String tbx_itemQuantityUOM = "(//td[text()='CODE']/following-sibling::*//div/input[@data-input ='quantityInput'])[UOM]";
-    String multiUomDropDownOG = "(//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg'])[1]";
+    String multiUomDropDownOG = "//td[text()='CODE']/following-sibling::td[1]//div/*[local-name()='svg']";
     String btn_OGAddToCartPlusQuantity ="(//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='plus'])[UOM]";
     String btn_OGRemoveToCartMinusQuantity ="(//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='minus'])[UOM]";
     By multiUomOption =By.xpath("//div[text()='Multiple Units']");
@@ -241,6 +241,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_yes = By.xpath("//button[text()='Yes']");
     By btn_invoice = By.xpath("//a[text()='Invoices']");
     By cb_inInvoiceTable = By.xpath("//table/tbody/tr[1]/td[1]//div[contains(@class, '_du1frc')]");
+    By txt_editItem = By.xpath("//div[contains(text(), 'Edit Item')]");
+    By caseUnit = By.xpath("//label[text()='Unit']/../following-sibling::div[text()='Case']");
+    String multiUOMDropdownIndicator = "//td[text()='CODE']/following-sibling::td[1]//div/*[local-name()='svg']";
 
 
 
@@ -590,9 +593,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.waitForCustom(2000);
     }
 
-    public void clickOnCloseEditor() {
+    public void clickOnCloseEditor() throws InterruptedException {
         restaurantUI.click(btn_closeEditor);
-        restaurantUI.refreshPage();
+//        restaurantUI.refreshPage();
         try {
             restaurantUI.waitForCustom(2000);
         } catch (InterruptedException e) {
@@ -934,7 +937,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         return restaurantUI.getText(unitSelectionDropdown);
     }
 
-    public void clickEditItemBtn(String itemname){
+    public void clickEditItemBtn(String itemname) throws InterruptedException {
+        restaurantUI.waitForCustom(3000);
+        restaurantUI.waitForVisibility(By.xpath(editItemBtn.replace("ITEMNAME",itemname)));
         restaurantUI.click(By.xpath(editItemBtn.replace("ITEMNAME",itemname)));
 
     }
@@ -1097,7 +1102,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     public void clickSaveItemBtn(){
         restaurantUI.click(saveItemBtn);
         try {
-            restaurantUI.waitForCustom(3000);
+            restaurantUI.waitForCustom(5000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -1531,5 +1536,14 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     public boolean isFirstRecordDisplayed(){
         return restaurantUI.isDisplayed(cb_inInvoiceTable);
     }
-
+    public boolean isEditItemPopupDisplayed(){
+        restaurantUI.waitForVisibility(txt_editItem);
+        return restaurantUI.isDisplayed(txt_editItem);
+    }
+    public void clickOnCaseUnit()throws InterruptedException{
+        restaurantUI.click(caseUnit);
+    }
+    public boolean isMultiUomDropDownDisplayed(String code)throws InterruptedException{
+        return restaurantUI.isDisplayed(By.xpath(multiUOMDropdownIndicator.replace("CODE",code)));
+    }
 }
