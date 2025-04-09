@@ -33,7 +33,8 @@ public class VerifyTotalUnpaidInvoiceBalanceTest extends TestBase {
         Assert.assertTrue(Pay.isPaySupplierTextDisplayed(),"error in text display");
         Pay.clickOnInvoiceTypeDropdownMenu();
         Pay.clickOnCreditMemoOption();
-        float actualCreditMemosTotalAmount = Pay.getCreditMemosTotalAmount();
+        float ActualCreditMemosTotalAmount = Pay.getCreditMemosTotalAmount();
+        float actualCreditMemosTotalAmount = (float) (Math.round(ActualCreditMemosTotalAmount * 100.0) / 100.0);
         softAssert.assertTrue(Pay.isTotalCreditsTextDisplayed(),"error displaying total credits");
         float expectedCreditMemosTotalAmount = Pay.getTotalCreditsAmount();
         softAssert.assertEquals(expectedCreditMemosTotalAmount,actualCreditMemosTotalAmount);
@@ -41,7 +42,8 @@ public class VerifyTotalUnpaidInvoiceBalanceTest extends TestBase {
 
         Pay.clickOnInvoiceStatusDropdownMenu();
         Pay.clickOnPastDueOption();
-        float actualPastDueInvoicesTotalAmount = Pay.getPastDueInvoicesTotalAmount();
+        float ActualPastDueInvoicesTotalAmount = Pay.getPastDueInvoicesTotalAmount();
+        float actualPastDueInvoicesTotalAmount = (float) (Math.round(ActualPastDueInvoicesTotalAmount * 100.0) / 100.0);
         softAssert.assertTrue(Pay.isPastDueTextDisplayed(),"error displaying past due amount");
         float expectedPastDueInvoicesTotalAmount = Pay.getTotalPastDueAmount();
         softAssert.assertEquals(expectedPastDueInvoicesTotalAmount,actualPastDueInvoicesTotalAmount);
