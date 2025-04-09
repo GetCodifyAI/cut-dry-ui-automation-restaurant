@@ -125,4 +125,7 @@ public class Catalog {
     public static void deleteSubstitute(){
         catalogPage.deleteSubstitute();
     }
+    public static double getPDPPriceUOMJIT(String uom) throws InterruptedException {
+        return catalogPage.getPDPPriceUOMJIT(uom);
+    }
 }
