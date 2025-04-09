@@ -242,11 +242,6 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_invoice = By.xpath("//a[text()='Invoices']");
     By cb_inInvoiceTable = By.xpath("//table/tbody/tr[1]/td[1]//div[contains(@class, '_du1frc')]");
     By txt_editItem = By.xpath("//div[contains(text(), 'Edit Item')]");
-    By caseUnit = By.xpath("//label[text()='Unit']/../following-sibling::div[text()='Case']");
-    String multiUOMDropdownIndicator = "//td[text()='CODE']/following-sibling::td[1]//div/*[local-name()='svg']";
-
-
-
 
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
@@ -1536,14 +1531,5 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     public boolean isFirstRecordDisplayed(){
         return restaurantUI.isDisplayed(cb_inInvoiceTable);
     }
-    public boolean isEditItemPopupDisplayed(){
-        restaurantUI.waitForVisibility(txt_editItem);
-        return restaurantUI.isDisplayed(txt_editItem);
-    }
-    public void clickOnCaseUnit()throws InterruptedException{
-        restaurantUI.click(caseUnit);
-    }
-    public boolean isMultiUomDropDownDisplayed(String code)throws InterruptedException{
-        return restaurantUI.isDisplayed(By.xpath(multiUOMDropdownIndicator.replace("CODE",code)));
-    }
+
 }
