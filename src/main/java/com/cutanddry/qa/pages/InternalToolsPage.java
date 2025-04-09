@@ -24,11 +24,10 @@ public class InternalToolsPage extends TestBase {
     By hideCheckInOptionToggleStable = By.xpath("//div[contains(text(), 'Hide Check-In Option:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
     By hideCheckInOptionToggleStable1 = By.xpath("//div[contains(text(), 'Hide Check-In Option:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
     By successPopUp = By.xpath("//h2[contains(text(),'Success')]");
-
-
-
-
-
+    By payDetailsToggleStable = By.xpath("//label[contains(text(), 'Pay Enabled For All Users: ')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
+    By payDetailsToggleStable1 = By.xpath("//label[contains(text(), 'Pay Enabled For All Users: ')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+    By addCustomerToPayDisable = By.xpath("//label[contains(text(), 'Pay Disabled Restaurants')]/following-sibling::div/div");
+    String selectDisableCustomer = "//div[contains(text(), 'NAME')]";
 
 
 
@@ -131,6 +130,23 @@ public class InternalToolsPage extends TestBase {
     }
     public boolean isSuccessPopUpDisplayed(){
         return restaurantUI.isDisplayed(successPopUp);
+    }
+    public void clickPayEnabledToggle(boolean enable) {
+
+        String handlePosition = restaurantUI.getElement(payDetailsToggleStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(29px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(payDetailsToggleStable1);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(payDetailsToggleStable1);
+        }
+    }
+    public void addCustomerToPayDisable(String name)throws InterruptedException{
+        restaurantUI.click(addCustomerToPayDisable);
+        restaurantUI.scrollToElement(By.xpath(selectDisableCustomer.replace("NAME", name)));
+        restaurantUI.click(By.xpath(selectDisableCustomer.replace("NAME", name)));
+        restaurantUI.waitForCustom(3000);
     }
 
 
