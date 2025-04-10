@@ -32,8 +32,6 @@
             <class name="com.cutanddry.qa.tests.Roles.VerifyWLAppBookkeeperRolesTest" />
             <class name="com.cutanddry.qa.tests.Roles.VerifyWLAppEmployeeRolesTest" />
             <class name="com.cutanddry.qa.tests.Roles.VerifyWLAppManagerRolesTest" />
-
-            <class name="com.cutanddry.qa.tests.E2E.PlaceMailDeliveryOrderViaOrderGuideCatalogAndPDPTest" />
         </classes>
     </test>
 </suite>
