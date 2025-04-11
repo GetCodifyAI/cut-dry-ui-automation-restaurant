@@ -22,11 +22,13 @@ public class CatalogPage extends LoginPage {
     By getTotalEndlessAislePriceReviewOrder = By.xpath("//td[contains(text(),'Endless Aisle Total')]/following-sibling::td");
     By getTotalEndlessAisleSubTotalPriceReviewOrder = By.xpath("//td[contains(text(),'Endless Aisle Subtotal')]/following-sibling::td");
     By getSubTotalOrderPrice = By.xpath("//div[contains(text(),'Subtotal')]/../following-sibling::td");
-    By getTotalPriceReviewOrder = By.xpath("//td[contains(text(),'Total')]/following-sibling::td");
-    By getTotalQuantityReviewOrder = By.xpath("//td[contains(text(),'Items')]/following-sibling::td");
+    By getTotalPriceReviewOrder = By.xpath("//td[text()='Total:']/following-sibling::td");
+    By getTotalQuantityReviewOrder = By.xpath("//td[contains(text(),'Total Quantity:')]/following-sibling::td");
     By getDeliveryFeesReviewOrder = By.xpath("//td[contains(text(),'Delivery Fee')]/following-sibling::td");
-    By getTotalOrderQuantity = By.xpath("//div[contains(text(),'Items')]/../following-sibling::td");
-    By getTotalOrderPrice = By.xpath("//div[contains(text(),'Total')]/../following-sibling::td");
+//    By getTotalOrderQuantity = By.xpath("//div[contains(text(),'Items')]/../following-sibling::td");
+    By getTotalOrderQuantity = By.xpath("//td[contains(text(),'Total Quantity')]/following-sibling::td");
+//    By getTotalOrderPrice = By.xpath("//div[contains(text(),'Total')]/../following-sibling::td");
+    By getTotalOrderPrice = By.xpath("//td[text()='Total']/following-sibling::td");
     By itemTypeDropDown = By.xpath("//div[contains(text(), 'Item Type')]");
     By itemTypeDropDownOption = By.xpath("//div[contains(text(), 'Item Type')]/../../following-sibling::div//*[name()='svg' and @data-icon='square']/following-sibling::div[contains(text(), 'Special Order')]");
     By txt_catalog = By.xpath("//div[contains(text(),'Manage Catalog')]");
@@ -45,6 +47,8 @@ public class CatalogPage extends LoginPage {
     String substituteItemNameTxt = "//div[contains(text(),\"ITEMNAME\")]";
     By successOverlay = By.xpath("//div[contains(text(),'successfully saved!')]");
     By btn_deleteSubstitute = By.xpath("//div/*[local-name()='svg' and @data-icon='circle-xmark']");
+    String getPriceUOMJIT = "((//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::*//div//span[contains(text(),'(')][1])[UOM]";
+
 
 
 
@@ -287,6 +291,32 @@ public class CatalogPage extends LoginPage {
     }
     public void deleteSubstitute(){
         restaurantUI.click(btn_deleteSubstitute);
+    }
+    public double getPDPPriceUOMJIT(String uom) throws InterruptedException {
+        try {
+            return extractPrice(By.xpath(getPriceUOMJIT.replace("UOM", uom)));
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractPriceJIT(By.xpath(getPriceUOMJIT.replace("UOM", uom)));
+        }
+    }
+    private double extractPriceJIT(By priceLocator) {
+        restaurantUI.waitForVisibility(priceLocator);
+        String tagName = restaurantUI.getElement(priceLocator).getTagName();
+        String priceText;
+
+        if (tagName.equals("input")) {
+            priceText = restaurantUI.getText(priceLocator, "value");
+        } else {
+            priceText = restaurantUI.getText(priceLocator);
+        }
+
+        System.out.println("Extracted Price: " + priceText);
+
+        // Remove currency symbols, slashes, unit info, and non-digit characters except dot and minus
+        String cleaned = priceText.replaceAll("[^0-9.-]", "");
+
+        return Double.valueOf(cleaned);
     }
 
 }
