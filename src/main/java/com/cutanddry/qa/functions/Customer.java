@@ -827,5 +827,14 @@ public class Customer {
         customersPage.editSubstitutionStatus(status);
         customersPage.saveCatalogAccessChanges();
     }
+    public static boolean isEditItemPopupDisplayed(){
+        return customersPage.isEditItemPopupDisplayed();
+    }
+    public static void clickOnCaseUnit() throws InterruptedException {
+        customersPage.clickOnCaseUnit();
+    }
+    public static boolean isMultiUomDropDownDisplayed(String code)throws InterruptedException{
+        return customersPage.isMultiUomDropDownDisplayed(code);
+    }
 
 }

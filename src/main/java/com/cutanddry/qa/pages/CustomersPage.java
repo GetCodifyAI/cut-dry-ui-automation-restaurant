@@ -245,6 +245,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By substitutionDropDown = By.xpath("//div[contains(text(), 'Substitutions')]//following-sibling::div/div/div/div");
     String substitutionOption = "//div[contains(text(), 'Substitutions')]//following-sibling::*//div[text()='STATUS']";
     By Savebtn = By.xpath("//button[normalize-space(text())='Save']");
+    By txt_editItem = By.xpath("//*[contains(text(), 'Edit Item')]");
+    By caseUnit = By.xpath("//label[text()='Unit']/../following-sibling::div[text()='Case']");
+    String multiUomDropDownIndicator = "//td[text()='CODE']/following-sibling::td[1]//div/*[local-name()='svg']";
+
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         /*restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -599,6 +603,13 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
             throw new RuntimeException(e);
         }
     }
+//public void closeEditor(){
+//    restaurantUI.waitForClickability(btn_closeEditor);
+//    // distributorUI.click(btn_closeEditor);
+//    restaurantUI.clickUsingJavaScript(btn_closeEditor);
+//    restaurantUI.refreshPage();
+//    restaurantUI.waitForVisibility(tbx_orderGuideSearch);
+//}
 
     public void clickOnRemoveFromOrderGuide() throws InterruptedException {
         restaurantUI.waitForVisibility(btn_removeFromOrderGuide);
@@ -1550,6 +1561,16 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+    public boolean isEditItemPopupDisplayed(){
+        restaurantUI.waitForVisibility(txt_editItem);
+        return restaurantUI.isDisplayed(txt_editItem);
+    }
+    public void clickOnCaseUnit()throws InterruptedException{
+        restaurantUI.click(caseUnit);
+    }
+    public boolean isMultiUomDropDownDisplayed(String code)throws InterruptedException{
+        return restaurantUI.isDisplayed(By.xpath(multiUomDropDownIndicator.replace("CODE", code)));
     }
 
 }
