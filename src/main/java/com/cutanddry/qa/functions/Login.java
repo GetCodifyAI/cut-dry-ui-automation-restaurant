@@ -122,5 +122,11 @@ public class Login {
     public static void switchIntoNewTab()throws InterruptedException{
         loginPage.switchIntoNewTab();
     }
+    public static void loginAsSavalFoodRestaurant(String emailOrMobile, String password){
+        loginPage.navigateSavalFood();
+        loginPage.typeEmailOrMobileSaval(emailOrMobile);
+        loginPage.typePasswordSaval(password);
+        loginPage.clickSignInSaval();
+    }
 
 }

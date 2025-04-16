@@ -25,15 +25,17 @@
 
             <class name="com.cutanddry.qa.tests.Pay.VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureEnabledTest"/>
             <class name="com.cutanddry.qa.tests.Pay.VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureDisabledTest"/>
-            <!--<class name="com.cutanddry.qa.tests.Pay.VerifyTheGeneralInvoicePDFsAreVisibleTest"/>
-            <class name="com.cutanddry.qa.tests.Pay.VerifyTheDigitalInvoicePDFsAreVisibleTest"/>
-            <class name="com.cutanddry.qa.tests.Pay.VerifyTheScannedInvoicePDFsAreVisibleTest"/>-->
             <class name="com.cutanddry.qa.tests.History.VerifyTheInvoiceDownloadAndPrintFeatureTest"/>
 
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyReportIssueButtonIsEnabledTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyReportIssueButtonIsDisabledTest"/>
 
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifySubstituteItemsNotDisplayedIfTurnedOffCustomerProfileTest"/>
+
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyNavigatingToOrderGuideTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyAddingItemToCartOfTheSelectedSupplierTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateDraftCreationOfTheSelectedSupplierTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateNavigatingToRelevantDraftOrderFromDraftsTest"/>
 
         </classes>
     </test>

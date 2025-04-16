@@ -62,8 +62,8 @@ public class HistoryPage extends TestBase {
     String dropDownOption = "//div[text()='OPTION']";
     String locationDropDownOption = "//div[contains(@class,'themed_select__option') and text()='OPTION']";
     By invoiceUploadStatus = By.xpath("(//td//span[text()='Invoice Upload'])[1]");
-    By btn_orderCheckoutReview = By.xpath("//div[contains(text(), 'Total')]/../following-sibling::td[normalize-space()!='']");
-    By btn_orderItemCountReview = By.xpath("//div[contains(text(), 'Items')]/../following-sibling::td[normalize-space()!='']");
+    By btn_orderCheckoutReview = By.xpath("//td[text()='Total']/following-sibling::td[normalize-space()!='']");
+    By btn_orderItemCountReview = By.xpath("//td[contains(text(), 'Total Quantity')]/following-sibling::td[normalize-space()!='']");
     String orderTitle = "//h2[contains(text(),'Order #ORDER_ID')]";
     By btn_submittedOrderTotal = By.xpath("(//div[contains(text(), 'Total')]/../following-sibling::td[normalize-space()!=''])[last()]");
     By lbl_orderTableColumn = By.xpath("//table/thead/tr/th");

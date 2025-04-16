@@ -48,6 +48,7 @@ public class CatalogPage extends LoginPage {
     By successOverlay = By.xpath("//div[contains(text(),'successfully saved!')]");
     By btn_deleteSubstitute = By.xpath("//div/*[local-name()='svg' and @data-icon='circle-xmark']");
     String getPriceUOMJIT = "((//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::*//div//span[contains(text(),'(')][1])[UOM]";
+    By txt_category = By.xpath("//div[text()='Category']");
 
 
 
@@ -317,6 +318,11 @@ public class CatalogPage extends LoginPage {
         String cleaned = priceText.replaceAll("[^0-9.-]", "");
 
         return Double.valueOf(cleaned);
+    }
+    public boolean isCategoryDisplayed()throws InterruptedException{
+        restaurantUI.waitForCustom(3000);
+        restaurantUI.waitForVisibility(txt_category);
+       return restaurantUI.isDisplayed(txt_category);
     }
 
 }
