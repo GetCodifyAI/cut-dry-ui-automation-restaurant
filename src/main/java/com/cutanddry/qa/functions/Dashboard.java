@@ -31,6 +31,9 @@ public class Dashboard {
     public static boolean isUserNavigatedToOrderGuide(){
         return dashboardPage.isOrderGuideTextDisplayed();
     }
+    public static boolean isUserNavigatedToOrderGuideMaxies(){
+        return dashboardPage.isMaxiesOrderGuideTextDisplayed();
+    }
 
     public static boolean isUserNavigatedToDisDashboard(){
         return dashboardPage.isDisDashboardTextDisplayed();

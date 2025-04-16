@@ -13,8 +13,8 @@ By btn_decreaseQtyFirstRow = By.xpath("(//tr/td//div[contains(@data-tip,'View Pr
     By btn_increaseQtySecondRow = By.xpath("//tr[2]/td[6]/div/div/div/div[3]");
     By btn_checkout = By.xpath("//button[@data-for='cartCheckoutButton']");
     By txt_catalog = By.xpath("//div[contains(text(), 'Item Type')]");
-    By btn_catalog = By.xpath("//div[text()='Catalog']");
-    By btn_catalogToOrderGuide = By.xpath("//div[text()='Order Guide']");
+    By btn_catalog = By.xpath("//span[text()='Catalog']");
+    By btn_catalogToOrderGuide = By.xpath("//span[text()='Order Guide']");
     By tbx_catalogSearch = By.xpath("//input[@placeholder='Search catalog...']");
     By tbx_orderGuideSearch = By.xpath("//input[@placeholder='Search order guide...']");
     //By lbl_catalogSearchItemList = By.xpath("(//button[contains(@data-for,'tooltipundefined')]/ancestor::div[2]/following-sibling::div[2]/div/div)[1]");
@@ -247,6 +247,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By Savebtn = By.xpath("//button[normalize-space(text())='Save']");
     String recentOrder = "//span[text()='Recent Orders']/../following-sibling::div//td[text()='ID']";
     By btn_previousDraftOrderYes = By.xpath("//div[contains(text(),'previous draft order')]/..//div[text()='Yes']");
+    String removeItemOnOG = "//div[contains(text(),'NAME')]/../../preceding-sibling::div[2]//button[@data-tip='Remove from Order Guide']";
 
 
 
@@ -1571,6 +1572,11 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
     public void isPreviousDraftOrderYesDisplayed() throws InterruptedException {
          restaurantUI.click(btn_previousDraftOrderYes);
+    }
+    public void clickOnRemoveFromOrderGuideStable(String name) throws InterruptedException {
+        restaurantUI.waitForVisibility(By.xpath(removeItemOnOG.replace("NAME",name)));
+        restaurantUI.click(By.xpath(removeItemOnOG.replace("NAME",name)));
+        restaurantUI.waitForCustom(4000);
     }
 
 }

@@ -8,7 +8,7 @@ public class DashboardPage extends LoginPage{
     By txt_dashboard = By.xpath("//div[text()='Place Order']");
     By btn_placeOrder = By.xpath("//div[contains(text(), 'Independent Foods Co')]");
     By btn_hayes = By.xpath("//div[contains(text(), 'Hayes')]");
-    By txt_OrderGuide = By.xpath("//div[contains(text(), 'Order Guide')]");
+    By txt_OrderGuide = By.xpath("//span[contains(text(), 'Order Guide')]");
     By btn_TestAutomation = By.xpath("//div[contains(text(), 'Test_Automation') and contains(@class, 'w-100')]");
     By txt_draftOrder = By.xpath("//div[contains(@class, 'text-center') and contains(text(), 'continue your previous draft order')]");
     By btn_noDraftOrder = By.xpath("//span[text()='×']");
@@ -47,6 +47,7 @@ public class DashboardPage extends LoginPage{
     By btn_category = By.xpath("//div[text()='Shop Our Catalog']/following-sibling::*//div//p[text()='Beverages']");
     By NoBtnDraftOrderCatalog = By.xpath("//div[text()='No']");
     By btn_switchSavalFood = By.xpath("//button[text()='Switch to Saval Foodservice']");
+    By txt_MaxiesOrderGuide = By.xpath("//div[contains(text(), 'Order Guide')]");
 
 
     public boolean isDashboardTextDisplayed(){
@@ -96,6 +97,9 @@ public class DashboardPage extends LoginPage{
         restaurantUI.click(btn_hayes);}
     public boolean isOrderGuideTextDisplayed(){
         return restaurantUI.isDisplayed(txt_OrderGuide);
+    }
+    public boolean isMaxiesOrderGuideTextDisplayed(){
+        return restaurantUI.isDisplayed(txt_MaxiesOrderGuide);
     }
     public boolean isTestAutomationPopupDisplayed(){
         return restaurantUI.isDisplayed(btn_TestAutomation,5);
