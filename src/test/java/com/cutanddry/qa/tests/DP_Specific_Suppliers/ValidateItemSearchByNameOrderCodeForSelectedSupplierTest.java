@@ -21,6 +21,8 @@ public class ValidateItemSearchByNameOrderCodeForSelectedSupplierTest extends Te
     static String chooseCatalog = "Saval Foodservice";
     static String itemName = "Spinach Baby";
     static String itemName2 = "Asparagus Large";
+    static String itemCode = "22399";
+    static String itemCode2 = "54826";
     
 
     @BeforeMethod
@@ -39,13 +41,20 @@ public class ValidateItemSearchByNameOrderCodeForSelectedSupplierTest extends Te
         softAssert.assertTrue(Dashboard.isUserNavigateHome(),"user navigate home saval 1932 error");
         Customer.searchItemOnHome(itemName);
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName.toLowerCase()), "item not found");
-
+        Dashboard.navigateToHome();
+        softAssert.assertTrue(Dashboard.isUserNavigateHome(),"user navigate home error");
+        Customer.searchItemOnHome(itemCode);
+        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName.toLowerCase()), "item not found");
         Dashboard.navigateToHome();
         softAssert.assertTrue(Dashboard.isUserNavigateHome(),"user navigate home error");
 
         Dashboard.switch1932Saval();
         softAssert.assertTrue(Dashboard.isUserNavigateHome(),"user navigate home saval 1932 error");
         Customer.searchItemOnHome(itemName2);
+        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName2.toLowerCase()), "item not found");
+        Dashboard.navigateToHome();
+        softAssert.assertTrue(Dashboard.isUserNavigateHome(),"user navigate home error");
+        Customer.searchItemOnHome(itemCode2);
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName2.toLowerCase()), "item not found");
         softAssert.assertAll();
     }
