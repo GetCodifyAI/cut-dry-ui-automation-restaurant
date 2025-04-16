@@ -840,5 +840,8 @@ public class Customer {
         }
         Thread.sleep(3000);
     }
+    public static void removeItemFromCatalogStable(String name)throws InterruptedException{
+        customersPage.clickOnRemoveFromOrderGuideStable(name);
+    }
 
 }

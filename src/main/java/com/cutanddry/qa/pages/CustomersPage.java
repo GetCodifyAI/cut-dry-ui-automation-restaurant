@@ -247,6 +247,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By Savebtn = By.xpath("//button[normalize-space(text())='Save']");
     String recentOrder = "//span[text()='Recent Orders']/../following-sibling::div//td[text()='ID']";
     By btn_previousDraftOrderYes = By.xpath("//div[contains(text(),'previous draft order')]/..//div[text()='Yes']");
+    String removeItemOnOG = "//div[contains(text(),'NAME')]/../../preceding-sibling::div[2]//button[@data-tip='Remove from Order Guide']";
 
 
 
@@ -1571,6 +1572,11 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
     public void isPreviousDraftOrderYesDisplayed() throws InterruptedException {
          restaurantUI.click(btn_previousDraftOrderYes);
+    }
+    public void clickOnRemoveFromOrderGuideStable(String name) throws InterruptedException {
+        restaurantUI.waitForVisibility(By.xpath(removeItemOnOG.replace("NAME",name)));
+        restaurantUI.click(By.xpath(removeItemOnOG.replace("NAME",name)));
+        restaurantUI.waitForCustom(4000);
     }
 
 }
