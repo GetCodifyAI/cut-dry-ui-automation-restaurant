@@ -128,4 +128,7 @@ public class Catalog {
     public static double getPDPPriceUOMJIT(String uom) throws InterruptedException {
         return catalogPage.getPDPPriceUOMJIT(uom);
     }
+    public static boolean isCategoryDisplayed()throws InterruptedException{
+        return catalogPage.isCategoryDisplayed();
+    }
 }

@@ -245,6 +245,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By substitutionDropDown = By.xpath("//div[contains(text(), 'Substitutions')]//following-sibling::div/div/div/div");
     String substitutionOption = "//div[contains(text(), 'Substitutions')]//following-sibling::*//div[text()='STATUS']";
     By Savebtn = By.xpath("//button[normalize-space(text())='Save']");
+    String recentOrder = "//span[text()='Recent Orders']/../following-sibling::div//td[text()='ID']";
+    By btn_previousDraftOrderYes = By.xpath("//div[contains(text(),'previous draft order')]/..//div[text()='Yes']");
 
 
 
@@ -1554,6 +1556,21 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+    public double getCatalogItemPrice(String name) throws InterruptedException {
+        try {
+            return extractPrice(By.xpath(ItemPriceCatalogView.replace("ITEMNAME", name)));
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractPrice(By.xpath(ItemPriceCatalogView.replace("ITEMNAME", name)));
+        }
+    }
+    public boolean isRecentOrderDisplayed(String id)throws InterruptedException{
+        restaurantUI.scrollToElement(By.xpath(recentOrder.replace("ID",id)));
+        return restaurantUI.isDisplayed(By.xpath(recentOrder.replace("ID",id)));
+    }
+    public void isPreviousDraftOrderYesDisplayed() throws InterruptedException {
+         restaurantUI.click(btn_previousDraftOrderYes);
     }
 
 }

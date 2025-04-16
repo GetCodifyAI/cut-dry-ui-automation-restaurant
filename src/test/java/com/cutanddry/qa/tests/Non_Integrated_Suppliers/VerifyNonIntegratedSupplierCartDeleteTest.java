@@ -2,6 +2,7 @@ package com.cutanddry.qa.tests.Non_Integrated_Suppliers;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
+import com.cutanddry.qa.functions.Catalog;
 import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
@@ -39,7 +40,7 @@ public class VerifyNonIntegratedSupplierCartDeleteTest extends TestBase {
         Customer.checkoutItems();
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.clickDeleteItemOnCart();
-        softAssert.assertEquals(Customer.isCartTotalZero(),0.0,"ERROR in Deleting Item From Cart");
+        softAssert.assertEquals(Catalog.getTotalPriceInReviewOrder(),0.0,"ERROR in Deleting Item From Cart");
 
 
         softAssert.assertAll();

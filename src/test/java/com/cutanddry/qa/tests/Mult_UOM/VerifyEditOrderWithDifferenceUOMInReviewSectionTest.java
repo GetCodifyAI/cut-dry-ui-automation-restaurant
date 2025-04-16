@@ -64,7 +64,7 @@ public class VerifyEditOrderWithDifferenceUOMInReviewSectionTest extends TestBas
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
         totalItemPriceReviewOrder = Catalog.getTotalPriceInReviewOrder();
         totalItemQuantityReviewOrder = Catalog.getTotalQuantityInReviewOrder();
-        softAssert.assertEquals(Catalog.getTotalItemCount(),"4","item count not equal");
+        softAssert.assertEquals(Catalog.getTotalQuantityInReviewOrder(),"4","item count not equal");
         softAssert.assertEquals(Math.round(Catalog.getTotalPriceUOM() * 100.0) / 100.0,
                 ((Math.round(totalPrice1 * 100.0) / 100.0)*2), "Total price not correct");
 
