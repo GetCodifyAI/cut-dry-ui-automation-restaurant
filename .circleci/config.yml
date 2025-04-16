@@ -1125,7 +1125,7 @@ workflows:
           filters:
             branches:
               only:
-                - main
+                - viranga_bug_fix
     jobs:
       - daily-build-and-test-6
       - daily-build-and-test-7
