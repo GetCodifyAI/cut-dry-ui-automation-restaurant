@@ -843,5 +843,13 @@ public class Customer {
     public static void removeItemFromCatalogStable(String name)throws InterruptedException{
         customersPage.clickOnRemoveFromOrderGuideStable(name);
     }
+    public static void searchItemOnHome(String item) throws InterruptedException {
+        customersPage.typeToSearchOnHome(item);
+        customersPage.clickSearchHome();
+        if (customersPage.isPreviousDraftOrderNoDisplayed()){
+            customersPage.clickPreviousDraftOrderNo();
+        }
+        Thread.sleep(5000);
+    }
 
 }
