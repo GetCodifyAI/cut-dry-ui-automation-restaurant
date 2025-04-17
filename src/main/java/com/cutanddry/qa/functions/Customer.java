@@ -851,5 +851,8 @@ public class Customer {
         }
         Thread.sleep(5000);
     }
+    public static boolean isRecentOrderTextDisplayed()throws InterruptedException{
+        return customersPage.isRecentOrderTextDisplayed();
+    }
 
 }

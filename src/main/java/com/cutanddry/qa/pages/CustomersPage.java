@@ -250,6 +250,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String removeItemOnOG = "//div[contains(text(),'NAME')]/../../preceding-sibling::div[2]//button[@data-tip='Remove from Order Guide']";
     By tbx_homeSearch = By.xpath("//input[@placeholder='Search items by name or code...']");
     By btn_homeSearch = By.xpath("//button/*[local-name()='svg' and @data-icon='magnifying-glass']");
+    By txt_recentOrder = By.xpath("//span[text()='Recent Orders']");
 
 
 
@@ -1590,6 +1591,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
     public void clickSearchHome()throws InterruptedException{
         restaurantUI.click(btn_homeSearch);
+    }
+    public boolean isRecentOrderTextDisplayed()throws InterruptedException{
+        restaurantUI.scrollToElement(txt_recentOrder);
+        return restaurantUI.isDisplayed(txt_recentOrder);
     }
 
 }

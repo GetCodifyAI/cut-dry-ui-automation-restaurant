@@ -136,4 +136,13 @@ public class Dashboard {
     public static void switchSavalFood()throws InterruptedException{
         dashboardPage.switchSavalFood();
     }
+    public static boolean isCatalogDataDisplayed()throws InterruptedException{
+        return dashboardPage.isCatalogDataDisplayed();
+    }
+    public static boolean isSavalFoodServiceLogoDisplayed()throws InterruptedException{
+        return  dashboardPage.isSavalFoodServiceLogoDisplayed();
+    }
+    public static boolean isSavalFoodServiceBannerDisplayed()throws InterruptedException{
+        return  dashboardPage.isSavalFoodServiceBannerDisplayed();
+    }
 }
