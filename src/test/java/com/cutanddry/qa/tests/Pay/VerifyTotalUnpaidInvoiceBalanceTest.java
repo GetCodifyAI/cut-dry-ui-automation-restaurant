@@ -68,5 +68,4 @@ public class VerifyTotalUnpaidInvoiceBalanceTest extends TestBase {
         takeScreenshotOnFailure(result);
         closeAllBrowsers();
     }
-
 }
