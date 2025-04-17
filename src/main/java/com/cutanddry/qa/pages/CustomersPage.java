@@ -57,7 +57,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_submitOrderGuide = By.xpath("//button[contains(text(), 'Submit')]");
     By btn_addFromCatalog = By.xpath("//div[contains(text(), 'Add from Catalog')]");
     By btn_addToOrderGuide = By.xpath("//button[@data-tip='Add to Order Guide']");
-    By btn_closeEditor = By.xpath("//button[contains(text(), 'Close Editor')]");
+    By btn_closeEditor = By.xpath("//*[contains(text(), 'Close Editor')]");
     By btn_removeFromOrderGuide = By.xpath("//button[@data-tip='Remove from Order Guide']");
     By btn_sortCustomOrder = By.xpath("//div[contains(@class, 'cd_themed_select__single-value') and text()='Custom Order']");
     By btn_sortItemCategory = By.xpath("//div[contains(@class, 'cd_themed_select__single-value') and text()='Item Categories']");
@@ -250,6 +250,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String removeItemOnOG = "//div[contains(text(),'NAME')]/../../preceding-sibling::div[2]//button[@data-tip='Remove from Order Guide']";
     By tbx_homeSearch = By.xpath("//input[@placeholder='Search items by name or code...']");
     By btn_homeSearch = By.xpath("//button/*[local-name()='svg' and @data-icon='magnifying-glass']");
+    By txt_editItem = By.xpath("//*[contains(text(), 'Edit Item')]");
+    By caseUnit = By.xpath("//label[text()='Unit']/../following-sibling::div[text()='Case']");
+    String multiUomDropDownIndicator = "//td[text()='CODE']/following-sibling::td[1]//div/*[local-name()='svg']";
     By txt_recentOrder = By.xpath("//span[text()='Recent Orders']");
 
 
@@ -535,7 +538,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
 
     public void clickOnEdit() {
         restaurantUI.waitForClickability(btn_edit);
-        restaurantUI.click(btn_edit);
+        restaurantUI.clickUsingJavaScript(btn_edit);
     }
 
     public boolean isEditOrderGuideTextDisplayed() {
@@ -602,7 +605,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.waitForCustom(2000);
     }
 
-    public void clickOnCloseEditor() {
+    public void clickOnCloseEditor() throws InterruptedException {
         restaurantUI.click(btn_closeEditor);
         restaurantUI.refreshPage();
         try {
@@ -611,6 +614,11 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
             throw new RuntimeException(e);
         }
     }
+public void clickOnCloseOrderGuideEditor(){
+    restaurantUI.waitForClickability(btn_closeEditor);
+    restaurantUI.clickUsingJavaScript(btn_closeEditor);
+    restaurantUI.waitForVisibility(tbx_orderGuideSearch);
+}
 
     public void clickOnRemoveFromOrderGuide() throws InterruptedException {
         restaurantUI.waitForVisibility(btn_removeFromOrderGuide);
@@ -946,7 +954,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         return restaurantUI.getText(unitSelectionDropdown);
     }
 
-    public void clickEditItemBtn(String itemname){
+    public void clickEditItemBtn(String itemname) throws InterruptedException {
+        restaurantUI.waitForCustom(3000);
+        restaurantUI.waitForVisibility(By.xpath(editItemBtn.replace("ITEMNAME",itemname)));
         restaurantUI.click(By.xpath(editItemBtn.replace("ITEMNAME",itemname)));
 
     }
@@ -1109,7 +1119,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     public void clickSaveItemBtn(){
         restaurantUI.click(saveItemBtn);
         try {
-            restaurantUI.waitForCustom(3000);
+            restaurantUI.waitForCustom(5000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -1591,6 +1601,27 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
     public void clickSearchHome()throws InterruptedException{
         restaurantUI.click(btn_homeSearch);
+    }
+    public boolean isEditItemPopupDisplayed(){
+        restaurantUI.waitForVisibility(txt_editItem);
+        return restaurantUI.isDisplayed(txt_editItem);
+    }
+    public void clickOnCaseUnit()throws InterruptedException{
+        restaurantUI.waitForClickability(caseUnit);
+        restaurantUI.clickUsingJavaScript(caseUnit);
+    }
+    public boolean isMultiUomDropDownDisplayed(String code)throws InterruptedException{
+        restaurantUI.waitForCustom(5000);
+        return restaurantUI.isDisplayed(By.xpath(multiUomDropDownIndicator.replace("CODE", code)));
+    }
+    public void clickSaveOnUOMEditor(){
+        restaurantUI.waitForClickability(saveItemBtn);
+        restaurantUI.clickUsingJavaScript(saveItemBtn);
+        try {
+            restaurantUI.waitForCustom(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
     public boolean isRecentOrderTextDisplayed()throws InterruptedException{
         restaurantUI.scrollToElement(txt_recentOrder);

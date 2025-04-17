@@ -83,7 +83,7 @@ public class Pay {
 
     public static void clickOnInvoiceStatusDropdownMenu()throws InterruptedException{PayPage.clickOnInvoiceStatus();}
 
-    public static void clickOnPastDueOption(){PayPage.clickOnPastDue();}
+    public static void clickOnPastDueOption() throws InterruptedException {PayPage.clickOnPastDue();}
 
     public static boolean isSearchedTextDisplayed(){return PayPage.isSearchedTextDisplayed();}
 
@@ -184,4 +184,50 @@ public class Pay {
     public static boolean isTransactionRejectedPopUpDisplayed(){
         return PayPage.isTransactionRejectedPopUpDisplayed();
     }
+    public static boolean isTotalUnpaidInvoicesTextDisplayed(){
+        return PayPage.isTotalUnpaidInvoicesTextDisplayed();
+    }
+    public static boolean isTotalCreditsTextDisplayed(){
+        return PayPage.isTotalCreditsTextDisplayed();
+    }
+    public static boolean isPastDueTextDisplayed(){
+        return PayPage.isPastDueTextDisplayed();
+    }
+    public static void clickOnInvoiceTypeDropdownMenu()throws InterruptedException{
+        PayPage.clickOnInvoiceType();
+    }
+    public static void clickOnCreditMemoOption() throws InterruptedException{
+        PayPage.clickOnTypeCreditMemo();
+    }
+    public static void clickOnInvoiceOption() throws InterruptedException{
+        PayPage.clickOnTypeInvoice();
+    }
+    public static float getCreditMemosTotalAmount(){
+        return PayPage.getCreditMemosTotalAmount();
+    }
+    public static float getTotalCreditsAmount(){
+        return PayPage.getTotalCreditsAmount();
+    }
+    public static float getPastDueInvoicesTotalAmount(){
+        return PayPage.getPastDueInvoicesTotalAmount();
+    }
+    public static float getTotalPastDueAmount(){
+        return PayPage.getTotalPastDueInvoicesAmount();
+    }
+    public static void clearInvoiceTypeDropDownOption() throws InterruptedException {
+        PayPage.clearInvoiceTypeDropDownOption();
+    }
+    public static void clearInvoiceStatusDropDownOption() throws InterruptedException{
+        PayPage.clearInvoiceStatusDropDownOption();
+    }
+    public static void clickOnUnpaidOption() throws InterruptedException {
+        PayPage.clickOnStatusUnpaid();
+    }
+    public static float getUnpaidInvoicesTotalAmount (){
+        return PayPage.getUnpaidInvoicesTotalAmount();
+    }
+    public static float getTotalUnpaidInvoicesAmount(){
+        return PayPage.getTotalUnpaidInvoicesAmount();
+    }
+
 }
