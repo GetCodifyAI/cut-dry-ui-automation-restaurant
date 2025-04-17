@@ -836,5 +836,19 @@ public class Customer {
     public static boolean isMultiUomDropDownDisplayed(String code)throws InterruptedException{
         return customersPage.isMultiUomDropDownDisplayed(code);
     }
+    public static void closeOrderGuideEditor() throws InterruptedException {
+        customersPage.clickOnCloseOrderGuideEditor();
+        if (dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickOnNoDraftOrder();
+        }
+    }
+    public static void clickSaveOnUOMEditor() throws InterruptedException{
+        customersPage.clickSaveOnUOMEditor();
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickOnNoDraftOrder();
+        }
+    }
+
+
 
 }

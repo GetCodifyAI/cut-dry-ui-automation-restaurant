@@ -527,7 +527,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
 
     public void clickOnEdit() {
         restaurantUI.waitForClickability(btn_edit);
-        restaurantUI.click(btn_edit);
+        restaurantUI.clickUsingJavaScript(btn_edit);
     }
 
     public boolean isEditOrderGuideTextDisplayed() {
@@ -603,13 +603,11 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
             throw new RuntimeException(e);
         }
     }
-//public void closeEditor(){
-//    restaurantUI.waitForClickability(btn_closeEditor);
-//    // distributorUI.click(btn_closeEditor);
-//    restaurantUI.clickUsingJavaScript(btn_closeEditor);
-//    restaurantUI.refreshPage();
-//    restaurantUI.waitForVisibility(tbx_orderGuideSearch);
-//}
+public void clickOnCloseOrderGuideEditor(){
+    restaurantUI.waitForClickability(btn_closeEditor);
+    restaurantUI.clickUsingJavaScript(btn_closeEditor);
+    restaurantUI.waitForVisibility(tbx_orderGuideSearch);
+}
 
     public void clickOnRemoveFromOrderGuide() throws InterruptedException {
         restaurantUI.waitForVisibility(btn_removeFromOrderGuide);
@@ -1567,10 +1565,21 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         return restaurantUI.isDisplayed(txt_editItem);
     }
     public void clickOnCaseUnit()throws InterruptedException{
-        restaurantUI.click(caseUnit);
+        restaurantUI.waitForClickability(caseUnit);
+        restaurantUI.clickUsingJavaScript(caseUnit);
     }
     public boolean isMultiUomDropDownDisplayed(String code)throws InterruptedException{
+        restaurantUI.waitForCustom(4000);
         return restaurantUI.isDisplayed(By.xpath(multiUomDropDownIndicator.replace("CODE", code)));
+    }
+    public void clickSaveOnUOMEditor(){
+        restaurantUI.waitForClickability(saveItemBtn);
+        restaurantUI.clickUsingJavaScript(saveItemBtn);
+        try {
+            restaurantUI.waitForCustom(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
