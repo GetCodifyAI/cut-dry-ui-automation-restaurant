@@ -39,6 +39,9 @@
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSubmittingOrderOfTheSelectedSupplierTest"/>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateAddingItemToOrderGuideOfTheSelectedSupplierTest"/>
 
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateItemSearchByNameOrderCodeForSelectedSupplierTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateCatalogNavigationOfTheSelectedSupplierTest"/>
+
         </classes>
     </test>
 </suite>

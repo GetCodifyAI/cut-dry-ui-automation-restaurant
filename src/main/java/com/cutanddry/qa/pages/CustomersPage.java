@@ -248,6 +248,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String recentOrder = "//span[text()='Recent Orders']/../following-sibling::div//td[text()='ID']";
     By btn_previousDraftOrderYes = By.xpath("//div[contains(text(),'previous draft order')]/..//div[text()='Yes']");
     String removeItemOnOG = "//div[contains(text(),'NAME')]/../../preceding-sibling::div[2]//button[@data-tip='Remove from Order Guide']";
+    By tbx_homeSearch = By.xpath("//input[@placeholder='Search items by name or code...']");
+    By btn_homeSearch = By.xpath("//button/*[local-name()='svg' and @data-icon='magnifying-glass']");
 
 
 
@@ -1577,6 +1579,17 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.waitForVisibility(By.xpath(removeItemOnOG.replace("NAME",name)));
         restaurantUI.click(By.xpath(removeItemOnOG.replace("NAME",name)));
         restaurantUI.waitForCustom(4000);
+    }
+    public void typeToSearchOnHome(String item) throws InterruptedException {
+        restaurantUI.waitForCustom(3000);
+        restaurantUI.clearUsingJavaScript(tbx_homeSearch);
+        restaurantUI.click(tbx_homeSearch);
+        restaurantUI.waitForCustom(2000);
+        restaurantUI.sendKeys(tbx_homeSearch, item);
+        restaurantUI.waitForCustom(4000);
+    }
+    public void clickSearchHome()throws InterruptedException{
+        restaurantUI.click(btn_homeSearch);
     }
 
 }
