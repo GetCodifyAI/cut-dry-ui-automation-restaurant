@@ -1597,7 +1597,7 @@ public void clickOnCloseOrderGuideEditor(){
         restaurantUI.clickUsingJavaScript(caseUnit);
     }
     public boolean isMultiUomDropDownDisplayed(String code)throws InterruptedException{
-        restaurantUI.waitForCustom(4000);
+        restaurantUI.waitForCustom(5000);
         return restaurantUI.isDisplayed(By.xpath(multiUomDropDownIndicator.replace("CODE", code)));
     }
     public void clickSaveOnUOMEditor(){
