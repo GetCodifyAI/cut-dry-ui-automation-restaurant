@@ -40,6 +40,9 @@
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSubmittingOrderOfTheSelectedSupplierTest"/>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateAddingItemToOrderGuideOfTheSelectedSupplierTest"/>
 
+            <class name="com.cutanddry.qa.tests.Pay.VerifyTotalUnpaidInvoiceBalanceTest"/>
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditUOMsFromEditTest"/>
+
         </classes>
     </test>
 </suite>
