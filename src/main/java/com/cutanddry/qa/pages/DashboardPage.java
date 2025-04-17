@@ -8,7 +8,7 @@ public class DashboardPage extends LoginPage{
     By txt_dashboard = By.xpath("//div[text()='Place Order']");
     By btn_placeOrder = By.xpath("//div[contains(text(), 'Independent Foods Co')]");
     By btn_hayes = By.xpath("//div[contains(text(), 'Hayes')]");
-    By txt_OrderGuide = By.xpath("//div[contains(text(), 'Order Guide')]");
+    By txt_OrderGuide = By.xpath("//span[contains(text(), 'Order Guide')]");
     By btn_TestAutomation = By.xpath("//div[contains(text(), 'Test_Automation') and contains(@class, 'w-100')]");
     By txt_draftOrder = By.xpath("//div[contains(@class, 'text-center') and contains(text(), 'continue your previous draft order')]");
     By btn_noDraftOrder = By.xpath("//span[text()='×']");
@@ -39,6 +39,15 @@ public class DashboardPage extends LoginPage{
     By btn_catalog = By.xpath("//a[@data-tip='View Catalog']");
     By btn_settings = By.xpath("//a[@role='button' and contains(text(), 'Settings')]");
     By btn_orderSettings = By.xpath("//div[@arrowprops]//a[text()='Orders']");
+    By txt_productCatalog = By.xpath("//div[text()='Choose your product catalog']");
+    String chooseProductCatalog = "//span[text()='NAME']";
+    By btn_home = By.xpath("//a[@data-tip='Home']");
+    By txt_home = By.xpath("//li[text()='Home']");
+    By btn_switch1932Saval = By.xpath("//button[text()='Switch to 1932 by Saval']");
+    By btn_category = By.xpath("//div[text()='Shop Our Catalog']/following-sibling::*//div//p[text()='Beverages']");
+    By NoBtnDraftOrderCatalog = By.xpath("//div[text()='No']");
+    By btn_switchSavalFood = By.xpath("//button[text()='Switch to Saval Foodservice']");
+    By txt_MaxiesOrderGuide = By.xpath("//div[contains(text(), 'Order Guide')]");
 
 
     public boolean isDashboardTextDisplayed(){
@@ -88,6 +97,9 @@ public class DashboardPage extends LoginPage{
         restaurantUI.click(btn_hayes);}
     public boolean isOrderGuideTextDisplayed(){
         return restaurantUI.isDisplayed(txt_OrderGuide);
+    }
+    public boolean isMaxiesOrderGuideTextDisplayed(){
+        return restaurantUI.isDisplayed(txt_MaxiesOrderGuide);
     }
     public boolean isTestAutomationPopupDisplayed(){
         return restaurantUI.isDisplayed(btn_TestAutomation,5);
@@ -191,6 +203,38 @@ public class DashboardPage extends LoginPage{
         restaurantUI.clickUsingJavaScript(btn_settings);
         restaurantUI.hoverOverElement(btn_orderSettings);
         restaurantUI.clickWithFallback(btn_orderSettings);
+    }
+    public boolean isChooseProductCatalogDisplayed()throws InterruptedException{
+        restaurantUI.waitForCustom(3000);
+        restaurantUI.waitForVisibility(txt_productCatalog);
+        return restaurantUI.isDisplayed(txt_productCatalog);
+    }
+    public void chooseProductCatalog(String name)throws InterruptedException{
+        restaurantUI.waitForVisibility(By.xpath(chooseProductCatalog.replace("NAME",name)));
+        restaurantUI.click(By.xpath(chooseProductCatalog.replace("NAME",name)));
+    }
+    public void clickOnHome() throws InterruptedException {
+        restaurantUI.click(btn_home);
+        restaurantUI.waitForCustom(2000);
+    }
+    public boolean isUserNavigateHome()throws InterruptedException{
+        return restaurantUI.isDisplayed(txt_home);
+    }
+    public void switch1932Saval()throws InterruptedException{
+        restaurantUI.waitForVisibility(btn_switch1932Saval);
+        restaurantUI.click(btn_switch1932Saval);
+    }
+    public void clickCategory()throws InterruptedException{
+        restaurantUI.waitForVisibility(btn_category);
+        restaurantUI.clickUsingJavaScript(btn_category);
+    }
+    public void clickNoBtnOnDraftCheckOverlayCatalog(){
+        restaurantUI.hoverOverElement(NoBtnDraftOrderCatalog);
+        restaurantUI.clickUsingJavaScript(NoBtnDraftOrderCatalog);
+    }
+    public void switchSavalFood()throws InterruptedException{
+        restaurantUI.waitForVisibility(btn_switchSavalFood);
+        restaurantUI.click(btn_switchSavalFood);
     }
 
 }

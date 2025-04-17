@@ -31,6 +31,9 @@ public class Dashboard {
     public static boolean isUserNavigatedToOrderGuide(){
         return dashboardPage.isOrderGuideTextDisplayed();
     }
+    public static boolean isUserNavigatedToOrderGuideMaxies(){
+        return dashboardPage.isMaxiesOrderGuideTextDisplayed();
+    }
 
     public static boolean isUserNavigatedToDisDashboard(){
         return dashboardPage.isDisDashboardTextDisplayed();
@@ -108,5 +111,29 @@ public class Dashboard {
     }
     public static void navigateToOrderSettings() {
         dashboardPage.clickOnOrderSettings();
+    }
+    public static boolean isChooseProductCatalogDisplayed()throws InterruptedException{
+        return dashboardPage.isChooseProductCatalogDisplayed();
+    }
+    public static void chooseProductCatalog(String name)throws InterruptedException{
+        dashboardPage.chooseProductCatalog(name);
+    }
+    public static void navigateToHome() throws InterruptedException {
+        dashboardPage.clickOnHome();
+    }
+    public static boolean isUserNavigateHome()throws InterruptedException{
+        return dashboardPage.isUserNavigateHome();
+    }
+    public static void switch1932Saval()throws InterruptedException{
+        dashboardPage.switch1932Saval();
+    }
+    public static void clickCategory()throws InterruptedException{
+        dashboardPage.clickCategory();
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickNoBtnOnDraftCheckOverlayCatalog();
+        }
+    }
+    public static void switchSavalFood()throws InterruptedException{
+        dashboardPage.switchSavalFood();
     }
 }

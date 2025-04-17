@@ -13,8 +13,8 @@ By btn_decreaseQtyFirstRow = By.xpath("(//tr/td//div[contains(@data-tip,'View Pr
     By btn_increaseQtySecondRow = By.xpath("//tr[2]/td[6]/div/div/div/div[3]");
     By btn_checkout = By.xpath("//button[@data-for='cartCheckoutButton']");
     By txt_catalog = By.xpath("//div[contains(text(), 'Item Type')]");
-    By btn_catalog = By.xpath("//div[text()='Catalog']");
-    By btn_catalogToOrderGuide = By.xpath("//div[text()='Order Guide']");
+    By btn_catalog = By.xpath("//span[text()='Catalog']");
+    By btn_catalogToOrderGuide = By.xpath("//span[text()='Order Guide']");
     By tbx_catalogSearch = By.xpath("//input[@placeholder='Search catalog...']");
     By tbx_orderGuideSearch = By.xpath("//input[@placeholder='Search order guide...']");
     //By lbl_catalogSearchItemList = By.xpath("(//button[contains(@data-for,'tooltipundefined')]/ancestor::div[2]/following-sibling::div[2]/div/div)[1]");
@@ -32,7 +32,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By tbx_itemQuantityCatalog = By.xpath("//input[@type='number']");
     By lbl_itemPriceSearchCatalogList = By.xpath("//div[4]/div/div[1]/div/span[contains(text(), '$')]");
     By txt_addToCart = By.xpath("//button[contains(text(), 'Add to Cart')]");
-    By lbl_itemPriceReviewCart = By.xpath("//tbody[2]/tr[2]/td[2]");
+    By lbl_itemPriceReviewCart = By.xpath("//td[text()='Total:']/following-sibling::td");
     By btn_increaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div/div[3]");
     By btn_decreaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div/div[1]");
     By tbx_itemQuantityReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[2]/input");
@@ -245,6 +245,14 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By substitutionDropDown = By.xpath("//div[contains(text(), 'Substitutions')]//following-sibling::div/div/div/div");
     String substitutionOption = "//div[contains(text(), 'Substitutions')]//following-sibling::*//div[text()='STATUS']";
     By Savebtn = By.xpath("//button[normalize-space(text())='Save']");
+    String recentOrder = "//span[text()='Recent Orders']/../following-sibling::div//td[text()='ID']";
+    By btn_previousDraftOrderYes = By.xpath("//div[contains(text(),'previous draft order')]/..//div[text()='Yes']");
+    String removeItemOnOG = "//div[contains(text(),'NAME')]/../../preceding-sibling::div[2]//button[@data-tip='Remove from Order Guide']";
+
+
+
+
+
     By txt_editItem = By.xpath("//*[contains(text(), 'Edit Item')]");
     By caseUnit = By.xpath("//label[text()='Unit']/../following-sibling::div[text()='Case']");
     String multiUomDropDownIndicator = "//td[text()='CODE']/following-sibling::td[1]//div/*[local-name()='svg']";
@@ -1559,6 +1567,26 @@ public void clickOnCloseOrderGuideEditor(){
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+    public double getCatalogItemPrice(String name) throws InterruptedException {
+        try {
+            return extractPrice(By.xpath(ItemPriceCatalogView.replace("ITEMNAME", name)));
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractPrice(By.xpath(ItemPriceCatalogView.replace("ITEMNAME", name)));
+        }
+    }
+    public boolean isRecentOrderDisplayed(String id)throws InterruptedException{
+        restaurantUI.scrollToElement(By.xpath(recentOrder.replace("ID",id)));
+        return restaurantUI.isDisplayed(By.xpath(recentOrder.replace("ID",id)));
+    }
+    public void isPreviousDraftOrderYesDisplayed() throws InterruptedException {
+         restaurantUI.click(btn_previousDraftOrderYes);
+    }
+    public void clickOnRemoveFromOrderGuideStable(String name) throws InterruptedException {
+        restaurantUI.waitForVisibility(By.xpath(removeItemOnOG.replace("NAME",name)));
+        restaurantUI.click(By.xpath(removeItemOnOG.replace("NAME",name)));
+        restaurantUI.waitForCustom(4000);
     }
     public boolean isEditItemPopupDisplayed(){
         restaurantUI.waitForVisibility(txt_editItem);

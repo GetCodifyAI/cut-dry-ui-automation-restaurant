@@ -827,6 +827,22 @@ public class Customer {
         customersPage.editSubstitutionStatus(status);
         customersPage.saveCatalogAccessChanges();
     }
+    public static double catalogItemPrice(String itemName) throws InterruptedException {
+        return customersPage.getCatalogItemPrice(itemName);
+    }
+    public static boolean isRecentOrderDisplayed(String id)throws InterruptedException{
+        return customersPage.isRecentOrderDisplayed(id);
+    }
+    public static void clickOnPlaceOrderSavalDraft() throws InterruptedException {
+        customersPage.clickOnPlaceOrder();
+        if (customersPage.isPreviousDraftOrderNoDisplayed()){
+            customersPage.isPreviousDraftOrderYesDisplayed();
+        }
+        Thread.sleep(3000);
+    }
+    public static void removeItemFromCatalogStable(String name)throws InterruptedException{
+        customersPage.clickOnRemoveFromOrderGuideStable(name);
+    }
     public static boolean isEditItemPopupDisplayed(){
         return customersPage.isEditItemPopupDisplayed();
     }

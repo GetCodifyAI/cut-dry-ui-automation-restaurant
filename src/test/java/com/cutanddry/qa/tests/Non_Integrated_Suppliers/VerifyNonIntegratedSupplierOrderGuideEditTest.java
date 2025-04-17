@@ -31,7 +31,7 @@ public class VerifyNonIntegratedSupplierOrderGuideEditTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.selectSupplier(supplierName);
         softAssert.assertTrue(Dashboard.isNavigatedToMaxiesSLPage(),"ERROR in Navigating to Maxies SL Page");
-        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuideMaxies(),"navigation error");
         Customer.increaseFirstRowQtyByThree();
         softAssert.assertEquals(Customer.getItemQtyFirstRow(),"3");
         softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceFirstRow()*3, "price error after increase");
