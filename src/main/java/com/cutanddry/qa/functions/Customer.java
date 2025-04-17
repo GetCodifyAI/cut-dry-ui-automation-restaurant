@@ -872,5 +872,8 @@ public class Customer {
             dashboardPage.clickOnNoDraftOrder();
         }
     }
+    public static boolean isRecentOrderTextDisplayed()throws InterruptedException{
+        return customersPage.isRecentOrderTextDisplayed();
+    }
 
 }

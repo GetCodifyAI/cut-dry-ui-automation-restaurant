@@ -48,6 +48,8 @@ public class DashboardPage extends LoginPage{
     By NoBtnDraftOrderCatalog = By.xpath("//div[text()='No']");
     By btn_switchSavalFood = By.xpath("//button[text()='Switch to Saval Foodservice']");
     By txt_MaxiesOrderGuide = By.xpath("//div[contains(text(), 'Order Guide')]");
+    By savalFoodServiceLogo = By.xpath("//img[@class='_1mht6os' and contains(@src,'ordering-supplies-images')]");
+    By savalFoodBanner = By.xpath("//div[contains(@class,'carousel-item')]");
 
 
     public boolean isDashboardTextDisplayed(){
@@ -235,6 +237,15 @@ public class DashboardPage extends LoginPage{
     public void switchSavalFood()throws InterruptedException{
         restaurantUI.waitForVisibility(btn_switchSavalFood);
         restaurantUI.click(btn_switchSavalFood);
+    }
+    public boolean isCatalogDataDisplayed()throws InterruptedException{
+        return restaurantUI.isDisplayed(btn_category);
+    }
+    public boolean isSavalFoodServiceLogoDisplayed()throws InterruptedException{
+        return restaurantUI.isDisplayed(savalFoodServiceLogo);
+    }
+    public boolean isSavalFoodServiceBannerDisplayed()throws InterruptedException{
+        return restaurantUI.isDisplayed(savalFoodBanner);
     }
 
 }

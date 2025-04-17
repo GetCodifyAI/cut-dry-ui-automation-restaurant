@@ -45,6 +45,11 @@
             <class name="com.cutanddry.qa.tests.Pay.VerifyTotalUnpaidInvoiceBalanceTest"/>
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditUOMsFromEditTest"/>
 
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierCatalogWithSwitchFlowTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierLogoWithSwitchFlowTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierBannerWithSwitchFlowTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierRecentOrderHistoryWithSwitchFlowTest"/>
+
         </classes>
     </test>
 </suite>
