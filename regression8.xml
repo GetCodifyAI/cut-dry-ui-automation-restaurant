@@ -31,7 +31,6 @@
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyReportIssueButtonIsDisabledTest"/>
 
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifySubstituteItemsNotDisplayedIfTurnedOffCustomerProfileTest"/>
-            <class name="com.cutanddry.qa.tests.Pay.VerifyTotalUnpaidInvoiceBalanceTest"/>
 
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyNavigatingToOrderGuideTest"/>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyAddingItemToCartOfTheSelectedSupplierTest"/>
@@ -39,6 +38,9 @@
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateNavigatingToRelevantDraftOrderFromDraftsTest"/>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSubmittingOrderOfTheSelectedSupplierTest"/>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateAddingItemToOrderGuideOfTheSelectedSupplierTest"/>
+
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateItemSearchByNameOrderCodeForSelectedSupplierTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateCatalogNavigationOfTheSelectedSupplierTest"/>
 
             <class name="com.cutanddry.qa.tests.Pay.VerifyTotalUnpaidInvoiceBalanceTest"/>
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditUOMsFromEditTest"/>
