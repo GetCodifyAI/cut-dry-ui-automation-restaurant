@@ -191,7 +191,7 @@ public class Customer {
     public static void addItemFromCatalog()throws InterruptedException{
         customersPage.clickOnAddTOOrderGuide();
     }
-    public static void closeEditor(){
+    public static void closeEditor() throws InterruptedException {
         customersPage.clickOnCloseEditor();
         if (dashboardPage.isDraftOrderPopUpDisplayed()){
             dashboardPage.clickOnNoDraftOrder();
@@ -391,7 +391,7 @@ public class Customer {
         return customersPage.isUnitChangedToCase();
     }
 
-    public static void clickOnItemEditBtn(String ItemName){
+    public static void clickOnItemEditBtn(String ItemName) throws InterruptedException {
         customersPage.clickEditItemBtn(ItemName);
 
     }
@@ -850,6 +850,27 @@ public class Customer {
             customersPage.clickPreviousDraftOrderNo();
         }
         Thread.sleep(5000);
+    }
+    public static boolean isEditItemPopupDisplayed(){
+        return customersPage.isEditItemPopupDisplayed();
+    }
+    public static void clickOnCaseUnit() throws InterruptedException {
+        customersPage.clickOnCaseUnit();
+    }
+    public static boolean isMultiUomDropDownDisplayed(String code)throws InterruptedException{
+        return customersPage.isMultiUomDropDownDisplayed(code);
+    }
+    public static void closeOrderGuideEditor() throws InterruptedException {
+        customersPage.clickOnCloseOrderGuideEditor();
+        if (dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickOnNoDraftOrder();
+        }
+    }
+    public static void clickSaveOnUOMEditor() throws InterruptedException{
+        customersPage.clickSaveOnUOMEditor();
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickOnNoDraftOrder();
+        }
     }
 
 }

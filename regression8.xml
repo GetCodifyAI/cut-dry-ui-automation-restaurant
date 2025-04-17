@@ -42,6 +42,9 @@
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateItemSearchByNameOrderCodeForSelectedSupplierTest"/>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateCatalogNavigationOfTheSelectedSupplierTest"/>
 
+            <class name="com.cutanddry.qa.tests.Pay.VerifyTotalUnpaidInvoiceBalanceTest"/>
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditUOMsFromEditTest"/>
+
         </classes>
     </test>
 </suite>
