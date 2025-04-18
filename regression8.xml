@@ -50,6 +50,10 @@
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierBannerWithSwitchFlowTest"/>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierRecentOrderHistoryWithSwitchFlowTest"/>
 
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheWLUserNavigatedToTheParentSupplierTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateWhiteLabelSuppliersSelectionSwitchTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidatePreSelectedSupplierRoutingWhenLoadingWhiteLabelAppTest"/>
+
         </classes>
     </test>
 </suite>

@@ -145,4 +145,13 @@ public class Dashboard {
     public static boolean isSavalFoodServiceBannerDisplayed()throws InterruptedException{
         return  dashboardPage.isSavalFoodServiceBannerDisplayed();
     }
+    public static boolean isSwitch1932SavalDisplayed()throws InterruptedException{
+        return dashboardPage.isSwitch1932SavalDisplayed();
+    }
+    public static boolean isSwitchSavalFoodDisplayed()throws InterruptedException{
+        return dashboardPage.isSwitchSavalFoodDisplayed();
+    }
+    public static boolean isParentDpNameDisplayed(String name)throws InterruptedException{
+        return dashboardPage.isParentDpNameDisplayed(name);
+    }
 }

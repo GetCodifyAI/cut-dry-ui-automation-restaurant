@@ -50,6 +50,7 @@ public class DashboardPage extends LoginPage{
     By txt_MaxiesOrderGuide = By.xpath("//div[contains(text(), 'Order Guide')]");
     By savalFoodServiceLogo = By.xpath("//img[@class='_1mht6os' and contains(@src,'ordering-supplies-images')]");
     By savalFoodBanner = By.xpath("//div[contains(@class,'carousel-item')]");
+    String parentDpName = "//div//span[contains(text(),'NAME')]";
 
 
     public boolean isDashboardTextDisplayed(){
@@ -246,6 +247,15 @@ public class DashboardPage extends LoginPage{
     }
     public boolean isSavalFoodServiceBannerDisplayed()throws InterruptedException{
         return restaurantUI.isDisplayed(savalFoodBanner);
+    }
+    public boolean isSwitch1932SavalDisplayed()throws InterruptedException{
+        return restaurantUI.isDisplayed(btn_switch1932Saval);
+    }
+    public boolean isSwitchSavalFoodDisplayed()throws InterruptedException{
+        return restaurantUI.isDisplayed(btn_switchSavalFood);
+    }
+    public boolean isParentDpNameDisplayed(String name)throws InterruptedException{
+        return restaurantUI.isDisplayed(By.xpath(parentDpName.replace("NAME",name)));
     }
 
 }
