@@ -55,6 +55,11 @@
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateWhiteLabelSuppliersSelectionSwitchTest"/>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidatePreSelectedSupplierRoutingWhenLoadingWhiteLabelAppTest"/>
 
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSoftOrderMinimumSelectingMultipleUOMTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheHardOrderMinimumSelectingMultipleUOMTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyPlaceOrderWithMultiUOMForScrapperIntegratedTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyPickupIsNotDisplayedWhenItIsOnlyEnabledForTheSupplierPortalTermTest" />
+
         </classes>
     </test>
 </suite>

@@ -29,6 +29,10 @@ public class InternalToolsPage extends TestBase {
     By addCustomerToPayDisable = By.xpath("//label[contains(text(), 'Pay Disabled Restaurants')]/following-sibling::div/div");
     String selectDisableCustomer = "//div[contains(text(), 'NAME')]";
     String ToggleDescription = "//*[contains(text(),'TOGGLENAME')]/following-sibling::div//div[contains(@class,'react-switch-bg')]";
+    By enableWillCallPickUpToggleStable = By.xpath("//div[contains(text(), 'Enable Will Call/Pickp:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
+    By enableWillCallPickUpToggleStable1 = By.xpath("//div[contains(text(), 'Enable Will Call/Pickp:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+
+
 
 
 
@@ -147,6 +151,17 @@ public class InternalToolsPage extends TestBase {
         restaurantUI.scrollToElement(By.xpath(selectDisableCustomer.replace("NAME", name)));
         restaurantUI.click(By.xpath(selectDisableCustomer.replace("NAME", name)));
         restaurantUI.waitForCustom(3000);
+    }
+    public void enableWillCallPickUpToggle(boolean enable) {
+
+        String handlePosition = restaurantUI.getElement(enableWillCallPickUpToggleStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(29px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(enableWillCallPickUpToggleStable1);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(enableWillCallPickUpToggleStable1);
+        }
     }
 
     public void enableDisableToggle(String ToggleName,boolean enable ){
