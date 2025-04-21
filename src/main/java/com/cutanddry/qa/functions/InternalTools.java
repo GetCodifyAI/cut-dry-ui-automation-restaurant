@@ -66,6 +66,9 @@ public class InternalTools {
     public static void addCustomerToPayDisable(String name) throws InterruptedException {
         internalToolsPage.addCustomerToPayDisable(name);
     }
+    public static void enableWillCallPickUpToggle(boolean status){
+        internalToolsPage.enableWillCallPickUpToggle(status);
+    }
 
 
 }

@@ -154,4 +154,11 @@ public class Dashboard {
     public static boolean isParentDpNameDisplayed(String name)throws InterruptedException{
         return dashboardPage.isParentDpNameDisplayed(name);
     }
+    public static void selectSupplierScrapper(String supplierName){
+        dashboardPage.clickOnSupplier(supplierName);
+        dashboardPage.clickOnColonnade();
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickNoBtnOnDraftCheckOverlay();
+        }
+    }
 }
