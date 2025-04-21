@@ -66,6 +66,8 @@ public class InternalTools {
     public static void addCustomerToPayDisable(String name) throws InterruptedException {
         internalToolsPage.addCustomerToPayDisable(name);
     }
-
+    public static void enableDisableToggle(String ToggleName, boolean enableStatus){
+        internalToolsPage.enableDisableToggle(ToggleName,enableStatus);
+    }
 
 }

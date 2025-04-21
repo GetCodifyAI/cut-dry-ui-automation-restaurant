@@ -28,7 +28,7 @@ public class InternalToolsPage extends TestBase {
     By payDetailsToggleStable1 = By.xpath("//label[contains(text(), 'Pay Enabled For All Users: ')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
     By addCustomerToPayDisable = By.xpath("//label[contains(text(), 'Pay Disabled Restaurants')]/following-sibling::div/div");
     String selectDisableCustomer = "//div[contains(text(), 'NAME')]";
-
+    String ToggleDescription = "//*[contains(text(),'TOGGLENAME')]/following-sibling::div//div[contains(@class,'react-switch-bg')]";
 
 
 
@@ -149,6 +149,14 @@ public class InternalToolsPage extends TestBase {
         restaurantUI.waitForCustom(3000);
     }
 
+    public void enableDisableToggle(String ToggleName,boolean enable ){
+        String AttributeValue = restaurantUI.getElement(By.xpath(ToggleDescription.replace("TOGGLENAME",ToggleName))).getAttribute("style");
+        boolean isEnabled = AttributeValue.contains("rgb(0, 136, 0)");
+
+        if(isEnabled != enable ){
+            restaurantUI.clickWithScrollAndHover(By.xpath(ToggleDescription.replace("TOGGLENAME",ToggleName)));
+        }
+    }
 
 
 }
