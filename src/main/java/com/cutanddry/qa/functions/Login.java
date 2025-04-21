@@ -128,5 +128,11 @@ public class Login {
         loginPage.typePasswordSaval(password);
         loginPage.clickSignInSaval();
     }
+    public static void refreshThePage(){
+        loginPage.refreshThePage();
+    }
+    public static void navigateToSavalFoodWL(){
+        loginPage.navigateSavalFood();
+    }
 
 }

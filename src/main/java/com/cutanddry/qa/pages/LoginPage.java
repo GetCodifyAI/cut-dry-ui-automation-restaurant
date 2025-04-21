@@ -201,6 +201,9 @@ public class LoginPage extends TestBase {
     public void clickSignInSaval(){
         restaurantUI.click(btn_signInSaval);
     }
+    public void refreshThePage(){
+        restaurantUI.refreshPage();
+    }
 
 
 }
