@@ -130,7 +130,17 @@ public class Customer {
         return customersPage.getItemPriceOnCheckoutButton();
     }
     public static boolean isAddToCartTextDisplayed(){return customersPage.isAddToCartTextDisplayed();}
-    public static double getItemPriceReviewCart(){return customersPage.getItemPriceReviewCart();}
+    public static double getItemPriceReviewCart(){
+        if (customersPage.isEditOrderTextDisplayed()) {
+            try {
+                return customersPage.getItemPriceOnMultiOUMCheckout();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }else {
+            return customersPage.getItemPriceReviewCart();
+        }
+        }
     public static String getItemQtyReviewCart(){
         return customersPage.getItemQtyReviewCart();
     }
@@ -714,7 +724,11 @@ public class Customer {
     }
 
     public static double getItemPriceReviewCartMultiUOM(String position) throws InterruptedException {
-        return customersPage.getItemPriceReviewCartMultiUOM(position);
+        if (customersPage.isEditOrderTextDisplayed()) {
+            return customersPage.getActiveItemPriceMultiOUM(position);
+        }else {
+            return customersPage.getItemPriceReviewCartMultiUOM(position);
+        }
     }
     public static void submitOrderRebate() throws InterruptedException {
         customersPage.submitOrder();
@@ -874,6 +888,12 @@ public class Customer {
     }
     public static boolean isRecentOrderTextDisplayed()throws InterruptedException{
         return customersPage.isRecentOrderTextDisplayed();
+    }
+
+    public static void clickOnEditOrderInReviewStable() throws InterruptedException {
+        if (customersPage.isReviewOrderTextDisplayed()) {
+            customersPage.clickEditOrder();
+        }
     }
 
 }
