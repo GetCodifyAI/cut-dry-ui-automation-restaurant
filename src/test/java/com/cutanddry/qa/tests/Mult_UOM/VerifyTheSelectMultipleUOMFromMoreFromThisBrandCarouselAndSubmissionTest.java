@@ -63,7 +63,7 @@ public class VerifyTheSelectMultipleUOMFromMoreFromThisBrandCarouselAndSubmissio
         Catalog.ClickOnMultiUomDropDown(searchItemName2);
         Catalog.ClickOnMultiUomDropDownOption(uomDropDownOption);
         softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
-        itemPriceUOM1 = Catalog.getPDPPriceUOM(uom1);
+        itemPriceUOM1 = Catalog.getPDPPriceUOMJIT(uom1);
         itemPriceUOM2 = Catalog.getPDPPriceUOM(uom2);
         Catalog.clickAddToCartPlusIcon(1, uom1);
         Catalog.clickAddToCartPlusIcon(1, uom2);

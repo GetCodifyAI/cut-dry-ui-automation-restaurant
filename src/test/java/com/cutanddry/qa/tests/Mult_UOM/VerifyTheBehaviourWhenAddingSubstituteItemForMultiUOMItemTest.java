@@ -13,14 +13,14 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheBehaviourWhenAddingSubstituteItemForMultiUOMItemTest extends TestBase {
     static User user;
-    String searchItemName = "Beef - Striploin Creekstone Masterchef 0X1";
-    String searchItemCde = "00132";
+    String searchItemName = "Organic Bananas - 2 LB";
+    String searchItemCde = "00529";
     String substituteItemCode = "01922";
     String uomDropDownOption = "Multiple Units";
     static String Dp_Name = "47837013 - Brandon IFC Cut+Dry Agent - Independent Foods Co";
     String uom1 = "1";
     String uom2 = "2";
-//    String uom3 = "3";
+
     static double itemPriceUOM1 ,itemPriceUOM2, totalItemPrice;
 
 
@@ -35,7 +35,7 @@ public class VerifyTheBehaviourWhenAddingSubstituteItemForMultiUOMItemTest exten
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-//        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
 
         Login.navigateToLoginAs();
         Login.goToDistributor(Dp_Name);
