@@ -70,5 +70,8 @@ public class InternalTools {
         internalToolsPage.enableWillCallPickUpToggle(status);
     }
 
+    public static void enableDisableToggle(String ToggleName, boolean enableStatus){
+        internalToolsPage.enableDisableToggle(ToggleName,enableStatus);
+    }
 
 }

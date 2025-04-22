@@ -154,14 +154,17 @@ public class Pay {
         PayPage.clickPrintInvoice();
     }
 
-    public static void navigateToPublicPayView(){
-        PayPage.navigateToPublicPayView();
+    public static void navigateToPublicPayView(String vendorID){
+        PayPage.navigateToPublicPayView(vendorID);
     }
     public static boolean isNavigatedToPublicPayView(){
         return PayPage.isNavigatedToPublicPayView();
     }
     public static void openUnpaidInvoice(){
         PayPage.openUnpaidInvoice();
+    }
+    public static boolean isNavigatedToInvoiceView(){
+        return PayPage.isInvoiceOpened();
     }
     public static void clickOnCardOption(){
         PayPage.clickOnCardOption();
@@ -230,4 +233,7 @@ public class Pay {
         return PayPage.getTotalUnpaidInvoicesAmount();
     }
 
+    public static boolean isTransactionSuccessOverlayDisplayed(){
+        return PayPage.isPaymentSuccessfulOverlayDisplayed();
+    }
 }

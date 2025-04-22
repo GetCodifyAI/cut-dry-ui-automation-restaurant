@@ -72,7 +72,7 @@ public class PayPage extends TestBase {
     By downloadInvoice = By.xpath("(//h2[contains(text(),'Invoice')]/../../../following-sibling::div[2]//*[local-name()='svg'])[1]");
     By PrintInvoice = By.xpath("(//h2[contains(text(),'Invoice')]/../../../following-sibling::div[2]//*[local-name()='svg'])[2]");
     By publicPayView = By.xpath("//*[contains(text(),'Payment Summary')]");
-    By firstUnpaidInvoice = By.xpath("//tbody/tr[td[5][text()='Unpaid']]/td[2]");
+    By firstUnpaidInvoice = By.xpath("//tbody/tr[td[5][text()='Past due']]/td[2]");
     By btn_cardOption = By.xpath("//div[contains(text(),'Card')]");
     By cardNumber = By.xpath("//input[@id='ccnumber']");
     By cardCVV = By.xpath("//input[@id='cvv']");
@@ -100,6 +100,8 @@ public class PayPage extends TestBase {
     By lst_unpaidInvoices = By.xpath("//button[contains(text(),'Pay')]/ancestor::td/../td[9]");
     By lst_creditMemos = By.xpath("//td[contains(text(),'N/A')]/following::td[3]");
     By lst_pastDueInvoices = By.xpath("//td[contains(text(),'Past due')]/following::td[2]");
+    By paymentSummeryText = By.xpath("//div[contains(text(),'Payment Summary')]");
+    By paymentSuccessMessage = By.xpath("//*[contains(text(),'Payment Successful!')]");
 
     public void clickOnPay() {
         restaurantUI.click(btn_pay);
@@ -446,8 +448,14 @@ public class PayPage extends TestBase {
         restaurantUI.waitForCustom(2000);
     }
 
-    public void navigateToPublicPayView() {
-        restaurantUI.navigateToURL(Constants.PUBLIC_PAY_URL);
+    public void navigateToPublicPayView(String vendorID){
+        try {
+            restaurantUI.waitForCustom(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.navigateToURL(Constants.PUBLIC_PAY_URL+ vendorID);
+        restaurantUI.waitForVisibility(publicPayView);
     }
 
     public boolean isNavigatedToPublicPayView() {
@@ -456,6 +464,9 @@ public class PayPage extends TestBase {
 
     public void openUnpaidInvoice() {
         restaurantUI.click(firstUnpaidInvoice);
+    }
+    public boolean isInvoiceOpened(){
+        return restaurantUI.isDisplayed(paymentSummeryText);
     }
 
     public void clickOnCardOption() {
@@ -630,6 +641,9 @@ public class PayPage extends TestBase {
         }
         return TotalUnpaidInvoicesAmount;
 
+    }
+    public boolean isPaymentSuccessfulOverlayDisplayed(){
+        return restaurantUI.isDisplayed(paymentSuccessMessage);
     }
 }
 
