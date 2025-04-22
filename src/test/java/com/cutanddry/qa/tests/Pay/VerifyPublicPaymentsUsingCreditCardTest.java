@@ -20,6 +20,7 @@ public class VerifyPublicPaymentsUsingCreditCardTest extends TestBase {
     static String expDate = "10/25";
     static String zipCode = "11500";
     String distributor = "Independent Foods Co";
+    static String vendorID = "46017751";
 
     @BeforeMethod
     public void setUp(){
@@ -33,7 +34,7 @@ public class VerifyPublicPaymentsUsingCreditCardTest extends TestBase {
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
 
-        Pay.navigateToPublicPayView();
+        Pay.navigateToPublicPayView(vendorID);
         Assert.assertTrue(Pay.isNavigatedToPublicPayView(),"navigation error");
         Pay.openUnpaidInvoice();
         Pay.clickOnCardOption();
