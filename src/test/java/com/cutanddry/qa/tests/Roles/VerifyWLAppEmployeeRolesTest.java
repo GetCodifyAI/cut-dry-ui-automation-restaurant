@@ -14,6 +14,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyWLAppEmployeeRolesTest extends TestBase {
     static User user;
     String OperatorName = "employee@cutanddry.com";
+    static String itemName = "Artichoke -24ct";
 
     @BeforeMethod
     public void setUp(){
@@ -33,6 +34,7 @@ public class VerifyWLAppEmployeeRolesTest extends TestBase {
         Dashboard.navigateToOrder();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 
+        Customer.searchItemOnOrderGuide(itemName);
         Customer.increaseFirstRowQtyCustom(1);
         Customer.checkoutItems();
         Customer.submitOrder();

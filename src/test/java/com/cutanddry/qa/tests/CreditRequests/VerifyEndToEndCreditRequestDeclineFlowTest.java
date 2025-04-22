@@ -14,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyEndToEndCreditRequestDeclineFlowTest extends TestBase {
     static User user;
     static String Dp_Name = "47837013 - Brandon IFC Cut+Dry Agent - Independent Foods Co";
-    static String CreditItemName,itemCode, itemPrice,itemQuantity,itemIssue,itemTotal,itemCredit;
+    static String CreditItemName,itemCode, itemPrice,itemQuantity,itemIssue,itemTotal,itemCredit,orderId;
 
     @BeforeMethod
     public void setUp(){
@@ -37,10 +37,12 @@ public class VerifyEndToEndCreditRequestDeclineFlowTest extends TestBase {
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
-        History.clickClose();
+        orderId = Customer.getSuccessOrderId();
+        Customer.clickClose();
 
         History.goToHistory();
         Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        History.searchOrderID(orderId);
         History.clickOnFirstItemOfOrderHistory();
         softAssert.assertTrue(History.isOrderSectionDisplayed(),"Order section not display");
         History.clickCheckIn();
