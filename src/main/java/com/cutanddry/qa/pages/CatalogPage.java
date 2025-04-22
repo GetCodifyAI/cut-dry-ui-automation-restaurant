@@ -31,7 +31,7 @@ public class CatalogPage extends LoginPage {
     By getTotalOrderPrice = By.xpath("//td[text()='Total']/following-sibling::td");
     By itemTypeDropDown = By.xpath("//div[contains(text(), 'Item Type')]");
     By itemTypeDropDownOption = By.xpath("//div[contains(text(), 'Item Type')]/../../following-sibling::div//*[name()='svg' and @data-icon='square']/following-sibling::div[contains(text(), 'Special Order')]");
-    By txt_catalog = By.xpath("//div[contains(text(),'Manage Catalog')]");
+    By txt_catalog = By.xpath("//div[contains(text(),'Manage Your Digital Catalog')]");
     By searchField = By.xpath("//div//input[contains(@placeholder,'Find Item in Catalog')]");
     String itemInTheGrid = "//tr[contains(@class,'_du1frc')]//td[text()='ITEMCODE']";
     By ItemCodeInCatalogData = By.xpath("//div[contains(@class, 'form-group') and contains(.//label, 'Item Code')]//div[contains(@class, 'col-sm-8')]");
@@ -107,7 +107,7 @@ public class CatalogPage extends LoginPage {
         }
 
         System.out.println("Extracted Price: " + priceText);
-        return Double.valueOf(priceText.replace("$", "").replace("/cs", "").replace("/pkg", "").trim());
+        return Double.valueOf(priceText.replace("$", "").replace("/cs", "").replace("/lb", "").replace("/pkg", "").trim());
     }
     public void clickOnBackToCatalog(){
         restaurantUI.waitForVisibility(btn_backToCatalog);
