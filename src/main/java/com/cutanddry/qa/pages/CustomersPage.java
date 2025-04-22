@@ -97,7 +97,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String txt_orderCutOffForPickUp = "//span[contains(text(), 'TIME')]";
     By txt_errorSubmittingOrder= By.xpath("//div[text()='Error submitting order. Please try again.']");
     By orderCartDeletebtn = By.xpath("//td//*[name()='svg' and @data-icon='trash-can']");
-    By totalValue = By.xpath("//tr[@class='_2ehv7q text-primary']/td[2]");
+    By totalValue = By.xpath("//td[contains(text(),'Total:')]/following-sibling::td");
     By selectedSections = By.xpath("//a[contains(@class,'_1ccoy1o text-decoration-none dropdown-item') and contains(text(),'Add Section')]");
     By sectionInput = By.xpath("//label[contains(text(),'Section Name')]/following-sibling::input[@id='sectionName']");
     By saveSectionBtn = By.xpath("//button[contains(text(),'Save')]");
@@ -151,6 +151,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By saveItemBtn = By.xpath("//button[contains(text(),'Save Item')]");
     String addedItem = "//td[contains(text(),'ITEMCODE')]";
     By editOrder = By.xpath("//a[contains(text(),'Edit Order')]");
+    By editOrderPage = By.xpath("(//div[contains(text(),'Edit Order #')])[last()]");
     By lbl_itemCodeList = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[2])[1]");
     By lbl_itemPriceList = By.xpath("((//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-2]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-2]//span)[1])[1]");
     By txt_reviewOrder = By.xpath("//div[text()='Review Order']");
@@ -1149,6 +1150,10 @@ public void clickOnCloseOrderGuideEditor(){
     public boolean isReviewOrderTextDisplayed(){
         restaurantUI.waitForVisibility(txt_reviewOrder);
         return restaurantUI.isDisplayed(txt_reviewOrder);
+    }
+    public boolean isEditOrderTextDisplayed(){
+        restaurantUI.waitForVisibility(editOrderPage);
+        return restaurantUI.isDisplayed(editOrderPage);
     }
     public Double getItemPriceOnCheckoutButtonViaPDP() throws InterruptedException {
         restaurantUI.waitForVisibility(btn_checkOutPDP);

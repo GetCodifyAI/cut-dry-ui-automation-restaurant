@@ -127,7 +127,11 @@ public class History {
         historyPage.increaseFirstRowQtyByOne();
     }
     public static void clickSubmitEditOrder(){
+        if(!historyPage.isReviewOrderTextDisplayed()){
+            historyPage.clickCheckOutEditOrder();
+        }
         historyPage.clickSubmitEditOrder();
+
     }
     public static boolean isOrderEditRequestPopupDisplayed(){
         return historyPage.isOrderEditRequestPopupDisplayed();
@@ -207,5 +211,8 @@ public class History {
     }
     public static void clickOnPrintInvoice(){
         historyPage.clickOnPrintInvoice();
+    }
+    public static void ensureOrderDateSortedDescending() throws InterruptedException {
+        historyPage.ensureOrderDateSortedDescending();
     }
 }
