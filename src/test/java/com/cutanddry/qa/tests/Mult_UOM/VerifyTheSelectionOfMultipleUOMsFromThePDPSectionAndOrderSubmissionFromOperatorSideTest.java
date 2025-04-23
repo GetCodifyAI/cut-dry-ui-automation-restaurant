@@ -70,6 +70,7 @@ public class VerifyTheSelectionOfMultipleUOMsFromThePDPSectionAndOrderSubmission
 
         History.goToHistory();
         Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        History.ensureOrderDateSortedDescending();
         History.clickOnFirstItemOfOrderHistory();
         totalHistoryItemPrice = History.getItemPriceOnMultiOUM();
         totalHistoryItemCount = History.getItemCountOnReviewMultiOUM();
