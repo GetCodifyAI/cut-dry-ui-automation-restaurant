@@ -65,6 +65,7 @@ public class VerifyTheSelectionOfMultipleUOMsFromTheOrderGuideSectionAndOrderSub
 
         History.goToHistory();
         Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        History.ensureOrderDateSortedDescending();
         History.clickOnFirstItemOfOrderHistory();
         totalHistoryItemPrice = History.getItemPriceOnMultiOUM();
         softAssert.assertEquals(Math.round(totalHistoryItemPrice * 100.0) / 100.0,Math.round(totalOGItemPrice * 100.0) / 100.0);
