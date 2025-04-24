@@ -17,6 +17,7 @@ import java.time.Duration;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -933,6 +934,32 @@ public class KeywordBase {
         }
     }
 
+
+    public boolean checkTextInElementsList(By locator, String expectedText){
+        try {
+            List<WebElement> elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+
+            List<String> actualTexts = new ArrayList<>();
+            for (WebElement element : elements) {
+                String text = element.getText().trim();
+                actualTexts.add(text);
+
+                if (!text.contains(expectedText)) {
+                    logger.warn("Element text '{}' does not match expected text '{}'", text, expectedText);
+                    logger.info("Full list of element texts: {}", actualTexts);
+                    return false;
+                }
+            }
+
+            logger.info("All elements located by {} have the expected text '{}'", locator, expectedText);
+            logger.info("Verified texts: {}", actualTexts);
+            return true;
+
+        } catch (Exception e) {
+            logger.error("Failed to verify text for elements located by: {}", locator, e);
+            return false;
+        }
+    }
 
 }
 
