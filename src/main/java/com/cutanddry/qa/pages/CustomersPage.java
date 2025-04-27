@@ -255,6 +255,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By caseUnit = By.xpath("//label[text()='Unit']/../following-sibling::div[text()='Case']");
     String multiUomDropDownIndicator = "//td[text()='CODE']/following-sibling::td[1]//div/*[local-name()='svg']";
     By txt_recentOrder = By.xpath("//span[text()='Recent Orders']");
+    By txt_doNotSubstitute = By.xpath("//div[text()='Do not substitute']");
 
 
 
@@ -1631,6 +1632,9 @@ public void clickOnCloseOrderGuideEditor(){
     public boolean isRecentOrderTextDisplayed()throws InterruptedException{
         restaurantUI.scrollToElement(txt_recentOrder);
         return restaurantUI.isDisplayed(txt_recentOrder);
+    }
+    public boolean isDoNotSubstituteTextDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(txt_doNotSubstitute);
     }
 
 }

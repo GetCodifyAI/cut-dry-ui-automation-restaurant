@@ -161,4 +161,7 @@ public class Dashboard {
             dashboardPage.clickNoBtnOnDraftCheckOverlay();
         }
     }
+    public static boolean isUserNavigatedToOrderGuideNotIncludeCatalogTag(){
+        return dashboardPage.isMaxiesOrderGuideTextDisplayed();
+    }
 }

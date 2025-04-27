@@ -19,6 +19,7 @@ public class VerifyPendingApprovalsAreClickableTest extends TestBase {
     String OperatorName = "employee@cutanddry.com";
     String AdminName = "Brandon IFC White";
     static String referenceNum;
+    String searchItemCode = "01700";
 
 
     @BeforeMethod
@@ -39,6 +40,7 @@ public class VerifyPendingApprovalsAreClickableTest extends TestBase {
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Customer.searchItemOnOrderGuide(searchItemCode);
 
         Customer.increaseFirstRowQtyInClassic(3);
         Customer.checkoutItems();
