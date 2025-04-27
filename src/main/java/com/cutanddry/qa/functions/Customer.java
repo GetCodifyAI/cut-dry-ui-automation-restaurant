@@ -875,5 +875,8 @@ public class Customer {
     public static boolean isRecentOrderTextDisplayed()throws InterruptedException{
         return customersPage.isRecentOrderTextDisplayed();
     }
+    public static boolean isDoNotSubstituteTextDisplay()throws InterruptedException{
+        return customersPage.isDoNotSubstituteTextDisplay();
+    }
 
 }
