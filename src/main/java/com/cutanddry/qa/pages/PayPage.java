@@ -4,8 +4,6 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.common.Constants;
 import org.openqa.selenium.By;
 
-import java.util.Date;
-
 public class PayPage extends TestBase {
 
     By btn_pay = By.xpath("//a[contains(@data-tip, 'View Invoices')]");
@@ -102,6 +100,10 @@ public class PayPage extends TestBase {
     By lst_pastDueInvoices = By.xpath("//td[contains(text(),'Past due')]/following::td[2]");
     By paymentSummeryText = By.xpath("//div[contains(text(),'Payment Summary')]");
     By paymentSuccessMessage = By.xpath("//*[contains(text(),'Payment Successful!')]");
+    By supplierDropDown = By.xpath("(//div[contains(text(),'Supplier')]/following-sibling::div)[1]/../div");
+    String supplier = "//div[contains(@class,'menu-list')]//div[contains(text(),'SUPPLIER')]";
+    By supplierInPaidTable = By.xpath("//table//tr/td[contains(text(),'Paid')]/../td[3]");
+
 
     public void clickOnPay() {
         restaurantUI.click(btn_pay);
@@ -645,5 +647,19 @@ public class PayPage extends TestBase {
     public boolean isPaymentSuccessfulOverlayDisplayed(){
         return restaurantUI.isDisplayed(paymentSuccessMessage);
     }
+
+    public void clickOnSupplierDropdown(String supplierName) throws InterruptedException {
+        restaurantUI.waitForCustom(3000);
+        restaurantUI.click(supplierDropDown);
+        restaurantUI.click(By.xpath(supplier.replace("SUPPLIER",supplierName)));
+    }
+
+    public boolean isAllInvoicesDisplayedAreForSupplier(String supplierName) throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.checkTextInElementsList(supplierInPaidTable,supplierName);
+    }
+
+
+
 }
 

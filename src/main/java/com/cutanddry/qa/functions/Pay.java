@@ -236,4 +236,13 @@ public class Pay {
     public static boolean isTransactionSuccessOverlayDisplayed(){
         return PayPage.isPaymentSuccessfulOverlayDisplayed();
     }
+
+    public static void selectSupplierFromDropdown(String SupplierName) throws InterruptedException {
+        PayPage.clickOnSupplierDropdown(SupplierName);
+    }
+
+    public static boolean isAllDisplayedSupplierAreTheSearchedSupplier(String SupplierName) throws InterruptedException {
+        return PayPage.isAllInvoicesDisplayedAreForSupplier(SupplierName);
+    }
+
 }

@@ -40,8 +40,10 @@ public class HistoryPage extends TestBase {
     By btn_edit_order = By.xpath("//button[@class = 'mr-3 btn btn-outline-primary' and text() = 'Edit Order']");
     By txt_edit_order = By.xpath("//h2[@id = 'swal2-title' and text() = 'Edit Order?']");
     By btn_edit_quantity = By.xpath("(//div[contains(@class,'align-middle')]/*[contains(@data-icon,'plus')])[1]");
+    By btn_checkout_edit_order = By.xpath("//button[contains(@data-tip, 'Click here to checkout')][normalize-space()!='']");
     By btn_submit_edit_order = By.xpath("//button[@id='submit-order-button' and text()='Submit Order Edits']");
-    By txt_review_order = By.xpath("//div[@class='d-flex align-items-center _5h4pkd _11zeigs' and text()='Review Order']");
+//    By txt_review_order = By.xpath("//div[@class='d-flex align-items-center _5h4pkd _11zeigs' and text()='Review Order']");
+    By txt_review_order = By.xpath("//div[text()='Review Order']");
     By btn_ok_edit_order = By.xpath("//button[text()='OK']");
     By txt_ok_edit_order = By.xpath("//h2[@id='swal2-title' and text()='Order edit request has been sent.']");
     By btn_recreate_order = By.xpath("//a[@class='_gozzbg dropdown-item' and text() ='Recreate Order']");
@@ -65,7 +67,7 @@ public class HistoryPage extends TestBase {
     By btn_orderCheckoutReview = By.xpath("//td[text()='Total']/following-sibling::td[normalize-space()!='']");
     By btn_orderItemCountReview = By.xpath("//td[contains(text(), 'Total Quantity')]/following-sibling::td[normalize-space()!='']");
     String orderTitle = "//h2[contains(text(),'Order #ORDER_ID')]";
-    By btn_submittedOrderTotal = By.xpath("(//div[contains(text(), 'Total')]/../following-sibling::td[normalize-space()!=''])[last()]");
+    By btn_submittedOrderTotal = By.xpath("(//*[contains(text(), 'Total')]/following-sibling::td[normalize-space()!=''])[last()]");
     By lbl_orderTableColumn = By.xpath("//table/thead/tr/th");
     String lbl_orderTableColumnName = "//table/thead/tr/th[COUNT]/span";
     By lbl_orderTableRow = By.xpath("//tbody/tr");
@@ -73,6 +75,10 @@ public class HistoryPage extends TestBase {
     By btn_invoice = By.xpath("//a[@role='tab' and @data-rb-event-key='Invoice']");
     By btn_downloadInvoice = By.xpath("//button[contains(text(),'Download Invoice')]");
     By btn_printInvoice = By.xpath("//button[contains(text(),'Print Invoice')]");
+
+    By lbl_orderDateColumn = By.xpath("//span[contains(text(),'Order Date')]");
+    By lbl_orderDateArrowUp = By.xpath("//span[contains(text(),'Order Date')]/*[name()='svg' and contains(@data-icon, 'arrow-up')]");
+    By lbl_orderDateArrowDown = By.xpath("//span[contains(text(),'Order Date')]/*[name()='svg' and contains(@data-icon, 'arrow-down')]");
 
     public void clickClose(){
         restaurantUI.waitForVisibility(btn_close);
@@ -261,11 +267,7 @@ public class HistoryPage extends TestBase {
         restaurantUI.click(btn_confirm_order);
     }
     public boolean isReviewOrderTextDisplayed(){
-        try {
-            restaurantUI.waitForVisibility(txt_review_order);
-        } catch (Exception e){
-            return false;
-        }
+//        restaurantUI.waitForVisibility(txt_review_order);
         return restaurantUI.isDisplayed(txt_review_order);
 
     }
@@ -276,6 +278,9 @@ public class HistoryPage extends TestBase {
     }
     public void clickSubmitEditOrder(){
         restaurantUI.click(btn_submit_edit_order);
+    }
+    public void clickCheckOutEditOrder(){
+        restaurantUI.click(btn_checkout_edit_order);
     }
     public boolean isOrderEditRequestPopupDisplayed(){
         try {
@@ -477,4 +482,15 @@ public class HistoryPage extends TestBase {
         restaurantUI.click(btn_printInvoice);
     }
 
+    public void ensureOrderDateSortedDescending() throws InterruptedException {
+
+        restaurantUI.waitForVisibility(lbl_orderDateColumn);
+        restaurantUI.click(lbl_orderDateColumn);
+
+        if (restaurantUI.isDisplayed(lbl_orderDateArrowUp)) {
+            restaurantUI.click(lbl_orderDateColumn);
+            restaurantUI.waitForCustom(2000);
+        }
+
+    }
 }
