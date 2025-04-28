@@ -8,12 +8,26 @@
     <test name="operator tests">
         <parameter name="PART" value="Part Nine" />
         <classes>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierCatalogWithSwitchFlowTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierLogoWithSwitchFlowTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierBannerWithSwitchFlowTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierRecentOrderHistoryWithSwitchFlowTest"/>
+
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheWLUserNavigatedToTheParentSupplierTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateWhiteLabelSuppliersSelectionSwitchTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidatePreSelectedSupplierRoutingWhenLoadingWhiteLabelAppTest"/>
+
             <class name="com.cutanddry.qa.tests.Substitutions.VerifySubstituteItemWithSubstitutingAnItemForCustomerWithGroupCode1000Test" />
             <class name="com.cutanddry.qa.tests.Substitutions.VerifyDoNotSubOptionForCustomerWithGroupCode1000Test" />
             <class name="com.cutanddry.qa.tests.Substitutions.VerifyPlacingAnOrderForChainCustomersWithProprietaryItemsTest" />
             <class name="com.cutanddry.qa.tests.Substitutions.VerifySubstitutingAnItemForCustomerWithBranchCodes1246Test" />
             <class name="com.cutanddry.qa.tests.Substitutions.VerifyDoNotSubOptionForCustomerWithBranchCode1246Test" />
             <class name="com.cutanddry.qa.tests.Substitutions.VerifyPlacingAnOrderForCustomerWithAnyOtherBranchCodeTest" />
+
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheCompanySwitchTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSupplierSelectionModalAtLogIinAfterSessionTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSupplierSelectionModalAfterLogIinAndSessionTest"/>
+
         </classes>
     </test>
 </suite>
