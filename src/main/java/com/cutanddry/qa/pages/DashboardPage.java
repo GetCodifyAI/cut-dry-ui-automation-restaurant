@@ -52,6 +52,8 @@ public class DashboardPage extends LoginPage{
     By savalFoodBanner = By.xpath("//div[contains(@class,'carousel-item')]");
     String parentDpName = "//div//span[contains(text(),'NAME')]";
     By btn_colonnade = By.xpath("//div[contains(text(), 'Colonnade')]");
+    String txt_profile = "//div[text()='NAME']";
+    By signOutProfile = By.xpath("//a[text()='Sign Out']");
 
 
     public boolean isDashboardTextDisplayed(){
@@ -259,6 +261,18 @@ public class DashboardPage extends LoginPage{
         return restaurantUI.isDisplayed(By.xpath(parentDpName.replace("NAME",name)));
     }
     public void clickOnColonnade() {
-        restaurantUI.click(btn_colonnade);}
+        restaurantUI.click(btn_colonnade);
+    }
+
+    public boolean isChooseCompanyDisplay(String name)throws InterruptedException{
+        restaurantUI.waitForVisibility(By.xpath(chooseProductCatalog.replace("NAME",name)));
+        return restaurantUI.isDisplayed(By.xpath(chooseProductCatalog.replace("NAME",name)));
+    }
+    public void clickOnProfile(String name) {
+        restaurantUI.click(By.xpath(txt_profile.replace("NAME",name)));
+    }
+    public void clickOnSignOutProfile() {
+        restaurantUI.click(signOutProfile);
+    }
 
 }

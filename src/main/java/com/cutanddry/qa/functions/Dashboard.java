@@ -164,4 +164,13 @@ public class Dashboard {
     public static boolean isUserNavigatedToOrderGuideNotIncludeCatalogTag(){
         return dashboardPage.isMaxiesOrderGuideTextDisplayed();
     }
+    public static boolean isChooseCompanyDisplay(String name)throws InterruptedException{
+        return dashboardPage.isChooseCompanyDisplay(name);
+    }
+    public static void clickOnProfile(String name){
+        dashboardPage.clickOnProfile(name);
+    }
+    public static void clickOnSignOutProfile(){
+        dashboardPage.clickOnSignOutProfile();
+    }
 }

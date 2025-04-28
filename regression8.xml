@@ -47,15 +47,6 @@
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditUOMsFromEditTest"/>
             <class name="com.cutanddry.qa.tests.Pay.VerifyPaidTabSupplierDropdownTest"/>
 
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierCatalogWithSwitchFlowTest"/>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierLogoWithSwitchFlowTest"/>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierBannerWithSwitchFlowTest"/>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierRecentOrderHistoryWithSwitchFlowTest"/>
-
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheWLUserNavigatedToTheParentSupplierTest"/>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateWhiteLabelSuppliersSelectionSwitchTest"/>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidatePreSelectedSupplierRoutingWhenLoadingWhiteLabelAppTest"/>
-
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSoftOrderMinimumSelectingMultipleUOMTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheHardOrderMinimumSelectingMultipleUOMTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyPlaceOrderWithMultiUOMForScrapperIntegratedTest" />

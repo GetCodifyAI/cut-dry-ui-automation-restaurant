@@ -1005,7 +1005,7 @@ jobs:
           name: Copy test results to workspace
           command: |
             mkdir -p ~/workspace
-            PART_NAME="Part_Eight"
+            PART_NAME="Part_Nine"
             for file in target/surefire-reports/TEST-*.xml; do
               [ -f "$file" ] && cp "$file" ~/workspace/${PART_NAME}_daily-build-and-test-9_$(basename "$file")
             done
