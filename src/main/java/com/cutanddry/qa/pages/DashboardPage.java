@@ -54,6 +54,7 @@ public class DashboardPage extends LoginPage{
     By btn_colonnade = By.xpath("//div[contains(text(), 'Colonnade')]");
     String txt_profile = "//div[text()='NAME']";
     By signOutProfile = By.xpath("//a[text()='Sign Out']");
+    By outSideModal = By.xpath("//div[@role='dialog' and not(descendant::*[@class='modal-content'])]");
 
 
     public boolean isDashboardTextDisplayed(){
@@ -273,6 +274,9 @@ public class DashboardPage extends LoginPage{
     }
     public void clickOnSignOutProfile() {
         restaurantUI.click(signOutProfile);
+    }
+    public void clickOutsideModal()throws InterruptedException{
+         restaurantUI.clickUsingJavaScript(outSideModal);
     }
 
 }

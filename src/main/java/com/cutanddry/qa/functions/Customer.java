@@ -898,5 +898,40 @@ public class Customer {
             customersPage.clickEditOrder();
         }
     }
+    public static void clickClosePopUp(){
+        customersPage.clickClosePopUp();
+    }
+    public static boolean isLastColumnDisplay(String column) throws InterruptedException {
+        return customersPage.isLastColumnDisplay(column);
+    }
+    public static void clickOnCustomerCode(String code){
+        customersPage.clickOnCustomerCode(code);
+    }
+    public static void clickOnEditAccHolds(){
+        customersPage.clickOnEditAccHolds();
+    }
+    public static void clickOnAccDropdown(){
+        customersPage.clickOnAccDropdown();
+    }
+    public static void clickOnHardHold(){
+        customersPage.clickOnHardHold();
+    }
+    public static void clickOnSaveDP(){
+        customersPage.clickOnSaveDP();
+    }
+    public static boolean isHardHoldSelected(){
+        return customersPage.isHardHoldSelected();
+    }
+    public static boolean isAccountHoldPopUpDisplay() throws InterruptedException {
+        return customersPage.isAccountHoldPopUpDisplay();
+    }
+    public static boolean isAccountHoldMessageDisplay(String message) throws InterruptedException {
+        return customersPage.isAccountHoldMessageDisplay(message);
+    }
+    public static void increaseFirstRowQtySpecificCustomer(int count) throws InterruptedException {
+        for (int i=0; i<count;i++){
+            customersPage.increaseFirstRowQtySpecificCustomer();
+        }
+    }
 
 }
