@@ -134,5 +134,10 @@ public class Login {
     public static void navigateToSavalFoodWL(){
         loginPage.navigateSavalFood();
     }
+    public static void logInToOperatorAsWhiteLabel(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOperator(operator);
+        loginPage.clickOnLoginAsWhiteLabelAndSwitchToNewTab();
+    }
 
 }

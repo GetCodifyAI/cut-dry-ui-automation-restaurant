@@ -28,6 +28,10 @@
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSupplierSelectionModalAtLogIinAfterSessionTest"/>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSupplierSelectionModalAfterLogIinAndSessionTest"/>
 
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSupplierSelectionModalCloseBehaviourTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyLastOrderedPricesAreNotShowingInOrderGuidesTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyCustomAccountHoldMessageIsDisplayedForCarmelaOnOrderSubmissionTest"/>
+
         </classes>
     </test>
 </suite>

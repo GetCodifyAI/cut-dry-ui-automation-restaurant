@@ -204,6 +204,12 @@ public class LoginPage extends TestBase {
     public void refreshThePage(){
         restaurantUI.refreshPage();
     }
+    public void clickOnLoginAsWhiteLabelAndSwitchToNewTab() throws InterruptedException {
+        restaurantUI.click(btn_LoginAsWhiteLabel);
+        restaurantUI.switchToNewTab();
+        restaurantUI.waitForCustom(3000);
+    }
+
 
 
 }

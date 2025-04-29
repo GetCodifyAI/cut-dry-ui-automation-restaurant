@@ -256,10 +256,15 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String multiUomDropDownIndicator = "//td[text()='CODE']/following-sibling::td[1]//div/*[local-name()='svg']";
     By txt_recentOrder = By.xpath("//span[text()='Recent Orders']");
     By txt_doNotSubstitute = By.xpath("//div[text()='Do not substitute']");
-
-
-
-
+    String lastColumn = "//td[6][contains(text(),'COLUMN')]";
+    String txt_customerCode = "//td[text()='CODE']";
+    By btn_editAccHold = By.xpath("//div[contains(text(),'Account Holds')]/..//*[local-name() = 'svg' and @data-icon='pen-to-square']");
+    By dropdown_acc = By.xpath("//div[text()='Account Holds']/following-sibling::div//div[contains(@class, 'themed_select__value-container')]");
+    By txt_hardHold = By.xpath("//div[contains(@class, 'themed_select__option') and  text()='Hard Hold']");
+    By btn_save_DP = By.xpath("//button[normalize-space(text())='Save']");
+    By lbl_hardHold = By.xpath("//div[text()='Account Holds']/following-sibling::div//span[contains(@class, 'badge') and text()='Hard Hold']");
+    By accountOnHold = By.xpath("//h2[text()='Account on hold!']");
+    String accountHoldMessage = "//p[text()='MESSAGE']";
 
 
 
@@ -1635,6 +1640,54 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public boolean isDoNotSubstituteTextDisplay()throws InterruptedException{
         return restaurantUI.isDisplayed(txt_doNotSubstitute);
+    }
+    public void clickClosePopUp(){
+        restaurantUI.waitForVisibility(btn_close_);
+        restaurantUI.click(btn_close_);
+    }
+    public boolean isLastColumnDisplay(String column)throws InterruptedException{
+        return restaurantUI.isDisplayed(By.xpath(lastColumn.replace("COLUMN",column)));
+    }
+    public void clickOnCustomerCode(String code) {
+        restaurantUI.click(By.xpath(txt_customerCode.replace("CODE", code)));
+    }
+    public void clickOnEditAccHolds(){
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.waitForVisibility(btn_editAccHold);
+        restaurantUI.click(btn_editAccHold);
+    }
+    public void clickOnAccDropdown(){
+        restaurantUI.waitForVisibility(dropdown_acc);
+        restaurantUI.click(dropdown_acc);
+    }
+    public void clickOnHardHold(){
+        restaurantUI.waitForVisibility(txt_hardHold);
+        restaurantUI.click(txt_hardHold);
+    }
+    public void clickOnSaveDP(){
+        restaurantUI.waitForVisibility(btn_save_DP);
+        restaurantUI.clickWithFallback(btn_save_DP);
+        try {
+            restaurantUI.waitForCustom(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public boolean isHardHoldSelected(){
+        return restaurantUI.isDisplayed(lbl_hardHold);
+    }
+    public boolean isAccountHoldPopUpDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(accountOnHold);
+    }
+    public boolean isAccountHoldMessageDisplay(String message)throws InterruptedException{
+        return restaurantUI.isDisplayed(By.xpath(accountHoldMessage.replace("MESSAGE",message)));
+    }
+    public void increaseFirstRowQtySpecificCustomer() throws InterruptedException {
+        restaurantUI.click(btn_increaseQtyFirstRow);
     }
 
 }

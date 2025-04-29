@@ -173,4 +173,7 @@ public class Dashboard {
     public static void clickOnSignOutProfile(){
         dashboardPage.clickOnSignOutProfile();
     }
+    public static void clickOutsideModal() throws InterruptedException {
+        dashboardPage.clickOutsideModal();
+    }
 }
