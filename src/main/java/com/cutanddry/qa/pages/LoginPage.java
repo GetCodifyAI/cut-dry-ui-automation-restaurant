@@ -40,6 +40,9 @@ public class LoginPage extends TestBase {
     By internalToolsBtn = By.xpath("//a[contains(text(),'Internal Tools') and contains(@href,'/internaltools')]");
     By txt_jenniferBlue = By.xpath("//div[contains(text(), 'Jennifer Blue')]");
     String managerWL = "//div[contains(text(), 'NAME')]";
+    By txt_emailOrMobileSaval = By.xpath("//input[@placeholder='Enter your email or mobile number']");
+    By txt_passwordSaval = By.xpath("//input[@placeholder='Enter your Password']");
+    By btn_signInSaval = By.xpath("//button[@type='submit']");
 
 
     public void typeEmailOrMobile(String emailOrMobile){
@@ -181,11 +184,32 @@ public class LoginPage extends TestBase {
         restaurantUI.click(internalToolsBtn);
     }
     public void switchIntoNewTab(){
-        restaurantUI.OpenNewTabAndSwitchToIt();
+        restaurantUI.switchToNewTab();
     }
     public void closePreviousTab()throws InterruptedException{
         restaurantUI.CloseAllPreviousTabAndSwitchToNew();
     }
+    public void navigateSavalFood(){
+        restaurantUI.navigateToURL(Constants.SAVAL_FOOD_URL);
+    }
+    public void typeEmailOrMobileSaval(String emailOrMobile){
+        restaurantUI.sendKeys(txt_emailOrMobileSaval,emailOrMobile);
+    }
+    public void typePasswordSaval(String password){
+        restaurantUI.sendKeys(txt_passwordSaval,password);
+    }
+    public void clickSignInSaval(){
+        restaurantUI.click(btn_signInSaval);
+    }
+    public void refreshThePage(){
+        restaurantUI.refreshPage();
+    }
+    public void clickOnLoginAsWhiteLabelAndSwitchToNewTab() throws InterruptedException {
+        restaurantUI.click(btn_LoginAsWhiteLabel);
+        restaurantUI.switchToNewTab();
+        restaurantUI.waitForCustom(3000);
+    }
+
 
 
 }

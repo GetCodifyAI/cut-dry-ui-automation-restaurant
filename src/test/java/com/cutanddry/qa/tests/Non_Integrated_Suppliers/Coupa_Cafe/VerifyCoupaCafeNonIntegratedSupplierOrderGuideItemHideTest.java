@@ -5,6 +5,7 @@ import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -17,6 +18,7 @@ public class VerifyCoupaCafeNonIntegratedSupplierOrderGuideItemHideTest {
     static User user;
     String userName = "jcoupal@coupacafe";
     String supplierName = "David Rio";
+    String itemName,itemCode;
 
 
     @BeforeMethod
@@ -27,28 +29,29 @@ public class VerifyCoupaCafeNonIntegratedSupplierOrderGuideItemHideTest {
 
     @Test(groups = "DOT-TC-846")
     public void VerifyCoupaCafeNonIntegratedSupplierOrderGuideItemHide() throws InterruptedException {
-        String itemName;
+
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(), "login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(), "login error");
         Login.navigateToLoginAs();
         Login.logInToOperator(userName);
         Dashboard.selectSupplier(supplierName);
-        softAssert.assertTrue(Dashboard.isNavigatedToOperatorOrderGuide(supplierName), "ERROR in Navigating to Suppliers page");
+        Assert.assertTrue(Dashboard.isNavigatedToOperatorOrderGuide(supplierName), "ERROR in Navigating to Suppliers page");
         itemName = Customer.getItemNameFirstRow();
+        itemCode = Customer.getItemCodeFirstRow();
 
         //Hiding the Item
         Customer.goToEdit();
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
-        Customer.clickOnItemEditBtn(itemName);
+        Customer.clickOnItemEditBtn(itemCode);
         Customer.clickOnItemHideBtn();
         Customer.clickOnItemHideConfirmationOverlay();
-        softAssert.assertFalse(Customer.isHiddenItemDisplayedOnGrid(itemName),"ERROR in hiding the Item");
+        softAssert.assertFalse(Customer.isHiddenItemDisplayedOnGrid(itemCode),"ERROR in hiding the Item");
 
         //UnHiding the Item
         Customer.selectActiveAndHiddenItems();
-        softAssert.assertTrue(Customer.isHiddenItemDisplayedOnGrid(itemName),"ERROR in hidden Item");
-        Customer.clickOnItemEditBtn(itemName);
+        softAssert.assertTrue(Customer.isHiddenItemDisplayedOnGrid(itemCode),"ERROR in hidden Item");
+        Customer.clickOnItemEditBtn(itemCode);
         Customer.clickSaveAndUnhide();
         Customer.selectOnlyActiveItems();
         Customer.clickOnBackBtnInEditOrderGuide();

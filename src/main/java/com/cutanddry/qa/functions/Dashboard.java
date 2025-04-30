@@ -31,6 +31,9 @@ public class Dashboard {
     public static boolean isUserNavigatedToOrderGuide(){
         return dashboardPage.isOrderGuideTextDisplayed();
     }
+    public static boolean isUserNavigatedToOrderGuideMaxies(){
+        return dashboardPage.isMaxiesOrderGuideTextDisplayed();
+    }
 
     public static boolean isUserNavigatedToDisDashboard(){
         return dashboardPage.isDisDashboardTextDisplayed();
@@ -102,5 +105,75 @@ public class Dashboard {
 
     public static boolean isNavigatedToOperatorOrderGuide(String supplier) throws InterruptedException {
         return dashboardPage.isNavigatedToOrderGuide(supplier);
+    }
+    public static void navigateToCatalog() {
+        dashboardPage.clickOnCatalog();
+    }
+    public static void navigateToOrderSettings() {
+        dashboardPage.clickOnOrderSettings();
+    }
+    public static boolean isChooseProductCatalogDisplayed()throws InterruptedException{
+        return dashboardPage.isChooseProductCatalogDisplayed();
+    }
+    public static void chooseProductCatalog(String name)throws InterruptedException{
+        dashboardPage.chooseProductCatalog(name);
+    }
+    public static void navigateToHome() throws InterruptedException {
+        dashboardPage.clickOnHome();
+    }
+    public static boolean isUserNavigateHome()throws InterruptedException{
+        return dashboardPage.isUserNavigateHome();
+    }
+    public static void switch1932Saval()throws InterruptedException{
+        dashboardPage.switch1932Saval();
+    }
+    public static void clickCategory()throws InterruptedException{
+        dashboardPage.clickCategory();
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickNoBtnOnDraftCheckOverlayCatalog();
+        }
+    }
+    public static void switchSavalFood()throws InterruptedException{
+        dashboardPage.switchSavalFood();
+    }
+    public static boolean isCatalogDataDisplayed()throws InterruptedException{
+        return dashboardPage.isCatalogDataDisplayed();
+    }
+    public static boolean isSavalFoodServiceLogoDisplayed()throws InterruptedException{
+        return  dashboardPage.isSavalFoodServiceLogoDisplayed();
+    }
+    public static boolean isSavalFoodServiceBannerDisplayed()throws InterruptedException{
+        return  dashboardPage.isSavalFoodServiceBannerDisplayed();
+    }
+    public static boolean isSwitch1932SavalDisplayed()throws InterruptedException{
+        return dashboardPage.isSwitch1932SavalDisplayed();
+    }
+    public static boolean isSwitchSavalFoodDisplayed()throws InterruptedException{
+        return dashboardPage.isSwitchSavalFoodDisplayed();
+    }
+    public static boolean isParentDpNameDisplayed(String name)throws InterruptedException{
+        return dashboardPage.isParentDpNameDisplayed(name);
+    }
+    public static void selectSupplierScrapper(String supplierName){
+        dashboardPage.clickOnSupplier(supplierName);
+        dashboardPage.clickOnColonnade();
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickNoBtnOnDraftCheckOverlay();
+        }
+    }
+    public static boolean isUserNavigatedToOrderGuideNotIncludeCatalogTag(){
+        return dashboardPage.isMaxiesOrderGuideTextDisplayed();
+    }
+    public static boolean isChooseCompanyDisplay(String name)throws InterruptedException{
+        return dashboardPage.isChooseCompanyDisplay(name);
+    }
+    public static void clickOnProfile(String name){
+        dashboardPage.clickOnProfile(name);
+    }
+    public static void clickOnSignOutProfile(){
+        dashboardPage.clickOnSignOutProfile();
+    }
+    public static void clickOutsideModal() throws InterruptedException {
+        dashboardPage.clickOutsideModal();
     }
 }

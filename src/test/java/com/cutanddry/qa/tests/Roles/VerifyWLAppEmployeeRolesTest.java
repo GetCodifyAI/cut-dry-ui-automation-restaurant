@@ -4,6 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.*;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -12,7 +13,8 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyWLAppEmployeeRolesTest extends TestBase {
     static User user;
-    static String OperatorName = "Hadley Ifc Employee";
+    String OperatorName = "employee@cutanddry.com";
+    static String itemName = "Artichoke -24ct";
 
     @BeforeMethod
     public void setUp(){
@@ -24,17 +26,20 @@ public class VerifyWLAppEmployeeRolesTest extends TestBase {
     public void VerifyWLAppEmployeeRoles() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
-        Login.loginAsEmployeeWL(OperatorName);
+        Login.loginAsAdminWL(OperatorName);
         restaurantUI.switchToNewTab();
         Dashboard.navigateToOrder();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.increaseSecondRowQtyByOne();
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+
+        Customer.searchItemOnOrderGuide(itemName);
+        Customer.increaseFirstRowQtyCustom(1);
         Customer.checkoutItems();
         Customer.submitOrder();
         Customer.clickClose();
+
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"navigation to history error");
         Dashboard.navigateToDrafts();

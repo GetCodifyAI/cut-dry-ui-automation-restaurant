@@ -7,6 +7,7 @@ import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.History;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -27,20 +28,20 @@ public class VerifyTheOrderDetailsRecreateOrderTest extends TestBase {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         itemName = Customer.getItemNameFirstRow();
         Customer.increaseFirstRowQtyInClassic(1);
         Customer.checkoutItems();
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
-        History.clickClose();
+        Customer.clickClose();
 
         History.goToHistory();
-        softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.clickOnFirstItemOfOrderHistory();
         softAssert.assertTrue(History.isOrderSectionDisplayed(),"Order section not display");
         History.clickMoreOptions();
@@ -50,7 +51,7 @@ public class VerifyTheOrderDetailsRecreateOrderTest extends TestBase {
         Customer.checkoutItems();
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.submitOrder();
-        History.clickClose();
+        Customer.clickClose();
         softAssert.assertAll();
 
     }

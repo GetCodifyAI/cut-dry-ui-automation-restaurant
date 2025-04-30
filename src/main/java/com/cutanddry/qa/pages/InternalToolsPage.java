@@ -11,6 +11,30 @@ public class InternalToolsPage extends TestBase {
     By saveBtn = By.xpath("//button[contains(text(),'Run Invoice Sync')]/following-sibling::button[contains(text(),'Save')]");
     By successOverlay = By.xpath("//h2[contains(text(),'Succcess')]");
     By okBtn = By.xpath("//button[contains(text(),'OK')]");
+    By OrderingSettingsTab = By.xpath("//a[contains(text(),'Ordering Settings')]");
+    By orderMinimumGloballyToggleStable = By.xpath("//div[contains(text(), 'Enable Soft/Hard order minimum globally')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
+    By orderMinimumGloballyToggleStable1 = By.xpath("//div[contains(text(), 'Enable Soft/Hard order minimum globally')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+    By orderMinimumDropDown = By.xpath("//div[text()='Order minimum type: ']/following-sibling::div/div");
+    String orderMinimumDropDownOption = "(//div[text()='TYPE'])[last()]";
+    By addOrderMinimum = By.xpath("//div[contains(text(),'Soft order Minimum Surcharge')]/following-sibling::div/input");
+    By SaveBtn = By.xpath("//div[@class='text-right col']//button[text()='Save']");
+    By checkboxLocatorCreditMemo = By.xpath("//label[contains(text(),'Enable Auto Apply Credit Memos')]/..//input");
+    By reportIssueOptionToggleStable = By.xpath("//div[contains(text(), 'Enable Report Issue Option:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
+    By reportIssueOptionToggleStable1 = By.xpath("//div[contains(text(), 'Enable Report Issue Option:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+    By hideCheckInOptionToggleStable = By.xpath("//div[contains(text(), 'Hide Check-In Option:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
+    By hideCheckInOptionToggleStable1 = By.xpath("//div[contains(text(), 'Hide Check-In Option:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+    By successPopUp = By.xpath("//h2[contains(text(),'Success')]");
+    By payDetailsToggleStable = By.xpath("//label[contains(text(), 'Pay Enabled For All Users: ')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
+    By payDetailsToggleStable1 = By.xpath("//label[contains(text(), 'Pay Enabled For All Users: ')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+    By addCustomerToPayDisable = By.xpath("//label[contains(text(), 'Pay Disabled Restaurants')]/following-sibling::div/div");
+    String selectDisableCustomer = "//div[contains(text(), 'NAME')]";
+    String ToggleDescription = "//*[contains(text(),'TOGGLENAME')]/following-sibling::div//div[contains(@class,'react-switch-bg')]";
+    By enableWillCallPickUpToggleStable = By.xpath("//div[contains(text(), 'Enable Will Call/Pickp:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
+    By enableWillCallPickUpToggleStable1 = By.xpath("//div[contains(text(), 'Enable Will Call/Pickp:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+
+
+
+
 
     public void clickConfigureSuppliers(){
         restaurantUI.click(configureSupplierLink);
@@ -42,7 +66,112 @@ public class InternalToolsPage extends TestBase {
     public void clickOK(){
         restaurantUI.click(okBtn);
     }
+    public void clickOnOrderingSettings(){
+        restaurantUI.waitForVisibility(OrderingSettingsTab);
+        restaurantUI.click(OrderingSettingsTab);
+        try {
+            restaurantUI.waitForCustom(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void clickTurnOnOrderMinimumGloballyToggle(boolean enable) {
 
+        String handlePosition = restaurantUI.getElement(orderMinimumGloballyToggleStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(29px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(orderMinimumGloballyToggleStable1);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(orderMinimumGloballyToggleStable1);
+        }
+    }
+    public void clickOnOrderMinimumDropdown(String type){
+        restaurantUI.click(orderMinimumDropDown);
+        restaurantUI.click(By.xpath(orderMinimumDropDownOption.replace("TYPE",type)));
+    }
+    public void enterOrderMinimum(String minimum){
+        restaurantUI.click(addOrderMinimum);
+        restaurantUI.clear(addOrderMinimum);
+        restaurantUI.sendKeys(addOrderMinimum,minimum);
+    }
+    public void clickSaveBtn(){
+        restaurantUI.scrollToElement(SaveBtn);
+        restaurantUI.waitForVisibility(SaveBtn);
+        restaurantUI.clickUsingJavaScript(SaveBtn);
+    }
+    public void clickCreditMemoCheckbox(boolean enable) {
+
+        boolean isChecked = restaurantUI.getElement(checkboxLocatorCreditMemo).isSelected();
+
+        if (enable && !isChecked) {
+            restaurantUI.click(checkboxLocatorCreditMemo); // Check the box if not checked
+        } else if (!enable && isChecked) {
+            restaurantUI.click(checkboxLocatorCreditMemo); // Uncheck the box if already checked
+        }
+    }
+    public void enableReportIssueOptionToggle(boolean enable) {
+
+        String handlePosition = restaurantUI.getElement(reportIssueOptionToggleStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(29px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(reportIssueOptionToggleStable1);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(reportIssueOptionToggleStable1);
+        }
+    }
+    public void disableHideCheckInOptionToggle(boolean enable) {
+
+        String handlePosition = restaurantUI.getElement(hideCheckInOptionToggleStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(29px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(hideCheckInOptionToggleStable1);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(hideCheckInOptionToggleStable1);
+        }
+    }
+    public boolean isSuccessPopUpDisplayed(){
+        return restaurantUI.isDisplayed(successPopUp);
+    }
+    public void clickPayEnabledToggle(boolean enable) {
+
+        String handlePosition = restaurantUI.getElement(payDetailsToggleStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(29px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(payDetailsToggleStable1);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(payDetailsToggleStable1);
+        }
+    }
+    public void addCustomerToPayDisable(String name)throws InterruptedException{
+        restaurantUI.click(addCustomerToPayDisable);
+        restaurantUI.scrollToElement(By.xpath(selectDisableCustomer.replace("NAME", name)));
+        restaurantUI.click(By.xpath(selectDisableCustomer.replace("NAME", name)));
+        restaurantUI.waitForCustom(3000);
+    }
+    public void enableWillCallPickUpToggle(boolean enable) {
+
+        String handlePosition = restaurantUI.getElement(enableWillCallPickUpToggleStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(29px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(enableWillCallPickUpToggleStable1);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(enableWillCallPickUpToggleStable1);
+        }
+    }
+
+    public void enableDisableToggle(String ToggleName,boolean enable ){
+        String AttributeValue = restaurantUI.getElement(By.xpath(ToggleDescription.replace("TOGGLENAME",ToggleName))).getAttribute("style");
+        boolean isEnabled = AttributeValue.contains("rgb(0, 136, 0)");
+
+        if(isEnabled != enable ){
+            restaurantUI.clickWithScrollAndHover(By.xpath(ToggleDescription.replace("TOGGLENAME",ToggleName)));
+        }
+    }
 
 
 }

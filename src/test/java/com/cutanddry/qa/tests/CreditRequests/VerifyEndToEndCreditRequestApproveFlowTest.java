@@ -4,6 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.*;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -13,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyEndToEndCreditRequestApproveFlowTest extends TestBase {
     static User user;
     static String Dp_Name = "47837013 - Brandon IFC Cut+Dry Agent - Independent Foods Co";
-    static String CreditItemName,itemCode, itemPrice,itemQuantity,itemIssue,itemTotal,itemCredit;
+    static String CreditItemName,itemCode, itemPrice,itemQuantity,itemIssue,itemTotal,itemCredit,orderId;
 
     @BeforeMethod
     public void setUp(){
@@ -26,20 +27,22 @@ public class VerifyEndToEndCreditRequestApproveFlowTest extends TestBase {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         itemName = Customer.getItemNameFirstRow();
         Customer.increaseFirstRowQtyInClassic(1);
         Customer.checkoutItems();
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
-        History.clickClose();
+        orderId = Customer.getSuccessOrderId();
+        Customer.clickClose();
 
         History.goToHistory();
-        softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        History.searchOrderID(orderId);
         History.clickOnFirstItemOfOrderHistory();
         softAssert.assertTrue(History.isOrderSectionDisplayed(),"Order section not display");
         History.clickCheckIn();
@@ -72,9 +75,9 @@ public class VerifyEndToEndCreditRequestApproveFlowTest extends TestBase {
         Login.navigateToLoginAs();
         Login.goToDistributor(Dp_Name);
         Dashboard.isUserNavigatedToDistributorDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(),"login error");
         Dashboard.navigateToCreditRequests();
-        softAssert.assertTrue(CreditRequests.isCreditRequestSectionDisplay(),"Credit request section not display");
+        Assert.assertTrue(CreditRequests.isCreditRequestSectionDisplay(),"Credit request section not display");
         CreditRequests.clickCreditRequest();
         softAssert.assertTrue(CreditRequests.isOrderCreditRequestSectionDisplay(),"Order Credit request section not display");
         softAssert.assertEquals(CreditRequests.getCreditItemNameDP(), CreditItemName, "Item name of customer credit request is differance");

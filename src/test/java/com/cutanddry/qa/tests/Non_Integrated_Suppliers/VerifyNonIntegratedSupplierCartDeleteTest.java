@@ -2,10 +2,12 @@ package com.cutanddry.qa.tests.Non_Integrated_Suppliers;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
+import com.cutanddry.qa.functions.Catalog;
 import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -29,16 +31,16 @@ public class VerifyNonIntegratedSupplierCartDeleteTest extends TestBase {
 
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.selectSupplier(supplierName);
         softAssert.assertTrue(Dashboard.isNavigatedToMaxiesSLPage(),"ERROR in Navigating to Maxies SL Page");
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuideMaxies(),"navigation error");
         itemName = Customer.getItemNameFirstRow();
         Customer.increaseFirstRowQtyByOne();
         Customer.checkoutItems();
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.clickDeleteItemOnCart();
-        softAssert.assertEquals(Customer.isCartTotalZero(),0.0,"ERROR in Deleting Item From Cart");
+        softAssert.assertEquals(Catalog.getTotalPriceInReviewOrder(),0.0,"ERROR in Deleting Item From Cart");
 
 
         softAssert.assertAll();

@@ -7,6 +7,7 @@ import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.functions.Order;
 import com.cutanddry.qa.functions.Suppliers;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -26,9 +27,10 @@ public class VerifySupplierFilteredByLocationTest extends TestBase {
     public void VerifySupplierFilteredByLocation() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+
         Order.goToOrder();
-        softAssert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
+        Assert.assertTrue(Order.isPlaceOrderTextDisplayed(),"Order navigation error");
         Order.clickLocationFilter();
         Order.clickOnLocationOption(location);
         softAssert.assertTrue(Order.isLocationFilterWork(location),"location filter error");

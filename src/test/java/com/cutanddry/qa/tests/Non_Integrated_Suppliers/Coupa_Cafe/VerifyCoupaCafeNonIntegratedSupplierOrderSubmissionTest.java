@@ -5,6 +5,7 @@ import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -45,11 +46,12 @@ public class VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionTest {
 
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Login.navigateToLoginAs();
         Login.logInToOperator(userName);
         Dashboard.selectSupplier(supplierName);
-        softAssert.assertTrue(Dashboard.isNavigatedToOperatorOrderGuide(supplierName),"ERROR in Navigating to Suppliers page");
+        Assert.assertTrue(Dashboard.isNavigatedToOperatorOrderGuide(supplierName),"ERROR in Navigating to Suppliers page");
+
         Customer.clickAddNewItemFromOrderGuide();
         softAssert.assertTrue(Customer.isAddItemsToOrderGuideOverlayDisplayed(),"Error in displaying add items to order guide overlay");
         Customer.enterItemName(itemNameNew);
@@ -69,12 +71,12 @@ public class VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionTest {
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
-
         Customer.clickClose();
+
         Dashboard.selectSupplier(supplierName);
         Customer.goToEdit();
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
-        Customer.clickOnItemEditBtn(itemNameNew);
+        Customer.clickOnItemEditBtn(itemCode);
         Customer.clickOnItemHideBtn();
         Customer.clickOnItemHideConfirmationOverlay();
         softAssert.assertFalse(Customer.isHiddenItemDisplayedOnGrid(itemCode),"ERROR in hiding the Item");

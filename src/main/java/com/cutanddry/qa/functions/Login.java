@@ -119,5 +119,25 @@ public class Login {
     public static void closePreviousTab()throws InterruptedException{
         loginPage.closePreviousTab();
     }
+    public static void switchIntoNewTab()throws InterruptedException{
+        loginPage.switchIntoNewTab();
+    }
+    public static void loginAsSavalFoodRestaurant(String emailOrMobile, String password){
+        loginPage.navigateSavalFood();
+        loginPage.typeEmailOrMobileSaval(emailOrMobile);
+        loginPage.typePasswordSaval(password);
+        loginPage.clickSignInSaval();
+    }
+    public static void refreshThePage(){
+        loginPage.refreshThePage();
+    }
+    public static void navigateToSavalFoodWL(){
+        loginPage.navigateSavalFood();
+    }
+    public static void logInToOperatorAsWhiteLabel(String operator) throws InterruptedException {
+        loginPage.typeToSearchOnOperator(operator);
+        loginPage.clickOperator(operator);
+        loginPage.clickOnLoginAsWhiteLabelAndSwitchToNewTab();
+    }
 
 }

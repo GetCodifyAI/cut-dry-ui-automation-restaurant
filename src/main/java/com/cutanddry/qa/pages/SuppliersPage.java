@@ -60,7 +60,7 @@ public class SuppliersPage extends TestBase {
     }
     public void clickOnOneSupplier(String supplier) throws InterruptedException {
         restaurantUI.waitForCustom(2000);
-        restaurantUI.waitForVisibility(By.xpath(addedSupplier.replace("SUPPLIER",supplier)));
+//        restaurantUI.waitForVisibility(By.xpath(addedSupplier.replace("SUPPLIER",supplier)));
         restaurantUI.click(By.xpath(addedSupplier.replace("SUPPLIER",supplier)));
     }
 
@@ -94,7 +94,7 @@ public class SuppliersPage extends TestBase {
     }
     public boolean isAddedSupplierDisplayed(String supplier)throws InterruptedException {
         restaurantUI.waitForCustom(2000);
-        restaurantUI.waitForVisibility(By.xpath(addedSupplier.replace("SUPPLIER",supplier)));
+//        restaurantUI.waitForVisibility(By.xpath(addedSupplier.replace("SUPPLIER",supplier)));
         return restaurantUI.isDisplayed(By.xpath(addedSupplier.replace("SUPPLIER",supplier)));
     }
     public void clickOk(){

@@ -7,6 +7,7 @@ import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.History;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -31,9 +32,9 @@ public class VerifyTheFilteringOrdersByOrderDateTest extends TestBase {
 
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         History.goToHistory();
-        softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.selectOrderDate(date);
         softAssert.assertTrue(History.isOrderDateChanged(date),"dropdown error");
         softAssert.assertTrue(History.validateFilteredOrders(expectedDate),"Error in filtering order dates");

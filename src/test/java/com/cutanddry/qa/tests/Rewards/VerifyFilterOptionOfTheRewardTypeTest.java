@@ -6,6 +6,7 @@ import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.functions.Rewards;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -15,8 +16,8 @@ import org.testng.asserts.SoftAssert;
 public class VerifyFilterOptionOfTheRewardTypeTest extends TestBase {
     static User user;
     String dropDown = "Reward Type";
-    String dropDownOption = "Buyers Edge Platform Rebate";
-    String result = "Buyers Edge Platform";
+    String dropDownOption = "Manufacturer-Direct Rebate";
+    String result = "Manufacturer-Direct Rebate";
 
     @BeforeMethod
     public void setUp(){
@@ -29,7 +30,7 @@ public class VerifyFilterOptionOfTheRewardTypeTest extends TestBase {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToRewards();
         softAssert.assertTrue(Rewards.isRewardsTextDisplayed(),"Rewards section navigation error");
         Rewards.selectAllDateRange();

@@ -6,6 +6,7 @@ import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.functions.Suppliers;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -14,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyViewArchivedSupplierTest extends TestBase {
     static User user;
-    static String SupplierName = "TestSupplier07";
+    static String SupplierName = "TestSupplier07"+generateDynamicValue();
 
     @BeforeMethod
     public void setUp() {
@@ -26,9 +27,9 @@ public class VerifyViewArchivedSupplierTest extends TestBase {
     public void VerifyViewArchivedSupplier () throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Suppliers.goToSuppliers();
-        softAssert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"Supplier navigation error");
+        Assert.assertTrue(Suppliers.isUserNavigatedToSupplier(),"Supplier navigation error");
         //add supplier
         Suppliers.clickAddSupplier();
         softAssert.assertTrue(Suppliers.isAddSuppliersPopUpDisplayed(),"Add supplier pop up window not displayed");

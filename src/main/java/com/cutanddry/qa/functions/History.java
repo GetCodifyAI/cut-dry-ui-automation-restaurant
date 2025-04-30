@@ -127,7 +127,11 @@ public class History {
         historyPage.increaseFirstRowQtyByOne();
     }
     public static void clickSubmitEditOrder(){
+        if(!historyPage.isReviewOrderTextDisplayed()){
+            historyPage.clickCheckOutEditOrder();
+        }
         historyPage.clickSubmitEditOrder();
+
     }
     public static boolean isOrderEditRequestPopupDisplayed(){
         return historyPage.isOrderEditRequestPopupDisplayed();
@@ -183,5 +187,32 @@ public class History {
     }
     public static boolean isInvoicesUploadedStatusDisplayed()throws InterruptedException{
         return historyPage.isInvoicesUploadedStatusDisplayed();
+    }
+    public static double getItemPriceOnMultiOUM() throws InterruptedException {
+        return historyPage.getItemPriceOnMultiOUM();
+    }
+    public static double getItemCountOnReviewMultiOUM() throws InterruptedException {
+        return historyPage.getItemCountOnReviewMultiOUM();
+    }
+    public static boolean isOrderIdDisplayed(String orderId) throws InterruptedException {
+        return historyPage.isOrderIdDisplayed(orderId);
+    }
+    public static double getItemPriceOnSubmittedOrder() throws InterruptedException {
+        return historyPage.getItemPriceOnSubmittedOrder();
+    }
+    public static void clickOnOrder(String orderId) throws InterruptedException {
+        historyPage.clickOnOrder(orderId);
+    }
+    public static void clickOnInvoiceTab(){
+        historyPage.clickOnInvoiceTab();
+    }
+    public static void clickOnDownloadInvoice(){
+        historyPage.clickOnDownloadInvoice();
+    }
+    public static void clickOnPrintInvoice(){
+        historyPage.clickOnPrintInvoice();
+    }
+    public static void ensureOrderDateSortedDescending() throws InterruptedException {
+        historyPage.ensureOrderDateSortedDescending();
     }
 }

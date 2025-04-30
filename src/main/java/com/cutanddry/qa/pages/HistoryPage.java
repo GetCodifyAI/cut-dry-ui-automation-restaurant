@@ -40,9 +40,11 @@ public class HistoryPage extends TestBase {
     By btn_edit_order = By.xpath("//button[@class = 'mr-3 btn btn-outline-primary' and text() = 'Edit Order']");
     By txt_edit_order = By.xpath("//h2[@id = 'swal2-title' and text() = 'Edit Order?']");
     By btn_edit_quantity = By.xpath("(//div[contains(@class,'align-middle')]/*[contains(@data-icon,'plus')])[1]");
+    By btn_checkout_edit_order = By.xpath("//button[contains(@data-tip, 'Click here to checkout')][normalize-space()!='']");
     By btn_submit_edit_order = By.xpath("//button[@id='submit-order-button' and text()='Submit Order Edits']");
-    By txt_review_order = By.xpath("//div[@class='d-flex align-items-center _5h4pkd _11zeigs' and text()='Review Order']");
-    By btn_ok_edit_order = By.xpath("//button[@class='swal2-confirm swal2-styled' and text()='OK']");
+//    By txt_review_order = By.xpath("//div[@class='d-flex align-items-center _5h4pkd _11zeigs' and text()='Review Order']");
+    By txt_review_order = By.xpath("//div[text()='Review Order']");
+    By btn_ok_edit_order = By.xpath("//button[text()='OK']");
     By txt_ok_edit_order = By.xpath("//h2[@id='swal2-title' and text()='Order edit request has been sent.']");
     By btn_recreate_order = By.xpath("//a[@class='_gozzbg dropdown-item' and text() ='Recreate Order']");
     By lastOrderId = By.xpath("(//tr[contains(@href,'/orders-revised/view-one')])[last()]//td[contains(text(),'#')]");
@@ -62,7 +64,21 @@ public class HistoryPage extends TestBase {
     String dropDownOption = "//div[text()='OPTION']";
     String locationDropDownOption = "//div[contains(@class,'themed_select__option') and text()='OPTION']";
     By invoiceUploadStatus = By.xpath("(//td//span[text()='Invoice Upload'])[1]");
+    By btn_orderCheckoutReview = By.xpath("//td[text()='Total']/following-sibling::td[normalize-space()!='']");
+    By btn_orderItemCountReview = By.xpath("//td[contains(text(), 'Total Quantity')]/following-sibling::td[normalize-space()!='']");
+    String orderTitle = "//h2[contains(text(),'Order #ORDER_ID')]";
+    By btn_submittedOrderTotal = By.xpath("(//*[contains(text(), 'Total')]/following-sibling::td[normalize-space()!=''])[last()]");
+    By lbl_orderTableColumn = By.xpath("//table/thead/tr/th");
+    String lbl_orderTableColumnName = "//table/thead/tr/th[COUNT]/span";
+    By lbl_orderTableRow = By.xpath("//tbody/tr");
+    String lbl_orderTableRef = "//tbody/tr[TR_COUNT]/td[TH_COUNT]";
+    By btn_invoice = By.xpath("//a[@role='tab' and @data-rb-event-key='Invoice']");
+    By btn_downloadInvoice = By.xpath("//button[contains(text(),'Download Invoice')]");
+    By btn_printInvoice = By.xpath("//button[contains(text(),'Print Invoice')]");
 
+    By lbl_orderDateColumn = By.xpath("//span[contains(text(),'Order Date')]");
+    By lbl_orderDateArrowUp = By.xpath("//span[contains(text(),'Order Date')]/*[name()='svg' and contains(@data-icon, 'arrow-up')]");
+    By lbl_orderDateArrowDown = By.xpath("//span[contains(text(),'Order Date')]/*[name()='svg' and contains(@data-icon, 'arrow-down')]");
 
     public void clickClose(){
         restaurantUI.waitForVisibility(btn_close);
@@ -251,11 +267,7 @@ public class HistoryPage extends TestBase {
         restaurantUI.click(btn_confirm_order);
     }
     public boolean isReviewOrderTextDisplayed(){
-        try {
-            restaurantUI.waitForVisibility(txt_review_order);
-        } catch (Exception e){
-            return false;
-        }
+//        restaurantUI.waitForVisibility(txt_review_order);
         return restaurantUI.isDisplayed(txt_review_order);
 
     }
@@ -266,6 +278,9 @@ public class HistoryPage extends TestBase {
     }
     public void clickSubmitEditOrder(){
         restaurantUI.click(btn_submit_edit_order);
+    }
+    public void clickCheckOutEditOrder(){
+        restaurantUI.click(btn_checkout_edit_order);
     }
     public boolean isOrderEditRequestPopupDisplayed(){
         try {
@@ -386,5 +401,96 @@ public class HistoryPage extends TestBase {
         return restaurantUI.isDisplayed(invoiceUploadStatus);
     }
 
+    public Double getItemPriceOnMultiOUM() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_orderCheckoutReview);
+        String priceText = restaurantUI.getText(btn_orderCheckoutReview).replace("$", "").replace(",", "");
+        return Double.valueOf(priceText);
+    }
 
+    public Double getItemCountOnReviewMultiOUM() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_orderItemCountReview);
+        String priceText = restaurantUI.getText(btn_orderItemCountReview);
+        return Double.valueOf(priceText);
+    }
+
+    public boolean isOrderIdDisplayed(String orderId) throws InterruptedException {
+        restaurantUI.waitForVisibility(By.xpath(orderTitle.replace("ORDER_ID", orderId)));
+        restaurantUI.waitForCustom(4000);
+        return restaurantUI.isDisplayed(By.xpath(orderTitle.replace("ORDER_ID", orderId)));
+    }
+
+    public Double getItemPriceOnSubmittedOrder() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_submittedOrderTotal);
+        String priceText = restaurantUI.getText(btn_submittedOrderTotal).replace("$", "").replace(",", "");
+        return Double.valueOf(priceText);
+    }
+
+   /* public void clickOnOrder(String orderId) {
+        for (int i = 1; i <= restaurantUI.countElements(lbl_orderTableColumn); i++) {
+            if ("Reference".equalsIgnoreCase(restaurantUI.getText(By.xpath(lbl_orderTableColumnName.replace("COUNT", String.valueOf(i)))))) {
+                for (int j = 1; j <= restaurantUI.countElements(lbl_orderTableRow); j++) {
+                    String xpath = lbl_orderTableRef.replace("TR_COUNT", String.valueOf(j)).replace("TH_COUNT", String.valueOf(i));
+
+                    String referenceData;
+                    try {
+                        referenceData = restaurantUI.getText(2,By.xpath(xpath)).trim();
+                    } catch (Exception e) {
+                        continue;
+                    }
+
+                    if (!referenceData.isEmpty() && orderId.equalsIgnoreCase(referenceData.replace("Order",""))) {
+                        restaurantUI.click(By.xpath(xpath));
+                        return;
+                    }
+                }
+            }
+        }
+    }*/
+
+    public void clickOnOrder(String orderId) {
+        int maxRecords = 15;
+        for (int i = 1; i <= restaurantUI.countElements(lbl_orderTableColumn); i++) {
+            String columnName = restaurantUI.executeJSForText(By.xpath(lbl_orderTableColumnName.replace("COUNT", String.valueOf(i))));
+
+            if ("Reference".equalsIgnoreCase(columnName)) {
+                int totalRows = Math.min(restaurantUI.countElements(lbl_orderTableRow), maxRecords);
+                for (int j = 1; j <= totalRows; j++) {
+                    String xpath = lbl_orderTableRef.replace("TR_COUNT", String.valueOf(j)).replace("TH_COUNT", String.valueOf(i));
+
+                    String referenceData;
+                    try {
+                        referenceData = restaurantUI.executeJSForText(By.xpath(xpath));
+                    } catch (Exception e) {
+                        continue;
+                    }
+
+                    if (!referenceData.isEmpty() && orderId.equalsIgnoreCase(referenceData.replace("Order", "").trim())) {
+                        restaurantUI.click(By.xpath(xpath));  // You can replace this with JS click if needed
+                        return;
+                    }
+                }
+            }
+        }
+    }
+    public void clickOnInvoiceTab(){
+        restaurantUI.click(btn_invoice);
+    }
+    public void clickOnDownloadInvoice(){
+        restaurantUI.click(btn_downloadInvoice);
+    }
+    public void clickOnPrintInvoice(){
+        restaurantUI.click(btn_printInvoice);
+    }
+
+    public void ensureOrderDateSortedDescending() throws InterruptedException {
+
+        restaurantUI.waitForVisibility(lbl_orderDateColumn);
+        restaurantUI.click(lbl_orderDateColumn);
+
+        if (restaurantUI.isDisplayed(lbl_orderDateArrowUp)) {
+            restaurantUI.click(lbl_orderDateColumn);
+            restaurantUI.waitForCustom(2000);
+        }
+
+    }
 }

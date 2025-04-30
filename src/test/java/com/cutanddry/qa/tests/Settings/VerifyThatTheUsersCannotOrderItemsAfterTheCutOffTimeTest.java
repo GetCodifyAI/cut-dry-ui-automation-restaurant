@@ -7,6 +7,7 @@ import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.functions.Settings;
 import com.cutanddry.qa.utils.JsonUtil;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,6 +17,8 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyThatTheUsersCannotOrderItemsAfterTheCutOffTimeTest extends TestBase {
     static User user;
+    static String expectedDate;
+    static String todayDate;
 
 
     @BeforeMethod
@@ -30,7 +33,7 @@ public class VerifyThatTheUsersCannotOrderItemsAfterTheCutOffTimeTest extends Te
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDisDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDisDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDisDashboard(),"login error");
         Settings.goToOrderSettings();
         Settings.setAfterCutOffTime();
         Settings.saveChanges();
@@ -38,19 +41,22 @@ public class VerifyThatTheUsersCannotOrderItemsAfterTheCutOffTimeTest extends Te
         initialization();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
-        softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         itemName = Customer.getItemNameFirstRow();
         Customer.increaseFirstRowQtyByOne();
         Customer.checkoutItems();
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
-        Customer.selectDeliveryDateFirstLine();
+        expectedDate = generateUTCTomorrowDateFormatted();
+        todayDate = generateUTCTodayDateFormatted();
+
+        Customer.selectDeliveryDateLine(todayDate);
         Customer.submitOrderAfterDeliveryTime();
         softAssert.assertTrue(Customer.isInvalidDeliveryTextDisplayed(),"Delivery time error");
         Customer.closeDeliveryPopup();
-        Customer.selectDeliveryDateSecondLine();
+        Customer.selectDeliveryDateLine(expectedDate);
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
         softAssert.assertAll();
