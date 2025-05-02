@@ -1132,7 +1132,7 @@ jobs:
 
           # Send the test results to Slack
       - slack/notify:
-          channel: "#staging-test-alerts" # Replace with your Slack channel
+          channel: "#test-alerts" # Replace with your Slack channel
           template: "${SLACK_MESSAGE}"
           event: always
           custom: |
