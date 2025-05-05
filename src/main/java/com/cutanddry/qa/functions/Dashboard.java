@@ -64,6 +64,10 @@ public class Dashboard {
         if(dashboardPage.isDraftOrderPopUpDisplayed()){
             dashboardPage.clickOnNoDraftOrder();
         }
+        else if (dashboardPage.isSelectOrderGuidePopUpDisplayed()){
+            dashboardPage.selectOrderGuide("Independent Foods Co");
+        }
+
     }
     public static void selectSupplier(String supplierName){
         dashboardPage.clickOnSupplier(supplierName);
@@ -176,4 +180,15 @@ public class Dashboard {
     public static void clickOutsideModal() throws InterruptedException {
         dashboardPage.clickOutsideModal();
     }
+
+    public static void selectOrderGuide(String orderGuide){
+        dashboardPage.selectOrderGuide(orderGuide);
+    }
+
+
+
+
+
+
+
 }

@@ -54,6 +54,8 @@ public class DashboardPage extends LoginPage{
     By btn_colonnade = By.xpath("//div[contains(text(), 'Colonnade')]");
     String txt_profile = "//div[text()='NAME']";
     By signOutProfile = By.xpath("//a[text()='Sign Out']");
+    By selectOrderGuide =  By.xpath("//div[contains(text(),'Select Order Guide')]");
+    String orderGuide ="//div[contains(text(),'ORDERGUIDE')]";
     By outSideModal = By.xpath("//div[@role='dialog' and not(descendant::*[@class='modal-content'])]");
 
 
@@ -277,6 +279,16 @@ public class DashboardPage extends LoginPage{
     }
     public void clickOutsideModal()throws InterruptedException{
          restaurantUI.clickUsingJavaScript(outSideModal);
+    }
+
+    public void selectOrderGuide(String OrderGuideName){
+        if(restaurantUI.isDisplayed(selectOrderGuide)){
+            restaurantUI.click(By.xpath(orderGuide.replace("ORDERGUIDE",OrderGuideName)));
+        }
+    }
+
+    public boolean isSelectOrderGuidePopUpDisplayed(){
+        return restaurantUI.isDisplayed(selectOrderGuide);
     }
 
 }

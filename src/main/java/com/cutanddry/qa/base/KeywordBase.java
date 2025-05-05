@@ -211,6 +211,8 @@ public class KeywordBase {
         }
     }
 
+
+
     // Verify if an element is displayed with a custom wait time
     public boolean isDisplayed(By by, int timeoutInSeconds) {
         try {
