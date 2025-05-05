@@ -1210,17 +1210,15 @@ workflows:
   scheduled-test-2:
     triggers:
       - schedule:
-          cron: "25 06 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 25 06 --> DP gap = 40 min
+          cron: "00 03 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 25 06 --> DP gap = 40 min
           filters:
             branches:
               only:
-                - main
+                - Optimization/Dileesha
     jobs:
-      - daily-build-and-test-1
-      - daily-build-and-test-2
-      - daily-build-and-test-3
+
       - daily-build-and-test-4
-      - daily-build-and-test-5
+
       - calculate-pass-fail-rate:
           requires:
             - daily-build-and-test-1
