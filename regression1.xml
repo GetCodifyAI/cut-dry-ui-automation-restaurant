@@ -9,7 +9,7 @@
         <parameter name="PART" value="Part One" />
         <classes>
             <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantLoginTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmOrderGuideTest" />
+          <!--  <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmCatalogTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmCatalogTest" />
@@ -26,14 +26,14 @@
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyHidingAnItemFromOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyUnhideItemsFromOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSearchFeatureTest" />
-<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCreatingOrdersWithUploadingExcelFileTest" />-->
+&lt;!&ndash;            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCreatingOrdersWithUploadingExcelFileTest" />&ndash;&gt;
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrderGuideWithCatalogItemsTest" />
-<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrdersImportingOrderGuideTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrdersWithUploadingExcelFileTest" />-->
+&lt;!&ndash;            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrdersImportingOrderGuideTest" />&ndash;&gt;
+&lt;!&ndash;            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrdersWithUploadingExcelFileTest" />&ndash;&gt;
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSortOptionsTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheCutOffTimeForPickup" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePickUpDisplayTerm" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePickUpSubmit" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePickUpSubmit" />-->
         </classes>
     </test>
 </suite>

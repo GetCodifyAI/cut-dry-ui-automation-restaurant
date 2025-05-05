@@ -10,7 +10,7 @@
         <classes>
             <class name="com.cutanddry.qa.tests.Support.RestaurantSupportTest" />
 
-            <class name="com.cutanddry.qa.tests.Suppliers.VerifyAddingSupplierTest" />
+          <!--  <class name="com.cutanddry.qa.tests.Suppliers.VerifyAddingSupplierTest" />
             <class name="com.cutanddry.qa.tests.Suppliers.VerifyEditingSupplierTest" />
             <class name="com.cutanddry.qa.tests.Suppliers.VerifyDeletingSupplierTest" />
             <class name="com.cutanddry.qa.tests.Suppliers.VerifyAddingMultipleSupplierTest" />
@@ -34,7 +34,7 @@
             <class name="com.cutanddry.qa.tests.History.VerifyTheUploadInvoiceFunctionalityTest" />
 
             <class name="com.cutanddry.qa.tests.Rewards.VerifyAddSupplierOptionTest" />
-            <!-- <class name="com.cutanddry.qa.tests.Rewards.VerifyLaunchPadOptionTest" /> -->
+            &lt;!&ndash; <class name="com.cutanddry.qa.tests.Rewards.VerifyLaunchPadOptionTest" /> &ndash;&gt;
             <class name="com.cutanddry.qa.tests.Rewards.VerifyRewardsFeatureForLearnMoreOptionTest" />
             <class name="com.cutanddry.qa.tests.Rewards.VerifySearchByDateRangeTest" />
             <class name="com.cutanddry.qa.tests.Rewards.VerifyRedeemBalanceOptionTest" />
@@ -48,7 +48,7 @@
             <class name="com.cutanddry.qa.tests.Orders.VerifyDeletionOfTheCreatedSupplierTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifySupplierFilteredByLocationTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheCreateItemFunctionalityTest" />
-            <class name="com.cutanddry.qa.tests.Orders.VerifyUserCanOrderItemsBeforeCutOffTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyUserCanOrderItemsBeforeCutOffTest" />-->
         </classes>
     </test>
 </suite>

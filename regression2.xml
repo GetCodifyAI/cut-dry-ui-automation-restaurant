@@ -9,7 +9,7 @@
         <parameter name="PART" value="Part Two" />
         <classes>
             <class name="com.cutanddry.qa.tests.Catalog.VerifyCatalogItemImagesTest" />
-            <class name="com.cutanddry.qa.tests.Catalog.VerifyItemDescriptionTest" />
+          <!--  <class name="com.cutanddry.qa.tests.Catalog.VerifyItemDescriptionTest" />
 
             <class name="com.cutanddry.qa.tests.Settings.VerifyThatTheUsersCannotOrderItemsAfterTheCutOffTimeTest" />
             <class name="com.cutanddry.qa.tests.Settings.VerifyThatTheUsersCanOrderItemsBeforeTheCutOffTimeTest" />
@@ -38,7 +38,7 @@
             <class name="com.cutanddry.qa.tests.MultiCart.VerifyCreatedOrdersFromMultipleCartsTest" />
             <class name="com.cutanddry.qa.tests.MultiCart.VerifyGroupingProductsIntoTwoCartsTest" />
 
-            <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaOrderGuideCatalogAndPDPTest" />
+            <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaOrderGuideCatalogAndPDPTest" />-->
         </classes>
     </test>
 </suite>

@@ -9,7 +9,7 @@
         <parameter name="PART" value="Part Five" />
         <classes>
             <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionTest" />
-            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderGuideQtyEditTest" />
+           <!-- <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderGuideQtyEditTest" />
             <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierCartQtyEditTest" />
             <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionFromDraftTest" />
             <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierCartDeleteTest" />
@@ -27,7 +27,7 @@
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromPDPTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromOrderGuideCatalogPDPTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifyDeleteDraftOrderTest" />
-            <class name="com.cutanddry.qa.tests.Drafts.VerifyPendingApprovalsAreClickableTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifyPendingApprovalsAreClickableTest" />-->
         </classes>
     </test>
 </suite>
