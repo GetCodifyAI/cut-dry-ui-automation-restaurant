@@ -30,7 +30,7 @@ public class Constants {
             MAIN_URL = "https://app-guava.staging.cutanddry.com/";
         }
         else if (TEST_ENV.equalsIgnoreCase("STAG")) {
-            MAIN_URL = "https://app-psup-116.staging.cutanddry.com/";
+            MAIN_URL = "https://app-ifd.staging.cutanddry.com/";
         }
         return MAIN_URL;
     }
@@ -44,7 +44,7 @@ public class Constants {
             SEC_URL = "https://supplier-guava.staging.cutanddry.com/";
         }
         else if (TEST_ENV.equalsIgnoreCase("STAG")){
-            SEC_URL = "https://supplier-psup-116.staging.cutanddry.com/";
+            SEC_URL = "https://supplier-ifd.staging.cutanddry.com/";
         }
         return SEC_URL;
     }
@@ -58,7 +58,7 @@ public class Constants {
             LOGIN_AS_APP_URL = "https://app-guava.staging.cutanddry.com/internaltools/loginas";
         }
         else if (TEST_ENV.equalsIgnoreCase("STAG")) {
-            LOGIN_AS_APP_URL = "https://app-psup-116.staging.cutanddry.com/internaltools/loginas";
+            LOGIN_AS_APP_URL = "https://app-ifd.staging.cutanddry.com/internaltools/loginas";
         }
         return LOGIN_AS_APP_URL;
     }
@@ -72,7 +72,7 @@ public class Constants {
             GATE_KEEPER_URL = "https://app-guava.staging.cutanddry.com/gatekeeperadmin";
         }
         else if (TEST_ENV.equalsIgnoreCase("STAG")) {
-            GATE_KEEPER_URL = "https://app-psup-116.staging.cutanddry.com/gatekeeperadmin";
+            GATE_KEEPER_URL = "https://app-ifd.staging.cutanddry.com/gatekeeperadmin";
         }
         return GATE_KEEPER_URL;
     }
@@ -86,7 +86,7 @@ public class Constants {
             WHITELABEL_APP_URL = "https://sutters-guava.staging.cutanddry.com/";
         }
         else if (TEST_ENV.equalsIgnoreCase("STAG")) {
-            WHITELABEL_APP_URL = "https://sutters-psup-116.staging.cutanddry.com/";
+            WHITELABEL_APP_URL = "https://sutters-ifd.staging.cutanddry.com/";
         }
         return WHITELABEL_APP_URL;
     }
