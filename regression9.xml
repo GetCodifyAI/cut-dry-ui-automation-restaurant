@@ -31,7 +31,7 @@
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSupplierSelectionModalCloseBehaviourTest"/>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyLastOrderedPricesAreNotShowingInOrderGuidesTest"/>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyCustomAccountHoldMessageIsDisplayedForCarmelaOnOrderSubmissionTest"/>
-
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyGenericAccountHoldMessageIsDisplayedOnOrderSubmissionTest"/>
         </classes>
     </test>
 </suite>

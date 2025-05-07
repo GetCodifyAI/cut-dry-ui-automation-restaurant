@@ -172,7 +172,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String SelectCustomerByCode = "//td[contains(text(),'CODE')]";
     String txt_customerProfile = "//div[contains(@class, 'd-flex') and contains(text(), 'BUSINESSNAME')]";
     By tb_orders = By.xpath("//a[text()='Orders' and @role='tab']");
-    String specificOrderRecord = "//tr/td[text()='ORDER_ID']";
+    String specificOrderRecord = "//tr//*[text()='ORDER_ID']";
     String orderTitle = "//h2[contains(text(),'Order #ORDER_ID')]";
     By btn_addToCartPDP = By.xpath("(//button[contains(text(), 'Add to Cart')])[1]");
     By lbl_pickUp = By.xpath("//span[text()='Pickup/Will Call']");
