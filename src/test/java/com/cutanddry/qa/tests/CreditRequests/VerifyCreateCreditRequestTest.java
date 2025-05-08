@@ -13,6 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyCreateCreditRequestTest extends TestBase {
     static User user;
+    String orderId;
 
     @BeforeMethod
     public void setUp(){
@@ -35,10 +36,13 @@ public class VerifyCreateCreditRequestTest extends TestBase {
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
+        orderId = Customer.getSuccessOrderId();
         Customer.clickClose();
 
         History.goToHistory();
         Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        History.searchOrderID(orderId);
+        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
         History.clickOnFirstItemOfOrderHistory();
         softAssert.assertTrue(History.isOrderSectionDisplayed(),"Order section not display");
         History.clickCheckIn();

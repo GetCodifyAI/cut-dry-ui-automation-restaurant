@@ -12,7 +12,7 @@ By btn_decreaseQtyFirstRow = By.xpath("(//tr/td//div[contains(@data-tip,'View Pr
     By btn_decreaseQtySecondRow = By.xpath("//tr[2]/td[6]/div/div/div/div[1]");
     By btn_increaseQtySecondRow = By.xpath("//tr[2]/td[6]/div/div/div/div[3]");
     By btn_checkout = By.xpath("//button[@data-for='cartCheckoutButton']");
-    By txt_catalog = By.xpath("//div[contains(text(), 'Item Type')]");
+    By txt_catalog = By.xpath("//span[contains(text(), 'Catalog')]");
     By btn_catalog = By.xpath("//span[text()='Catalog']");
     By btn_catalogToOrderGuide = By.xpath("//span[text()='Order Guide']");
     By tbx_catalogSearch = By.xpath("//input[@placeholder='Search catalog...']");
