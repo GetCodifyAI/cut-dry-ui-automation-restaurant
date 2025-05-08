@@ -47,7 +47,7 @@ public class HistoryPage extends TestBase {
     By btn_ok_edit_order = By.xpath("//button[text()='OK']");
     By txt_ok_edit_order = By.xpath("//h2[@id='swal2-title' and text()='Order edit request has been sent.']");
     By btn_recreate_order = By.xpath("//a[@class='_gozzbg dropdown-item' and text() ='Recreate Order']");
-    By lastOrderId = By.xpath("(//tr[contains(@href,'/orders-revised/view-one')])[last()]//td[contains(text(),'#')]");
+    By lastOrderId = By.xpath("(//tr[contains(@href,'/orders-revised/view-one')])[last()]//td//*[contains(text(),'#')]");
     By lbl_orderDateDropdown = By.xpath("//label[contains(text(),'Order Date:')]/following-sibling::div");
     By lbl_statusDropdown = By.xpath("//label[contains(text(),'Order Status:')]/following-sibling::div");
     String days = "//div[text()='DATE']";
