@@ -12,7 +12,7 @@ By btn_decreaseQtyFirstRow = By.xpath("(//tr/td//div[contains(@data-tip,'View Pr
     By btn_decreaseQtySecondRow = By.xpath("//tr[2]/td[6]/div/div/div/div[1]");
     By btn_increaseQtySecondRow = By.xpath("//tr[2]/td[6]/div/div/div/div[3]");
     By btn_checkout = By.xpath("//button[@data-for='cartCheckoutButton']");
-    By txt_catalog = By.xpath("//div[contains(text(), 'Item Type')]");
+    By txt_catalog = By.xpath("//span[contains(text(), 'Catalog')]");
     By btn_catalog = By.xpath("//span[text()='Catalog']");
     By btn_catalogToOrderGuide = By.xpath("//span[text()='Order Guide']");
     By tbx_catalogSearch = By.xpath("//input[@placeholder='Search catalog...']");
@@ -172,7 +172,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String SelectCustomerByCode = "//td[contains(text(),'CODE')]";
     String txt_customerProfile = "//div[contains(@class, 'd-flex') and contains(text(), 'BUSINESSNAME')]";
     By tb_orders = By.xpath("//a[text()='Orders' and @role='tab']");
-    String specificOrderRecord = "//tr/td[text()='ORDER_ID']";
+    String specificOrderRecord = "//tr//*[text()='ORDER_ID']";
     String orderTitle = "//h2[contains(text(),'Order #ORDER_ID')]";
     By btn_addToCartPDP = By.xpath("(//button[contains(text(), 'Add to Cart')])[1]");
     By lbl_pickUp = By.xpath("//span[text()='Pickup/Will Call']");

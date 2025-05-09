@@ -35,21 +35,21 @@ public class PayPage extends TestBase {
     By tbx_editNickname = By.xpath("(//input[contains(@class,'form-control')])[2]");
     By invoice = By.xpath("(//td[contains(@class,'align-middle')])[1]");
     By txt_invoiceId = By.xpath("//h2[contains(@class,'my-2 font-weight')]");
-    By btn_invoiceStatus = By.xpath("(//div[contains(@class,'dropdown-indicator')]/*)[1]");
+    By btn_invoiceStatus = By.xpath("(//div[contains(text(),'Status')]//*[contains(@class,'dropdown-indicator')])[1]");
     By btn_statusPastDue = By.xpath("//div[contains(text(),'Past due')]");
     By pastDue = By.xpath("//div[contains(text(),'Past due')]");
     By txt_searchedStatus = By.xpath("//td[contains (@class,'align-middle text-danger')]");
     By btn_paidTab = By.xpath("//a[contains(translate(text(), 'ABCDEFGHIJKLMNOpQRSTUVWXYZ', 'abcdefghijklmnoPqrstuvwxyz'), 'Paid')]");
     By btn_threeDots = By.xpath("(//button[contains(@class,'_g0pr2tf border-0')])[1]");
     By btn_downloadReceipt = By.xpath("(//a[contains(@class,'dropdown-item')])[1]");
-    By btn_statusPaid = By.xpath("(//div[contains(text(),'Status')]//div[contains(@class,'themed_select__placeholder')])[last()]");
+    By btn_statusPaid = By.xpath("(//div[contains(text(),'Status')]//*[contains(@class,'dropdown-indicator')])[2]");
     By paidInvoice = By.xpath("//div[contains(text(),'Paid')]");
     By statusPaid = By.xpath("//div[contains(text(),'Paid')]");
     By txt_filteredStatus = By.xpath("//td[@class='align-middle' and text()='Paid']");
     By btn_printReceipt = By.xpath("//a[@class='dropdown-item']//span[text()='Print Receipt']");
     By btn_selectPaidInvoice = By.xpath("(//div[contains(text(),'Payment Date')]/ancestor::thead/following-sibling::tbody/tr//div)[1]");
     By btn_selectOutstandingInvoice = By.xpath("(//div[contains(text(),'Due Date')]/ancestor::thead/following-sibling::tbody/tr//div)[1]");
-    By btn_autoPay = By.xpath("//button[@class='mr-1 font-weight-bold btn btn-primary' and text()='Enable Auto Pay']");
+    By btn_autoPay = By.xpath("//button[ text()='Enable Auto Pay']");
     By txt_highlightAutoPay = By.xpath("//a[@data-rb-event-key='Auto Pay Settings' and @aria-selected='true' and contains(@class, 'nav-link')]");
     By btn_batchAction = By.xpath("//button[text()='Batch Actions(1)']");
     By btn_downloadInvoice = By.xpath("//a[@class='dropdown-item' and text()='Download Invoices']");
@@ -85,14 +85,14 @@ public class PayPage extends TestBase {
     By txt_totalCredits = By.xpath("//*[contains(text(),'Total Credits')]");
     By txt_pastDueAmount = By.xpath("//*[contains(text(),'Past Due')]");
     By txt_currentBalance = By.xpath("//*[contains(text(),'Current')]");
-    By btn_invoiceType = By.xpath("(//div[contains(@class,'dropdown-indicator')]/*)[2]");
+    By btn_invoiceType = By.xpath("(//div[contains(text(),'Type')]//*[contains(@class,'dropdown-indicator')])[1]");
     By btn_typeCreditMemo = By.xpath("//div[contains(text(),'Credit Memo')]");
     By filteredInvoices = By.xpath("//tr[contains(@class,'_13xlah4')]");
     By totalCreditsAmount = By.xpath("//*[contains(text(),'Total Credits')]/../following::div[1]");
     By totalPastDueAmount = By.xpath("//*[contains(text(),'Past Due')]/../span[1]");
     By totalUnpaidInvoicesAmount = By.xpath("//*[contains(text(),'Past Due')]/../span[1]");
-    By clearInvoiceTypeDropdown = By.xpath("//*[contains(text(),'Type')]/div/div/div[2]/div[1]");
-    By clearInvoiceStatusDropDown = By.xpath("//*[contains(text(),'Status')]/div/div/div[2]/div[1]");
+    By clearInvoiceTypeDropdown = By.xpath("(//div[contains(text(),'Type')]//*[contains(@class,'clear-indicator')])[1]");
+    By clearInvoiceStatusDropDown = By.xpath("(//div[contains(text(),'Status')]//*[contains(@class,'clear-indicator')])[1]");
     By btn_typeInvoice = By.xpath("//*[contains(text(),'Type')][1]/div/div[2]/div/div[contains(text(),'Invoice')]");
     By btn_statusUnpaid = By.xpath("//div[contains(text(),'Unpaid')]");
     By lst_unpaidInvoices = By.xpath("//button[contains(text(),'Pay')]/ancestor::td/../td[9]");
@@ -187,7 +187,8 @@ public class PayPage extends TestBase {
     }
 
     public void clickOnPaymentSetting() {
-        restaurantUI.click(btn_paymentSettings);
+        restaurantUI.scrollToElement(btn_paymentSettings);
+        restaurantUI.clickUsingJavaScript(btn_paymentSettings);
     }
 
     public void clickOnRemovePaymentSetting() {
@@ -366,7 +367,8 @@ public class PayPage extends TestBase {
     }
 
     public void clickAutoPay() {
-        restaurantUI.click(btn_autoPay);
+        restaurantUI.scrollToElement(btn_autoPay);
+        restaurantUI.clickUsingJavaScript(btn_autoPay);
     }
 
     public boolean isAutoPaySettingsHighlighted() {
