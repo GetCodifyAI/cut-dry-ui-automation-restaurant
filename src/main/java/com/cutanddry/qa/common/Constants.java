@@ -17,6 +17,7 @@ public class Constants {
     public static String SLACK_WEBHOOK = System.getenv("STAGING_SLACK_WEBHOOK");
     public static String PUBLIC_PAY_URL = "https://app-uat.staging.cutanddry.com/public-pay/";
     public static String SAVAL_FOOD_URL = "https://savalfoodservice-uat.staging.cutanddry.com/log-in?redirect_on_login=%2F";
+//    public static String TEST_STAG ="offline";
 
     //slackToken=***
     //slackChannel=#ui-automation-tests
@@ -30,7 +31,7 @@ public class Constants {
             MAIN_URL = "https://app-guava.staging.cutanddry.com/";
         }
         else if (TEST_ENV.equalsIgnoreCase("STAG")) {
-            MAIN_URL = "https://app-ifd.staging.cutanddry.com/";
+            MAIN_URL = "https://app-offline.staging.cutanddry.com/";
         }
         return MAIN_URL;
     }
@@ -44,7 +45,7 @@ public class Constants {
             SEC_URL = "https://supplier-guava.staging.cutanddry.com/";
         }
         else if (TEST_ENV.equalsIgnoreCase("STAG")){
-            SEC_URL = "https://supplier-ifd.staging.cutanddry.com/";
+            SEC_URL = "https://supplier-offline.staging.cutanddry.com/";
         }
         return SEC_URL;
     }
@@ -58,7 +59,7 @@ public class Constants {
             LOGIN_AS_APP_URL = "https://app-guava.staging.cutanddry.com/internaltools/loginas";
         }
         else if (TEST_ENV.equalsIgnoreCase("STAG")) {
-            LOGIN_AS_APP_URL = "https://app-ifd.staging.cutanddry.com/internaltools/loginas";
+            LOGIN_AS_APP_URL = "https://app-offline.staging.cutanddry.com/internaltools/loginas";
         }
         return LOGIN_AS_APP_URL;
     }
@@ -72,7 +73,7 @@ public class Constants {
             GATE_KEEPER_URL = "https://app-guava.staging.cutanddry.com/gatekeeperadmin";
         }
         else if (TEST_ENV.equalsIgnoreCase("STAG")) {
-            GATE_KEEPER_URL = "https://app-ifd.staging.cutanddry.com/gatekeeperadmin";
+            GATE_KEEPER_URL = "https://app-offline.staging.cutanddry.com/gatekeeperadmin";
         }
         return GATE_KEEPER_URL;
     }
@@ -86,7 +87,7 @@ public class Constants {
             WHITELABEL_APP_URL = "https://sutters-guava.staging.cutanddry.com/";
         }
         else if (TEST_ENV.equalsIgnoreCase("STAG")) {
-            WHITELABEL_APP_URL = "https://sutters-ifd.staging.cutanddry.com/";
+            WHITELABEL_APP_URL = "https://sutters-offline.staging.cutanddry.com/";
         }
         return WHITELABEL_APP_URL;
     }
