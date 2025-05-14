@@ -14,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyUniversalAppManagerRolesTest extends TestBase {
     static User user;
     static String itemName = "Artichoke -24ct";
-    static String OperatorName = "Aselabookkeeper4";
+    static String OperatorName = "131583036";
 
     @BeforeMethod
     public void setUp(){
