@@ -31,7 +31,7 @@ public class VerifySelectMultipleUOMItemFromCatalogOnlyTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-1052")
-    public void VerifyEditQuantitiesFunctionalityInCatalog() throws InterruptedException {
+    public void VerifySelectMultipleUOMItemFromCatalogOnly() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
