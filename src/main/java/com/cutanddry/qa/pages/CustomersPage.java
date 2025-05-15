@@ -46,13 +46,13 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_print = By.xpath("//button[contains(text(), 'Print')]");
     By btn_downloadOrderGuide = By.xpath("//button[contains(text(), 'Download Order Guide')]");
     By lbl_printFriendlyOrderGuide = By.xpath("//h5[contains(text(), 'Print-Friendly Order Guide')]");
-    By btn_edit = By.xpath("//button[contains(., 'Edit')]");
+    By btn_edit = By.xpath("//a[contains(., 'Edit')]");
     By txt_editOrderGuide = By.xpath("//span[contains(text(), 'Edit Order Guide')]");
     By btn_moreOptions = By.xpath("//span[contains(text(), 'More Options')]");
     By btn_exportOrderGuide = By.xpath("//a[contains(text(), 'Export Order Guide (XLSX)')]");
     By btn_importOrderGuide = By.xpath("//a[contains(text(), 'Import Order Guide (XLSX)')]");
     By btn_uploadToOrder = By.xpath("//a[contains(text(), 'Upload to Order')]");
-    By btn_create = By.xpath("//button[contains(text(), 'Create')]");
+    By btn_create = By.xpath("//div[contains(text(), 'Create')]");
     By tbx_OrderGuideName = By.xpath("//input[@placeholder='Enter Name']");
     By btn_submitOrderGuide = By.xpath("//button[contains(text(), 'Submit')]");
     By btn_addFromCatalog = By.xpath("//div[contains(text(), 'Add from Catalog')]");
@@ -78,7 +78,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_deliveryDate = By.xpath("//div[text()='Delivery Date:']/../following-sibling::div//*[name()='svg' and @data-icon='calendar-date-vect']");
     By btn_selectDeliveryDateFirstLine = By.xpath("(//div[contains(@class, 'cd_themed_select__option')])[1]");
     By btn_selectDeliveryDateSecondLine = By.xpath("(//div[contains(@class, 'cd_themed_select__option')])[2]");
-    By btn_orderGuideSettings = By.xpath("//a[contains(text(), 'Order Guide Settings')]");
+    By btn_orderGuideSettings = By.xpath("//div[contains(text(), 'Order Guide Settings')]");
     By btn_orderApproval = By.xpath("//div[contains(@class, 'react-switch-handle')]");
     By btn_save = By.xpath("//button[contains(@class, 'btn btn-primary') and contains(text(), 'Save')]");
     By btn_previousDraftOrderNo = By.xpath("//div[contains(text(),'previous draft order')]/..//div[text()='No']");

@@ -34,8 +34,6 @@ public class VerifyOrderApprovalChangesTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         softAssert.assertTrue(Dashboard.isApprovalsTabDisplayed(),"approvals tab error");
         Dashboard.navigateToCooksCompanyProduce();
-        Customer.goToEdit();
-        softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigation error for edit");
         Customer.expandMoreOptionsDropdown();
         Customer.orderGuideSettings();
         Customer.saveOrderApproval();

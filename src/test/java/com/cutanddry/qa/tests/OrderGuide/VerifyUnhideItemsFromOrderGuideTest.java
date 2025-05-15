@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyUnhideItemsFromOrderGuideTest extends TestBase {
     static User user;
-    String ItemName = "Carrot - Baby Peeled - 1 Lb";
+    String ItemName = "Asparagus 11 LB";
 
     @BeforeMethod
     public void setUp(){

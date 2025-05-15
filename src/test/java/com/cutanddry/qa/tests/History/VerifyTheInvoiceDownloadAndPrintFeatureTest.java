@@ -16,7 +16,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyTheInvoiceDownloadAndPrintFeatureTest extends TestBase {
     static User user;
     static String orderID = "410201444";
-    String date = "Last 90 Days";
+    String date = "Last 60 Days";
 
     @BeforeMethod
     public void setUp(){
