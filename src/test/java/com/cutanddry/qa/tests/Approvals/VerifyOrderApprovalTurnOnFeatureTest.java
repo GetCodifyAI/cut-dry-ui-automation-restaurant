@@ -32,8 +32,6 @@ public class VerifyOrderApprovalTurnOnFeatureTest extends TestBase {
         restaurantUI.switchToNewTab();
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToCooksCompanyProduce();
-        Customer.goToEdit();
-        softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigation error for edit");
         Customer.expandMoreOptionsDropdown();
         Customer.orderGuideSettings();
         Customer.saveOrderApproval();

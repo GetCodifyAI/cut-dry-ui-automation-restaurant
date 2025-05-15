@@ -173,6 +173,7 @@ public class Customer {
     }
     public static boolean isPrintFriendlyPopupDisplayed(){return customersPage.isPrintFriendlyPopupDisplayed();}
     public static void goToEdit(){
+        customersPage.clickOnMoreOptions();
         customersPage.clickOnEdit();
     }
     public static boolean isEditOrderGuideTextDisplayed(){return customersPage.isEditOrderGuideTextDisplayed();}
@@ -189,6 +190,7 @@ public class Customer {
         customersPage.clickOnUploadToOrder();
     }
     public static void goToCreatePopup(){
+        customersPage.clickOnMoreOptions();
         customersPage.clickOnCreate();
     }
     public static void createOrderGuide(String orderGuideName){

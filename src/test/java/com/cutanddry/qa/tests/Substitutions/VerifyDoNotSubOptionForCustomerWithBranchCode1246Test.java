@@ -41,8 +41,8 @@ public class VerifyDoNotSubOptionForCustomerWithBranchCode1246Test extends TestB
         itemName = Customer.getItemNameFirstRow();
         searchItemCode = Customer.getItemCodeFirstRow();
         itemPrice = Customer.getActiveItemPriceFirstRow();
-        Customer.increaseFirstRowQtyCustom(1);
-        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),itemPrice,"The item has not been selected.");
+        Customer.increaseFirstRowQtySpecificCustomer(15);
+        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),itemPrice*15,"The item has not been selected.");
         Customer.checkoutItems();
         softAssert.assertTrue(Customer.isSubstitutionTextDisplayed(),"Substitution set pop up error");
         Customer.clickSaveSelection();
