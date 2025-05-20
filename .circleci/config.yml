@@ -1189,11 +1189,11 @@ workflows:
   scheduled-test-1-sub1:
     triggers:
       - schedule:
-          cron: "30 19 * * *"  # This will run nightly-build-and-test at 2:00 AM IST (08:30 PM UTC) -- 45 06 * * *  ahsan_dev  20 19
+          cron: "08 17 * * *"  # This will run nightly-build-and-test at 2:00 AM IST (08:30 PM UTC) -- 45 06 * * *  ahsan_dev  20 19
           filters:
             branches:
               only:
-                - main
+                - ahsan_dev
     jobs:
       - nightly-build-and-test-6
       - nightly-build-and-test-7
