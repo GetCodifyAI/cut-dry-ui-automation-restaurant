@@ -165,7 +165,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_catalogPlus = By.xpath("//*[name()='svg' and @data-icon='plus']");
     By itemSort = By.xpath("//div[contains(text(),'Sort Items By:')]/..//*[name()='svg']");
     By sel_delivery = By.xpath("//span[text()='Delivery']/preceding-sibling::div//*[contains(@data-icon, 'circle')]");
-    By txt_orderId = By.xpath("//div[contains(text(),'Order #')]");
+    By txt_orderId = By.xpath("//div[contains(text(),'Order Number #')]");
     By txt_customers = By.xpath("//h2[text()='Customers']");
     String btnCustomerOrderGuide = "//td[text()='CODE']/../td[8]//button";
     String businessName = "//td/following-sibling::td[contains(text(),'CUSTOMERID')]/following-sibling::td[1]";
