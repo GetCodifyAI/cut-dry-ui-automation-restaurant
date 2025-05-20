@@ -43,7 +43,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By lbl_thankYouForOrder = By.xpath("//*[contains(text(),'Thank you for your order!')]");
     By btn_companyDropdown = By.xpath("//button[.//span[text()='Company:']]");
     By txt_companyDropdownText = By.xpath("//a[contains(text(), 'Independent Foods Co')]");
-    By btn_print = By.xpath("//button[contains(text(), 'Print')]");
+    By btn_print = By.xpath("//*[contains(text(),'Print Order Guide') and .//*[local-name()='svg' and @data-icon='cdPrinter']]");
     By btn_downloadOrderGuide = By.xpath("//button[contains(text(), 'Download Order Guide')]");
     By lbl_printFriendlyOrderGuide = By.xpath("//h5[contains(text(), 'Print-Friendly Order Guide')]");
     By btn_edit = By.xpath("//a[contains(., 'Edit')]");
@@ -87,7 +87,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_decreaseQtyFirstRowInWL = By.xpath("(//div[contains(@data-tip,'View Product Details')]/../../following::td//div/*[local-name()='svg' and @data-icon='minus'])[1]");
     By txt_foodServiceDistCenter = By.xpath("//span[text()='Food Service Distribution Centre']");
     By txt_retailDistCenter = By.xpath("//span[text()='Retail Distribution Centre']");
-    String txt_orders = "(//div[contains(text(), 'Order #')])[NUM]";
+    String txt_orders = "(//div[contains(text(), 'Order Number #')])[NUM]";
     By lbl_itemNameListWL = By.xpath("//td//span/div[@data-tip='View Product Details']");
     By tbx_searchCustomers = By.xpath("//input[@placeholder='Search Customers']");
     String btnOrderGuide = "//button[contains(text(), 'Order Guide')]";

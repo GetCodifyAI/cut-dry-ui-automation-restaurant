@@ -45,7 +45,7 @@ public class HistoryPage extends TestBase {
 //    By txt_review_order = By.xpath("//div[@class='d-flex align-items-center _5h4pkd _11zeigs' and text()='Review Order']");
     By txt_review_order = By.xpath("//div[text()='Review Order']");
     By btn_ok_edit_order = By.xpath("//button[text()='OK']");
-    By txt_ok_edit_order = By.xpath("//h2[@id='swal2-title' and text()='Order edit request has been sent.']");
+    By txt_ok_edit_order = By.xpath("//*[contains(text(),'Order edit requested')]");
     By btn_recreate_order = By.xpath("//a[@class='_gozzbg dropdown-item' and text() ='Recreate Order']");
     By lastOrderId = By.xpath("(//tr[contains(@href,'/orders-revised/view-one')])[last()]//td//*[contains(text(),'#')]");
     By lbl_orderDateDropdown = By.xpath("//label[contains(text(),'Order Date:')]/following-sibling::div");
