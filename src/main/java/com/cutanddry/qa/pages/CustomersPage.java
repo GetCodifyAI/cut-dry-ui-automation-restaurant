@@ -139,7 +139,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_increaseQtyFirstRowClassic = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'plus')])[1]");
     By btn_decreaseQtyFirstRowClassic = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'minus')])[1]");
     By tbx_itemQuantityFirstRowClassic = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'minus')]/../following-sibling::div/input)[1]");
-    By lbl_caseMinNotMet = By.xpath("//h2[contains(text(), 'Case Minimum Not Met')]");
+    By lbl_caseMinNotMet = By.xpath("//h2[contains(text(), 'Case Minimum Not Met')] | //h2[contains(text(), 'Order Minimum Not Met')]");
     By addNewItemBtn = By.xpath("//*[contains(text(),'Add New Item')]");
     By addItemsToOrderGuideTxt = By.xpath("//div[contains(text(),'Add Item To Order Guide')]");
     By itemNameTextField = By.xpath("//label[contains(text(),'Item Name')]/following-sibling::input");
@@ -165,7 +165,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_catalogPlus = By.xpath("//*[name()='svg' and @data-icon='plus']");
     By itemSort = By.xpath("//div[contains(text(),'Sort Items By:')]/..//*[name()='svg']");
     By sel_delivery = By.xpath("//span[text()='Delivery']/preceding-sibling::div//*[contains(@data-icon, 'circle')]");
-    By txt_orderId = By.xpath("//div[contains(text(),'Order #')]");
+    By txt_orderId = By.xpath("//div[contains(text(),'Order Number #')]");
     By txt_customers = By.xpath("//h2[text()='Customers']");
     String btnCustomerOrderGuide = "//td[text()='CODE']/../td[8]//button";
     String businessName = "//td/following-sibling::td[contains(text(),'CUSTOMERID')]/following-sibling::td[1]";
