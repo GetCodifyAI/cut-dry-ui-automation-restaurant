@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 public class SupportPage extends TestBase {
 
     By support_icon = By.xpath("//a[@data-tip='Support']");
-    By support_center = By.xpath("//div[@class='hf-header-support-center-name']");
+    By support_center = By.xpath("//h1[contains(text(),'How Can We Help You?')]");
 
     public void clickOnSupport() throws InterruptedException {
         String url = restaurantUI.getText(support_icon,"href");
