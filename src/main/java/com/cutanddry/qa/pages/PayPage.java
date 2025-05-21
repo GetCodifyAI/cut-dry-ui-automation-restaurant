@@ -100,7 +100,7 @@ public class PayPage extends TestBase {
     By lst_pastDueInvoices = By.xpath("//td[contains(text(),'Past due')]/following::td[2]");
     By paymentSummeryText = By.xpath("//div[contains(text(),'Payment Summary')]");
     By paymentSuccessMessage = By.xpath("//*[contains(text(),'Payment Successful!')]");
-    By supplierDropDown = By.xpath("(//div[contains(text(),'Supplier')]/following-sibling::div)[1]/../div");
+    By supplierDropDown = By.xpath("(//div[contains(text(),'Supplier')])[last()-1]/div");
     String supplier = "//div[contains(@class,'menu-list')]//div[contains(text(),'SUPPLIER')]";
     By supplierInPaidTable = By.xpath("//table//tr/td[contains(text(),'Paid')]/../td[3]");
 
@@ -274,7 +274,7 @@ public class PayPage extends TestBase {
     public void clickOnPastDue() throws InterruptedException {
         restaurantUI.waitForVisibility(btn_statusPastDue);
         restaurantUI.click(btn_statusPastDue);
-        restaurantUI.waitForCustom(500);
+        restaurantUI.waitForCustom(10000);
     }
 
     public boolean isSearchedTextDisplayed() {

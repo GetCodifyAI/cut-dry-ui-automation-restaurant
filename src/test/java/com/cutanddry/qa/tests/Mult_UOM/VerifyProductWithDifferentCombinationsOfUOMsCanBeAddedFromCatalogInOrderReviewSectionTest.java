@@ -17,7 +17,7 @@ public class VerifyProductWithDifferentCombinationsOfUOMsCanBeAddedFromCatalogIn
     String uom1 = "1";
     String uom2 = "2";
     static double itemPriceUOM1 ,itemPriceUOM2, multiItemPrice, totalHistoryItemPrice, totalHistoryItemCount,totalPDPItemPrice,subTotalPDPItemPrice;
-    static String singleSearchItemCode, multiItemName, multiSearchItemCode, itemCode, multiCatalogItemName;
+    static String singleSearchItemCode, multiItemName, multiSearchItemCode, itemCode, multiCatalogItemName, orderId;
     String uomDropDownOption = "Multiple Units";
     static String catalogItem = "32120";
 
@@ -85,11 +85,14 @@ public class VerifyProductWithDifferentCombinationsOfUOMsCanBeAddedFromCatalogIn
 
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
+        orderId = Customer.getSuccessOrderId();
         Customer.clickClose();
 
         History.goToHistory();
         Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.ensureOrderDateSortedDescending();
+        History.searchOrderID(orderId);
+        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
         History.clickOnFirstItemOfOrderHistory();
         totalHistoryItemPrice = History.getItemPriceOnMultiOUM();
         totalHistoryItemCount = History.getItemCountOnReviewMultiOUM();

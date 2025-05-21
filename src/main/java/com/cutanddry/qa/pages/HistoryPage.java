@@ -66,8 +66,8 @@ public class HistoryPage extends TestBase {
     By invoiceUploadStatus = By.xpath("(//td//span[text()='Invoice Upload'])[1]");
     By btn_orderCheckoutReview = By.xpath("//td[text()='Total']/following-sibling::td[normalize-space()!='']");
     By btn_orderItemCountReview = By.xpath("//td[contains(text(), 'Total Quantity')]/following-sibling::td[normalize-space()!='']");
-    String orderTitle = "//h2[contains(text(),'Order #ORDER_ID')]";
-    By btn_submittedOrderTotal = By.xpath("(//*[contains(text(), 'Total')]/following-sibling::td[normalize-space()!=''])[last()]");
+    String orderTitle = "//*[contains(text(),'Order Number #ORDER_ID')]";
+    By btn_submittedOrderTotal = By.xpath("(//*[contains(text(), 'Total')]/following-sibling::*[normalize-space()!=''])[last()]");
     By lbl_orderTableColumn = By.xpath("//table/thead/tr/th");
     String lbl_orderTableColumnName = "//table/thead/tr/th[COUNT]/span";
     By lbl_orderTableRow = By.xpath("//tbody/tr");
@@ -254,6 +254,11 @@ public class HistoryPage extends TestBase {
     }
     public void clickEditOrder(){
         restaurantUI.click(btn_edit_order);
+        try {
+            restaurantUI.waitForCustom(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
     public boolean isEditOrderPopUpDisplayed(){
         try {
@@ -265,10 +270,15 @@ public class HistoryPage extends TestBase {
     }
     public void clickConfirmEditOrder(){
         restaurantUI.click(btn_confirm_order);
+        try {
+            restaurantUI.waitForCustom(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
     public boolean isReviewOrderTextDisplayed(){
 //        restaurantUI.waitForVisibility(txt_review_order);
-        return restaurantUI.isDisplayed(txt_review_order);
+        return restaurantUI.isDisplayed(txt_review_order,3);
 
     }
     public void increaseFirstRowQtyByOne()throws InterruptedException{
@@ -492,5 +502,8 @@ public class HistoryPage extends TestBase {
             restaurantUI.waitForCustom(2000);
         }
 
+    }
+    public void refreshHistoryPage(){
+        restaurantUI.refreshPage();
     }
 }
