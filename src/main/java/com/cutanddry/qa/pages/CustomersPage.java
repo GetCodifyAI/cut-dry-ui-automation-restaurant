@@ -766,6 +766,7 @@ public void clickOnCloseOrderGuideEditor(){
     }
 
     public void clickOnPlaceOrder() {
+        restaurantUI.isDisplayed(btn_placeOrder);
         restaurantUI.click(btn_placeOrder );
     }
 
@@ -1139,6 +1140,11 @@ public void clickOnCloseOrderGuideEditor(){
 
     public void clickEditOrder(){
         restaurantUI.click(editOrder);
+        try {
+            restaurantUI.waitForCustom(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
     public String getItemCodeFirstRow() throws InterruptedException {
         restaurantUI.waitForVisibility(lbl_itemCodeList);
@@ -1485,15 +1491,16 @@ public void clickOnCloseOrderGuideEditor(){
     }
 
     public String getItemNameFirstMultiOUMCoupa() throws InterruptedException {
-        restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemNameCoupa,3);
-        restaurantUI.waitForElementEnabledState(lbl_firstMultiOUMItemNameCoupa,true);
+      restaurantUI.uiScrollTop();
+        restaurantUI.scrollToElementStpByStep(lbl_firstMultiOUMItemNameCoupa,3);
+//        restaurantUI.waitForElementEnabledState(lbl_firstMultiOUMItemNameCoupa,true);
         restaurantUI.waitForCustom(3000);
         return restaurantUI.getText(lbl_firstMultiOUMItemNameCoupa);
     }
 
 
     public String getItemCodeFirstMultiOUMCoupa() throws InterruptedException {
-        restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemCodeCoupa,3);
+//        restaurantUI.scrollToElementStable(lbl_firstMultiOUMItemCodeCoupa,3);
         restaurantUI.waitForVisibility(lbl_firstMultiOUMItemCodeCoupa);
         restaurantUI.waitForCustom(3000);
         return restaurantUI.getText(lbl_firstMultiOUMItemCodeCoupa);

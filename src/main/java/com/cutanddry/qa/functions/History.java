@@ -22,6 +22,11 @@ public class History {
     public static void searchOrderID(String orderID) throws InterruptedException{
         historyPage.clickOnSearch();
         historyPage.typeOnSearch(orderID);
+        if (!historyPage.checkIfSearchedElementVisible(orderID)) {
+            historyPage.refreshHistoryPage();
+            historyPage.clickOnSearch();
+            historyPage.typeOnSearch(orderID);
+        }
     }
     public static boolean checkIfSearchedElementVisible(String orderID){
         return historyPage.checkIfSearchedElementVisible(orderID);

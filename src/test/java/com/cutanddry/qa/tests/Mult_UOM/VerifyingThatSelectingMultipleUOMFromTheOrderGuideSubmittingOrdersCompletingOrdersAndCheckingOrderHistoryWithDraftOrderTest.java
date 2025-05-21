@@ -62,6 +62,8 @@ public class VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersC
         softAssert.assertTrue(Drafts.isLastDraftDisplayed(String.valueOf(totalOGItemPrice)),"draft creating error");
         Drafts.clickDraft(String.valueOf(totalOGItemPrice));
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
+//        Customer.clickOnEditOrderInReviewStable();
+//        Customer.searchItemOnOrderGuide(itemCode);
 
         Customer.clickOGAddToCartPlusIcon(1,itemCode, uom1);
         Customer.clickOGAddToCartPlusIcon(1,itemCode, uom2);
@@ -80,6 +82,8 @@ public class VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersC
         History.goToHistory();
         Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.ensureOrderDateSortedDescending();
+        History.searchOrderID(orderId);
+        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
         History.clickOnFirstItemOfOrderHistory();
         totalHistoryItemPrice = History.getItemPriceOnMultiOUM();
         softAssert.assertEquals(Math.round(totalHistoryItemPrice * 100.0) / 100.0,Math.round(totalOGItemPrice * 100.0) / 100.0);

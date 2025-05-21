@@ -171,7 +171,7 @@ public class DashboardPage extends LoginPage{
 
     public boolean isNavigatedToOrderGuide(String Supplier) throws InterruptedException {
         restaurantUI.waitForCustom(4000);
-        restaurantUI.waitForVisibility(By.xpath(customerNameText.replace("SUPPLIERNAME",Supplier)));
+        restaurantUI.waitForVisibility(By.xpath(customerNameText.replace("SUPPLIERNAME",Supplier)),30);
         return restaurantUI.isDisplayed(By.xpath(customerNameText.replace("SUPPLIERNAME",Supplier)));
     }
 
@@ -230,6 +230,7 @@ public class DashboardPage extends LoginPage{
     public void switch1932Saval()throws InterruptedException{
         restaurantUI.waitForVisibility(btn_switch1932Saval);
         restaurantUI.click(btn_switch1932Saval);
+        restaurantUI.waitForCustom(3000);
     }
     public void clickCategory()throws InterruptedException{
         restaurantUI.waitForVisibility(btn_category);

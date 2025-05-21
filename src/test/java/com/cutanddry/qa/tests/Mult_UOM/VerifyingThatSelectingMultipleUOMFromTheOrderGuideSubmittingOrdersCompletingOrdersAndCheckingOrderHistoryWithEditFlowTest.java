@@ -67,6 +67,8 @@ public class VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersC
         History.goToHistory();
         Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.ensureOrderDateSortedDescending();
+        History.searchOrderID(orderId);
+        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
         History.clickOnFirstItemOfOrderHistory();
         totalHistoryItemPrice = History.getItemPriceOnMultiOUM();
         softAssert.assertEquals(Math.round(totalHistoryItemPrice * 100.0) / 100.0,Math.round(totalOGItemPrice * 100.0) / 100.0);
@@ -74,8 +76,9 @@ public class VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersC
         softAssert.assertTrue(History.isEditOrderPopUpDisplayed(),"Edit order pop up window not display");
         History.clickConfirmEditOrder();
         Customer.clickOnEditOrderInReviewStable();
+        Customer.searchItemOnOrderGuide(itemCode);
         singleSearchItemCodeEdit = Customer.getItemCodeFirstRow().trim();
-//        softAssert.assertEquals(singleSearchItemCodeEdit,multiSearchItemCode,"The product item codes on the 'Review Order' page is not match the item codes of the products added.");
+        softAssert.assertEquals(singleSearchItemCodeEdit,multiSearchItemCode,"The product item codes on the 'Review Order' page is not match the item codes of the products added.");
 
         Customer.clickOGAddToCartPlusIcon(2,itemCode, uom1);
         Customer.clickOGAddToCartPlusIcon(2,itemCode, uom2);
