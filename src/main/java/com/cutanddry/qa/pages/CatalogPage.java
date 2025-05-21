@@ -16,7 +16,7 @@ public class CatalogPage extends LoginPage {
     String btn_OGAddToCartPlusQuantity ="(//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='plus'])[UOM]";
     String getOGPriceUOM ="(//td[text()='CODE']/ancestor::tr/td[5]/div/div/div/div/span[contains(@class,'prioritizedPrice')])[UOM]";
     By multiUomOption =By.xpath("//div[text()='Multiple Units']");
-    String txt_orderIdMulti = "(//div[contains(text(),'Order #')])[UOM]";
+    String txt_orderIdMulti = "(//div[contains(text(),'Order Number #')])[UOM]";
     By getTotalItemCount = By.xpath("//td[text()='Items:']/following-sibling::td");
     By getTotalItemPrice = By.xpath("//td[text()='Total:']/following-sibling::td");
     By getTotalEndlessAislePriceReviewOrder = By.xpath("//td[contains(text(),'Endless Aisle Total')]/following-sibling::td");
