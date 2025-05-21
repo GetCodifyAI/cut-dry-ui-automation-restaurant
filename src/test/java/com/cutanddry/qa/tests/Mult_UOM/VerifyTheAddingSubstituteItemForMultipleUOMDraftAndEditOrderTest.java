@@ -49,7 +49,8 @@ public class VerifyTheAddingSubstituteItemForMultipleUOMDraftAndEditOrderTest ex
         Catalog.selectItemFromGrid(searchItemCde);
         softAssert.assertEquals(Catalog.getItemcodeInCatalogData(),searchItemCde,"Error in getting Item Code");
         Catalog.navigateToSubstituteTab();
-        Catalog.removeExistingItem(searchItemCde);
+        Catalog.deleteSubstitute();
+        Catalog.saveChanges();
         Catalog.addSubstitutions();
         String SubstituteItemName = Catalog.getSubstituteItemName(substituteItemCode);
         Catalog.searchAndAddSubstituteItem(substituteItemCode);
