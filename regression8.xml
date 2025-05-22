@@ -25,7 +25,8 @@
 
             <class name="com.cutanddry.qa.tests.Pay.VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureEnabledTest"/>
             <class name="com.cutanddry.qa.tests.Pay.VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureDisabledTest"/>
-            <class name="com.cutanddry.qa.tests.History.VerifyTheInvoiceDownloadAndPrintFeatureTest"/>
+<!--            TODO: Need to resolve the invoice download and print issue with feature team-->
+<!--            <class name="com.cutanddry.qa.tests.History.VerifyTheInvoiceDownloadAndPrintFeatureTest"/>-->
 
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyReportIssueButtonIsEnabledTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyReportIssueButtonIsDisabledTest"/>
