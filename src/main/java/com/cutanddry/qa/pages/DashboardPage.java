@@ -229,6 +229,7 @@ public class DashboardPage extends LoginPage{
     }
     public void switch1932Saval()throws InterruptedException{
         restaurantUI.waitForVisibility(btn_switch1932Saval);
+        restaurantUI.uiScrollTop();
         restaurantUI.click(btn_switch1932Saval);
         restaurantUI.waitForCustom(3000);
     }

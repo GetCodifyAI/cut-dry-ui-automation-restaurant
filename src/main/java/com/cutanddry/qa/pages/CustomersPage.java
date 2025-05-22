@@ -1169,7 +1169,7 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public Double getItemPriceOnCheckoutButtonViaPDP() throws InterruptedException {
         restaurantUI.waitForVisibility(btn_checkOutPDP);
-        restaurantUI.waitForCustom(4000);
+        restaurantUI.waitForCustom(8000);
         return Double.valueOf(restaurantUI.getText(btn_checkOutPDP).replace("$",""));
     }
     public void clickOnPlusIconInCatalogPDP(String name){
