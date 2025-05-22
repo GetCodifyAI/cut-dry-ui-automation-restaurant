@@ -112,7 +112,10 @@ public class HistoryPage extends TestBase {
     }
 
     public boolean checkIfSearchedElementVisible(String orderID) {
-
+        restaurantUI.waitForVisibility(By.xpath(search_result.replace("ORDERID",orderID)));
+        if (!restaurantUI.isDisplayed(By.xpath(search_result.replace("ORDERID",orderID)))) {
+            restaurantUI.refreshPage();
+        }
         return restaurantUI.isDisplayed(By.xpath(search_result.replace("ORDERID",orderID)));
     }
 
