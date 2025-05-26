@@ -23,7 +23,7 @@ public class VerifyTheChatFeatureNotDisplayWhenChatModuleDisableTest extends Tes
 
     }
 
-    @Test(groups = "DOT-TC-975")
+    @Test(groups = "DOT-TC-1269")
     public void VerifyTheChatFeatureNotDisplayWhenChatModuleDisable() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());

@@ -27,7 +27,7 @@ public class VerifyTheChatFeatureNotDisplayWhenChatModuleDisableInWhiteLabelCust
 
     }
 
-    @Test(groups = "DOT-TC-975")
+    @Test(groups = "DOT-TC-1270")
     public void VerifyTheChatFeatureNotDisplayWhenChatModuleDisableInWhiteLabelCustomer() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
