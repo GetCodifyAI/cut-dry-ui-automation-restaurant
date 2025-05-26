@@ -910,6 +910,7 @@ public void clickOnCloseOrderGuideEditor(){
     }
 
     public void clickOnDeleteBtn(){
+        restaurantUI.scrollToElement(sectionDeleteBtn);
         restaurantUI.click(sectionDeleteBtn);
     }
 
@@ -1237,12 +1238,15 @@ public void clickOnCloseOrderGuideEditor(){
         restaurantUI.click(By.xpath(SelectCustomerByCode.replace("CODE", code)));
     }
     public boolean isCustomerProfileDisplayed(String businessName){
+        String result = businessName.substring(0, businessName.indexOf("Test"));
+        System.out.println(result);
         try {
-            restaurantUI.waitForVisibility(By.xpath(txt_customerProfile.replace("BUSINESSNAME",businessName)));
+            restaurantUI.waitForCustom(3000);
+            restaurantUI.waitForVisibility(By.xpath(txt_customerProfile.replace("BUSINESSNAME",result)));
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(By.xpath(txt_customerProfile.replace("BUSINESSNAME",businessName)));
+        return restaurantUI.isDisplayed(By.xpath(txt_customerProfile.replace("BUSINESSNAME",result)));
     }
     public void clickOnOrdersTab() {
         restaurantUI.click(tb_orders);

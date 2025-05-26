@@ -33,6 +33,7 @@ public class OrderPage extends LoginPage{
     By btn_checkInAll = By.xpath("//button[contains(text(),'Check-In All')]");
     By lbl_checkInAllPopup = By.xpath("//h2[contains(text(),'Check-in all items?')]");
     String lbl_orderStatus = "//div[contains(text(),'Order Status: STATUS')]";
+    By btn_chatSupplierOption = By.xpath("//span[contains(text(), 'Chat')]");
 
 
     public void clickAddNewSupplier(){
@@ -178,6 +179,13 @@ public class OrderPage extends LoginPage{
         restaurantUI.waitForVisibility(By.xpath(lbl_orderStatus.replace("STATUS", status)));
         restaurantUI.waitForCustom(4000);
         return restaurantUI.isDisplayed(By.xpath(lbl_orderStatus.replace("STATUS", status)));
+    }
+    public void clickChatSupplierOption()throws InterruptedException{
+        restaurantUI.waitForVisibility(btn_chatSupplierOption);
+        restaurantUI.click(btn_chatSupplierOption);
+    }
+    public boolean isChatOptionDisplay(){
+        return restaurantUI.isDisplayed(btn_chatSupplierOption);
     }
 
 

@@ -176,4 +176,10 @@ public class Dashboard {
     public static void clickOutsideModal() throws InterruptedException {
         dashboardPage.clickOutsideModal();
     }
+    public static boolean isChatSectionDisplay()throws InterruptedException{
+        return dashboardPage.isChatSectionDisplay();
+    }
+    public static boolean isChatWithUsDisplay()throws InterruptedException{
+        return dashboardPage.isChatWithUsDisplay();
+    }
 }
