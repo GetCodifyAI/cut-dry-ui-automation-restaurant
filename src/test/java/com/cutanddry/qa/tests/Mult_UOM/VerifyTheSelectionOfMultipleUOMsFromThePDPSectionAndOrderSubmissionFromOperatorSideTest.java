@@ -17,7 +17,7 @@ public class VerifyTheSelectionOfMultipleUOMsFromThePDPSectionAndOrderSubmission
     String uom1 = "1";
     String uom2 = "2";
     static double itemPriceUOM1 ,itemPriceUOM2, multiItemPrice, totalHistoryItemPrice, totalHistoryItemCount,totalPDPItemPrice;
-    static String singleSearchItemCode, multiItemName, multiSearchItemCode, itemCode;
+    static String singleSearchItemCode, multiItemName, multiSearchItemCode, itemCode, orderId;
     String uomDropDownOption = "Multiple Units";
 
 
@@ -66,11 +66,13 @@ public class VerifyTheSelectionOfMultipleUOMsFromThePDPSectionAndOrderSubmission
 
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
+        orderId = Customer.getSuccessOrderId();
         Customer.clickClose();
 
         History.goToHistory();
         Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.ensureOrderDateSortedDescending();
+        History.searchOrderID(orderId);
         History.clickOnFirstItemOfOrderHistory();
         totalHistoryItemPrice = History.getItemPriceOnMultiOUM();
         totalHistoryItemCount = History.getItemCountOnReviewMultiOUM();
