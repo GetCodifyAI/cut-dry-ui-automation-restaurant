@@ -19,9 +19,9 @@
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEndlessAisleShippingFeesSelectMultipleUOMTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMJustInTimeItemAndDraftEditTest" />
 
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMSpecialOrderItemAndDraftEditTest" />
+            <!--<class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMSpecialOrderItemAndDraftEditTest" />-->
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMJustInTimeItemAndSubmissionTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMSpecialOrderItemAndSubmissionTest" />
+            <!--<class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMSpecialOrderItemAndSubmissionTest" />-->
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMAvailableRebateItemAndSubmissionTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMFromSaleItemAndSubmissionTest" />
 

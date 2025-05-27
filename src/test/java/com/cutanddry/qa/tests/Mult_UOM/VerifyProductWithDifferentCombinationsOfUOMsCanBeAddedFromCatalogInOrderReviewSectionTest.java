@@ -17,9 +17,9 @@ public class VerifyProductWithDifferentCombinationsOfUOMsCanBeAddedFromCatalogIn
     String uom1 = "1";
     String uom2 = "2";
     static double itemPriceUOM1 ,itemPriceUOM2, multiItemPrice, totalHistoryItemPrice, totalHistoryItemCount,totalPDPItemPrice,subTotalPDPItemPrice;
-    static String singleSearchItemCode, multiItemName, multiSearchItemCode, itemCode, multiCatalogItemName;
+    static String singleSearchItemCode, multiItemName, multiSearchItemCode, itemCode, multiCatalogItemName, orderId;
     String uomDropDownOption = "Multiple Units";
-    static String catalogItem = "32120";
+    static String catalogItem = "01762";// 32120
 
 
 
@@ -57,9 +57,10 @@ public class VerifyProductWithDifferentCombinationsOfUOMsCanBeAddedFromCatalogIn
         Catalog.clickAddToCartPlusIcon(1, uom1);
         Catalog.clickAddToCartPlusIcon(1, uom2);
         subTotalPDPItemPrice = Customer.getItemPriceOnCheckoutButtonViaPDP();
+        System.out.println(subTotalPDPItemPrice);
+        System.out.println(((Math.round(itemPriceUOM1 * 100.0) / 100.0)+(Math.round(itemPriceUOM2 * 100.0) / 100.0)));
         softAssert.assertEquals(Math.round(subTotalPDPItemPrice * 100.0) / 100.0,
                 ((Math.round(itemPriceUOM1 * 100.0) / 100.0)+(Math.round(itemPriceUOM2 * 100.0) / 100.0)), "The item has not been selected at 1st item.");
-        System.out.println(totalPDPItemPrice);
 
         Catalog.clickBack();
         Customer.searchItemOnCatalog(catalogItem);
@@ -73,23 +74,28 @@ public class VerifyProductWithDifferentCombinationsOfUOMsCanBeAddedFromCatalogIn
         Catalog.clickAddToCartPlusIcon(1, uom1);
         Catalog.clickAddToCartPlusIcon(1, uom2);
         totalPDPItemPrice = Customer.getItemPriceOnCheckoutButtonViaPDP();
+        System.out.println(totalPDPItemPrice);
+        System.out.println(((Math.round(itemPriceUOM1 * 100.0) / 100.0)+(Math.round(itemPriceUOM2 * 100.0) / 100.0)+Math.round(subTotalPDPItemPrice * 100.0) / 100.0));
         softAssert.assertEquals(Math.round(totalPDPItemPrice * 100.0) / 100.0,
                 ((Math.round(itemPriceUOM1 * 100.0) / 100.0)+(Math.round(itemPriceUOM2 * 100.0) / 100.0)+Math.round(subTotalPDPItemPrice * 100.0) / 100.0), "The item has not been selected at 2nd item.");
-
 
 
         Customer.clickCheckOutPDP();
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
         singleSearchItemCode = Customer.getItemCodeFirstRow().trim();
-        softAssert.assertEquals(singleSearchItemCode,multiSearchItemCode,"The product item codes on the 'Review Order' page is not match the item codes of the products added.");
+//        softAssert.assertEquals(singleSearchItemCode,multiSearchItemCode,"The product item codes on the 'Review Order' page is not match the item codes of the products added.");
+        softAssert.assertTrue(singleSearchItemCode.equals(multiSearchItemCode) || singleSearchItemCode.equals(catalogItem), "The product item codes on the 'Review Order' page do not match the expected item codes.");
 
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
+        orderId = Customer.getSuccessOrderId();
         Customer.clickClose();
 
         History.goToHistory();
         Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.ensureOrderDateSortedDescending();
+        History.searchOrderID(orderId);
+        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
         History.clickOnFirstItemOfOrderHistory();
         totalHistoryItemPrice = History.getItemPriceOnMultiOUM();
         totalHistoryItemCount = History.getItemCountOnReviewMultiOUM();

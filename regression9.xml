@@ -32,6 +32,10 @@
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyLastOrderedPricesAreNotShowingInOrderGuidesTest"/>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyCustomAccountHoldMessageIsDisplayedForCarmelaOnOrderSubmissionTest"/>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyGenericAccountHoldMessageIsDisplayedOnOrderSubmissionTest"/>
+
+            <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureDisplayWhenChatModuleEnableTest"/>
+            <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureNotDisplayWhenChatModuleDisableTest"/>
+            <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureNotDisplayWhenChatModuleDisableInWhiteLabelCustomerTest"/>
         </classes>
     </test>
 </suite>

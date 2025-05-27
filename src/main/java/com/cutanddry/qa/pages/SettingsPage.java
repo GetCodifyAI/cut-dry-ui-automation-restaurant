@@ -202,7 +202,8 @@ public class SettingsPage extends LoginPage{
     public boolean isNavigatedToAccountingCatagory(){
         return restaurantUI.isDisplayed(accountCatagory);
     }
-    public boolean isNavigatedToProfileSetting(){
+    public boolean isNavigatedToProfileSetting() throws InterruptedException {
+        restaurantUI.waitForCustom(3000);
         return restaurantUI.isDisplayed(txt_profile);
     }
     public boolean isNavigatedToRestaurantSettings(){

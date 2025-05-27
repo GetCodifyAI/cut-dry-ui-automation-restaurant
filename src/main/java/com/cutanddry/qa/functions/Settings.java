@@ -182,7 +182,7 @@ public class Settings {
         return settingsPage.isNavigatedToAccountingCatagory();
     }
 
-    public static boolean isNavigatedToProfileSetting(){
+    public static boolean isNavigatedToProfileSetting() throws InterruptedException {
         return settingsPage.isNavigatedToProfileSetting();
     }
 

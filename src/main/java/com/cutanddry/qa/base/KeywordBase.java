@@ -61,6 +61,19 @@ public class KeywordBase {
         return this;
     }
 
+    // Click on an element using By object with Actions class
+    public KeywordBase clickAction(By by) {
+        try {
+            Actions actions = new Actions(driver);
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(by));
+            actions.moveToElement(element).click().perform();
+            logger.info("Clicked on element: {}", by);
+        } catch (Exception e) {
+            logger.error("Failed to click on element: {}", by, e);
+        }
+        return this;
+    }
+
     // Click on an element using By object
     public KeywordBase clickWithFallback(By by) {
         try {
@@ -591,7 +604,7 @@ public class KeywordBase {
         String originalWindow = driver.getWindowHandle();
 
         // Wait for the new tab to open (optional, depending on your application)
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> driver.getWindowHandles().size() > 1);
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(driver -> driver.getWindowHandles().size() > 1);
 
         // Switch to the new tab
         for (String windowHandle : driver.getWindowHandles()) {
@@ -789,6 +802,37 @@ public class KeywordBase {
         }
     }
 
+    public void scrollToElementStpByStep(By by, int timeoutInSeconds) {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            int maxAttempts = 20;
+            int attempt = 0;
+            int scrollStep = 300; // pixels per scroll
+            long lastScrollTop = -1;
+
+            while (attempt < maxAttempts) {
+                if (!driver.findElements(by).isEmpty()) {
+                    WebDriverWait customWait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+                    WebElement targetElement = customWait.until(ExpectedConditions.visibilityOfElementLocated(by));
+                    js.executeScript("arguments[0].scrollIntoView({block: 'center'});", targetElement);
+                    logger.info("Scrolled to and found the element: {}", by);
+                    return;
+                }
+                js.executeScript("window.scrollBy(0, arguments[0]);", scrollStep);
+                Thread.sleep(500);
+                long scrollTop = (long) js.executeScript("return window.pageYOffset;");
+                if (scrollTop == lastScrollTop) {
+                    break; // No more scrolling possible
+                }
+                lastScrollTop = scrollTop;
+                attempt++;
+            }
+            logger.warn("Element not found after scrolling {} times: {}", attempt, by);
+        } catch (Exception e) {
+            logger.error("Failed to find and scroll to the element: {}", by, e);
+        }
+    }
+
     public boolean validateFilteredElements(By locator, String filterOption) {
         try {
             // Find all elements using the provided locator
@@ -961,5 +1005,16 @@ public class KeywordBase {
         }
     }
 
+    // Scroll to the top of the page
+    public KeywordBase uiScrollTop() {
+        try {
+            JavascriptExecutor jse = (JavascriptExecutor) driver;
+            jse.executeScript("window.scrollTo(0, 0);");
+            logger.info("Scrolled to the top of the page.");
+        } catch (Exception e) {
+            logger.error("Failed to scroll to the top of the page.", e);
+        }
+        return this;
+    }
 }
 

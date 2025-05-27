@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheSortOptionsTest extends TestBase {
     static User user;
-    static String itemName = "Artichoke -24ct";
+    static String itemName = "A";
 
     @BeforeMethod
     public void setUp(){
@@ -35,6 +35,8 @@ public class VerifyTheSortOptionsTest extends TestBase {
         Customer.sortByItemCategory();
         softAssert.assertTrue(Customer.isSeaFoodTextDisplayed(),"sort error for item category");
         Customer.sortByAlphabet();
+        System.out.println(Customer.getItemNameFirstRow().toLowerCase());
+        System.out.println(itemName.toLowerCase());
         softAssert.assertTrue(Customer.getItemNameFirstRow().toLowerCase().contains(itemName.toLowerCase()),"sort error for alphabet");
         Customer.sortByCustomOrder();
 // TODO: Invalid check

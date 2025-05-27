@@ -1,10 +1,12 @@
 package com.cutanddry.qa.functions;
 
 
+import com.cutanddry.qa.pages.DashboardPage;
 import com.cutanddry.qa.pages.OrderPage;
 
 public class Order {
     static OrderPage orderPage = new OrderPage();
+    static DashboardPage dashboardPage = new DashboardPage();
 
     public static void clickAddNewSupplier(){
         orderPage.clickAddNewSupplier();
@@ -94,6 +96,17 @@ public class Order {
     }
     public static boolean isOrderStatusDisplayed(String status) throws InterruptedException {
         return orderPage.isOrderStatusDisplayed(status);
+    }
+    public static void clickChatSupplier(String supplier)throws InterruptedException{
+        orderPage.clickThreeDotDropDown(supplier);
+        orderPage.clickChatSupplierOption();
+        dashboardPage.clickOnHayes();
+    }
+    public static void clickOnThreeDot(String supplier) throws InterruptedException {
+        orderPage.clickThreeDotDropDown(supplier);
+    }
+    public static boolean isChatOptionDisplay(){
+        return orderPage.isChatOptionDisplay();
     }
 
 

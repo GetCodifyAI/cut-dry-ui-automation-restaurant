@@ -18,6 +18,13 @@ public class Drafts {
     }
     public static void clickDraft(String total){
         draftsPage.clickDraft(total);
+        try {
+            if(customersPage.isSetSubstitutionTextDisplayed()){
+                customersPage.clickCloseSub();
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
     public static void clickEditOrder(){
         draftsPage.clickEditOrder();

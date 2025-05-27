@@ -166,6 +166,7 @@ public class Customer {
     }
     public static boolean isCompanyDropdownTextDisplayed(){return customersPage.isCompanyDropdownTextDisplayed();}
     public static void clickOnPrint(){
+        customersPage.clickOnMoreOptions();
         customersPage.clickOnPrint();
     }
     public static void printOrderGuide(){

@@ -73,5 +73,11 @@ public class InternalTools {
     public static void enableDisableToggle(String ToggleName, boolean enableStatus){
         internalToolsPage.enableDisableToggle(ToggleName,enableStatus);
     }
+    public static void clickChatCheckbox(boolean status){
+        internalToolsPage.clickChatCheckbox(status);
+    }
+    public static void clickSaveChanges() throws InterruptedException {
+        internalToolsPage.clickSaveChanges();
+    }
 
 }
