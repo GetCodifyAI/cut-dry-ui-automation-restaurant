@@ -16,8 +16,8 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyAddNewSupplierFlowWithMultipleSupplierTest extends TestBase {
     static User user;
-    static String SupplierName = "TestSupplier1";
-    static String SupplierName2 = "TestSupplier2";
+    static String SupplierName = "TestSupplier1"+generateDynamicValue();;
+    static String SupplierName2 = "TestSupplier2"+generateDynamicValue();;
     @BeforeMethod
     public void setUp() {
         initialization();
