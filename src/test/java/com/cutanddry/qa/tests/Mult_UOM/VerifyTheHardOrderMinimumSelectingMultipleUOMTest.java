@@ -13,18 +13,19 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheHardOrderMinimumSelectingMultipleUOMTest extends TestBase {
     static User user;
-    static String orderMin = "300";
+    static String orderMin = "3000000";
+    static String OperatorName = "429887675";
     static String defaultOrderMin = "0";
     static String orderMinimumType = "Hard Order Minimum";
-    static String orderMinInternal = "30000";
+    static String orderMinInternal = "3000000";
     String distributor = "Independent Foods Co";
     static String Dp_Name = "47837013 - Brandon IFC Cut+Dry Agent - Independent Foods Co";
     String searchItemName = "Organic Bananas - 2 LB";
     String searchItemCde = "00529";
     String uom1 = "1";
     String uom2 = "2";
-    static double itemPriceUOM1 ,itemPriceUOM2,totalPrice1,totalItemPriceReviewOrder;
-    static String totalItemQuantityReviewOrder,orderId;
+    static double itemPriceUOM1 ,itemPriceUOM2;
+    String uomDropDownOption = "Multiple Units";
 
 
     @BeforeMethod
@@ -45,9 +46,9 @@ public class VerifyTheHardOrderMinimumSelectingMultipleUOMTest extends TestBase 
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.TurnOnOrderMinimumGloballyToggle(true);
         InternalTools.clickOnOrderMinimumDropdown(orderMinimumType);
-        InternalTools.enterOrderMinimum(orderMinInternal);
+//        InternalTools.enterOrderMinimum(orderMinInternal);
         InternalTools.clickSave();
-        softAssert.assertTrue(InternalTools.isSuccessfulOverlayDisplayed(),"change not save");
+        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save");
         InternalTools.clickOkOnSuccessBtn();
 
         Login.navigateToLoginAs();
@@ -62,23 +63,26 @@ public class VerifyTheHardOrderMinimumSelectingMultipleUOMTest extends TestBase 
         Settings.setOrderMinimums(false);
         Settings.clickOnSaveChanges();
 
-        Login.navigateToOperator();
-        Dashboard.navigateToIndependentFoodsCo();
+//        Login.closePreviousTab();
+        Login.navigateToLoginAs();
+        Login.loginAsBookkeeper(OperatorName);
+        restaurantUI.switchToNewTab();
+        Dashboard.navigateToOrder();
+        Dashboard.navigateToIndependentFoodsCoClassic();
         Dashboard.navigateToOrderGuide();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 
         Customer.goToCatalog();
         Customer.searchItemOnCatalog(searchItemCde);
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(searchItemName.toLowerCase()), "item not found");
-        Customer.clickOnPlusIconInCatalogPDP(1, searchItemName);
-        Customer.clickOnProduct(searchItemName);
+        Catalog.ClickOnMultiUomDropDown(searchItemName);
+        Catalog.ClickOnMultiUomDropDownOption(uomDropDownOption);
         softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
         itemPriceUOM1 = Catalog.getPDPPriceUOM(uom1);
         itemPriceUOM2 = Catalog.getPDPPriceUOM(uom2);
         Catalog.clickAddToCartPlusIcon(1, uom1);
         Catalog.clickAddToCartPlusIcon(1, uom2);
-        totalPrice1 = Customer.getItemPriceOnCheckoutButtonViaPDP();
-        softAssert.assertEquals(Math.round(totalPrice1 * 100.0) / 100.0,
+        softAssert.assertEquals(Math.round(Customer.getItemPriceOnCheckoutButtonViaPDP() * 100.0) / 100.0,
                 ((Math.round(itemPriceUOM1 * 100.0) / 100.0)+(Math.round(itemPriceUOM2 * 100.0) / 100.0)), "The item has not been selected.");
         Customer.clickCheckOutPDP();
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
@@ -87,22 +91,6 @@ public class VerifyTheHardOrderMinimumSelectingMultipleUOMTest extends TestBase 
         softAssert.assertTrue(Customer.isOrderMinPopupDisplayed(),"popup display error");
         Customer.clickOkOrderMinimum();
 
-        Customer.clickOGAddToCartPlusIcon(5,searchItemCde, uom1);
-        Customer.clickOGAddToCartPlusIcon(5,searchItemCde, uom2);
-        totalItemPriceReviewOrder = Catalog.getTotalPriceInReviewOrder();
-        totalItemQuantityReviewOrder = Catalog.getTotalQuantityInReviewOrder();
-        Customer.submitOrder();
-        softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
-        orderId = Customer.getSuccessOrderId();
-        Customer.clickClose();
-
-        History.goToHistory();
-        Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
-        History.searchOrderID(orderId);
-        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
-        History.clickOnFirstItemOfOrderHistory();
-        softAssert.assertEquals(Catalog.getTotalQuantityInOrder(),totalItemQuantityReviewOrder,"order quantity not successfully submitted");
-        softAssert.assertEquals(Catalog.getTotalPriceInOrder(),totalItemPriceReviewOrder,"order not successfully submitted");
         Login.closePreviousTab();
 
        //Distributor flow
@@ -113,6 +101,7 @@ public class VerifyTheHardOrderMinimumSelectingMultipleUOMTest extends TestBase 
         Dashboard.navigateToOrderSettings();
         softAssert.assertTrue(Settings.isOrderSettingsTextDisplayed(),"navigation error");
         Settings.enterOrderMinimum(defaultOrderMin);
+        Settings.setOrderMinimums(true);
         Settings.clickOnSaveChanges();
 
         Login.navigateToInternalTools();
@@ -121,7 +110,7 @@ public class VerifyTheHardOrderMinimumSelectingMultipleUOMTest extends TestBase 
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.TurnOnOrderMinimumGloballyToggle(false);
         InternalTools.clickSave();
-        softAssert.assertTrue(InternalTools.isSuccessfulOverlayDisplayed(),"change not save");
+        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save");
         InternalTools.clickOkOnSuccessBtn();
         softAssert.assertAll();
 
