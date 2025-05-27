@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheSortOptionsTest extends TestBase {
     static User user;
-    static String itemName = "Artichoke -24ct";
+    static String itemName = "A";
 
     @BeforeMethod
     public void setUp(){

@@ -55,6 +55,7 @@ public class DashboardPage extends LoginPage{
     String txt_profile = "//div[text()='NAME']";
     By signOutProfile = By.xpath("//a[text()='Sign Out']");
     By outSideModal = By.xpath("//div[@role='dialog' and not(descendant::*[@class='modal-content'])]");
+    By btn_chatWithUs = By.xpath("//span[text()='Chat with us']");
 
 
     public boolean isDashboardTextDisplayed(){
@@ -279,6 +280,13 @@ public class DashboardPage extends LoginPage{
     }
     public void clickOutsideModal()throws InterruptedException{
          restaurantUI.clickUsingJavaScript(outSideModal);
+    }
+    public boolean isChatSectionDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(btn_chats);
+    }
+    public boolean isChatWithUsDisplay()throws InterruptedException{
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.isDisplayed(btn_chatWithUs);
     }
 
 }

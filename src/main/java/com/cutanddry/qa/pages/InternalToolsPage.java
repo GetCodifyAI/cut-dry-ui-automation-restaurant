@@ -31,6 +31,9 @@ public class InternalToolsPage extends TestBase {
     String ToggleDescription = "//*[contains(text(),'TOGGLENAME')]/following-sibling::div//div[contains(@class,'react-switch-bg')]";
     By enableWillCallPickUpToggleStable = By.xpath("//div[contains(text(), 'Enable Will Call/Pickp:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
     By enableWillCallPickUpToggleStable1 = By.xpath("//div[contains(text(), 'Enable Will Call/Pickp:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+    By checkboxLocatorChat = By.xpath("//label[contains(text(),'Chat')]/..//input");
+    By btn_saveChanges = By.xpath("(//button[text()='Save Changes'])[1]");
+
 
 
 
@@ -171,6 +174,19 @@ public class InternalToolsPage extends TestBase {
         if(isEnabled != enable ){
             restaurantUI.clickWithScrollAndHover(By.xpath(ToggleDescription.replace("TOGGLENAME",ToggleName)));
         }
+    }
+    public void clickChatCheckbox(boolean enable) {
+
+        boolean isChecked = restaurantUI.getElement(checkboxLocatorChat).isSelected();
+
+        if (enable && !isChecked) {
+            restaurantUI.click(checkboxLocatorChat); // Check the box if not checked
+        } else if (!enable && isChecked) {
+            restaurantUI.click(checkboxLocatorChat); // Uncheck the box if already checked
+        }
+    }
+    public void clickSaveChanges()throws InterruptedException{
+        restaurantUI.click(btn_saveChanges);
     }
 
 
