@@ -936,5 +936,27 @@ public class Customer {
             customersPage.increaseFirstRowQtySpecificCustomer();
         }
     }
+    public static void selectDeliveryDateLineStable(String day, boolean isNextMonth)throws InterruptedException{
+        customersPage.clickOnDeliveryDate();
+        customersPage.selectDeliveryDateLineStable(day, isNextMonth);
+    }
+    public static boolean isDeliveryDateOrderHistoryDisplayed(String id,String date){
+        return customersPage.isDeliveryDateOrderHistoryDisplayed(id,date);
+    }
+    public static void selectPickUpDateLineStable(String day, boolean isNextMonth)throws InterruptedException{
+        customersPage.clickOnPickUpDateStable();
+        customersPage.selectDeliveryDateLineStable(day, isNextMonth);
+    }
+    public static boolean isFulfilmentTypeOrderHistoryDisplayed(String id,String type){
+        return customersPage.isFulfilmentTypeOrderHistoryDisplayed(id,type);
+    }
+    public static void selectMailDeliveryDateLineStable(String day, boolean isNextMonth) throws InterruptedException {
+        customersPage.clickOnDeliveryDate();
+        customersPage.selectDeliveryDateLineStable(day, isNextMonth);
+    }
+    public static boolean isReviewOrderFulfilmentTypeDisplayed(String type){
+        return customersPage.isReviewOrderFulfilmentTypeDisplayed(type);
+    }
+
 
 }
