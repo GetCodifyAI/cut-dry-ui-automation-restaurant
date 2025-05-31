@@ -13,6 +13,8 @@ public class DraftsPage extends LoginPage{
     String confirmationModel = "//div[contains(text(),'TEXT')]";
     By btn_yes = By.xpath("//button[contains(text(),'Yes')]");
     String txt_reference = "//td[text()='NUMBER']";
+    String txt_lastDraftDisplay = "(//tbody/tr[contains(@href, '/place-order/') and contains(@href, 'draftId')]/td[9][contains(text(), 'TOTAL')])[1]/../td[1]/div[text()='DATE']";
+
 
 
 
@@ -78,6 +80,10 @@ public class DraftsPage extends LoginPage{
     public void clickFirstDraft()throws InterruptedException{
         restaurantUI.waitForVisibility(referenceNum);
         restaurantUI.click(referenceNum);
+    }
+    public boolean isLastDraftStatusDisplayed(String total,String date){
+        restaurantUI.waitForVisibility(By.xpath(txt_lastDraftDisplay.replace("TOTAL", total).replace("DATE",date)));
+        return restaurantUI.isDisplayed(By.xpath(txt_lastDraftDisplay.replace("TOTAL", total).replace("DATE",date)));
     }
 
 }
