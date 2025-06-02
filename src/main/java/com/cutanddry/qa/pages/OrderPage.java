@@ -34,6 +34,8 @@ public class OrderPage extends LoginPage{
     By lbl_checkInAllPopup = By.xpath("//h2[contains(text(),'Check-in all items?')]");
     String lbl_orderStatus = "//div[contains(text(),'Order Status: STATUS')]";
     By btn_chatSupplierOption = By.xpath("//span[contains(text(), 'Chat')]");
+    By areYouSurePopUp = By.xpath("//h2[text() = 'Are you sure?']");
+    By btn_yes = By.xpath("//button[contains(text(),'Yes')]");
 
 
     public void clickAddNewSupplier(){
@@ -186,6 +188,12 @@ public class OrderPage extends LoginPage{
     }
     public boolean isChatOptionDisplay(){
         return restaurantUI.isDisplayed(btn_chatSupplierOption);
+    }
+    public boolean isAreYouSurePopUpDisplayed(){
+        return restaurantUI.isDisplayed(areYouSurePopUp);
+    }
+    public void clickYes(){
+        restaurantUI.click(btn_yes);
     }
 
 

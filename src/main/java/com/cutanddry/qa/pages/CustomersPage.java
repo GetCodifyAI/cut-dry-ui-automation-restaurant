@@ -271,6 +271,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String fulfillmentTypeOrderHistory = "//*[contains(text(),'#') and text()='ID']/../preceding-sibling::td[2]//*[text()='TYPE']";
     By btn_nextMonth = By.xpath("//button[contains(@aria-label,'Next Month')]");
     String reviewOrderFulfilment = "//span[contains(text(),'TYPE')]";
+    By btn_deleteOrderGuide = By.xpath("//a[contains(text(), 'Delete Order Guide')]");
 
 
 
@@ -1732,6 +1733,16 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public boolean isReviewOrderFulfilmentTypeDisplayed(String type){
         return restaurantUI.isDisplayed(By.xpath(reviewOrderFulfilment.replace("TYPE",type)));
+    }
+    public boolean isEditOrderGuideOptionDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(btn_edit);
+    }
+    public boolean isAddFromCatalogHeartItemDisplay(){
+        return restaurantUI.isDisplayed(btn_addToOrderGuide);
+    }
+    public void clickOnDeleteOrderGuide(){
+        restaurantUI.waitForClickability(btn_deleteOrderGuide);
+        restaurantUI.click(btn_deleteOrderGuide);
     }
 
 
