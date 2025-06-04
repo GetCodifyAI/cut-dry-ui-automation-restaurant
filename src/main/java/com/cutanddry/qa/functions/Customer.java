@@ -957,6 +957,20 @@ public class Customer {
     public static boolean isReviewOrderFulfilmentTypeDisplayed(String type){
         return customersPage.isReviewOrderFulfilmentTypeDisplayed(type);
     }
-
+    public static void clickOnMoreOptionOG(){
+        customersPage.clickOnMoreOptions();
+    }
+    public static boolean isEditOrderGuideOptionDisplay() throws InterruptedException {
+        return customersPage.isEditOrderGuideOptionDisplay();
+    }
+    public static boolean isAddFromCatalogHeartItemDisplay(){
+        return customersPage.isAddFromCatalogHeartItemDisplay();
+    }
+    public static void clickEditOrderGuideOption(){
+        customersPage.clickOnEdit();
+    }
+    public static void clickOnDeleteOrderGuide(){
+        customersPage.clickOnDeleteOrderGuide();
+    }
 
 }

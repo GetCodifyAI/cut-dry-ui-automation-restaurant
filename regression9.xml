@@ -47,6 +47,9 @@
             <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveMailDeliveryAsTheFulfillmentTypeDraftOrderSubmissionTest"/>
             <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHavePickUpWillCallAsTheFulfillmentTypeDraftOrderSubmissionTest"/>
             <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveDeliveryPickupWillCallAndMailDeliveryAsTheFulfillmentTypeTest"/>
+
+            <class name="com.cutanddry.qa.tests.Orders.VerifyThatOrderGuideSyncedFromERPDisabledForEditingTest"/>
+            <class name="com.cutanddry.qa.tests.Orders.VerifyThatManuallyOrderGuideCanEditTest"/>
         </classes>
     </test>
 </suite>
