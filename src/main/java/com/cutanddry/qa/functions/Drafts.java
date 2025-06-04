@@ -53,6 +53,9 @@ public class Drafts {
             customersPage.clickDoNotSubstitute();
         }
     }
+    public static boolean isLastDraftStatusDisplayed(String total,String date){
+        return draftsPage.isLastDraftStatusDisplayed(total,date);
+    }
 
 
 }

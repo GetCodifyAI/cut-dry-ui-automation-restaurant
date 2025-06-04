@@ -36,6 +36,20 @@
             <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureDisplayWhenChatModuleEnableTest"/>
             <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureNotDisplayWhenChatModuleDisableTest"/>
             <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureNotDisplayWhenChatModuleDisableInWhiteLabelCustomerTest"/>
+
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveDeliveryAsTheFulfillmentTypeTest"/>
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveMailDeliveryAsTheFulfillmentTypeTest"/>
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHavePickUpWillCallAsTheFulfillmentTypeTest"/>
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveDeliveryAsTheFulfillmentTypeEditOrderSubmissionTest"/>
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveMailDeliveryAsTheFulfillmentTypeEditOrderSubmissionTest"/>
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHavePickUpWillCallAsTheFulfillmentTypeEditOrderSubmissionTest"/>
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveDeliveryAsTheFulfillmentTypeDraftOrderSubmissionTest"/>
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveMailDeliveryAsTheFulfillmentTypeDraftOrderSubmissionTest"/>
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHavePickUpWillCallAsTheFulfillmentTypeDraftOrderSubmissionTest"/>
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveDeliveryPickupWillCallAndMailDeliveryAsTheFulfillmentTypeTest"/>
+
+            <class name="com.cutanddry.qa.tests.Orders.VerifyThatOrderGuideSyncedFromERPDisabledForEditingTest"/>
+            <class name="com.cutanddry.qa.tests.Orders.VerifyThatManuallyOrderGuideCanEditTest"/>
         </classes>
     </test>
 </suite>

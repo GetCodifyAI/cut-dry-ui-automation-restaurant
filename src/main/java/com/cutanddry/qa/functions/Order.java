@@ -108,6 +108,12 @@ public class Order {
     public static boolean isChatOptionDisplay(){
         return orderPage.isChatOptionDisplay();
     }
+    public static boolean isAreYouSurePopUpDisplayed(){
+        return orderPage.isAreYouSurePopUpDisplayed();
+    }
+    public static void clickYes(){
+        orderPage.clickYes();
+    }
 
 
 }

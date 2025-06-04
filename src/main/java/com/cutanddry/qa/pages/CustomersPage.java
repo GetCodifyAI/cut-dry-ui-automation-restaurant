@@ -265,6 +265,16 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By lbl_hardHold = By.xpath("//div[text()='Account Holds']/following-sibling::div//span[contains(@class, 'badge') and text()='Hard Hold']");
     By accountOnHold = By.xpath("//h2[text()='Account on hold!']");
     String accountHoldMessage = "//p[text()='MESSAGE']";
+    String dynamicToXPathStable = "//div[contains(@class,'react-datepicker')]/preceding::div[contains(@class, 'react-datepicker__day') and contains(@aria-disabled, 'false') and text()='DAY']";
+    String deliveryDateOrderHistory = "//*[contains(text(),'#') and text()='ID']/../preceding-sibling::td[2][text()='DATE']";
+    By btn_pickUpDateStable = By.xpath("//div[text()='Pickup Date:']/../following-sibling::div//*[name()='svg' and @data-icon='calendar-date-vect']");
+    String fulfillmentTypeOrderHistory = "//*[contains(text(),'#') and text()='ID']/../preceding-sibling::td[2]//*[text()='TYPE']";
+    By btn_nextMonth = By.xpath("//button[contains(@aria-label,'Next Month')]");
+    String reviewOrderFulfilment = "//span[contains(text(),'TYPE')]";
+    By btn_deleteOrderGuide = By.xpath("//a[contains(text(), 'Delete Order Guide')]");
+
+
+
 
 
 
@@ -1700,5 +1710,40 @@ public void clickOnCloseOrderGuideEditor(){
     public void increaseFirstRowQtySpecificCustomer() throws InterruptedException {
         restaurantUI.click(btn_increaseQtyFirstRow);
     }
+    public boolean isDeliveryDateOrderHistoryDisplayed(String id , String date){
+        return restaurantUI.isDisplayed(By.xpath(deliveryDateOrderHistory.replace("ID", id).replace("DATE",date)));
+    }
+    public void clickOnPickUpDateStable() throws InterruptedException{
+        restaurantUI.waitForCustom(4000);
+        restaurantUI.click(btn_pickUpDateStable);
+    }
+    public boolean isFulfilmentTypeOrderHistoryDisplayed(String id , String type){
+        return restaurantUI.isDisplayed(By.xpath(fulfillmentTypeOrderHistory.replace("ID", id).replace("TYPE",type)));
+    }
+    public void selectDeliveryDateLineStable(String day, boolean isNextMonth) throws InterruptedException {
+        if (isNextMonth) {
+            restaurantUI.click(btn_nextMonth);
+            restaurantUI.waitForCustom(1000); // wait after clicking next month
+        }
+
+        By lbl_selectStartDate = By.xpath(dynamicToXPathStable.replace("DAY", day));
+        restaurantUI.waitForVisibility(lbl_selectStartDate);
+        restaurantUI.click(lbl_selectStartDate);
+        restaurantUI.waitForCustom(5000);
+    }
+    public boolean isReviewOrderFulfilmentTypeDisplayed(String type){
+        return restaurantUI.isDisplayed(By.xpath(reviewOrderFulfilment.replace("TYPE",type)));
+    }
+    public boolean isEditOrderGuideOptionDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(btn_edit);
+    }
+    public boolean isAddFromCatalogHeartItemDisplay(){
+        return restaurantUI.isDisplayed(btn_addToOrderGuide);
+    }
+    public void clickOnDeleteOrderGuide(){
+        restaurantUI.waitForClickability(btn_deleteOrderGuide);
+        restaurantUI.click(btn_deleteOrderGuide);
+    }
+
 
 }

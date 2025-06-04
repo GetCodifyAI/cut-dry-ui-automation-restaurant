@@ -182,4 +182,7 @@ public class Dashboard {
     public static boolean isChatWithUsDisplay()throws InterruptedException{
         return dashboardPage.isChatWithUsDisplay();
     }
+    public static void navigateToIndependentFoodsCoClassic() throws InterruptedException{
+        dashboardPage.clickOnPlaceOrder();
+    }
 }
