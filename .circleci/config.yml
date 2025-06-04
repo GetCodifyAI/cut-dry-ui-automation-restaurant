@@ -1167,11 +1167,11 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "45 03 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "30 18 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
-                - staging_regression
+                - main
     jobs:
       - nightly-build-and-test-1
       - nightly-build-and-test-2
@@ -1210,11 +1210,11 @@ workflows:
   scheduled-test-2:
     triggers:
       - schedule:
-          cron: "25 06 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 25 06 --> DP gap = 40 min
+          cron: "00 05 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 25 06 --> DP gap = 40 min
           filters:
             branches:
               only:
-                - main
+                - staging_regression
     jobs:
       - daily-build-and-test-1
       - daily-build-and-test-2
@@ -1232,11 +1232,11 @@ workflows:
   scheduled-test-2-sub1:
     triggers:
       - schedule:
-          cron: "15 07 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 15 07  --> 1st job gap = 50 min
+          cron: "30 06 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 15 07  --> 1st job gap = 50 min
           filters:
             branches:
               only:
-                - main
+                - staging_regression
     jobs:
       - daily-build-and-test-6
       - daily-build-and-test-7
