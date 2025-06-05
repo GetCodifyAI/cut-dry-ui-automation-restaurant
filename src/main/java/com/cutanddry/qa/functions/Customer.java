@@ -72,10 +72,10 @@ public class Customer {
         customersPage.clickPlusReviewCart();
         customersPage.clickPlusReviewCart();
     }
-    public static void decreaseReviewCartQtyByThree(){
-        customersPage.clickMinusReviewCart();
-        customersPage.clickMinusReviewCart();
-        customersPage.clickMinusReviewCart();
+    public static void decreaseReviewCartQtyByThree() throws InterruptedException {
+        customersPage.clickMinusQryFirstRow();
+        customersPage.clickMinusQryFirstRow();
+        customersPage.clickMinusQryFirstRow();
     }
 
     public static String getItemNameFirstRow(){
@@ -972,6 +972,9 @@ public class Customer {
     }
     public static void clickOnDeleteOrderGuide(){
         customersPage.clickOnDeleteOrderGuide();
+    }
+    public static void checkoutItemsForSubstitute()throws InterruptedException{
+        customersPage.clickOnCheckoutButton();
     }
 
 }

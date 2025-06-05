@@ -43,7 +43,7 @@ public class VerifySubstitutingAnItemForCustomerWithBranchCodes1246Test extends 
         itemPrice = Customer.getActiveItemPriceFirstRow();
         Customer.increaseFirstRowQtySpecificCustomer(15);
         softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),itemPrice*15,"The item has not been selected.");
-        Customer.checkoutItems();
+        Customer.checkoutItemsForSubstitute();
         softAssert.assertTrue(Customer.isSubstitutionTextDisplayed(),"Substitution set pop up error");
         Customer.clickSelectSub();
         Customer.clickSaveSelection();
