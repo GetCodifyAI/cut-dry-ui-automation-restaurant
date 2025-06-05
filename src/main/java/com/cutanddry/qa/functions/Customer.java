@@ -87,6 +87,7 @@ public class Customer {
         customersPage.clickOnCheckoutButton();
         if (customersPage.isSubstitutionTextDisplayed()){
            customersPage.clickDoNotSubstitute();
+           customersPage.clickSaveSelection();
         }
         Thread.sleep(4000);
     }

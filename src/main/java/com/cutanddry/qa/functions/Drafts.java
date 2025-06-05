@@ -51,6 +51,7 @@ public class Drafts {
         draftsPage.clickFirstDraft();
         if (customersPage.isSubstitutionTextDisplayed()){
             customersPage.clickDoNotSubstitute();
+            customersPage.clickCloseSub();
         }
     }
     public static boolean isLastDraftStatusDisplayed(String total,String date){
