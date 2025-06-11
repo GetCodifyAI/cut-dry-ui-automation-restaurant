@@ -222,7 +222,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txtSetSubstitution = By.xpath("//div[contains(text(),'Item Substitution')]");
     By txtSetSubstitutionPopUp = By.xpath("//div[contains(text(),'Set Substitute Items')]");
     By btn_chooseSub = By.xpath("(//button[contains(text(),'Choose Sub')])[last()]");
-    By btn_selectSub = By.xpath("//div[contains(text(), 'Substitute with:')]/preceding-sibling::*[1][local-name()='svg' and @data-icon='circle']");
+    By btn_selectSub = By.xpath("//div[contains(text(), 'Substitute with:')]");
     By btn_closeSub = By.xpath("//*[local-name()='svg' and @data-icon='xmark']");
     By btn_editSub = By.xpath("(//*[local-name()='svg' and @data-icon='edit'])[last()]");
     By btn_notSelectSub = By.xpath("//div[contains(text(), 'Not Selected')]/preceding-sibling::*[1][local-name()='svg' and @data-icon='circle']");
@@ -266,11 +266,18 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By accountOnHold = By.xpath("//h2[text()='Account on hold!']");
     String accountHoldMessage = "//p[text()='MESSAGE']";
     String dynamicToXPathStable = "//div[contains(@class,'react-datepicker')]/preceding::div[contains(@class, 'react-datepicker__day') and contains(@aria-disabled, 'false') and text()='DAY']";
-    String deliveryDateOrderHistory = "//*[contains(text(),'#') and text()='ID']/../preceding-sibling::td[2][text()='DATE']";
+    String deliveryDateOrderHistory = "//*[contains(text(),'#') and text()='ID']/../../preceding-sibling::td[2][text()='DATE']";
     By btn_pickUpDateStable = By.xpath("//div[text()='Pickup Date:']/../following-sibling::div//*[name()='svg' and @data-icon='calendar-date-vect']");
     String fulfillmentTypeOrderHistory = "//*[contains(text(),'#') and text()='ID']/../preceding-sibling::td[2]//*[text()='TYPE']";
     By btn_nextMonth = By.xpath("//button[contains(@aria-label,'Next Month')]");
     String reviewOrderFulfilment = "//span[contains(text(),'TYPE')]";
+    By btn_deleteOrderGuide = By.xpath("//a[contains(text(), 'Delete Order Guide')]");
+    By icon_deleteSearchItem = By.xpath("(//*[local-name()='svg' and @data-icon='circle-xmark'])[1]");
+
+
+
+
+
 
 
 
@@ -367,6 +374,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
 
     public void typeToSearchOnCatalog(String item) throws InterruptedException {
         restaurantUI.waitForCustom(3000);
+        restaurantUI.click(icon_deleteSearchItem);
         restaurantUI.clearUsingJavaScript(tbx_catalogSearch);
         restaurantUI.click(tbx_catalogSearch);
         restaurantUI.waitForCustom(2000);
@@ -375,6 +383,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
 
     public void typeToSearchOnOrderGuide(String item) {
+        restaurantUI.click(icon_deleteSearchItem);
         restaurantUI.sendKeys(tbx_orderGuideSearch, item);
         try {
             restaurantUI.waitForCustom(3000);
@@ -1468,7 +1477,8 @@ public void clickOnCloseOrderGuideEditor(){
         restaurantUI.click(btn_chooseSub);
     }
     public void clickSelectSub(){
-        restaurantUI.click(btn_selectSub);
+        restaurantUI.waitForVisibility(btn_selectSub);
+        restaurantUI.clickUsingJavaScript(btn_selectSub);
     }
     public void clickCloseSub(){
         restaurantUI.click(btn_closeSub);
@@ -1732,6 +1742,16 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public boolean isReviewOrderFulfilmentTypeDisplayed(String type){
         return restaurantUI.isDisplayed(By.xpath(reviewOrderFulfilment.replace("TYPE",type)));
+    }
+    public boolean isEditOrderGuideOptionDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(btn_edit);
+    }
+    public boolean isAddFromCatalogHeartItemDisplay(){
+        return restaurantUI.isDisplayed(btn_addToOrderGuide);
+    }
+    public void clickOnDeleteOrderGuide(){
+        restaurantUI.waitForClickability(btn_deleteOrderGuide);
+        restaurantUI.click(btn_deleteOrderGuide);
     }
 
 

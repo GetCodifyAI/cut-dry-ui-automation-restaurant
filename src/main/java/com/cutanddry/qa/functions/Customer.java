@@ -72,10 +72,10 @@ public class Customer {
         customersPage.clickPlusReviewCart();
         customersPage.clickPlusReviewCart();
     }
-    public static void decreaseReviewCartQtyByThree(){
-        customersPage.clickMinusReviewCart();
-        customersPage.clickMinusReviewCart();
-        customersPage.clickMinusReviewCart();
+    public static void decreaseReviewCartQtyByThree() throws InterruptedException {
+        customersPage.clickMinusQryFirstRow();
+        customersPage.clickMinusQryFirstRow();
+        customersPage.clickMinusQryFirstRow();
     }
 
     public static String getItemNameFirstRow(){
@@ -87,6 +87,7 @@ public class Customer {
         customersPage.clickOnCheckoutButton();
         if (customersPage.isSubstitutionTextDisplayed()){
            customersPage.clickDoNotSubstitute();
+           customersPage.clickSaveSelection();
         }
         Thread.sleep(4000);
     }
@@ -957,6 +958,23 @@ public class Customer {
     public static boolean isReviewOrderFulfilmentTypeDisplayed(String type){
         return customersPage.isReviewOrderFulfilmentTypeDisplayed(type);
     }
-
+    public static void clickOnMoreOptionOG(){
+        customersPage.clickOnMoreOptions();
+    }
+    public static boolean isEditOrderGuideOptionDisplay() throws InterruptedException {
+        return customersPage.isEditOrderGuideOptionDisplay();
+    }
+    public static boolean isAddFromCatalogHeartItemDisplay(){
+        return customersPage.isAddFromCatalogHeartItemDisplay();
+    }
+    public static void clickEditOrderGuideOption(){
+        customersPage.clickOnEdit();
+    }
+    public static void clickOnDeleteOrderGuide(){
+        customersPage.clickOnDeleteOrderGuide();
+    }
+    public static void checkoutItemsForSubstitute()throws InterruptedException{
+        customersPage.clickOnCheckoutButton();
+    }
 
 }

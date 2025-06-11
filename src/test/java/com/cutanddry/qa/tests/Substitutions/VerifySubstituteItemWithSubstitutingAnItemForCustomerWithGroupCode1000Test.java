@@ -41,7 +41,7 @@ public class VerifySubstituteItemWithSubstitutingAnItemForCustomerWithGroupCode1
         itemPrice = Customer.getActiveItemPriceFirstRow();
         Customer.increaseFirstRowQtyCustom(1);
         softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),itemPrice,"The item has not been selected.");
-        Customer.checkoutItems();
+        Customer.checkoutItemsForSubstitute();
         softAssert.assertTrue(Customer.isSubstitutionTextDisplayed(),"Substitution set pop up error");
         Customer.clickSelectSub();
         Customer.clickSaveSelection();
