@@ -8,11 +8,11 @@
     <test name="operator tests">
         <parameter name="PART" value="Part Eight" />
         <classes>
-            <!--<class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInTheOrderGuideSectionFromTheOperatorSideTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInTheOrderGuideSectionFromTheOperatorSideTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectionOfMultipleUOMsFromTheOrderGuideSectionAndOrderSubmissionFromTheOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInThePDPSectionFromTheOperatorSideTest" />-->
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInThePDPSectionFromTheOperatorSideTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectionOfMultipleUOMsFromThePDPSectionAndOrderSubmissionFromOperatorSideTest" />
-            <!--<class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInTheReviewOrderSectionFromTheOperatorSideTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInTheReviewOrderSectionFromTheOperatorSideTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheDeleteItemsProductsFromMultipleUOMsInTheReviewOrderSectionTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithEditFlowTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithDraftOrderTest" />
@@ -25,8 +25,8 @@
 
             <class name="com.cutanddry.qa.tests.Pay.VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureEnabledTest"/>
             <class name="com.cutanddry.qa.tests.Pay.VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureDisabledTest"/>
-&lt;!&ndash;            TODO: Need to resolve the invoice download and print issue with feature team&ndash;&gt;
-&lt;!&ndash;            <class name="com.cutanddry.qa.tests.History.VerifyTheInvoiceDownloadAndPrintFeatureTest"/>&ndash;&gt;
+<!--            TODO: Need to resolve the invoice download and print issue with feature team-->
+<!--            <class name="com.cutanddry.qa.tests.History.VerifyTheInvoiceDownloadAndPrintFeatureTest"/>-->
 
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyReportIssueButtonIsEnabledTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyReportIssueButtonIsDisabledTest"/>
@@ -51,7 +51,7 @@
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSoftOrderMinimumSelectingMultipleUOMTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheHardOrderMinimumSelectingMultipleUOMTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyPlaceOrderWithMultiUOMForScrapperIntegratedTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyPickupIsNotDisplayedWhenItIsOnlyEnabledForTheSupplierPortalTermTest" />-->
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyPickupIsNotDisplayedWhenItIsOnlyEnabledForTheSupplierPortalTermTest" />
 
         </classes>
     </test>
