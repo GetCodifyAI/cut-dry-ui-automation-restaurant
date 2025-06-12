@@ -17,7 +17,7 @@ import java.util.Objects;
 
 public class VerifyUploadOrderGuideItemListTest extends TestBase {
     static User user;
-    static String SupplierName = "TestSupplier3";
+    static String SupplierName = "TestSupplier3"+generateDynamicValue();
     @BeforeMethod
     public void setUp() {
         initialization();

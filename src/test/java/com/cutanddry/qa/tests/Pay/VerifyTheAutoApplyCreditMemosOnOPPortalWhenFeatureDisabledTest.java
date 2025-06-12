@@ -57,7 +57,7 @@ public class VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureDisabledTest exte
         Assert.assertTrue(Pay.isPaySupplierTextDisplayed(),"error in text display");
         Pay.clickOnInvoiceStatusDropdownMenu();
         Pay.clickOnPastDueOption();
-        Pay.clickOnInvoiceRecord(2);
+        Pay.clickOnInvoiceRecord(5);
         Pay.clickCreateBatch();
         softAssert.assertTrue(Pay.isBatchPaymentDisplayed(),"credit batch payment not display");
         softAssert.assertTrue(Pay.isCreditMemoDisplayed(),"credit memo not display");
