@@ -79,6 +79,9 @@ public class HistoryPage extends TestBase {
     By lbl_orderDateColumn = By.xpath("//span[contains(text(),'Order Date')]");
     By lbl_orderDateArrowUp = By.xpath("//span[contains(text(),'Order Date')]/*[name()='svg' and contains(@data-icon, 'arrow-up')]");
     By lbl_orderDateArrowDown = By.xpath("//span[contains(text(),'Order Date')]/*[name()='svg' and contains(@data-icon, 'arrow-down')]");
+    By icon_deleteSearchItem = By.xpath("(//*[local-name()='svg' and @data-icon='circle-xmark'])[1]");
+
+
 
     public void clickClose(){
         restaurantUI.waitForVisibility(btn_close);
@@ -107,6 +110,7 @@ public class HistoryPage extends TestBase {
     }
     public void typeOnSearch(String orderID) throws InterruptedException {
         restaurantUI.clear(btn_search);
+        restaurantUI.click(icon_deleteSearchItem);
         restaurantUI.sendKeys(btn_search, orderID);
         restaurantUI.waitForCustom(400);
     }
