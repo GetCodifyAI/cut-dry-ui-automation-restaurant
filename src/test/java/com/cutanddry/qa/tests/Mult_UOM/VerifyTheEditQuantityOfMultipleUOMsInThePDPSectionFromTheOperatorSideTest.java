@@ -19,9 +19,10 @@ public class VerifyTheEditQuantityOfMultipleUOMsInThePDPSectionFromTheOperatorSi
     SoftAssert softAssert;
     String uom1 = "1";
     String uom2 = "2";
-    static double itemPriceUOM1 ,itemPriceUOM2,totalOGItemPrice, multiItemPrice;
-    static String multiItemName, multiSearchItemCode, itemCode;
+    static double itemPriceUOM1 ,itemPriceUOM2;
+    static String multiItemName= "Carrot - Baby Peeled - 1 LB";
     String uomDropDownOption = "Multiple Units";
+    static String itemCode = "01409";
 
 
 
@@ -41,12 +42,6 @@ public class VerifyTheEditQuantityOfMultipleUOMsInThePDPSectionFromTheOperatorSi
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.sortItemsByCustomOrder();
-
-        multiItemName = Customer.getItemNameFirstMultiOUM();
-        multiSearchItemCode = Customer.getItemCodeFirstMultiOUM();
-        itemCode = multiSearchItemCode.replaceAll("^[A-Za-z]+", "");
-        multiItemPrice = Customer.getActiveItemPriceFirstMultiOUMRowStable();
 
         Customer.goToCatalog();
         Customer.searchItemOnCatalog(itemCode);

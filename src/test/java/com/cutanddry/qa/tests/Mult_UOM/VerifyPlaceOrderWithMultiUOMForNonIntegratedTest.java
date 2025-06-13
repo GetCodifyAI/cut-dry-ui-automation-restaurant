@@ -21,8 +21,9 @@ public class VerifyPlaceOrderWithMultiUOMForNonIntegratedTest extends TestBase {
     String uom2 = "2";
     String userName = "jcoupal@coupacafe";
     String supplierName = "David Rio";
-    static double itemOGPriceUOM1 ,itemOGPriceUOM2,totalOGItemPrice, multiItemPrice,totalHistoryItemPrice;
-    static String multiItemName, multiSearchItemCode, itemCode, orderId;
+    static double itemOGPriceUOM1 ,itemOGPriceUOM2,totalOGItemPrice,totalHistoryItemPrice;
+    static String  orderId;
+    static String multiSearchItemCode = "01409";
 
 
     @BeforeMethod
@@ -40,15 +41,9 @@ public class VerifyPlaceOrderWithMultiUOMForNonIntegratedTest extends TestBase {
         Login.logInToOperator(userName);
         Dashboard.selectSupplier(supplierName);
         Assert.assertTrue(Dashboard.isNavigatedToOperatorOrderGuide(supplierName),"ERROR in Navigating to Suppliers page");
-        Customer.sortItemsByCustomOrder();
-
-        multiItemName = Customer.getItemNameFirstMultiOUMCoupa();
-        multiSearchItemCode = Customer.getItemCodeFirstMultiOUMCoupa();
-        itemCode = multiSearchItemCode.replaceAll("^[A-Za-z]+", "");
-        multiItemPrice = Customer.getActiveItemPriceFirstMultiOUMRowStableCoupa();
 
         Customer.searchItemOnOrderGuide(multiSearchItemCode);
-        Customer.ClickOnMultiUomDropDownOG(multiSearchItemCode);
+       // Customer.ClickOnMultiUomDropDownOG(multiSearchItemCode);
         Customer.clickOGAddToCartPlusIcon(1,multiSearchItemCode, uom1);
         Customer.clickOGAddToCartPlusIcon(1,multiSearchItemCode, uom2);
         softAssert.assertEquals(Customer.getItemUOMQuantity(multiSearchItemCode, uom1), "1", "item count error in 1st UOM");

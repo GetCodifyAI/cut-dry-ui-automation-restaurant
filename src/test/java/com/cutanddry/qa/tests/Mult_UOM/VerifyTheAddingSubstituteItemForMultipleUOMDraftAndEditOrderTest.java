@@ -106,7 +106,7 @@ public class VerifyTheAddingSubstituteItemForMultipleUOMDraftAndEditOrderTest ex
 
         // Added Multi OUM Item OG
         Customer.searchItemOnOrderGuide(searchItemCode);
-        Customer.ClickOnMultiUomDropDownOG(searchItemCode);
+       // Customer.ClickOnMultiUomDropDownOG(searchItemCode);
         Customer.clickOGAddToCartPlusIcon(1, searchItemCode, uom1);
         Customer.clickOGAddToCartPlusIcon(1, searchItemCode, uom2);
         itemOGPriceUOM1 = Customer.getActiveItemPriceMultiOUM(uom1);

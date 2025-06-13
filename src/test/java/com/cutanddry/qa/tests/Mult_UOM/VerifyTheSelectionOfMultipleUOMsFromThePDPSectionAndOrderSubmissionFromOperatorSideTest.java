@@ -16,9 +16,11 @@ public class VerifyTheSelectionOfMultipleUOMsFromThePDPSectionAndOrderSubmission
     SoftAssert softAssert;
     String uom1 = "1";
     String uom2 = "2";
-    static double itemPriceUOM1 ,itemPriceUOM2, multiItemPrice, totalHistoryItemPrice, totalHistoryItemCount,totalPDPItemPrice;
-    static String singleSearchItemCode, multiItemName, multiSearchItemCode, itemCode, orderId;
+    static double itemPriceUOM1 ,itemPriceUOM2, totalHistoryItemPrice, totalHistoryItemCount,totalPDPItemPrice;
+    static String singleSearchItemCode, orderId;
     String uomDropDownOption = "Multiple Units";
+    static String multiItemName= "Carrot - Baby Peeled - 1 LB";
+    static String itemCode = "01409";
 
 
 
@@ -38,12 +40,6 @@ public class VerifyTheSelectionOfMultipleUOMsFromThePDPSectionAndOrderSubmission
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.sortItemsByCustomOrder();
-
-        multiItemName = Customer.getItemNameFirstMultiOUM();
-        multiSearchItemCode = Customer.getItemCodeFirstMultiOUM();
-        itemCode = multiSearchItemCode.replaceAll("^[A-Za-z]+", "");
-        multiItemPrice = Customer.getActiveItemPriceFirstMultiOUMRowStable();
 
         Customer.goToCatalog();
         Customer.searchItemOnCatalog(itemCode);
@@ -62,7 +58,7 @@ public class VerifyTheSelectionOfMultipleUOMsFromThePDPSectionAndOrderSubmission
         Customer.clickCheckOutPDP();
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
         singleSearchItemCode = Customer.getItemCodeFirstRow().trim();
-        softAssert.assertEquals(singleSearchItemCode,multiSearchItemCode,"The product item codes on the 'Review Order' page is not match the item codes of the products added.");
+        softAssert.assertEquals(singleSearchItemCode,itemCode,"The product item codes on the 'Review Order' page is not match the item codes of the products added.");
 
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");

@@ -16,8 +16,9 @@ public class VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersC
     SoftAssert softAssert;
     String uom1 = "1";
     String uom2 = "2";
-    static double itemOGPriceUOM1 ,itemOGPriceUOM2,totalOGItemPrice, multiItemPrice,totalHistoryItemPrice;
-    static String singleItemName, singleSearchItemCode, multiItemName, multiSearchItemCode, itemCode,singleSearchItemCodeEdit, orderId;
+    static double itemOGPriceUOM1 ,itemOGPriceUOM2,totalOGItemPrice,totalHistoryItemPrice;
+    static String singleSearchItemCodeEdit, orderId;
+    static String itemCode = "01409";
 
 
     @BeforeMethod
@@ -35,22 +36,13 @@ public class VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersC
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.sortItemsByCustomOrder();
 
-        singleItemName = Customer.getItemNameFirstRow();
-        singleSearchItemCode = Customer.getItemCodeFirstRow();
-
-        multiItemName = Customer.getItemNameFirstMultiOUM();
-        multiSearchItemCode = Customer.getItemCodeFirstMultiOUM();
-        itemCode = multiSearchItemCode.replaceAll("^[A-Za-z]+", "");
-        multiItemPrice = Customer.getActiveItemPriceFirstMultiOUMRowStable();
-
-        Customer.searchItemOnOrderGuide(multiSearchItemCode);
-        Customer.ClickOnMultiUomDropDownOG(itemCode);
+        Customer.searchItemOnOrderGuide(itemCode);
+       // Customer.ClickOnMultiUomDropDownOG(itemCode);
         Customer.clickOGAddToCartPlusIcon(1,itemCode, uom1);
         Customer.clickOGAddToCartPlusIcon(1,itemCode, uom2);
-        softAssert.assertEquals(Customer.getItemUOMQuantity(multiSearchItemCode, uom1), "1", "item count error in 1st UOM");
-        softAssert.assertEquals(Customer.getItemUOMQuantity(multiSearchItemCode, uom2), "1", "item count error in 2nd UOM");
+        softAssert.assertEquals(Customer.getItemUOMQuantity(itemCode, uom1), "1", "item count error in 1st UOM");
+        softAssert.assertEquals(Customer.getItemUOMQuantity(itemCode, uom2), "1", "item count error in 2nd UOM");
         itemOGPriceUOM1 = Customer.getActiveItemPriceMultiOUM(uom1);
         itemOGPriceUOM2 = Customer.getActiveItemPriceMultiOUM(uom2);
         totalOGItemPrice = Customer.getItemPriceOnMultiOUMCheckout();
@@ -78,7 +70,7 @@ public class VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersC
         Customer.clickOnEditOrderInReviewStable();
         Customer.searchItemOnOrderGuide(itemCode);
         singleSearchItemCodeEdit = Customer.getItemCodeFirstRow().trim();
-        softAssert.assertEquals(singleSearchItemCodeEdit,multiSearchItemCode,"The product item codes on the 'Review Order' page is not match the item codes of the products added.");
+        softAssert.assertEquals(singleSearchItemCodeEdit,itemCode,"The product item codes on the 'Review Order' page is not match the item codes of the products added.");
 
         Customer.clickOGAddToCartPlusIcon(2,itemCode, uom1);
         Customer.clickOGAddToCartPlusIcon(2,itemCode, uom2);

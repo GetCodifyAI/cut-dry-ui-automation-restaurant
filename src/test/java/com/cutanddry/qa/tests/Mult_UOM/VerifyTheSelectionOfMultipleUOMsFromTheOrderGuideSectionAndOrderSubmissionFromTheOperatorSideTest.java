@@ -16,8 +16,9 @@ public class VerifyTheSelectionOfMultipleUOMsFromTheOrderGuideSectionAndOrderSub
     SoftAssert softAssert;
     String uom1 = "1";
     String uom2 = "2";
-    static double itemOGPriceUOM1 ,itemOGPriceUOM2,totalOGItemPrice, multiItemPrice,totalHistoryItemPrice;
-    static String singleItemName, singleSearchItemCode, multiItemName, multiSearchItemCode, itemCode;
+    static double itemOGPriceUOM1 ,itemOGPriceUOM2,totalOGItemPrice,totalHistoryItemPrice;
+    static String itemCode = "01409";
+    String orderId;
 
 
     @BeforeMethod
@@ -35,22 +36,12 @@ public class VerifyTheSelectionOfMultipleUOMsFromTheOrderGuideSectionAndOrderSub
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.sortItemsByCustomOrder();
 
-        singleItemName = Customer.getItemNameFirstRow();
-        singleSearchItemCode = Customer.getItemCodeFirstRow();
-
-        multiItemName = Customer.getItemNameFirstMultiOUM();
-        multiSearchItemCode = Customer.getItemCodeFirstMultiOUM();
-        itemCode = multiSearchItemCode.replaceAll("^[A-Za-z]+", "");
-        multiItemPrice = Customer.getActiveItemPriceFirstMultiOUMRowStable();
-
-        Customer.searchItemOnOrderGuide(multiSearchItemCode);
-        Customer.ClickOnMultiUomDropDownOG(itemCode);
+        Customer.searchItemOnOrderGuide(itemCode);
         Customer.clickOGAddToCartPlusIcon(1,itemCode, uom1);
         Customer.clickOGAddToCartPlusIcon(1,itemCode, uom2);
-        softAssert.assertEquals(Customer.getItemUOMQuantity(multiSearchItemCode, uom1), "1", "item count error in 1st UOM");
-        softAssert.assertEquals(Customer.getItemUOMQuantity(multiSearchItemCode, uom2), "1", "item count error in 2nd UOM");
+        softAssert.assertEquals(Customer.getItemUOMQuantity(itemCode, uom1), "1", "item count error in 1st UOM");
+        softAssert.assertEquals(Customer.getItemUOMQuantity(itemCode, uom2), "1", "item count error in 2nd UOM");
         itemOGPriceUOM1 = Customer.getActiveItemPriceMultiOUM(uom1);
         itemOGPriceUOM2 = Customer.getActiveItemPriceMultiOUM(uom2);
         totalOGItemPrice = Customer.getItemPriceOnMultiOUMCheckout();
@@ -61,11 +52,13 @@ public class VerifyTheSelectionOfMultipleUOMsFromTheOrderGuideSectionAndOrderSub
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
+        orderId = Customer.getSuccessOrderId();
         Customer.clickClose();
 
         History.goToHistory();
-        Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
-        History.ensureOrderDateSortedDescending();
+        softAssert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        History.searchOrderID(orderId);
+        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
         History.clickOnFirstItemOfOrderHistory();
         totalHistoryItemPrice = History.getItemPriceOnMultiOUM();
         softAssert.assertEquals(Math.round(totalHistoryItemPrice * 100.0) / 100.0,Math.round(totalOGItemPrice * 100.0) / 100.0);
