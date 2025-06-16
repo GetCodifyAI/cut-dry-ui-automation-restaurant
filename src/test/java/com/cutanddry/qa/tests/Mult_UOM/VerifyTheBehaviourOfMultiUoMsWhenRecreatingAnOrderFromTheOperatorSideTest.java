@@ -56,14 +56,15 @@ public class VerifyTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSi
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
-        orderId = Customer.getSuccessOrderId().trim();
+        orderId = Customer.getSuccessOrderId();
         Customer.clickClose();
 
-        // Recreate the order
         History.goToHistory();
         Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.ensureOrderDateSortedDescending();
-        History.clickOnOrder("#"+orderId);
+        History.searchOrderID(orderId);
+        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
+        History.clickOnFirstItemOfOrderHistory();
         totalHistoryItemPrice = History.getItemPriceOnMultiOUM();
         softAssert.assertEquals(Math.round(totalHistoryItemPrice * 100.0) / 100.0,Math.round(totalOGItemPrice * 100.0) / 100.0);
         History.clickMoreOptions();
@@ -91,7 +92,9 @@ public class VerifyTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSi
         History.goToHistory();
         Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.ensureOrderDateSortedDescending();
-        History.clickOnOrder("#"+orderId);
+        History.searchOrderID(orderId);
+        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
+        History.clickOnFirstItemOfOrderHistory();
         totalHistoryItemPrice = History.getItemPriceOnMultiOUM();
         softAssert.assertEquals(Math.round(totalHistoryItemPrice * 100.0) / 100.0,Math.round(totalOGItemPrice * 100.0) / 100.0);
 
