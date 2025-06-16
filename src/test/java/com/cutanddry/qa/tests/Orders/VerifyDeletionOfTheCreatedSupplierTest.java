@@ -17,7 +17,7 @@ import java.util.Objects;
 
 public class VerifyDeletionOfTheCreatedSupplierTest extends TestBase {
     static User user;
-    static String SupplierName = "TestSupplier3";
+    static String SupplierName = "TestSupplier3"+generateDynamicValue();
     @BeforeMethod
     public void setUp() {
         initialization();

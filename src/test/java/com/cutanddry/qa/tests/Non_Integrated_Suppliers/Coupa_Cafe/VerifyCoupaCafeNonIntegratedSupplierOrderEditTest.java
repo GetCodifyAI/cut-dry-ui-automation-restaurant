@@ -19,6 +19,7 @@ public class VerifyCoupaCafeNonIntegratedSupplierOrderEditTest {
     static User user;
     String userName = "jcoupal@coupacafe";
     String supplierName = "David Rio";
+    String orderId;
 
 
     @BeforeMethod
@@ -45,10 +46,13 @@ public class VerifyCoupaCafeNonIntegratedSupplierOrderEditTest {
         Customer.increaseFirstRowQtyInClassic(2);
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
+        orderId = Customer.getSuccessOrderId();
         Customer.clickClose();
 
         History.goToHistory();
         Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
+        History.searchOrderID(orderId);
+        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
         History.clickOnFirstItemOfOrderHistory();
         softAssert.assertTrue(History.isOrderSectionDisplayed(),"Order section not display");
         History.clickEditOrder();

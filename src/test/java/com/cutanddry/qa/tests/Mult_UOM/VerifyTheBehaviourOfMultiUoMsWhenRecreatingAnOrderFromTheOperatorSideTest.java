@@ -14,13 +14,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSideTest extends TestBase {
+public class VerifyTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSideTest extends TestBase {
     static User user;
     SoftAssert softAssert;
     String uom1 = "1";
     String uom2 = "2";
     static double itemOGPriceUOM1 ,itemOGPriceUOM2,totalOGItemPrice, multiItemPrice,totalHistoryItemPrice;
-    static String multiItemName, multiSearchItemCode, itemCode, orderId;
+    static String orderId;
+    static String itemCode = "01409";
 
 
     @BeforeMethod
@@ -30,7 +31,7 @@ public class VerifTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSid
     }
 
     @Test(groups = "DOT-TC-808")
-    public void VerifTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSide() throws InterruptedException {
+    public void VerifyTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSide() throws InterruptedException {
         softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
@@ -38,19 +39,13 @@ public class VerifTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSid
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.sortItemsByCustomOrder();
 
-        multiItemName = Customer.getItemNameFirstMultiOUM();
-        multiSearchItemCode = Customer.getItemCodeFirstMultiOUM();
-        itemCode = multiSearchItemCode.replaceAll("^[A-Za-z]+", "");
-        multiItemPrice = Customer.getActiveItemPriceFirstMultiOUMRowStable();
-
-        Customer.searchItemOnOrderGuide(multiSearchItemCode);
-        Customer.ClickOnMultiUomDropDownOG(itemCode);
+        Customer.searchItemOnOrderGuide(itemCode);
+       // Customer.ClickOnMultiUomDropDownOG(itemCode);
         Customer.clickOGAddToCartPlusIcon(1,itemCode, uom1);
         Customer.clickOGAddToCartPlusIcon(1,itemCode, uom2);
-        softAssert.assertEquals(Customer.getItemUOMQuantity(multiSearchItemCode, uom1), "1", "item count error in 1st UOM");
-        softAssert.assertEquals(Customer.getItemUOMQuantity(multiSearchItemCode, uom2), "1", "item count error in 2nd UOM");
+        softAssert.assertEquals(Customer.getItemUOMQuantity(itemCode, uom1), "1", "item count error in 1st UOM");
+        softAssert.assertEquals(Customer.getItemUOMQuantity(itemCode, uom2), "1", "item count error in 2nd UOM");
         itemOGPriceUOM1 = Customer.getActiveItemPriceMultiOUM(uom1);
         itemOGPriceUOM2 = Customer.getActiveItemPriceMultiOUM(uom2);
         totalOGItemPrice = Customer.getItemPriceOnMultiOUMCheckout();
@@ -61,25 +56,26 @@ public class VerifTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSid
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
-        orderId = Customer.getSuccessOrderId().trim();
+        orderId = Customer.getSuccessOrderId();
         Customer.clickClose();
 
-        // Recreate the order
         History.goToHistory();
         Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.ensureOrderDateSortedDescending();
-        History.clickOnOrder("#"+orderId);
+        History.searchOrderID(orderId);
+        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
+        History.clickOnFirstItemOfOrderHistory();
         totalHistoryItemPrice = History.getItemPriceOnMultiOUM();
         softAssert.assertEquals(Math.round(totalHistoryItemPrice * 100.0) / 100.0,Math.round(totalOGItemPrice * 100.0) / 100.0);
         History.clickMoreOptions();
         History.clickRecreateOrder();
 
-        Customer.searchItemOnOrderGuide(multiSearchItemCode);
+        Customer.searchItemOnOrderGuide(itemCode);
 //        Customer.ClickOnMultiUomDropDownOG(itemCode);
         Customer.clickOGAddToCartPlusIcon(1,itemCode, uom1);
         Customer.clickOGAddToCartPlusIcon(1,itemCode, uom2);
-        softAssert.assertEquals(Customer.getItemUOMQuantity(multiSearchItemCode, uom1), "2", "item count error in 1st UOM");
-        softAssert.assertEquals(Customer.getItemUOMQuantity(multiSearchItemCode, uom2), "2", "item count error in 2nd UOM");
+        softAssert.assertEquals(Customer.getItemUOMQuantity(itemCode, uom1), "2", "item count error in 1st UOM");
+        softAssert.assertEquals(Customer.getItemUOMQuantity(itemCode, uom2), "2", "item count error in 2nd UOM");
         itemOGPriceUOM1 = Customer.getActiveItemPriceMultiOUM(uom1);
         itemOGPriceUOM2 = Customer.getActiveItemPriceMultiOUM(uom2);
         totalOGItemPrice = Customer.getItemPriceOnMultiOUMCheckout();
@@ -96,7 +92,9 @@ public class VerifTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSid
         History.goToHistory();
         Assert.assertTrue(History.isUserNavigatedToHistory(),"History navigation error");
         History.ensureOrderDateSortedDescending();
-        History.clickOnOrder("#"+orderId);
+        History.searchOrderID(orderId);
+        softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
+        History.clickOnFirstItemOfOrderHistory();
         totalHistoryItemPrice = History.getItemPriceOnMultiOUM();
         softAssert.assertEquals(Math.round(totalHistoryItemPrice * 100.0) / 100.0,Math.round(totalOGItemPrice * 100.0) / 100.0);
 
