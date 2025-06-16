@@ -30,7 +30,7 @@ public class VerifyTheRestaurantCanHavePickUpWillCallAsTheFulfillmentTypeEditOrd
     }
 
     @Test(groups = "DOT-TC-1301")
-    public void VerifyTheRestaurantCanHavePickUpWillCallAsTheFulfillmentType() throws InterruptedException {
+    public void VerifyTheRestaurantCanHavePickUpWillCallAsTheFulfillmentTypeEditOrderSubmission() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         // Restaurant Flows
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
