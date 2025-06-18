@@ -33,6 +33,11 @@ public class InternalToolsPage extends TestBase {
     By enableWillCallPickUpToggleStable1 = By.xpath("//div[contains(text(), 'Enable Will Call/Pickp:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
     By checkboxLocatorChat = By.xpath("//label[contains(text(),'Chat')]/..//input");
     By btn_saveChanges = By.xpath("(//button[text()='Save Changes'])[1]");
+    By displayPurchaseHistoryToggleStable = By.xpath("//div[contains(text(), 'Display Purchase History')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
+    By displayPurchaseHistoryToggleStable1 = By.xpath("//div[contains(text(), 'Display Purchase History')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+    By displayPurchasePriceOnOperatorToggleStable = By.xpath("//div[contains(text(), 'Display Purchase Price on Operator App')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
+    By displayPurchasePriceOnOperatorToggleStable1 = By.xpath("//div[contains(text(), 'Display Purchase Price on Operator App')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+
 
 
 
@@ -187,6 +192,28 @@ public class InternalToolsPage extends TestBase {
     }
     public void clickSaveChanges()throws InterruptedException{
         restaurantUI.click(btn_saveChanges);
+    }
+    public void displayPurchaseHistoryToggle(boolean enable) {
+
+        String handlePosition = restaurantUI.getElement(displayPurchaseHistoryToggleStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(29px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(displayPurchaseHistoryToggleStable1);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(displayPurchaseHistoryToggleStable1);
+        }
+    }
+    public void displayPurchasePriceOnOperatorToggle(boolean enable) {
+
+        String handlePosition = restaurantUI.getElement(displayPurchasePriceOnOperatorToggleStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(29px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(displayPurchasePriceOnOperatorToggleStable1);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(displayPurchasePriceOnOperatorToggleStable1);
+        }
     }
 
 

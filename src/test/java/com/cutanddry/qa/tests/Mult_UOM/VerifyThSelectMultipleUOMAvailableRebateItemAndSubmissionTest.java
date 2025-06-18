@@ -14,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyThSelectMultipleUOMAvailableRebateItemAndSubmissionTest extends TestBase {
     static User user;
     String itemCode = "541120";
-    String OperatorName = "jamesalexanderfontan";
+    String OperatorName = "278357516";
     String uom1 = "1";
     String uom2 = "2";
     static double itemOGPriceUOM1 ,itemOGPriceUOM2,totalOGItemPrice,totalPDPItemPrice;
