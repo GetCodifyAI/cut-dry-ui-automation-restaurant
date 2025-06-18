@@ -273,13 +273,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String reviewOrderFulfilment = "//span[contains(text(),'TYPE')]";
     By btn_deleteOrderGuide = By.xpath("//a[contains(text(), 'Delete Order Guide')]");
     By icon_deleteSearchItem = By.xpath("(//*[local-name()='svg' and @data-icon='circle-xmark'])[1]");
-
-
-
-
-
-
-
+    By txt_purchaseHistoryCatalog = By.xpath("//div[text()='Purchase History']");
+    String lastOrderDetails = "//div[text()='ORDER']";
+    String lbl_lastOrderDetails = "(//div[contains(@class,'card-deck')]//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate(\"NAME\", 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))])[last()]/../following-sibling::div/div";
+    String purchaseHistoryOG = "(//td[text()='CODE']/following-sibling::td[2]/div/div)[1]";
 
 
 
@@ -1752,6 +1749,18 @@ public void clickOnCloseOrderGuideEditor(){
     public void clickOnDeleteOrderGuide(){
         restaurantUI.waitForClickability(btn_deleteOrderGuide);
         restaurantUI.click(btn_deleteOrderGuide);
+    }
+    public boolean isPurchaseHistoryDisplay(){
+        return restaurantUI.isDisplayed(txt_purchaseHistoryCatalog);
+    }
+    public boolean isLastOrderDisplay(String order){
+        return restaurantUI.isDisplayed(By.xpath(lastOrderDetails.replace("ORDER",order)));
+    }
+    public void clickLastOrderDetailsCatalog(String name)throws InterruptedException{
+        restaurantUI.click(By.xpath(lbl_lastOrderDetails.replace("NAME",name)));
+    }
+    public void clickLastOrderOG(String code)throws InterruptedException{
+        restaurantUI.click(By.xpath(purchaseHistoryOG.replace("CODE",code)));
     }
 
 

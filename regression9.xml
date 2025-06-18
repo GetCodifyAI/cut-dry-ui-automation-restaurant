@@ -50,6 +50,14 @@
 
             <class name="com.cutanddry.qa.tests.Orders.VerifyThatOrderGuideSyncedFromERPDisabledForEditingTest"/>
             <class name="com.cutanddry.qa.tests.Orders.VerifyThatManuallyOrderGuideCanEditTest"/>
+
+            <class name="com.cutanddry.qa.tests.Purchase_History.VerifyPurchaseHistoryInOrderGuideTest"/>
+            <class name="com.cutanddry.qa.tests.Purchase_History.VerifyPurchaseHistoryInCatalogueTest"/>
+            <class name="com.cutanddry.qa.tests.Purchase_History.VerifyPurchaseHistoryInPDPSectionTest"/>
+            <class name="com.cutanddry.qa.tests.Purchase_History.VerifyPurchaseHistoryPriceDisplayInOrderGuideAndPDPWhenDisplayPurchasePriceToggleEnableTest"/>
+            <class name="com.cutanddry.qa.tests.Purchase_History.VerifyPurchaseHistoryPriceNotDisplayInOrderGuideAndPDPWhenDisplayPurchasePriceToggleDisableTest"/>
+            <class name="com.cutanddry.qa.tests.Purchase_History.VerifyPurchaseHistoryDisplayInOrderGuideAndPDPWhenDisplayPurchaseHistoryToggleEnableTest"/>
+            <class name="com.cutanddry.qa.tests.Purchase_History.VerifyPurchaseHistoryNotDisplayInOrderGuideAndPDPWhenDisplayPurchaseHistoryToggleDisableTest"/>
         </classes>
     </test>
 </suite>
