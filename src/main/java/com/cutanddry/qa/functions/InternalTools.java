@@ -79,5 +79,11 @@ public class InternalTools {
     public static void clickSaveChanges() throws InterruptedException {
         internalToolsPage.clickSaveChanges();
     }
+    public static void displayPurchaseHistoryToggle(boolean status){
+        internalToolsPage.displayPurchaseHistoryToggle(status);
+    }
+    public static void displayPurchasePriceOnOperatorToggle(boolean status){
+        internalToolsPage.displayPurchasePriceOnOperatorToggle(status);
+    }
 
 }

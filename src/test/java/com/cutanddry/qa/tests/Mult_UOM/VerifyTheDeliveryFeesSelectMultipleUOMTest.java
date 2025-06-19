@@ -14,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyTheDeliveryFeesSelectMultipleUOMTest extends TestBase {
     static User user;
     static double itemPrice;
-    String userName = "events@abellagio.com";
+    String userName = "137524915";
     static double totalItemPriceReviewOrder,deliveryFeesPriceReviewOrder,subTotalEndlessAislePriceReviewOrder;
     String itemName,searchItemCode,orderId,totalItemQuantityReviewOrder;
 

@@ -49,6 +49,9 @@ public class CatalogPage extends LoginPage {
     By btn_deleteSubstitute = By.xpath("//div/*[local-name()='svg' and @data-icon='circle-xmark']");
     String getPriceUOMJIT = "((//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::*//div//span[contains(text(),'(')][1])[UOM]";
     By txt_category = By.xpath("//div[text()='Category']");
+    By purchaseHistory = By.xpath("//div[text()='Purchase History']");
+    String priceColumn = "//th[text()='PRICE']";
+    String lastOrderPrice = "//span[contains(text(),'PRICE')]";
 
 
 
@@ -323,6 +326,16 @@ public class CatalogPage extends LoginPage {
         restaurantUI.waitForCustom(3000);
         restaurantUI.waitForVisibility(txt_category);
        return restaurantUI.isDisplayed(txt_category);
+    }
+    public void clickPurchaseHistory(){
+        restaurantUI.scrollToElement(purchaseHistory);
+        restaurantUI.click(purchaseHistory);
+    }
+    public boolean isPriceColumnDisplay(String price){
+        return restaurantUI.isDisplayed(By.xpath(priceColumn.replace("PRICE",price)));
+    }
+    public boolean isLastOrderPriceDisplay(String price){
+        return restaurantUI.isDisplayed(By.xpath(lastOrderPrice.replace("PRICE",price)));
     }
 
 }

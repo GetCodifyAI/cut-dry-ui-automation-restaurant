@@ -131,4 +131,13 @@ public class Catalog {
     public static boolean isCategoryDisplayed()throws InterruptedException{
         return catalogPage.isCategoryDisplayed();
     }
+    public static void clickPurchaseHistory(){
+        catalogPage.clickPurchaseHistory();
+    }
+    public static boolean isPriceColumnDisplay(String price){
+        return catalogPage.isPriceColumnDisplay(price);
+    }
+    public static boolean isLastOrderPriceDisplay(String price){
+        return catalogPage.isLastOrderPriceDisplay(price);
+    }
 }

@@ -976,5 +976,17 @@ public class Customer {
     public static void checkoutItemsForSubstitute()throws InterruptedException{
         customersPage.clickOnCheckoutButton();
     }
+    public static boolean isPurchaseHistoryDisplay(){
+        return customersPage.isPurchaseHistoryDisplay();
+    }
+    public static boolean isLastOrderDisplay(String order){
+        return customersPage.isLastOrderDisplay(order);
+    }
+    public static void clickLastOrderDetailsCatalog(String name)throws InterruptedException{
+        customersPage.clickLastOrderDetailsCatalog(name);
+    }
+    public static void clickLastOrderOG(String code) throws InterruptedException {
+        customersPage.clickLastOrderOG(code);
+    }
 
 }
