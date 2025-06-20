@@ -47,7 +47,7 @@ public class VerifyPlaceOrderWithMultiUOMForScrapperIntegratedTest {
 
 
         Customer.searchItemOnOrderGuide(itemCode);
-       // Customer.ClickOnMultiUomDropDownOG(itemCode);
+        Customer.ClickOnMultiUomDropDownOG(itemCode);
         Customer.clickOGAddToCartPlusIcon(1,itemCode, uom1);
         Customer.clickOGAddToCartPlusIcon(1,itemCode, uom2);
         softAssert.assertEquals(Customer.getItemUOMQuantity(itemCode, uom1), "1", "item count error in 1st UOM");
