@@ -70,7 +70,7 @@ public class VerifyThSelectMultipleUOMSpecialOrderItemAndDraftEditTest extends T
         Drafts.clickEditOrder();
         // Added Multi OUM Item
         Customer.searchItemOnOrderGuide(multiSearchItemCode);
-        //Customer.ClickOnMultiUomDropDownOG(multiSearchItemCode);
+        Customer.ClickOnMultiUomDropDownOG(multiSearchItemCode);
         Customer.clickOGAddToCartPlusIcon(1, multiSearchItemCode, uom1);
         Customer.clickOGAddToCartPlusIcon(1, multiSearchItemCode, uom2);
         itemOGPriceUOM1 = Customer.getActiveItemPriceMultiOUM(uom1);

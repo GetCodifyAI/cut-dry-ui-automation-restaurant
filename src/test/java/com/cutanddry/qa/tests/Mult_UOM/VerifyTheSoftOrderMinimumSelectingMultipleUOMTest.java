@@ -40,7 +40,7 @@ public class VerifyTheSoftOrderMinimumSelectingMultipleUOMTest extends TestBase 
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 
         Customer.searchItemOnOrderGuide(multiSearchItemCode);
-       // Customer.ClickOnMultiUomDropDownOG(multiSearchItemCode);
+        Customer.ClickOnMultiUomDropDownOG(multiSearchItemCode);
         Customer.clickOGAddToCartPlusIcon(1,multiSearchItemCode, uom1);
         Customer.clickOGAddToCartPlusIcon(1,multiSearchItemCode, uom2);
         softAssert.assertEquals(Customer.getItemUOMQuantity(multiSearchItemCode, uom1), "1", "item count error in 1st UOM");

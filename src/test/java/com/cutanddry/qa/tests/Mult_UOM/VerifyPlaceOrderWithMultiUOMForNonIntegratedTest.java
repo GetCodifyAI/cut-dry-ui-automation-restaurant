@@ -43,7 +43,7 @@ public class VerifyPlaceOrderWithMultiUOMForNonIntegratedTest extends TestBase {
         Assert.assertTrue(Dashboard.isNavigatedToOperatorOrderGuide(supplierName),"ERROR in Navigating to Suppliers page");
 
         Customer.searchItemOnOrderGuide(multiSearchItemCode);
-       // Customer.ClickOnMultiUomDropDownOG(multiSearchItemCode);
+        Customer.ClickOnMultiUomDropDownOG(multiSearchItemCode);
         Customer.clickOGAddToCartPlusIcon(1,multiSearchItemCode, uom1);
         Customer.clickOGAddToCartPlusIcon(1,multiSearchItemCode, uom2);
         softAssert.assertEquals(Customer.getItemUOMQuantity(multiSearchItemCode, uom1), "1", "item count error in 1st UOM");
