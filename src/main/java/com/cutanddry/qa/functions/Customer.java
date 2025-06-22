@@ -988,5 +988,44 @@ public class Customer {
     public static void clickLastOrderOG(String code) throws InterruptedException {
         customersPage.clickLastOrderOG(code);
     }
+    public static boolean isSpecialOrderNoteDisplay(String note) throws InterruptedException {
+        return customersPage.isSpecialOrderNoteDisplay(note);
+    }
+    public static void clickOGDropdown(){
+        customersPage.clickOGDropdown();
+    }
+    public static void selectOrderGuide(String name){
+        customersPage.selectOrderGuide(name);
+    }
+    public static void clickCatalogListView(){
+        customersPage.clickCatalogListView();
+    }
+    public static boolean isAddToOrderGuideListViewDisplay(){
+        return customersPage.isAddToOrderGuideListViewDisplay();
+    }
+    public static void clickLocationGuide(){
+        customersPage.clickLocationGuide();
+    }
+    public static boolean IsLocationOrderGuideDisplay(String name){
+        return customersPage.IsLocationOrderGuideDisplay(name);
+    }
+    public static void disableCatalogAccess(){
+        customersPage.clickEditCatalogAccess();
+        customersPage.clickOnDisableCatalogAccessOption();
+        customersPage.saveCatalogAccessChanges();
+    }
+    public static void enableCatalogAccess(){
+        if (!customersPage.isCatalogAccessEnableDisplayed()) {
+            customersPage.clickEditCatalogAccess();
+            customersPage.clickOnEnableCatalogAccessOption();
+            customersPage.saveCatalogAccessChanges();
+        }
+    }
+    public static boolean catalogAccessDisabled(){
+        return customersPage.isCatalogAccessDisabled();
+    }
+    public static boolean isCatalogButtonDisplay(){
+        return customersPage.isCatalogButtonDisplay();
+    }
 
 }
