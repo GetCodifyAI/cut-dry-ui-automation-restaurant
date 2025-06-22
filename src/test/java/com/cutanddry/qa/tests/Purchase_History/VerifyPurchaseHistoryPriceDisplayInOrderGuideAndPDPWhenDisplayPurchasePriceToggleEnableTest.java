@@ -51,6 +51,7 @@ public class VerifyPurchaseHistoryPriceDisplayInOrderGuideAndPDPWhenDisplayPurch
         Dashboard.navigateToOrderGuide();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.searchItemOnOrderGuide(searchItemCode);
+        Customer.ClickOnMultiUomDropDownOG(searchItemCode);
         itemOGPriceUOM1 = Customer.getActiveItemPriceMultiOUM(uom1);
         itemOGPriceUOM2 = Customer.getActiveItemPriceMultiOUM(uom2);
         Customer.clickLastOrderOG(searchItemCode);
