@@ -139,5 +139,8 @@ public class Login {
         loginPage.clickOperator(operator);
         loginPage.clickOnLoginAsWhiteLabelAndSwitchToNewTab();
     }
+    public static void openNewTabAndSwitchIt(){
+        loginPage.openNewTabAndSwitchIt();
+    }
 
 }

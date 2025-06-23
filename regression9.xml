@@ -58,6 +58,15 @@
             <class name="com.cutanddry.qa.tests.Purchase_History.VerifyPurchaseHistoryPriceNotDisplayInOrderGuideAndPDPWhenDisplayPurchasePriceToggleDisableTest"/>
             <class name="com.cutanddry.qa.tests.Purchase_History.VerifyPurchaseHistoryDisplayInOrderGuideAndPDPWhenDisplayPurchaseHistoryToggleEnableTest"/>
             <class name="com.cutanddry.qa.tests.Purchase_History.VerifyPurchaseHistoryNotDisplayInOrderGuideAndPDPWhenDisplayPurchaseHistoryToggleDisableTest"/>
+
+            <class name="com.cutanddry.qa.tests.Orders.VerifyTheSpecialOrderItemsOrderReviewNoteTest"/>
+            <class name="com.cutanddry.qa.tests.Orders.VerifyThatPrimaryOrderGuideDisabledForEditingTest"/>
+            <class name="com.cutanddry.qa.tests.Orders.VerifyThatEditableOrderGuideEnabledForEditingTest"/>
+            <class name="com.cutanddry.qa.tests.Orders.VerifyThatPrimaryOrderGuideNotInLocationGuideDropDownTest"/>
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyTheCatalogAccessFeatureWhiteLabelUserTest"/>
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyTheCatalogAccessFeatureNonWhiteLabelUserTest"/>
+
+
         </classes>
     </test>
 </suite>

@@ -277,6 +277,23 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String lastOrderDetails = "//div[text()='ORDER']";
     String lbl_lastOrderDetails = "(//div[contains(@class,'card-deck')]//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate(\"NAME\", 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))])[last()]/../following-sibling::div/div";
     String purchaseHistoryOG = "(//td[text()='CODE']/following-sibling::td[2]/div/div)[1]";
+    String txt_specialOrderNote = "//div[text()='NOTE']";
+    By lbl_orderGuide = By.xpath("//div[text()='Order Guide:']/following-sibling::div//div[@class='cd_themed_select__single-value css-1uccc91-singleValue']");
+    String dropDownOrderGuide =  "(//div[contains(text(), 'Order Guide:')]//following::div[contains(text(), 'NAME')])[last()]";
+    By btn_listView = By.xpath("//button//*[local-name()='svg' and @data-icon='cdNewList']");
+    By btn_addToOrderGuideListView = By.xpath("//td/button[@data-tip='Add to Order Guide']");
+    By lbl_locationGuide = By.xpath("//div[text()='Location/Guide:']/following-sibling::div//div[@class='cd_themed_select__single-value css-1uccc91-singleValue']");
+    String dropDownLocationOrderGuide =  "(//div[contains(text(), 'Location/Guide:')]//following::div[contains(text(), 'NAME')])[last()]";
+    By catalogAccessEditBtn = By.xpath("//div[contains(text(), 'Catalog Access')]//following-sibling::div//div[@class='pl-0 col-sm-auto col-auto']//*[name()='svg' and contains(@data-icon, 'pen-to-square')]");
+    By catalogAccessDisableOption = By.xpath("//div[contains(text(),'Disabled')]");
+    By catalogAccessEnableOption = By.xpath("//div[contains(text(),'Enabled')]");
+    By lbl_catalogAccessEnable = By.xpath("//div[contains(text(), 'Catalog Access')]//following-sibling::div//*[contains(text(),'Enabled')]");
+    By catalogAccessDisableTxt = By.xpath("//div[@class='list-group-item']//div[text()='Disabled']");
+
+
+
+
+
 
 
 
@@ -1761,6 +1778,53 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public void clickLastOrderOG(String code)throws InterruptedException{
         restaurantUI.click(By.xpath(purchaseHistoryOG.replace("CODE",code)));
+    }
+    public boolean isSpecialOrderNoteDisplay(String note)throws InterruptedException{
+        return restaurantUI.isDisplayed(By.xpath(txt_specialOrderNote.replace("NOTE",note)));
+    }
+    public void clickOGDropdown(){
+        restaurantUI.waitForVisibility(lbl_orderGuide);
+        restaurantUI.click(lbl_orderGuide);
+    }
+    public void selectOrderGuide(String name){
+        restaurantUI.waitForVisibility(By.xpath(dropDownOrderGuide.replace("NAME",name)));
+        restaurantUI.click(By.xpath(dropDownOrderGuide.replace("NAME",name)));
+    }
+    public void clickCatalogListView(){
+        restaurantUI.click(btn_listView);
+    }
+    public boolean isAddToOrderGuideListViewDisplay(){
+        return restaurantUI.isDisplayed(btn_addToOrderGuideListView);
+    }
+    public void clickLocationGuide(){
+        restaurantUI.click(lbl_locationGuide);
+    }
+    public boolean IsLocationOrderGuideDisplay(String name){
+       return restaurantUI.isDisplayed(By.xpath(dropDownLocationOrderGuide.replace("NAME",name)));
+    }
+    public void clickEditCatalogAccess(){
+        restaurantUI.click(catalogAccessEditBtn);
+    }
+    public void clickOnDisableCatalogAccessOption(){
+        restaurantUI.click(catalogAccessEnableOption);
+        restaurantUI.waitForVisibility(catalogAccessDisableOption);
+        restaurantUI.click(catalogAccessDisableOption);
+    }
+
+    public void clickOnEnableCatalogAccessOption(){
+        restaurantUI.click(catalogAccessDisableOption);
+        restaurantUI.waitForVisibility(catalogAccessEnableOption);
+        restaurantUI.click(catalogAccessEnableOption);
+    }
+    public boolean isCatalogAccessEnableDisplayed(){
+        return restaurantUI.isDisplayed(lbl_catalogAccessEnable,10);
+    }
+    public boolean isCatalogAccessDisabled(){
+        restaurantUI.refreshPage();
+        return restaurantUI.isDisplayed(catalogAccessDisableTxt);
+    }
+    public boolean isCatalogButtonDisplay() {
+        return restaurantUI.isDisplayed(btn_catalog);
     }
 
 

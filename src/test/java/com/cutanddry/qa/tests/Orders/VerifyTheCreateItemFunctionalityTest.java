@@ -17,7 +17,7 @@ import java.util.Objects;
 
 public class VerifyTheCreateItemFunctionalityTest extends TestBase {
     static User user;
-    static String SupplierName = "TestNovaShop";
+    static String SupplierName = "TestNovaShop"+generateDynamicValue();
     static String addItemName = "Chicken Soup";
     static String addItemCode = "254254";
     static String addItemPrice = "$50";
