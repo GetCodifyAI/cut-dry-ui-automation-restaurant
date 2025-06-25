@@ -209,6 +209,9 @@ public class LoginPage extends TestBase {
         restaurantUI.switchToNewTab();
         restaurantUI.waitForCustom(3000);
     }
+    public void  openNewTabAndSwitchIt(){
+        restaurantUI.OpenNewTabAndSwitchToIt();
+    }
 
 
 
