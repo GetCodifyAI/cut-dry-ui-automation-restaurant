@@ -1,10 +1,10 @@
-package com.cutanddry.qa.tests.Rewards;
+package com.cutanddry.qa.tests.Catalog;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
+import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
-import com.cutanddry.qa.functions.Rewards;
 import com.cutanddry.qa.utils.JsonUtil;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -13,11 +13,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyFilterOptionOfTheRewardStatusTest extends TestBase {
+public class VerifyThatTheNewArrivalsSectionIsAvailableInCatalogTest extends TestBase {
     static User user;
-    String dropDown = "Reward Status";
-    String dropDownOption = "Added to Wallet";
-    String status = "Added to Wallet";
+    static String newArrival = "New Arrivals";
+    static String newArrivalTag = "New";
 
     @BeforeMethod
     public void setUp(){
@@ -25,20 +24,21 @@ public class VerifyFilterOptionOfTheRewardStatusTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-962")
-    public void VerifyFilterOptionOfTheRewardStatus()throws InterruptedException {
+    @Test(groups = "DOT-TC-1402")
+    public void VerifyTheOnSaleSectionInCatalog() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
-        Dashboard.navigateToRewards();
-        softAssert.assertTrue(Rewards.isRewardsTextDisplayed(),"Rewards section navigation error");
-        Rewards.selectAllDateRange();
-        Rewards.clickAllDateRange();
-        Rewards.selectRewardsFilter(dropDown,dropDownOption);
-        softAssert.assertTrue(Rewards.isRewardsStatusDisplayed(status),"drop down filter error");
+        Dashboard.navigateToIndependentFoodsCo();
+        Dashboard.navigateToOrderGuide();
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Customer.goToCatalog();
+        softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"ERROR in navigating to catalog page");
+        softAssert.assertTrue(Customer.isCatalogFilterDisplayed(newArrival),"catalog filter not display");
+        Customer.clickCatalogFilter(newArrival);
+        softAssert.assertTrue(Customer.isCatalogNewArrivalFilterTagDisplayed(newArrivalTag),"catalog filter tag not display");
         softAssert.assertAll();
-
     }
 
     @AfterMethod
@@ -46,6 +46,5 @@ public class VerifyFilterOptionOfTheRewardStatusTest extends TestBase {
         takeScreenshotOnFailure(result);
         closeAllBrowsers();
     }
-
 
 }

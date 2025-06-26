@@ -20,7 +20,6 @@ public class VerifyAddPaymentMethodTest extends TestBase {
     static String routeNumber = "321081669";
     static String nickName = "TestKaty";
     String distributor = "What Chefs Want - Rockies";
-    String payConfigs = "Enable FTNI Payment Gateway";
 
     @BeforeMethod
     public void setUp(){
@@ -38,8 +37,8 @@ public class VerifyAddPaymentMethodTest extends TestBase {
         InternalTools.navigateToConfigureSupplier();
         InternalTools.navigateToEditDetails(distributor);
         InternalTools.navigateToPayDetails();
-        InternalTools.uncheckFromInternalTools(payConfigs);
-        InternalTools.saveConfig();
+        InternalTools.clickEnableFTNIPaymentGatewayCheckbox(false);
+        InternalTools.clickSave();
         softAssert.assertTrue(InternalTools.isSuccessfulOverlayDisplayed(),"ERROR in saving the configs");
         InternalTools.clickOkOnSuccessBtn();
 

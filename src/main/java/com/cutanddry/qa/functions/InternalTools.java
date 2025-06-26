@@ -85,5 +85,8 @@ public class InternalTools {
     public static void displayPurchasePriceOnOperatorToggle(boolean status){
         internalToolsPage.displayPurchasePriceOnOperatorToggle(status);
     }
+    public static void clickEnableFTNIPaymentGatewayCheckbox(boolean status){
+        internalToolsPage.clickEnableFTNIPaymentGatewayCheckbox(status);
+    }
 
 }

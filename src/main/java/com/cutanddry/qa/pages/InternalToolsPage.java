@@ -37,6 +37,7 @@ public class InternalToolsPage extends TestBase {
     By displayPurchaseHistoryToggleStable1 = By.xpath("//div[contains(text(), 'Display Purchase History')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
     By displayPurchasePriceOnOperatorToggleStable = By.xpath("//div[contains(text(), 'Display Purchase Price on Operator App')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
     By displayPurchasePriceOnOperatorToggleStable1 = By.xpath("//div[contains(text(), 'Display Purchase Price on Operator App')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+    By checkboxEnableFTNIPaymentGateway = By.xpath("//label[contains(text(),'Enable FTNI Payment Gateway')]/..//input");
 
 
 
@@ -213,6 +214,16 @@ public class InternalToolsPage extends TestBase {
             restaurantUI.clickWithScrollAndHover(displayPurchasePriceOnOperatorToggleStable1);
         } else if (!enable && isEnabled) {
             restaurantUI.clickWithScrollAndHover(displayPurchasePriceOnOperatorToggleStable1);
+        }
+    }
+    public void clickEnableFTNIPaymentGatewayCheckbox(boolean enable) {
+
+        boolean isChecked = restaurantUI.getElement(checkboxEnableFTNIPaymentGateway).isSelected();
+
+        if (enable && !isChecked) {
+            restaurantUI.click(checkboxEnableFTNIPaymentGateway); // Check the box if not checked
+        } else if (!enable && isChecked) {
+            restaurantUI.click(checkboxEnableFTNIPaymentGateway); // Uncheck the box if already checked
         }
     }
 
