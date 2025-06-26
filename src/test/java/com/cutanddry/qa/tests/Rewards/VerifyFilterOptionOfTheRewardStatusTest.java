@@ -16,8 +16,8 @@ import org.testng.asserts.SoftAssert;
 public class VerifyFilterOptionOfTheRewardStatusTest extends TestBase {
     static User user;
     String dropDown = "Reward Status";
-    String dropDownOption = "Reward Granted";
-    String status = "Reward Granted";
+    String dropDownOption = "Added to Wallet";
+    String status = "Added to Wallet";
 
     @BeforeMethod
     public void setUp(){
