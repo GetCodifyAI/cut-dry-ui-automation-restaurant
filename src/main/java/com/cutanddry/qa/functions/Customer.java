@@ -1027,5 +1027,29 @@ public class Customer {
     public static boolean isCatalogButtonDisplay(){
         return customersPage.isCatalogButtonDisplay();
     }
+    public static void typePONumber(String poNumber) throws InterruptedException {
+        customersPage.typePONumber(poNumber);
+    }
+    public static void clickOK(){
+        customersPage.clickOK();
+    }
+    public static boolean isPONumberErrorDisplay(String code){
+        return customersPage.isPONumberErrorDisplay(code);
+    }
+    public static boolean isCatalogFilterDisplayed(String filter){
+        return customersPage.isCatalogFilterDisplayed(filter);
+    }
+    public static void clickCatalogFilter(String filter)throws InterruptedException{
+        customersPage.clickCatalogFilter(filter);
+    }
+    public static boolean isCatalogFilterTagDisplayed(String tag){
+        return customersPage.isCatalogFilterTagDisplayed(tag);
+    }
+    public static boolean isEditOrderGuideTextCatalogDisplayed(){
+        return customersPage.isEditOrderGuideTextCatalogDisplayed();
+    }
+    public static boolean isCatalogNewArrivalFilterTagDisplayed(String tag){
+        return customersPage.isCatalogNewArrivalFilterTagDisplayed(tag);
+    }
 
 }

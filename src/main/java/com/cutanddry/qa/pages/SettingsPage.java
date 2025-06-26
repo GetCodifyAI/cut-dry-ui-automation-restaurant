@@ -79,7 +79,7 @@ public class SettingsPage extends LoginPage{
 
     public void clickOnProfile() throws InterruptedException {
         restaurantUI.click(profileBtn);
-        restaurantUI.waitForCustom(1000);
+        restaurantUI.waitForCustom(3000);
     }
 
     public void editNameInProfile(String profileName){

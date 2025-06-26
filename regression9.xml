@@ -66,6 +66,12 @@
             <class name="com.cutanddry.qa.tests.Catalog.VerifyTheCatalogAccessFeatureWhiteLabelUserTest"/>
             <class name="com.cutanddry.qa.tests.Catalog.VerifyTheCatalogAccessFeatureNonWhiteLabelUserTest"/>
 
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyTheOnSaleSectionInCatalogTest"/>
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyTheOnSaleSectionInCatalogOGEditFlowTest"/>
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyThatTheNewArrivalsSectionIsAvailableInCatalogTest"/>
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyThatTheNewArrivalsSectionIsAvailableInCatalogOGEditFlowTest"/>
+            <class name="com.cutanddry.qa.tests.OrderGuide.ValidatePONumberLengthForOperatorTest"/>
+
 
         </classes>
     </test>
