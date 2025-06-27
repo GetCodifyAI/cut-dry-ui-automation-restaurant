@@ -1132,7 +1132,7 @@ jobs:
 
           # Send the test results to Slack
       - slack/notify:
-          channel: "#test-alerts" # Replace with your Slack channel staging-test-alerts
+          channel: "#staging-test-alerts" # Replace with your Slack channel staging-test-alerts
           template: "${SLACK_MESSAGE}"
           event: always
           custom: |
@@ -1210,11 +1210,11 @@ workflows:
   scheduled-test-2:
     triggers:
       - schedule:
-          cron: "25 06 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 25 06 --> DP gap = 40 min
+          cron: "40 06 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 25 06 --> DP gap = 40 min
           filters:
             branches:
               only:
-                - main
+                - staging_regression
     jobs:
       - daily-build-and-test-1
       - daily-build-and-test-2
@@ -1232,11 +1232,11 @@ workflows:
   scheduled-test-2-sub1:
     triggers:
       - schedule:
-          cron: "15 07 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 15 07  --> 1st job gap = 50 min
+          cron: "30 07 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 15 07  --> 1st job gap = 50 min staging_regression
           filters:
             branches:
               only:
-                - main
+                - staging_regression
     jobs:
       - daily-build-and-test-6
       - daily-build-and-test-7
