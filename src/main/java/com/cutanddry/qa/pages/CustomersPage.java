@@ -289,6 +289,13 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By catalogAccessEnableOption = By.xpath("//div[contains(text(),'Enabled')]");
     By lbl_catalogAccessEnable = By.xpath("//div[contains(text(), 'Catalog Access')]//following-sibling::div//*[contains(text(),'Enabled')]");
     By catalogAccessDisableTxt = By.xpath("//div[@class='list-group-item']//div[text()='Disabled']");
+    By txt_poNumber = By.xpath("//div[contains(text(),'PO Number')]/following-sibling::div/input");
+    String pONumberError = "//h2[text()='ERROR']";
+    String catalogFilter = "//div[contains(text(),'FILTER')]";
+    String catalogFilterTag = "//div[contains(text(),'TAG')]";
+    By txt_editOrderGuideCatalog = By.xpath("//div[contains(text(), 'Edit Order Guide')]");
+    String catalogFilterTagNewArrival = "//span[contains(text(),'TAG')]";
+
 
 
 
@@ -1825,6 +1832,29 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public boolean isCatalogButtonDisplay() {
         return restaurantUI.isDisplayed(btn_catalog);
+    }
+    public void typePONumber(String poNumber) throws InterruptedException {
+        restaurantUI.waitForCustom(3000);
+        restaurantUI.clear(txt_poNumber);
+        restaurantUI.sendKeys(txt_poNumber,poNumber);
+    }
+    public boolean isPONumberErrorDisplay(String error){
+        return restaurantUI.isDisplayed(By.xpath(pONumberError.replace("ERROR", error)));
+    }
+    public boolean isCatalogFilterDisplayed(String filter){
+        return restaurantUI.isDisplayed(By.xpath(catalogFilter.replace("FILTER", filter)));
+    }
+    public void clickCatalogFilter(String filter)throws InterruptedException{
+        restaurantUI.click(By.xpath(catalogFilter.replace("FILTER", filter)));
+    }
+    public boolean isCatalogFilterTagDisplayed(String tag){
+        return restaurantUI.isDisplayed(By.xpath(catalogFilterTag.replace("TAG", tag)));
+    }
+    public boolean isEditOrderGuideTextCatalogDisplayed() {
+        return restaurantUI.isDisplayed(txt_editOrderGuideCatalog);
+    }
+    public boolean isCatalogNewArrivalFilterTagDisplayed(String tag){
+        return restaurantUI.isDisplayed(By.xpath(catalogFilterTagNewArrival.replace("TAG", tag)));
     }
 
 

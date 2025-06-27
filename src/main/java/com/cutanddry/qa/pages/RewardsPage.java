@@ -25,7 +25,7 @@ public class RewardsPage extends TestBase {
     String rewardsDropDown = "//label[text()='DROPDOWN']/following-sibling::*//div[contains(text(),'Select...')]";
     String dropDownOption = "//div[contains(text(),'DROPDOWNOPTION')]";
     String dropDownResult = "//td[contains(text(),'RESULT')]";
-    String rewardsStatus = "//button[contains(text(),'STATUS')]";
+    String rewardsStatus = "//div[contains(text(),'STATUS')]";
 
     public void clickOnLearnMore(){restaurantUI.click(link_learnMore);
     }

@@ -56,6 +56,8 @@ public class DashboardPage extends LoginPage{
     By signOutProfile = By.xpath("//a[text()='Sign Out']");
     By outSideModal = By.xpath("//div[@role='dialog' and not(descendant::*[@class='modal-content'])]");
     By btn_chatWithUs = By.xpath("//span[text()='Chat with us']");
+    By txt_selectOrderGuide = By.xpath("//div[text()='Select Order Guide']");
+    By selectOrderGuide = By.xpath("//div[text()='Independent Foods Co']");
 
 
     public boolean isDashboardTextDisplayed(){
@@ -287,6 +289,12 @@ public class DashboardPage extends LoginPage{
     public boolean isChatWithUsDisplay()throws InterruptedException{
         restaurantUI.waitForCustom(3000);
         return restaurantUI.isDisplayed(btn_chatWithUs);
+    }
+    public boolean isSelectOrderGuidePopUpDisplayed(){
+        return restaurantUI.isDisplayed(txt_selectOrderGuide);
+    }
+    public void selectOrderGuide(){
+        restaurantUI.click(selectOrderGuide);
     }
 
 }

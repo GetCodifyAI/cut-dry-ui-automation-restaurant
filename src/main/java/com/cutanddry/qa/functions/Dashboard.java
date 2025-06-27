@@ -185,4 +185,13 @@ public class Dashboard {
     public static void navigateToIndependentFoodsCoClassic() throws InterruptedException{
         dashboardPage.clickOnPlaceOrder();
     }
+    public static void navigateToOrderWLAManager() throws InterruptedException {
+        dashboardPage.clickOnOrder();
+        if(dashboardPage.isSelectOrderGuidePopUpDisplayed()){
+            dashboardPage.selectOrderGuide();
+        }
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickOnNoDraftOrder();
+        }
+    }
 }

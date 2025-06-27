@@ -31,7 +31,7 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
         Login.navigateToLoginAs();
         Login.loginAsAdminWL(OperatorName);
         restaurantUI.switchToNewTab();
-        Dashboard.navigateToOrder();
+        Dashboard.navigateToOrderWLAManager();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error order");
 
         Customer.goToEdit();
