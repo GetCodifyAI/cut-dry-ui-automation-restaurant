@@ -1051,5 +1051,38 @@ public class Customer {
     public static boolean isCatalogNewArrivalFilterTagDisplayed(String tag){
         return customersPage.isCatalogNewArrivalFilterTagDisplayed(tag);
     }
+    public static boolean isCatalogFilterDisplayTag(String name,String tag){
+        return customersPage.isCatalogFilterDisplayTag(name,tag);
+    }
+    public static boolean isOrderGuideItemTagDisplayTag(String name,String tag){
+        return customersPage.isOrderGuideItemTagDisplayTag(name,tag);
+    }
+    public static boolean isPDPItemDisplayTag(String name,String tag){
+        return customersPage.isPDPItemDisplayTag(name,tag);
+    }
+    public static boolean isCatalogSearchItemCodeDisplay(String code){
+        return customersPage.isCatalogSearchItemCodeDisplay(code);
+    }
+    public static void clickCartSummery() throws InterruptedException {
+        customersPage.clickCartSummery();
+    }
+    public static boolean isCartSummaryDisplay(String count){
+        return customersPage.isCartSummaryDisplay(count);
+    }
+    public static boolean isCartSummaryValueDisplay(String name){
+        return customersPage.isCartSummaryValueDisplay(name);
+    }
+    public static void clickMenu()throws InterruptedException{
+        customersPage.clickMenu();
+    }
+    public static boolean isUserNameDisplay(String name){
+        return customersPage.isUserNameDisplay(name);
+    }
+    public static boolean isDistributorNameDisplay(String name){
+        return customersPage.isDistributorNameDisplay(name);
+    }
+    public static void clickCloseMenu() throws InterruptedException {
+        customersPage.clickCloseMenu();
+    }
 
 }

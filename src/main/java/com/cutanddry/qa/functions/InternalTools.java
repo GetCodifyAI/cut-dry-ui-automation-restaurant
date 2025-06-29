@@ -88,5 +88,8 @@ public class InternalTools {
     public static void clickEnableFTNIPaymentGatewayCheckbox(boolean status){
         internalToolsPage.clickEnableFTNIPaymentGatewayCheckbox(status);
     }
+    public static void clickHideZeroStockLabelToggle(boolean status){
+        internalToolsPage.clickHideZeroStockLabelToggle(status);
+    }
 
 }

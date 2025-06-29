@@ -72,6 +72,13 @@
             <class name="com.cutanddry.qa.tests.Catalog.VerifyThatTheNewArrivalsSectionIsAvailableInCatalogOGEditFlowTest"/>
             <class name="com.cutanddry.qa.tests.OrderGuide.ValidatePONumberLengthForOperatorTest"/>
 
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyThatOPsHaveTheCustomerTypeFilterToFilterCustomerTypesTest"/>
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyTheOutOfStockLabelsDisplayWhenHideZeroStockLabelOnOperatorAppToggleDisabledTest"/>
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyTheOutOfStockLabelsDisplayWhenHideZeroStockLabelOnOperatorAppToggleEnabledTest"/>
+
+            <class name="com.cutanddry.qa.tests.Orders.VerifyTheCartSummeryIsDisplayedOnTheReviewScreenTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyTheAlternateCollapsedMenuOnDesktopForWLAppTest"/>
+
 
         </classes>
     </test>
