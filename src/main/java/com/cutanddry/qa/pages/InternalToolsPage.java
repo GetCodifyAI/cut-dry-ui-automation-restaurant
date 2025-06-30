@@ -38,6 +38,9 @@ public class InternalToolsPage extends TestBase {
     By displayPurchasePriceOnOperatorToggleStable = By.xpath("//div[contains(text(), 'Display Purchase Price on Operator App')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
     By displayPurchasePriceOnOperatorToggleStable1 = By.xpath("//div[contains(text(), 'Display Purchase Price on Operator App')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
     By checkboxEnableFTNIPaymentGateway = By.xpath("//label[contains(text(),'Enable FTNI Payment Gateway')]/..//input");
+    By hideZeroStockLabelToggleStable = By.xpath("//div[contains(text(), 'Hide zero stock label on Operator App:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
+    By hideZeroStockLabelToggleStable1 = By.xpath("//div[contains(text(), 'Hide zero stock label on Operator App:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+
 
 
 
@@ -224,6 +227,17 @@ public class InternalToolsPage extends TestBase {
             restaurantUI.click(checkboxEnableFTNIPaymentGateway); // Check the box if not checked
         } else if (!enable && isChecked) {
             restaurantUI.click(checkboxEnableFTNIPaymentGateway); // Uncheck the box if already checked
+        }
+    }
+    public void clickHideZeroStockLabelToggle(boolean enable) {
+
+        String handlePosition = restaurantUI.getElement(hideZeroStockLabelToggleStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(29px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(hideZeroStockLabelToggleStable1);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(hideZeroStockLabelToggleStable1);
         }
     }
 
