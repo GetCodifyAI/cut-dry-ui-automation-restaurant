@@ -71,16 +71,15 @@ public class VerifyTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSi
         History.clickRecreateOrder();
 
         Customer.searchItemOnOrderGuide(itemCode);
-        Customer.ClickOnMultiUomDropDownOG(itemCode);
         Customer.clickOGAddToCartPlusIcon(1,itemCode, uom1);
         Customer.clickOGAddToCartPlusIcon(1,itemCode, uom2);
-        softAssert.assertEquals(Customer.getItemUOMQuantity(itemCode, uom1), "2", "item count error in 1st UOM");
-        softAssert.assertEquals(Customer.getItemUOMQuantity(itemCode, uom2), "2", "item count error in 2nd UOM");
+        softAssert.assertEquals(Customer.getItemUOMQuantity(itemCode, uom1), "2", "item count error in 1st UOM recreate");
+        softAssert.assertEquals(Customer.getItemUOMQuantity(itemCode, uom2), "2", "item count error in 2nd UOM recreate");
         itemOGPriceUOM1 = Customer.getActiveItemPriceMultiOUM(uom1);
         itemOGPriceUOM2 = Customer.getActiveItemPriceMultiOUM(uom2);
         totalOGItemPrice = Customer.getItemPriceOnMultiOUMCheckout();
         softAssert.assertEquals(Math.round(totalOGItemPrice * 100.0) / 100.0,
-                ((Math.round(itemOGPriceUOM1 * 100.0)*2 / 100.0) + (Math.round(itemOGPriceUOM2 * 100.0)*2 / 100.0)), "The item was not selected properly.");
+                ((Math.round(itemOGPriceUOM1 * 100.0)*2 / 100.0) + (Math.round(itemOGPriceUOM2 * 100.0)*2 / 100.0)), "The item was not selected properly recreate.");
 
         Customer.clickCheckOutPDP();
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");

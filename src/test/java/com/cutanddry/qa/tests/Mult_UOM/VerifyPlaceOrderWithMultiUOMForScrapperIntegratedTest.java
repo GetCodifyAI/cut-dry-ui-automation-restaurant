@@ -20,7 +20,6 @@ public class VerifyPlaceOrderWithMultiUOMForScrapperIntegratedTest {
     String uom2 = "2";
     static double itemOGPriceUOM1 ,itemOGPriceUOM2,totalOGItemPrice,totalItemPriceReviewOrder;
     static String orderId,totalItemQuantityReviewOrder;
-//    static String multiItemName, multiSearchItemCode, itemCode,singleSearchItemCodeEdit;
     static String itemCode = "00166";
 
 
@@ -40,11 +39,6 @@ public class VerifyPlaceOrderWithMultiUOMForScrapperIntegratedTest {
         Login.logInToOperator(userName);
         Dashboard.selectSupplierScrapper(supplierName);
         Assert.assertTrue(Dashboard.isNavigatedToOperatorOrderGuide(supplierName), "ERROR in Navigating to Suppliers page");
-
-       /* multiItemName = Customer.getItemNameFirstMultiOUM();
-        multiSearchItemCode = Customer.getItemCodeFirstMultiOUM();
-        itemCode = multiSearchItemCode.replaceAll("^[A-Za-z]+", "");*/
-
 
         Customer.searchItemOnOrderGuide(itemCode);
         Customer.ClickOnMultiUomDropDownOG(itemCode);
