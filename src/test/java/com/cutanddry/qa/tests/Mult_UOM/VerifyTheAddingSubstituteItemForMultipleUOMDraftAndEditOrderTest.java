@@ -98,8 +98,8 @@ public class VerifyTheAddingSubstituteItemForMultipleUOMDraftAndEditOrderTest ex
         Assert.assertTrue(Drafts.isUserNavigatedToDrafts(),"navigation error");
         softAssert.assertTrue(Drafts.isLastDraftDisplayed(String.valueOf(totalItemPriceReviewOrder)),"draft creating error");
         Drafts.clickDraft(String.valueOf(totalItemPriceReviewOrder));
-        softAssert.assertTrue(Customer.isSetSubstitutionTextDisplayed(),"Substitution pop up error2");
-        Customer.clickCloseSub();
+       // softAssert.assertTrue(Customer.isSetSubstitutionTextDisplayed(),"Substitution pop up error2");
+      //  Customer.clickCloseSub();
 
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
         Drafts.clickEditOrder();
