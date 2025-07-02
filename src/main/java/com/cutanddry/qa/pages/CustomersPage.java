@@ -295,13 +295,17 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String catalogFilterTag = "//div[contains(text(),'TAG')]";
     By txt_editOrderGuideCatalog = By.xpath("//div[contains(text(), 'Edit Order Guide')]");
     String catalogFilterTagNewArrival = "//span[contains(text(),'TAG')]";
-
-
-
-
-
-
-
+    String newItemTagCatalog = "(//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate(\"NAME\", 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]/../../following-sibling::div//span[text()='TAG'])[last()]";
+    String itemTagOG = "//div[contains(text(),'NAME')]/../../following-sibling::div//span[text()='TAG']";
+    String newItemTagPDP = "//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate(\"NAME\", 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]/following-sibling::div//span[text()='TAG']";
+    String catalogSearchItemCode = "//div[contains(@class,'card-deck')]//div[contains(., 'CODE')]";
+    By btn_cartSummery = By.xpath("//button[text()='$']");
+    String cartSummary = "//div[text()='COUNT']";
+    String cartSummaryValue = "//div[contains(text(),'NAME')]";
+    By btn_menu = By.xpath("//*[local-name() = 'svg' and @data-icon='bars']");
+    String txt_userName = "//div[contains(text(),'NAME')]";
+    String txt_distributorName = "//span[contains(text(),'NAME')]";
+    By btn_closeMenu = By.xpath("//*[local-name() = 'svg' and @data-icon='cdCancel']");
 
 
 
@@ -1855,6 +1859,39 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public boolean isCatalogNewArrivalFilterTagDisplayed(String tag){
         return restaurantUI.isDisplayed(By.xpath(catalogFilterTagNewArrival.replace("TAG", tag)));
+    }
+    public boolean isCatalogFilterDisplayTag(String name,String tag){
+        return restaurantUI.isDisplayed(By.xpath(newItemTagCatalog.replace("NAME", name).replace("TAG",tag)));
+    }
+    public boolean isOrderGuideItemTagDisplayTag(String name,String tag){
+        return restaurantUI.isDisplayed(By.xpath(itemTagOG.replace("NAME", name).replace("TAG",tag)));
+    }
+    public boolean isPDPItemDisplayTag(String name,String tag){
+        return restaurantUI.isDisplayed(By.xpath(newItemTagPDP.replace("NAME", name).replace("TAG",tag)));
+    }
+    public boolean isCatalogSearchItemCodeDisplay(String code){
+        return restaurantUI.isDisplayed(By.xpath(catalogSearchItemCode.replace("CODE", code)));
+    }
+    public void clickCartSummery()throws InterruptedException{
+        restaurantUI.click(btn_cartSummery);
+    }
+    public boolean isCartSummaryDisplay(String count){
+        return restaurantUI.isDisplayed(By.xpath(cartSummary.replace("COUNT", count)));
+    }
+    public boolean isCartSummaryValueDisplay(String name){
+        return restaurantUI.isDisplayed(By.xpath(cartSummaryValue.replace("NAME", name)));
+    }
+    public void clickMenu()throws InterruptedException{
+        restaurantUI.click(btn_menu);
+    }
+    public boolean isUserNameDisplay(String name){
+        return restaurantUI.isDisplayed(By.xpath(txt_userName.replace("NAME", name)));
+    }
+    public boolean isDistributorNameDisplay(String name){
+        return restaurantUI.isDisplayed(By.xpath(txt_distributorName.replace("NAME", name)));
+    }
+    public void clickCloseMenu()throws InterruptedException{
+        restaurantUI.click(btn_closeMenu);
     }
 
 
