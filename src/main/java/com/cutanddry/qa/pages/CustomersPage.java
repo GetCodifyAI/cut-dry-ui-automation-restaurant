@@ -306,6 +306,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String txt_userName = "//div[contains(text(),'NAME')]";
     String txt_distributorName = "//span[contains(text(),'NAME')]";
     By btn_closeMenu = By.xpath("//*[local-name() = 'svg' and @data-icon='cdCancel']");
+    By SearchResultsIcon = By.xpath("(//div//*[local-name()='svg' and contains(@data-icon, 'cdSearch')])[1]");
 
 
 
@@ -405,6 +406,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.waitForCustom(2000);
         restaurantUI.sendKeys(tbx_catalogSearch, item);
         restaurantUI.waitForCustom(4000);
+        restaurantUI.click(SearchResultsIcon);
+        restaurantUI.waitForCustom(4000);
     }
 
     public void typeToSearchOnOrderGuide(String item) {
@@ -415,6 +418,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        restaurantUI.click(SearchResultsIcon);
 
     }
 
