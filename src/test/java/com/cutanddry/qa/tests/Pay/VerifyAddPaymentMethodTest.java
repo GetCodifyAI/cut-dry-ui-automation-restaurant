@@ -19,7 +19,7 @@ public class VerifyAddPaymentMethodTest extends TestBase {
     static String accountNumber = "2222220";
     static String routeNumber = "321081669";
     static String nickName = "TestKaty";
-    String distributor = "What Chefs Want - Rockies";
+    String distributor = "Independent Foods Co";
 
     @BeforeMethod
     public void setUp(){
