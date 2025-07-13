@@ -306,6 +306,14 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String txt_userName = "//div[contains(text(),'NAME')]";
     String txt_distributorName = "//span[contains(text(),'NAME')]";
     By btn_closeMenu = By.xpath("//*[local-name() = 'svg' and @data-icon='cdCancel']");
+    String btn_catalogPlusStable = "((//div[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = translate(\"NAME\", 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')])[2]/../../following::div//*[name()='svg' and contains(@data-icon, 'plus')])[1]";
+    By btn_sendERP = By.xpath("//button[text()='Send to ERP']");
+    String txt_notesToCustomer = "//th[text()='Notes to Customer']/../../following-sibling::tbody//*[text()='NOTE']";
+    By txt_submitERP = By.xpath("//h2[text()='Submit Order to ERP?']");
+    By txt_OrderSentERP = By.xpath("//h2[text()='Order sent to ERP!']");
+    String txt_OrderSubmissionStep = "//td[text()='STEP']";
+    By btn_timeline = By.xpath("//a[@role='tab' and @data-rb-event-key='Timeline']");
+    String submittedOrder = "//*[contains(text(),'#') and text()='ID']";
     By SearchResultsIcon = By.xpath("(//div//*[local-name()='svg' and contains(@data-icon, 'cdSearch')])[1]");
 
 
@@ -1896,6 +1904,38 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public void clickCloseMenu()throws InterruptedException{
         restaurantUI.click(btn_closeMenu);
+    }
+    public void clickOnPlusIconInCatalogStable(String name){
+        restaurantUI.waitForVisibility(By.xpath(btn_catalogPlusStable.replace("NAME", name)));
+        restaurantUI.click(By.xpath(btn_catalogPlusStable.replace("NAME", name)));
+    }
+    public void clickSendToERP()throws InterruptedException{
+        restaurantUI.click(btn_sendERP);
+    }
+    public boolean isSendToERPButtonDisplayed()throws InterruptedException{
+        return restaurantUI.isDisplayed(btn_sendERP);
+    }
+    public boolean isNotesToCustomerDisplayed(String note){
+        return restaurantUI.isDisplayed(By.xpath(txt_notesToCustomer.replace("NOTE",note)));
+    }
+    public boolean isSubmitERPPopUpDisplayed()throws InterruptedException{
+        return restaurantUI.isDisplayed(txt_submitERP);
+    }
+    public boolean isOrderSentERPPopUpDisplayed()throws InterruptedException{
+        return restaurantUI.isDisplayed(txt_OrderSentERP);
+    }
+    public boolean isOrderSubmissionStepDisplayed(String step){
+        return restaurantUI.isDisplayed(By.xpath(txt_OrderSubmissionStep.replace("STEP",step)));
+    }
+    public void clickOnTimeline() {
+        restaurantUI.clickUsingJavaScript(btn_timeline);
+    }
+    public void clickConfirm(){
+        restaurantUI.waitForClickability(btn_confirm);
+        restaurantUI.click(btn_confirm);
+    }
+    public void clickSubmittedOrder(String id){
+        restaurantUI.click(By.xpath(submittedOrder.replace("ID", id)));
     }
 
 

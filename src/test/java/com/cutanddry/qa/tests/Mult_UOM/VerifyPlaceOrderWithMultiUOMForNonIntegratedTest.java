@@ -23,7 +23,7 @@ public class VerifyPlaceOrderWithMultiUOMForNonIntegratedTest extends TestBase {
     String supplierName = "David Rio";
     static double itemOGPriceUOM1 ,itemOGPriceUOM2,totalOGItemPrice,totalHistoryItemPrice;
     static String  orderId;
-    static String multiSearchItemCode = "25650";
+    static String multiSearchItemCode = "TS4B";
 
 
     @BeforeMethod
