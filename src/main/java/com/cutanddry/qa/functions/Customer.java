@@ -1114,5 +1114,21 @@ public class Customer {
     public static void clickSubmittedOrder(String id){
         customersPage.clickSubmittedOrder(id);
     }
+    public static void clickSimpleListView(){
+        customersPage.clickSimpleListView();
+    }
+    public static boolean isSimpleListViewTextDisplay()throws InterruptedException{
+        return customersPage.isSimpleListViewTextDisplay();
+    }
+    public static void clickSortOptionOG(String option)throws InterruptedException{
+        customersPage.clickSortOptionOG(option);
+    }
+    public static boolean isSortOptionDisplay(String option)throws InterruptedException{
+        return customersPage.isSortOptionDisplay(option);
+    }
+    public static void clickSortOptionsDropdown(){
+        customersPage.selectSortOptions();
+    }
+
 
 }

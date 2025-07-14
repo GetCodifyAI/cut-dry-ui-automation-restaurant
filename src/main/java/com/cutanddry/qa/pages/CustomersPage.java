@@ -314,6 +314,13 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String txt_OrderSubmissionStep = "//td[text()='STEP']";
     By btn_timeline = By.xpath("//a[@role='tab' and @data-rb-event-key='Timeline']");
     String submittedOrder = "//*[contains(text(),'#') and text()='ID']";
+    By dropdown_option_SimpleListView = By.xpath("//div[text()='Simple List View']");
+    By txt_simpleListView = By.xpath("//div[text()='Simple List View']");
+    String sortOptionOG = "(//div[contains(text(), 'Sort Items By:')]//following::div[contains(text(), 'OPTION')])[last()]";
+    String sortResult = "(//td//span[text()='OPTION'])[1]";
+    By dropdown_SortOptions = By.xpath("(//div[contains(text(),'Sort Items By')])[last()]/following-sibling::div/div");
+    By btn_OGAndCatalogSearch = By.xpath("//div//*[name()='svg' and contains(@data-icon, 'cdSearch')]");
+
 
 
 
@@ -413,12 +420,14 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.click(tbx_catalogSearch);
         restaurantUI.waitForCustom(2000);
         restaurantUI.sendKeys(tbx_catalogSearch, item);
+        restaurantUI.click(btn_OGAndCatalogSearch);
         restaurantUI.waitForCustom(4000);
     }
 
     public void typeToSearchOnOrderGuide(String item) {
         restaurantUI.click(icon_deleteSearchItem);
         restaurantUI.sendKeys(tbx_orderGuideSearch, item);
+        restaurantUI.click(btn_OGAndCatalogSearch);
         try {
             restaurantUI.waitForCustom(3000);
         } catch (InterruptedException e) {
@@ -1933,6 +1942,24 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public void clickSubmittedOrder(String id){
         restaurantUI.click(By.xpath(submittedOrder.replace("ID", id)));
+    }
+    public void clickSimpleListView(){
+        restaurantUI.waitForClickability(dropdown_option_SimpleListView);
+        restaurantUI.click(dropdown_option_SimpleListView);
+    }
+    public boolean isSimpleListViewTextDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(txt_simpleListView);
+    }
+    public void clickSortOptionOG(String option)throws InterruptedException{
+        restaurantUI.click(By.xpath(sortOptionOG.replace("OPTION",option)));
+    }
+    public boolean isSortOptionDisplay(String option)throws InterruptedException{
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.isDisplayed(By.xpath(sortResult.replace("OPTION",option)));
+    }
+    public void selectSortOptions(){
+        restaurantUI.waitForVisibility(dropdown_SortOptions);
+        restaurantUI.click(dropdown_SortOptions);
     }
 
 
