@@ -319,6 +319,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String sortOptionOG = "(//div[contains(text(), 'Sort Items By:')]//following::div[contains(text(), 'OPTION')])[last()]";
     String sortResult = "(//td//span[text()='OPTION'])[1]";
     By dropdown_SortOptions = By.xpath("(//div[contains(text(),'Sort Items By')])[last()]/following-sibling::div/div");
+    By btn_OGAndCatalogSearch = By.xpath("//div//*[name()='svg' and contains(@data-icon, 'cdSearch')]");
 
 
 
@@ -419,12 +420,14 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.click(tbx_catalogSearch);
         restaurantUI.waitForCustom(2000);
         restaurantUI.sendKeys(tbx_catalogSearch, item);
+        restaurantUI.click(btn_OGAndCatalogSearch);
         restaurantUI.waitForCustom(4000);
     }
 
     public void typeToSearchOnOrderGuide(String item) {
         restaurantUI.click(icon_deleteSearchItem);
         restaurantUI.sendKeys(tbx_orderGuideSearch, item);
+        restaurantUI.click(btn_OGAndCatalogSearch);
         try {
             restaurantUI.waitForCustom(3000);
         } catch (InterruptedException e) {
