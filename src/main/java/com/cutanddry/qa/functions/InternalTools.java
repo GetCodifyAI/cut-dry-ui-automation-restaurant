@@ -91,5 +91,8 @@ public class InternalTools {
     public static void clickHideZeroStockLabelToggle(boolean status){
         internalToolsPage.clickHideZeroStockLabelToggle(status);
     }
+    public static void clickOnSimpleListViewDropdown(String type){
+        internalToolsPage.clickOnSimpleListViewDropdown(type);
+    }
 
 }
