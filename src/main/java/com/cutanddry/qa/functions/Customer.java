@@ -1129,6 +1129,14 @@ public class Customer {
     public static void clickSortOptionsDropdown(){
         customersPage.selectSortOptions();
     }
+    public static void clickOnProductStable(String name){
+        customersPage.clickOnProductStable(name);
+    }
+    public static void clickOnPlusIconCatalogStable(int count, String name) {
+        for (int i=0; i<count;i++){
+            customersPage.clickOnPlusIconCatalogStable(name);
+        }
+    }
 
 
 }

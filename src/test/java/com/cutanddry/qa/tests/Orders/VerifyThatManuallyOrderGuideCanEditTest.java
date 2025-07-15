@@ -35,7 +35,7 @@ public class VerifyThatManuallyOrderGuideCanEditTest extends TestBase {
         Login.navigateToLoginAs();
         Login.logInToOperatorAsWhiteLabel(OperatorName);
 
-        Dashboard.navigateToOrder();
+        Dashboard.navigateToOrderGuideCustom();
         Customer.goToCreatePopup();
         Customer.createOrderGuide(OrderGuideName);
         Customer.createOrderFromCatalog();

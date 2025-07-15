@@ -320,6 +320,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String sortResult = "(//td//span[text()='OPTION'])[1]";
     By dropdown_SortOptions = By.xpath("(//div[contains(text(),'Sort Items By')])[last()]/following-sibling::div/div");
     By btn_OGAndCatalogSearch = By.xpath("//div//*[name()='svg' and contains(@data-icon, 'cdSearch')]");
+    String txt_productStable = "//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]";
+    String txt_productStableAddToCart = "//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]/../../following-sibling::div//*[name()='svg' and contains(@data-icon, 'plus')]";
+
+
 
 
 
@@ -1960,6 +1964,16 @@ public void clickOnCloseOrderGuideEditor(){
     public void selectSortOptions(){
         restaurantUI.waitForVisibility(dropdown_SortOptions);
         restaurantUI.click(dropdown_SortOptions);
+    }
+    public void clickOnProductStable(String name){
+        restaurantUI.scrollToElementStable(By.xpath(txt_productStable.replace("NAME", name)));
+        restaurantUI.waitForVisibility(By.xpath(txt_productStable.replace("NAME", name)));
+        restaurantUI.clickUsingJavaScript(By.xpath(txt_productStable.replace("NAME", name)));
+    }
+    public void clickOnPlusIconCatalogStable(String name){
+        restaurantUI.scrollToElement(By.xpath(txt_productStableAddToCart.replace("NAME", name)));
+        restaurantUI.waitForVisibility(By.xpath(txt_productStableAddToCart.replace("NAME", name)));
+        restaurantUI.click(By.xpath(txt_productStableAddToCart.replace("NAME", name)));
     }
 
 
