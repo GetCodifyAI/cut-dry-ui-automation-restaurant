@@ -49,16 +49,16 @@ public class VerifyTheOutOfStockLabelsDisplayWhenHideZeroStockLabelOnOperatorApp
         Login.navigateToLoginAs();
         Login.logInToOperatorAsWhiteLabel(OperatorName);
         Dashboard.navigateToOrder();
-//        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-//        Customer.searchItemOnOrderGuide(itemCodeOG);
-//        softAssert.assertTrue(Customer.isOrderGuideItemTagDisplayTag(itemNameOG,tag),"tag display og error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Customer.searchItemOnOrderGuide(itemCodeOG);
+        softAssert.assertTrue(Customer.isOrderGuideItemTagDisplayTag(itemNameOG,tag),"tag display og error");
 
         Customer.goToCatalog();
         Customer.searchItemOnCatalog(itemCodeOG);
-//        softAssert.assertTrue(Customer.isCatalogFilterDisplayTag(itemNameOG,tag),"tag display catalog error");
-//        Customer.clickOnPlusIconCatalogStable(1, itemNameOG);
-//        Customer.checkoutItems();
-//        softAssert.assertFalse(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
+        softAssert.assertTrue(Customer.isCatalogFilterDisplayTag(itemNameOG,tag),"tag display catalog error");
+        Customer.clickOnPlusIconCatalogStable(1, itemNameOG);
+        Customer.checkoutItems();
+        softAssert.assertFalse(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
 
         Customer.clickOnProductStable(itemNameOG);
         softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
