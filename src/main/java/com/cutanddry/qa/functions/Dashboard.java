@@ -194,4 +194,13 @@ public class Dashboard {
             dashboardPage.clickOnNoDraftOrder();
         }
     }
+    public static void navigateToOrderGuideCustom() throws InterruptedException {
+        dashboardPage.clickOnOrder();
+        if(dashboardPage.isSelectOrderGuidePopUpDisplayed()){
+            dashboardPage.selectOrderGuideCustom();
+        }
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickOnNoDraftOrder();
+        }
+    }
 }

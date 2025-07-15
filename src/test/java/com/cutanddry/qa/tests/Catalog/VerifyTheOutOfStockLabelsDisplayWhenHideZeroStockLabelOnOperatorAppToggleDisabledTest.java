@@ -54,14 +54,15 @@ public class VerifyTheOutOfStockLabelsDisplayWhenHideZeroStockLabelOnOperatorApp
         softAssert.assertTrue(Customer.isOrderGuideItemTagDisplayTag(itemNameOG,tag),"tag display og error");
 
         Customer.goToCatalog();
-        Customer.searchItemOnCatalog(itemCode);
-        softAssert.assertTrue(Customer.isCatalogFilterDisplayTag(itemName,tag),"tag display catalog error");
-        Customer.clickOnPlusIconInCatalogPDP(1, itemName);
+        Customer.searchItemOnCatalog(itemCodeOG);
+        softAssert.assertTrue(Customer.isCatalogFilterDisplayTag(itemNameOG,tag),"tag display catalog error");
+        Customer.clickOnPlusIconCatalogStable(1, itemNameOG);
+        Customer.checkoutItems();
         softAssert.assertFalse(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
 
-        Customer.clickOnProduct(itemName);
+        Customer.clickOnProductStable(itemNameOG);
         softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
-        softAssert.assertTrue(Customer.isPDPItemDisplayTag(itemName,tag),"tag display PDP error");
+        softAssert.assertTrue(Customer.isPDPItemDisplayTag(itemNameOG,tag),"tag display PDP error");
         softAssert.assertAll();
     }
 
