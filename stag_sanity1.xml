@@ -1,0 +1,27 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="smoke suit" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="com.cutanddry.qa.utils.RetryTransformer"/>
+        <listener class-name="com.cutanddry.qa.utils.TestNGListener"/>
+        <listener class-name="com.cutanddry.qa.utils.AIOSampleUIMethodListener"/>
+    </listeners>
+    <test name="operator tests">
+        <classes>
+            <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaOrderGuideTest"/>
+            <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaCatalogTest"/>
+            <class name="com.cutanddry.qa.tests.E2E.PlaceMailDeliveryOrderViaPDPTest"/>
+            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmReviewCartTest"/>
+            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromCatalogTest"/>
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionFromDraftTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsEditOrderTest"/>
+            <class name="com.cutanddry.qa.tests.Drafts.VerifyDeleteDraftOrderTest"/>
+            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromOrderGuideCatalogPDPTest"/>
+            <class name="com.cutanddry.qa.tests.Pay.VerifyPrintReceiptPaidInvoiceTest"/>
+            <class name="com.cutanddry.qa.tests.Pay.VerifyOutstandingInvoiceTest"/>
+            <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureDisplayWhenChatModuleEnableTest"/>
+            <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureNotDisplayWhenChatModuleDisableInWhiteLabelCustomerTest"/>
+            <class name="com.cutanddry.qa.tests.Reports.VerifyDailyExpensesReportGenerateTest"/>
+
+        </classes>
+    </test>
+</suite>
