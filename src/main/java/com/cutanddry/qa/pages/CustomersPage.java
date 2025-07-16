@@ -306,6 +306,26 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String txt_userName = "//div[contains(text(),'NAME')]";
     String txt_distributorName = "//span[contains(text(),'NAME')]";
     By btn_closeMenu = By.xpath("//*[local-name() = 'svg' and @data-icon='cdCancel']");
+    String btn_catalogPlusStable = "((//div[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = translate(\"NAME\", 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')])[2]/../../following::div//*[name()='svg' and contains(@data-icon, 'plus')])[1]";
+    By btn_sendERP = By.xpath("//button[text()='Send to ERP']");
+    String txt_notesToCustomer = "//th[text()='Notes to Customer']/../../following-sibling::tbody//*[text()='NOTE']";
+    By txt_submitERP = By.xpath("//h2[text()='Submit Order to ERP?']");
+    By txt_OrderSentERP = By.xpath("//h2[text()='Order sent to ERP!']");
+    String txt_OrderSubmissionStep = "//td[text()='STEP']";
+    By btn_timeline = By.xpath("//a[@role='tab' and @data-rb-event-key='Timeline']");
+    String submittedOrder = "//*[contains(text(),'#') and text()='ID']";
+    By dropdown_option_SimpleListView = By.xpath("//div[text()='Simple List View']");
+    By txt_simpleListView = By.xpath("//div[text()='Simple List View']");
+    String sortOptionOG = "(//div[contains(text(), 'Sort Items By:')]//following::div[contains(text(), 'OPTION')])[last()]";
+    String sortResult = "(//td//span[text()='OPTION'])[1]";
+    By dropdown_SortOptions = By.xpath("(//div[contains(text(),'Sort Items By')])[last()]/following-sibling::div/div");
+    By btn_OGAndCatalogSearch = By.xpath("//div//*[name()='svg' and contains(@data-icon, 'cdSearch')]");
+    String txt_productStable = "//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]";
+    String txt_productStableAddToCart = "//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]/../../following-sibling::div//*[name()='svg' and contains(@data-icon, 'plus')]";
+
+
+
+
 
 
 
@@ -404,12 +424,14 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.click(tbx_catalogSearch);
         restaurantUI.waitForCustom(2000);
         restaurantUI.sendKeys(tbx_catalogSearch, item);
+        restaurantUI.click(btn_OGAndCatalogSearch);
         restaurantUI.waitForCustom(4000);
     }
 
     public void typeToSearchOnOrderGuide(String item) {
         restaurantUI.click(icon_deleteSearchItem);
         restaurantUI.sendKeys(tbx_orderGuideSearch, item);
+        restaurantUI.click(btn_OGAndCatalogSearch);
         try {
             restaurantUI.waitForCustom(3000);
         } catch (InterruptedException e) {
@@ -1892,6 +1914,66 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public void clickCloseMenu()throws InterruptedException{
         restaurantUI.click(btn_closeMenu);
+    }
+    public void clickOnPlusIconInCatalogStable(String name){
+        restaurantUI.waitForVisibility(By.xpath(btn_catalogPlusStable.replace("NAME", name)));
+        restaurantUI.click(By.xpath(btn_catalogPlusStable.replace("NAME", name)));
+    }
+    public void clickSendToERP()throws InterruptedException{
+        restaurantUI.click(btn_sendERP);
+    }
+    public boolean isSendToERPButtonDisplayed()throws InterruptedException{
+        return restaurantUI.isDisplayed(btn_sendERP);
+    }
+    public boolean isNotesToCustomerDisplayed(String note){
+        return restaurantUI.isDisplayed(By.xpath(txt_notesToCustomer.replace("NOTE",note)));
+    }
+    public boolean isSubmitERPPopUpDisplayed()throws InterruptedException{
+        return restaurantUI.isDisplayed(txt_submitERP);
+    }
+    public boolean isOrderSentERPPopUpDisplayed()throws InterruptedException{
+        return restaurantUI.isDisplayed(txt_OrderSentERP);
+    }
+    public boolean isOrderSubmissionStepDisplayed(String step){
+        return restaurantUI.isDisplayed(By.xpath(txt_OrderSubmissionStep.replace("STEP",step)));
+    }
+    public void clickOnTimeline() {
+        restaurantUI.clickUsingJavaScript(btn_timeline);
+    }
+    public void clickConfirm(){
+        restaurantUI.waitForClickability(btn_confirm);
+        restaurantUI.click(btn_confirm);
+    }
+    public void clickSubmittedOrder(String id){
+        restaurantUI.click(By.xpath(submittedOrder.replace("ID", id)));
+    }
+    public void clickSimpleListView(){
+        restaurantUI.waitForClickability(dropdown_option_SimpleListView);
+        restaurantUI.click(dropdown_option_SimpleListView);
+    }
+    public boolean isSimpleListViewTextDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(txt_simpleListView);
+    }
+    public void clickSortOptionOG(String option)throws InterruptedException{
+        restaurantUI.click(By.xpath(sortOptionOG.replace("OPTION",option)));
+    }
+    public boolean isSortOptionDisplay(String option)throws InterruptedException{
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.isDisplayed(By.xpath(sortResult.replace("OPTION",option)));
+    }
+    public void selectSortOptions(){
+        restaurantUI.waitForVisibility(dropdown_SortOptions);
+        restaurantUI.click(dropdown_SortOptions);
+    }
+    public void clickOnProductStable(String name){
+        restaurantUI.scrollToElementStable(By.xpath(txt_productStable.replace("NAME", name)));
+        restaurantUI.waitForVisibility(By.xpath(txt_productStable.replace("NAME", name)));
+        restaurantUI.clickUsingJavaScript(By.xpath(txt_productStable.replace("NAME", name)));
+    }
+    public void clickOnPlusIconCatalogStable(String name){
+        restaurantUI.scrollToElement(By.xpath(txt_productStableAddToCart.replace("NAME", name)));
+        restaurantUI.waitForVisibility(By.xpath(txt_productStableAddToCart.replace("NAME", name)));
+        restaurantUI.click(By.xpath(txt_productStableAddToCart.replace("NAME", name)));
     }
 
 

@@ -58,6 +58,8 @@ public class DashboardPage extends LoginPage{
     By btn_chatWithUs = By.xpath("//span[text()='Chat with us']");
     By txt_selectOrderGuide = By.xpath("//div[text()='Select Order Guide']");
     By selectOrderGuide = By.xpath("//div[text()='Independent Foods Co']");
+    By btn_selectOrderGuideCustom = By.xpath("//div[contains(text(),'Select Order Guide')]/following-sibling::div/div[1]");
+
 
 
     public boolean isDashboardTextDisplayed(){
@@ -295,6 +297,9 @@ public class DashboardPage extends LoginPage{
     }
     public void selectOrderGuide(){
         restaurantUI.click(selectOrderGuide);
+    }
+    public void selectOrderGuideCustom(){
+        restaurantUI.click(btn_selectOrderGuideCustom);
     }
 
 }
