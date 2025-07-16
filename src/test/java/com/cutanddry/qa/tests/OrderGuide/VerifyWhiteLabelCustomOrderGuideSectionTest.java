@@ -35,7 +35,7 @@ public class VerifyWhiteLabelCustomOrderGuideSectionTest extends TestBase{
         restaurantUI.switchToNewTab();
         Order.goToOrder();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.sortByCustomOrder();
+        Customer.sortItemsByCustomOrder();
         softAssert.assertEquals(Customer.IsCustomOrderTextDisplayed(),"Custom Order");
 
         softAssert.assertAll();

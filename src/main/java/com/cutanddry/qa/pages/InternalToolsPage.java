@@ -40,6 +40,8 @@ public class InternalToolsPage extends TestBase {
     By checkboxEnableFTNIPaymentGateway = By.xpath("//label[contains(text(),'Enable FTNI Payment Gateway')]/..//input");
     By hideZeroStockLabelToggleStable = By.xpath("//div[contains(text(), 'Hide zero stock label on Operator App:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
     By hideZeroStockLabelToggleStable1 = By.xpath("//div[contains(text(), 'Hide zero stock label on Operator App:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+    By simpleListViewDropDown = By.xpath("//div[text()='Simple List View:']/following-sibling::div/div");
+    String simpleListViewDropDownOption = "(//div[text()='TYPE'])[last()]";
 
 
 
@@ -239,6 +241,10 @@ public class InternalToolsPage extends TestBase {
         } else if (!enable && isEnabled) {
             restaurantUI.clickWithScrollAndHover(hideZeroStockLabelToggleStable1);
         }
+    }
+    public void clickOnSimpleListViewDropdown(String type){
+        restaurantUI.click(simpleListViewDropDown);
+        restaurantUI.click(By.xpath(simpleListViewDropDownOption.replace("TYPE",type)));
     }
 
 

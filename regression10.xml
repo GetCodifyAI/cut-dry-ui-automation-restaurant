@@ -39,7 +39,8 @@
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheCartSummeryIsDisplayedOnTheReviewScreenTest"/>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyTheAlternateCollapsedMenuOnDesktopForWLAppTest"/>
 
-
+            <class name="com.cutanddry.qa.tests.Orders.VerifyThatTheSendToERPButtonIsNotAvailableForScheduledJITOrdersTest"/>
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThatTheSortItemsByDropDownIsAvailableInTheSimpleListViewTest"/>
         </classes>
     </test>
 </suite>
