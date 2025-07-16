@@ -1137,6 +1137,15 @@ public class Customer {
             customersPage.clickOnPlusIconCatalogStable(name);
         }
     }
+    public static void uploadOrder(){
+        customersPage.clickOnUploadOrder();
+    }
+    public static boolean isUploadToOrderTextDisplay()throws InterruptedException{
+        return customersPage.isUploadToOrderTextDisplay();
+    }
+    public static String getItemQuantity(String code){
+        return customersPage.getItemQuantity(code);
+    }
 
 
 }
