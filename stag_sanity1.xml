@@ -22,6 +22,7 @@
             <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureDisplayWhenChatModuleEnableTest"/>
             <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureNotDisplayWhenChatModuleDisableInWhiteLabelCustomerTest"/>
             <class name="com.cutanddry.qa.tests.Reports.VerifyDailyExpensesReportGenerateTest"/>
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyTheBehaviourWhenAddingAnOrderFromTheUploadToOrderFeatureTest"/>
 
         </classes>
     </test>
