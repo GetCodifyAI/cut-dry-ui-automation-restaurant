@@ -322,6 +322,11 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_OGAndCatalogSearch = By.xpath("//div//*[name()='svg' and contains(@data-icon, 'cdSearch')]");
     String txt_productStable = "//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]";
     String txt_productStableAddToCart = "//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]/../../following-sibling::div//*[name()='svg' and contains(@data-icon, 'plus')]";
+    By btn_uploadOrder = By.xpath("//button[contains(text(), 'Upload Order')]");
+    By txt_uploadToOrder = By.xpath("//div[contains(text(), 'Upload to Order')]");
+    String tbx_itemQuantity = "//td[text()='CODE']/following-sibling::*//div/input[@data-input ='quantityInput']";
+
+
 
 
 
@@ -1974,6 +1979,16 @@ public void clickOnCloseOrderGuideEditor(){
         restaurantUI.scrollToElement(By.xpath(txt_productStableAddToCart.replace("NAME", name)));
         restaurantUI.waitForVisibility(By.xpath(txt_productStableAddToCart.replace("NAME", name)));
         restaurantUI.click(By.xpath(txt_productStableAddToCart.replace("NAME", name)));
+    }
+    public void clickOnUploadOrder() {
+        restaurantUI.waitForClickability(btn_uploadOrder);
+        restaurantUI.click(btn_uploadOrder);
+    }
+    public boolean isUploadToOrderTextDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(txt_uploadToOrder);
+    }
+    public String getItemQuantity(String code){
+        return restaurantUI.getText(By.xpath(tbx_itemQuantity.replace("CODE", code)), "value");
     }
 
 
