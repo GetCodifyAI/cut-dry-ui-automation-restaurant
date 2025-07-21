@@ -1146,6 +1146,18 @@ public class Customer {
     public static String getItemQuantity(String code){
         return customersPage.getItemQuantity(code);
     }
+    public static void clickRecentSubmitOrder(String id)throws InterruptedException{
+        customersPage.clickRecentSubmitOrder(id);
+    }
+    public static boolean isRecentSubmitOrderDisplay(String id)throws InterruptedException{
+        return customersPage.isRecentSubmitOrderDisplay(id);
+    }
+    public static boolean isRecentSubmitOrderQuantityDisplay(String id,String quantity)throws InterruptedException{
+        return customersPage.isRecentSubmitOrderQuantityDisplay(id,quantity);
+    }
+    public static double getRecentItemPrice(String id) throws InterruptedException {
+        return customersPage.getRecentItemPrice(id);
+    }
 
 
 }
