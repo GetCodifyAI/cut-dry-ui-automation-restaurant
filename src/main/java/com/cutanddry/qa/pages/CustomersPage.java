@@ -325,6 +325,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_uploadOrder = By.xpath("//button[contains(text(), 'Upload Order')]");
     By txt_uploadToOrder = By.xpath("//div[contains(text(), 'Upload to Order')]");
     String tbx_itemQuantity = "//td[text()='CODE']/following-sibling::*//div/input[@data-input ='quantityInput']";
+    String btn_editRecentOrder = "//td[text()='ORDERID']/following-sibling::td/button[text()='Edit Order']";
+    String btn_editRecentOrderQuantity = "//td[text()='ORDERID']/following-sibling::td[text()='QUANTITY']";
+    String btn_editRecentOrderPrice = "//td[text()='ORDERID']/following-sibling::td[2]";
 
 
 
@@ -1989,6 +1992,24 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public String getItemQuantity(String code){
         return restaurantUI.getText(By.xpath(tbx_itemQuantity.replace("CODE", code)), "value");
+    }
+    public void clickRecentSubmitOrder(String id)throws InterruptedException{
+        restaurantUI.scrollToElementStable(By.xpath(btn_editRecentOrder.replace("ORDERID",id)));
+        restaurantUI.clickUsingJavaScript(By.xpath(btn_editRecentOrder.replace("ORDERID",id)));
+    }
+    public boolean isRecentSubmitOrderDisplay(String id)throws InterruptedException{
+        return restaurantUI.isDisplayed(By.xpath(btn_editRecentOrder.replace("ORDERID",id)));
+    }
+    public boolean isRecentSubmitOrderQuantityDisplay(String id,String quantity)throws InterruptedException{
+        return restaurantUI.isDisplayed(By.xpath(btn_editRecentOrderQuantity.replace("ORDERID",id).replace("QUANTITY",quantity)));
+    }
+    public double getRecentItemPrice(String id) throws InterruptedException {
+        try {
+            return extractPrice(By.xpath(btn_editRecentOrderPrice.replace("ORDERID",id)));
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractPrice(By.xpath(btn_editRecentOrderPrice.replace("ORDERID",id)));
+        }
     }
 
 
