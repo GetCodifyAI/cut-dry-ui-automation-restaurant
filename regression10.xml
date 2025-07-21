@@ -44,6 +44,7 @@
 
             <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyTheBehaviourWhenAddingAnOrderFromTheUploadToOrderFeatureTest"/>
             <class name="com.cutanddry.qa.tests.Orders.VerifyThatTheRecentOrdersTableContainsTheEditOrderButtonTest"/>
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyQuickAddViewAndSimpleListViewFeaturesWhenEnabledFromSupplierConfigTest"/>
         </classes>
     </test>
 </suite>
