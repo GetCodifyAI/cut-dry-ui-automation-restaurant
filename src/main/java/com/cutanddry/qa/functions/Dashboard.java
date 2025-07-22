@@ -1,14 +1,25 @@
 package com.cutanddry.qa.functions;
 
+import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.pages.DashboardPage;
+import com.cutanddry.qa.pages.LoginPage;
+import com.cutanddry.qa.utils.JsonUtil;
 
 import static com.cutanddry.qa.functions.Customer.*;
 
 
 public class Dashboard {
     static DashboardPage dashboardPage = new DashboardPage();
+    static LoginPage loginPage = new LoginPage();
+    static User user;
 
     public static boolean isUserNavigatedToDashboard(){
+//        if (!dashboardPage.isDashboardTextDisplayed()) {
+//            user = JsonUtil.readUserLogin();
+//            loginPage.typeEmailOrMobile(user.getEmailOrMobile());
+//            loginPage.typePassword(user.getPassword());
+//            loginPage.clickSubmit();
+//        }
         return dashboardPage.isDashboardTextDisplayed();
     }
     public static void navigateToIndependentFoodsCo() throws InterruptedException{
