@@ -25,12 +25,7 @@
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMAvailableRebateItemAndSubmissionTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMFromSaleItemAndSubmissionTest" />
 
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalAdminTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalManagerTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalEmployeeTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelAdminTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelBookkeeperTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalBookkeeperTest" />
+           <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalBookkeeperTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelManagerTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelEmployeeTest" />
 
