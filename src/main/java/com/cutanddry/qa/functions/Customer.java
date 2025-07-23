@@ -1205,6 +1205,62 @@ public class Customer {
             customersPage.clickPlusQryFirstRowStable();
         }
     }
+    public static boolean isManageStandingOrdersDisplay()throws InterruptedException{
+        return customersPage.isManageStandingOrdersDisplay();
+    }
+    public static void clickManageStandingOrders()throws InterruptedException{
+        customersPage.clickManageStandingOrders();
+    }
+    public static boolean isManageStandingOrdersPopUpDisplay()throws InterruptedException{
+        return customersPage.isManageStandingOrdersPopUpDisplay();
+    }
+    public static boolean isCreateStandingOrdersButtonDisplay()throws InterruptedException{
+        return customersPage.isCreateStandingOrdersButtonDisplay();
+    }
+    public static void clickCreateStandingOrders()throws InterruptedException{
+        customersPage.clickCreateStandingOrders();
+    }
+    public static void selectDeliveryDate(String day){
+        customersPage.clickOnRemoveDelivery();
+        customersPage.clickOnDropdownDelivery();
+        customersPage.clickOnDeliveryDateStanding(day);
+    }
+    public static void selectDeliveryDateAsLastBefore(){
+        customersPage.clickOnRemoveDelivery();
+        customersPage.clickOnDropdownDelivery();
+        customersPage.clickOnDeliveryDateAsLastBefore();
+    }
+    public static void setStandingOrder(){
+        customersPage.setStandingOrder();
+    }
+    public static boolean isStandingOrderSuccessPopupDisplayed(){
+        return customersPage.isStandingOrderSuccessPopupDisplayed();
+    }
+    public static boolean isReviewStandingOrdersDisplayed(){
+        return customersPage.isReviewStandingOrdersDisplayed();
+    }
+    public static void clickOnStandingOrderEditIcon() throws InterruptedException {
+        customersPage.clickOnStandingOrderEditIcon();
+    }
+    public static void clickOnStandingOrderDeleteIcon() throws InterruptedException {
+        customersPage.clickOnStandingOrderDeleteIcon();
+    }
+    public static boolean isStandingOrdersDeletedIconDisplay(){
+        return customersPage.isStandingOrdersDeletedIconDisplay();
+    }
+    public static boolean isSubmittedStandingOrderDisplayed(String quantity ,String price){
+        return  customersPage.isSubmittedStandingOrderDisplayed(quantity,price);
+    }
+    public static void clickOnStandingOrderPauseIcon() throws InterruptedException {
+        customersPage.clickOnStandingOrderPauseIcon();
+    }
+    public static boolean isStandingOrdersPaused(){
+        return customersPage.isStandingOrdersPaused();
+    }
+    public static void clickOnStandingOrderResumeIcon() throws InterruptedException {
+        customersPage.clickOnStandingOrderResumeIcon();
+    }
+
 
 
 }

@@ -339,6 +339,23 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String quantitySimpleListView = "//span[text()='CODE']/../following-sibling::*//input";
     By txt_itemVerified = By.xpath("//div[text()='Items Verified Successfully']");
     By btn_increaseQtyFirstRowStable = By.xpath("(//table/tbody/tr//*[local-name()='svg' and @data-icon='plus'])[1]");
+    By dropdown_option_ManageStandingOrders = By.xpath("//div[text()='Manage Standing Orders']");
+    By txt_ManageStandingOrders = By.xpath("//div[text()='Manage Standing Orders']");
+    By btn_CreateStandingOrders = By.xpath("//button[text()='Create a Standing Order']");
+    By btn_removeDelivery = By.xpath("(//div[contains(@class, 'cd_themed_select__clear-indicator')])[1]");
+    By dropdown_delivery = By.xpath("(//div[text()='Delivery to Hayes:']/following-sibling::div//div[text()='Select Days...'])[1]");
+    String txt_deliveryDay = "//div[text()='DAY']/preceding-sibling::input[@type='checkbox']";
+    String txt_deliveryLastBeforeDay = "(//div[contains(@class, 'cd_themed_select__option')]//input[@type='checkbox'])[last()-1]";
+    By btn_setStandingOrder = By.xpath("//button[text()='Set Standing Order ']");
+    By txt_success = By.xpath("//h2[text()='Success']");
+    By txt_reviewStandingOrders = By.xpath("//div[text()='Review Standing Order']");
+    By btn_editStandingOrderIcon = By.xpath("//button[@title='Edit']");
+    By btn_deleteStandingOrderIcon = By.xpath("//button[@title='Delete']");
+    By txt_deletePopup = By.xpath("//h2[text()='Are you sure?']");
+    String standingOrder = "//div[text()=' (QUANTITY items for $PRICE)']";
+    By btn_pauseStandingOrderIcon = By.xpath("//button[@title='Pause']");
+    By txt_pausedStandingOrders = By.xpath("//div[contains(text(),'(Paused) ')]");
+    By btn_resumeStandingOrderIcon = By.xpath("//button[@title='Resume']");
 
 
 
@@ -2072,6 +2089,97 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public void clickPlusQryFirstRowStable(){
         restaurantUI.click(btn_increaseQtyFirstRowStable);
+    }
+    public boolean isManageStandingOrdersDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(dropdown_option_ManageStandingOrders);
+    }
+    public void clickManageStandingOrders()throws InterruptedException{
+        restaurantUI.click(dropdown_option_ManageStandingOrders);
+        restaurantUI.waitForCustom(4000);
+    }
+    public boolean isManageStandingOrdersPopUpDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(txt_ManageStandingOrders);
+    }
+    public boolean isCreateStandingOrdersButtonDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(btn_CreateStandingOrders);
+    }
+    public void clickCreateStandingOrders()throws InterruptedException{
+        restaurantUI.click(btn_CreateStandingOrders);
+        restaurantUI.waitForCustom(4000);
+    }
+    public void clickOnRemoveDelivery() {
+        if (restaurantUI.isDisplayed(btn_removeDelivery)){
+            restaurantUI.click(btn_removeDelivery);
+        }
+    }
+    public void clickOnDropdownDelivery() {
+        restaurantUI.click(dropdown_delivery);
+    }
+    public void clickOnDeliveryDateStanding(String day) {
+        restaurantUI.waitForVisibility(By.xpath(txt_deliveryDay.replace("DAY", day)));
+        restaurantUI.click(By.xpath(txt_deliveryDay.replace("DAY", day)));
+        restaurantUI.waitForElementEnabledState(By.xpath(txt_deliveryDay.replace("DAY", day)),true);
+    }
+    public void clickOnDeliveryDateAsLastBefore() {
+        restaurantUI.waitForVisibility(By.xpath(txt_deliveryLastBeforeDay));
+        restaurantUI.click(By.xpath(txt_deliveryLastBeforeDay));
+        restaurantUI.waitForElementEnabledState(By.xpath(txt_deliveryLastBeforeDay),true);
+    }
+    public void setStandingOrder(){
+        restaurantUI.waitForElementEnabledState(btn_setStandingOrder,true);
+        restaurantUI.waitForClickability(btn_setStandingOrder);
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        restaurantUI.click(btn_setStandingOrder);
+    }
+    public boolean isStandingOrderSuccessPopupDisplayed(){
+        restaurantUI.waitForVisibility(txt_success);
+        return restaurantUI.isDisplayed(txt_success);
+    }
+    public boolean isReviewStandingOrdersDisplayed(){
+        restaurantUI.waitForVisibility(txt_reviewStandingOrders);
+        return restaurantUI.isDisplayed(txt_reviewStandingOrders);
+    }
+    public void clickOnStandingOrderEditIcon() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_editStandingOrderIcon);
+        restaurantUI.clickWithFallback(btn_editStandingOrderIcon);
+        restaurantUI.waitForCustom(3000);
+    }
+    public void clickOnStandingOrderDeleteIcon() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_deleteStandingOrderIcon);
+        restaurantUI.clickWithFallback(btn_deleteStandingOrderIcon);
+        restaurantUI.waitForVisibility(txt_deletePopup);
+        restaurantUI.waitForClickability(btn_yes);
+        restaurantUI.click(btn_yes);
+        restaurantUI.waitForCustom(2000);
+
+    }
+    public boolean isStandingOrdersDeletedIconDisplay(){
+        return restaurantUI.isDisplayed(btn_deleteStandingOrderIcon);
+    }
+    public boolean isSubmittedStandingOrderDisplayed(String quantity ,String price) {
+        try {
+            restaurantUI.waitForVisibility(By.xpath(standingOrder.replace("QUANTITY", quantity).replace("PRICE", price)));
+        } catch (Exception e) {
+            return false;
+        }
+        return restaurantUI.isDisplayed(By.xpath(standingOrder.replace("QUANTITY", quantity).replace("PRICE", price)));
+    }
+    public void clickOnStandingOrderPauseIcon() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_pauseStandingOrderIcon);
+        restaurantUI.clickWithFallback(btn_pauseStandingOrderIcon);
+        restaurantUI.waitForCustom(3000);
+    }
+    public boolean isStandingOrdersPaused(){
+        return restaurantUI.isDisplayed(txt_pausedStandingOrders);
+    }
+    public void clickOnStandingOrderResumeIcon() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_resumeStandingOrderIcon);
+        restaurantUI.clickWithFallback(btn_resumeStandingOrderIcon);
+        restaurantUI.waitForCustom(3000);
     }
 
 
