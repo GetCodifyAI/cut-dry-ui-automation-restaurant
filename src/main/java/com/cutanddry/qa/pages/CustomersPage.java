@@ -356,6 +356,12 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_pauseStandingOrderIcon = By.xpath("//button[@title='Pause']");
     By txt_pausedStandingOrders = By.xpath("//div[contains(text(),'(Paused) ')]");
     By btn_resumeStandingOrderIcon = By.xpath("//button[@title='Resume']");
+    String btn_addToRecentOrder = "//td[text()='ORDERID']/following-sibling::td/button[text()='Add to Order']";
+    String increaseQuantityReviewPage = "//td[text()='CODE']/following-sibling::td//div/*[contains(@data-icon,'plus')]";
+    String decreaseQuantityReviewPage = "//td[text()='CODE']/following-sibling::td//div/*[contains(@data-icon,'minus')]";
+    String trashCanReviewPage = "//td[text()='CODE']/following-sibling::td//div/*[contains(@data-icon,'trash-can')]";
+    String btn_addRecentOrder = "//td[text()='ORDERID']/following-sibling::td/button[text()='Add to Order']";
+
 
 
 
@@ -2181,6 +2187,23 @@ public void clickOnCloseOrderGuideEditor(){
         restaurantUI.clickWithFallback(btn_resumeStandingOrderIcon);
         restaurantUI.waitForCustom(3000);
     }
+    public void clickAddToRecentSubmitOrder(String id)throws InterruptedException{
+        restaurantUI.scrollToElementStable(By.xpath(btn_addToRecentOrder.replace("ORDERID",id)));
+        restaurantUI.clickUsingJavaScript(By.xpath(btn_addToRecentOrder.replace("ORDERID",id)));
+    }
+    public void increaseReviewQtyStable(String code){
+        restaurantUI.click(By.xpath(increaseQuantityReviewPage.replace("CODE",code)));
+    }
+    public void decreaseReviewQtyStable(String code){
+        restaurantUI.click(By.xpath(decreaseQuantityReviewPage.replace("CODE",code)));
+    }
+    public boolean isTrashCanReviewPage(String code){
+        return restaurantUI.isDisplayed(By.xpath(trashCanReviewPage.replace("CODE",code)));
+    }
+    public boolean isRecentAddedOrderDisplay(String id)throws InterruptedException{
+        return restaurantUI.isDisplayed(By.xpath(btn_addRecentOrder.replace("ORDERID",id)));
+    }
+
 
 
 }
