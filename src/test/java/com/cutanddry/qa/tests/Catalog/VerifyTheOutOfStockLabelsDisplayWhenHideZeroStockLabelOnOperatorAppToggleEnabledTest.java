@@ -18,8 +18,8 @@ public class VerifyTheOutOfStockLabelsDisplayWhenHideZeroStockLabelOnOperatorApp
     static User user;
     static String OperatorName ="517030659";
     static String CompanyName = "Lombardi";
-    static String itemCode = "7002700";
-    static String itemName = "Oyster 12OZ Sel";
+    static String itemCode = "7004906";
+    static String itemName = "Oyster Moonlight Bay 100CT";
     static String itemCodeOG = "2205700";
     static String itemNameOG = "Seabass Portions 8OZ San Isidro";
     static String tag = "Out of stock";
