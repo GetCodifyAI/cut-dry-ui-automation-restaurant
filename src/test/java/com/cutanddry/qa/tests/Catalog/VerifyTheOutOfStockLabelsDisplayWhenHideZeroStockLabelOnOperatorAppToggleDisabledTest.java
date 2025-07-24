@@ -18,8 +18,8 @@ public class VerifyTheOutOfStockLabelsDisplayWhenHideZeroStockLabelOnOperatorApp
     static User user;
     static String OperatorName ="517030659";
     static String CompanyName = "Lombardi";
-    static String itemCode = "7002700";
-    static String itemName = "Oyster 12OZ Sel";
+    static String itemCode = "7004906";
+    static String itemName = "Oyster Moonlight Bay 100CT";
     static String itemCodeOG = "2205700";
     static String itemNameOG = "Seabass Portions 8OZ San Isidro";
     static String tag = "Out of stock";
@@ -54,15 +54,15 @@ public class VerifyTheOutOfStockLabelsDisplayWhenHideZeroStockLabelOnOperatorApp
         softAssert.assertTrue(Customer.isOrderGuideItemTagDisplayTag(itemNameOG,tag),"tag display og error");
 
         Customer.goToCatalog();
-        Customer.searchItemOnCatalog(itemCodeOG);
-        softAssert.assertTrue(Customer.isCatalogFilterDisplayTag(itemNameOG,tag),"tag display catalog error");
-        Customer.clickOnPlusIconCatalogStable(1, itemNameOG);
+        Customer.searchItemOnCatalog(itemCode);
+        softAssert.assertTrue(Customer.isCatalogFilterDisplayTag(itemName,tag),"tag display catalog error");
+        Customer.clickOnPlusIconCatalogStable(1, itemName);
         Customer.checkoutItems();
         softAssert.assertFalse(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
 
-        Customer.clickOnProductStable(itemNameOG);
+        Customer.clickOnProduct(itemName);
         softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
-        softAssert.assertTrue(Customer.isPDPItemDisplayTag(itemNameOG,tag),"tag display PDP error");
+        softAssert.assertTrue(Customer.isPDPItemDisplayTag(itemName,tag),"tag display PDP error");
         softAssert.assertAll();
     }
 

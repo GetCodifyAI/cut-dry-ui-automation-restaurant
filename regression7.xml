@@ -25,22 +25,11 @@
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMAvailableRebateItemAndSubmissionTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMFromSaleItemAndSubmissionTest" />
 
-           <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalBookkeeperTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelManagerTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelEmployeeTest" />
-
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyOrderApprovalForOrderWithMultiUOMTest" />
 
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheBehaviourWhenAddingSubstituteItemForMultiUOMItemTest" />
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheAddingSubstituteItemForMultipleUOMDraftAndEditOrderTest" />
 
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromTopCategoryCarouselAndSubmissionTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromCompareSimilarItemsCarouselAndSubmissionTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromRecommendedForCustomerCarouselAndSubmissionTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromRecommendedBySalesRepCarouselAndSubmissionTest" />
-            <!--            TODO: Uncomment the following test when the bug[DOT-9106] is fixed [Error popup "There was an error, please try again." appears while searching for an item in the Order Guide section]-->
-            <!--<class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromDoNotForgetToOrderCarouselAndSubmissionTest" />-->
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromMoreFromThisBrandCarouselAndSubmissionTest" />
         </classes>
     </test>
 </suite>

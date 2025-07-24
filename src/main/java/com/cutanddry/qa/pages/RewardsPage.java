@@ -8,7 +8,7 @@ public class RewardsPage extends TestBase {
     By link_learnMore = By.xpath("//button[contains(text(),'Learn More')]");
     By text_visibilityOfEarnRewards = By.xpath("//*[contains(text(),'Get Rewarded for Ordering')]");
     By btn_redeemBalance = By.xpath("//button[contains(text(),'Redeem Balance')]");
-    By text_visibilityOfRedeemBalance = By.xpath("//div[contains(text(),'Cashback Amount')]");
+    By text_visibilityOfRedeemBalance = By.xpath("//h1[contains(text(),'Minimum $500.00 Withdrawal Requirement')]");
     By btn_addMoreSuppliers = By.xpath("//button[contains(text(),'Add More Suppliers')]");
     By text_visibilityOfConnectYourSupplier = By.xpath("//h4[contains(text(),'Connect Your Suppliers')]");
     By img_connectSupplier = By.xpath("//div[contains(@class,'px-2 col-md-4')][1]");
