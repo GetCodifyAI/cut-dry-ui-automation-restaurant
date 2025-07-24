@@ -18,7 +18,6 @@ public class VerifyThatTheRecentOrdersTableContainsTheAddToOrderButtonTest exten
     static String orderId ,orderId2,itemCode2,totalItemQuantityReviewOrder;
     static double itemPrice,totalItemPriceReviewOrder;
     static String distributor = "Carpe Diem Specialty Foods";
-    String vvv;
 
     @BeforeMethod
     public void setUp(){
