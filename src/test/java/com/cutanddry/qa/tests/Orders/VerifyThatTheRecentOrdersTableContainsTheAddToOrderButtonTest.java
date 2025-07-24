@@ -26,7 +26,7 @@ public class VerifyThatTheRecentOrdersTableContainsTheAddToOrderButtonTest exten
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-1558")
+    @Test(groups = "DOT-TC-1559")
     public void VerifyThatTheRecentOrdersTableContainsTheAddToOrderButton() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
