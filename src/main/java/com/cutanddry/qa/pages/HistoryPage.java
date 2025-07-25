@@ -80,6 +80,7 @@ public class HistoryPage extends TestBase {
     By lbl_orderDateArrowUp = By.xpath("//span[contains(text(),'Order Date')]/*[name()='svg' and contains(@data-icon, 'arrow-up')]");
     By lbl_orderDateArrowDown = By.xpath("//span[contains(text(),'Order Date')]/*[name()='svg' and contains(@data-icon, 'arrow-down')]");
     By icon_deleteSearchItem = By.xpath("(//*[local-name()='svg' and @data-icon='circle-xmark'])[1]");
+    By txt_addToOrder = By.xpath("//h2[text() = 'Add to Order?']");
 
 
 
@@ -512,5 +513,8 @@ public class HistoryPage extends TestBase {
     }
     public void refreshHistoryPage(){
         restaurantUI.refreshPage();
+    }
+    public boolean isAddToOrderPopUpDisplayed(){
+        return restaurantUI.isDisplayed(txt_addToOrder);
     }
 }

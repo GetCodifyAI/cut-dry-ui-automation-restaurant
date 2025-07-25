@@ -97,5 +97,8 @@ public class InternalTools {
     public static void clickOnQuickAddViewDropDown(String type){
         internalToolsPage.clickOnQuickAddViewDropDown(type);
     }
+    public static void caseMinimumGloballyToggle(boolean status){
+        internalToolsPage.caseMinimumGloballyToggle(status);
+    }
 
 }
