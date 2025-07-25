@@ -44,7 +44,7 @@ public class VerifyThatTheSendToERPButtonIsNotAvailableForScheduledJITOrdersTest
         Customer.goToCatalog();
         Customer.searchItemOnCatalog(searchItemCode);
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName.toLowerCase()), "item not found");
-        Customer.clickOnPlusIconInCatalogStable(10, itemName);
+        Customer.clickOnPlusIconInCatalogStable(15, itemName);
 
         Customer.checkoutItems();
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");

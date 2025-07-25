@@ -1146,6 +1146,140 @@ public class Customer {
     public static String getItemQuantity(String code){
         return customersPage.getItemQuantity(code);
     }
+    public static void clickRecentSubmitOrder(String id)throws InterruptedException{
+        customersPage.clickRecentSubmitOrder(id);
+    }
+    public static boolean isRecentSubmitOrderDisplay(String id)throws InterruptedException{
+        return customersPage.isRecentSubmitOrderDisplay(id);
+    }
+    public static boolean isRecentSubmitOrderQuantityDisplay(String id,String quantity)throws InterruptedException{
+        return customersPage.isRecentSubmitOrderQuantityDisplay(id,quantity);
+    }
+    public static double getRecentItemPrice(String id) throws InterruptedException {
+        return customersPage.getRecentItemPrice(id);
+    }
+    public static void clickQuickAdd()throws InterruptedException{
+        customersPage.clickQuickAdd();
+    }
+    public static boolean isQuickAddViewDisplay()throws InterruptedException{
+        return customersPage.isQuickAddViewDisplay();
+    }
+    public static boolean isQuickAddOptionDisplay()throws InterruptedException{
+        return customersPage.isQuickAddOptionDisplay();
+    }
+    public static void enterItemCodeQuickAdd(String code)throws InterruptedException{
+        customersPage.enterItemCodeQuickAdd(code);
+    }
+    public static void enterItemQuantity(String code)throws InterruptedException{
+        customersPage.enterItemQuantity(code);
+    }
+    public static void clickVerifyItem()throws InterruptedException{
+        customersPage.clickVerifyItem();
+    }
+    public static void clickSaveAndReview()throws InterruptedException{
+        customersPage.clickSaveAndReview();
+        if (customersPage.isPreviousDraftOrderNoDisplayedSub()){
+            customersPage.clickPreviousDraftOrderNo();
+        }
+    }
+    public static String getItemQuantityReviewPage(String code) throws InterruptedException {
+        return customersPage.getItemQuantityReviewPage(code);
+    }
+    public static void clickOrderGuideView(){
+        customersPage.clickOrderGuideView();
+    }
+    public static String getItemQuantitySimpleListView(String code) throws InterruptedException {
+        return customersPage.getItemQuantitySimpleListView(code);
+    }
+    public static void clearSearchField()throws InterruptedException{
+        customersPage.clearSearchField();
+    }
+    public static boolean isItemVerifiedPopUpDisplay()throws InterruptedException{
+        return customersPage.isItemVerifiedPopUpDisplay();
+    }
+    public static void clickClosePopUpButton() throws InterruptedException {
+        customersPage.clickOnClose();
+    }
+    public static void increaseFirstRowQtyStable(int count) throws InterruptedException {
+        for (int i=0; i<count;i++){
+            customersPage.clickPlusQryFirstRowStable();
+        }
+    }
+    public static boolean isManageStandingOrdersDisplay()throws InterruptedException{
+        return customersPage.isManageStandingOrdersDisplay();
+    }
+    public static void clickManageStandingOrders()throws InterruptedException{
+        customersPage.clickManageStandingOrders();
+    }
+    public static boolean isManageStandingOrdersPopUpDisplay()throws InterruptedException{
+        return customersPage.isManageStandingOrdersPopUpDisplay();
+    }
+    public static boolean isCreateStandingOrdersButtonDisplay()throws InterruptedException{
+        return customersPage.isCreateStandingOrdersButtonDisplay();
+    }
+    public static void clickCreateStandingOrders()throws InterruptedException{
+        customersPage.clickCreateStandingOrders();
+    }
+    public static void selectDeliveryDate(String day){
+        customersPage.clickOnRemoveDelivery();
+        customersPage.clickOnDropdownDelivery();
+        customersPage.clickOnDeliveryDateStanding(day);
+    }
+    public static void selectDeliveryDateAsLastBefore(){
+        customersPage.clickOnRemoveDelivery();
+        customersPage.clickOnDropdownDelivery();
+        customersPage.clickOnDeliveryDateAsLastBefore();
+    }
+    public static void setStandingOrder(){
+        customersPage.setStandingOrder();
+    }
+    public static boolean isStandingOrderSuccessPopupDisplayed(){
+        return customersPage.isStandingOrderSuccessPopupDisplayed();
+    }
+    public static boolean isReviewStandingOrdersDisplayed(){
+        return customersPage.isReviewStandingOrdersDisplayed();
+    }
+    public static void clickOnStandingOrderEditIcon() throws InterruptedException {
+        customersPage.clickOnStandingOrderEditIcon();
+    }
+    public static void clickOnStandingOrderDeleteIcon() throws InterruptedException {
+        customersPage.clickOnStandingOrderDeleteIcon();
+    }
+    public static boolean isStandingOrdersDeletedIconDisplay(){
+        return customersPage.isStandingOrdersDeletedIconDisplay();
+    }
+    public static boolean isSubmittedStandingOrderDisplayed(String quantity ,String price){
+        return  customersPage.isSubmittedStandingOrderDisplayed(quantity,price);
+    }
+    public static void clickOnStandingOrderPauseIcon() throws InterruptedException {
+        customersPage.clickOnStandingOrderPauseIcon();
+    }
+    public static boolean isStandingOrdersPaused(){
+        return customersPage.isStandingOrdersPaused();
+    }
+    public static void clickOnStandingOrderResumeIcon() throws InterruptedException {
+        customersPage.clickOnStandingOrderResumeIcon();
+    }
+    public static void clickAddToRecentSubmitOrder(String id)throws InterruptedException{
+        customersPage.clickAddToRecentSubmitOrder(id);
+    }
+    public static void increaseReviewQtyStable(String code,int count) throws InterruptedException {
+        for (int i=0; i<count;i++){
+            customersPage.increaseReviewQtyStable(code);
+        }
+    }
+    public static void decreaseReviewQtyStable(String code,int count) throws InterruptedException {
+        for (int i=0; i<count;i++){
+            customersPage.decreaseReviewQtyStable(code);
+        }
+    }
+    public static boolean isTrashCanReviewPage(String code)throws InterruptedException{
+        return customersPage.isTrashCanReviewPage(code);
+    }
+    public static boolean isRecentAddedOrderDisplay(String id)throws InterruptedException{
+        return customersPage.isRecentAddedOrderDisplay(id);
+    }
+
 
 
 }

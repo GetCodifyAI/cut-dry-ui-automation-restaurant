@@ -42,7 +42,7 @@ public class VerifyPlacingAnOrderForCustomerWithAnyOtherBranchCodeTest extends T
         searchItemCode = Customer.getItemCodeFirstRow();
         itemPrice = Customer.getActiveItemPriceFirstRow();
         Customer.increaseFirstRowQtySpecificCustomer(15);
-        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),itemPrice,"The item has not been selected.");
+        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),itemPrice*15,"The item has not been selected.");
         Customer.checkoutItemsForSubstitute();
         softAssert.assertTrue(Customer.isSubstitutionTextDisplayed(),"Substitution set pop up error");
         Customer.clickSelectSub();
