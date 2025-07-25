@@ -1260,6 +1260,25 @@ public class Customer {
     public static void clickOnStandingOrderResumeIcon() throws InterruptedException {
         customersPage.clickOnStandingOrderResumeIcon();
     }
+    public static void clickAddToRecentSubmitOrder(String id)throws InterruptedException{
+        customersPage.clickAddToRecentSubmitOrder(id);
+    }
+    public static void increaseReviewQtyStable(String code,int count) throws InterruptedException {
+        for (int i=0; i<count;i++){
+            customersPage.increaseReviewQtyStable(code);
+        }
+    }
+    public static void decreaseReviewQtyStable(String code,int count) throws InterruptedException {
+        for (int i=0; i<count;i++){
+            customersPage.decreaseReviewQtyStable(code);
+        }
+    }
+    public static boolean isTrashCanReviewPage(String code)throws InterruptedException{
+        return customersPage.isTrashCanReviewPage(code);
+    }
+    public static boolean isRecentAddedOrderDisplay(String id)throws InterruptedException{
+        return customersPage.isRecentAddedOrderDisplay(id);
+    }
 
 
 

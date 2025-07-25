@@ -44,6 +44,9 @@ public class InternalToolsPage extends TestBase {
     String simpleListViewDropDownOption = "(//div[text()='TYPE'])[last()]";
     By quickAddViewDropDown = By.xpath("//div[text()='Quick Add View:']/following-sibling::div/div");
     String quickAddViewDropDownOption = "(//div[text()='Quick Add View:']/following-sibling::div//div[text()='TYPE'])[last()]";
+    By caseMinimumGloballyToggleStable = By.xpath("//div[contains(text(), 'Soft/Hard order Case minimum')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
+    By caseMinimumGloballyToggleStable1 = By.xpath("//div[contains(text(), 'Soft/Hard order Case minimum')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+
 
 
 
@@ -252,6 +255,17 @@ public class InternalToolsPage extends TestBase {
     public void clickOnQuickAddViewDropDown(String type){
         restaurantUI.click(quickAddViewDropDown);
         restaurantUI.click(By.xpath(quickAddViewDropDownOption.replace("TYPE",type)));
+    }
+    public void caseMinimumGloballyToggle(boolean enable) {
+
+        String handlePosition = restaurantUI.getElement(caseMinimumGloballyToggleStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(29px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(caseMinimumGloballyToggleStable1);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(caseMinimumGloballyToggleStable1);
+        }
     }
 
 

@@ -220,4 +220,7 @@ public class History {
     public static void ensureOrderDateSortedDescending() throws InterruptedException {
         historyPage.ensureOrderDateSortedDescending();
     }
+    public static boolean isAddToOrderPopUpDisplayed(){
+        return historyPage.isAddToOrderPopUpDisplayed();
+    }
 }
