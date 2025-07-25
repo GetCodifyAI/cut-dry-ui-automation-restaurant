@@ -1296,7 +1296,7 @@ workflows:
   scheduled-test-1-sub1:
     triggers:
       - schedule:
-          cron: "30 19 * * *"  # This will run nightly-build-and-test at 2:00 AM IST (08:30 PM UTC) -- 30 19 * * *  ahsan_dev  30 19
+          cron: "30 20 * * *"  # This will run nightly-build-and-test at 2:00 AM IST (08:30 PM UTC) -- 45 06 * * *  ahsan_dev  30 19
           filters:
             branches:
               only:
@@ -1316,46 +1316,62 @@ workflows:
             - nightly-build-and-test-10
 
 
-  scheduled-test-2:
+  scheduled-test-2_1:
     triggers:
       - schedule:
-          cron: "25 06 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 25 06 --> DP gap = 40 min
+          cron: "00 22 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 25 06 --> DP gap = 40 min
           filters:
             branches:
               only:
-                - main
+                - staging_regression
     jobs:
       - daily-build-and-test-1
       - daily-build-and-test-2
-      - daily-build-and-test-3
-      - daily-build-and-test-4
-      - daily-build-and-test-5
-      - calculate-pass-fail-rate:
-          requires:
-            - daily-build-and-test-1
-            - daily-build-and-test-2
-            - daily-build-and-test-3
-            - daily-build-and-test-4
-            - daily-build-and-test-5
 
-  scheduled-test-2-sub1:
+  scheduled-test-2_2:
     triggers:
       - schedule:
-          cron: "15 07 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 15 07  --> 1st job gap = 50 min staging_regression
+          cron: "30 23 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 15 07  --> 1st job gap = 50 min staging_regression
           filters:
             branches:
               only:
-                - main
+                - staging_regression
     jobs:
+      - daily-build-and-test-3
+      - daily-build-and-test-4
+
+  scheduled-test-2_3:
+    triggers:
+      - schedule:
+          cron: "00 01 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 25 06 --> DP gap = 40 min
+          filters:
+            branches:
+              only:
+                - staging_regression
+    jobs:
+      - daily-build-and-test-5
       - daily-build-and-test-6
+
+  scheduled-test-2_4:
+    triggers:
+      - schedule:
+          cron: "30 02 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 15 07  --> 1st job gap = 50 min staging_regression
+          filters:
+            branches:
+              only:
+                - staging_regression
+    jobs:
       - daily-build-and-test-7
       - daily-build-and-test-8
+
+  scheduled-test-2_5:
+    triggers:
+      - schedule:
+          cron: "00 04 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 15 07  --> 1st job gap = 50 min staging_regression
+          filters:
+            branches:
+              only:
+                - staging_regression
+    jobs:
       - daily-build-and-test-9
       - daily-build-and-test-10
-      - calculate-pass-fail-rate:
-          requires:
-            - daily-build-and-test-6
-            - daily-build-and-test-7
-            - daily-build-and-test-8
-            - daily-build-and-test-9
-            - daily-build-and-test-10
