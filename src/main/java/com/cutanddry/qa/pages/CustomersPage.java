@@ -227,7 +227,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_editSub = By.xpath("(//*[local-name()='svg' and @data-icon='edit'])[last()]");
     By btn_notSelectSub = By.xpath("//div[contains(text(), 'Not Selected')]/preceding-sibling::*[1][local-name()='svg' and @data-icon='circle']");
     By btn_saveSelection = By.xpath("//button[normalize-space(text())='Save Selection']");
-    By lbl_topCategoryPicks = By.xpath("//div[text()='Top Category Picks']");
+    By lbl_topCategoryPicks = By.xpath("//*[text()='Category']");
     By section_compareSimilar = By.xpath("//div[text()='Compare Similar Items']");
     String lbl_recommendedForYouItem = "//div[contains(text(), 'Recommended for You')]//following-sibling::div//div[text()='CODE']";
     String lbl_recommendedBySalesRep = "//div[contains(text(), 'Recommended by')]//following-sibling::div//div[contains(text(), 'CODE')]";
