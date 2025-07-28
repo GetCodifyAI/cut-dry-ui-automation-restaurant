@@ -17,10 +17,10 @@ public class Constants {
     public static String SLACK_WEBHOOK = System.getenv("STAGING_SLACK_WEBHOOK");
     public static String PUBLIC_PAY_URL = "https://app-uat.staging.cutanddry.com/public-pay/";
     public static String SAVAL_FOOD_URL = "https://savalfoodservice-uat.staging.cutanddry.com/log-in?redirect_on_login=%2F";
-    public static final String TEST_STAG ="draft-issues";
+    public static final String TEST_STAG ="ddo-837-new";
 
 
-    //slackToken=***
+    //slackToken =***
     //slackChannel=#ui-automation-tests
 
     private static String baseDomain() {
