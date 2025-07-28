@@ -20,7 +20,7 @@ public class Constants {
     public static final String TEST_STAG ="ddo-837-new";
 
 
-    //slackToken=***
+    //slackToken =***
     //slackChannel=#ui-automation-tests
 
     private static String baseDomain() {
