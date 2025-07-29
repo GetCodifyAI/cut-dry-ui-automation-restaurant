@@ -26,6 +26,7 @@
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromMoreFromThisBrandCarouselAndSubmissionTest" />
 
             <class name="com.cutanddry.qa.tests.Orders.VerifyThatTheRecentOrdersTableContainsTheAddToOrderButtonTest" />
+            <class name="com.cutanddry.qa.tests.default_view.VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalToolsForOperatorTest" />
         </classes>
     </test>
 </suite>

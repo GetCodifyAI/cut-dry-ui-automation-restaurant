@@ -47,7 +47,26 @@ public class InternalToolsPage extends TestBase {
     By caseMinimumGloballyToggleStable = By.xpath("//div[contains(text(), 'Soft/Hard order Case minimum')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
     By caseMinimumGloballyToggleStable1 = By.xpath("//div[contains(text(), 'Soft/Hard order Case minimum')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
 
+    By lbl_DefaultViewPortalDropDow = By.xpath("//*[contains(text(), 'Default View for Operators')]/following-sibling::div//div[contains(@class,'themed_select__indicators')]");
+    By lbl_DefaultViewPortalAsSimpleList = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Simple List']");
+    By lbl_DefaultViewPortalAsQuickAdd = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Quick Add']");
+    By lbl_DefaultViewPortalAsOrderGuide = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Order Guide']");
+    By lbl_DefaultViewPortalAsCatalog = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Catalog']");
+    By lbl_DefaultViewPortalAsScanToOrder = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Scan to Order']");
 
+    By lbl_QuickAddViewDropDow = By.xpath("//*[contains(text(), 'Quick Add View:')]/following-sibling::div//div[contains(@class,'themed_select__indicators')]");
+    By lbl_QuickAddEnable = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Enabled on DP Portal']");
+    By lbl_SimpleListViewDropDow = By.xpath("//*[contains(text(), 'Simple List View:')]/following-sibling::div//div[contains(@class,'themed_select__indicators')]");
+    By lbl_SimpleListEnable = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Enabled on DP Portal']");
+
+    By lbl_defaultOrderHistoryAsSimpleList = By.xpath("//*[contains(text(), 'Default View for Operators')]/following-sibling::div//*[text()='Simple List']");
+    By lbl_defaultOrderHistoryAsQuickAdd = By.xpath("//*[contains(text(), 'Default View for Operators')]/following-sibling::div//*[text()='Quick Add']");
+    By lbl_defaultOrderHistoryAsOrderGuide = By.xpath("//*[contains(text(), 'Default View for Operators')]/following-sibling::div//*[text()='Order Guide']");
+    By lbl_defaultOrderHistoryAsCatalog = By.xpath("//*[contains(text(), 'Default View for Operators')]/following-sibling::div//*[text()='Catalog']");
+    By lbl_defaultOrderHistoryAsScanToOrder = By.xpath("//*[contains(text(), 'Default View for Operators')]/following-sibling::div//*[text()='Scan to Order']");
+
+    By lbl_defaultQuickAddView = By.xpath("//*[contains(text(), 'Quick Add View:')]/following-sibling::div//*[text()='Enabled on DP Portal & Operator App']");
+    By lbl_defaultSimpleListView = By.xpath("//*[contains(text(), 'Simple List View:')]/following-sibling::div//*[text()='Enabled on DP Portal & Operator App']");
 
 
 
@@ -266,6 +285,77 @@ public class InternalToolsPage extends TestBase {
         } else if (!enable && isEnabled) {
             restaurantUI.clickWithScrollAndHover(caseMinimumGloballyToggleStable1);
         }
+    }
+
+
+    public void clickOnDefaultViewPortalAsSimpleList() {
+        restaurantUI.click(lbl_DefaultViewPortalDropDow);
+        restaurantUI.waitForVisibility(lbl_DefaultViewPortalAsSimpleList);
+        restaurantUI.click(lbl_DefaultViewPortalAsSimpleList);
+    }
+
+    public void clickOnDefaultViewPortalAsQuickAdd() {
+        restaurantUI.click(lbl_DefaultViewPortalDropDow);
+        restaurantUI.waitForVisibility(lbl_DefaultViewPortalAsQuickAdd);
+        restaurantUI.click(lbl_DefaultViewPortalAsQuickAdd);
+    }
+
+    public void clickOnDefaultViewPortalAsOrderGuide() {
+        restaurantUI.click(lbl_DefaultViewPortalDropDow);
+        restaurantUI.waitForVisibility(lbl_DefaultViewPortalAsOrderGuide);
+        restaurantUI.click(lbl_DefaultViewPortalAsOrderGuide);
+    }
+
+    public void clickOnDefaultViewPortalAsCatalog() {
+        restaurantUI.click(lbl_DefaultViewPortalDropDow);
+        restaurantUI.waitForVisibility(lbl_DefaultViewPortalAsCatalog);
+        restaurantUI.click(lbl_DefaultViewPortalAsCatalog);
+    }
+
+    public void clickOnDefaultViewPortalAsScanToOrder() {
+        restaurantUI.click(lbl_DefaultViewPortalDropDow);
+        restaurantUI.waitForVisibility(lbl_DefaultViewPortalAsScanToOrder);
+        restaurantUI.click(lbl_DefaultViewPortalAsScanToOrder);
+    }
+
+    public void clickOnDefaultQuickAdd() {
+        restaurantUI.click(lbl_QuickAddViewDropDow);
+        restaurantUI.waitForVisibility(lbl_QuickAddEnable);
+        restaurantUI.click(lbl_QuickAddEnable);
+    }
+
+    public void clickOnDefaultSimpleList() {
+        restaurantUI.click(lbl_SimpleListViewDropDow);
+        restaurantUI.waitForVisibility(lbl_SimpleListEnable);
+        restaurantUI.click(lbl_SimpleListEnable);
+    }
+
+    public boolean isDefaultViewPortalAsSimpleListDisplayed() {
+        return restaurantUI.isDisplayed(lbl_defaultOrderHistoryAsSimpleList, 5);
+    }
+
+    public boolean isDefaultViewPortalAsQuickAddDisplayed() {
+        return restaurantUI.isDisplayed(lbl_defaultOrderHistoryAsQuickAdd, 5);
+    }
+
+    public boolean isDefaultViewPortalAsOrderGuideDisplayed() {
+        return restaurantUI.isDisplayed(lbl_defaultOrderHistoryAsOrderGuide, 5);
+    }
+
+    public boolean isDefaultViewPortalAsCatalogDisplayed() {
+        return restaurantUI.isDisplayed(lbl_defaultOrderHistoryAsCatalog, 5);
+    }
+
+    public boolean isDefaultViewPortalAsScanToOrderDisplayed() {
+        return restaurantUI.isDisplayed(lbl_defaultOrderHistoryAsScanToOrder, 5);
+    }
+
+    public boolean isDefaultQuickAddDisplayed() {
+        return restaurantUI.isDisplayed(lbl_defaultQuickAddView, 5);
+    }
+
+    public boolean isDefaultSimpleListDisplayed() {
+        return restaurantUI.isDisplayed(lbl_defaultSimpleListView, 5);
     }
 
 
