@@ -119,6 +119,12 @@ commands:
 
 
 jobs:
+  install-common-dependencies:
+    executor: ec2-executor
+    steps:
+      - checkout
+      - install-dependencies
+
   build-and-test:
     executor: ec2-executor
     working_directory: ~/project-job50
