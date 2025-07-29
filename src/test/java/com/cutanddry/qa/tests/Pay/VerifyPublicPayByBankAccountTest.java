@@ -2,10 +2,7 @@ package com.cutanddry.qa.tests.Pay;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
-import com.cutanddry.qa.functions.Dashboard;
-import com.cutanddry.qa.functions.InternalTools;
-import com.cutanddry.qa.functions.Login;
-import com.cutanddry.qa.functions.Pay;
+import com.cutanddry.qa.functions.*;
 import com.cutanddry.qa.utils.JsonUtil;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -24,6 +21,8 @@ public class VerifyPublicPayByBankAccountTest extends TestBase {
     static String routingNumber = "321081669";
     static String operatorUser = "65436339";
     static String vendorID = "63168995";
+    static String Dp_Name = "47837013 - Brandon IFC Cut+Dry Agent - Independent Foods Co";
+    static String customerId = "44939";
 
     @BeforeMethod
     public void setUp(){
@@ -44,6 +43,19 @@ public class VerifyPublicPayByBankAccountTest extends TestBase {
         InternalTools.clickSave();
 
         Login.navigateToLoginAs();
+        Login.goToDistributor(Dp_Name);
+        Dashboard.isUserNavigatedToDistributorDashboard();
+        Assert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(),"login error");
+
+        Dashboard.navigateToCustomers();
+        Customer.searchCustomerByCode(customerId);
+        softAssert.assertTrue(Customer.isCustomerSearchResultByCodeDisplayed(customerId), "Unable to find the customer Id");
+        Customer.SelectCustomer(customerId);
+        Customer.clickOnInvoice();
+        Pay.clickCutAndDryPayToggle(true);
+        Login.closePreviousTab();
+
+        Login.navigateToLoginAs();
         Login.logInToOperator(operatorUser);
         Pay.navigateToPublicPayView(vendorID);
         softAssert.assertTrue(Pay.isNavigatedToPublicPayView(),"navigation error");
@@ -54,7 +66,6 @@ public class VerifyPublicPayByBankAccountTest extends TestBase {
         Pay.selectAccountTypeOption();
         Pay.clickOnPublicPay();
         softAssert.assertTrue(Pay.isTransactionSuccessOverlayDisplayed(),"Transaction success message displayed");
-
         softAssert.assertAll();
 
     }
