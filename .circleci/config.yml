@@ -55,6 +55,14 @@ executors:
     machine:
       enabled: true
       resource_class: getcodifyai/runner-on-ec2-13
+  ec2-executor_14:
+    machine:
+      enabled: true
+      resource_class: getcodifyai/runner-on-ec2-14
+  ec2-executor_15:
+    machine:
+      enabled: true
+      resource_class: getcodifyai/runner-on-ec2-15
 
 commands:
   install-dependencies:
@@ -401,7 +409,7 @@ jobs:
             - Part_Nine_nightly-build-and-test-9_TEST-*.xml
 
   nightly-build-and-test-10:
-    executor: ec2-executor_12
+    executor: ec2-executor_14
     working_directory: ~/project-job30
     steps:
       - checkout
