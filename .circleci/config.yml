@@ -128,7 +128,7 @@ commands:
 
 jobs:
   install-common-dependencies:
-    executor: ec2-executor
+    executor: ec2-executor_8
     steps:
       - checkout
       - install-dependencies
