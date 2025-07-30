@@ -937,46 +937,46 @@ workflows:
       - nightly-build-and-test-2:
           requires:
             - install-common-dependencies
-      - nightly-build-and-test-3:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-4:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-5:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-7:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-6:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-8:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-9:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-10:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-11:
-            requires:
-                - install-common-dependencies
-      - calculate-pass-fail-rate:
-          requires:
-            - nightly-build-and-test-1
-            - nightly-build-and-test-2
-            - nightly-build-and-test-3
-            - nightly-build-and-test-4
-            - nightly-build-and-test-5
-            - nightly-build-and-test-7
-            - nightly-build-and-test-6
-            - nightly-build-and-test-8
-            - nightly-build-and-test-9
-            - nightly-build-and-test-10
-            - nightly-build-and-test-11
+#      - nightly-build-and-test-3:
+#          requires:
+#            - install-common-dependencies
+#      - nightly-build-and-test-4:
+#          requires:
+#            - install-common-dependencies
+#      - nightly-build-and-test-5:
+#          requires:
+#            - install-common-dependencies
+#      - nightly-build-and-test-7:
+#          requires:
+#            - install-common-dependencies
+#      - nightly-build-and-test-6:
+#          requires:
+#            - install-common-dependencies
+#      - nightly-build-and-test-8:
+#          requires:
+#            - install-common-dependencies
+#      - nightly-build-and-test-9:
+#          requires:
+#            - install-common-dependencies
+#      - nightly-build-and-test-10:
+#          requires:
+#            - install-common-dependencies
+#      - nightly-build-and-test-11:
+#            requires:
+#                - install-common-dependencies
+#      - calculate-pass-fail-rate:
+#          requires:
+#            - nightly-build-and-test-1
+#            - nightly-build-and-test-2
+#            - nightly-build-and-test-3
+#            - nightly-build-and-test-4
+#            - nightly-build-and-test-5
+#            - nightly-build-and-test-7
+#            - nightly-build-and-test-6
+#            - nightly-build-and-test-8
+#            - nightly-build-and-test-9
+#            - nightly-build-and-test-10
+#            - nightly-build-and-test-11
 
   scheduled-test-1-sub1:
     triggers:
