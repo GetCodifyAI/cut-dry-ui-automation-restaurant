@@ -1279,6 +1279,24 @@ public class Customer {
     public static boolean isRecentAddedOrderDisplay(String id)throws InterruptedException{
         return customersPage.isRecentAddedOrderDisplay(id);
     }
+    public static void editCalculateOrderQty(){
+        customersPage.editCalculateOrderQty();
+    }
+    public static boolean isCalculateOrderQtyDisplayed(){
+        return customersPage.isCalculateOrderQtyDisplayed();
+    }
+    public static void enterParValue(String val) throws InterruptedException {
+        customersPage.enterParValue(val);
+    }
+    public static void enterOnSiteInvValue(String val) throws InterruptedException {
+        customersPage.enterOnSiteInvValue(val);
+    }
+    public static double getItemPriceTotal() throws InterruptedException {
+        return customersPage.getItemPriceTotal();
+    }
+    public static void clickOnSaveStable(){
+        customersPage.saveCatalogAccessChanges();
+    }
 
 
 
