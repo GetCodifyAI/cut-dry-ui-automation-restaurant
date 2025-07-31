@@ -149,5 +149,8 @@ public class InternalTools {
             internalToolsPage.clickSaveBtn();
         }
     }
+    public static void manualOrderQuantityCalculationToggle(boolean status){
+        internalToolsPage.manualOrderQuantityCalculationToggle(status);
+    }
 
 }
