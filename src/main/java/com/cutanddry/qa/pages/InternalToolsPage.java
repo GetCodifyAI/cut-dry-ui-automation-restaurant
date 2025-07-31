@@ -67,6 +67,9 @@ public class InternalToolsPage extends TestBase {
 
     By lbl_defaultQuickAddView = By.xpath("//*[contains(text(), 'Quick Add View:')]/following-sibling::div//*[text()='Enabled on DP Portal & Operator App']");
     By lbl_defaultSimpleListView = By.xpath("//*[contains(text(), 'Simple List View:')]/following-sibling::div//*[text()='Enabled on DP Portal & Operator App']");
+    By manualOrderQuantityCalculationToggleStable = By.xpath("//div[contains(text(), 'Enable manual Order Quantity calculation in OG:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
+    By manualOrderQuantityCalculationToggleStable1 = By.xpath("//div[contains(text(), 'Enable manual Order Quantity calculation in OG:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
+
 
 
 
@@ -356,6 +359,18 @@ public class InternalToolsPage extends TestBase {
 
     public boolean isDefaultSimpleListDisplayed() {
         return restaurantUI.isDisplayed(lbl_defaultSimpleListView, 5);
+    }
+
+    public void manualOrderQuantityCalculationToggle(boolean enable) {
+
+        String handlePosition = restaurantUI.getElement(manualOrderQuantityCalculationToggleStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(29px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(manualOrderQuantityCalculationToggleStable1);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(manualOrderQuantityCalculationToggleStable1);
+        }
     }
 
 
