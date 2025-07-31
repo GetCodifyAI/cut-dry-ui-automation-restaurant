@@ -149,7 +149,7 @@ jobs:
 
   nightly-build-and-test-1:
     executor: ec2-executor_8
-    working_directory: ~/project-job21
+    working_directory: ~/project-job13
     steps:
       - checkout
       - attach_workspace:
@@ -178,7 +178,7 @@ jobs:
 
   nightly-build-and-test-2:
     executor: ec2-executor_9
-    working_directory: ~/project-job22
+    working_directory: ~/project-job14
     steps:
       - checkout
       - attach_workspace:
@@ -207,7 +207,7 @@ jobs:
 
   nightly-build-and-test-3:
     executor: ec2-executor_10
-    working_directory: ~/project-job23
+    working_directory: ~/project-job15
     steps:
       - checkout
       - attach_workspace:
@@ -236,7 +236,7 @@ jobs:
 
   nightly-build-and-test-4:
     executor: ec2-executor_10
-    working_directory: ~/project-job24
+    working_directory: ~/project-job16
     steps:
       - checkout
       - attach_workspace:
@@ -264,8 +264,8 @@ jobs:
             - Part_Four_nightly-build-and-test-4_TEST-*.xml
 
   nightly-build-and-test-5:
-    executor: ec2-executor_8
-    working_directory: ~/project-job25
+    executor: ec2-executor_11
+    working_directory: ~/project-job17
     steps:
       - checkout
       - attach_workspace:
@@ -293,8 +293,8 @@ jobs:
             - Part_Five_nightly-build-and-test-5_TEST-*.xml
 
   nightly-build-and-test-6:
-    executor: ec2-executor_12
-    working_directory: ~/project-job26
+    executor: ec2-executor_14
+    working_directory: ~/project-job18
     steps:
       - checkout
       - attach_workspace:
@@ -322,8 +322,8 @@ jobs:
             - Part_Six_nightly-build-and-test-6_TEST-*.xml
 
   nightly-build-and-test-7:
-    executor: ec2-executor_9
-    working_directory: ~/project-job27
+    executor: ec2-executor_11
+    working_directory: ~/project-job19
     steps:
       - checkout
       - attach_workspace:
@@ -352,7 +352,7 @@ jobs:
 
   nightly-build-and-test-8:
     executor: ec2-executor_13
-    working_directory: ~/project-job28
+    working_directory: ~/project-job20
     steps:
       - checkout
       - attach_workspace:
@@ -380,8 +380,8 @@ jobs:
             - Part_Eight_nightly-build-and-test-8_TEST-*.xml
 
   nightly-build-and-test-9:
-    executor: ec2-executor_11
-    working_directory: ~/project-job29
+    executor: ec2-executor_8
+    working_directory: ~/project-job21
     steps:
       - checkout
       - attach_workspace:
@@ -409,8 +409,8 @@ jobs:
             - Part_Nine_nightly-build-and-test-9_TEST-*.xml
 
   nightly-build-and-test-10:
-    executor: ec2-executor_14
-    working_directory: ~/project-job30
+    executor: ec2-executor_12
+    working_directory: ~/project-job22
     steps:
       - checkout
       - attach_workspace:
@@ -438,8 +438,8 @@ jobs:
             - Part_Ten_nightly-build-and-test-10_TEST-*.xml
 
   nightly-build-and-test-11:
-    executor: ec2-executor_11
-    working_directory: ~/project-job31
+    executor: ec2-executor_9
+    working_directory: ~/project-job23
     steps:
       - checkout
       - attach_workspace:
@@ -938,40 +938,18 @@ workflows:
 #              only:
 #                - main
     jobs:
-      - install-common-dependencies
-      - nightly-build-and-test-1:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-2:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-3:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-4:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-5:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-7:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-6:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-8:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-9:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-10:
-          requires:
-            - install-common-dependencies
-      - nightly-build-and-test-11:
-            requires:
-                - install-common-dependencies
+#      - install-common-dependencies
+      - nightly-build-and-test-1
+      - nightly-build-and-test-2
+      - nightly-build-and-test-3
+      - nightly-build-and-test-4
+      - nightly-build-and-test-5
+      - nightly-build-and-test-7
+      - nightly-build-and-test-6
+      - nightly-build-and-test-8
+      - nightly-build-and-test-9
+      - nightly-build-and-test-10
+      - nightly-build-and-test-11
       - calculate-pass-fail-rate:
           requires:
             - nightly-build-and-test-1
