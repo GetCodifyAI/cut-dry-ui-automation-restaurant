@@ -27,6 +27,7 @@
 
             <class name="com.cutanddry.qa.tests.Orders.VerifyThatTheRecentOrdersTableContainsTheAddToOrderButtonTest" />
             <class name="com.cutanddry.qa.tests.default_view.VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalToolsForOperatorTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThatTheOnSiteInventoryColumnAppearsWhenTheToggleIsEnabledForTheOPSideTest" />
         </classes>
     </test>
 </suite>
