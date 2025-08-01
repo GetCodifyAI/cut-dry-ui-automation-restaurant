@@ -68,31 +68,17 @@ commands:
   install-dependencies:
     steps:
       - run:
-          name: Aggressive Disk Cleanup
+          name: Clean up disk
           command: |
             echo "Disk usage before cleanup:"
             df -h
-            echo "Deleting old job dirs..."
-            for i in $(seq 1 23); do
-             rm -rf ~/project-job$i || true
-            done
-            echo "Removing Docker images and containers..."
-            docker container prune -f || true
-            docker image prune -af || true
-            docker volume prune -f || true
-            echo "Cleaning APT and TMP..."
             sudo apt-get clean
             sudo rm -rf /var/lib/apt/lists/*
             sudo rm -rf /tmp/*
             sudo rm -rf ~/.m2/repository || true
-            sudo rm -rf ~/.cache ~/.config ~/.gradle || true
-            sudo rm -rf ~/workspace || true
-            sudo rm -rf /usr/lib/jvm/* || true
-            sudo journalctl --vacuum-time=1d || true
-            echo "Top large directories after cleanup:"
-            du -h --max-depth=1 / | sort -hr | head -n 20
             echo "Disk usage after cleanup:"
             df -h
+
       - run:
           name: Check and Install Java 22 if not exists
           command: |
@@ -138,6 +124,8 @@ commands:
             fi
 
 
+
+
 jobs:
   install-common-dependencies:
     executor: ec2-executor_8
@@ -160,7 +148,7 @@ jobs:
           destination: build-and-test-artifacts
 
   nightly-build-and-test-1:
-    executor: ec2-executor_11
+    executor: ec2-executor_8
     working_directory: ~/project-job13
     steps:
       - checkout
@@ -189,7 +177,7 @@ jobs:
             - Part_One_nightly-build-and-test-1_TEST-*.xml
 
   nightly-build-and-test-2:
-    executor: ec2-executor_10
+    executor: ec2-executor_9
     working_directory: ~/project-job14
     steps:
       - checkout
@@ -218,7 +206,7 @@ jobs:
             - Part_Two_nightly-build-and-test-2_TEST-*.xml
 
   nightly-build-and-test-3:
-    executor: ec2-executor_9
+    executor: ec2-executor_10
     working_directory: ~/project-job15
     steps:
       - checkout
@@ -247,7 +235,7 @@ jobs:
             - Part_Three_nightly-build-and-test-3_TEST-*.xml
 
   nightly-build-and-test-4:
-    executor: ec2-executor_5
+    executor: ec2-executor_10
     working_directory: ~/project-job16
     steps:
       - checkout
@@ -276,7 +264,7 @@ jobs:
             - Part_Four_nightly-build-and-test-4_TEST-*.xml
 
   nightly-build-and-test-5:
-    executor: ec2-executor_8
+    executor: ec2-executor_11
     working_directory: ~/project-job17
     steps:
       - checkout
@@ -305,7 +293,7 @@ jobs:
             - Part_Five_nightly-build-and-test-5_TEST-*.xml
 
   nightly-build-and-test-6:
-    executor: ec2-executor_7
+    executor: ec2-executor_14
     working_directory: ~/project-job18
     steps:
       - checkout
@@ -334,7 +322,7 @@ jobs:
             - Part_Six_nightly-build-and-test-6_TEST-*.xml
 
   nightly-build-and-test-7:
-    executor: ec2-executor_6
+    executor: ec2-executor_11
     working_directory: ~/project-job19
     steps:
       - checkout
@@ -363,7 +351,7 @@ jobs:
             - Part_Seven_nightly-build-and-test-7_TEST-*.xml
 
   nightly-build-and-test-8:
-    executor: ec2-executor_2
+    executor: ec2-executor_13
     working_directory: ~/project-job20
     steps:
       - checkout
@@ -392,7 +380,7 @@ jobs:
             - Part_Eight_nightly-build-and-test-8_TEST-*.xml
 
   nightly-build-and-test-9:
-    executor: ec2-executor_3
+    executor: ec2-executor_8
     working_directory: ~/project-job21
     steps:
       - checkout
@@ -421,7 +409,7 @@ jobs:
             - Part_Nine_nightly-build-and-test-9_TEST-*.xml
 
   nightly-build-and-test-10:
-    executor: ec2-executor
+    executor: ec2-executor_12
     working_directory: ~/project-job22
     steps:
       - checkout
@@ -450,7 +438,7 @@ jobs:
             - Part_Ten_nightly-build-and-test-10_TEST-*.xml
 
   nightly-build-and-test-11:
-    executor: ec2-executor_4
+    executor: ec2-executor_9
     working_directory: ~/project-job23
     steps:
       - checkout
@@ -942,19 +930,26 @@ workflows:
 #      - build-and-test
 
   scheduled-test-1:
-    triggers:
-      - schedule:
-          cron: "30 18 * * *"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
-          filters:
-            branches:
-              only:
-                - ahsan_dev
+#    triggers:
+#      - schedule:
+#          cron: "25 12 * * 1-5"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+#          filters:
+#            branches:
+#              only:
+#                - main
     jobs:
+#      - install-common-dependencies
       - nightly-build-and-test-1
       - nightly-build-and-test-2
       - nightly-build-and-test-3
       - nightly-build-and-test-4
       - nightly-build-and-test-5
+      - nightly-build-and-test-7
+      - nightly-build-and-test-6
+      - nightly-build-and-test-8
+      - nightly-build-and-test-9
+      - nightly-build-and-test-10
+      - nightly-build-and-test-11
       - calculate-pass-fail-rate:
           requires:
             - nightly-build-and-test-1
@@ -962,15 +957,21 @@ workflows:
             - nightly-build-and-test-3
             - nightly-build-and-test-4
             - nightly-build-and-test-5
+            - nightly-build-and-test-7
+            - nightly-build-and-test-6
+            - nightly-build-and-test-8
+            - nightly-build-and-test-9
+            - nightly-build-and-test-10
+            - nightly-build-and-test-11
 
-  scheduled-test-1-sub:
+  scheduled-test-1-sub1:
     triggers:
       - schedule:
-          cron: "35 18 * * *"  # This will run nightly-build-and-test at 2:00 AM IST (08:30 PM UTC) -- 45 06 * * *  ahsan_dev  30 19
+          cron: "15 13 * * 1-5"  # This will run nightly-build-and-test at 2:00 AM IST (08:30 PM UTC) -- 45 06 * * *  ahsan_dev  30 19
           filters:
             branches:
               only:
-                - ahsan_dev
+                - main
     jobs:
       - nightly-build-and-test-6
       - nightly-build-and-test-7
