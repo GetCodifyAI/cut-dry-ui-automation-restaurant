@@ -361,6 +361,12 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String decreaseQuantityReviewPage = "//td[text()='CODE']/following-sibling::td//div/*[contains(@data-icon,'minus')]";
     String trashCanReviewPage = "//td[text()='CODE']/following-sibling::td//div/*[contains(@data-icon,'trash-can')]";
     String btn_addRecentOrder = "//td[text()='ORDERID']/following-sibling::td/button[text()='Add to Order']";
+    By btn_calculateOrderQty = By.xpath("(//td//span//div[@data-tip='View Product Details']/../../../../../following-sibling::td[3]/div/div/div)[1]");
+    By lbl_calculateOrderQty = By.xpath("//div[contains(text(),'Calculate Order Quantity')]");
+    By lbl_parValue = By.xpath("//div[contains(text(),'Par')]/../following-sibling::div//input");
+    By lbl_OnSiteInvValue = By.xpath("//div[contains(text(),'On-Site Inv')]/../following-sibling::div//input");
+    By lbl_ItemTotal= By.xpath("//div[contains(text(),'Item Total')]/../following-sibling::div//input");
+
 
 
 
@@ -2202,6 +2208,30 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public boolean isRecentAddedOrderDisplay(String id)throws InterruptedException{
         return restaurantUI.isDisplayed(By.xpath(btn_addRecentOrder.replace("ORDERID",id)));
+    }
+    public void editCalculateOrderQty(){
+        restaurantUI.click(btn_calculateOrderQty);
+    }
+    public boolean isCalculateOrderQtyDisplayed(){
+        return restaurantUI.isDisplayed(lbl_calculateOrderQty);
+    }
+    public void enterParValue(String num) throws InterruptedException {
+        restaurantUI.clearUsingJavaScript(lbl_parValue);
+        restaurantUI.sendKeys(lbl_parValue, num);
+        restaurantUI.waitForCustom(1000);
+    }
+    public void enterOnSiteInvValue(String num) throws InterruptedException {
+        restaurantUI.clearUsingJavaScript(lbl_OnSiteInvValue);
+        restaurantUI.sendKeys(lbl_OnSiteInvValue, num);
+        restaurantUI.waitForCustom(1000);
+    }
+    public double getItemPriceTotal() throws InterruptedException {
+        try {
+            return extractPriceStable(lbl_ItemTotal);
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractPriceStable(lbl_ItemTotal);
+        }
     }
 
 
