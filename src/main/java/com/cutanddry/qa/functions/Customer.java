@@ -1297,6 +1297,15 @@ public class Customer {
     public static void clickOnSaveStable(){
         customersPage.saveCatalogAccessChanges();
     }
+    public static void clickClearAll()throws InterruptedException{
+        customersPage.clickClearAll();
+    }
+    public static String getCartSummeryValue (String option) throws InterruptedException {
+        return customersPage.getCartSummeryValue(option);
+    }
+    public static double getOrderMinimumValueStable(String option) throws InterruptedException {
+        return customersPage.getOrderMinimumValueStable(option);
+    }
 
 
 
