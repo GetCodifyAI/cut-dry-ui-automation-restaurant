@@ -366,6 +366,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By lbl_parValue = By.xpath("//div[contains(text(),'Par')]/../following-sibling::div//input");
     By lbl_OnSiteInvValue = By.xpath("//div[contains(text(),'On-Site Inv')]/../following-sibling::div//input");
     By lbl_ItemTotal= By.xpath("//div[contains(text(),'Item Total')]/../following-sibling::div//input");
+    By btn_clearAll = By.xpath("//div[text()='Clear All']");
+    String cartSummeryValue = "//div[contains(text(),'OPTION')]/following-sibling::div";
+    String revenueSummeryValue = "//div[contains(text(),'OPTION')]/following-sibling::div/span";
 
 
 
@@ -2232,6 +2235,42 @@ public void clickOnCloseOrderGuideEditor(){
             System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
             return extractPriceStable(lbl_ItemTotal);
         }
+    }
+    public void clickClearAll()throws InterruptedException{
+        restaurantUI.waitForCustom(4000);
+        restaurantUI.click(btn_clearAll);
+    }
+    public String getCartSummeryValue(String option) throws InterruptedException {
+        restaurantUI.waitForVisibility(By.xpath(cartSummeryValue.replace("OPTION",option)));
+        restaurantUI.waitForCustom(3000);
+        String rawText = restaurantUI.getText(By.xpath(cartSummeryValue.replace("OPTION",option)));
+        return rawText.replace(":", "").trim();
+    }
+    public double getOrderMinimumValueStable(String option) throws InterruptedException {
+        try {
+            return extractOrderMinimumValue(By.xpath(revenueSummeryValue.replace("OPTION",option)));
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractOrderMinimumValue(By.xpath(revenueSummeryValue.replace("OPTION",option)));
+        }
+    }
+    private double extractOrderMinimumValue(By priceLocator) throws InterruptedException {
+        restaurantUI.waitForVisibility(priceLocator);
+        String tagName = restaurantUI.getElement(priceLocator).getTagName();
+        String priceText;
+
+        if (tagName.equals("input")) {
+            priceText = restaurantUI.getText(priceLocator, "value");
+        } else if (tagName.equals("div")) {
+            priceText = restaurantUI.getText(priceLocator);
+        } else {
+            priceText = restaurantUI.getText(priceLocator);
+        }
+
+        System.out.println("Extracted Price: " + priceText);
+        priceText = priceText.replace(":", "").replace("$", "").split("/")[0].trim();
+
+        return Double.valueOf(priceText);
     }
 
 
