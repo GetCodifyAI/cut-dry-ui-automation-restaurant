@@ -21,6 +21,7 @@
             <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierCartEditTest" />
             <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierCartDeleteTest" />
 
+            <class name="com.cutanddry.qa.tests.Drafts.VerifyOrderDraftsTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderWithoutAddingAnyItemsTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromCatalogTest" />

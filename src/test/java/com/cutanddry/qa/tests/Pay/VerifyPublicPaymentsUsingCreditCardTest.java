@@ -19,7 +19,6 @@ public class VerifyPublicPaymentsUsingCreditCardTest extends TestBase {
     static String cvv = "999";
     static String expDate = "10/25";
     static String zipCode = "11500";
-    String distributor = "Independent Foods Co";
     static String vendorID = "46017751";
 
     @BeforeMethod
