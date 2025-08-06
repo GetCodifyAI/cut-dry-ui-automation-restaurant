@@ -23,6 +23,7 @@
             <class name="com.cutanddry.qa.tests.Pay.VerifyBatchActionsDownloadOutstandingInvoicesTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyBatchActionsDownloadPaidInvoicesTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyEnableAutoPayTest" />
+            <class name="com.cutanddry.qa.tests.Pay.VerifyPublicPaymentsUsingCreditCardTest" />
 
             <class name="com.cutanddry.qa.tests.Roles.VerifyUniversalAppAdminRolesTest" />
             <class name="com.cutanddry.qa.tests.Roles.VerifyUniversalAppManagerRolesTest" />
