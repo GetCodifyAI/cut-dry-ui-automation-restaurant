@@ -160,7 +160,7 @@ jobs:
           destination: build-and-test-artifacts
 
   nightly-build-and-test-1:
-    executor: ec2-executor_5
+    executor: ec2-executor11
     working_directory: ~/project-job13
     steps:
       - checkout
@@ -189,7 +189,7 @@ jobs:
             - Part_One_nightly-build-and-test-1_TEST-*.xml
 
   nightly-build-and-test-2:
-    executor: ec2-executor_6
+    executor: ec2-executor_10
     working_directory: ~/project-job14
     steps:
       - checkout
@@ -218,7 +218,7 @@ jobs:
             - Part_Two_nightly-build-and-test-2_TEST-*.xml
 
   nightly-build-and-test-3:
-    executor: ec2-executor_7
+    executor: ec2-executor_9
     working_directory: ~/project-job15
     steps:
       - checkout
@@ -247,7 +247,7 @@ jobs:
             - Part_Three_nightly-build-and-test-3_TEST-*.xml
 
   nightly-build-and-test-4:
-    executor: ec2-executor_12
+    executor: ec2-executor_5
     working_directory: ~/project-job16
     steps:
       - checkout
@@ -276,7 +276,7 @@ jobs:
             - Part_Four_nightly-build-and-test-4_TEST-*.xml
 
   nightly-build-and-test-5:
-    executor: ec2-executor_13
+    executor: ec2-executor_8
     working_directory: ~/project-job17
     steps:
       - checkout
@@ -305,7 +305,7 @@ jobs:
             - Part_Five_nightly-build-and-test-5_TEST-*.xml
 
   nightly-build-and-test-6:
-    executor: ec2-executor_14
+    executor: ec2-executor_7
     working_directory: ~/project-job18
     steps:
       - checkout
@@ -334,7 +334,7 @@ jobs:
             - Part_Six_nightly-build-and-test-6_TEST-*.xml
 
   nightly-build-and-test-7:
-    executor: ec2-executor_15
+    executor: ec2-executor_6
     working_directory: ~/project-job19
     steps:
       - checkout
@@ -363,7 +363,7 @@ jobs:
             - Part_Seven_nightly-build-and-test-7_TEST-*.xml
 
   nightly-build-and-test-8:
-    executor: ec2-executor_9
+    executor: ec2-executor_2
     working_directory: ~/project-job20
     steps:
       - checkout
@@ -392,7 +392,7 @@ jobs:
             - Part_Eight_nightly-build-and-test-8_TEST-*.xml
 
   nightly-build-and-test-9:
-    executor: ec2-executor_11
+    executor: ec2-executor_3
     working_directory: ~/project-job21
     steps:
       - checkout
@@ -421,7 +421,7 @@ jobs:
             - Part_Nine_nightly-build-and-test-9_TEST-*.xml
 
   nightly-build-and-test-10:
-    executor: ec2-executor_10
+    executor: ec2-executor
     working_directory: ~/project-job22
     steps:
       - checkout
@@ -450,7 +450,7 @@ jobs:
             - Part_Ten_nightly-build-and-test-10_TEST-*.xml
 
   nightly-build-and-test-11:
-    executor: ec2-executor_8
+    executor: ec2-executor_4
     working_directory: ~/project-job23
     steps:
       - checkout
@@ -944,33 +944,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "00 11 * * *"
-          filters:
-            branches:
-              only:
-                - ahsan_dev
-    jobs:
-      - nightly-build-and-test-4
-      - nightly-build-and-test-5
-      - nightly-build-and-test-6
-      - nightly-build-and-test-7
-      - nightly-build-and-test-8
-      - nightly-build-and-test-9
-      - nightly-build-and-test-10
-      - calculate-pass-fail-rate:
-          requires:
-            - nightly-build-and-test-4
-            - nightly-build-and-test-5
-            - nightly-build-and-test-6
-            - nightly-build-and-test-7
-            - nightly-build-and-test-8
-            - nightly-build-and-test-9
-            - nightly-build-and-test-10
-
-  scheduled-test-1-sub:
-    triggers:
-      - schedule:
-          cron: "45 11 * * *"  # This will run nightly-build-and-test at 2:00 AM IST (08:30 PM UTC) -- 45 06 * * *  ahsan_dev  30 19
+          cron: "20 14 * * *"
           filters:
             branches:
               only:
@@ -979,13 +953,39 @@ workflows:
       - nightly-build-and-test-1
       - nightly-build-and-test-2
       - nightly-build-and-test-3
+      - nightly-build-and-test-4
+      - nightly-build-and-test-5
+#      - calculate-pass-fail-rate:
+#          requires:
+#            - nightly-build-and-test-1
+#            - nightly-build-and-test-2
+#            - nightly-build-and-test-3
+#            - nightly-build-and-test-4
+#            - nightly-build-and-test-5
+
+  scheduled-test-1-sub:
+    triggers:
+      - schedule:
+          cron: "15 15 * * *"  # This will run nightly-build-and-test at 2:00 AM IST (08:30 PM UTC) -- 45 06 * * *  ahsan_dev  30 19
+          filters:
+            branches:
+              only:
+                - ahsan_dev
+    jobs:
+      - nightly-build-and-test-6
+      - nightly-build-and-test-7
+      - nightly-build-and-test-8
+      - nightly-build-and-test-9
+      - nightly-build-and-test-10
       - nightly-build-and-test-11
-      - calculate-pass-fail-rate:
-          requires:
-            - nightly-build-and-test-1
-            - nightly-build-and-test-2
-            - nightly-build-and-test-3
-            - nightly-build-and-test-11
+#      - calculate-pass-fail-rate:
+#          requires:
+#            - nightly-build-and-test-6
+#            - nightly-build-and-test-7
+#            - nightly-build-and-test-8
+#            - nightly-build-and-test-9
+#            - nightly-build-and-test-10
+#            - nightly-build-and-test-11
 
 
   scheduled-test-2:
