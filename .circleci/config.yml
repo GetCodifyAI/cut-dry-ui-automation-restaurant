@@ -160,7 +160,7 @@ jobs:
           destination: build-and-test-artifacts
 
   nightly-build-and-test-1:
-    executor: ec2-executor11
+    executor: ec2-executor_11
     working_directory: ~/project-job13
     steps:
       - checkout
