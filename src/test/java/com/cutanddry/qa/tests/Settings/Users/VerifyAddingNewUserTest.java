@@ -42,7 +42,6 @@ public class VerifyAddingNewUserTest extends TestBase {
         softAssert.assertTrue(Users.isUserCreationSuccessfulOverlayDisplayed(),"Error in user creation");
         Users.clickOnOkBtnInSuccessOverlay();
         softAssert.assertTrue(Users.isUserDisplayedInGrid(UserName),"User not Displayed in Grid");
-
         softAssert.assertAll();
     }
 
