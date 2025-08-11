@@ -43,8 +43,6 @@ public class VerifyEditingUserTest extends TestBase {
         softAssert.assertTrue(Users.isUserCreationSuccessfulOverlayDisplayed(),"Error in user creation");
         Users.clickOnOkBtnInSuccessOverlay();
         softAssert.assertTrue(Users.isUserDisplayedInGrid(EditedUserName),"User not Displayed in Grid");
-
-
         softAssert.assertAll();
     }
 

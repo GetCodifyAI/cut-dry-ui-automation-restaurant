@@ -13,7 +13,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyDeleteingUserTest extends TestBase {
+public class VerifyDeletingUserTest extends TestBase {
     static User user;
     String EditedUserName = "Testedit";
 
@@ -25,7 +25,7 @@ public class VerifyDeleteingUserTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-314")
-    public void VerifyDeleteingUser() throws InterruptedException {
+    public void VerifyDeletingUser() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
