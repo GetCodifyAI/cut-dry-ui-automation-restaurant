@@ -24,6 +24,9 @@
             <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheOrderExportFileGenerateTest" />
             <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheOrderExportWithPricesFileGenerateTest" />
             <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheProductExportFileGenerateTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Users.VerifyAddingNewUserTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Users.VerifyEditingUserTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Users.VerifyDeletingUserTest" />
 
             <class name="com.cutanddry.qa.tests.SignIn.VerifyWhiteLabelForgotPasswordValidTest" />
             <class name="com.cutanddry.qa.tests.SignIn.VerifyWhiteLabelForgotPasswordInvalidTest" />
