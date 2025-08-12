@@ -944,7 +944,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "03 15 * * *"
+          cron: "20 14 * * *"
           filters:
             branches:
               only:
