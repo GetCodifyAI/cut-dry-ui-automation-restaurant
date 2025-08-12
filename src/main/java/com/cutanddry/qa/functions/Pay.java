@@ -244,5 +244,8 @@ public class Pay {
     public static boolean isAllDisplayedSupplierAreTheSearchedSupplier(String SupplierName) throws InterruptedException {
         return PayPage.isAllInvoicesDisplayedAreForSupplier(SupplierName);
     }
+    public static boolean isPaymentSuccessfulPopUpDisplayed(){
+        return PayPage.isPaymentSuccessfulPopUpDisplayed();
+    }
 
 }
