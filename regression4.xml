@@ -11,6 +11,7 @@
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyCreateCreditRequestTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestApproveFlowTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestDeclineFlowTest"/>
+            <class name="com.cutanddry.qa.tests.Credit_Requests.VerifyTheCreditReqSearchByDistributorTest"/>
 
             <class name="com.cutanddry.qa.tests.Pay.VerifyAddPaymentMethodTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyPaymentSettingsAddPaymentMethodTest" />

@@ -103,6 +103,8 @@ public class PayPage extends TestBase {
     By supplierDropDown = By.xpath("(//div[contains(text(),'Supplier')])[last()-1]/div");
     String supplier = "//div[contains(@class,'menu-list')]//div[contains(text(),'SUPPLIER')]";
     By supplierInPaidTable = By.xpath("//table//tr/td[contains(text(),'Paid')]/../td[3]");
+    By txt_paymentSuccessful = By.xpath("//h2[contains(text(),'Payment Successful!')]");
+
 
 
     public void clickOnPay() {
@@ -660,6 +662,10 @@ public class PayPage extends TestBase {
         restaurantUI.waitForCustom(2000);
         return restaurantUI.checkTextInElementsList(supplierInPaidTable,supplierName);
     }
+    public boolean isPaymentSuccessfulPopUpDisplayed() {
+        return restaurantUI.isDisplayed(txt_paymentSuccessful);
+    }
+
 
 
 

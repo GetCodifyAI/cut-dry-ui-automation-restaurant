@@ -42,7 +42,7 @@ public class VerifyPublicPaymentsUsingCreditCardTest extends TestBase {
         Pay.enterCVV(cvv);
         Pay.enterZipCode(zipCode);
         Pay.clickOnPublicPay();
-        softAssert.assertTrue(Pay.isTransactionRejectedPopUpDisplayed(),"Transaction error");
+        softAssert.assertTrue(Pay.isPaymentSuccessfulPopUpDisplayed(),"Transaction error");
         softAssert.assertAll();
     }
 
