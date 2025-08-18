@@ -271,7 +271,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String fulfillmentTypeOrderHistory = "//*[contains(text(),'#') and text()='ID']/../../preceding-sibling::td[2]//*[text()='TYPE']";
     By btn_nextMonth = By.xpath("//button[contains(@aria-label,'Next Month')]");
     String reviewOrderFulfilment = "//span[contains(text(),'TYPE')]";
-    By btn_deleteOrderGuide = By.xpath("//a[contains(text(), 'Delete Order Guide')]");
+    By btn_deleteOrderGuide = By.xpath("//div[contains(text(), 'Delete Order Guide')]");
     By icon_deleteSearchItem = By.xpath("(//*[local-name()='svg' and @data-icon='circle-xmark'])[1]");
     By txt_purchaseHistoryCatalog = By.xpath("//div[text()='Purchase History']");
     String lastOrderDetails = "//div[text()='ORDER']";

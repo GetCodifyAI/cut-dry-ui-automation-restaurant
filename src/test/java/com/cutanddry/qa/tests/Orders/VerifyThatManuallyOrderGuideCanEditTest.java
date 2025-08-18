@@ -44,10 +44,6 @@ public class VerifyThatManuallyOrderGuideCanEditTest extends TestBase {
         Customer.closeEditor();
 
         Customer.clickOnMoreOptionOG();
-        softAssert.assertTrue(Customer.isEditOrderGuideOptionDisplay(),"Edit order guide option display");
-        Customer.clickEditOrderGuideOption();
-        softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
-        Customer.expandMoreOptionsDropdown();
         Customer.clickOnDeleteOrderGuide();
         softAssert.assertTrue(Order.isAreYouSurePopUpDisplayed(),"Are you sure pop up not displayed");
         Order.clickYes();
