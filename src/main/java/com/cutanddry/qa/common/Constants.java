@@ -15,8 +15,8 @@ public class Constants {
     public static String LOGIN_AS_APP_URL = loginAsDomain();
     public static String GATE_KEEPER_URL =gateKeeperURL();
     public static String SLACK_WEBHOOK = System.getenv("STAGING_SLACK_WEBHOOK");
-    public static String PUBLIC_PAY_URL = "https://app-uat.staging.cutanddry.com/public-pay/";
-    public static String SAVAL_FOOD_URL = "https://savalfoodservice-uat.staging.cutanddry.com/log-in?redirect_on_login=%2F";
+    public static String PUBLIC_PAY_URL = "https://app-default-order.staging.cutanddry.com/public-pay/";
+    public static String SAVAL_FOOD_URL = "https://savalfoodservice-default-order.staging.cutanddry.com/log-in?redirect_on_login=%2F";
     public static final String TEST_STAG ="default-order";
 
     //slackToken=***
