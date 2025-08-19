@@ -369,6 +369,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_clearAll = By.xpath("//div[text()='Clear All']");
     String cartSummeryValue = "//div[contains(text(),'OPTION')]/following-sibling::div";
     String revenueSummeryValue = "//div[contains(text(),'OPTION')]/following-sibling::div/span";
+    String txt_preAuthorization = "//h2[text()='MESSAGE']";
+    By txt_confirmPayment = By.xpath("//div[text()='Confirm Payment']");
+    By btn_continue = By.xpath("//button[contains(text(), 'Continue')]");
 
 
 
@@ -2271,6 +2274,15 @@ public void clickOnCloseOrderGuideEditor(){
         priceText = priceText.replace(":", "").replace("$", "").split("/")[0].trim();
 
         return Double.valueOf(priceText);
+    }
+    public boolean isPreAuthorizationTextDisplay(String message)throws InterruptedException{
+        return restaurantUI.isDisplayed(By.xpath(txt_preAuthorization.replace("MESSAGE",message)));
+    }
+    public boolean isConfirmPaymentTextDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(txt_confirmPayment);
+    }
+    public void clickContinue(){
+        restaurantUI.click(btn_continue);
     }
 
 
