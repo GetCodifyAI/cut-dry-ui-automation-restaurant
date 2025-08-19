@@ -1306,6 +1306,13 @@ public class Customer {
     public static double getOrderMinimumValueStable(String option) throws InterruptedException {
         return customersPage.getOrderMinimumValueStable(option);
     }
+    public static boolean isPreAuthorizationTextDisplay(String message)throws InterruptedException{
+        return customersPage.isPreAuthorizationTextDisplay(message);
+    }
+    public static boolean isConfirmPaymentTextDisplay()throws InterruptedException{
+        return customersPage.isConfirmPaymentTextDisplay();
+    }
+    public static void clickContinue(){customersPage.clickContinue();}
 
 
 

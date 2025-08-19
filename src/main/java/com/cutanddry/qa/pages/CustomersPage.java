@@ -271,7 +271,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String fulfillmentTypeOrderHistory = "//*[contains(text(),'#') and text()='ID']/../../preceding-sibling::td[2]//*[text()='TYPE']";
     By btn_nextMonth = By.xpath("//button[contains(@aria-label,'Next Month')]");
     String reviewOrderFulfilment = "//span[contains(text(),'TYPE')]";
-    By btn_deleteOrderGuide = By.xpath("//a[contains(text(), 'Delete Order Guide')]");
+    By btn_deleteOrderGuide = By.xpath("//div[contains(text(), 'Delete Order Guide')]");
     By icon_deleteSearchItem = By.xpath("(//*[local-name()='svg' and @data-icon='circle-xmark'])[1]");
     By txt_purchaseHistoryCatalog = By.xpath("//div[text()='Purchase History']");
     String lastOrderDetails = "//div[text()='ORDER']";
@@ -369,6 +369,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_clearAll = By.xpath("//div[text()='Clear All']");
     String cartSummeryValue = "//div[contains(text(),'OPTION')]/following-sibling::div";
     String revenueSummeryValue = "//div[contains(text(),'OPTION')]/following-sibling::div/span";
+    String txt_preAuthorization = "//h2[text()='MESSAGE']";
+    By txt_confirmPayment = By.xpath("//div[text()='Confirm Payment']");
+    By btn_continue = By.xpath("//button[contains(text(), 'Continue')]");
 
 
 
@@ -2271,6 +2274,15 @@ public void clickOnCloseOrderGuideEditor(){
         priceText = priceText.replace(":", "").replace("$", "").split("/")[0].trim();
 
         return Double.valueOf(priceText);
+    }
+    public boolean isPreAuthorizationTextDisplay(String message)throws InterruptedException{
+        return restaurantUI.isDisplayed(By.xpath(txt_preAuthorization.replace("MESSAGE",message)));
+    }
+    public boolean isConfirmPaymentTextDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(txt_confirmPayment);
+    }
+    public void clickContinue(){
+        restaurantUI.click(btn_continue);
     }
 
 
