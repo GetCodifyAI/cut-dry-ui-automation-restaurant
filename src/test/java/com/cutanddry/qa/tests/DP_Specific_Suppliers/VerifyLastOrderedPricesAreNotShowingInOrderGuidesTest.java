@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyLastOrderedPricesAreNotShowingInOrderGuidesTest extends TestBase {
     static User user;
-    static String OperatorName = "438342864";
+    static String OperatorName = "177850933";
     static String lastOrder = "Last Order";
 
 

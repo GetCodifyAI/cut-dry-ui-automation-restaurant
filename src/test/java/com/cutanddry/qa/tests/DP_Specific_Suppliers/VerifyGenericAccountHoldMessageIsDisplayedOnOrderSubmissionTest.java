@@ -20,7 +20,7 @@ public class VerifyGenericAccountHoldMessageIsDisplayedOnOrderSubmissionTest ext
     static String OperatorName = "372460856";
     static String holdMessage = "Your account is on hold by your supplier. Your order could not be submitted, but has been saved as a Draft. Please contact your supplier about your account status and resubmit your order.";
     String itemName,searchItemCode;
-    static double itemPrice;
+    static String preAuthMessage = "Pre-authorization Required";
 
 
 
@@ -60,13 +60,14 @@ public class VerifyGenericAccountHoldMessageIsDisplayedOnOrderSubmissionTest ext
 
         itemName = Customer.getItemNameFirstRow();
         searchItemCode = Customer.getItemCodeFirstRow();
-        itemPrice = Customer.getActiveItemPriceFirstRow();
-        Customer.increaseFirstRowQtySpecificCustomer(15);
+        Customer.increaseFirstRowQtySpecificCustomer(12);
         Customer.checkoutItems();
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
         Customer.submitOrder();
-        softAssert.assertTrue(Customer.isAccountHoldPopUpDisplay(),"account not hold");
-        softAssert.assertTrue(Customer.isAccountHoldMessageDisplay(holdMessage),"account hold message not display");
+        softAssert.assertTrue(Customer.isPreAuthorizationTextDisplay(preAuthMessage),"pre auth pop up display error");
+        Customer.clickContinue();
+        softAssert.assertTrue(Customer.isConfirmPaymentTextDisplay(),"confirm payment text error");
+        Customer.clickConfirm();
         softAssert.assertAll();
 
     }
