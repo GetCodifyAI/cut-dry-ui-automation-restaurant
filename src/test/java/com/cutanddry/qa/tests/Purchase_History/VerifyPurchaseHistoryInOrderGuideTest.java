@@ -17,7 +17,7 @@ public class VerifyPurchaseHistoryInOrderGuideTest extends TestBase {
     static User user;
     String searchItemCode = "01409";
     static String multiUOMType1 = "1 CS";
-    static String multiUOMType2 = "1 Pkg";
+    static String multiUOMType2 = "1 EA";
 
 
     @BeforeMethod
