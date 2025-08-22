@@ -20,6 +20,7 @@ public class Constants {
     public static final String TEST_STAG ="standing-order";
 
 
+
     //slackToken=***
     //slackChannel=#ui-automation-tests
 
