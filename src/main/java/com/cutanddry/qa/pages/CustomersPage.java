@@ -107,7 +107,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By sectionDeleteBtn = By.xpath("//button[contains(text(),'Delete')]");
     By deleteConfirmationYesBtn = By.xpath("//button[contains(text(),'Yes')]");
     By unitSelectionDropdown = By.xpath("//tbody/tr/td[3]/div/div/div/div");
-    By pkgOption = By.xpath("//div[contains(@class, 'cd_themed_select__option') and text()='Pkg']");
+    By pkgOption = By.xpath("//div[contains(@class, 'cd_themed_select__option') and text()='Each']");
     By caseOption = By.xpath("//div[contains(@class, 'cd_themed_select__option') and text()='Case']");
     String editItemBtn = "//div[contains(translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('ITEMNAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]/../following-sibling::div//*[name()='svg' and @data-icon='pencil']";
     By hideBtn = By.xpath("//button[contains(text(),'Hide Item')]");
