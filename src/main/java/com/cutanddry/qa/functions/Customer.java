@@ -1313,6 +1313,9 @@ public class Customer {
         return customersPage.isConfirmPaymentTextDisplay();
     }
     public static void clickContinue(){customersPage.clickContinue();}
+    public static void clickSortOptionsOG(String option)throws InterruptedException{
+        customersPage.clickSortOptionsOG(option);
+    }
 
 
 

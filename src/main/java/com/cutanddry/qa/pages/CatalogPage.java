@@ -52,6 +52,7 @@ public class CatalogPage extends LoginPage {
     By purchaseHistory = By.xpath("//div[text()='Purchase History']");
     String priceColumn = "//th[text()='PRICE']";
     String lastOrderPrice = "//span[contains(text(),'PRICE')]";
+    By btn_showSub = By.xpath("//label[text()='Show Subs']");
 
 
 
@@ -337,5 +338,9 @@ public class CatalogPage extends LoginPage {
     public boolean isLastOrderPriceDisplay(String price){
         return restaurantUI.isDisplayed(By.xpath(lastOrderPrice.replace("PRICE",price)));
     }
+    public void clickShowSub(){
+        restaurantUI.click(btn_showSub);
+    }
+
 
 }

@@ -372,6 +372,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String txt_preAuthorization = "//h2[text()='MESSAGE']";
     By txt_confirmPayment = By.xpath("//div[text()='Confirm Payment']");
     By btn_continue = By.xpath("//button[contains(text(), 'Continue')]");
+    String sortOptionsOG = "//span[contains(text(), 'OPTION')]";
 
 
 
@@ -2283,6 +2284,9 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public void clickContinue(){
         restaurantUI.click(btn_continue);
+    }
+    public void clickSortOptionsOG(String option)throws InterruptedException{
+        restaurantUI.click(By.xpath(sortOptionsOG.replace("OPTION",option)));
     }
 
 
