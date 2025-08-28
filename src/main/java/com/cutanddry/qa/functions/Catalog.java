@@ -140,4 +140,7 @@ public class Catalog {
     public static boolean isLastOrderPriceDisplay(String price){
         return catalogPage.isLastOrderPriceDisplay(price);
     }
+    public static void clickShowSub(){
+        catalogPage.clickShowSub();
+    }
 }
