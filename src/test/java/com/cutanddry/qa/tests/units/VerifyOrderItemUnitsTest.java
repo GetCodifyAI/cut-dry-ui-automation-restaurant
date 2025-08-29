@@ -34,7 +34,7 @@ public class VerifyOrderItemUnitsTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.searchItemOnOrderGuide(ItemCode);
         Customer.selectPkgFromUnitSelectionDropdown();
-        softAssert.assertEquals(Customer.isUnitChangedToPkg(),"Each","ERROR in changing the unnit to packages");
+        softAssert.assertEquals(Customer.isUnitChangedToPkg(),"Pkg","ERROR in changing the unnit to packages");
         Customer.selectCaseFromUnitSelectionDropdown();
         softAssert.assertEquals(Customer.isUnitChangedToCase(),"Case","ERROR in changing the unnit to cases");
 
