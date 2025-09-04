@@ -18,6 +18,10 @@ import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Base class for UI test automation framework
+ * Provides WebDriver initialization and common utility methods
+ */
 public class TestBase {
     private static final Logger LOGGER = Logger.getLogger(TestBase.class.getName());
     protected static WebDriver driver;
