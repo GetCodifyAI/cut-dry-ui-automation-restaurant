@@ -21,6 +21,8 @@ public class AioAPIHelper {
     private static final String MARK_CASE = "project/{projectKey}/testcycle/{cycleKey}/testcase/{caseKey}/testrun?createNewRun={createNewRun}";
     private static final String IMPORT_RESULTS = "/project/{projectKey}/testcycle/{cycleKey}/import/results?type={type}";
     private static final String UPLOAD_RUN_ATTACHMENT = "/project/{projectKey}/testcycle/{cycleKey}/testcase/{caseKey}/attachment";
+    private static final String GET_FOLDER_TREE = "/project/{projectKey}/testcase/folder";
+    private static final String CREATE_FOLDER_HIERARCHY = "/project/{projectKey}/testcase/folder/hierarchy";
     private static RequestSpecification defaultRequestSpec;
     private static SimpleDateFormat formatter = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss");
     private static String todayDate = formatter.format(new Date());
@@ -101,7 +103,106 @@ public class AioAPIHelper {
         return null;
     }
 
+    public static Response getFolderTree(String projectKey) {
+        Response response = given(defaultRequestSpec)
+                .when().get(GET_FOLDER_TREE, projectKey).andReturn();
+        System.out.println("Folder tree response status: " + response.statusCode());
+        if (response.statusCode() != 200) {
+            System.err.println("Failed to get folder tree. Status Code: " + response.statusCode());
+            response.prettyPrint();
+        }
+        return response;
+    }
 
+    public static String createFolderHierarchy(String projectKey, int baseFolderId, String[] folderHierarchy) {
+        Map<String, Object> folderData = new HashMap<>();
+        folderData.put("baseFolderId", baseFolderId);
+        folderData.put("folderHierarchy", folderHierarchy);
+        
+        Response response = given(defaultRequestSpec)
+                .contentType(ContentType.JSON)
+                .body(folderData)
+                .when().put(CREATE_FOLDER_HIERARCHY, projectKey).andReturn();
+                
+        System.out.println("Folder creation response status: " + response.statusCode());
+        if (response.statusCode() == 200) {
+            System.out.println("Folder hierarchy created successfully");
+            return response.getBody().asString();
+        } else {
+            System.err.println("Failed to create folder hierarchy. Status Code: " + response.statusCode());
+            response.prettyPrint();
+            return null;
+        }
+    }
+
+    public static boolean createDraftFolderInCases(String projectKey) {
+        try {
+            Response folderTreeResponse = getFolderTree(projectKey);
+            if (folderTreeResponse.statusCode() == 200) {
+                String responseBody = folderTreeResponse.getBody().asString();
+                System.out.println("Folder tree response: " + responseBody);
+                
+                int casesFolderId = findCasesFolderId(responseBody);
+                if (casesFolderId != -1) {
+                    String[] folderHierarchy = {"draft"};
+                    String result = createFolderHierarchy(projectKey, casesFolderId, folderHierarchy);
+                    return result != null;
+                }
+            }
+            
+            System.out.println("Folder tree not available, trying to create with root folder...");
+            String[] folderHierarchy = {"Cases", "draft"};
+            String result = createFolderHierarchy(projectKey, 0, folderHierarchy);
+            
+            if (result == null) {
+                System.out.println("Trying with baseFolderId = 1...");
+                result = createFolderHierarchy(projectKey, 1, folderHierarchy);
+            }
+            
+            return result != null;
+        } catch (Exception e) {
+            System.err.println("Error creating draft folder: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    private static int findCasesFolderId(String folderTreeJson) {
+        try {
+            if (folderTreeJson.contains("\"name\":\"Cases\"")) {
+                String[] parts = folderTreeJson.split("\"name\":\"Cases\"");
+                if (parts.length > 1) {
+                    String beforeCases = parts[0];
+                    String[] idParts = beforeCases.split("\"ID\":");
+                    if (idParts.length > 0) {
+                        String lastIdPart = idParts[idParts.length - 1];
+                        String idStr = lastIdPart.split(",")[0].trim();
+                        return Integer.parseInt(idStr);
+                    }
+                }
+            }
+            
+            if (folderTreeJson.contains("\"parentID\":null")) {
+                String[] parts = folderTreeJson.split("\"parentID\":null");
+                if (parts.length > 1) {
+                    String beforeNull = parts[0];
+                    String[] idParts = beforeNull.split("\"ID\":");
+                    if (idParts.length > 0) {
+                        String lastIdPart = idParts[idParts.length - 1];
+                        String idStr = lastIdPart.split(",")[0].trim();
+                        System.out.println("Found root folder ID: " + idStr);
+                        return Integer.parseInt(idStr);
+                    }
+                }
+            }
+            
+            System.err.println("Could not find Cases folder or suitable root folder");
+            return -1;
+        } catch (Exception e) {
+            System.err.println("Error parsing folder tree JSON: " + e.getMessage());
+            return -1;
+        }
+    }
 
 
     public static Response doPost(String path, Map<String, Object> params, Object... pathParams) {
