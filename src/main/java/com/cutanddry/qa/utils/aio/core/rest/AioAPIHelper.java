@@ -203,6 +203,41 @@ public class AioAPIHelper {
             return false;
         }
     }
+
+    public static boolean createTestFolderInNotAssigned(String projectKey) {
+        try {
+            Response folderTreeResponse = getFolderTree(projectKey);
+            if (folderTreeResponse.statusCode() != 200) {
+                System.err.println("Failed to get folder tree");
+                return false;
+            }
+            
+            String responseBody = folderTreeResponse.getBody().asString();
+            int notAssignedFolderId = findNotAssignedFolderId(responseBody);
+            
+            if (notAssignedFolderId == -1) {
+                System.err.println("Could not find 'Not assigned' folder");
+                return false;
+            }
+            
+            System.out.println("Creating 'test' folder under 'Not assigned' folder (ID: " + notAssignedFolderId + ")...");
+            String[] testHierarchy = {"test"};
+            String result = createFolderHierarchy(projectKey, notAssignedFolderId, testHierarchy);
+            
+            if (result != null) {
+                System.out.println("Successfully created 'test' folder under 'Not assigned'");
+                return true;
+            } else {
+                System.err.println("Failed to create 'test' folder under 'Not assigned'");
+                return false;
+            }
+            
+        } catch (Exception e) {
+            System.err.println("Error creating test folder: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
     
     private static int findNotAssignedFolderId(String folderTreeJson) {
         try {
