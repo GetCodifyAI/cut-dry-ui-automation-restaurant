@@ -19,7 +19,7 @@ public class VerifyPurchaseHistoryInCatalogueTest extends TestBase {
     String searchItemName = "Carrot - Baby Peeled - 1 LB";
     String searchItemCode = "01409";
     static String multiUOMType1 = "1 CS";
-    static String multiUOMType2 = "1 EA";
+    static String multiUOMType2 = "1 Pkg";
 
 
     @BeforeMethod

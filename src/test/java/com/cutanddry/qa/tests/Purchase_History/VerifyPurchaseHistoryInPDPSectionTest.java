@@ -20,7 +20,7 @@ public class VerifyPurchaseHistoryInPDPSectionTest extends TestBase {
     String searchItemCode = "01409";
     String uomDropDownOption = "Multiple Units";
     static String multiUOMType1 = "1 CS";
-    static String multiUOMType2 = "1 EA";
+    static String multiUOMType2 = "1 Pkg";
 
 
     @BeforeMethod

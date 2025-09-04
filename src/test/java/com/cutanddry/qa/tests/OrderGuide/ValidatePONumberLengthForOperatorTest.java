@@ -48,10 +48,12 @@ public class ValidatePONumberLengthForOperatorTest extends TestBase {
 
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
         Customer.typePONumber(poNumber);
+        Thread.sleep(3000);
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isPONumberErrorDisplay(poNumberError),"PO number too long");
         Customer.clickOK();
         Customer.typePONumber(poNumber2);
+        Thread.sleep(3000);
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
         softAssert.assertAll();
