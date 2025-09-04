@@ -107,7 +107,12 @@ public class AioAPIHelper {
         Response response = given(defaultRequestSpec)
                 .when().get(GET_FOLDER_TREE, projectKey).andReturn();
         System.out.println("Folder tree response status: " + response.statusCode());
-        if (response.statusCode() != 200) {
+        if (response.statusCode() == 200) {
+            String responseBody = response.getBody().asString();
+            System.out.println("FOLDER_TREE_JSON_START");
+            System.out.println(responseBody);
+            System.out.println("FOLDER_TREE_JSON_END");
+        } else {
             System.err.println("Failed to get folder tree. Status Code: " + response.statusCode());
             response.prettyPrint();
         }
@@ -138,28 +143,60 @@ public class AioAPIHelper {
     public static boolean createDraftFolderInCases(String projectKey) {
         try {
             Response folderTreeResponse = getFolderTree(projectKey);
-            if (folderTreeResponse.statusCode() == 200) {
-                String responseBody = folderTreeResponse.getBody().asString();
-                System.out.println("Folder tree response: " + responseBody);
+            if (folderTreeResponse.statusCode() != 200) {
+                System.err.println("Failed to get folder tree");
+                return false;
+            }
+            
+            String responseBody = folderTreeResponse.getBody().asString();
+            int notAssignedFolderId = findNotAssignedFolderId(responseBody);
+            
+            if (notAssignedFolderId == -1) {
+                System.out.println("'Not assigned' folder not found. Attempting to create it first...");
                 
-                int casesFolderId = findCasesFolderId(responseBody);
-                if (casesFolderId != -1) {
-                    String[] folderHierarchy = {"draft"};
-                    String result = createFolderHierarchy(projectKey, casesFolderId, folderHierarchy);
-                    return result != null;
+                String[] rootFolderIds = {"55", "56", "135"}; // DP Features, GA Features, Synthetic Monitoring
+                boolean notAssignedCreated = false;
+                
+                for (String rootId : rootFolderIds) {
+                    try {
+                        String[] notAssignedHierarchy = {"Not assigned"};
+                        String result = createFolderHierarchy(projectKey, Integer.parseInt(rootId), notAssignedHierarchy);
+                        if (result != null) {
+                            System.out.println("Successfully created 'Not assigned' folder under root folder ID: " + rootId);
+                            folderTreeResponse = getFolderTree(projectKey);
+                            responseBody = folderTreeResponse.getBody().asString();
+                            notAssignedFolderId = findNotAssignedFolderId(responseBody);
+                            notAssignedCreated = true;
+                            break;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Failed to create 'Not assigned' under root ID " + rootId + ": " + e.getMessage());
+                    }
+                }
+                
+                if (!notAssignedCreated) {
+                    System.err.println("Could not create 'Not assigned' folder");
+                    return false;
                 }
             }
             
-            System.out.println("Folder tree not available, trying to create with root folder...");
-            String[] folderHierarchy = {"Cases", "draft"};
-            String result = createFolderHierarchy(projectKey, 0, folderHierarchy);
-            
-            if (result == null) {
-                System.out.println("Trying with baseFolderId = 1...");
-                result = createFolderHierarchy(projectKey, 1, folderHierarchy);
+            if (notAssignedFolderId == -1) {
+                System.err.println("Still could not find 'Not assigned' folder after creation attempt");
+                return false;
             }
             
-            return result != null;
+            System.out.println("Creating 'draft' folder under 'Not assigned' folder (ID: " + notAssignedFolderId + ")...");
+            String[] draftHierarchy = {"draft"};
+            String result = createFolderHierarchy(projectKey, notAssignedFolderId, draftHierarchy);
+            
+            if (result != null) {
+                System.out.println("Successfully created 'draft' folder under 'Not assigned'");
+                return true;
+            } else {
+                System.err.println("Failed to create 'draft' folder under 'Not assigned'");
+                return false;
+            }
+            
         } catch (Exception e) {
             System.err.println("Error creating draft folder: " + e.getMessage());
             e.printStackTrace();
@@ -167,39 +204,43 @@ public class AioAPIHelper {
         }
     }
     
-    private static int findCasesFolderId(String folderTreeJson) {
+    private static int findNotAssignedFolderId(String folderTreeJson) {
         try {
-            if (folderTreeJson.contains("\"name\":\"Cases\"")) {
-                String[] parts = folderTreeJson.split("\"name\":\"Cases\"");
+            if (folderTreeJson.contains("\"name\":\"Not assigned\"")) {
+                String[] parts = folderTreeJson.split("\"name\":\"Not assigned\"");
                 if (parts.length > 1) {
-                    String beforeCases = parts[0];
-                    String[] idParts = beforeCases.split("\"ID\":");
+                    String beforeNotAssigned = parts[0];
+                    String[] idParts = beforeNotAssigned.split("\"ID\":");
                     if (idParts.length > 0) {
                         String lastIdPart = idParts[idParts.length - 1];
                         String idStr = lastIdPart.split(",")[0].trim();
+                        System.out.println("Found 'Not assigned' folder ID: " + idStr);
                         return Integer.parseInt(idStr);
                     }
                 }
             }
             
-            if (folderTreeJson.contains("\"parentID\":null")) {
-                String[] parts = folderTreeJson.split("\"parentID\":null");
-                if (parts.length > 1) {
-                    String beforeNull = parts[0];
-                    String[] idParts = beforeNull.split("\"ID\":");
-                    if (idParts.length > 0) {
-                        String lastIdPart = idParts[idParts.length - 1];
-                        String idStr = lastIdPart.split(",")[0].trim();
-                        System.out.println("Found root folder ID: " + idStr);
-                        return Integer.parseInt(idStr);
+            String[] variations = {"\"name\":\"Not Assigned\"", "\"name\":\"not assigned\"", "\"name\":\"Unassigned\"", "\"name\":\"unassigned\""};
+            for (String variation : variations) {
+                if (folderTreeJson.contains(variation)) {
+                    String[] parts = folderTreeJson.split(variation);
+                    if (parts.length > 1) {
+                        String beforeFolder = parts[0];
+                        String[] idParts = beforeFolder.split("\"ID\":");
+                        if (idParts.length > 0) {
+                            String lastIdPart = idParts[idParts.length - 1];
+                            String idStr = lastIdPart.split(",")[0].trim();
+                            System.out.println("Found folder with variation '" + variation + "', ID: " + idStr);
+                            return Integer.parseInt(idStr);
+                        }
                     }
                 }
             }
             
-            System.err.println("Could not find Cases folder or suitable root folder");
+            System.out.println("Could not find 'Not assigned' folder in folder tree");
             return -1;
         } catch (Exception e) {
-            System.err.println("Error parsing folder tree JSON: " + e.getMessage());
+            System.err.println("Error parsing folder tree JSON for 'Not assigned': " + e.getMessage());
             return -1;
         }
     }
