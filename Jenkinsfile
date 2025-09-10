@@ -55,6 +55,7 @@ pipeline {
                 stage('Regression 1 - Order Guide Tests') {
                     agent { label 'built-in' }
                     steps {
+                        checkout scm
                         script {
                             runTestSuite('regression1.xml', 'Part_One')
                         }
@@ -70,6 +71,7 @@ pipeline {
                 stage('Regression 2 - Catalog Tests') {
                     agent { label 'built-in' }
                     steps {
+                        checkout scm
                         script {
                             runTestSuite('regression2.xml', 'Part_Two')
                         }
@@ -85,6 +87,7 @@ pipeline {
                 stage('Regression 3 - Payment Tests') {
                     agent { label 'built-in' }
                     steps {
+                        checkout scm
                         script {
                             runTestSuite('regression3.xml', 'Part_Three')
                         }
@@ -100,6 +103,7 @@ pipeline {
                 stage('Regression 4 - History Tests') {
                     agent { label 'built-in' }
                     steps {
+                        checkout scm
                         script {
                             runTestSuite('regression4.xml', 'Part_Four')
                         }
@@ -115,6 +119,7 @@ pipeline {
                 stage('Regression 5 - Settings Tests') {
                     agent { label 'built-in' }
                     steps {
+                        checkout scm
                         script {
                             runTestSuite('regression5.xml', 'Part_Five')
                         }
@@ -130,6 +135,7 @@ pipeline {
                 stage('Regression 6 - Credit Requests Tests') {
                     agent { label 'built-in' }
                     steps {
+                        checkout scm
                         script {
                             runTestSuite('regression6.xml', 'Part_Six')
                         }
@@ -145,6 +151,7 @@ pipeline {
                 stage('Regression 7 - Reports Tests') {
                     agent { label 'built-in' }
                     steps {
+                        checkout scm
                         script {
                             runTestSuite('regression7.xml', 'Part_Seven')
                         }
@@ -160,6 +167,7 @@ pipeline {
                 stage('Regression 8 - Role Tests') {
                     agent { label 'built-in' }
                     steps {
+                        checkout scm
                         script {
                             runTestSuite('regression8.xml', 'Part_Eight')
                         }
@@ -175,6 +183,7 @@ pipeline {
                 stage('Regression 9 - Additional Role Tests') {
                     agent { label 'built-in' }
                     steps {
+                        checkout scm
                         script {
                             runTestSuite('regression9.xml', 'Part_Nine')
                         }
@@ -190,6 +199,7 @@ pipeline {
                 stage('Regression 10 - Extended Tests') {
                     agent { label 'built-in' }
                     steps {
+                        checkout scm
                         script {
                             runTestSuite('regression10.xml', 'Part_Ten')
                         }
@@ -205,6 +215,7 @@ pipeline {
                 stage('Regression 11 - Multi-UOM Tests') {
                     agent { label 'built-in' }
                     steps {
+                        checkout scm
                         script {
                             runTestSuite('regression11.xml', 'Part_Eleven')
                         }
