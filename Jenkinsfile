@@ -34,11 +34,6 @@ pipeline {
         BROWSER_VERSION = 'latest'
     }
     
-    triggers {
-        // Nightly tests: Monday-Friday at 22:00 UTC (6:00 PM EST)
-        // Daily tests: Monday-Friday at 04:00 UTC (12:00 AM EST)  
-        cron('H 22 * * 1-5\nH 4 * * 1-5')
-    }
     
     stages {
         stage('Checkout') {
