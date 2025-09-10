@@ -28,7 +28,7 @@ pipeline {
     
     environment {
         MAVEN_OPTS = '-Xmx2048m -XX:MaxMetaspaceSize=512m'
-        JAVA_HOME = '/usr/lib/jvm/java-22-openjdk-amd64'
+        JAVA_HOME = '/usr/lib/jvm/java-21-openjdk-amd64'
         TEST_ENV = "${params.TEST_ENVIRONMENT}"
         RUN_HEADLESS = 'true'
         BROWSER_VERSION = 'latest'
@@ -265,31 +265,61 @@ pipeline {
 def setupEnvironment() {
     echo "Setting up test environment..."
     
-    // Install Java 22
+    // Install Java 21 locally if not available system-wide
     sh '''
-        sudo apt-get update && sudo apt-get install -y wget
-        if [ ! -d "/usr/lib/jvm/java-22-openjdk-amd64" ]; then
-            wget https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz
-            sudo mkdir -p /usr/lib/jvm
-            sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
-            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
+        # Check if Java 21 is available system-wide first
+        if command -v java >/dev/null 2>&1 && java -version 2>&1 | grep -q "21"; then
+            echo "Java 21 already available system-wide"
+            java -version
+        elif [ -d "$HOME/java-21" ]; then
+            echo "Java 21 already installed locally"
+            export JAVA_HOME=$HOME/java-21
+            export PATH=$JAVA_HOME/bin:$PATH
+            java -version
+        else
+            echo "Installing Java 21 locally..."
+            wget -q https://download.java.net/java/GA/jdk21.0.1/415e3f918a1f4062a0074a2794853d0d/12/GPL/openjdk-21.0.1_linux-x64_bin.tar.gz
+            mkdir -p $HOME/java-21
+            tar -xzf openjdk-21.0.1_linux-x64_bin.tar.gz -C $HOME/java-21 --strip-components=1
+            export JAVA_HOME=$HOME/java-21
+            export PATH=$JAVA_HOME/bin:$PATH
+            echo "Java 21 installed locally at $HOME/java-21"
+            java -version
         fi
-        java -version
     '''
     
-    // Install Maven
+    // Install Maven locally if not available
     sh '''
-        sudo apt-get install -y maven
-        mvn -version
+        if command -v mvn >/dev/null 2>&1; then
+            echo "Maven already available"
+            mvn -version
+        elif [ -d "$HOME/maven" ]; then
+            echo "Maven already installed locally"
+            export PATH=$HOME/maven/bin:$PATH
+            mvn -version
+        else
+            echo "Installing Maven locally..."
+            wget -q https://archive.apache.org/dist/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.tar.gz
+            mkdir -p $HOME/maven
+            tar -xzf apache-maven-3.9.4-bin.tar.gz -C $HOME/maven --strip-components=1
+            export PATH=$HOME/maven/bin:$PATH
+            echo "Maven installed locally at $HOME/maven"
+            mvn -version
+        fi
     '''
     
-    // Install Chrome
+    // Check Chrome availability (assume it's pre-installed on Jenkins agents)
     sh '''
-        wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-        sudo apt-get update
-        sudo apt-get install -y google-chrome-stable
-        google-chrome --version
+        if command -v google-chrome >/dev/null 2>&1; then
+            echo "Chrome already available"
+            google-chrome --version
+        elif command -v chromium-browser >/dev/null 2>&1; then
+            echo "Chromium browser available"
+            chromium-browser --version
+        else
+            echo "Warning: Chrome/Chromium not found. Tests may fail."
+            echo "Please ensure Chrome is installed on Jenkins agents."
+        fi
     '''
     
     echo "Environment setup completed successfully"
