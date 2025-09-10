@@ -271,46 +271,59 @@ pipeline {
 def setupEnvironment() {
     echo "Setting up test environment..."
     
-    // Install Java 21 locally if not available system-wide
+    // Install Java 21 using system-wide approach if possible, fallback to local
     sh '''
         # Check if Java 21 is available system-wide first
         if command -v java >/dev/null 2>&1 && java -version 2>&1 | grep -q "21"; then
             echo "Java 21 already available system-wide"
             java -version
-        elif [ -d "$HOME/java-21" ]; then
-            echo "Java 21 already installed locally"
-            export JAVA_HOME=$HOME/java-21
-            export PATH=$JAVA_HOME/bin:$PATH
-            java -version
         else
-            echo "Installing Java 21 locally..."
-            wget -q https://download.java.net/java/GA/jdk21.0.1/415e3f918a1f4062a0074a2794853d0d/12/GPL/openjdk-21.0.1_linux-x64_bin.tar.gz
-            mkdir -p $HOME/java-21
-            tar -xzf openjdk-21.0.1_linux-x64_bin.tar.gz -C $HOME/java-21 --strip-components=1
-            export JAVA_HOME=$HOME/java-21
-            export PATH=$JAVA_HOME/bin:$PATH
-            echo "Java 21 installed locally at $HOME/java-21"
-            java -version
+            echo "Installing Java 21..."
+            # Try system-wide installation first (may fail without sudo)
+            if sudo apt-get update && sudo apt-get install -y wget openjdk-21-jdk 2>/dev/null; then
+                echo "Java 21 installed system-wide"
+                java -version
+            elif [ -d "$HOME/java-21" ]; then
+                echo "Java 21 already installed locally"
+                export JAVA_HOME=$HOME/java-21
+                export PATH=$JAVA_HOME/bin:$PATH
+                java -version
+            else
+                echo "Installing Java 21 locally..."
+                wget -q https://download.java.net/java/GA/jdk21.0.1/415e3f918a1f4062a0074a2794853d0d/12/GPL/openjdk-21.0.1_linux-x64_bin.tar.gz
+                mkdir -p $HOME/java-21
+                tar -xzf openjdk-21.0.1_linux-x64_bin.tar.gz -C $HOME/java-21 --strip-components=1
+                export JAVA_HOME=$HOME/java-21
+                export PATH=$JAVA_HOME/bin:$PATH
+                echo "Java 21 installed locally at $HOME/java-21"
+                java -version
+            fi
         fi
     '''
     
-    // Install Maven locally if not available
+    // Install Maven using system approach if possible, fallback to local
     sh '''
         if command -v mvn >/dev/null 2>&1; then
             echo "Maven already available"
             mvn -version
-        elif [ -d "$HOME/maven" ]; then
-            echo "Maven already installed locally"
-            export PATH=$HOME/maven/bin:$PATH
-            mvn -version
         else
-            echo "Installing Maven locally..."
-            wget -q https://archive.apache.org/dist/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.tar.gz
-            mkdir -p $HOME/maven
-            tar -xzf apache-maven-3.9.4-bin.tar.gz -C $HOME/maven --strip-components=1
-            export PATH=$HOME/maven/bin:$PATH
-            echo "Maven installed locally at $HOME/maven"
-            mvn -version
+            # Try system-wide installation first
+            if sudo apt-get install -y maven 2>/dev/null; then
+                echo "Maven installed system-wide"
+                mvn -version
+            elif [ -d "$HOME/maven" ]; then
+                echo "Maven already installed locally"
+                export PATH=$HOME/maven/bin:$PATH
+                mvn -version
+            else
+                echo "Installing Maven locally..."
+                wget -q https://archive.apache.org/dist/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.tar.gz
+                mkdir -p $HOME/maven
+                tar -xzf apache-maven-3.9.4-bin.tar.gz -C $HOME/maven --strip-components=1
+                export PATH=$HOME/maven/bin:$PATH
+                echo "Maven installed locally at $HOME/maven"
+                mvn -version
+            fi
         fi
     '''
     
