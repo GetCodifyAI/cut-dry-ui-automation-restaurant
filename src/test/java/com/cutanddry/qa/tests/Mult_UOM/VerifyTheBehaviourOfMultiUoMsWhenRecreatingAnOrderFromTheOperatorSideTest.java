@@ -69,6 +69,9 @@ public class VerifyTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSi
         softAssert.assertEquals(Math.round(totalHistoryItemPrice * 100.0) / 100.0,Math.round(totalOGItemPrice * 100.0) / 100.0);
         History.clickMoreOptions();
         History.clickRecreateOrder();
+        
+        double recreatedCartTotal = Customer.getItemPriceOnCheckoutButton();
+        softAssert.assertEquals(recreatedCartTotal, totalOGItemPrice, "Previous order total not displayed correctly in cart icon");
 
         Customer.searchItemOnOrderGuide(itemCode);
         Customer.clickOGAddToCartPlusIcon(1,itemCode, uom1);
