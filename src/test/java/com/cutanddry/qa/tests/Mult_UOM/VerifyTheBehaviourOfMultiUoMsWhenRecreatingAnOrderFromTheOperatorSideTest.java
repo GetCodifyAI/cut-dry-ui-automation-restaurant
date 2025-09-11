@@ -19,7 +19,7 @@ public class VerifyTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSi
     SoftAssert softAssert;
     String uom1 = "1";
     String uom2 = "2";
-    static double itemOGPriceUOM1 ,itemOGPriceUOM2,totalOGItemPrice, multiItemPrice,totalHistoryItemPrice;
+    static double itemOGPriceUOM1 ,itemOGPriceUOM2,totalOGItemPrice, multiItemPrice,totalHistoryItemPrice,recreatedCartTotal;
     static String orderId;
     static String itemCode = "01409";
 
@@ -70,7 +70,7 @@ public class VerifyTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSi
         History.clickMoreOptions();
         History.clickRecreateOrder();
         
-        double recreatedCartTotal = Customer.getItemPriceOnCheckoutButton();
+        recreatedCartTotal = Customer.getItemPriceOnCheckoutButton();
         softAssert.assertEquals(recreatedCartTotal, totalOGItemPrice, "Previous order total not displayed correctly in cart icon");
 
         Customer.searchItemOnOrderGuide(itemCode);
