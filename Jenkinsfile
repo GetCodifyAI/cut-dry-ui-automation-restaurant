@@ -276,40 +276,52 @@ pipeline {
 }
 
 def setupEnvironment() {
-    echo "Setting up test environment with space optimization..."
+    echo "Setting up test environment..."
     sh '''
         # Clean up any existing temporary files
         rm -rf /tmp/chrome_* /tmp/.org.chromium.* || true
         
-        # Install Java 21
-        sudo apt-get update && sudo apt-get install -y wget
-        if [ ! -d "/usr/lib/jvm/java-21-openjdk-amd64" ]; then
-            sudo apt-get install -y openjdk-21-jdk
-        fi
+        # Set JAVA_HOME to the correct OpenJDK path for Ubuntu
+        export JAVA_HOME='/usr/lib/jvm/java-21-openjdk-amd64'
+        echo "Set JAVA_HOME to: $JAVA_HOME"
         
-        # Install Maven
-        if ! command -v mvn &> /dev/null; then
-            sudo apt-get install -y maven
-        fi
-        
-        # Install Chrome
-        if ! command -v google-chrome &> /dev/null; then
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-        fi
-        
-        # Clean Maven cache to free space
-        mvn dependency:purge-local-repository -DmanualInclude="com.cutanddry" || true
-        
-        # Verify installations
+        # Use existing Java installation
+        echo "Current Java version:"
         java -version
-        mvn -version
-        google-chrome --version
+        
+        # Check if Maven is available with JAVA_HOME set
+        if command -v mvn &> /dev/null; then
+            echo "Maven version:"
+            mvn -version
+        else
+            echo "ERROR: Maven not found in Jenkins environment"
+            echo "Please ensure Maven is installed on the Jenkins node"
+            exit 1
+        fi
+        
+        # Check for browser availability (Chrome, Chromium, or Firefox)
+        if command -v google-chrome &> /dev/null; then
+            echo "Chrome version:"
+            google-chrome --version
+        elif command -v chromium-browser &> /dev/null; then
+            echo "Chromium version:"
+            chromium-browser --version
+        elif command -v firefox &> /dev/null; then
+            echo "Firefox version:"
+            firefox --version
+        else
+            echo "WARNING: No browser found for headless testing"
+            echo "Tests requiring browser automation may fail"
+        fi
+        
+        # Set up workspace
+        echo "Setting up workspace..."
+        mkdir -p target/surefire-reports
         
         # Display available disk space
         df -h
+        
+        echo "Environment setup complete"
     '''
 }
 
