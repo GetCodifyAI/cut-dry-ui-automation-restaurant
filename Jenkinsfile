@@ -33,13 +33,7 @@ pipeline {
         }
         
         stage('Sanity Tests - stag_sanity1') {
-            agent { label 'built-in' }
             steps {
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: 'devin/1757651232-jenkins-stag-sanity1-job']],
-                    userRemoteConfigs: [[url: env.GIT_URL]]
-                ])
                 script {
                     runTestSuite('stag_sanity1.xml', 'Sanity_Check')
                 }
