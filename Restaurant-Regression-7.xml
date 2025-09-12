@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Restaurant Regression Suite 7" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="com.cutanddry.qa.utils.RetryTransformer"/>
+        <listener class-name="com.cutanddry.qa.utils.TestNGListener"/>
+        <listener class-name="com.cutanddry.qa.utils.AIOSampleUIMethodListener"/>
+    </listeners>
+    <test name="Restaurant Support Tests">
+        <parameter name="PART" value="Restaurant Part Seven" />
+        <classes>
+            <class name="com.cutanddry.qa.tests.Support.RestaurantSupportTest" />
+            <class name="com.cutanddry.qa.tests.Suppliers.VerifyAddingSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Suppliers.VerifyEditingSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Suppliers.VerifyDeletingSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Suppliers.VerifyAddingMultipleSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Suppliers.VerifyViewArchivedSupplierTest" />
+            <class name="com.cutanddry.qa.tests.Suppliers.VerifyArchivedSupplierTest" />
+            <class name="com.cutanddry.qa.tests.units.VerifyOrderItemUnitsTest" />
+        </classes>
+    </test>
+</suite>

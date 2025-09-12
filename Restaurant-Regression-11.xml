@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Restaurant Regression Suite 11" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="com.cutanddry.qa.utils.RetryTransformer"/>
+        <listener class-name="com.cutanddry.qa.utils.TestNGListener"/>
+        <listener class-name="com.cutanddry.qa.utils.AIOSampleUIMethodListener"/>
+    </listeners>
+    <test name="Restaurant Multi-UOM Tests">
+        <parameter name="PART" value="Restaurant Part Eleven" />
+        <classes>
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyMultiUOMFunctionalityTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyMultiUOMOrderingTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyMultiUOMPricingTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyMultiUOMConversionTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyMultiUOMDisplayTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForClassicOperatorTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForWhiteLabelOperatorTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForClassicOperatorTestTest" />
+            <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForWhiteLabelOperatorTest" />
+        </classes>
+    </test>
+</suite>

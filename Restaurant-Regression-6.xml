@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Restaurant Regression Suite 6" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="com.cutanddry.qa.utils.RetryTransformer"/>
+        <listener class-name="com.cutanddry.qa.utils.TestNGListener"/>
+        <listener class-name="com.cutanddry.qa.utils.AIOSampleUIMethodListener"/>
+    </listeners>
+    <test name="Restaurant Users Tests">
+        <parameter name="PART" value="Restaurant Part Six" />
+        <classes>
+            <class name="com.cutanddry.qa.tests.Settings.Users.VerifyAddingNewUserTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Users.VerifyEditingUserTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Users.VerifyDeletingUserTest" />
+            <class name="com.cutanddry.qa.tests.Approvals.VerifyOrderApprovalTurnOnFeatureTest" />
+            <class name="com.cutanddry.qa.tests.Approvals.VerifyOrderApprovalChangesTest" />
+            <class name="com.cutanddry.qa.tests.MultiCart.VerifyCreatedOrdersFromMultipleCartsTest" />
+            <class name="com.cutanddry.qa.tests.MultiCart.VerifyGroupingProductsIntoCartsTest" />
+            <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaOrderGuideCatalogAndPDPTest" />
+        </classes>
+    </test>
+</suite>

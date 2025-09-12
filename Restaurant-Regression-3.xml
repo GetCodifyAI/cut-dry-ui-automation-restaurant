@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Restaurant Regression Suite 3" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="com.cutanddry.qa.utils.RetryTransformer"/>
+        <listener class-name="com.cutanddry.qa.utils.TestNGListener"/>
+        <listener class-name="com.cutanddry.qa.utils.AIOSampleUIMethodListener"/>
+    </listeners>
+    <test name="Restaurant Settings Tests">
+        <parameter name="PART" value="Restaurant Part Three" />
+        <classes>
+            <class name="com.cutanddry.qa.tests.Settings.VerifyThatTheUsersCannotOrderItemsAfterTheCutOffTimeTest" />
+            <class name="com.cutanddry.qa.tests.Settings.VerifyThatTheUsersCanOrderItemsBeforeTheCutOffTimeTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Accounting.VeryAddingAccountCategoryTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Accounting.VerifyEditingAccountCategoryTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Accounting.VerifyDeletingAccountCategoryTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Location.VerifyAddLocationTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Location.VerifyEditLocationTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Location.VerifyDeleteLocationTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Profile.VerifyProfileUpdateTest" />
+            <class name="com.cutanddry.qa.tests.Settings.Restaurant.VerifyRestaurantUpdateTest" />
+        </classes>
+    </test>
+</suite>

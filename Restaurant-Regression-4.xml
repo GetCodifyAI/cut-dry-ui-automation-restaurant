@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Restaurant Regression Suite 4" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="com.cutanddry.qa.utils.RetryTransformer"/>
+        <listener class-name="com.cutanddry.qa.utils.TestNGListener"/>
+        <listener class-name="com.cutanddry.qa.utils.AIOSampleUIMethodListener"/>
+    </listeners>
+    <test name="Restaurant History Tests">
+        <parameter name="PART" value="Restaurant Part Four" />
+        <classes>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderSearchFeatureTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsViewItemTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsViewTimelineTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheMoreFiltersFeatureTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsPrintOrderTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsAddNotesTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsCheckInOrderTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsCancelOrderTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsEditOrderTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsRecreateOrderTest"/>
+        </classes>
+    </test>
+</suite>

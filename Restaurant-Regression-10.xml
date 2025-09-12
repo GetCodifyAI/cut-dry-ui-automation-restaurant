@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Restaurant Regression Suite 10" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="com.cutanddry.qa.utils.RetryTransformer"/>
+        <listener class-name="com.cutanddry.qa.utils.TestNGListener"/>
+        <listener class-name="com.cutanddry.qa.utils.AIOSampleUIMethodListener"/>
+    </listeners>
+    <test name="Restaurant Orders Tests">
+        <parameter name="PART" value="Restaurant Part Ten" />
+        <classes>
+            <class name="com.cutanddry.qa.tests.Orders.VerifySupplierFilteredByLocationTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyTheCreateItemFunctionalityTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyUserCanOrderItemsBeforeCutOffTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrderGuideWithCatalogItemsTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSortOptionsTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheCutOffTimeForPickup" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePickUpDisplayTerm" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePickUpSubmit" />
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Restaurant Regression Suite 2" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="com.cutanddry.qa.utils.RetryTransformer"/>
+        <listener class-name="com.cutanddry.qa.utils.TestNGListener"/>
+        <listener class-name="com.cutanddry.qa.utils.AIOSampleUIMethodListener"/>
+    </listeners>
+    <test name="Restaurant Catalog Tests">
+        <parameter name="PART" value="Restaurant Part Two" />
+        <classes>
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyCatalogItemImagesTest" />
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyItemDescriptionTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyExportingOrderGuideEditFeatureTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePrintFeatureTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyAddingOrderGuideSectionsTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditOrderGuideSectionsTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyOrderGuideSectionDeleteTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyHidingAnItemFromOrderGuideTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyUnhideItemsFromOrderGuideTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSearchFeatureTest" />
+        </classes>
+    </test>
+</suite>

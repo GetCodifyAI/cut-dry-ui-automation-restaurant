@@ -8,9 +8,9 @@ pipeline {
             description: 'Select the test environment'
         )
         choice(
-            name: 'REGRESSION_SUITE',
-            choices: ['all', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-            description: 'Select specific regression suite to run (or all for parallel execution)'
+            name: 'SUITE_SELECTION',
+            choices: ['All', 'Smoke'],
+            description: 'Select suite type: All (runs 11 regression XMLs in parallel) or Smoke (runs only smoke tests)'
         )
         booleanParam(
             name: 'CLEANUP_AFTER_EXECUTION',
@@ -26,6 +26,7 @@ pipeline {
         RUN_HEADLESS = 'true'
         BROWSER_VERSION = 'latest'
         WORKSPACE_CLEANUP = "${params.CLEANUP_AFTER_EXECUTION}"
+        SUITE_TYPE = "${params.SUITE_SELECTION}"
     }
     
     stages {
@@ -37,193 +38,193 @@ pipeline {
             }
         }
         
-        stage('Execute Tests') {
+        stage('Execute All Regression Tests') {
             when {
-                expression { params.REGRESSION_SUITE == 'all' }
+                expression { params.SUITE_SELECTION == 'All' }
             }
             parallel {
-                stage('Regression 1 - Order Guide Tests') {
+                stage('Restaurant Regression 1 - Order Guide Tests') {
                     agent { label 'built-in' }
                     steps {
                         checkout scm
                         script {
-                            runTestSuiteWithCleanup('regression1.xml', 'Part_One', '1')
+                            runTestSuiteWithCleanup('Restaurant-Regression-1.xml', 'Restaurant_Part_One', '1')
                         }
                     }
                     post {
                         always {
                             script {
-                                archiveAndCleanup('1', 'Regression 1 Test Report')
+                                archiveAndCleanup('1', 'Restaurant Regression 1 Test Report')
                             }
                         }
                     }
                 }
                 
-                stage('Regression 2 - Catalog Tests') {
+                stage('Restaurant Regression 2 - Catalog Tests') {
                     agent { label 'built-in' }
                     steps {
                         checkout scm
                         script {
-                            runTestSuiteWithCleanup('regression2.xml', 'Part_Two', '2')
+                            runTestSuiteWithCleanup('Restaurant-Regression-2.xml', 'Restaurant_Part_Two', '2')
                         }
                     }
                     post {
                         always {
                             script {
-                                archiveAndCleanup('2', 'Regression 2 Test Report')
+                                archiveAndCleanup('2', 'Restaurant Regression 2 Test Report')
                             }
                         }
                     }
                 }
                 
-                stage('Regression 3 - Payment Tests') {
+                stage('Restaurant Regression 3 - Settings Tests') {
                     agent { label 'built-in' }
                     steps {
                         checkout scm
                         script {
-                            runTestSuiteWithCleanup('regression3.xml', 'Part_Three', '3')
+                            runTestSuiteWithCleanup('Restaurant-Regression-3.xml', 'Restaurant_Part_Three', '3')
                         }
                     }
                     post {
                         always {
                             script {
-                                archiveAndCleanup('3', 'Regression 3 Test Report')
+                                archiveAndCleanup('3', 'Restaurant Regression 3 Test Report')
                             }
                         }
                     }
                 }
                 
-                stage('Regression 4 - History Tests') {
+                stage('Restaurant Regression 4 - History Tests') {
                     agent { label 'built-in' }
                     steps {
                         checkout scm
                         script {
-                            runTestSuiteWithCleanup('regression4.xml', 'Part_Four', '4')
+                            runTestSuiteWithCleanup('Restaurant-Regression-4.xml', 'Restaurant_Part_Four', '4')
                         }
                     }
                     post {
                         always {
                             script {
-                                archiveAndCleanup('4', 'Regression 4 Test Report')
+                                archiveAndCleanup('4', 'Restaurant Regression 4 Test Report')
                             }
                         }
                     }
                 }
                 
-                stage('Regression 5 - Settings Tests') {
+                stage('Restaurant Regression 5 - SignIn Tests') {
                     agent { label 'built-in' }
                     steps {
                         checkout scm
                         script {
-                            runTestSuiteWithCleanup('regression5.xml', 'Part_Five', '5')
+                            runTestSuiteWithCleanup('Restaurant-Regression-5.xml', 'Restaurant_Part_Five', '5')
                         }
                     }
                     post {
                         always {
                             script {
-                                archiveAndCleanup('5', 'Regression 5 Test Report')
+                                archiveAndCleanup('5', 'Restaurant Regression 5 Test Report')
                             }
                         }
                     }
                 }
                 
-                stage('Regression 6 - Credit Requests Tests') {
+                stage('Restaurant Regression 6 - Users Tests') {
                     agent { label 'built-in' }
                     steps {
                         checkout scm
                         script {
-                            runTestSuiteWithCleanup('regression6.xml', 'Part_Six', '6')
+                            runTestSuiteWithCleanup('Restaurant-Regression-6.xml', 'Restaurant_Part_Six', '6')
                         }
                     }
                     post {
                         always {
                             script {
-                                archiveAndCleanup('6', 'Regression 6 Test Report')
+                                archiveAndCleanup('6', 'Restaurant Regression 6 Test Report')
                             }
                         }
                     }
                 }
                 
-                stage('Regression 7 - Reports Tests') {
+                stage('Restaurant Regression 7 - Support Tests') {
                     agent { label 'built-in' }
                     steps {
                         checkout scm
                         script {
-                            runTestSuiteWithCleanup('regression7.xml', 'Part_Seven', '7')
+                            runTestSuiteWithCleanup('Restaurant-Regression-7.xml', 'Restaurant_Part_Seven', '7')
                         }
                     }
                     post {
                         always {
                             script {
-                                archiveAndCleanup('7', 'Regression 7 Test Report')
+                                archiveAndCleanup('7', 'Restaurant Regression 7 Test Report')
                             }
                         }
                     }
                 }
                 
-                stage('Regression 8 - Role Tests') {
+                stage('Restaurant Regression 8 - History Advanced Tests') {
                     agent { label 'built-in' }
                     steps {
                         checkout scm
                         script {
-                            runTestSuiteWithCleanup('regression8.xml', 'Part_Eight', '8')
+                            runTestSuiteWithCleanup('Restaurant-Regression-8.xml', 'Restaurant_Part_Eight', '8')
                         }
                     }
                     post {
                         always {
                             script {
-                                archiveAndCleanup('8', 'Regression 8 Test Report')
+                                archiveAndCleanup('8', 'Restaurant Regression 8 Test Report')
                             }
                         }
                     }
                 }
                 
-                stage('Regression 9 - Additional Role Tests') {
+                stage('Restaurant Regression 9 - Rewards Tests') {
                     agent { label 'built-in' }
                     steps {
                         checkout scm
                         script {
-                            runTestSuiteWithCleanup('regression9.xml', 'Part_Nine', '9')
+                            runTestSuiteWithCleanup('Restaurant-Regression-9.xml', 'Restaurant_Part_Nine', '9')
                         }
                     }
                     post {
                         always {
                             script {
-                                archiveAndCleanup('9', 'Regression 9 Test Report')
+                                archiveAndCleanup('9', 'Restaurant Regression 9 Test Report')
                             }
                         }
                     }
                 }
                 
-                stage('Regression 10 - Extended Tests') {
+                stage('Restaurant Regression 10 - Orders Tests') {
                     agent { label 'built-in' }
                     steps {
                         checkout scm
                         script {
-                            runTestSuiteWithCleanup('regression10.xml', 'Part_Ten', '10')
+                            runTestSuiteWithCleanup('Restaurant-Regression-10.xml', 'Restaurant_Part_Ten', '10')
                         }
                     }
                     post {
                         always {
                             script {
-                                archiveAndCleanup('10', 'Regression 10 Test Report')
+                                archiveAndCleanup('10', 'Restaurant Regression 10 Test Report')
                             }
                         }
                     }
                 }
                 
-                stage('Regression 11 - Multi-UOM Tests') {
+                stage('Restaurant Regression 11 - Multi-UOM Tests') {
                     agent { label 'built-in' }
                     steps {
                         checkout scm
                         script {
-                            runTestSuiteWithCleanup('regression11.xml', 'Part_Eleven', '11')
+                            runTestSuiteWithCleanup('Restaurant-Regression-11.xml', 'Restaurant_Part_Eleven', '11')
                         }
                     }
                     post {
                         always {
                             script {
-                                archiveAndCleanup('11', 'Regression 11 Test Report')
+                                archiveAndCleanup('11', 'Restaurant Regression 11 Test Report')
                             }
                         }
                     }
@@ -231,40 +232,20 @@ pipeline {
             }
         }
         
-        stage('Execute Single Suite') {
+        stage('Execute Smoke Tests') {
             when {
-                expression { params.REGRESSION_SUITE != 'all' }
+                expression { params.SUITE_SELECTION == 'Smoke' }
             }
             steps {
                 script {
-                    def suiteNumber = params.REGRESSION_SUITE
-                    def suiteMap = [
-                        '1': ['regression1.xml', 'Part_One', 'Order Guide Tests'],
-                        '2': ['regression2.xml', 'Part_Two', 'Catalog Tests'],
-                        '3': ['regression3.xml', 'Part_Three', 'Payment Tests'],
-                        '4': ['regression4.xml', 'Part_Four', 'History Tests'],
-                        '5': ['regression5.xml', 'Part_Five', 'Settings Tests'],
-                        '6': ['regression6.xml', 'Part_Six', 'Credit Requests Tests'],
-                        '7': ['regression7.xml', 'Part_Seven', 'Reports Tests'],
-                        '8': ['regression8.xml', 'Part_Eight', 'Role Tests'],
-                        '9': ['regression9.xml', 'Part_Nine', 'Additional Role Tests'],
-                        '10': ['regression10.xml', 'Part_Ten', 'Extended Tests'],
-                        '11': ['regression11.xml', 'Part_Eleven', 'Multi-UOM Tests']
-                    ]
-                    
-                    def suiteInfo = suiteMap[suiteNumber]
-                    if (suiteInfo) {
-                        echo "Running ${suiteInfo[2]} (${suiteInfo[0]})"
-                        runTestSuiteWithCleanup(suiteInfo[0], suiteInfo[1], suiteNumber)
-                    } else {
-                        error "Invalid regression suite number: ${suiteNumber}"
-                    }
+                    echo "Running Restaurant Smoke Tests (Restaurant-Smoke.xml)"
+                    runTestSuiteWithCleanup('Restaurant-Smoke.xml', 'Restaurant_Smoke', 'Smoke')
                 }
             }
             post {
                 always {
                     script {
-                        archiveAndCleanup(params.REGRESSION_SUITE, "Regression ${params.REGRESSION_SUITE} Test Report")
+                        archiveAndCleanup('Smoke', 'Restaurant Smoke Test Report')
                     }
                 }
             }
@@ -484,7 +465,7 @@ def sendSlackNotification() {
     def message = """
 ${emoji} Restaurant Tests ${buildStatus} - Build #${env.BUILD_NUMBER}
 Environment: ${env.TEST_ENV}
-Suite: ${params.REGRESSION_SUITE}
+Suite Selection: ${params.SUITE_SELECTION}
 Cleanup Enabled: ${params.CLEANUP_AFTER_EXECUTION}
 Duration: ${currentBuild.durationString}
 🔗 View Results: ${env.BUILD_URL}
