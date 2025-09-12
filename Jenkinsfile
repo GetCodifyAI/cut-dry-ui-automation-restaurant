@@ -113,6 +113,8 @@ def runTestSuite(String suiteFile, String partName) {
             -Dsurefire.suiteXmlFiles=${suiteFile} \\
             -Drun.headless=true \\
             -Dtest.env=${TEST_ENV} \\
-            -DTEST_STAG=${TEST_STAG_VALUE}
+            -DTEST_STAG=${TEST_STAG_VALUE} \\
+            -Dcreate.cycle=true \\
+            -Dpart=${partName}
     """
 }
