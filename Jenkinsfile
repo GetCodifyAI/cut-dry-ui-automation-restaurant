@@ -4,13 +4,13 @@ pipeline {
     parameters {
         choice(
             name: 'TEST_ENVIRONMENT',
-            choices: ['uat', 'staging', 'prod'],
+            choices: ['stag', 'uat', 'staging', 'prod'],
             description: 'Select the test environment'
         )
         string(
             name: 'TEST_STAG',
             defaultValue: 'mfg2640',
-            description: 'TEST_STAG parameter value'
+            description: 'TEST_STAG parameter value (used when environment is stag)'
         )
     }
     
