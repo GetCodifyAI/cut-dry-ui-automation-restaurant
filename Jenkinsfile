@@ -17,6 +17,11 @@ pipeline {
             defaultValue: true,
             description: 'Clean up temporary files after execution to save disk space'
         )
+        booleanParam(
+            name: 'CREATE_CYCLE',
+            defaultValue: false,
+            description: 'Create test cycle in AIO for test execution tracking and reporting'
+        )
     }
     
     environment {
@@ -27,6 +32,7 @@ pipeline {
         BROWSER_VERSION = 'latest'
         WORKSPACE_CLEANUP = "${params.CLEANUP_AFTER_EXECUTION}"
         SUITE_TYPE = "${params.SUITE_SELECTION}"
+        CREATE_CYCLE = "${params.CREATE_CYCLE}"
     }
     
     stages {
@@ -350,6 +356,7 @@ def runTestSuiteWithCleanup(xmlFile, partName, suiteNumber) {
                 -Dsurefire.suiteXmlFiles=${xmlFile} \\
                 -Drun.headless=${env.RUN_HEADLESS} \\
                 -Dtest.env=${env.TEST_ENV} \\
+                -Dcreate.cycle=${env.CREATE_CYCLE} \\
                 -Dmaven.test.failure.ignore=true \\
                 -Dmaven.repo.local=\${WORKSPACE}/.m2/repository
         """
@@ -478,6 +485,7 @@ def sendSlackNotification() {
 ${emoji} Restaurant Tests ${buildStatus} - Build #${env.BUILD_NUMBER}
 Environment: ${env.TEST_ENV}
 Suite Selection: ${params.SUITE_SELECTION}
+Cycle Creation: ${params.CREATE_CYCLE}
 Cleanup Enabled: ${params.CLEANUP_AFTER_EXECUTION}
 Duration: ${currentBuild.durationString}
 🔗 View Results: ${env.BUILD_URL}
