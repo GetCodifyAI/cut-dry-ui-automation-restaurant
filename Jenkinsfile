@@ -110,6 +110,11 @@ def setupEnvironment() {
 
 def runTestSuite(String suiteFile, String partName) {
     sh """
+        export JAVA_HOME=\$WORKSPACE/tools/java/java-22-openjdk-amd64
+        export PATH=\$JAVA_HOME/bin:\$PATH
+        export MAVEN_HOME=\$WORKSPACE/tools/maven/maven
+        export PATH=\$MAVEN_HOME/bin:\$PATH
+        
         mvn clean test \\
             -Dsurefire.suiteXmlFiles=${suiteFile} \\
             -Drun.headless=true \\
