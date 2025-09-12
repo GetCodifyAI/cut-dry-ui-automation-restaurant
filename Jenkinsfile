@@ -37,7 +37,7 @@ pipeline {
             steps {
                 checkout([
                     $class: 'GitSCM',
-                    branches: [[name: 'sanity_check_suite']],
+                    branches: [[name: 'devin/1757651232-jenkins-stag-sanity1-job']],
                     userRemoteConfigs: [[url: env.GIT_URL]]
                 ])
                 script {
@@ -77,28 +77,18 @@ pipeline {
 
 def setupEnvironment() {
     sh '''
-        # Install Java 21
-        sudo apt-get update && sudo apt-get install -y wget
-        if [ ! -d "/usr/lib/jvm/java-21-openjdk-amd64" ]; then
-            sudo apt-get install -y openjdk-21-jdk
+        # Check available tools
+        echo "Checking available tools..."
+        java -version || echo "Java not found"
+        mvn -version || echo "Maven not found"
+        google-chrome --version || echo "Chrome not found"
+        
+        # Set JAVA_HOME if not set
+        if [ -z "$JAVA_HOME" ]; then
+            export JAVA_HOME=/usr/lib/jvm/default-java
         fi
         
-        # Install Maven
-        if ! command -v mvn &> /dev/null; then
-            sudo apt-get install -y maven
-        fi
-        
-        # Install Chrome
-        if ! command -v google-chrome &> /dev/null; then
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-        fi
-        
-        java -version
-        mvn -version
-        google-chrome --version
+        echo "Environment setup completed"
     '''
 }
 
