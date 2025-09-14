@@ -22,6 +22,13 @@ public class SlackNotifier {
 
     public static void sendSlackAlert(int totalTests, int passedTests, int failedTests, String environment, List<String> passedTestCases, List<String> failedTestCases, String PART,String host) {
         try {
+            if (WEBHOOK_URL == null || WEBHOOK_URL.trim().isEmpty()) {
+                System.out.println("Slack webhook URL is not configured. Skipping Slack notification.");
+                return;
+            }
+
+            String environmentHost = (host != null && !host.trim().isEmpty()) ? host : "unknown";
+            
             // Construct the JSON payload
             String payload = "{"
                     + "\"blocks\": ["
@@ -29,7 +36,7 @@ public class SlackNotifier {
                     + "\"type\": \"section\","
                     + "\"text\": {"
                     + "\"type\": \"mrkdwn\","
-                    + "\"text\": \"*Operator " + PART +" [ "+host+" ] - Test Suite Execution Completed!*\""
+                    + "\"text\": \"*Operator " + PART +" [ "+environmentHost+" ] - Test Suite Execution Completed!*\""
                     + "}"
                     + "},"
                     + "{"
@@ -38,6 +45,10 @@ public class SlackNotifier {
                     + "{"
                     + "\"type\": \"mrkdwn\","
                     + "\"text\": \"*Environment:*\\n" + environment + "\""
+                    + "},"
+                    + "{"
+                    + "\"type\": \"mrkdwn\","
+                    + "\"text\": \"*Host:*\\n" + environmentHost + "\""
                     + "},"
                     + "{"
                     + "\"type\": \"mrkdwn\","
@@ -101,6 +112,7 @@ public class SlackNotifier {
             System.out.println("Slack alert sent successfully!");
 
         } catch (Exception e) {
+            System.out.println("Failed to send Slack notification: " + e.getMessage());
             e.printStackTrace();
         }
     }
