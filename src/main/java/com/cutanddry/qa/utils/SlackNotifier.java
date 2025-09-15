@@ -27,8 +27,6 @@ public class SlackNotifier {
                 return;
             }
 
-            String environmentHost = (host != null && !host.trim().isEmpty()) ? host : "unknown";
-            
             // Construct the JSON payload
             String payload = "{"
                     + "\"blocks\": ["
@@ -36,7 +34,7 @@ public class SlackNotifier {
                     + "\"type\": \"section\","
                     + "\"text\": {"
                     + "\"type\": \"mrkdwn\","
-                    + "\"text\": \"*Operator " + PART +" [ "+environmentHost+" ] - Test Suite Execution Completed!*\""
+                    + "\"text\": \"*Operator " + PART +" [ "+host+" ] - Test Suite Execution Completed!*\""
                     + "}"
                     + "},"
                     + "{"
@@ -45,10 +43,6 @@ public class SlackNotifier {
                     + "{"
                     + "\"type\": \"mrkdwn\","
                     + "\"text\": \"*Environment:*\\n" + environment + "\""
-                    + "},"
-                    + "{"
-                    + "\"type\": \"mrkdwn\","
-                    + "\"text\": \"*Host:*\\n" + environmentHost + "\""
                     + "},"
                     + "{"
                     + "\"type\": \"mrkdwn\","
