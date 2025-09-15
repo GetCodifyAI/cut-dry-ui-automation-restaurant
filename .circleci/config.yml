@@ -75,7 +75,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run sanity tests 1
-          command: mvn clean test -Dsurefire.suiteXmlFiles=stag_sanity1.xml -Drun.headless=true -Dtest.env=stag
+          command: mvn clean test -Dsurefire.suiteXmlFiles=stag_sanity1.xml -Drun.headless=true -Dtest.env=stag -DTEST_STAG=dot9940
       - store_artifacts:
           path: target/surefire-reports
           destination: sanity-build-and-test-artifacts-1
@@ -114,7 +114,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run daily tests 1
-          command: mvn clean test -Dsurefire.suiteXmlFiles=stag_sanity1.xml -Drun.headless=true -Dtest.env=stag -Dcreate.cycle=true
+          command: mvn clean test -Dsurefire.suiteXmlFiles=stag_sanity1.xml -Drun.headless=true -Dtest.env=stag -DTEST_STAG=dot9940 -Dcreate.cycle=true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-1
