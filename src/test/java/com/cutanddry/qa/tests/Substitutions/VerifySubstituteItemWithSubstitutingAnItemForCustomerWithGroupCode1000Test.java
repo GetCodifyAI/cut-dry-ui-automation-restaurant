@@ -14,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifySubstituteItemWithSubstitutingAnItemForCustomerWithGroupCode1000Test extends TestBase {
     static User user;
     String searchItemCode = "99005";
-    static String OperatorName = "mesafrozenyogurt@gmail";
+    static String OperatorName = "32349239";
     static double itemPrice;
     static String itemName,orderId;
 

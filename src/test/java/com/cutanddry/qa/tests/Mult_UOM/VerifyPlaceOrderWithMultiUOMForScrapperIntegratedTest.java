@@ -14,7 +14,7 @@ import static com.cutanddry.qa.base.TestBase.*;
 
 public class VerifyPlaceOrderWithMultiUOMForScrapperIntegratedTest {
     static User user;
-    String userName = "jcoupal@coupacafe";
+    String userName = "1000030";
     String supplierName = "Pacific Produce";
     String uom1 = "1";
     String uom2 = "2";
