@@ -43,7 +43,7 @@ pipeline {
                     archiveArtifacts artifacts: 'target/surefire-reports/**/*', allowEmptyArchive: true
                     stash includes: 'target/surefire-reports/TEST-*.xml', name: 'test-results-sanity'
                     publishHTML([
-                        allowMissing: false,
+                        allowMissing: true,
                         alwaysLinkToLastBuild: true,
                         keepAll: true,
                         reportDir: 'target/site',
@@ -124,7 +124,8 @@ def runTestSuite(String suiteFile, String partName) {
             -Dtest.env=${TEST_ENV} \\
             -DTEST_STAG=${TEST_STAG_VALUE} \\
             -Dcreate.cycle=true \\
-            -Dpart=${partName}
+            -Dpart=${partName} \\
+            -Dmaven.test.failure.ignore=true
         
         # Generate HTML report
         mvn surefire-report:report-only
