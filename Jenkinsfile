@@ -42,6 +42,15 @@ pipeline {
                 always {
                     archiveArtifacts artifacts: 'target/surefire-reports/**/*', allowEmptyArchive: true
                     stash includes: 'target/surefire-reports/TEST-*.xml', name: 'test-results-sanity'
+                    publishHTML([
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'target/site',
+                        reportFiles: 'surefire-report.html',
+                        reportName: 'Test Results HTML Report',
+                        reportTitles: 'Cut & Dry Test Results'
+                    ])
                 }
             }
         }
@@ -116,5 +125,8 @@ def runTestSuite(String suiteFile, String partName) {
             -DTEST_STAG=${TEST_STAG_VALUE} \\
             -Dcreate.cycle=true \\
             -Dpart=${partName}
+        
+        # Generate HTML report
+        mvn surefire-report:report-only
     """
 }
