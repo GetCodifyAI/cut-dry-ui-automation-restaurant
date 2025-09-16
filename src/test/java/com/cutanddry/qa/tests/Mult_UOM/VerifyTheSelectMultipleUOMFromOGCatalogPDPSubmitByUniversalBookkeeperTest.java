@@ -15,7 +15,7 @@ public class VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalBookkeep
     String searchItemName2 = "Organic Bananas - 2 LB";
     String searchItemCode = "01409";
     String searchItemCode2 = "00529";
-    String OperatorName = "universal@cutanddry";
+    String OperatorName = "429743989";
     String uomDropDownOption = "Multiple Units";
     String uom1 = "1";
     String uom2 = "2";

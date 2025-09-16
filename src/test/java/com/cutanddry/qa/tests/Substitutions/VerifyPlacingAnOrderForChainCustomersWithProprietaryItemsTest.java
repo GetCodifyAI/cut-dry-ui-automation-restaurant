@@ -16,7 +16,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyPlacingAnOrderForChainCustomersWithProprietaryItemsTest extends TestBase {
     static User user;
     String searchItemCode = "45132";
-    static String OperatorName = "flattcobr@gmail";
+    static String OperatorName = "61233053";
     static double itemPrice;
     static String itemName,orderId;
 

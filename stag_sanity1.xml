@@ -9,6 +9,21 @@
         <parameter name="PART" value="Sanity_Check" />
         <classes>
             <class name="com.cutanddry.qa.tests.E2E.PlaceDeliveryOrderViaOrderGuideTest"/>
+            <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaCatalogTest"/>
+            <class name="com.cutanddry.qa.tests.E2E.PlaceMailDeliveryOrderViaPDPTest"/>
+            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmReviewCartTest"/>
+            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromCatalogTest"/>
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionFromDraftTest"/>
+            <class name="com.cutanddry.qa.tests.History.VerifyTheOrderDetailsEditOrderTest"/>
+            <class name="com.cutanddry.qa.tests.Drafts.VerifyDeleteDraftOrderTest"/>
+            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromOrderGuideCatalogPDPTest"/>
+            <class name="com.cutanddry.qa.tests.Pay.VerifyPrintReceiptPaidInvoiceTest"/>
+            <class name="com.cutanddry.qa.tests.Pay.VerifyOutstandingInvoiceTest"/>
+            <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureDisplayWhenChatModuleEnableTest"/>
+            <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureNotDisplayWhenChatModuleDisableInWhiteLabelCustomerTest"/>
+            <class name="com.cutanddry.qa.tests.Reports.VerifyDailyExpensesReportGenerateTest"/>
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyTheBehaviourWhenAddingAnOrderFromTheUploadToOrderFeatureTest"/>
+
         </classes>
     </test>
 </suite>
