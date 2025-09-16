@@ -19,7 +19,6 @@ public class Constants {
     public static String SAVAL_FOOD_URL = "https://savalfoodservice-uat.staging.cutanddry.com/log-in?redirect_on_login=%2F";
     public static final String TEST_STAG ="dds-52";
 
-
     //slackToken=***
     //slackChannel=#ui-automation-tests
 
