@@ -4,7 +4,7 @@ pipeline {
     parameters {
         choice(
             name: 'TEST_ENVIRONMENT',
-            choices: ['stag', 'uat', 'staging', 'prod'],
+            choices: ['stag'],
             description: 'Select the test environment'
         )
         string(
