@@ -20,8 +20,13 @@ public class SlackNotifier {
     // Update this with the actual URL where the report is hosted
     private static final String REPORT_URL = "https://app.circleci.com/pipelines/github/GetCodifyAI/cut-and-dry?branch=master";
 
-    public static void sendSlackAlert(int totalTests, int passedTests, int failedTests, String environment, List<String> passedTestCases, List<String> failedTestCases, String PART) {
+    public static void sendSlackAlert(int totalTests, int passedTests, int failedTests, String environment, List<String> passedTestCases, List<String> failedTestCases, String PART,String host) {
         try {
+            if (WEBHOOK_URL == null || WEBHOOK_URL.trim().isEmpty()) {
+                System.out.println("Slack webhook URL is not configured. Skipping Slack notification.");
+                return;
+            }
+
             // Construct the JSON payload
             String payload = "{"
                     + "\"blocks\": ["
@@ -29,7 +34,7 @@ public class SlackNotifier {
                     + "\"type\": \"section\","
                     + "\"text\": {"
                     + "\"type\": \"mrkdwn\","
-                    + "\"text\": \"*Operator " + PART + " - Test Suite Execution Completed!*\""
+                    + "\"text\": \"*Operator " + PART +" [ "+host+" ] - Test Suite Execution Completed!*\""
                     + "}"
                     + "},"
                     + "{"
@@ -101,6 +106,7 @@ public class SlackNotifier {
             System.out.println("Slack alert sent successfully!");
 
         } catch (Exception e) {
+            System.out.println("Failed to send Slack notification: " + e.getMessage());
             e.printStackTrace();
         }
     }
