@@ -19,6 +19,8 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
     static String DP = "Hillcrest Foodservice";
     static String OperatorName = "177931291";
     SoftAssert softAssert;
+    static String simpleListView = "Enabled on DP Portal & Operator App";
+    static String status ="Enabled on DP Portal & Operator App";
 
     @BeforeMethod
     public void setUp(){
@@ -30,7 +32,6 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
     public void verifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalToolsForDistributor() throws InterruptedException {
         softAssert = new SoftAssert();
 
-        // Order Guide
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
@@ -40,15 +41,11 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
         InternalTools.navigateToConfigureSupplier();
         InternalTools.navigateToEditDetails(DP);
         InternalTools.navigateToOrderingSettingsTab();
-        InternalTools.enableQuickAdd();
-        InternalTools.enableSimpleList();
-
-        // Order Guide
-        Login.navigateToInternalTools();
-        InternalTools.navigateToConfigureSupplier();
-        InternalTools.navigateToEditDetails(DP);
-        InternalTools.navigateToOrderingSettingsTab();
+        InternalTools.clickOnQuickAddViewDropDown(status);
+        InternalTools.clickOnSimpleListViewDropdown(simpleListView);
         InternalTools.enableDefaultViewPortalAsOrderGuide();
+        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save");
+        InternalTools.clickOkOnSuccessBtn();
 
         Login.navigateToLoginAs();
         Login.logInToOperatorAsWhiteLabel(OperatorName);
@@ -62,6 +59,9 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
         InternalTools.navigateToEditDetails(DP);
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.enableDefaultViewPortalAsCatalog();
+        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save");
+        InternalTools.clickOkOnSuccessBtn();
+        Login.closePreviousTab();
 
         Login.navigateToLoginAs();
         Login.logInToOperatorAsWhiteLabel(OperatorName);
@@ -74,6 +74,9 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
         InternalTools.navigateToEditDetails(DP);
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.enableDefaultViewPortalAsQuickAdd();
+        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save");
+        InternalTools.clickOkOnSuccessBtn();
+        Login.closePreviousTab();
 
         Login.navigateToLoginAs();
         Login.logInToOperatorAsWhiteLabel(OperatorName);
@@ -86,6 +89,9 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
         InternalTools.navigateToEditDetails(DP);
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.enableDefaultViewPortalAsSimpleList();
+        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save");
+        InternalTools.clickOkOnSuccessBtn();
+        Login.closePreviousTab();
 
         Login.navigateToLoginAs();
         Login.logInToOperatorAsWhiteLabel(OperatorName);
@@ -110,6 +116,8 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
         InternalTools.navigateToEditDetails(DP);
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.enableDefaultViewPortalAsOrderGuide();
+        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save");
+        InternalTools.clickOkOnSuccessBtn();
 
         softAssert.assertAll();
     }
