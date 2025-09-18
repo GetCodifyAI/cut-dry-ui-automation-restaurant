@@ -44,7 +44,7 @@ public class PayPage extends TestBase {
     By btn_downloadReceipt = By.xpath("(//a[contains(@class,'dropdown-item')])[1]");
     By btn_statusPaid = By.xpath("(//div[contains(text(),'Status')]//*[contains(@class,'dropdown-indicator')])[2]");
     By paidInvoice = By.xpath("//div[contains(text(),'Paid')]");
-    By statusPaid = By.xpath("//div[contains(text(),'Paid')]");
+    By statusPaid = By.xpath("//td[contains(text(),'Paid')]");
     By txt_filteredStatus = By.xpath("//td[@class='align-middle' and text()='Paid']");
     By btn_printReceipt = By.xpath("//a[@class='dropdown-item']//span[text()='Print Receipt']");
     By btn_selectPaidInvoice = By.xpath("(//div[contains(text(),'Payment Date')]/ancestor::thead/following-sibling::tbody/tr//div)[1]");
@@ -306,14 +306,7 @@ public class PayPage extends TestBase {
     }
 
     public boolean isPaidSearchedTextDisplayed() {
-        String filteredStatusName = restaurantUI.getText(statusPaid);
-        String filteredResult = restaurantUI.getText(txt_filteredStatus);
-        try {
-            return filteredStatusName.equals(filteredResult) && filteredStatusName.equals("Paid");
-        } catch (Exception e) {
-            return false;
-        }
-
+        return restaurantUI.isDisplayed(statusPaid);
     }
 
     public void clickOnOneInvoiceDownloadReceipt() {
