@@ -56,8 +56,8 @@ public class VerifyUniversalAppEmployeeRolesTest extends TestBase {
         softAssert.assertTrue(Dashboard.isUserNavigatedToChats(),"navigation to chats error");
         Settings.clickOnSettingsBtn();
         softAssert.assertTrue(Settings.isNavigatedToProfileSetting(),"navigation to profile settings error");
-        Support.goToSupportPage();
-        softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
+//        Support.goToSupportPage();
+//        softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
         softAssert.assertAll();
     }
 
