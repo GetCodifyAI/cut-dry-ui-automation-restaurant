@@ -1316,6 +1316,22 @@ public class Customer {
     public static void clickSortOptionsOG(String option)throws InterruptedException{
         customersPage.clickSortOptionsOG(option);
     }
+    
+    public static void clickCartSummaryExpanded() throws InterruptedException {
+        customersPage.clickCartSummaryExpanded();
+    }
+    
+    public static String getCartSummaryExpandedValue(String option) throws InterruptedException {
+        return customersPage.getCartSummaryExpandedValue(option);
+    }
+    
+    public static double getOrderMinimumValueExpandedStable(String option) throws InterruptedException {
+        return customersPage.getOrderMinimumValueExpandedStable(option);
+    }
+    
+    public static boolean isCartSummaryExpandedDisplay(String count) {
+        return customersPage.isCartSummaryExpandedDisplay(count);
+    }
 
 
 

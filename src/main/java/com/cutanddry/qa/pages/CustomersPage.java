@@ -302,6 +302,11 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_cartSummery = By.xpath("//button[text()='$']");
     String cartSummary = "//div[text()='COUNT']";
     String cartSummaryValue = "//div[contains(text(),'NAME')]";
+    
+    By btn_cartSummaryExpanded = By.xpath("//div[contains(@class,'_pampsv')]");
+    By btn_cartSummaryDropdownArrow = By.xpath("//div[contains(@class,'_pampsv')]//svg[contains(@class,'fa-chevron-up')]");
+    String cartSummaryExpandedValue = "//div[contains(text(),'OPTION')]/following-sibling::div";
+    String revenueSummaryExpandedValue = "//div[contains(text(),'OPTION')]/following-sibling::div//span[contains(@class,'text-success')]";
     By btn_menu = By.xpath("//*[local-name() = 'svg' and @data-icon='bars']");
     String txt_userName = "//div[contains(text(),'NAME')]";
     String txt_distributorName = "//span[contains(text(),'NAME')]";
@@ -1959,6 +1964,49 @@ public void clickOnCloseOrderGuideEditor(){
     public boolean isCartSummaryValueDisplay(String name){
         return restaurantUI.isDisplayed(By.xpath(cartSummaryValue.replace("NAME", name)));
     }
+    
+    public void clickCartSummaryExpanded() throws InterruptedException {
+        try {
+            if (restaurantUI.isDisplayed(btn_cartSummaryDropdownArrow)) {
+                restaurantUI.click(btn_cartSummaryDropdownArrow);
+                restaurantUI.waitForCustom(2000);
+            } else if (restaurantUI.isDisplayed(btn_cartSummaryExpanded)) {
+                restaurantUI.click(btn_cartSummaryExpanded);
+                restaurantUI.waitForCustom(2000);
+            }
+        } catch (Exception e) {
+            System.out.println("Cart summary already expanded or element not found: " + e.getMessage());
+        }
+    }
+    
+    public String getCartSummaryExpandedValue(String option) throws InterruptedException {
+        clickCartSummaryExpanded();
+        restaurantUI.waitForVisibility(By.xpath(cartSummaryExpandedValue.replace("OPTION",option)));
+        restaurantUI.waitForCustom(3000);
+        String rawText = restaurantUI.getText(By.xpath(cartSummaryExpandedValue.replace("OPTION",option)));
+        return rawText.replace(":", "").trim();
+    }
+    
+    public double getOrderMinimumValueExpandedStable(String option) throws InterruptedException {
+        try {
+            clickCartSummaryExpanded();
+            return extractOrderMinimumValue(By.xpath(revenueSummaryExpandedValue.replace("OPTION",option)));
+        } catch (Exception e) {
+            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
+            return extractOrderMinimumValue(By.xpath(revenueSummaryExpandedValue.replace("OPTION",option)));
+        }
+    }
+    
+    public boolean isCartSummaryExpandedDisplay(String count) {
+        try {
+            clickCartSummaryExpanded();
+            return restaurantUI.isDisplayed(By.xpath("//div[contains(@class,'_146thbv')]"));
+        } catch (InterruptedException e) {
+            System.out.println("Error checking cart summary display: " + e.getMessage());
+            return false;
+        }
+    }
+    
     public void clickMenu()throws InterruptedException{
         restaurantUI.click(btn_menu);
     }
