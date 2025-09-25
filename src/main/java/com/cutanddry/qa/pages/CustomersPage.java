@@ -2336,48 +2336,6 @@ public void clickOnCloseOrderGuideEditor(){
     public void clickSortOptionsOG(String option)throws InterruptedException{
         restaurantUI.click(By.xpath(sortOptionsOG.replace("OPTION",option)));
     }
-    
-    public void clickCartSummaryExpanded() throws InterruptedException {
-        try {
-            if (restaurantUI.isDisplayed(btn_cartSummaryDropdownArrow)) {
-                restaurantUI.click(btn_cartSummaryDropdownArrow);
-                restaurantUI.waitForCustom(2000);
-            } else if (restaurantUI.isDisplayed(btn_cartSummaryExpanded)) {
-                restaurantUI.click(btn_cartSummaryExpanded);
-                restaurantUI.waitForCustom(2000);
-            }
-        } catch (Exception e) {
-            System.out.println("Cart summary already expanded or element not found: " + e.getMessage());
-        }
-    }
-    
-    public String getCartSummaryExpandedValue(String option) throws InterruptedException {
-        clickCartSummaryExpanded();
-        restaurantUI.waitForVisibility(By.xpath(cartSummaryExpandedValue.replace("OPTION",option)));
-        restaurantUI.waitForCustom(3000);
-        String rawText = restaurantUI.getText(By.xpath(cartSummaryExpandedValue.replace("OPTION",option)));
-        return rawText.replace(":", "").trim();
-    }
-    
-    public double getOrderMinimumValueExpandedStable(String option) throws InterruptedException {
-        try {
-            clickCartSummaryExpanded();
-            return extractOrderMinimumValue(By.xpath(revenueSummaryExpandedValue.replace("OPTION",option)));
-        } catch (Exception e) {
-            System.out.println("Fallback to alternative price locator due to: " + e.getMessage());
-            return extractOrderMinimumValue(By.xpath(revenueSummaryExpandedValue.replace("OPTION",option)));
-        }
-    }
-    
-    public boolean isCartSummaryExpandedDisplay(String count) {
-        try {
-            clickCartSummaryExpanded();
-            return restaurantUI.isDisplayed(By.xpath(cartSummary.replace("COUNT", count)));
-        } catch (InterruptedException e) {
-            System.out.println("Error checking cart summary display: " + e.getMessage());
-            return false;
-        }
-    }
 
 
 
