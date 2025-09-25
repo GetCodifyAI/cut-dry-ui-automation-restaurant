@@ -22,7 +22,7 @@ public class VerifyMonthlyExpensesByVendorReportGenerateTest extends TestBase {
 
     @BeforeMethod
     public void setUp(){
-        initialization();
+        initializationWithUniqueUserData();
         user = JsonUtil.readUserLogin();
     }
 

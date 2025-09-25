@@ -53,6 +53,35 @@ public class TestBase {
         }
     }
 
+    public static void initializationWithUniqueUserData() {
+        if (driver == null) {  // Ensure WebDriver is initialized only once
+            if (Constants.BROWSER_NAME.equalsIgnoreCase("chrome")) {
+                try {
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.addArguments("--start-maximized");
+                    chromeOptions.addArguments("--user-data-dir=/tmp/chrome-user-data-" + System.currentTimeMillis());
+                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("--disable-dev-shm-usage");
+                    if (Constants.RUN_HEADLESS) {
+                        chromeOptions.addArguments("--headless", "--window-size=1920,1080");
+                    }
+                    driver = new ChromeDriver(chromeOptions);
+                    js = (JavascriptExecutor) driver;
+                    wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+                    driver.get(Constants.MAIN_URL);
+                    restaurantUI = new KeywordBase(driver, wait);  // Initialize KeywordBase here
+
+                    LOGGER.info("WebDriver initialized with unique user data directory and navigated to the URL: " + Constants.MAIN_URL);
+                } catch (Exception e) {
+                    LOGGER.log(Level.SEVERE, "Failed to initialize WebDriver with unique user data directory", e);
+                }
+            } else {
+                LOGGER.warning("Unsupported browser or WebDriver is already initialized.");
+            }
+        }
+    }
+
     public static void secInitialization() {
         if (driver == null) {  // Ensure WebDriver is initialized only once
             if (Constants.BROWSER_NAME.equalsIgnoreCase("chrome")) {
