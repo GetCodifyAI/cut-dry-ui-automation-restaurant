@@ -22,7 +22,17 @@ public class VerifyMonthlyExpensesByVendorReportGenerateTest extends TestBase {
 
     @BeforeMethod
     public void setUp(){
-        initializationWithUniqueUserData();
+        try {
+            initializationWithUniqueUserData();
+        } catch (Exception e) {
+            System.out.println("initializationWithUniqueUserData failed, trying standard initialization: " + e.getMessage());
+            try {
+                initialization();
+            } catch (Exception e2) {
+                System.out.println("Standard initialization also failed, trying secInitialization: " + e2.getMessage());
+                secInitialization();
+            }
+        }
         user = JsonUtil.readUserLogin();
     }
 

@@ -62,6 +62,14 @@ public class TestBase {
                     chromeOptions.addArguments("--user-data-dir=/tmp/chrome-user-data-" + System.currentTimeMillis());
                     chromeOptions.addArguments("--no-sandbox");
                     chromeOptions.addArguments("--disable-dev-shm-usage");
+                    chromeOptions.addArguments("--disable-gpu");
+                    chromeOptions.addArguments("--disable-extensions");
+                    chromeOptions.addArguments("--disable-web-security");
+                    chromeOptions.addArguments("--disable-features=VizDisplayCompositor");
+                    chromeOptions.addArguments("--remote-debugging-port=0");
+                    chromeOptions.addArguments("--disable-background-timer-throttling");
+                    chromeOptions.addArguments("--disable-renderer-backgrounding");
+                    chromeOptions.addArguments("--disable-backgrounding-occluded-windows");
                     if (Constants.RUN_HEADLESS) {
                         chromeOptions.addArguments("--headless", "--window-size=1920,1080");
                     }
@@ -72,9 +80,10 @@ public class TestBase {
                     driver.get(Constants.MAIN_URL);
                     restaurantUI = new KeywordBase(driver, wait);  // Initialize KeywordBase here
 
-                    LOGGER.info("WebDriver initialized with unique user data directory and navigated to the URL: " + Constants.MAIN_URL);
+                    LOGGER.info("WebDriver initialized with enhanced Chrome options and navigated to the URL: " + Constants.MAIN_URL);
                 } catch (Exception e) {
-                    LOGGER.log(Level.SEVERE, "Failed to initialize WebDriver with unique user data directory", e);
+                    LOGGER.log(Level.SEVERE, "Failed to initialize WebDriver with enhanced Chrome options", e);
+                    throw new RuntimeException("WebDriver initialization failed", e);
                 }
             } else {
                 LOGGER.warning("Unsupported browser or WebDriver is already initialized.");
