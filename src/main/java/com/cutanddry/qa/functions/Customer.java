@@ -1072,6 +1072,12 @@ public class Customer {
     public static boolean isCartSummaryValueDisplay(String name){
         return customersPage.isCartSummaryValueDisplay(name);
     }
+    public static boolean isReviewOrderCartSummaryDisplay(String count){
+        return customersPage.isReviewOrderCartSummaryDisplay(count);
+    }
+    public static boolean isReviewOrderCartSummaryValueDisplay(String name){
+        return customersPage.isReviewOrderCartSummaryValueDisplay(name);
+    }
     public static void clickMenu()throws InterruptedException{
         customersPage.clickMenu();
     }
@@ -1315,6 +1321,26 @@ public class Customer {
     public static void clickContinue(){customersPage.clickContinue();}
     public static void clickSortOptionsOG(String option)throws InterruptedException{
         customersPage.clickSortOptionsOG(option);
+    }
+    
+    public static void clickCartSummaryExpanded() throws InterruptedException {
+        customersPage.clickCartSummaryExpanded();
+    }
+    
+    public static String getCartSummaryExpandedValue(String option) throws InterruptedException {
+        return customersPage.getCartSummaryExpandedValue(option);
+    }
+    
+    public static double getOrderMinimumValueExpandedStable(String option) throws InterruptedException {
+        return customersPage.getOrderMinimumValueExpandedStable(option);
+    }
+    
+    public static boolean isCartSummaryExpandedDisplay(String count) {
+        return customersPage.isCartSummaryExpandedDisplay(count);
+    }
+    
+    public static boolean isCartSummaryExpandedValueDisplay(String label) {
+        return customersPage.isCartSummaryExpandedValueDisplay(label);
     }
 
 
