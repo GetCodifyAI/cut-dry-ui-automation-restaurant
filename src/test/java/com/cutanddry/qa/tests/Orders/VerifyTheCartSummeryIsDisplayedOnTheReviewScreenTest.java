@@ -18,7 +18,7 @@ public class VerifyTheCartSummeryIsDisplayedOnTheReviewScreenTest extends TestBa
     static User user;
     String itemName,searchItemCode,orderId;
     static double itemPrice;
-    static String cartSummary = "ORDER SUMMARY";
+    static String cartSummary = "Order Summary";
     static String totalLine = "Total Line Items:";
     static String totalQuantity = "Total Quantity:";
 
