@@ -299,8 +299,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String itemTagOG = "//div[contains(text(),'NAME')]/../../following-sibling::div//span[text()='TAG']";
     String newItemTagPDP = "//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate(\"NAME\", 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]/following-sibling::div//span[text()='TAG']";
     String catalogSearchItemCode = "//div[contains(@class,'card-deck')]//div[contains(., 'CODE')]";
-    By btn_cartSummery = By.xpath("//button[text()='$']");
-    String cartSummary = "//div[text()='COUNT']";
+    By btn_cartSummery = By.xpath("(//*[local-name() = 'svg' and @data-icon='chevron-down'])[2]");
+    String cartSummary = "//span[text()='COUNT']";
     String cartSummaryValue = "//div[contains(text(),'NAME')]";
     By btn_menu = By.xpath("//*[local-name() = 'svg' and @data-icon='bars']");
     String txt_userName = "//div[contains(text(),'NAME')]";
@@ -368,7 +368,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By lbl_ItemTotal= By.xpath("//div[contains(text(),'Item Total')]/../following-sibling::div//input");
     By btn_clearAll = By.xpath("//div[text()='Clear All']");
     String cartSummeryValue = "//div[contains(text(),'OPTION')]/following-sibling::div";
-    String revenueSummeryValue = "//div[contains(text(),'OPTION')]/following-sibling::div/span";
+    String revenueSummeryValue = "(//div[contains(text(),'OPTION')]/following-sibling::div/span)[1]";
     String txt_preAuthorization = "//h2[text()='MESSAGE']";
     By txt_confirmPayment = By.xpath("//div[text()='Confirm Payment']");
     By btn_continue = By.xpath("//button[contains(text(), 'Continue')]");

@@ -16,7 +16,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyPendingApprovalsAreClickableTest extends TestBase {
     static User user;
-    String OperatorName = "employee@cutanddry.com";
+    String OperatorName = "429739320";
     String AdminName = "Brandon IFC White";
     static String referenceNum;
     String searchItemCode = "01700";
