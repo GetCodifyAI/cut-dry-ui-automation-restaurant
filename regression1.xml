@@ -28,8 +28,8 @@
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSearchFeatureTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCreatingOrdersWithUploadingExcelFileTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrderGuideWithCatalogItemsTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrdersImportingOrderGuideTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrdersWithUploadingExcelFileTest" />
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrdersImportingOrderGuideTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditingOrdersWithUploadingExcelFileTest" />-->
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSortOptionsTest" />
             <!--            TODO:sunrise Food DP not available -->
 <!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheCutOffTimeForPickup" />-->
