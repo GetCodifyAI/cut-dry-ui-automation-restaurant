@@ -302,7 +302,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_cartSummery = By.xpath("//button[text()='$']");
     String cartSummary = "//div[text()='COUNT']";
     String cartSummaryValue = "//div[contains(text(),'NAME')]";
-    String reviewOrderCartSummary = "//td[text()='COUNT']";
+    String reviewOrderCartSummary = "//td//div[text()='COUNT']";
     String reviewOrderCartSummaryValue = "//td[contains(text(),'NAME')]";
     By btn_menu = By.xpath("//*[local-name() = 'svg' and @data-icon='bars']");
     String txt_userName = "//div[contains(text(),'NAME')]";
