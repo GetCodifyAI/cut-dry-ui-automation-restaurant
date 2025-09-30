@@ -17,9 +17,9 @@ public class VerifyTheRevenueSummeryIsDisplayedCorrectlyOnTheEditOrderFlowTest e
     static double itemPrice,totalOrderMinimum;
     static String searchItemCode = "01700";
     static String totalLineValue,totalQuantityValue,marginValue;
-    static String cartSummary = "Cart Summary";
-    static String totalLine = "Total Line items";
-    static String totalQuantity = "Total Quantity";
+    static String orderSummary = "Order Summary";
+    static String totalLine = "Line Items";
+    static String totalQuantity = "Quantity";
     static String orderMinimum = "Order Minimum ";
 
 
@@ -69,7 +69,7 @@ public class VerifyTheRevenueSummeryIsDisplayedCorrectlyOnTheEditOrderFlowTest e
         totalQuantityValue = Customer.getCartSummeryValue(totalQuantity);
         totalOrderMinimum = Customer.getOrderMinimumValueStable(orderMinimum);
 
-        softAssert.assertTrue(Customer.isCartSummaryDisplay(cartSummary),"cart summary display error");
+        softAssert.assertTrue(Customer.isCartSummaryDisplay(orderSummary),"cart summary display error");
         softAssert.assertEquals(Customer.getCartSummeryValue(totalLine),totalLineValue,"cart summary value display error");
         softAssert.assertEquals(Customer.getCartSummeryValue(totalQuantity),totalQuantityValue,"cart summary value display error");
         softAssert.assertEquals(Customer.getOrderMinimumValueStable(orderMinimum),totalOrderMinimum,"cart summary value display error");
@@ -80,7 +80,7 @@ public class VerifyTheRevenueSummeryIsDisplayedCorrectlyOnTheEditOrderFlowTest e
         Customer.increaseFirstRowQtyCustom(1);
 
         Customer.clickCartSummery();
-        softAssert.assertTrue(Customer.isCartSummaryDisplay(cartSummary),"cart summary display error OG");
+        softAssert.assertTrue(Customer.isCartSummaryDisplay(orderSummary),"cart summary display error OG");
         softAssert.assertEquals(Customer.getCartSummeryValue(totalLine),totalLineValue,"cart summary value display error OG");
         softAssert.assertEquals(Customer.getCartSummeryValue(totalQuantity),"2","cart summary value display error OG");
         softAssert.assertEquals(Customer.getOrderMinimumValueStable(orderMinimum),totalOrderMinimum*2,"cart summary value display error OG");
@@ -91,7 +91,7 @@ public class VerifyTheRevenueSummeryIsDisplayedCorrectlyOnTheEditOrderFlowTest e
         Customer.clickOnPlusIconInCatalogPDP(1, itemName);
 
         Customer.clickCartSummery();
-        softAssert.assertTrue(Customer.isCartSummaryDisplay(cartSummary),"cart summary display error Catalog");
+        softAssert.assertTrue(Customer.isCartSummaryDisplay(orderSummary),"cart summary display error Catalog");
         softAssert.assertEquals(Customer.getCartSummeryValue(totalLine),totalLineValue,"cart summary value display error Catalog");
         softAssert.assertEquals(Customer.getCartSummeryValue(totalQuantity),"3","cart summary value display error Catalog");
         softAssert.assertEquals(Customer.getOrderMinimumValueStable(orderMinimum),totalOrderMinimum*3,"cart summary value display error Catalog");
@@ -105,7 +105,7 @@ public class VerifyTheRevenueSummeryIsDisplayedCorrectlyOnTheEditOrderFlowTest e
 
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
         Customer.clickCartSummery();
-        softAssert.assertTrue(Customer.isCartSummaryDisplay(cartSummary),"cart summary display error");
+        softAssert.assertTrue(Customer.isCartSummaryDisplay(orderSummary),"cart summary display error");
         softAssert.assertEquals(Customer.getCartSummeryValue(totalLine),totalLineValue,"cart summary value display error");
         softAssert.assertEquals(Customer.getCartSummeryValue(totalQuantity),"4","cart summary value display error");
         softAssert.assertEquals(Customer.getOrderMinimumValueStable(orderMinimum),totalOrderMinimum*4,"cart summary value display error");
