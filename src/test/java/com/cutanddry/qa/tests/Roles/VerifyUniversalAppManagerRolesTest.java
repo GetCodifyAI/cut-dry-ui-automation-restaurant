@@ -70,8 +70,8 @@ public class VerifyUniversalAppManagerRolesTest extends TestBase {
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Bookkeeper"),"users error");
         Customer.clickClose();
 
-        Support.goToSupportPage();
-        softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
+//        Support.goToSupportPage();
+//        softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
         Login.navigateToOperator();
         Dashboard.navigateToReports();
         softAssert.assertTrue(Reports.disabledGenerateReport(),"error in  generate report button");

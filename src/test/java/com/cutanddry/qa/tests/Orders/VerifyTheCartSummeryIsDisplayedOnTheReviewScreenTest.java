@@ -18,9 +18,9 @@ public class VerifyTheCartSummeryIsDisplayedOnTheReviewScreenTest extends TestBa
     static User user;
     String itemName,searchItemCode,orderId;
     static double itemPrice;
-    static String cartSummary = "Cart Summary";
-    static String totalLine = "Total Line items";
-    static String totalQuantity = "Total Quantity";
+    static String orderSummary = "Order Summary";
+    static String totalLine = "Line Items";
+    static String totalQuantity = "Quantity";
     static String orderMinimum = "Order Minimum";
 
 
@@ -65,7 +65,7 @@ public class VerifyTheCartSummeryIsDisplayedOnTheReviewScreenTest extends TestBa
 
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
         Customer.clickCartSummery();
-        softAssert.assertTrue(Customer.isCartSummaryDisplay(cartSummary),"cart summary display error");
+        softAssert.assertTrue(Customer.isCartSummaryDisplay(orderSummary),"order summary display error");
         softAssert.assertTrue(Customer.isCartSummaryValueDisplay(totalLine),"cart summary value display error");
         softAssert.assertTrue(Customer.isCartSummaryValueDisplay(totalQuantity),"cart summary value display error");
         softAssert.assertTrue(Customer.isCartSummaryValueDisplay(orderMinimum),"cart summary value display error");
