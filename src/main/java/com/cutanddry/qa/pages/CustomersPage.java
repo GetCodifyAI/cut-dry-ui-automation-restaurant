@@ -302,6 +302,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_cartSummery = By.xpath("//button[text()='$']");
     String cartSummary = "//div[text()='COUNT']";
     String cartSummaryValue = "//div[contains(text(),'NAME')]";
+    String reviewOrderCartSummary = "//td[text()='COUNT']";
+    String reviewOrderCartSummaryValue = "//td[contains(text(),'NAME')]";
     By btn_menu = By.xpath("//*[local-name() = 'svg' and @data-icon='bars']");
     String txt_userName = "//div[contains(text(),'NAME')]";
     String txt_distributorName = "//span[contains(text(),'NAME')]";
@@ -1958,6 +1960,12 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public boolean isCartSummaryValueDisplay(String name){
         return restaurantUI.isDisplayed(By.xpath(cartSummaryValue.replace("NAME", name)));
+    }
+    public boolean isReviewOrderCartSummaryDisplay(String count){
+        return restaurantUI.isDisplayed(By.xpath(reviewOrderCartSummary.replace("COUNT", count)));
+    }
+    public boolean isReviewOrderCartSummaryValueDisplay(String name){
+        return restaurantUI.isDisplayed(By.xpath(reviewOrderCartSummaryValue.replace("NAME", name)));
     }
     public void clickMenu()throws InterruptedException{
         restaurantUI.click(btn_menu);
