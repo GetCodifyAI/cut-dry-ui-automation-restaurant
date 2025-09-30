@@ -1072,6 +1072,12 @@ public class Customer {
     public static boolean isCartSummaryValueDisplay(String name){
         return customersPage.isCartSummaryValueDisplay(name);
     }
+    public static boolean isReviewOrderCartSummaryDisplay(String count){
+        return customersPage.isReviewOrderCartSummaryDisplay(count);
+    }
+    public static boolean isReviewOrderCartSummaryValueDisplay(String name){
+        return customersPage.isReviewOrderCartSummaryValueDisplay(name);
+    }
     public static void clickMenu()throws InterruptedException{
         customersPage.clickMenu();
     }
