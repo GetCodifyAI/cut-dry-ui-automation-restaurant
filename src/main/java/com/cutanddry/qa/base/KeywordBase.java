@@ -1016,5 +1016,25 @@ public class KeywordBase {
         }
         return this;
     }
+    // Verify how many elements are displayed for a given locator
+    public int countDisplayedElements(By by) {
+        try {
+            // Find all elements matching the locator
+            List<WebElement> elements = driver.findElements(by);
+
+            // Count only visible elements
+            int visibleCount = 0;
+            for (WebElement element : elements) {
+                if (element.isDisplayed()) {
+                    visibleCount++;
+                }
+            }
+            logger.info("Number of displayed elements for {}: {}", by, visibleCount);
+            return visibleCount;
+        } catch (Exception e) {
+            logger.error("Failed to count displayed elements for {}: {}", by, e);
+            return 0;
+        }
+    }
 }
 

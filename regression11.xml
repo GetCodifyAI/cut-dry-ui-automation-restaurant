@@ -30,6 +30,9 @@
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThatTheOnSiteInventoryColumnAppearsWhenTheToggleIsEnabledForTheOPSideTest" />
 
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheRevenueSummeryIsDisplayedCorrectlyOnTheEditOrderFlowTest" />
+
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyMultipleShipToAddressDisplayAndSelectionTest" />
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifySingleShipToAddressFallbackTest" />
         </classes>
     </test>
 </suite>
