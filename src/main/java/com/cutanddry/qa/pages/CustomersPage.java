@@ -373,6 +373,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txt_confirmPayment = By.xpath("//div[text()='Confirm Payment']");
     By btn_continue = By.xpath("//button[contains(text(), 'Continue')]");
     String sortOptionsOG = "//span[contains(text(), 'OPTION')]";
+    By lbl_deliveryTo = By.xpath("//div[text()='Delivery To:']/following-sibling::div");
+    By deliveryAddress = By.xpath("//div[text()='Delivery To:']/following-sibling::*//div[contains(@id,'react-select')]");
+    By deliveryAddressOption = By.xpath("(//div[text()='Delivery To:']/following-sibling::*//div[contains(@id,'react-select')])[2]");
+    By singleDeliveryAddress = By.xpath("//div[text()='Delivery To:']/following-sibling::div/div[text()='Avcoa Vending']");
 
 
 
@@ -2288,6 +2292,21 @@ public void clickOnCloseOrderGuideEditor(){
     public void clickSortOptionsOG(String option)throws InterruptedException{
         restaurantUI.click(By.xpath(sortOptionsOG.replace("OPTION",option)));
     }
+    public void clickDeliveryTo()throws InterruptedException{
+        restaurantUI.click(lbl_deliveryTo);
+    }
+    public int isDeliveryAddressDisplay() throws InterruptedException {
+        return restaurantUI.countDisplayedElements(deliveryAddress);
+    }
+    public void clickDeliveryAddress()throws InterruptedException{
+        restaurantUI.click(deliveryAddressOption);
+    }
+    public boolean isSingleAddressDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(singleDeliveryAddress);
+    }
+
+
+
 
 
 
