@@ -4,12 +4,12 @@ pipeline {
     parameters {
         choice(
             name: 'TEST_ENVIRONMENT',
-            choices: ['uat', 'staging', 'prod'],
+            choices: ['uat'],
             description: 'Select the test environment'
         )
         choice(
             name: 'SUITE_SELECTION',
-            choices: ['All', 'Smoke'],
+            choices: ['All'],
             description: 'Select suite type: All (runs 11 regression XMLs in parallel) or Smoke (runs only smoke tests)'
         )
         booleanParam(
