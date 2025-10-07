@@ -50,7 +50,7 @@ pipeline {
             }
             parallel {
                 stage('Restaurant Regression 1 - Order Guide Tests') {
-                    agent { label 'built-in' }
+                    agent any
                     steps {
                         checkout scm
                         script {
@@ -67,7 +67,7 @@ pipeline {
                 }
                 
                 stage('Restaurant Regression 2 - Catalog Tests') {
-                    agent { label 'built-in' }
+                    agent any
                     steps {
                         checkout scm
                         script {
@@ -84,7 +84,7 @@ pipeline {
                 }
                 
                 stage('Restaurant Regression 3 - Settings Tests') {
-                    agent { label 'built-in' }
+                    agent any
                     steps {
                         checkout scm
                         script {
@@ -101,7 +101,7 @@ pipeline {
                 }
                 
                 stage('Restaurant Regression 4 - History Tests') {
-                    agent { label 'built-in' }
+                    agent any
                     steps {
                         checkout scm
                         script {
@@ -118,7 +118,7 @@ pipeline {
                 }
                 
                 stage('Restaurant Regression 5 - SignIn Tests') {
-                    agent { label 'built-in' }
+                    agent any
                     steps {
                         checkout scm
                         script {
@@ -135,7 +135,7 @@ pipeline {
                 }
                 
                 stage('Restaurant Regression 6 - Users Tests') {
-                    agent { label 'built-in' }
+                    agent any
                     steps {
                         checkout scm
                         script {
@@ -152,7 +152,7 @@ pipeline {
                 }
                 
                 stage('Restaurant Regression 7 - Support Tests') {
-                    agent { label 'built-in' }
+                    agent any
                     steps {
                         checkout scm
                         script {
@@ -169,7 +169,7 @@ pipeline {
                 }
                 
                 stage('Restaurant Regression 8 - History Advanced Tests') {
-                    agent { label 'built-in' }
+                    agent any
                     steps {
                         checkout scm
                         script {
@@ -186,7 +186,7 @@ pipeline {
                 }
                 
                 stage('Restaurant Regression 9 - Rewards Tests') {
-                    agent { label 'built-in' }
+                    agent any
                     steps {
                         checkout scm
                         script {
@@ -203,7 +203,7 @@ pipeline {
                 }
                 
                 stage('Restaurant Regression 10 - Orders Tests') {
-                    agent { label 'built-in' }
+                    agent any
                     steps {
                         checkout scm
                         script {
@@ -220,7 +220,7 @@ pipeline {
                 }
                 
                 stage('Restaurant Regression 11 - Multi-UOM Tests') {
-                    agent { label 'built-in' }
+                    agent any
                     steps {
                         checkout scm
                         script {
