@@ -24,13 +24,13 @@ public class VerifyForgotPasswordInvalidTest extends TestBase {
         Login.forgotPassword();
         softAssert.assertTrue(Login.forgotPassword(),"forgot password navigation error");
         Login.passwordResetRequest(user.getEmail_invalid());
-        softAssert.assertTrue(Login.invalidEmailOrMobileForgotPassword(),"invalid email pop up error");
-        Login.clickTryAgain();
+        softAssert.assertTrue(Login.validEmailOrMobileForgotPassword(),"invalid email pop up error");
+        Login.clickOk();
         Login.forgotPassword();
         softAssert.assertTrue(Login.forgotPassword(),"forgot password navigation error");
         Login.passwordResetRequest(user.getMobile_invalid());
-        softAssert.assertTrue(Login.invalidEmailOrMobileForgotPassword(),"invalid email pop up error");
-        Login.clickTryAgain();
+        softAssert.assertTrue(Login.validEmailOrMobileForgotPassword(),"invalid email pop up error");
+        Login.clickOk();
         softAssert.assertAll();
     }
 

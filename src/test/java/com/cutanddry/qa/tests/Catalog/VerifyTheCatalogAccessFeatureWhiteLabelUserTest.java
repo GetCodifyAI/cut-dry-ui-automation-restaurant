@@ -63,6 +63,19 @@ public class VerifyTheCatalogAccessFeatureWhiteLabelUserTest extends TestBase {
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
         orderId = Customer.getSuccessOrderId();
         Customer.clickClose();
+
+        Login.closePreviousTab();
+
+        Login.navigateToLoginAs();
+        Login.goToDistributor(Dp_Name);
+        Dashboard.isUserNavigatedToDistributorDashboard();
+        Assert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(),"login error");
+
+        Dashboard.navigateToCustomers();
+        Customer.searchCustomerByCode(customerId);
+        softAssert.assertTrue(Customer.isCustomerSearchResultByCodeDisplayed(customerId), "Unable to find the customer Id");
+        Customer.SelectCustomer(customerId);
+        Customer.enableCatalogAccess();
         softAssert.assertAll();
 
     }
