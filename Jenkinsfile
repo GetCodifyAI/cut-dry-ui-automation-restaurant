@@ -295,6 +295,7 @@ def runTestSuiteWithCleanup(xmlFile, partName, jobNumber) {
                 -Dsurefire.suiteXmlFiles=${xmlFile} \\
                 -Drun.headless=${env.RUN_HEADLESS} \\
                 -Dtest.env=${env.TEST_ENV} \\
+                -Dcreate.cycle=true \\
                 -Dmaven.test.failure.ignore=true \\
                 -Duser.timezone=UTC \\
                 -Dmaven.repo.local=\${WORKSPACE}/.m2/repository
