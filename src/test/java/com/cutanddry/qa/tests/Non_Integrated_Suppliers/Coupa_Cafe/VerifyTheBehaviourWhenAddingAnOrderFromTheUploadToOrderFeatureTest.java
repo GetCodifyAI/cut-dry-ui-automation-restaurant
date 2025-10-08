@@ -20,7 +20,7 @@ import static com.cutanddry.qa.base.TestBase.*;
 
 public class VerifyTheBehaviourWhenAddingAnOrderFromTheUploadToOrderFeatureTest {
     static User user;
-    String userName = "jcoupal@coupacafe.com";
+    String userName = "1000030";
     String supplierName = "David Rio";
     static String orderId;
     static String itemCode1 = "EV4B";
