@@ -19,7 +19,7 @@ public class VerifyPlaceOrderWithMultiUOMForNonIntegratedTest extends TestBase {
     SoftAssert softAssert;
     String uom1 = "1";
     String uom2 = "2";
-    String userName = "1000030";
+    String userName = "jcoupal@coupacafe.com";
     String supplierName = "David Rio";
     static double itemOGPriceUOM1 ,itemOGPriceUOM2,totalOGItemPrice,totalHistoryItemPrice;
     static String  orderId;
