@@ -9,7 +9,7 @@
         <parameter name="PART" value="Part Nine" />
         <classes>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierCatalogWithSwitchFlowTest"/>
-            <!-- <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierLogoWithSwitchFlowTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierLogoWithSwitchFlowTest"/>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierBannerWithSwitchFlowTest"/>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierRecentOrderHistoryWithSwitchFlowTest"/>
 
@@ -46,7 +46,7 @@
             <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveDeliveryAsTheFulfillmentTypeDraftOrderSubmissionTest"/>
             <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveMailDeliveryAsTheFulfillmentTypeDraftOrderSubmissionTest"/>
             <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHavePickUpWillCallAsTheFulfillmentTypeDraftOrderSubmissionTest"/>
-            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveDeliveryPickupWillCallAndMailDeliveryAsTheFulfillmentTypeTest"/> -->
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveDeliveryPickupWillCallAndMailDeliveryAsTheFulfillmentTypeTest"/>
         </classes>
     </test>
 </suite>
