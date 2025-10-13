@@ -94,5 +94,63 @@ public class InternalTools {
     public static void clickOnSimpleListViewDropdown(String type){
         internalToolsPage.clickOnSimpleListViewDropdown(type);
     }
+    public static void clickOnQuickAddViewDropDown(String type){
+        internalToolsPage.clickOnQuickAddViewDropDown(type);
+    }
+    public static void caseMinimumGloballyToggle(boolean status){
+        internalToolsPage.caseMinimumGloballyToggle(status);
+    }
+
+    public static void enableDefaultViewPortalAsSimpleList() throws InterruptedException {
+        if (!internalToolsPage.isDefaultViewPortalAsSimpleListDisplayed()) {
+            internalToolsPage.clickOnDefaultViewPortalAsSimpleList();
+            internalToolsPage.clickSaveBtn();
+        }
+    }
+
+    public static void enableDefaultViewPortalAsQuickAdd() throws InterruptedException {
+        if (!internalToolsPage.isDefaultViewPortalAsQuickAddDisplayed()) {
+            internalToolsPage.clickOnDefaultViewPortalAsQuickAdd();
+            internalToolsPage.clickSaveBtn();
+        }
+    }
+
+    public static void enableDefaultViewPortalAsOrderGuide() throws InterruptedException {
+        if (!internalToolsPage.isDefaultViewPortalAsOrderGuideDisplayed()) {
+            internalToolsPage.clickOnDefaultViewPortalAsOrderGuide();
+            internalToolsPage.clickSaveBtn();
+        }
+    }
+
+    public static void enableDefaultViewPortalAsCatalog() throws InterruptedException {
+        if (!internalToolsPage.isDefaultViewPortalAsCatalogDisplayed()) {
+            internalToolsPage.clickOnDefaultViewPortalAsCatalog();
+            internalToolsPage.clickSaveBtn();
+        }
+    }
+
+    public static void enableDefaultViewPortalAsScanToOrder() throws InterruptedException {
+        if (!internalToolsPage.isDefaultViewPortalAsScanToOrderDisplayed()) {
+            internalToolsPage.clickOnDefaultViewPortalAsScanToOrder();
+            internalToolsPage.clickSaveBtn();
+        }
+    }
+
+    public static void enableQuickAdd() throws InterruptedException {
+        if (!internalToolsPage.isDefaultQuickAddDisplayed()) {
+            internalToolsPage.clickOnDefaultQuickAdd();
+            internalToolsPage.clickSaveBtn();
+        }
+    }
+
+    public static void enableSimpleList() throws InterruptedException {
+        if (!internalToolsPage.isDefaultSimpleListDisplayed()) {
+            internalToolsPage.clickOnDefaultSimpleList();
+            internalToolsPage.clickSaveBtn();
+        }
+    }
+    public static void manualOrderQuantityCalculationToggle(boolean status){
+        internalToolsPage.manualOrderQuantityCalculationToggle(status);
+    }
 
 }

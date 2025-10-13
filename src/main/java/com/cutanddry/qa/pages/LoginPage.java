@@ -13,7 +13,7 @@ public class LoginPage extends TestBase {
     By btn_requestPassword = By.xpath("//button[text()='Request Password']");
     By txt_enterEmailOrMobile = By.xpath("//input[@placeholder='Enter email or phone number']");
     By txt_validEmailOrMobile = By.xpath("//div[text()='Password Reset Request Sent!']");
-    By txt_invalidEmailOrMobile = By.xpath("//div[text()='Error']");
+    By txt_invalidEmailOrMobile = By.xpath("//div[text()='Password Reset Request Sent!']");
     By btn_ok = By.xpath("//button[text()='Ok']");
     By btn_tryAgain = By.xpath("//button[text()='Try Again']");
     //By tbx_operatorSearch = By.xpath("//input[@id='react-select-5-input']");

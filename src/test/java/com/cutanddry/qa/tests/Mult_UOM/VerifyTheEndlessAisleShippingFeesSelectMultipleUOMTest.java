@@ -16,7 +16,7 @@ public class VerifyTheEndlessAisleShippingFeesSelectMultipleUOMTest extends Test
     String searchItemName = "Chewable Tablets Original Flavor 30/Box";
     String searchItemCde = "PGC03977BX";
     static String orderId;
-    String userName = "email@1sttreatyogurt";
+    String userName = "70351601";
     static double totalEndlessAislePriceReviewOrder,subTotalEndlessAislePriceReviewOrder;
 
 

@@ -13,7 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheSoftOrderMinimumSelectingMultipleUOMTest extends TestBase {
     static User user;
-    String OperatorName = "joey_nutwell@hotmail";
+    String OperatorName = "377702895";
     String multiSearchItemCode = "143210";
     String uom1 = "1";
     String uom2 = "2";

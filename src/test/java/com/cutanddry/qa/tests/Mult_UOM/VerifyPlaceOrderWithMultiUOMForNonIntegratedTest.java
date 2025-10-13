@@ -19,7 +19,7 @@ public class VerifyPlaceOrderWithMultiUOMForNonIntegratedTest extends TestBase {
     SoftAssert softAssert;
     String uom1 = "1";
     String uom2 = "2";
-    String userName = "jcoupal@coupacafe";
+    String userName = "1000030";
     String supplierName = "David Rio";
     static double itemOGPriceUOM1 ,itemOGPriceUOM2,totalOGItemPrice,totalHistoryItemPrice;
     static String  orderId;
@@ -39,6 +39,7 @@ public class VerifyPlaceOrderWithMultiUOMForNonIntegratedTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Login.navigateToLoginAs();
         Login.logInToOperator(userName);
+        Thread.sleep(5000);
         Dashboard.selectSupplier(supplierName);
         Assert.assertTrue(Dashboard.isNavigatedToOperatorOrderGuide(supplierName),"ERROR in Navigating to Suppliers page");
 

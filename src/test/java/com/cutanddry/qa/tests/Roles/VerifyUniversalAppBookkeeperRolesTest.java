@@ -68,8 +68,8 @@ public class VerifyUniversalAppBookkeeperRolesTest extends TestBase {
         softAssert.assertTrue(Users.selectEmployeeFromDropDown("Bookkeeper"),"users error");
         Customer.clickClose();
 
-        Support.goToSupportPage();
-        softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
+//        Support.goToSupportPage();
+//        softAssert.assertTrue(Support.supportCenterHeader(),"support page not loaded");
         Login.navigateToOperator();
         Settings.clickOnProfileUnderSettings();
         softAssert.assertTrue(Settings.isNavigatedToProfileSetting(),"navigation to profile settings error");

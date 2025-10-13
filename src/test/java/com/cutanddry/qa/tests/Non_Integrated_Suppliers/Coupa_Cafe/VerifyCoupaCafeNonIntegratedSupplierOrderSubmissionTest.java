@@ -18,7 +18,7 @@ import static com.cutanddry.qa.base.TestBase.*;
 
 public class VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionTest {
     static User user;
-    String userName = "jcoupal@coupacafe";
+    String userName = "1000030";
     String supplierName = "David Rio";
     String itemNameNew = "Banana";
     String itemCode ;
@@ -28,7 +28,7 @@ public class VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionTest {
     String UOM_Pound = "Pound";
     String Pound_Price = "15.00";
     String Each_Price = "12.00";
-    String accountingCategoryName = "Wine Cost";
+    String accountingCategoryName = "5100 - Food Cost";
 
     @BeforeMethod
     public void setUp(){
@@ -63,6 +63,7 @@ public class VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionTest {
         Customer.enterPrice(UOM_Pound,Pound_Price);
         Customer.selectAccountingCategory(accountingCategoryName);
         Customer.saveItem();
+        Thread.sleep(4000);
         Customer.searchItemOnOrderGuide(itemCode);
         softAssert.assertTrue(Customer.isAddItemDisplayedInOrderGuide(itemCode),"Item not displayed");
         itemName = Customer.getItemNameFirstRow();
@@ -75,6 +76,7 @@ public class VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionTest {
 
         Dashboard.selectSupplier(supplierName);
         Customer.goToEdit();
+        Thread.sleep(4000);
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
         Customer.clickOnItemEditBtn(itemCode);
         Customer.clickOnItemHideBtn();

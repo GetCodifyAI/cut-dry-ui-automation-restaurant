@@ -16,8 +16,8 @@ public class VerifyThatTheSendToERPButtonIsNotAvailableForScheduledJITOrdersTest
     static String Dp_Name = "174874582 - Cut+Dry Agent - Carmela Foods Inc";
     static String customerId = "2419";
     static String OperatorName = "324221501";
-    static String searchItemCode = "2930";
-    static String itemName = "1/2 Ham Spiral Sliced, Dearborn";
+    static String searchItemCode = "1819FC";
+    static String itemName = "103 Long BN Rib Frenched";
     static String orderId;
     static String note = "Scheduled to push to the ERP";
     static String step1 = "Submitted";
@@ -44,7 +44,7 @@ public class VerifyThatTheSendToERPButtonIsNotAvailableForScheduledJITOrdersTest
         Customer.goToCatalog();
         Customer.searchItemOnCatalog(searchItemCode);
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName.toLowerCase()), "item not found");
-        Customer.clickOnPlusIconInCatalogStable(10, itemName);
+        Customer.clickOnPlusIconInCatalogStable(15, itemName);
 
         Customer.checkoutItems();
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");

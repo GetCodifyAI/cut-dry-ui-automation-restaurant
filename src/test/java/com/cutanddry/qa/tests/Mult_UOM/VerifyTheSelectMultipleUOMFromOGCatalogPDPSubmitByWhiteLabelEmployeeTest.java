@@ -15,7 +15,7 @@ public class VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelEmploye
     String searchItemName2 = "Carrot - Baby Peeled - 1 LB";
     String searchItemCode2 = "01409";
     String searchItemCode = "00529";
-    String OperatorName = "employee@cutanddry.com";
+    String OperatorName = "429739320";
     String uomDropDownOption = "Multiple Units";
     String uom1 = "1";
     String uom2 = "2";

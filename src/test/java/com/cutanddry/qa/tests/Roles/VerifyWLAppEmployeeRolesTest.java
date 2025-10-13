@@ -13,7 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyWLAppEmployeeRolesTest extends TestBase {
     static User user;
-    String OperatorName = "employee@cutanddry.com";
+    String OperatorName = "429739320";
     static String itemName = "Artichoke -24ct";
 
     @BeforeMethod

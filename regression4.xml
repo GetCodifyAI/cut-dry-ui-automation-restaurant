@@ -11,6 +11,7 @@
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyCreateCreditRequestTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestApproveFlowTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestDeclineFlowTest"/>
+            <class name="com.cutanddry.qa.tests.Credit_Requests.VerifyTheCreditReqSearchByDistributorTest"/>
 
             <class name="com.cutanddry.qa.tests.Pay.VerifyAddPaymentMethodTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyPaymentSettingsAddPaymentMethodTest" />
@@ -23,6 +24,7 @@
             <class name="com.cutanddry.qa.tests.Pay.VerifyBatchActionsDownloadOutstandingInvoicesTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyBatchActionsDownloadPaidInvoicesTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyEnableAutoPayTest" />
+            <class name="com.cutanddry.qa.tests.Pay.VerifyPublicPaymentsUsingCreditCardTest" />
 
             <class name="com.cutanddry.qa.tests.Roles.VerifyUniversalAppAdminRolesTest" />
             <class name="com.cutanddry.qa.tests.Roles.VerifyUniversalAppManagerRolesTest" />

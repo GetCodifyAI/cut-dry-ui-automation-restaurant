@@ -13,14 +13,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyGenericAccountHoldMessageIsDisplayedOnOrderSubmissionTest extends TestBase {
+public class VerifySingleShipToAddressFallbackTest extends TestBase {
     static User user;
-    static String Dp_Name = "47837013 - Brandon IFC Cut+Dry Agent - Independent Foods Co";
-    static String customerId = "30275";
-    static String OperatorName = "372460856";
-    static String holdMessage = "Your account is on hold by your supplier. Your order could not be submitted, but has been saved as a Draft. Please contact your supplier about your account status and resubmit your order.";
-    String itemName,searchItemCode;
-    static String preAuthMessage = "Pre-authorization Required";
+    static String Dp_Name = "385655760 - Chathuraka TotalFoods - Total Foods";
+    static String customerId = "00-AVCOA";
+    static String OperatorName = "569046895";
 
 
 
@@ -30,8 +27,8 @@ public class VerifyGenericAccountHoldMessageIsDisplayedOnOrderSubmissionTest ext
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-533")
-    public void VerifyGenericAccountHoldMessageIsDisplayedOnOrderSubmission() throws InterruptedException {
+    @Test(groups = "DOT-TC-1929")
+    public void VerifySingleShipToAddressFallback() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
@@ -44,12 +41,14 @@ public class VerifyGenericAccountHoldMessageIsDisplayedOnOrderSubmissionTest ext
         Dashboard.navigateToCustomers();
         Customer.searchCustomerByCode(customerId);
         softAssert.assertTrue(Customer.isCustomerSearchResultByCodeDisplayed(customerId),"search error");
-        Customer.clickOnCustomerCode(customerId);
-        Customer.clickOnEditAccHolds();
-        Customer.clickOnAccDropdown();
-        Customer.clickOnHardHold();
-        Customer.clickOnSaveDP();
-        softAssert.assertTrue(Customer.isHardHoldSelected(),"acc select error");
+        Customer.clickOnOrderGuide(customerId);
+        Customer.increaseFirstRowQtyCustom(1);
+        Customer.checkoutItems();
+        softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
+        softAssert.assertTrue(Customer.isSingleAddressDisplay(),"display multiple address DP");
+        Customer.submitOrder();
+        softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
+
 
         Login.closePreviousTab();
 
@@ -58,16 +57,12 @@ public class VerifyGenericAccountHoldMessageIsDisplayedOnOrderSubmissionTest ext
         Dashboard.navigateToOrder();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 
-        itemName = Customer.getItemNameFirstRow();
-        searchItemCode = Customer.getItemCodeFirstRow();
-        Customer.increaseFirstRowQtySpecificCustomer(12);
+        Customer.increaseFirstRowQtyCustom(1);
         Customer.checkoutItems();
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
+        softAssert.assertTrue(Customer.isSingleAddressDisplay(),"display multiple address OP");
         Customer.submitOrder();
-        softAssert.assertTrue(Customer.isPreAuthorizationTextDisplay(preAuthMessage),"pre auth pop up display error");
-        Customer.clickContinue();
-        softAssert.assertTrue(Customer.isConfirmPaymentTextDisplay(),"confirm payment text error");
-        Customer.clickConfirm();
+        softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
         softAssert.assertAll();
 
     }

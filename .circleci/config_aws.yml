@@ -4,9 +4,8 @@ orbs:
 
 jobs:
   build-and-test:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -17,7 +16,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -36,16 +35,15 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=bvt.xml" "-Drun.headless=true" "-Dtest.env=stag"
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=bvt.xml" "-Drun.headless=true" "-Dtest.env=uat"
       - store_artifacts:
           path: target/surefire-reports
           destination: build-and-test-artifacts
     executor:
 
   nightly-build-and-test-1:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -56,7 +54,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -75,7 +73,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression1.xml" "-Drun.headless=true" "-Dtest.env=stag" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression1.xml" "-Drun.headless=true" "-Dtest.env=uat" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-1
@@ -97,9 +95,8 @@ jobs:
     executor:
 
   nightly-build-and-test-2:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -110,7 +107,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -129,7 +126,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression2.xml" "-Drun.headless=true" "-Dtest.env=stag" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression2.xml" "-Drun.headless=true" "-Dtest.env=uat" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-2
@@ -151,9 +148,8 @@ jobs:
     executor:
 
   nightly-build-and-test-3:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -164,7 +160,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -183,7 +179,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression3.xml" "-Drun.headless=true" "-Dtest.env=stag" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression3.xml" "-Drun.headless=true" "-Dtest.env=uat" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-3
@@ -205,9 +201,8 @@ jobs:
     executor:
 
   nightly-build-and-test-4:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -218,7 +213,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -237,7 +232,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression4.xml" "-Drun.headless=true" "-Dtest.env=stag" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression4.xml" "-Drun.headless=true" "-Dtest.env=uat" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-4
@@ -259,9 +254,8 @@ jobs:
     executor:
 
   nightly-build-and-test-5:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -272,7 +266,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -291,7 +285,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression5.xml" "-Drun.headless=true" "-Dtest.env=stag" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression5.xml" "-Drun.headless=true" "-Dtest.env=uat" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-5
@@ -313,9 +307,8 @@ jobs:
     executor:
 
   nightly-build-and-test-6:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -326,7 +319,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -345,7 +338,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression6.xml" "-Drun.headless=true" "-Dtest.env=stag" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression6.xml" "-Drun.headless=true" "-Dtest.env=uat" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-6
@@ -367,9 +360,8 @@ jobs:
     executor:
 
   nightly-build-and-test-7:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -380,7 +372,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -399,7 +391,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression7.xml" "-Drun.headless=true" "-Dtest.env=stag" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression7.xml" "-Drun.headless=true" "-Dtest.env=uat" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-7
@@ -421,9 +413,8 @@ jobs:
     executor:
 
   nightly-build-and-test-8:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -434,7 +425,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -453,7 +444,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression8.xml" "-Drun.headless=true" "-Dtest.env=stag" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression8.xml" "-Drun.headless=true" "-Dtest.env=uat" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-8
@@ -475,9 +466,8 @@ jobs:
     executor:
 
   nightly-build-and-test-9:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -488,7 +478,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -507,7 +497,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression9.xml" "-Drun.headless=true" "-Dtest.env=stag" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression9.xml" "-Drun.headless=true" "-Dtest.env=uat" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-9
@@ -529,9 +519,8 @@ jobs:
     executor:
 
   nightly-build-and-test-10:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -542,7 +531,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -561,7 +550,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run nightly tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression10.xml" "-Drun.headless=true" "-Dtest.env=stag" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression10.xml" "-Drun.headless=true" "-Dtest.env=uat" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-10
@@ -583,9 +572,8 @@ jobs:
     executor:
 
   nightly-build-and-test-11:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -596,7 +584,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -637,9 +625,8 @@ jobs:
     executor:
 
   daily-build-and-test-1:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -650,7 +637,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -669,7 +656,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression1.xml" "-Drun.headless=true" "-Dtest.env=stag" "-Dcreate.cycle=true" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression1.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-1
@@ -691,9 +678,8 @@ jobs:
     executor:
 
   daily-build-and-test-2:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -704,7 +690,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -723,7 +709,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression2.xml" "-Drun.headless=true" "-Dtest.env=stag" "-Dcreate.cycle=true" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression2.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-2
@@ -745,9 +731,8 @@ jobs:
     executor:
 
   daily-build-and-test-3:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -758,7 +743,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -777,7 +762,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression3.xml" "-Drun.headless=true" "-Dtest.env=stag" "-Dcreate.cycle=true" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression3.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-3
@@ -799,9 +784,8 @@ jobs:
     executor:
 
   daily-build-and-test-4:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -812,7 +796,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -831,7 +815,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression4.xml" "-Drun.headless=true" "-Dtest.env=stag" "-Dcreate.cycle=true" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression4.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-4
@@ -853,9 +837,8 @@ jobs:
     executor:
 
   daily-build-and-test-5:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -866,7 +849,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -885,7 +868,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression5.xml" "-Drun.headless=true" "-Dtest.env=stag" "-Dcreate.cycle=true" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression5.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-5
@@ -907,9 +890,8 @@ jobs:
     executor:
 
   daily-build-and-test-6:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -920,7 +902,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -939,7 +921,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression6.xml" "-Drun.headless=true" "-Dtest.env=stag" "-Dcreate.cycle=true" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression6.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-6
@@ -961,9 +943,8 @@ jobs:
     executor:
 
   daily-build-and-test-7:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -974,7 +955,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -993,7 +974,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression7.xml" "-Drun.headless=true" "-Dtest.env=stag" "-Dcreate.cycle=true" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression7.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-7
@@ -1015,9 +996,8 @@ jobs:
     executor:
 
   daily-build-and-test-8:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -1028,7 +1008,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -1047,7 +1027,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression8.xml" "-Drun.headless=true" "-Dtest.env=stag" "-Dcreate.cycle=true" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression8.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-8
@@ -1069,9 +1049,8 @@ jobs:
     executor:
 
   daily-build-and-test-9:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -1082,7 +1061,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -1101,7 +1080,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression9.xml" "-Drun.headless=true" "-Dtest.env=stag" "-Dcreate.cycle=true" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression9.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-9
@@ -1123,9 +1102,8 @@ jobs:
     executor:
 
   daily-build-and-test-10:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -1136,7 +1114,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -1155,7 +1133,7 @@ jobs:
             google-chrome --version
       - run:
           name: Build and run daily tests
-          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression10.xml" "-Drun.headless=true" "-Dtest.env=stag" "-Dcreate.cycle=true" || true
+          command: mvn clean test "-Dsurefire.suiteXmlFiles=regression10.xml" "-Drun.headless=true" "-Dtest.env=uat" "-Dcreate.cycle=true" || true
       - store_artifacts:
           path: target/surefire-reports
           destination: daily-build-and-test-artifacts-10
@@ -1177,9 +1155,8 @@ jobs:
     executor:
 
   daily-build-and-test-11:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - checkout
       - run:
@@ -1190,7 +1167,7 @@ jobs:
             sudo mkdir -p /usr/lib/jvm
             sudo tar zxvf openjdk-22_linux-x64_bin.tar.gz -C /usr/lib/jvm
             sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-22/bin/java 2200
-            sudo update-alternatives --config java
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-22/bin/java
             echo 'export PATH="/usr/lib/jvm/jdk-22/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
             java -version
@@ -1231,9 +1208,8 @@ jobs:
     executor:
 
   calculate-pass-fail-rate:
-    docker:
-      - image: cimg/base:stable
-    resource_class: xlarge
+    machine: true
+    resource_class: getcodifyai/runner-on-ec2
     steps:
       - attach_workspace:
           at: ~/workspace
@@ -1346,7 +1322,7 @@ jobs:
 
           # Send the test results to Slack
       - slack/notify:
-          channel: "#staging-test-alerts" # Replace with your Slack channel staging-test-alerts
+          channel: "#uat-test-alerts" # Replace with your Slack channel
           template: "${SLACK_MESSAGE}"
           event: always
           custom: |
@@ -1381,7 +1357,7 @@ workflows:
   scheduled-test-1:
     triggers:
       - schedule:
-          cron: "30 18 * * 1-5"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
+          cron: "25 12 * * 1-5"  # This will run nightly-build-and-test at 12:00 AM IST (6:30 PM UTC)   -- 30 18 * * * ahsan_dev  30 18
           filters:
             branches:
               only:
@@ -1403,7 +1379,7 @@ workflows:
   scheduled-test-1-sub1:
     triggers:
       - schedule:
-          cron: "30 19 * * *"  # This will run nightly-build-and-test at 2:00 AM IST (08:30 PM UTC) -- 30 19 * * *  ahsan_dev  30 19
+          cron: "15 13 * * 1-5"  # This will run nightly-build-and-test at 2:00 AM IST (08:30 PM UTC) -- 45 06 * * *  ahsan_dev  30 19
           filters:
             branches:
               only:
@@ -1428,7 +1404,7 @@ workflows:
   scheduled-test-2:
     triggers:
       - schedule:
-          cron: "40 04 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 25 06 --> DP gap = 40 min
+          cron: "25 04 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 25 06 --> DP gap = 40 min
           filters:
             branches:
               only:
@@ -1450,7 +1426,7 @@ workflows:
   scheduled-test-2-sub1:
     triggers:
       - schedule:
-          cron: "15 07 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 15 07  --> 1st job gap = 50 min staging_regression
+          cron: "15 05 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 15 07  --> 1st job gap = 50 min
           filters:
             branches:
               only:

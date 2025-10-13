@@ -17,7 +17,7 @@ import static com.cutanddry.qa.base.TestBase.*;
 
 public class VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionFromDraftTest {
     static User user;
-    String userName = "jcoupal@coupacafe";
+    String userName = "1000030";
     String supplierName = "Fanale Drinks";
 
 

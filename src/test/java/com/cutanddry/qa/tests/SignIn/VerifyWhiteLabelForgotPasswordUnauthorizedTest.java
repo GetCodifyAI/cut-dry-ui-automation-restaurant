@@ -19,19 +19,19 @@ public class VerifyWhiteLabelForgotPasswordUnauthorizedTest extends TestBase {
     }
 
     @Test(groups = "DOT-TC-106")
-    public void verifyForgotPasswordUnauthorizedEmail() {
+    public void VerifyWhiteLabelForgotPasswordUnauthorized() {
         SoftAssert softAssert = new SoftAssert();
         Login.navigateToWhiteLabel();
         Login.forgotPassword();
         softAssert.assertTrue(Login.forgotPassword(),"forgot password navigation error");
         Login.passwordResetRequest(user.getEmail_unauthorized_wl());
         softAssert.assertTrue(Login.invalidEmailOrMobileForgotPassword(),"unauthorized email pop up error");
-        Login.clickTryAgain();
+        Login.clickOk();
         Login.forgotPassword();
         softAssert.assertTrue(Login.forgotPassword(),"forgot password navigation error");
         Login.passwordResetRequest(user.getMobile_unauthorized_wl());
         softAssert.assertTrue(Login.invalidEmailOrMobileForgotPassword(),"unauthorized email pop up error");
-        Login.clickTryAgain();
+        Login.clickOk();
         softAssert.assertAll();
     }
 

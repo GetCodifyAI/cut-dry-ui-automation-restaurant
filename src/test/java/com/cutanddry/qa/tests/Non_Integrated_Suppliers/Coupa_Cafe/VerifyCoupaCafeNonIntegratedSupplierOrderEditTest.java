@@ -17,7 +17,7 @@ import static com.cutanddry.qa.base.TestBase.*;
 
 public class VerifyCoupaCafeNonIntegratedSupplierOrderEditTest {
     static User user;
-    String userName = "jcoupal@coupacafe";
+    String userName = "1000030";
     String supplierName = "David Rio";
     String orderId;
 
@@ -29,7 +29,7 @@ public class VerifyCoupaCafeNonIntegratedSupplierOrderEditTest {
     }
 
     @Test(groups = "DOT-TC-847")
-    public void VerifyCoupaCafeNonIntegratedSupplierCartQtyEdit() throws InterruptedException {
+    public void VerifyCoupaCafeNonIntegratedSupplierOrderEdit() throws InterruptedException {
         String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());

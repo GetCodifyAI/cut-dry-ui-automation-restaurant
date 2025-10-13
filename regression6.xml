@@ -34,7 +34,6 @@
             <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaCatalogTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaPDPTest" />
             <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaOrderGuideCatalogAndPDPTest" />
-
         </classes>
     </test>
 </suite>
