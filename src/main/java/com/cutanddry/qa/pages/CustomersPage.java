@@ -377,6 +377,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By deliveryAddress = By.xpath("//div[text()='Delivery To:']/following-sibling::*//div[contains(@id,'react-select')]");
     By deliveryAddressOption = By.xpath("(//div[text()='Delivery To:']/following-sibling::*//div[contains(@id,'react-select')])[2]");
     By singleDeliveryAddress = By.xpath("//div[text()='Delivery To:']/following-sibling::div/div[text()='Avcoa Vending']");
+    By btn_accHoldClose_ = By.xpath("(//button[contains(@class, 'close')]/span[text()='×'])[last()]");
+    String accountOnHoldBanner = "//span[text()='MESSAGE']";
+
 
 
 
@@ -2303,6 +2306,13 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public boolean isSingleAddressDisplay()throws InterruptedException{
         return restaurantUI.isDisplayed(singleDeliveryAddress);
+    }
+    public void clickAccHoldCloseIcon(){
+        restaurantUI.waitForVisibility(btn_accHoldClose_);
+        restaurantUI.click(btn_accHoldClose_);
+    }
+    public boolean isAccountHoldPopUpDisplay(String message)throws InterruptedException{
+        return restaurantUI.isDisplayed(By.xpath(accountOnHoldBanner.replace("MESSAGE",message)));
     }
 
 
