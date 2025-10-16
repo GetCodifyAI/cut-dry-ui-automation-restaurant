@@ -1328,6 +1328,9 @@ public class Customer {
     public static boolean isSingleAddressDisplay()throws InterruptedException{
         return customersPage.isSingleAddressDisplay();
     }
+    public static boolean isAccountHoldBannerDisplay(String message) throws InterruptedException {
+        return customersPage.isAccountHoldPopUpDisplay(message);
+    }
 
 
 
