@@ -20,7 +20,7 @@ public class VerifyTheRevenueSummeryIsDisplayedCorrectlyOnTheEditOrderFlowTest e
     static String orderSummary = "Order Summary";
     static String totalLine = "Line Items";
     static String totalQuantity = "Quantity";
-    static String orderMinimum = "Order Minimum ";
+    static String orderMinimum = "Order Minimum";
 
 
     @BeforeMethod
