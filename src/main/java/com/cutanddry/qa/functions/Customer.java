@@ -1233,6 +1233,9 @@ public class Customer {
     public static void setStandingOrder(){
         customersPage.setStandingOrder();
     }
+    public static void resetStandingOrder(){
+        customersPage.resetStandingOrder();
+    }
     public static boolean isStandingOrderSuccessPopupDisplayed(){
         return customersPage.isStandingOrderSuccessPopupDisplayed();
     }

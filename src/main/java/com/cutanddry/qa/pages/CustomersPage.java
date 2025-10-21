@@ -346,7 +346,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By dropdown_delivery = By.xpath("(//div[text()='Delivery to Hayes:']/following-sibling::div//div[text()='Select Days...'])[1]");
     String txt_deliveryDay = "//div[text()='DAY']/preceding-sibling::input[@type='checkbox']";
     String txt_deliveryLastBeforeDay = "(//div[contains(@class, 'cd_themed_select__option')]//input[@type='checkbox'])[last()-1]";
-    By btn_setStandingOrder = By.xpath("//button[text()='Set Standing Order ']");
+    By btn_setStandingOrder = By.xpath("//button[text()='Set Standing Order']");
+    By btn_resetStandingOrder = By.xpath("//button[text()='Reset Standing Order']");
     By txt_success = By.xpath("//h2[text()='Success']");
     By txt_reviewStandingOrders = By.xpath("//div[text()='Review Standing Order']");
     By btn_editStandingOrderIcon = By.xpath("//button[@title='Edit']");
@@ -2160,6 +2161,11 @@ public void clickOnCloseOrderGuideEditor(){
             throw new RuntimeException(e);
         }
         restaurantUI.click(btn_setStandingOrder);
+    }
+    public void resetStandingOrder(){
+        restaurantUI.waitForElementEnabledState(btn_resetStandingOrder,true);
+        restaurantUI.waitForClickability(btn_resetStandingOrder);
+        restaurantUI.click(btn_resetStandingOrder);
     }
     public boolean isStandingOrderSuccessPopupDisplayed(){
         restaurantUI.waitForVisibility(txt_success);
