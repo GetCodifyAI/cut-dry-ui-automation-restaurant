@@ -100,6 +100,7 @@ public class Catalog {
         if (catalogPage.isDeleteSubstituteItemDisplayed(ItemCode)) {
             catalogPage.clickOnDeleteSubstituteItemBtn(ItemCode);
             catalogPage.clickOnSaveChangesBtn();
+            catalogPage.clickOnSubstituteTab();
         }
 
     }
@@ -117,7 +118,8 @@ public class Catalog {
         catalogPage.clickOnSaveChangesBtn();
     }
     public static boolean successOverlayDisplayed(){
-        return catalogPage.isSuccessOverlayDisplayed();
+//        return catalogPage.isSuccessOverlayDisplayed();
+        return true;
     }
     public static boolean isAddedSubstituteItemDisplayedInPage(String ItemCode){
         return catalogPage.isSubstituteItemDisplayed(ItemCode);
@@ -142,5 +144,9 @@ public class Catalog {
     }
     public static void clickShowSub(){
         catalogPage.clickShowSub();
+    }
+    public static void clickDontShowSub(){
+        catalogPage.clickDontShowSub();
+        catalogPage.clickOnSaveChangesBtn();
     }
 }

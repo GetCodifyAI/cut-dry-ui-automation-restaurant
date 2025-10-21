@@ -18,6 +18,7 @@ public class VerifyCustomAccountHoldMessageIsDisplayedForCarmelaOnOrderSubmissio
     static String OperatorName = "294962910";
     static String holdMessage = "A payment is due at this time. Please contact your Carmela representative to place an order";
     String itemName,searchItemCode;
+    static String accHoldMessage = "Your account is currently on hold. Order submission and processing may be impacted. Please review details.";
     static double itemPrice;
 
 
@@ -54,14 +55,22 @@ public class VerifyCustomAccountHoldMessageIsDisplayedForCarmelaOnOrderSubmissio
         Login.navigateToLoginAs();
         Login.logInToOperatorAsWhiteLabel(OperatorName);
         Dashboard.navigateToOrder();
+        softAssert.assertTrue(Customer.isAccountHoldPopUpDisplay(),"account not hold");
+        Dashboard.clickCloseHardHoldPopup();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        softAssert.assertTrue(Customer.isAccountHoldBannerDisplay(accHoldMessage),"account hold banner not display og");
 
         itemName = Customer.getItemNameFirstRow();
         searchItemCode = Customer.getItemCodeFirstRow();
         itemPrice = Customer.getActiveItemPriceFirstRow();
         Customer.increaseFirstRowQtySpecificCustomer(15);
+        Customer.goToCatalog();
+        softAssert.assertTrue(Customer.isAccountHoldBannerDisplay(accHoldMessage),"account hold banner not display Catalog");
         Customer.checkoutItems();
+
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
+        softAssert.assertTrue(Customer.isAccountHoldBannerDisplay(accHoldMessage),"account hold banner not display review page");
+
         Customer.submitOrder();
         softAssert.assertTrue(Customer.isAccountHoldPopUpDisplay(),"account not hold");
         softAssert.assertTrue(Customer.isAccountHoldMessageDisplay(holdMessage),"account hold message not display");

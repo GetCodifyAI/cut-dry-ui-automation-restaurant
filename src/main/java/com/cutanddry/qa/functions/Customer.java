@@ -1233,6 +1233,9 @@ public class Customer {
     public static void setStandingOrder(){
         customersPage.setStandingOrder();
     }
+    public static void resetStandingOrder(){
+        customersPage.resetStandingOrder();
+    }
     public static boolean isStandingOrderSuccessPopupDisplayed(){
         return customersPage.isStandingOrderSuccessPopupDisplayed();
     }
@@ -1327,6 +1330,9 @@ public class Customer {
     }
     public static boolean isSingleAddressDisplay()throws InterruptedException{
         return customersPage.isSingleAddressDisplay();
+    }
+    public static boolean isAccountHoldBannerDisplay(String message) throws InterruptedException {
+        return customersPage.isAccountHoldPopUpDisplay(message);
     }
 
 
