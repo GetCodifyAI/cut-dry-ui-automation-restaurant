@@ -30,37 +30,37 @@ pipeline {
     stages {
         stage('Parallel Test Execution') {
             parallel {
-                stage('Regression 1') {
-                    agent any
-                    steps {
-                        script {
-                            runTestSuiteWithCleanup('regression1.xml', 'Part_One', 1)
-                        }
-                    }
-                    post {
-                        always {
-                            script {
-                                archiveAndCleanup('1', 'Regression 1 Test Report')
-                            }
-                        }
-                    }
-                }
-                
-//                 stage('Regression 2') {
+//                 stage('Regression 1') {
 //                     agent any
 //                     steps {
 //                         script {
-//                             runTestSuiteWithCleanup('regression2.xml', 'Part_Two', 2)
+//                             runTestSuiteWithCleanup('regression1.xml', 'Part_One', 1)
 //                         }
 //                     }
 //                     post {
 //                         always {
 //                             script {
-//                                 archiveAndCleanup('2', 'Regression 2 Test Report')
+//                                 archiveAndCleanup('1', 'Regression 1 Test Report')
 //                             }
 //                         }
 //                     }
 //                 }
+                
+                stage('Regression 2') {
+                    agent any
+                    steps {
+                        script {
+                            runTestSuiteWithCleanup('regression2.xml', 'Part_Two', 2)
+                        }
+                    }
+                    post {
+                        always {
+                            script {
+                                archiveAndCleanup('2', 'Regression 2 Test Report')
+                            }
+                        }
+                    }
+                }
 //
 //                 stage('Regression 3') {
 //                     agent any
