@@ -70,7 +70,7 @@ public class VerifyTheManageStandingOrdersCTAFunctionalityInOrderGuideTest exten
         softAssert.assertTrue(Customer.isReviewStandingOrdersDisplayed(),"navigate error review standing order");
         Customer.increaseFirstRowQtyByOne();
         totalQuantity = Catalog.getTotalQuantityInReviewOrder();
-        Customer.setStandingOrder();
+        Customer.resetStandingOrder();
         softAssert.assertTrue(Customer.isStandingOrderSuccessPopupDisplayed(),"order creating error");
         Customer.clickOK();
 
