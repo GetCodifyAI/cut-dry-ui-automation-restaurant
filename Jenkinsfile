@@ -78,37 +78,37 @@ pipeline {
 //                     }
 //                 }
 //
-                stage('Regression 4') {
-                    agent any
-                    steps {
-                        script {
-                            runTestSuiteWithCleanup('regression4.xml', 'Part_Four', 4)
-                        }
-                    }
-                    post {
-                        always {
-                            script {
-                                archiveAndCleanup('4', 'Regression 4 Test Report')
-                            }
-                        }
-                    }
-                }
-//
-//                 stage('Regression 5') {
+//                 stage('Regression 4') {
 //                     agent any
 //                     steps {
 //                         script {
-//                             runTestSuiteWithCleanup('regression5.xml', 'Part_Five', 5)
+//                             runTestSuiteWithCleanup('regression4.xml', 'Part_Four', 4)
 //                         }
 //                     }
 //                     post {
 //                         always {
 //                             script {
-//                                 archiveAndCleanup('5', 'Regression 5 Test Report')
+//                                 archiveAndCleanup('4', 'Regression 4 Test Report')
 //                             }
 //                         }
 //                     }
 //                 }
+//
+                stage('Regression 5') {
+                    agent any
+                    steps {
+                        script {
+                            runTestSuiteWithCleanup('regression5.xml', 'Part_Five', 5)
+                        }
+                    }
+                    post {
+                        always {
+                            script {
+                                archiveAndCleanup('5', 'Regression 5 Test Report')
+                            }
+                        }
+                    }
+                }
 //
 //                 stage('Regression 6') {
 //                     agent any
