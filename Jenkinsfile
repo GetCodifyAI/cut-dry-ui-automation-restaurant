@@ -273,15 +273,29 @@ def runTestSuiteWithCleanup(xmlFile, partName, jobNumber) {
     echo "Running test suite: ${xmlFile} (${partName}) with cleanup optimization"
     
     sh '''
-        rm -rf target/surefire-reports* || true
-        rm -rf target/screenshots* || true
-        rm -rf target/test-output* || true
-        
-        rm -rf ~/.cache/google-chrome* || true
-        rm -rf /tmp/chrome_* /tmp/.org.chromium.* || true
-        
-        echo "Disk usage before test execution:"
-        df -h
+        # Kill any lingering Chrome/ChromeDriver processes
+            pkill -9 chrome || true
+            pkill -9 chromedriver || true
+            pkill -9 Xvfb || true
+
+            # Wait for processes to fully terminate
+            sleep 5
+
+            # Clean up test artifacts
+            rm -rf target/surefire-reports* || true
+            rm -rf target/screenshots* || true
+            rm -rf target/test-output* || true
+
+            # Aggressive Chrome cleanup
+            rm -rf ~/.cache/google-chrome* || true
+            rm -rf /tmp/chrome_* || true
+            rm -rf /tmp/.org.chromium.* || true
+            rm -rf /tmp/.com.google.Chrome.* || true
+            rm -rf /tmp/scoped_dir* || true
+            rm -rf /dev/shm/.org.chromium.* || true
+
+            echo "Disk usage before test execution:"
+            df -h
     '''
     
     try {
