@@ -30,181 +30,181 @@ pipeline {
     stages {
         stage('Parallel Test Execution') {
             parallel {
-                stage('Regression 1') {
-                    agent any
-                    steps {
-                        script {
-                            runTestSuiteWithCleanup('regression1.xml', 'Part_One', 1)
-                        }
-                    }
-                    post {
-                        always {
-                            script {
-                                archiveAndCleanup('1', 'Regression 1 Test Report')
-                            }
-                        }
-                    }
-                }
-
-                stage('Regression 2') {
-                    agent any
-                    steps {
-                        script {
-                            runTestSuiteWithCleanup('regression2.xml', 'Part_Two', 2)
-                        }
-                    }
-                    post {
-                        always {
-                            script {
-                                archiveAndCleanup('2', 'Regression 2 Test Report')
-                            }
-                        }
-                    }
-                }
-
-                stage('Regression 3') {
-                    agent any
-                    steps {
-                        script {
-                            runTestSuiteWithCleanup('regression3.xml', 'Part_Three', 3)
-                        }
-                    }
-                    post {
-                        always {
-                            script {
-                                archiveAndCleanup('3', 'Regression 3 Test Report')
-                            }
-                        }
-                    }
-                }
-
-                stage('Regression 4') {
-                    agent any
-                    steps {
-                        script {
-                            runTestSuiteWithCleanup('regression4.xml', 'Part_Four', 4)
-                        }
-                    }
-                    post {
-                        always {
-                            script {
-                                archiveAndCleanup('4', 'Regression 4 Test Report')
-                            }
-                        }
-                    }
-                }
-
-//                 stage('Regression 5') {
+//                 stage('Regression 1') {
 //                     agent any
 //                     steps {
 //                         script {
-//                             runTestSuiteWithCleanup('regression5.xml', 'Part_Five', 5)
+//                             runTestSuiteWithCleanup('regression1.xml', 'Part_One', 1)
 //                         }
 //                     }
 //                     post {
 //                         always {
 //                             script {
-//                                 archiveAndCleanup('5', 'Regression 5 Test Report')
+//                                 archiveAndCleanup('1', 'Regression 1 Test Report')
+//                             }
+//                         }
+//                     }
+//                 }
+//
+//                 stage('Regression 2') {
+//                     agent any
+//                     steps {
+//                         script {
+//                             runTestSuiteWithCleanup('regression2.xml', 'Part_Two', 2)
+//                         }
+//                     }
+//                     post {
+//                         always {
+//                             script {
+//                                 archiveAndCleanup('2', 'Regression 2 Test Report')
+//                             }
+//                         }
+//                     }
+//                 }
+//
+//                 stage('Regression 3') {
+//                     agent any
+//                     steps {
+//                         script {
+//                             runTestSuiteWithCleanup('regression3.xml', 'Part_Three', 3)
+//                         }
+//                     }
+//                     post {
+//                         always {
+//                             script {
+//                                 archiveAndCleanup('3', 'Regression 3 Test Report')
+//                             }
+//                         }
+//                     }
+//                 }
+//
+//                 stage('Regression 4') {
+//                     agent any
+//                     steps {
+//                         script {
+//                             runTestSuiteWithCleanup('regression4.xml', 'Part_Four', 4)
+//                         }
+//                     }
+//                     post {
+//                         always {
+//                             script {
+//                                 archiveAndCleanup('4', 'Regression 4 Test Report')
 //                             }
 //                         }
 //                     }
 //                 }
 
-                stage('Regression 6') {
+                stage('Regression 5') {
                     agent any
                     steps {
                         script {
-                            runTestSuiteWithCleanup('regression6.xml', 'Part_Six', 6)
+                            runTestSuiteWithCleanup('regression5.xml', 'Part_Five', 5)
                         }
                     }
                     post {
                         always {
                             script {
-                                archiveAndCleanup('6', 'Regression 6 Test Report')
+                                archiveAndCleanup('5', 'Regression 5 Test Report')
                             }
                         }
                     }
                 }
 
-                stage('Regression 7') {
-                    agent any
-                    steps {
-                        script {
-                            runTestSuiteWithCleanup('regression7.xml', 'Part_Seven', 7)
-                        }
-                    }
-                    post {
-                        always {
-                            script {
-                                archiveAndCleanup('7', 'Regression 7 Test Report')
-                            }
-                        }
-                    }
-                }
-
-                stage('Regression 8') {
-                    agent any
-                    steps {
-                        script {
-                            runTestSuiteWithCleanup('regression8.xml', 'Part_Eight', 8)
-                        }
-                    }
-                    post {
-                        always {
-                            script {
-                                archiveAndCleanup('8', 'Regression 8 Test Report')
-                            }
-                        }
-                    }
-                }
-
-                stage('Regression 9') {
-                    agent any
-                    steps {
-                        script {
-                            runTestSuiteWithCleanup('regression9.xml', 'Part_Nine', 9)
-                        }
-                    }
-                    post {
-                        always {
-                            script {
-                                archiveAndCleanup('9', 'Regression 9 Test Report')
-                            }
-                        }
-                    }
-                }
-
-                stage('Regression 10') {
-                    agent any
-                    steps {
-                        script {
-                            runTestSuiteWithCleanup('regression10.xml', 'Part_Ten', 10)
-                        }
-                    }
-                    post {
-                        always {
-                            script {
-                                archiveAndCleanup('10', 'Regression 10 Test Report')
-                            }
-                        }
-                    }
-                }
-
-                stage('Regression 11') {
-                    agent any
-                    steps {
-                        script {
-                            runTestSuiteWithCleanup('regression11.xml', 'Part_Eleven', 11)
-                        }
-                    }
-                    post {
-                        always {
-                            script {
-                                archiveAndCleanup('11', 'Regression 11 Test Report')
-                            }
-                        }
-                    }
-                }
+//                 stage('Regression 6') {
+//                     agent any
+//                     steps {
+//                         script {
+//                             runTestSuiteWithCleanup('regression6.xml', 'Part_Six', 6)
+//                         }
+//                     }
+//                     post {
+//                         always {
+//                             script {
+//                                 archiveAndCleanup('6', 'Regression 6 Test Report')
+//                             }
+//                         }
+//                     }
+//                 }
+//
+//                 stage('Regression 7') {
+//                     agent any
+//                     steps {
+//                         script {
+//                             runTestSuiteWithCleanup('regression7.xml', 'Part_Seven', 7)
+//                         }
+//                     }
+//                     post {
+//                         always {
+//                             script {
+//                                 archiveAndCleanup('7', 'Regression 7 Test Report')
+//                             }
+//                         }
+//                     }
+//                 }
+//
+//                 stage('Regression 8') {
+//                     agent any
+//                     steps {
+//                         script {
+//                             runTestSuiteWithCleanup('regression8.xml', 'Part_Eight', 8)
+//                         }
+//                     }
+//                     post {
+//                         always {
+//                             script {
+//                                 archiveAndCleanup('8', 'Regression 8 Test Report')
+//                             }
+//                         }
+//                     }
+//                 }
+//
+//                 stage('Regression 9') {
+//                     agent any
+//                     steps {
+//                         script {
+//                             runTestSuiteWithCleanup('regression9.xml', 'Part_Nine', 9)
+//                         }
+//                     }
+//                     post {
+//                         always {
+//                             script {
+//                                 archiveAndCleanup('9', 'Regression 9 Test Report')
+//                             }
+//                         }
+//                     }
+//                 }
+//
+//                 stage('Regression 10') {
+//                     agent any
+//                     steps {
+//                         script {
+//                             runTestSuiteWithCleanup('regression10.xml', 'Part_Ten', 10)
+//                         }
+//                     }
+//                     post {
+//                         always {
+//                             script {
+//                                 archiveAndCleanup('10', 'Regression 10 Test Report')
+//                             }
+//                         }
+//                     }
+//                 }
+//
+//                 stage('Regression 11') {
+//                     agent any
+//                     steps {
+//                         script {
+//                             runTestSuiteWithCleanup('regression11.xml', 'Part_Eleven', 11)
+//                         }
+//                     }
+//                     post {
+//                         always {
+//                             script {
+//                                 archiveAndCleanup('11', 'Regression 11 Test Report')
+//                             }
+//                         }
+//                     }
+//                 }
             }
         }
         
