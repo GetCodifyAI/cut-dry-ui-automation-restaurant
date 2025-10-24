@@ -299,8 +299,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String itemTagOG = "//div[contains(text(),'NAME')]/../../following-sibling::div//span[text()='TAG']";
     String newItemTagPDP = "//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate(\"NAME\", 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]/following-sibling::div//span[text()='TAG']";
     String catalogSearchItemCode = "//div[contains(@class,'card-deck')]//div[contains(., 'CODE')]";
-    By btn_cartSummery = By.xpath("//button[text()='$']");
-    String cartSummary = "//div[text()='COUNT']";
+    By btn_cartSummery = By.xpath("(//*[local-name() = 'svg' and @data-icon='chevron-down'])[2]");
+    String cartSummary = "//span[text()='COUNT']";
     String cartSummaryValue = "//div[contains(text(),'NAME')]";
     By btn_menu = By.xpath("//*[local-name() = 'svg' and @data-icon='bars']");
     String txt_userName = "//div[contains(text(),'NAME')]";
@@ -346,7 +346,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By dropdown_delivery = By.xpath("(//div[text()='Delivery to Hayes:']/following-sibling::div//div[text()='Select Days...'])[1]");
     String txt_deliveryDay = "//div[text()='DAY']/preceding-sibling::input[@type='checkbox']";
     String txt_deliveryLastBeforeDay = "(//div[contains(@class, 'cd_themed_select__option')]//input[@type='checkbox'])[last()-1]";
-    By btn_setStandingOrder = By.xpath("//button[text()='Set Standing Order ']");
+    By btn_setStandingOrder = By.xpath("//button[text()='Set Standing Order']");
+    By btn_resetStandingOrder = By.xpath("//button[text()='Reset Standing Order']");
     By txt_success = By.xpath("//h2[text()='Success']");
     By txt_reviewStandingOrders = By.xpath("//div[text()='Review Standing Order']");
     By btn_editStandingOrderIcon = By.xpath("//button[@title='Edit']");
@@ -368,11 +369,18 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By lbl_ItemTotal= By.xpath("//div[contains(text(),'Item Total')]/../following-sibling::div//input");
     By btn_clearAll = By.xpath("//div[text()='Clear All']");
     String cartSummeryValue = "//div[contains(text(),'OPTION')]/following-sibling::div";
-    String revenueSummeryValue = "//div[contains(text(),'OPTION')]/following-sibling::div/span";
+    String revenueSummeryValue = "(//div[contains(text(),'OPTION')]/following-sibling::div/span)[1]";
     String txt_preAuthorization = "//h2[text()='MESSAGE']";
     By txt_confirmPayment = By.xpath("//div[text()='Confirm Payment']");
     By btn_continue = By.xpath("//button[contains(text(), 'Continue')]");
     String sortOptionsOG = "//span[contains(text(), 'OPTION')]";
+    By lbl_deliveryTo = By.xpath("//div[text()='Delivery To:']/following-sibling::div");
+    By deliveryAddress = By.xpath("//div[text()='Delivery To:']/following-sibling::*//div[contains(@id,'react-select')]");
+    By deliveryAddressOption = By.xpath("(//div[text()='Delivery To:']/following-sibling::*//div[contains(@id,'react-select')])[2]");
+    By singleDeliveryAddress = By.xpath("//div[text()='Delivery To:']/following-sibling::div/div[text()='Avcoa Vending']");
+    By btn_accHoldClose_ = By.xpath("(//button[contains(@class, 'close')]/span[text()='×'])[last()]");
+    String accountOnHoldBanner = "//span[text()='MESSAGE']";
+
 
 
 
@@ -2154,6 +2162,11 @@ public void clickOnCloseOrderGuideEditor(){
         }
         restaurantUI.click(btn_setStandingOrder);
     }
+    public void resetStandingOrder(){
+        restaurantUI.waitForElementEnabledState(btn_resetStandingOrder,true);
+        restaurantUI.waitForClickability(btn_resetStandingOrder);
+        restaurantUI.click(btn_resetStandingOrder);
+    }
     public boolean isStandingOrderSuccessPopupDisplayed(){
         restaurantUI.waitForVisibility(txt_success);
         return restaurantUI.isDisplayed(txt_success);
@@ -2288,6 +2301,28 @@ public void clickOnCloseOrderGuideEditor(){
     public void clickSortOptionsOG(String option)throws InterruptedException{
         restaurantUI.click(By.xpath(sortOptionsOG.replace("OPTION",option)));
     }
+    public void clickDeliveryTo()throws InterruptedException{
+        restaurantUI.click(lbl_deliveryTo);
+    }
+    public int isDeliveryAddressDisplay() throws InterruptedException {
+        return restaurantUI.countDisplayedElements(deliveryAddress);
+    }
+    public void clickDeliveryAddress()throws InterruptedException{
+        restaurantUI.click(deliveryAddressOption);
+    }
+    public boolean isSingleAddressDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(singleDeliveryAddress);
+    }
+    public void clickAccHoldCloseIcon(){
+        restaurantUI.waitForVisibility(btn_accHoldClose_);
+        restaurantUI.click(btn_accHoldClose_);
+    }
+    public boolean isAccountHoldPopUpDisplay(String message)throws InterruptedException{
+        return restaurantUI.isDisplayed(By.xpath(accountOnHoldBanner.replace("MESSAGE",message)));
+    }
+
+
+
 
 
 

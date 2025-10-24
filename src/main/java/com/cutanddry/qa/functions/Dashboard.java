@@ -214,4 +214,10 @@ public class Dashboard {
             dashboardPage.clickOnNoDraftOrder();
         }
     }
+    public static void clickCloseHardHoldPopup() throws InterruptedException {
+        customersPage.clickAccHoldCloseIcon();
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickOnNoDraftOrder();
+        }
+    }
 }

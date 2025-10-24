@@ -49,8 +49,10 @@
             <class name="com.cutanddry.qa.tests.Pay.VerifyPaidTabSupplierDropdownTest"/>
 
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSoftOrderMinimumSelectingMultipleUOMTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyPlaceOrderWithMultiUOMForScrapperIntegratedTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyPickupIsNotDisplayedWhenItIsOnlyEnabledForTheSupplierPortalTermTest" />
+            <!--            TODO:Multi UOM not available -->
+            <!--<class name="com.cutanddry.qa.tests.Mult_UOM.VerifyPlaceOrderWithMultiUOMForScrapperIntegratedTest" />-->
+            <!--            TODO:sunrise Food DP not available -->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyPickupIsNotDisplayedWhenItIsOnlyEnabledForTheSupplierPortalTermTest" />-->
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheHardOrderMinimumSelectingMultipleUOMTest" />
 
         </classes>

@@ -1233,6 +1233,9 @@ public class Customer {
     public static void setStandingOrder(){
         customersPage.setStandingOrder();
     }
+    public static void resetStandingOrder(){
+        customersPage.resetStandingOrder();
+    }
     public static boolean isStandingOrderSuccessPopupDisplayed(){
         return customersPage.isStandingOrderSuccessPopupDisplayed();
     }
@@ -1315,6 +1318,21 @@ public class Customer {
     public static void clickContinue(){customersPage.clickContinue();}
     public static void clickSortOptionsOG(String option)throws InterruptedException{
         customersPage.clickSortOptionsOG(option);
+    }
+    public static void clickDeliveryTo()throws InterruptedException{
+        customersPage.clickDeliveryTo();
+    }
+    public static int isDeliveryAddressDisplay()throws InterruptedException{
+        return customersPage.isDeliveryAddressDisplay();
+    }
+    public static void clickDeliveryAddress()throws InterruptedException{
+        customersPage.clickDeliveryAddress();
+    }
+    public static boolean isSingleAddressDisplay()throws InterruptedException{
+        return customersPage.isSingleAddressDisplay();
+    }
+    public static boolean isAccountHoldBannerDisplay(String message) throws InterruptedException {
+        return customersPage.isAccountHoldPopUpDisplay(message);
     }
 
 
