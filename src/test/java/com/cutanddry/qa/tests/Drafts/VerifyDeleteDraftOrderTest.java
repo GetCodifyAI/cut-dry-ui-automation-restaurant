@@ -18,7 +18,7 @@ public class VerifyDeleteDraftOrderTest extends TestBase {
     static User user;
     static String itemName, searchItemCode,referenceNum;
     static double itemPrice;
-    static String draftConfirmation ="This draft was created by Mashan. Deleting it will remove it permanently, and it cannot be restored.";
+    static String draftConfirmation ="This draft was created by MashanTest. Deleting it will remove it permanently, and it cannot be restored.";
 
 
     @BeforeMethod
