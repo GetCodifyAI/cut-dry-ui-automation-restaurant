@@ -33,6 +33,9 @@
 
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyMultipleShipToAddressDisplayAndSelectionTest" />
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifySingleShipToAddressFallbackTest" />
+
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyThatTheItemTypeFilterIsVisibleForOtherDPsOperatorsTest" />
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyOperatorsDoesNotHaveSpecialItemsTest" />
         </classes>
     </test>
 </suite>
