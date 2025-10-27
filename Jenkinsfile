@@ -465,6 +465,16 @@ def calculateAndReportResults() {
 def archiveAndCleanup(suiteNumber, reportName) {
     echo "Archiving artifacts and performing cleanup for suite ${suiteNumber}"
     
+    // Kill lingering Chrome/ChromeDriver processes immediately after test completion
+    sh """
+        echo "Killing lingering Chrome processes for suite ${suiteNumber}..."
+        pkill -9 chrome || true
+        pkill -9 chromedriver || true
+        pkill -9 Xvfb || true
+        sleep 2
+        echo "Chrome processes killed for suite ${suiteNumber}"
+    """
+    
     archiveArtifacts artifacts: 'target/surefire-reports*/**/*', allowEmptyArchive: true, fingerprint: true
     
     publishHTML([
