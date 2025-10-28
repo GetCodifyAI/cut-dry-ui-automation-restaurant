@@ -36,6 +36,7 @@
 
             <class name="com.cutanddry.qa.tests.Catalog.VerifyThatTheItemTypeFilterIsVisibleForOtherDPsOperatorsTest" />
             <class name="com.cutanddry.qa.tests.Catalog.VerifyOperatorsDoesNotHaveSpecialItemsTest" />
+
             <class name="com.cutanddry.qa.tests.Catalog.VerifyThatTheGPOFilterOptionInTheCatalogAvailableForOtherOPsTest" />
         </classes>
     </test>
