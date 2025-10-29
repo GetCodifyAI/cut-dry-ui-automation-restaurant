@@ -380,6 +380,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By singleDeliveryAddress = By.xpath("//div[text()='Delivery To:']/following-sibling::div/div[text()='Avcoa Vending']");
     By btn_accHoldClose_ = By.xpath("(//button[contains(@class, 'close')]/span[text()='×'])[last()]");
     String accountOnHoldBanner = "//span[text()='MESSAGE']";
+    String distributorCenter = "//div[contains(text(),'Distribution Center')]/../../following-sibling::div//*[text()='CENTER']";
+    String listViewTag = "//td[contains(text(),'NAME')]//span[contains(text(),'TAG')]";
 
 
 
@@ -2319,6 +2321,13 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public boolean isAccountHoldPopUpDisplay(String message)throws InterruptedException{
         return restaurantUI.isDisplayed(By.xpath(accountOnHoldBanner.replace("MESSAGE",message)));
+    }
+    public void selectDistributorCenter(String center)throws InterruptedException{
+        restaurantUI.click(By.xpath(distributorCenter.replace("CENTER",center)));
+        restaurantUI.waitForCustom(3000);
+    }
+    public boolean isCatalogFilterDisplayTagList(String name,String tag){
+        return restaurantUI.isDisplayed(By.xpath(listViewTag.replace("NAME", name).replace("TAG",tag)));
     }
 
 

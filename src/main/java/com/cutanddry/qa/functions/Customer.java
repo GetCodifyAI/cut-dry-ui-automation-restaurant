@@ -1334,6 +1334,12 @@ public class Customer {
     public static boolean isAccountHoldBannerDisplay(String message) throws InterruptedException {
         return customersPage.isAccountHoldPopUpDisplay(message);
     }
+    public static void selectDistributorCenter(String center)throws InterruptedException{
+        customersPage.selectDistributorCenter(center);
+    }
+    public static boolean isCatalogFilterDisplayTagList(String name,String tag){
+        return customersPage.isCatalogFilterDisplayTagList(name,tag);
+    }
 
 
 
