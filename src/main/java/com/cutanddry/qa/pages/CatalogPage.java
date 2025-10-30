@@ -54,6 +54,11 @@ public class CatalogPage extends LoginPage {
     String lastOrderPrice = "//span[contains(text(),'PRICE')]";
     By btn_showSub = By.xpath("//label[text()='Show Subs']");
     By btn_dontShowSub = By.xpath("//label[text()=concat(\"Don\", \"'\", \"t Show Subs\")]\n");
+    By dealsTypeDropDown = By.xpath("//div[contains(text(), 'Deals')]");
+    By dealsTypeDownOption = By.xpath("//div[contains(text(), 'Deals')]/../../following-sibling::div//*[name()='svg' and @data-icon='square']/following-sibling::div[contains(text(), 'GPO Contracted Items')]");
+    By txt_dealsTypeDownOption = By.xpath("//div[contains(text(), 'Deals')]/../../following-sibling::div//*[name()='svg' and @data-icon='square-check']/following-sibling::div[contains(text(), 'GPO Contracted Items')]");
+
+
 
 
 
@@ -344,6 +349,13 @@ public class CatalogPage extends LoginPage {
     }
     public void clickDontShowSub(){
         restaurantUI.click(btn_dontShowSub);
+    }
+    public void clickDealsType()throws InterruptedException{
+        restaurantUI.click(dealsTypeDropDown);
+        restaurantUI.click(dealsTypeDownOption);
+    }
+    public boolean isGPOContractedDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(txt_dealsTypeDownOption);
     }
 
 
