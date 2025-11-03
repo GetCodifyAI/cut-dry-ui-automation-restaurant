@@ -149,4 +149,8 @@ public class Catalog {
         catalogPage.clickDontShowSub();
         catalogPage.clickOnSaveChangesBtn();
     }
+    public static void clickDealsType()throws InterruptedException{catalogPage.clickDealsType();}
+    public static boolean isGPOContractedDisplay()throws InterruptedException{
+        return catalogPage.isGPOContractedDisplay();
+    }
 }
