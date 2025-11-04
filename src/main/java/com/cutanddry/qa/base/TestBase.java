@@ -82,7 +82,8 @@ public class TestBase {
     // Method to close the browser and clean up resources
     public static void closeAllBrowsers() {
         if (driver != null) {
-            driver.close();
+//            driver.close();
+            driver.quit();
             driver = null;  // Reset the driver to allow re-initialization in future tests
             LOGGER.info("All browsers are closed.");
         }
