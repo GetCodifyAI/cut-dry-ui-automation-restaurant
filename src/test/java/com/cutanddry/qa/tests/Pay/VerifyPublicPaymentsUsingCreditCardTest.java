@@ -17,7 +17,7 @@ public class VerifyPublicPaymentsUsingCreditCardTest extends TestBase {
     static User user;
     static String cardNumber = "4111111111111111";
     static String cvv = "999";
-    static String expDate = "10/25";
+    static String expDate = "10/28";
     static String zipCode = "11500";
     static String vendorID = "46017751";
 
