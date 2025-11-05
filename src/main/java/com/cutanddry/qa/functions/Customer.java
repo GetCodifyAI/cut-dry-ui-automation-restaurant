@@ -1340,6 +1340,9 @@ public class Customer {
     public static boolean isCatalogFilterDisplayTagList(String name,String tag){
         return customersPage.isCatalogFilterDisplayTagList(name,tag);
     }
+    public static boolean IsChangeLocationOrderGuideDisplay(String name){
+        return customersPage.IsChangeLocationOrderGuideDisplay(name);
+    }
 
 
 
