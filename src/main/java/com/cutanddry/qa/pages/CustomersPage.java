@@ -382,6 +382,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String accountOnHoldBanner = "//span[text()='MESSAGE']";
     String distributorCenter = "//div[contains(text(),'Distribution Center')]/../../following-sibling::div//*[text()='CENTER']";
     String listViewTag = "//td[contains(text(),'NAME')]//span[contains(text(),'TAG')]";
+    String orderGuideLocation =  "//div[contains(text(), 'Location/Guide:')]//following::div[text()= 'NAME']";
+
 
 
 
@@ -2328,6 +2330,9 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public boolean isCatalogFilterDisplayTagList(String name,String tag){
         return restaurantUI.isDisplayed(By.xpath(listViewTag.replace("NAME", name).replace("TAG",tag)));
+    }
+    public boolean IsChangeLocationOrderGuideDisplay(String name){
+        return restaurantUI.isDisplayed(By.xpath(orderGuideLocation.replace("NAME",name)));
     }
 
 
