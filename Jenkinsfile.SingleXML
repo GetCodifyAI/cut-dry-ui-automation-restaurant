@@ -12,6 +12,21 @@ pipeline {
             defaultValue: true,
             description: 'Clean up temporary files after execution to save disk space'
         )
+        booleanParam(
+            name: 'TCMS_CREATE_CYCLE',
+            defaultValue: true,
+            description: 'Automatically create a new TCMS test cycle for this run'
+        )
+        string(
+            name: 'TCMS_PROJECT_KEY',
+            defaultValue: 'DOT',
+            description: 'TCMS project key (default: DOT)'
+        )
+        string(
+            name: 'TCMS_CYCLE_KEY',
+            defaultValue: '',
+            description: 'Optional: Use an existing TCMS cycle key (only used when TCMS_CREATE_CYCLE is false)'
+        )
     }
     
     environment {
@@ -147,13 +162,21 @@ def runTestSuiteWithCleanup(xmlFile, suiteName) {
         // Checkout code
         checkout scm
         
+        // Build Maven command with TCMS properties
+        def tcmsProps = "-Dproject.key=${params.TCMS_PROJECT_KEY} -Dcreate.cycle=${params.TCMS_CREATE_CYCLE}"
+        if (!params.TCMS_CREATE_CYCLE && params.TCMS_CYCLE_KEY) {
+            tcmsProps += " -Dcycle.key=${params.TCMS_CYCLE_KEY}"
+        }
+        
         // Run the specific test suite
         sh """
             echo "Starting ${suiteName} restaurant test execution with ${xmlFile}"
+            echo "TCMS Configuration: Project=${params.TCMS_PROJECT_KEY}, CreateCycle=${params.TCMS_CREATE_CYCLE}, CycleKey=${params.TCMS_CYCLE_KEY ?: 'auto-create'}"
             mvn clean test \\
                 -Dsurefire.suiteXmlFiles=${xmlFile} \\
                 -Drun.headless=${env.RUN_HEADLESS} \\
                 -Dtest.env=${env.TEST_ENV} \\
+                ${tcmsProps} \\
                 -Dmaven.test.failure.ignore=true \\
                 -Duser.timezone=UTC \\
                 -Dmaven.repo.local=\${WORKSPACE}/.m2/repository
