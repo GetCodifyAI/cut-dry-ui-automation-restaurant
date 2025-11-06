@@ -40,6 +40,9 @@
             <class name="com.cutanddry.qa.tests.Catalog.VerifyThatTheGPOFilterOptionInTheCatalogAvailableForOtherOPsTest" />
             <class name="com.cutanddry.qa.tests.Catalog.VerifyThatOPsDisplayTheirOwnProductsAlongWithProductsFromOtherManufacturersTest" />
             <class name="com.cutanddry.qa.tests.Catalog.VerifyThatDistributionCentreFilterIsFilteringRelevantDistributorCentresForOPSideTest" />
+
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThatTheOrderGuideNameAndDescriptionInOrderGuideSettingsTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThatTheOrderGuideLocationInOrderGuideSettingsTest" />
         </classes>
     </test>
 </suite>
