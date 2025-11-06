@@ -168,10 +168,14 @@ def runTestSuiteWithCleanup(xmlFile, suiteName) {
             tcmsProps += " -Dcycle.key=${params.TCMS_CYCLE_KEY}"
         }
         
+        // Add PART parameter for TCMS cycle naming (based on XML file name)
+        def partName = suiteName.replaceAll(/[^a-zA-Z0-9]/, '_').toUpperCase()
+        tcmsProps += " -DPART=${partName}"
+        
         // Run the specific test suite
         sh """
             echo "Starting ${suiteName} restaurant test execution with ${xmlFile}"
-            echo "TCMS Configuration: Project=${params.TCMS_PROJECT_KEY}, CreateCycle=${params.TCMS_CREATE_CYCLE}, CycleKey=${params.TCMS_CYCLE_KEY ?: 'auto-create'}"
+            echo "TCMS Configuration: Project=${params.TCMS_PROJECT_KEY}, CreateCycle=${params.TCMS_CREATE_CYCLE}, CycleKey=${params.TCMS_CYCLE_KEY ?: 'auto-create'}, Part=${partName}"
             mvn clean test \\
                 -Dsurefire.suiteXmlFiles=${xmlFile} \\
                 -Drun.headless=${env.RUN_HEADLESS} \\
