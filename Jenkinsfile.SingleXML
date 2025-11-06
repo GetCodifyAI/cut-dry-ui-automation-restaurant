@@ -77,8 +77,8 @@ pipeline {
             }
             post {
                 always {
-                    // Publish TestNG results
-                    publishTestResults testResultsPattern: '**/target/surefire-reports/TEST-*.xml'
+                    // Publish TestNG results using junit
+                    junit testResults: '**/target/surefire-reports/TEST-*.xml', allowEmptyResults: true
                     
                     // Archive all test artifacts
                     archiveArtifacts artifacts: '**/target/surefire-reports/**/*', allowEmptyArchive: true
@@ -414,8 +414,13 @@ def sendSlackNotification(buildStatus = null) {
         // Read test results if available
         def testResults = [:]
         if (fileExists('test_results.env')) {
-            def props = readProperties file: 'test_results.env'
-            testResults = props
+            def propsText = readFile('test_results.env')
+            propsText.split('\n').each { line ->
+                if (line.contains('=')) {
+                    def parts = line.split('=', 2)
+                    testResults[parts[0].trim()] = parts[1].trim()
+                }
+            }
         }
         
         def message = """
