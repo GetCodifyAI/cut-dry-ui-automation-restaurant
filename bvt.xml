@@ -7,6 +7,7 @@
     </listeners>
     <test name="distributor tests">
         <parameter name="PART" value="BVT" />
+        <parameter name="PART" value="BVT" />
         <classes>
             <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantLoginTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmOrderGuideTest" />

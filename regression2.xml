@@ -6,6 +6,7 @@
         <listener class-name="com.cutanddry.qa.utils.AIOSampleUIMethodListener"/>
     </listeners>
     <test name="operator tests">
+        <parameter name="PART" value="Regression_2" />
         <parameter name="PART" value="Part Two" />
         <classes>
             <class name="com.cutanddry.qa.tests.Catalog.VerifyCatalogItemImagesTest" />
