@@ -12,21 +12,6 @@ pipeline {
             defaultValue: true,
             description: 'Clean up temporary files after execution to save disk space'
         )
-        booleanParam(
-            name: 'TCMS_CREATE_CYCLE',
-            defaultValue: true,
-            description: 'Automatically create a new TCMS test cycle for this run'
-        )
-        string(
-            name: 'TCMS_PROJECT_KEY',
-            defaultValue: 'DOT',
-            description: 'TCMS project key (default: DOT)'
-        )
-        string(
-            name: 'TCMS_CYCLE_KEY',
-            defaultValue: '',
-            description: 'Optional: Use an existing TCMS cycle key (only used when TCMS_CREATE_CYCLE is false)'
-        )
     }
     
     environment {
@@ -41,7 +26,6 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '10'))
         timeout(time: 2, unit: 'HOURS')
-        disableConcurrentBuilds(abortPrevious: true)
     }
     
     stages {
@@ -140,7 +124,7 @@ pipeline {
 }
 
 def runTestSuiteWithCleanup(xmlFile, suiteName) {
-    echo "Running restaurant test suite: ${xmlFile} (${suiteName}) with cleanup optimization"
+    echo "Running test suite: ${xmlFile} (${suiteName}) with cleanup optimization"
     
     // Pre-execution cleanup
     sh '''
@@ -162,25 +146,13 @@ def runTestSuiteWithCleanup(xmlFile, suiteName) {
         // Checkout code
         checkout scm
         
-        // Build Maven command with TCMS properties
-        def tcmsProps = "-Dproject.key=${params.TCMS_PROJECT_KEY} -Dcreate.cycle=${params.TCMS_CREATE_CYCLE}"
-        if (!params.TCMS_CREATE_CYCLE && params.TCMS_CYCLE_KEY) {
-            tcmsProps += " -Dcycle.key=${params.TCMS_CYCLE_KEY}"
-        }
-        
-        // Add PART parameter for TCMS cycle naming (based on XML file name)
-        def partName = suiteName.replaceAll(/[^a-zA-Z0-9]/, '_').toUpperCase()
-        tcmsProps += " -DPART=${partName}"
-        
         // Run the specific test suite
         sh """
-            echo "Starting ${suiteName} restaurant test execution with ${xmlFile}"
-            echo "TCMS Configuration: Project=${params.TCMS_PROJECT_KEY}, CreateCycle=${params.TCMS_CREATE_CYCLE}, CycleKey=${params.TCMS_CYCLE_KEY ?: 'auto-create'}, Part=${partName}"
+            echo "Starting ${suiteName} test execution with ${xmlFile}"
             mvn clean test \\
                 -Dsurefire.suiteXmlFiles=${xmlFile} \\
                 -Drun.headless=${env.RUN_HEADLESS} \\
                 -Dtest.env=${env.TEST_ENV} \\
-                ${tcmsProps} \\
                 -Dmaven.test.failure.ignore=true \\
                 -Duser.timezone=UTC \\
                 -Dmaven.repo.local=\${WORKSPACE}/.m2/repository
@@ -208,7 +180,6 @@ def runTestSuiteWithCleanup(xmlFile, suiteName) {
             # Create summary report
             echo "Test Suite: ${xmlFile}" > "target/surefire-reports-${suiteName}/suite-info.txt"
             echo "Suite Name: ${suiteName}" >> "target/surefire-reports-${suiteName}/suite-info.txt"
-            echo "Repository: cut-dry-ui-automation-restaurant" >> "target/surefire-reports-${suiteName}/suite-info.txt"
             echo "Execution Time: \$(date)" >> "target/surefire-reports-${suiteName}/suite-info.txt"
         fi
         
@@ -220,7 +191,7 @@ def runTestSuiteWithCleanup(xmlFile, suiteName) {
 
 def setupTestEnvironment() {
     sh '''
-        echo "Setting up restaurant test environment..."
+        echo "Setting up test environment..."
         
         # Clean up any existing temporary files
         rm -rf /tmp/chrome_* /tmp/.org.chromium.* || true
