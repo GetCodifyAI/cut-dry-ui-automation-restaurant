@@ -1,0 +1,453 @@
+pipeline {
+    agent { label 'ec2-fleet' }
+    
+    parameters {
+        string(
+            name: 'XML_FILE_NAME',
+            defaultValue: 'regression1',
+            description: 'Name of the XML file to execute (without .xml extension). Example: regression1, regression2, bvt, smoke, etc.'
+        )
+        booleanParam(
+            name: 'CLEANUP_AFTER_EXECUTION',
+            defaultValue: true,
+            description: 'Clean up temporary files after execution to save disk space'
+        )
+    }
+    
+    environment {
+        MAVEN_OPTS = '-Xmx2048m'
+        JAVA_HOME='/usr/lib/jvm/java-21-openjdk-amd64'
+        TEST_ENV = 'uat'
+        RUN_HEADLESS = 'true'
+        WORKSPACE_CLEANUP = "${params.CLEANUP_AFTER_EXECUTION}"
+        XML_FILE = "${params.XML_FILE_NAME}.xml"
+    }
+    
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        timeout(time: 2, unit: 'HOURS')
+        disableConcurrentBuilds(abortPrevious: true)
+    }
+    
+    stages {
+        stage('Validate XML File') {
+            steps {
+                script {
+                    echo "Validating XML file: ${env.XML_FILE}"
+                    
+                    // Check if XML file exists
+                    def xmlExists = fileExists("${env.XML_FILE}")
+                    if (!xmlExists) {
+                        error("XML file '${env.XML_FILE}' not found in the repository. Please check the file name and try again.")
+                    }
+                    
+                    echo "XML file validated successfully: ${env.XML_FILE}"
+                }
+            }
+        }
+        
+        stage('Setup Environment') {
+            steps {
+                script {
+                    setupTestEnvironment()
+                }
+            }
+        }
+        
+        stage('Execute Test Suite') {
+            steps {
+                script {
+                    runTestSuiteWithCleanup(env.XML_FILE, params.XML_FILE_NAME)
+                }
+            }
+            post {
+                always {
+                    script {
+                        archiveAndCleanup(params.XML_FILE_NAME)
+                    }
+                }
+            }
+        }
+        
+        stage('Generate Report') {
+            steps {
+                script {
+                    calculateAndReportResults()
+                }
+            }
+            post {
+                always {
+                    // Publish TestNG results
+                    publishTestResults testResultsPattern: '**/target/surefire-reports/TEST-*.xml'
+                    
+                    // Archive all test artifacts
+                    archiveArtifacts artifacts: '**/target/surefire-reports/**/*', allowEmptyArchive: true
+                    
+                    // Send Slack notification
+                    script {
+                        sendSlackNotification()
+                    }
+                }
+            }
+        }
+        
+        stage('Final Cleanup') {
+            when {
+                expression { params.CLEANUP_AFTER_EXECUTION }
+            }
+            steps {
+                script {
+                    performFinalCleanup()
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            script {
+                if (params.CLEANUP_AFTER_EXECUTION) {
+                    performWorkspaceCleanup()
+                }
+            }
+        }
+        failure {
+            script {
+                sendSlackNotification('FAILURE')
+            }
+        }
+        unstable {
+            script {
+                sendSlackNotification('UNSTABLE')
+            }
+        }
+    }
+}
+
+def runTestSuiteWithCleanup(xmlFile, suiteName) {
+    echo "Running restaurant test suite: ${xmlFile} (${suiteName}) with cleanup optimization"
+    
+    // Pre-execution cleanup
+    sh '''
+        # Clean up any existing test artifacts
+        rm -rf target/surefire-reports* || true
+        rm -rf target/screenshots* || true
+        rm -rf target/test-output* || true
+        
+        # Clean browser cache and temp files
+        rm -rf ~/.cache/google-chrome* || true
+        rm -rf /tmp/chrome_* /tmp/.org.chromium.* || true
+        
+        # Display disk usage before test
+        echo "Disk usage before test execution:"
+        df -h
+    '''
+    
+    try {
+        // Checkout code
+        checkout scm
+        
+        // Run the specific test suite
+        sh """
+            echo "Starting ${suiteName} restaurant test execution with ${xmlFile}"
+            mvn clean test \\
+                -Dsurefire.suiteXmlFiles=${xmlFile} \\
+                -Drun.headless=${env.RUN_HEADLESS} \\
+                -Dtest.env=${env.TEST_ENV} \\
+                -Dmaven.test.failure.ignore=true \\
+                -Duser.timezone=UTC \\
+                -Dmaven.repo.local=\${WORKSPACE}/.m2/repository
+        """
+        
+    } catch (Exception e) {
+        echo "Test execution completed with some failures: ${e.getMessage()}"
+    }
+    
+    // Verify test results exist and create archives
+    sh """
+        # Verify test results exist
+        ls -R target/surefire-reports || echo "Test results missing!"
+        
+        # Create suite-specific directory for screenshots and reports
+        if [ -d "target/surefire-reports" ]; then
+            mkdir -p "target/surefire-reports-${suiteName}"
+            cp -r target/surefire-reports/* "target/surefire-reports-${suiteName}/" || true
+            
+            # Keep screenshots in direct folder (not zipped) for easy viewing in Jenkins
+            if [ -d "target/surefire-reports-${suiteName}/screenshots" ]; then
+                echo "Screenshots directory found and will be archived as-is"
+            fi
+            
+            # Create summary report
+            echo "Test Suite: ${xmlFile}" > "target/surefire-reports-${suiteName}/suite-info.txt"
+            echo "Suite Name: ${suiteName}" >> "target/surefire-reports-${suiteName}/suite-info.txt"
+            echo "Repository: cut-dry-ui-automation-restaurant" >> "target/surefire-reports-${suiteName}/suite-info.txt"
+            echo "Execution Time: \$(date)" >> "target/surefire-reports-${suiteName}/suite-info.txt"
+        fi
+        
+        # Display disk usage after test
+        echo "Disk usage after test execution:"
+        df -h
+    """
+}
+
+def setupTestEnvironment() {
+    sh '''
+        echo "Setting up restaurant test environment..."
+        
+        # Clean up any existing temporary files
+        rm -rf /tmp/chrome_* /tmp/.org.chromium.* || true
+        
+        # Set JAVA_HOME to the correct OpenJDK path for Ubuntu
+        export JAVA_HOME='/usr/lib/jvm/java-21-openjdk-amd64'
+        echo "Set JAVA_HOME to: $JAVA_HOME"
+        
+        # Use existing Java installation
+        echo "Current Java version:"
+        java -version
+        
+        # Check if Maven is available with JAVA_HOME set
+        if command -v mvn &> /dev/null; then
+            echo "Maven version:"
+            mvn -version
+        else
+            echo "ERROR: Maven not found in Jenkins environment"
+            echo "Please ensure Maven is installed on the Jenkins node"
+            exit 1
+        fi
+        
+        # Check for browser availability (Chrome, Chromium, or Firefox)
+        if command -v google-chrome &> /dev/null; then
+            echo "Chrome version:"
+            google-chrome --version
+        elif command -v chromium-browser &> /dev/null; then
+            echo "Chromium version:"
+            chromium-browser --version
+        elif command -v firefox &> /dev/null; then
+            echo "Firefox version:"
+            firefox --version
+        else
+            echo "WARNING: No browser found for headless testing"
+            echo "Tests requiring browser automation may fail"
+        fi
+        
+        # Set up workspace
+        echo "Setting up workspace..."
+        mkdir -p target/surefire-reports
+        
+        # Display available disk space
+        df -h
+        
+        echo "Restaurant test environment setup complete"
+    '''
+}
+
+def calculateAndReportResults() {
+    sh '''
+        echo "Calculating restaurant test results..."
+        
+        # Check if bc is available for calculations
+        if ! command -v bc &> /dev/null; then
+            echo "WARNING: bc (basic calculator) not found - using shell arithmetic instead"
+        fi
+        
+        # Initialize counters
+        TOTAL=0
+        PASSED=0
+        FAILED=0
+        ERRORS=0
+        SKIPPED=0
+        
+        # Process all test result files
+        for file in target/surefire-reports/TEST-*.xml; do
+            if [ -f "$file" ]; then
+                echo "Processing: $file"
+                
+                TESTS=$(grep -oP '(?<=tests=")[0-9]+' "$file" | head -1)
+                FAILURES=$(grep -oP '(?<=failures=")[0-9]+' "$file" | head -1)
+                FILE_ERRORS=$(grep -oP '(?<=errors=")[0-9]+' "$file" | head -1)
+                FILE_SKIPPED=$(grep -oP '(?<=skipped=")[0-9]+' "$file" | head -1)
+                
+                TESTS=${TESTS:-0}
+                FAILURES=${FAILURES:-0}
+                FILE_ERRORS=${FILE_ERRORS:-0}
+                FILE_SKIPPED=${FILE_SKIPPED:-0}
+                
+                TOTAL=$((TOTAL + TESTS))
+                FAILED=$((FAILED + FAILURES))
+                ERRORS=$((ERRORS + FILE_ERRORS))
+                SKIPPED=$((SKIPPED + FILE_SKIPPED))
+                
+                echo "  Tests: $TESTS, Failures: $FAILURES, Errors: $FILE_ERRORS, Skipped: $FILE_SKIPPED"
+            fi
+        done
+        
+        # Calculate pass rate
+        ACTUAL_TOTAL=$((TOTAL - SKIPPED))
+        PASSED=$((ACTUAL_TOTAL - FAILED - ERRORS))
+        
+        if [ "$ACTUAL_TOTAL" -gt 0 ]; then
+            PASS_RATE=$(echo "scale=2; ($PASSED / $ACTUAL_TOTAL) * 100.0" | bc)
+            FAIL_RATE=$(echo "scale=2; (($FAILED + $ERRORS) / $ACTUAL_TOTAL) * 100.0" | bc)
+        else
+            PASS_RATE="0.00"
+            FAIL_RATE="0.00"
+        fi
+        
+        echo "=== FINAL RESTAURANT TEST RESULTS ==="
+        echo "Total tests run: $ACTUAL_TOTAL"
+        echo "Passed: $PASSED"
+        echo "Failed: $FAILED"
+        echo "Errors: $ERRORS"
+        echo "Skipped: $SKIPPED"
+        echo "Pass Rate: $PASS_RATE%"
+        echo "Fail Rate: $FAIL_RATE%"
+        echo "======================================"
+        
+        # Save results to environment file for Slack notification
+        echo "TOTAL_TESTS=$ACTUAL_TOTAL" > test_results.env
+        echo "PASSED_TESTS=$PASSED" >> test_results.env
+        echo "FAILED_TESTS=$FAILED" >> test_results.env
+        echo "ERROR_TESTS=$ERRORS" >> test_results.env
+        echo "SKIPPED_TESTS=$SKIPPED" >> test_results.env
+        echo "PASS_RATE=$PASS_RATE" >> test_results.env
+        echo "FAIL_RATE=$FAIL_RATE" >> test_results.env
+    '''
+}
+
+def archiveAndCleanup(suiteName) {
+    echo "Archiving artifacts and performing cleanup for restaurant suite ${suiteName}"
+    
+    // Archive artifacts with compression
+    archiveArtifacts artifacts: 'target/surefire-reports*/**/*', allowEmptyArchive: true, fingerprint: true
+    
+    // Publish HTML reports if available
+    script {
+        if (fileExists('target/surefire-reports/index.html')) {
+            publishHTML([
+                allowMissing: false,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'target/surefire-reports',
+                reportFiles: 'index.html',
+                reportName: "${suiteName} Restaurant Test Report"
+            ])
+        }
+    }
+    
+    // Cleanup if enabled
+    if (env.WORKSPACE_CLEANUP == 'true') {
+        sh """
+            # Clean up large temporary files but keep archived artifacts
+            rm -rf target/classes || true
+            rm -rf target/test-classes || true
+            rm -rf target/maven-* || true
+            
+            # Clean browser temp files
+            rm -rf ~/.cache/google-chrome* || true
+            rm -rf /tmp/chrome_* /tmp/.org.chromium.* || true
+            
+            # Clean Maven temp files
+            rm -rf ~/.m2/repository/com/cutanddry/*/target || true
+            
+            echo "Cleanup completed for restaurant suite ${suiteName}"
+            df -h
+        """
+    }
+}
+
+def performFinalCleanup() {
+    echo "Performing final workspace cleanup for restaurant tests..."
+    sh '''
+        # Clean up all temporary Maven files
+        rm -rf target/maven-archiver || true
+        rm -rf target/maven-status || true
+        rm -rf .m2/repository/com/cutanddry || true
+        
+        # Clean up browser and system temp files
+        rm -rf ~/.cache/* || true
+        rm -rf /tmp/chrome_* /tmp/.org.chromium.* || true
+        rm -rf /var/tmp/chrome_* || true
+        
+        # Clean up old log files
+        find . -name "*.log" -type f -mtime +1 -delete || true
+        
+        # Display final disk usage
+        echo "Final disk usage after cleanup:"
+        df -h
+        
+        # Display workspace size
+        echo "Workspace size:"
+        du -sh . || true
+    '''
+}
+
+def performWorkspaceCleanup() {
+    echo "Performing post-build workspace cleanup for restaurant tests..."
+    sh '''
+        # Keep only essential files and archived artifacts
+        find . -type f -name "*.class" -delete || true
+        find . -type f -name "*.jar" -not -path "./target/surefire-reports*" -delete || true
+        
+        # Clean up Maven local repository
+        rm -rf .m2 || true
+        
+        echo "Post-build cleanup completed for restaurant tests"
+        df -h
+    '''
+}
+
+def sendSlackNotification(buildStatus = null) {
+    def status = buildStatus ?: currentBuild.currentResult
+    def color = 'good'
+    def emoji = '✅'
+    
+    if (status == 'FAILURE') {
+        color = 'danger'
+        emoji = '❌'
+    } else if (status == 'UNSTABLE') {
+        color = 'warning'
+        emoji = '⚠️'
+    }
+    
+    try {
+        // Read test results if available
+        def testResults = [:]
+        if (fileExists('test_results.env')) {
+            def props = readProperties file: 'test_results.env'
+            testResults = props
+        }
+        
+        def message = """
+${emoji} *Cut+Dry Restaurant Single Suite Test Results*
+*Build:* ${env.BUILD_NUMBER}
+*Status:* ${status}
+*Test Suite:* ${params.XML_FILE_NAME}
+*Repository:* cut-dry-ui-automation-restaurant
+*Branch:* ${env.BRANCH_NAME ?: 'main'}
+*Duration:* ${currentBuild.durationString}
+*Cleanup Enabled:* ${env.WORKSPACE_CLEANUP ?: 'false'}
+
+*Test Summary:*
+• Total Tests: ${testResults.TOTAL_TESTS ?: 'N/A'}
+• Passed: ${testResults.PASSED_TESTS ?: 'N/A'}
+• Failed: ${testResults.FAILED_TESTS ?: 'N/A'}
+• Errors: ${testResults.ERROR_TESTS ?: 'N/A'}
+• Pass Rate: ${testResults.PASS_RATE ?: 'N/A'}%
+
+*Build URL:* ${env.BUILD_URL}
+        """.trim()
+        
+        // Send to Slack (requires Slack plugin configuration)
+        slackSend(
+            channel: '#qa-automation',
+            color: color,
+            message: message,
+            teamDomain: 'your-workspace',
+            token: 'your-slack-token'
+        )
+        
+    } catch (Exception e) {
+        echo "Failed to send Slack notification: ${e.getMessage()}"
+    }
+}
