@@ -12,7 +12,7 @@ public class DashboardPage extends LoginPage{
     By btn_TestAutomation = By.xpath("//div[contains(text(), 'Test_Automation') and contains(@class, 'w-100')]");
     By txt_draftOrder = By.xpath("//div[contains(@class, 'text-center') and contains(text(), 'continue your previous draft order')]");
     By btn_noDraftOrder = By.xpath("//span[text()='×']");
-    By NoBtnDraftOrder = By.xpath("//div[contains(text(),'No')]");
+    By NoBtnDraftOrder = By.xpath("//div[text()='No']");
     By txt_disDashboard = By.xpath("//li[contains(text(),'Dashboard')]");
     By btn_cooksCompanyProduce = By.xpath("//div[contains(text(), 'Cooks Company Produce')]");
     By txt_approvals = By.xpath("//div[contains(text(), 'Approvals')]");
