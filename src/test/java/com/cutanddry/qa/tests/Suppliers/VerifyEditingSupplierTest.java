@@ -45,6 +45,7 @@ public class VerifyEditingSupplierTest extends TestBase {
         softAssert.assertTrue(Suppliers.isEditSuppliersPopUpDisplayed(),"Edit supplier pop up window not displayed");
         Suppliers.editSupplierName(editSupplierName);
         Suppliers.clickSave();
+        Login.refreshThePage();
         softAssert.assertTrue(Suppliers.isSupplierDisplayed(editSupplierName),"error in supplier edit");
 
         // Post request
