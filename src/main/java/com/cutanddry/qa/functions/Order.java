@@ -114,6 +114,29 @@ public class Order {
     public static void clickYes(){
         orderPage.clickYes();
     }
+    public static void editOrderGuideName(String name) throws InterruptedException {
+        orderPage.editOrderGuideName(name);
+    }
+    public static void editOrderGuideDescription(String name) throws InterruptedException {
+        orderPage.editOrderGuideDescription(name);
+    }
+    public static void clickOnSave(){
+        orderPage.clickOnSave();
+    }
+    public static boolean editedOrderGuideNameDisplay(String name){
+        return orderPage.editedOrderGuideNameDisplay(name);
+    }
+    public static boolean editedOrderGuideDescriptionDisplay(String name){
+        return orderPage.editedOrderGuideDescriptionDisplay(name);
+    }
+    public static void removeOrderGuideLocation()throws InterruptedException{
+        orderPage.removeOrderGuideLocation();
+    }
+    public static void addOrderGuideLocation()throws InterruptedException{
+        orderPage.clickOrderGuideLocationDropDown();
+        orderPage.clickOrderGuideLocationDropDownOption();
+    }
+
 
 
 }

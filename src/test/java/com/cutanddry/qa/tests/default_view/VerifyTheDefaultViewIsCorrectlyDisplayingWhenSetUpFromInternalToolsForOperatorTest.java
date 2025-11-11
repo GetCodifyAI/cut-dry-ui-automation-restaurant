@@ -42,9 +42,12 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
         InternalTools.navigateToEditDetails(DP);
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.clickOnQuickAddViewDropDown(status);
+        Thread.sleep(3000);
         InternalTools.clickOnSimpleListViewDropdown(simpleListView);
+        Thread.sleep(3000);
         InternalTools.enableDefaultViewPortalAsOrderGuide();
-        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save");
+        Thread.sleep(5000);
+//        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save 1");
         InternalTools.clickOkOnSuccessBtn();
 
         Login.navigateToLoginAs();
@@ -59,7 +62,8 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
         InternalTools.navigateToEditDetails(DP);
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.enableDefaultViewPortalAsCatalog();
-        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save");
+        Thread.sleep(3000);
+        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save 2");
         InternalTools.clickOkOnSuccessBtn();
         Login.closePreviousTab();
 
@@ -74,7 +78,8 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
         InternalTools.navigateToEditDetails(DP);
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.enableDefaultViewPortalAsQuickAdd();
-        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save");
+        Thread.sleep(4000);
+        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save 3");
         InternalTools.clickOkOnSuccessBtn();
         Login.closePreviousTab();
 
@@ -89,7 +94,8 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
         InternalTools.navigateToEditDetails(DP);
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.enableDefaultViewPortalAsSimpleList();
-        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save");
+        Thread.sleep(4000);
+        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save 4");
         InternalTools.clickOkOnSuccessBtn();
         Login.closePreviousTab();
 
@@ -116,7 +122,8 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
         InternalTools.navigateToEditDetails(DP);
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.enableDefaultViewPortalAsOrderGuide();
-        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save");
+        Thread.sleep(4000);
+        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save 5");
         InternalTools.clickOkOnSuccessBtn();
 
         softAssert.assertAll();

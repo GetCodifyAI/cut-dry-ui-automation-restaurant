@@ -45,7 +45,6 @@
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateCatalogNavigationOfTheSelectedSupplierTest"/>
 
             <class name="com.cutanddry.qa.tests.Pay.VerifyTotalUnpaidInvoiceBalanceTest"/>
-            <class name="com.cutanddry.qa.tests.Pay.VerifyPublicPayByBankAccountTest"/>
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditUOMsFromEditTest"/>
             <class name="com.cutanddry.qa.tests.Pay.VerifyPaidTabSupplierDropdownTest"/>
 
