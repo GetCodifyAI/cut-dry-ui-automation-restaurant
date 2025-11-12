@@ -136,6 +136,9 @@ public class Order {
         orderPage.clickOrderGuideLocationDropDown();
         orderPage.clickOrderGuideLocationDropDownOption();
     }
+    public static void clickFindMoreInCatalog()throws InterruptedException{
+        orderPage.clickFindMoreInCatalog();
+    }
 
 
 

@@ -44,6 +44,7 @@ public class OrderPage extends LoginPage{
     By lbl_orderGuideLocation = By.xpath("//label[contains(text(),'Locations')]/following-sibling::*//div[text()='Main St']/following-sibling::div");
     By orderGuideLocationDropDown = By.xpath("//label[contains(text(),'Locations')]/following-sibling::div");
     By orderGuideLocationDropDownOption = By.xpath("//label[contains(text(),'Locations')]/following-sibling::*//div[text()='Main St']");
+    By btn_FindMoreInCatalog = By.xpath("//button[text()='Find More in Catalog']");
 
 
 
@@ -232,6 +233,10 @@ public class OrderPage extends LoginPage{
     }
     public void clickOrderGuideLocationDropDownOption()throws InterruptedException{
         restaurantUI.click(orderGuideLocationDropDownOption);
+    }
+    public void  clickFindMoreInCatalog()throws InterruptedException{
+        restaurantUI.scrollToElement(btn_FindMoreInCatalog);
+        restaurantUI.click(btn_FindMoreInCatalog);
     }
 
 
