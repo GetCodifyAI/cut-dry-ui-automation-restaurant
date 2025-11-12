@@ -139,6 +139,9 @@ public class Order {
     public static void clickFindMoreInCatalog()throws InterruptedException{
         orderPage.clickFindMoreInCatalog();
     }
+    public static boolean isInactiveItemDetectedPopUpDisplay()throws InterruptedException{
+        return orderPage.isInactiveItemDetectedPopUpDisplay();
+    }
 
 
 
