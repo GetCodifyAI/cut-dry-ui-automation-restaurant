@@ -43,6 +43,8 @@
 
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThatTheOrderGuideNameAndDescriptionInOrderGuideSettingsTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThatTheOrderGuideLocationInOrderGuideSettingsTest" />
+
+            <class name="com.cutanddry.qa.tests.Orders.VerifyFindMoreInCatalogButtonTest" />
         </classes>
     </test>
 </suite>
