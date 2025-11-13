@@ -57,6 +57,12 @@ public class CatalogPage extends LoginPage {
     By dealsTypeDropDown = By.xpath("//div[contains(text(), 'Deals')]");
     By dealsTypeDownOption = By.xpath("//div[contains(text(), 'Deals')]/../../following-sibling::div//*[name()='svg' and @data-icon='square']/following-sibling::div[contains(text(), 'GPO Contracted Items')]");
     By txt_dealsTypeDownOption = By.xpath("//div[contains(text(), 'Deals')]/../../following-sibling::div//*[name()='svg' and @data-icon='square-check']/following-sibling::div[contains(text(), 'GPO Contracted Items')]");
+    By productConfigsEditBtn = By.xpath("//*[contains(text(),'Product Configuration')]/following-sibling::button");
+    By productStatusDropdown = By.xpath("//div[normalize-space()='Product Status']/following::div[@id='config-active']");
+    String productStatus = "(//div[contains(text(),'PRODSTATUS')])[last()]";
+    By itemStatusDropdown = By.xpath("(//div[contains(text(),'All Results')]/../following-sibling::div//div[contains(@class,'value-container')])[3]");
+    String itemStatusOption = "(//div[contains(text(),'ITEMSTATUS') and contains(@class,'themed_select__option')])[last()]";
+
 
 
 
@@ -356,6 +362,20 @@ public class CatalogPage extends LoginPage {
     }
     public boolean isGPOContractedDisplay()throws InterruptedException{
         return restaurantUI.isDisplayed(txt_dealsTypeDownOption);
+    }
+    public void clickEditOnProductConfigs(){
+        restaurantUI.waitForVisibility(productConfigsEditBtn);
+        restaurantUI.click(productConfigsEditBtn);
+    }
+    public void clickOnInactiveOrInactive(String prodStatus){
+        restaurantUI.click(productStatusDropdown);
+        restaurantUI.waitForVisibility(By.xpath(productStatus.replace("PRODSTATUS",prodStatus)));
+        restaurantUI.click(By.xpath(productStatus.replace("PRODSTATUS",prodStatus)));
+    }
+    public void clickOnItemStatus(String itemStatus){
+        restaurantUI.click(itemStatusDropdown);
+        restaurantUI.waitForVisibility(By.xpath(itemStatusOption.replace("ITEMSTATUS",itemStatus)));
+        restaurantUI.click(By.xpath(itemStatusOption.replace("ITEMSTATUS",itemStatus)));
     }
 
 
