@@ -45,6 +45,7 @@ public class OrderPage extends LoginPage{
     By orderGuideLocationDropDown = By.xpath("//label[contains(text(),'Locations')]/following-sibling::div");
     By orderGuideLocationDropDownOption = By.xpath("//label[contains(text(),'Locations')]/following-sibling::*//div[text()='Main St']");
     By btn_FindMoreInCatalog = By.xpath("//button[text()='Find More in Catalog']");
+    By lbl_inactiveItemDetected = By.xpath("//h2[text()='Inactive Items Detected']");
 
 
 
@@ -237,6 +238,10 @@ public class OrderPage extends LoginPage{
     public void  clickFindMoreInCatalog()throws InterruptedException{
         restaurantUI.scrollToElement(btn_FindMoreInCatalog);
         restaurantUI.click(btn_FindMoreInCatalog);
+    }
+    public boolean isInactiveItemDetectedPopUpDisplay()throws InterruptedException{
+        restaurantUI.waitForVisibility(lbl_inactiveItemDetected);
+        return restaurantUI.isDisplayed(lbl_inactiveItemDetected);
     }
 
 

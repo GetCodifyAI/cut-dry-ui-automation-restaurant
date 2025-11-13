@@ -153,4 +153,13 @@ public class Catalog {
     public static boolean isGPOContractedDisplay()throws InterruptedException{
         return catalogPage.isGPOContractedDisplay();
     }
+    public static void selectItemStatus(String itemStatus){
+        catalogPage.clickOnItemStatus(itemStatus);
+    }
+    public static void selectEditFromProductConfig(){
+        catalogPage.clickEditOnProductConfigs();
+    }
+    public static void selectProductActiveInactiveStatus(String prodStatus){
+        catalogPage.clickOnInactiveOrInactive(prodStatus);
+    }
 }
