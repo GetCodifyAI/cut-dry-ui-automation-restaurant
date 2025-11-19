@@ -70,6 +70,8 @@ public class InternalToolsPage extends TestBase {
     By manualOrderQuantityCalculationToggleStable = By.xpath("//div[contains(text(), 'Enable manual Order Quantity calculation in OG:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']");
     By manualOrderQuantityCalculationToggleStable1 = By.xpath("//div[contains(text(), 'Enable manual Order Quantity calculation in OG:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
 
+    By lbl_paymentRail = By.xpath("//h5[contains(text(),'Payment Rail Configurations (Pay Engineer Only)')]");
+
 
 
 
@@ -249,8 +251,10 @@ public class InternalToolsPage extends TestBase {
             restaurantUI.clickWithScrollAndHover(displayPurchasePriceOnOperatorToggleStable1);
         }
     }
-    public void clickEnableFTNIPaymentGatewayCheckbox(boolean enable) {
-
+    public void clickEnableFTNIPaymentGatewayCheckbox(boolean enable) throws InterruptedException{
+        restaurantUI.waitForCustom(4000);
+        restaurantUI.click(lbl_paymentRail);
+        restaurantUI.waitForCustom(4000);
         boolean isChecked = restaurantUI.getElement(checkboxEnableFTNIPaymentGateway).isSelected();
 
         if (enable && !isChecked) {
