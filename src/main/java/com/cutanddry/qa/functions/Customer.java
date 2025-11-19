@@ -1343,7 +1343,12 @@ public class Customer {
     public static boolean IsChangeLocationOrderGuideDisplay(String name){
         return customersPage.IsChangeLocationOrderGuideDisplay(name);
     }
-
+    public static boolean isCustomerOrderGuideDisplayed(){
+        return customersPage.isCustomerOrderGuideDisplayed();
+    }
+    public static boolean isCatalogDisplayed(){
+        return customersPage.isCatalogDisplayed();
+    }
 
 
 }

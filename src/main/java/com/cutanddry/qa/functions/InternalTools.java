@@ -85,7 +85,7 @@ public class InternalTools {
     public static void displayPurchasePriceOnOperatorToggle(boolean status){
         internalToolsPage.displayPurchasePriceOnOperatorToggle(status);
     }
-    public static void clickEnableFTNIPaymentGatewayCheckbox(boolean status){
+    public static void clickEnableFTNIPaymentGatewayCheckbox(boolean status)throws InterruptedException{
         internalToolsPage.clickEnableFTNIPaymentGatewayCheckbox(status);
     }
     public static void clickHideZeroStockLabelToggle(boolean status){
