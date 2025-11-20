@@ -23,10 +23,6 @@ pipeline {
         parallelsAlwaysFailFast()
     }
     
-    triggers {
-        cron('H 22 * * 1-5')
-    }
-    
     stages {
         stage('Parallel Test Execution') {
             parallel {
