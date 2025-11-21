@@ -8,27 +8,24 @@
     <test name="operator tests">
         <parameter name="PART" value="Part Seven" />
         <classes>
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyEditQuantitiesFunctionalityInCatalogTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifySelectMultipleUOMItemFromCatalogOnlyTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheNavigationToThePDPWhenSelectingMultipleUnitsTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyEditQuantitiesFunctionalityInCatalogPDPTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyEditOrderWithDifferenceUOMInReviewSectionTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyMultiCartItemsSelectMultipleUOMItemFromPDPTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInTheOrderGuideSectionFromTheOperatorSideTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectionOfMultipleUOMsFromTheOrderGuideSectionAndOrderSubmissionFromTheOperatorSideTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInThePDPSectionFromTheOperatorSideTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectionOfMultipleUOMsFromThePDPSectionAndOrderSubmissionFromOperatorSideTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInTheReviewOrderSectionFromTheOperatorSideTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheDeleteItemsProductsFromMultipleUOMsInTheReviewOrderSectionTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithEditFlowTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithDraftOrderTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSideTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyPlaceOrderWithMultiUOMForNonIntegratedTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyProductWithDifferentCombinationsOfUOMsCanBeAddedFromCatalogInOrderReviewSectionTest" />
 
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheDeliveryFeesSelectMultipleUOMTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEndlessAisleShippingFeesSelectMultipleUOMTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMJustInTimeItemAndDraftEditTest" />
-
-            <!--<class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMSpecialOrderItemAndDraftEditTest" />-->
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMJustInTimeItemAndSubmissionTest" />
-            <!--<class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMSpecialOrderItemAndSubmissionTest" />-->
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMAvailableRebateItemAndSubmissionTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyThSelectMultipleUOMFromSaleItemAndSubmissionTest" />
-
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyOrderApprovalForOrderWithMultiUOMTest" />
-
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheBehaviourWhenAddingSubstituteItemForMultiUOMItemTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheAddingSubstituteItemForMultipleUOMDraftAndEditOrderTest" />
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyNavigatingToOrderGuideTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyAddingItemToCartOfTheSelectedSupplierTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateDraftCreationOfTheSelectedSupplierTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateNavigatingToRelevantDraftOrderFromDraftsTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSubmittingOrderOfTheSelectedSupplierTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateAddingItemToOrderGuideOfTheSelectedSupplierTest"/>
 
         </classes>
     </test>

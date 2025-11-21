@@ -8,52 +8,29 @@
     <test name="operator tests">
         <parameter name="PART" value="Part Eight" />
         <classes>
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInTheOrderGuideSectionFromTheOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectionOfMultipleUOMsFromTheOrderGuideSectionAndOrderSubmissionFromTheOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInThePDPSectionFromTheOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectionOfMultipleUOMsFromThePDPSectionAndOrderSubmissionFromOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInTheReviewOrderSectionFromTheOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheDeleteItemsProductsFromMultipleUOMsInTheReviewOrderSectionTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithEditFlowTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithDraftOrderTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyPlaceOrderWithMultiUOMForNonIntegratedTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyProductWithDifferentCombinationsOfUOMsCanBeAddedFromCatalogInOrderReviewSectionTest" />
 
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCustomOrderGuideSectionTest"/>
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyWhiteLabelCustomOrderGuideSectionTest"/>
-
-            <class name="com.cutanddry.qa.tests.Pay.VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureEnabledTest"/>
-            <class name="com.cutanddry.qa.tests.Pay.VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureDisabledTest"/>
-<!--            TODO: Need to resolve the invoice download and print issue with feature team-->
-<!--            <class name="com.cutanddry.qa.tests.History.VerifyTheInvoiceDownloadAndPrintFeatureTest"/>-->
-
-            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyReportIssueButtonIsEnabledTest"/>
-            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyReportIssueButtonIsDisabledTest"/>
-
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditUOMsFromEditTest"/>
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifySubstituteItemsNotDisplayedIfTurnedOffCustomerProfileTest"/>
 
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyNavigatingToOrderGuideTest"/>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyAddingItemToCartOfTheSelectedSupplierTest"/>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateDraftCreationOfTheSelectedSupplierTest"/>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateNavigatingToRelevantDraftOrderFromDraftsTest"/>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSubmittingOrderOfTheSelectedSupplierTest"/>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateAddingItemToOrderGuideOfTheSelectedSupplierTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierRecentOrderHistoryWithSwitchFlowTest"/>
 
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateItemSearchByNameOrderCodeForSelectedSupplierTest"/>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateCatalogNavigationOfTheSelectedSupplierTest"/>
+            <class name="com.cutanddry.qa.tests.Substitutions.VerifySubstituteItemWithSubstitutingAnItemForCustomerWithGroupCode1000Test" />
+            <class name="com.cutanddry.qa.tests.Substitutions.VerifyDoNotSubOptionForCustomerWithGroupCode1000Test" />
+            <class name="com.cutanddry.qa.tests.Substitutions.VerifyPlacingAnOrderForChainCustomersWithProprietaryItemsTest" />
+            <class name="com.cutanddry.qa.tests.Substitutions.VerifySubstitutingAnItemForCustomerWithBranchCodes1246Test" />
+            <class name="com.cutanddry.qa.tests.Substitutions.VerifyDoNotSubOptionForCustomerWithBranchCode1246Test" />
+            <class name="com.cutanddry.qa.tests.Substitutions.VerifyPlacingAnOrderForCustomerWithAnyOtherBranchCodeTest" />
 
-            <class name="com.cutanddry.qa.tests.Pay.VerifyTotalUnpaidInvoiceBalanceTest"/>
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditUOMsFromEditTest"/>
-            <class name="com.cutanddry.qa.tests.Pay.VerifyPaidTabSupplierDropdownTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyCustomAccountHoldMessageIsDisplayedForCarmelaOnOrderSubmissionTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyGenericAccountHoldMessageIsDisplayedOnOrderSubmissionTest"/>
 
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSoftOrderMinimumSelectingMultipleUOMTest" />
-            <!--            TODO:Multi UOM not available -->
-            <!--<class name="com.cutanddry.qa.tests.Mult_UOM.VerifyPlaceOrderWithMultiUOMForScrapperIntegratedTest" />-->
-            <!--            TODO:sunrise Food DP not available -->
-<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyPickupIsNotDisplayedWhenItIsOnlyEnabledForTheSupplierPortalTermTest" />-->
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveDeliveryAsTheFulfillmentTypeTest"/>
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveMailDeliveryAsTheFulfillmentTypeTest"/>
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHavePickUpWillCallAsTheFulfillmentTypeTest"/>
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveDeliveryAsTheFulfillmentTypeEditOrderSubmissionTest"/>
+
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheHardOrderMinimumSelectingMultipleUOMTest" />
-
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSoftOrderMinimumSelectingMultipleUOMTest" />
         </classes>
     </test>
 </suite>

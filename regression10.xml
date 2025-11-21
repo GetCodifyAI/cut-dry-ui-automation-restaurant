@@ -8,9 +8,6 @@
     <test name="operator tests">
         <parameter name="PART" value="Part Ten" />
         <classes>
-            <class name="com.cutanddry.qa.tests.Orders.VerifyThatOrderGuideSyncedFromERPDisabledForEditingTest"/>
-            <class name="com.cutanddry.qa.tests.Orders.VerifyThatManuallyOrderGuideCanEditTest"/>
-
             <class name="com.cutanddry.qa.tests.Purchase_History.VerifyPurchaseHistoryInOrderGuideTest"/>
             <class name="com.cutanddry.qa.tests.Purchase_History.VerifyPurchaseHistoryInCatalogueTest"/>
             <class name="com.cutanddry.qa.tests.Purchase_History.VerifyPurchaseHistoryInPDPSectionTest"/>
@@ -19,33 +16,16 @@
             <class name="com.cutanddry.qa.tests.Purchase_History.VerifyPurchaseHistoryDisplayInOrderGuideAndPDPWhenDisplayPurchaseHistoryToggleEnableTest"/>
             <class name="com.cutanddry.qa.tests.Purchase_History.VerifyPurchaseHistoryNotDisplayInOrderGuideAndPDPWhenDisplayPurchaseHistoryToggleDisableTest"/>
 
-            <class name="com.cutanddry.qa.tests.Orders.VerifyTheSpecialOrderItemsOrderReviewNoteTest"/>
-            <class name="com.cutanddry.qa.tests.Orders.VerifyThatPrimaryOrderGuideDisabledForEditingTest"/>
-            <class name="com.cutanddry.qa.tests.Orders.VerifyThatEditableOrderGuideEnabledForEditingTest"/>
-            <class name="com.cutanddry.qa.tests.Orders.VerifyThatPrimaryOrderGuideNotInLocationGuideDropDownTest"/>
-            <class name="com.cutanddry.qa.tests.Catalog.VerifyTheCatalogAccessFeatureWhiteLabelUserTest"/>
-            <class name="com.cutanddry.qa.tests.Catalog.VerifyTheCatalogAccessFeatureNonWhiteLabelUserTest"/>
-
-            <class name="com.cutanddry.qa.tests.Catalog.VerifyTheOnSaleSectionInCatalogTest"/>
-            <class name="com.cutanddry.qa.tests.Catalog.VerifyTheOnSaleSectionInCatalogOGEditFlowTest"/>
-            <class name="com.cutanddry.qa.tests.Catalog.VerifyThatTheNewArrivalsSectionIsAvailableInCatalogTest"/>
-            <class name="com.cutanddry.qa.tests.Catalog.VerifyThatTheNewArrivalsSectionIsAvailableInCatalogOGEditFlowTest"/>
-            <class name="com.cutanddry.qa.tests.OrderGuide.ValidatePONumberLengthForOperatorTest"/>
-
-            <class name="com.cutanddry.qa.tests.Catalog.VerifyThatOPsHaveTheCustomerTypeFilterToFilterCustomerTypesTest"/>
-            <class name="com.cutanddry.qa.tests.Catalog.VerifyTheOutOfStockLabelsDisplayWhenHideZeroStockLabelOnOperatorAppToggleDisabledTest"/>
-            <class name="com.cutanddry.qa.tests.Catalog.VerifyTheOutOfStockLabelsDisplayWhenHideZeroStockLabelOnOperatorAppToggleEnabledTest"/>
-
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheCartSummeryIsDisplayedOnTheReviewScreenTest"/>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyTheAlternateCollapsedMenuOnDesktopForWLAppTest"/>
 
             <class name="com.cutanddry.qa.tests.Orders.VerifyThatTheSendToERPButtonIsNotAvailableForScheduledJITOrdersTest"/>
+
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThatTheSortItemsByDropDownIsAvailableInTheSimpleListViewTest"/>
 
-            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyTheBehaviourWhenAddingAnOrderFromTheUploadToOrderFeatureTest"/>
-            <class name="com.cutanddry.qa.tests.Orders.VerifyThatTheRecentOrdersTableContainsTheEditOrderButtonTest"/>
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyQuickAddViewAndSimpleListViewFeaturesWhenEnabledFromSupplierConfigTest"/>
+
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheManageStandingOrdersCTAFunctionalityInOrderGuideTest"/>
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyTheBehaviourWhenAddingAnOrderFromTheUploadToOrderFeatureTest"/>
         </classes>
     </test>
 </suite>
