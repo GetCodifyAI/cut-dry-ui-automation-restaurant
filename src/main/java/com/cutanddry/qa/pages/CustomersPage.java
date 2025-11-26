@@ -337,6 +337,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String quantityReviewPage = "//td[text()='CODE']/following-sibling::*//input";
     By dropdown_option_OrderGuideView = By.xpath("//div[text()='Order Guide View']");
     String quantitySimpleListView = "//span[text()='CODE']/../following-sibling::*//input";
+    String quantityInputSimpleListViewByIndex = "(//table//tbody//tr//input[@data-input='quantityInput'])[INDEX]";
+    By txt_maxQuantityErrorModal = By.xpath("//h2[contains(text(),'Maximum')] | //div[contains(text(),'maximum')] | //h2[contains(text(),'Error')]");
+    By btn_errorModalOk = By.xpath("//button[contains(text(),'OK')] | //button[contains(text(),'Ok')] | //button[contains(text(),'Close')]");
     By txt_itemVerified = By.xpath("//div[text()='Items Verified Successfully']");
     By btn_increaseQtyFirstRowStable = By.xpath("(//table/tbody/tr//*[local-name()='svg' and @data-icon='plus'])[1]");
     By dropdown_option_ManageStandingOrders = By.xpath("//div[text()='Manage Standing Orders']");
@@ -2340,6 +2343,32 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public boolean isCatalogDisplayed(){
         return restaurantUI.isDisplayed(txtCatalog);
+    }
+    public void enterQuantitySimpleListViewByIndex(int index, String quantity) throws InterruptedException {
+        By locator = By.xpath(quantityInputSimpleListViewByIndex.replace("INDEX", String.valueOf(index)));
+        restaurantUI.waitForVisibility(locator);
+        restaurantUI.clearUsingJavaScript(locator);
+        restaurantUI.sendKeys(locator, quantity);
+        restaurantUI.waitForCustom(500);
+    }
+    public void tabAwayFromQuantityField() throws InterruptedException {
+        restaurantUI.pressTab();
+        restaurantUI.waitForCustom(1000);
+    }
+    public boolean isMaxQuantityErrorModalDisplayed() throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.isDisplayed(txt_maxQuantityErrorModal);
+    }
+    public void clickErrorModalOkButton() throws InterruptedException {
+        if (restaurantUI.isDisplayed(btn_errorModalOk)) {
+            restaurantUI.click(btn_errorModalOk);
+            restaurantUI.waitForCustom(1000);
+        }
+    }
+    public String getQuantitySimpleListViewByIndex(int index) {
+        By locator = By.xpath(quantityInputSimpleListViewByIndex.replace("INDEX", String.valueOf(index)));
+        restaurantUI.waitForVisibility(locator);
+        return restaurantUI.getText(locator, "value");
     }
 
 

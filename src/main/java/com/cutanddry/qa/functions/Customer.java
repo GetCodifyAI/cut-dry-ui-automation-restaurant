@@ -1349,6 +1349,21 @@ public class Customer {
     public static boolean isCatalogDisplayed(){
         return customersPage.isCatalogDisplayed();
     }
+    public static void enterQuantitySimpleListViewByIndex(int index, String quantity) throws InterruptedException {
+        customersPage.enterQuantitySimpleListViewByIndex(index, quantity);
+    }
+    public static void tabAwayFromQuantityField() throws InterruptedException {
+        customersPage.tabAwayFromQuantityField();
+    }
+    public static boolean isMaxQuantityErrorModalDisplayed() throws InterruptedException {
+        return customersPage.isMaxQuantityErrorModalDisplayed();
+    }
+    public static void clickErrorModalOkButton() throws InterruptedException {
+        customersPage.clickErrorModalOkButton();
+    }
+    public static String getQuantitySimpleListViewByIndex(int index) {
+        return customersPage.getQuantitySimpleListViewByIndex(index);
+    }
 
 
 }

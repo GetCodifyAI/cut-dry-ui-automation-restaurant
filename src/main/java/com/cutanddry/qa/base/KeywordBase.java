@@ -1036,5 +1036,15 @@ public class KeywordBase {
             return 0;
         }
     }
+
+    public KeywordBase pressTab() {
+        try {
+            actions.sendKeys(Keys.TAB).perform();
+            logger.info("Pressed TAB key");
+        } catch (Exception e) {
+            logger.error("Failed to press TAB key", e);
+        }
+        return this;
+    }
 }
 
