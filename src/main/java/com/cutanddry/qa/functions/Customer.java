@@ -1000,6 +1000,9 @@ public class Customer {
     public static void clickCatalogListView(){
         customersPage.clickCatalogListView();
     }
+    public static void clickOnListView(){
+        customersPage.clickCatalogListView();
+    }
     public static boolean isAddToOrderGuideListViewDisplay(){
         return customersPage.isAddToOrderGuideListViewDisplay();
     }
