@@ -57,7 +57,7 @@ public class VerifyTheSoftOrderMinimumSelectingMultipleUOMTest extends TestBase 
         totalItemQuantityReviewOrder = Catalog.getTotalQuantityInReviewOrder();
         Customer.submitOrderMinimum();
         softAssert.assertTrue(Customer.isOrderMinPopupDisplayed(),"popup display error");
-        Customer.clickYesOrderMinimum();
+        Customer.clickPlaceOrderSoftOrderMinimum();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
         orderId = Customer.getSuccessOrderId();
         Customer.clickClose();
