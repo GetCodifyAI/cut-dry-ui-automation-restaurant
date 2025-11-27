@@ -35,6 +35,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txt_addToCart = By.xpath("//button[contains(text(), 'Add to Cart')]");
     By lbl_itemPriceReviewCart = By.xpath("//td[text()='Total:']/following-sibling::td");
     By btn_increaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div/div[3]");
+    By btn_increaseQtyByStepClick = By.xpath("//div[@class='d-flex align-items-center justify-content-center _ikqwqe _du1frc _1lliqxl btn-secondary _1pcpsid py-2 ml-2 text-center align-middle']");
     By btn_decreaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div/div[1]");
     By tbx_itemQuantityReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div[2]/input");
     By lbl_itemPriceReviewCartFirstRow = By.xpath("//td//span//div[@data-tip='View Product Details']/ancestor::tr//td/span");
@@ -395,8 +396,13 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txt_maxQuantityErrorModal = By.xpath("//h2[contains(text(),'Maximum')] | //div[contains(text(),'maximum')] | //h2[contains(text(),'Error')]");
     By btn_errorModalOk = By.xpath("//button[contains(text(),'OK')] | //button[contains(text(),'Ok')] | //button[contains(text(),'Close')]");
 
-
-
+    By txt_maxQuantityExceededModal = By.xpath("//div[@role='dialog']");
+    By txt_maxQuantityExceededMessage = By.xpath("//div[@id='swal2-content' and text()='You have reached the maximum order quantity for this item.']");
+    By btn_maxQuantityModalOk = By.xpath("//button[text()='OK']");
+    By btn_increaseQtyFirstRowDisabled = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'plus')])[1]/ancestor::button[@disabled] | (//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'plus')])[1][@disabled]");
+    String btn_catalogPDPPlusDisabled = "(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//*[name()='svg' and contains(@data-icon, 'plus')]/ancestor::button[@disabled]";
+    String btn_reviewCartPlusDisabled = "//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='plus']/ancestor::button[@disabled]";
+    String tbx_itemQuantityByCode = "//td[text()='CODE']/following-sibling::*//input[@data-input='quantityInput']";
 
 
 
@@ -607,6 +613,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
 
     public void clickPlusReviewCart() {
         restaurantUI.click(btn_increaseQtyReviewCart);
+    }
+
+    public void clickPlusReviewCartForOneStep() {
+        restaurantUI.click( btn_increaseQtyByStepClick);
     }
 
     public void clickMinusReviewCart() {
@@ -2399,6 +2409,47 @@ public void clickOnCloseOrderGuideEditor(){
         By locator = By.xpath(quantityInputSimpleListViewByIndex.replace("INDEX", String.valueOf(index)));
         restaurantUI.waitForVisibility(locator);
         return restaurantUI.getText(locator, "value");
+    }
+
+    public boolean isMaxQuantityExceededModalDisplayed() throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.isDisplayed(txt_maxQuantityExceededModal);
+    }
+
+    public boolean isMaxQuantityExceededMessageDisplayed() throws InterruptedException {
+        return restaurantUI.isDisplayed(txt_maxQuantityExceededMessage);
+    }
+
+    public void clickMaxQuantityModalOk() throws InterruptedException {
+        restaurantUI.click(btn_maxQuantityModalOk);
+        restaurantUI.waitForCustom(2000);
+    }
+
+    public boolean isPlusButtonDisabledFirstRow() throws InterruptedException {
+        restaurantUI.waitForCustom(1000);
+        return restaurantUI.isDisplayed(btn_increaseQtyFirstRowDisabled);
+    }
+
+    public boolean isPlusButtonDisabledCatalogPDP(String name) throws InterruptedException {
+        restaurantUI.waitForCustom(1000);
+        return restaurantUI.isDisplayed(By.xpath(btn_catalogPDPPlusDisabled.replace("NAME", name)));
+    }
+
+    public boolean isPlusButtonDisabledReviewCart(String code) throws InterruptedException {
+        restaurantUI.waitForCustom(1000);
+        return restaurantUI.isDisplayed(By.xpath(btn_reviewCartPlusDisabled.replace("CODE", code)));
+    }
+
+    public String getItemQuantityByCode(String code) throws InterruptedException {
+        restaurantUI.waitForCustom(1000);
+        return restaurantUI.getText(By.xpath(tbx_itemQuantityByCode.replace("CODE", code)), "value");
+    }
+
+    public void setItemQuantityByCode(String code, String quantity) throws InterruptedException {
+        By quantityInput = By.xpath(tbx_itemQuantityByCode.replace("CODE", code));
+        restaurantUI.clearUsingJavaScript(quantityInput);
+        restaurantUI.sendKeys(quantityInput, quantity);
+        restaurantUI.waitForCustom(2000);
     }
 
 
