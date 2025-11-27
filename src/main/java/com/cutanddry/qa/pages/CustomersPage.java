@@ -1,6 +1,7 @@
 package com.cutanddry.qa.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 public class CustomersPage extends LoginPage {
 
@@ -332,6 +333,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txt_QuickAddView = By.xpath("//div[text()='Quick Add View']");
     By lbl_itemCode = By.xpath("(//div[text()='Item Code']/../../../../following-sibling::td//input)[1]");
     By lbl_itemQuantity = By.xpath("(//div[text()='Item Code']/../../../../following-sibling::td//input)[2]");
+    By lbl_SimpleListQuantity = By.xpath("(//tbody[1]/tr[2]/td[7]/span[1]/div[1]/div[1]/div[1]/div[2]/input[1])");
     By btn_verifyItem = By.xpath("//button[text()='Verify Items']");
     By btn_saveAndReview = By.xpath("//button[text()='Save & Review']");
     String quantityReviewPage = "//td[text()='CODE']/following-sibling::*//input";
@@ -387,6 +389,11 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
 
 
 
+    By txt_itemVerifiedFailed = By.xpath("//div[@class='_6ym2rgf']");
+    By txt_MaxQuantityExceededErrorMsg = By.xpath("//span[@class='p-1 _2h0ira _wjtawc _1ety1lk']");
+    String quantityInputSimpleListViewByIndex = "(//table//tbody//tr//input[@data-input='quantityInput'])[INDEX]";
+    By txt_maxQuantityErrorModal = By.xpath("//h2[contains(text(),'Maximum')] | //div[contains(text(),'maximum')] | //h2[contains(text(),'Error')]");
+    By btn_errorModalOk = By.xpath("//button[contains(text(),'OK')] | //button[contains(text(),'Ok')] | //button[contains(text(),'Close')]");
 
 
 
@@ -2089,6 +2096,15 @@ public void clickOnCloseOrderGuideEditor(){
         restaurantUI.click(lbl_itemQuantity);
         restaurantUI.sendKeys(lbl_itemQuantity,code);
     }
+
+    public void enterItemQuantityWithClear(String code) throws InterruptedException {
+        restaurantUI.click(lbl_itemQuantity);
+        restaurantUI.sendKeys(lbl_itemQuantity, Keys.chord(Keys.CONTROL, "a"));
+        restaurantUI.sendKeys(lbl_itemQuantity, Keys.DELETE.toString());
+        restaurantUI.sendKeys(lbl_itemQuantity, code);
+    }
+
+
     public void clickVerifyItem()throws InterruptedException{
         restaurantUI.click(btn_verifyItem);
     }
@@ -2342,9 +2358,48 @@ public void clickOnCloseOrderGuideEditor(){
         return restaurantUI.isDisplayed(txtCatalog);
     }
 
+    public boolean isItemVerifiedFailedPopUpDisplay()throws InterruptedException{
+        restaurantUI.waitForCustom(5000);
+        return restaurantUI.isDisplayed(txt_itemVerifiedFailed);
+    }
 
+    public boolean  isMaxQuantityExceededErrorMsg() throws InterruptedException{
+        restaurantUI.waitForCustom(5000);
+        return restaurantUI.isDisplayed(txt_MaxQuantityExceededErrorMsg);
+    }
 
+    public void enterItemQuantitySimpleList(String code)throws InterruptedException{
+        restaurantUI.click(lbl_SimpleListQuantity);
+        restaurantUI.sendKeys(lbl_SimpleListQuantity,code);
+        restaurantUI.pressTabKey();
+    }
 
+    public void enterQuantitySimpleListViewByIndex(int index, String quantity) throws InterruptedException {
+        By locator = By.xpath(quantityInputSimpleListViewByIndex.replace("INDEX", String.valueOf(index)));
+        restaurantUI.waitForVisibility(locator);
+        restaurantUI.clearUsingJavaScript(locator);
+        restaurantUI.sendKeys(locator, quantity);
+        restaurantUI.waitForCustom(500);
+    }
+    public void tabAwayFromQuantityField() throws InterruptedException {
+        restaurantUI.pressTab();
+        restaurantUI.waitForCustom(1000);
+    }
+    public boolean isMaxQuantityErrorModalDisplayed() throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.isDisplayed(txt_maxQuantityErrorModal);
+    }
+    public void clickErrorModalOkButton() throws InterruptedException {
+        if (restaurantUI.isDisplayed(btn_errorModalOk)) {
+            restaurantUI.click(btn_errorModalOk);
+            restaurantUI.waitForCustom(1000);
+        }
+    }
+    public String getQuantitySimpleListViewByIndex(int index) {
+        By locator = By.xpath(quantityInputSimpleListViewByIndex.replace("INDEX", String.valueOf(index)));
+        restaurantUI.waitForVisibility(locator);
+        return restaurantUI.getText(locator, "value");
+    }
 
 
 }

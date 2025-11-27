@@ -1173,6 +1173,10 @@ public class Customer {
     public static void enterItemQuantity(String code)throws InterruptedException{
         customersPage.enterItemQuantity(code);
     }
+
+    public static void enterItemQuantityWithClear(String code)throws InterruptedException{
+        customersPage.enterItemQuantityWithClear(code);
+    }
     public static void clickVerifyItem()throws InterruptedException{
         customersPage.clickVerifyItem();
     }
@@ -1349,6 +1353,36 @@ public class Customer {
     public static boolean isCatalogDisplayed(){
         return customersPage.isCatalogDisplayed();
     }
+
+    public static boolean isItemVerifiedFailedPopUpDisplay()throws InterruptedException{
+        return customersPage.isItemVerifiedFailedPopUpDisplay();
+    }
+
+    public static boolean isMaxQuantityExceededErrorMsg() throws  InterruptedException{
+        return customersPage.isMaxQuantityExceededErrorMsg();
+    }
+
+    public static void enterItemQuantitySimpleList(String code)throws InterruptedException{
+        customersPage.enterItemQuantitySimpleList(code);
+    }
+
+    public static void enterQuantitySimpleListViewByIndex(int index, String quantity) throws InterruptedException {
+        customersPage.enterQuantitySimpleListViewByIndex(index, quantity);
+    }
+    public static void tabAwayFromQuantityField() throws InterruptedException {
+        customersPage.tabAwayFromQuantityField();
+    }
+    public static boolean isMaxQuantityErrorModalDisplayed() throws InterruptedException {
+        return customersPage.isMaxQuantityErrorModalDisplayed();
+    }
+    public static void clickErrorModalOkButton() throws InterruptedException {
+        customersPage.clickErrorModalOkButton();
+    }
+    public static String getQuantitySimpleListViewByIndex(int index) {
+        return customersPage.getQuantitySimpleListViewByIndex(index);
+    }
+
+
 
 
 }
