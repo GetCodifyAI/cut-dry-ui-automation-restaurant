@@ -1356,6 +1356,12 @@ public class Customer {
     public static boolean isCatalogDisplayed(){
         return customersPage.isCatalogDisplayed();
     }
+    public static void clickPlaceOrderSoftOrderMinimum() throws InterruptedException {
+        customersPage.clickPlaceOrderSoftOrderMinimum();
+        if (customersPage.isDuplicatePopupDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
+    }
 
     public static boolean isItemVerifiedFailedPopUpDisplay()throws InterruptedException{
         return customersPage.isItemVerifiedFailedPopUpDisplay();
