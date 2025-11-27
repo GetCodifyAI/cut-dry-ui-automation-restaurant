@@ -390,13 +390,6 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
 
 
 
-    
-    By txt_itemVerifiedFailed = By.xpath("//div[@class='_6ym2rgf']");
-    By txt_MaxQuantityExceededErrorMsg = By.xpath("//span[@class='p-1 _2h0ira _wjtawc _1ety1lk']");
-    String quantityInputSimpleListViewByIndex = "(//table//tbody//tr//input[@data-input='quantityInput'])[INDEX]";
-    By txt_maxQuantityErrorModal = By.xpath("//h2[contains(text(),'Maximum')] | //div[contains(text(),'maximum')] | //h2[contains(text(),'Error')]");
-    By btn_errorModalOk = By.xpath("//button[contains(text(),'OK')] | //button[contains(text(),'Ok')] | //button[contains(text(),'Close')]");
-
     By txt_itemVerifiedFailed = By.xpath("//div[@class='_6ym2rgf']");
     By txt_MaxQuantityExceededErrorMsg = By.xpath("//span[@class='p-1 _2h0ira _wjtawc _1ety1lk']");
     String quantityInputSimpleListViewByIndex = "(//table//tbody//tr//input[@data-input='quantityInput'])[INDEX]";
