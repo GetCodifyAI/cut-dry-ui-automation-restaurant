@@ -236,7 +236,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txtSubstitution = By.xpath("//div[contains(text(),'Substitution')]");
 
     String dynamicToXPath = "(//div[contains(@class,'react-datepicker__day--highlighted')]/preceding::div[contains(@class, 'react-datepicker__day') and text()='DAY'])[last()]";
-    By txt_popupAlertOrderMin = By.xpath("//h2[text()='Order Minimum Not Met']");
+    By txt_popupAlertOrderMin = By.xpath("//div[text()='Order Minimum Not Met']");
     By txt_minOrderBanner = By.xpath("//div[contains(text(), 'Add a few more items worth') and contains(text(), 'to meet minimum order amount')]");
     By btn_OK = By.xpath("//button[text()='OK']");
     By btn_yes = By.xpath("//button[text()='Yes']");
@@ -384,6 +384,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String listViewTag = "//td[contains(text(),'NAME')]//span[contains(text(),'TAG')]";
     String orderGuideLocation =  "//div[contains(text(), 'Location/Guide:')]//following::div[text()= 'NAME']";
     By txtCatalog = By.xpath("//div[text()='Catalog']");
+    By btn_placeOrderSoftOrderMinimum = By.xpath("//button[text()='Place Order']");
 
 
 
@@ -2340,6 +2341,9 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public boolean isCatalogDisplayed(){
         return restaurantUI.isDisplayed(txtCatalog);
+    }
+    public void clickPlaceOrderSoftOrderMinimum(){
+        restaurantUI.click(btn_placeOrderSoftOrderMinimum);
     }
 
 
