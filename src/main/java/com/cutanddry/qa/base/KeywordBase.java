@@ -61,6 +61,28 @@ public class KeywordBase {
         return this;
     }
 
+    public void pressTabKey() {
+        try {
+            Actions actions = new Actions(driver);
+            actions.sendKeys(Keys.TAB).perform();
+            logger.info("Pressed TAB key globally");
+        } catch (Exception e) {
+            logger.error("Failed to press TAB globally", e);
+            throw e;
+        }
+    }
+
+    public KeywordBase pressTab() {
+        try {
+            actions.sendKeys(Keys.TAB).perform();
+            logger.info("Pressed TAB key");
+        } catch (Exception e) {
+            logger.error("Failed to press TAB key", e);
+        }
+        return this;
+    }
+
+
     // Click on an element using By object with Actions class
     public KeywordBase clickAction(By by) {
         try {
