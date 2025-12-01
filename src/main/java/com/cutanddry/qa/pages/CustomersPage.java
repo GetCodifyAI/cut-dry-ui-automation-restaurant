@@ -285,10 +285,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By lbl_locationGuide = By.xpath("//div[text()='Location/Guide:']/following-sibling::div//div[@class='cd_themed_select__single-value css-1uccc91-singleValue']");
     String dropDownLocationOrderGuide =  "(//div[contains(text(), 'Location/Guide:')]//following::div[contains(text(), 'NAME')])[last()]";
     By catalogAccessEditBtn = By.xpath("//div[contains(text(), 'Catalog Access')]//following-sibling::div//div[@class='pl-0 col-sm-auto col-auto']//*[name()='svg' and contains(@data-icon, 'pen-to-square')]");
-    By catalogAccessDisableOption = By.xpath("//div[contains(text(),'Disabled')]");
-    By catalogAccessEnableOption = By.xpath("//div[contains(text(),'Enabled')]");
-    By lbl_catalogAccessEnable = By.xpath("//div[contains(text(), 'Catalog Access')]//following-sibling::div//*[contains(text(),'Enabled')]");
-    By catalogAccessDisableTxt = By.xpath("//div[@class='list-group-item']//div[text()='Disabled']");
+    By catalogAccessDisableOption = By.xpath("//div[contains(text(),'Internal Only')]");
+    By catalogAccessEnableOption = By.xpath("//div[contains(text(),'Visible to All')]");
+    By lbl_catalogAccessEnable = By.xpath("//div[contains(text(), 'Catalog Access')]//following-sibling::div//*[contains(text(),'Visible to All')]");
+    By catalogAccessDisableTxt = By.xpath("//div[@class='list-group-item']//div[text()='Internal Only']");
     By txt_poNumber = By.xpath("//div[contains(text(),'PO Number')]/following-sibling::div/input");
     String pONumberError = "//h2[text()='ERROR']";
     String catalogFilter = "//div[contains(text(),'FILTER')]";
