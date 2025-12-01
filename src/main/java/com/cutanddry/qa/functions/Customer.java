@@ -68,10 +68,13 @@ public class Customer {
 
     }
 
-    public static void increaseReviewCartQtyByThree(){
-        customersPage.clickPlusReviewCart();
-        customersPage.clickPlusReviewCart();
+    public static void  clickPlusReviewCartForOneStep(){
+        customersPage. clickPlusReviewCartForOneStep();
+
     }
+
+
+
     public static void decreaseReviewCartQtyByThree() throws InterruptedException {
         customersPage.clickMinusQryFirstRow();
         customersPage.clickMinusQryFirstRow();
@@ -1173,6 +1176,10 @@ public class Customer {
     public static void enterItemQuantity(String code)throws InterruptedException{
         customersPage.enterItemQuantity(code);
     }
+
+    public static void enterItemQuantityWithClear(String code)throws InterruptedException{
+        customersPage.enterItemQuantityWithClear(code);
+    }
     public static void clickVerifyItem()throws InterruptedException{
         customersPage.clickVerifyItem();
     }
@@ -1355,6 +1362,67 @@ public class Customer {
             customersPage.clickYesDuplicatePopup();
         }
     }
+
+    public static boolean isItemVerifiedFailedPopUpDisplay()throws InterruptedException{
+        return customersPage.isItemVerifiedFailedPopUpDisplay();
+    }
+
+    public static boolean isMaxQuantityExceededErrorMsg() throws  InterruptedException{
+        return customersPage.isMaxQuantityExceededErrorMsg();
+    }
+
+    public static void enterItemQuantitySimpleList(String code)throws InterruptedException{
+        customersPage.enterItemQuantitySimpleList(code);
+    }
+
+    public static void enterQuantitySimpleListViewByIndex(int index, String quantity) throws InterruptedException {
+        customersPage.enterQuantitySimpleListViewByIndex(index, quantity);
+    }
+    public static void tabAwayFromQuantityField() throws InterruptedException {
+        customersPage.tabAwayFromQuantityField();
+    }
+    public static boolean isMaxQuantityErrorModalDisplayed() throws InterruptedException {
+        return customersPage.isMaxQuantityErrorModalDisplayed();
+    }
+    public static void clickErrorModalOkButton() throws InterruptedException {
+        customersPage.clickErrorModalOkButton();
+    }
+    public static String getQuantitySimpleListViewByIndex(int index) {
+        return customersPage.getQuantitySimpleListViewByIndex(index);
+    }
+
+    public static boolean isMaxQuantityExceededModalDisplayed() throws InterruptedException {
+        return customersPage.isMaxQuantityExceededModalDisplayed();
+    }
+
+    public static boolean isMaxQuantityExceededMessageDisplayed() throws InterruptedException {
+        return customersPage.isMaxQuantityExceededMessageDisplayed();
+    }
+
+    public static void clickMaxQuantityModalOk() throws InterruptedException {
+        customersPage.clickMaxQuantityModalOk();
+    }
+
+    public static boolean isPlusButtonDisabledFirstRow() throws InterruptedException {
+        return customersPage.isPlusButtonDisabledFirstRow();
+    }
+
+    public static boolean isPlusButtonDisabledCatalogPDP(String name) throws InterruptedException {
+        return customersPage.isPlusButtonDisabledCatalogPDP(name);
+    }
+
+    public static boolean isPlusButtonDisabledReviewCart(String code) throws InterruptedException {
+        return customersPage.isPlusButtonDisabledReviewCart(code);
+    }
+
+    public static String getItemQuantityByCode(String code) throws InterruptedException {
+        return customersPage.getItemQuantityByCode(code);
+    }
+
+    public static void setItemQuantityByCode(String code, String quantity) throws InterruptedException {
+        customersPage.setItemQuantityByCode(code, quantity);
+    }
+
 
 
 }
