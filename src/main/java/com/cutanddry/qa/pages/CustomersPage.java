@@ -236,7 +236,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txtSubstitution = By.xpath("//div[contains(text(),'Substitution')]");
 
     String dynamicToXPath = "(//div[contains(@class,'react-datepicker__day--highlighted')]/preceding::div[contains(@class, 'react-datepicker__day') and text()='DAY'])[last()]";
-    By txt_popupAlertOrderMin = By.xpath("//h2[text()='Order Minimum Not Met']");
+    By txt_popupAlertOrderMin = By.xpath("//div[text()='Order Minimum Not Met']");
     By txt_minOrderBanner = By.xpath("//div[contains(text(), 'Add a few more items worth') and contains(text(), 'to meet minimum order amount')]");
     By btn_OK = By.xpath("//button[text()='OK']");
     By btn_yes = By.xpath("//button[text()='Yes']");
@@ -285,10 +285,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By lbl_locationGuide = By.xpath("//div[text()='Location/Guide:']/following-sibling::div//div[@class='cd_themed_select__single-value css-1uccc91-singleValue']");
     String dropDownLocationOrderGuide =  "(//div[contains(text(), 'Location/Guide:')]//following::div[contains(text(), 'NAME')])[last()]";
     By catalogAccessEditBtn = By.xpath("//div[contains(text(), 'Catalog Access')]//following-sibling::div//div[@class='pl-0 col-sm-auto col-auto']//*[name()='svg' and contains(@data-icon, 'pen-to-square')]");
-    By catalogAccessDisableOption = By.xpath("//div[contains(text(),'Disabled')]");
-    By catalogAccessEnableOption = By.xpath("//div[contains(text(),'Enabled')]");
-    By lbl_catalogAccessEnable = By.xpath("//div[contains(text(), 'Catalog Access')]//following-sibling::div//*[contains(text(),'Enabled')]");
-    By catalogAccessDisableTxt = By.xpath("//div[@class='list-group-item']//div[text()='Disabled']");
+    By catalogAccessDisableOption = By.xpath("//div[contains(text(),'Internal Only')]");
+    By catalogAccessEnableOption = By.xpath("//div[contains(text(),'Visible to All')]");
+    By lbl_catalogAccessEnable = By.xpath("//div[contains(text(), 'Catalog Access')]//following-sibling::div//*[contains(text(),'Visible to All')]");
+    By catalogAccessDisableTxt = By.xpath("//div[@class='list-group-item']//div[text()='Internal Only']");
     By txt_poNumber = By.xpath("//div[contains(text(),'PO Number')]/following-sibling::div/input");
     String pONumberError = "//h2[text()='ERROR']";
     String catalogFilter = "//div[contains(text(),'FILTER')]";
@@ -346,7 +346,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By dropdown_delivery = By.xpath("(//div[text()='Delivery to Hayes:']/following-sibling::div//div[text()='Select Days...'])[1]");
     String txt_deliveryDay = "//div[text()='DAY']/preceding-sibling::input[@type='checkbox']";
     String txt_deliveryLastBeforeDay = "(//div[contains(@class, 'cd_themed_select__option')]//input[@type='checkbox'])[last()-1]";
-    By btn_setStandingOrder = By.xpath("//button[text()='Set Standing Order ']");
+    By btn_setStandingOrder = By.xpath("//button[text()='Set Standing Order']");
+    By btn_resetStandingOrder = By.xpath("//button[text()='Reset Standing Order']");
     By txt_success = By.xpath("//h2[text()='Success']");
     By txt_reviewStandingOrders = By.xpath("//div[text()='Review Standing Order']");
     By btn_editStandingOrderIcon = By.xpath("//button[@title='Edit']");
@@ -377,6 +378,15 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By deliveryAddress = By.xpath("//div[text()='Delivery To:']/following-sibling::*//div[contains(@id,'react-select')]");
     By deliveryAddressOption = By.xpath("(//div[text()='Delivery To:']/following-sibling::*//div[contains(@id,'react-select')])[2]");
     By singleDeliveryAddress = By.xpath("//div[text()='Delivery To:']/following-sibling::div/div[text()='Avcoa Vending']");
+    By btn_accHoldClose_ = By.xpath("(//button[contains(@class, 'close')]/span[text()='×'])[last()]");
+    String accountOnHoldBanner = "//span[text()='MESSAGE']";
+    String distributorCenter = "//div[contains(text(),'Distribution Center')]/../../following-sibling::div//*[text()='CENTER']";
+    String listViewTag = "//td[contains(text(),'NAME')]//span[contains(text(),'TAG')]";
+    String orderGuideLocation =  "//div[contains(text(), 'Location/Guide:')]//following::div[text()= 'NAME']";
+    By txtCatalog = By.xpath("//div[text()='Catalog']");
+    By btn_placeOrderSoftOrderMinimum = By.xpath("//button[text()='Place Order']");
+
+
 
 
 
@@ -2158,6 +2168,11 @@ public void clickOnCloseOrderGuideEditor(){
         }
         restaurantUI.click(btn_setStandingOrder);
     }
+    public void resetStandingOrder(){
+        restaurantUI.waitForElementEnabledState(btn_resetStandingOrder,true);
+        restaurantUI.waitForClickability(btn_resetStandingOrder);
+        restaurantUI.click(btn_resetStandingOrder);
+    }
     public boolean isStandingOrderSuccessPopupDisplayed(){
         restaurantUI.waitForVisibility(txt_success);
         return restaurantUI.isDisplayed(txt_success);
@@ -2303,6 +2318,32 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public boolean isSingleAddressDisplay()throws InterruptedException{
         return restaurantUI.isDisplayed(singleDeliveryAddress);
+    }
+    public void clickAccHoldCloseIcon(){
+        restaurantUI.waitForVisibility(btn_accHoldClose_);
+        restaurantUI.click(btn_accHoldClose_);
+    }
+    public boolean isAccountHoldPopUpDisplay(String message)throws InterruptedException{
+        return restaurantUI.isDisplayed(By.xpath(accountOnHoldBanner.replace("MESSAGE",message)));
+    }
+    public void selectDistributorCenter(String center)throws InterruptedException{
+        restaurantUI.click(By.xpath(distributorCenter.replace("CENTER",center)));
+        restaurantUI.waitForCustom(3000);
+    }
+    public boolean isCatalogFilterDisplayTagList(String name,String tag){
+        return restaurantUI.isDisplayed(By.xpath(listViewTag.replace("NAME", name).replace("TAG",tag)));
+    }
+    public boolean IsChangeLocationOrderGuideDisplay(String name){
+        return restaurantUI.isDisplayed(By.xpath(orderGuideLocation.replace("NAME",name)));
+    }
+    public boolean isCustomerOrderGuideDisplayed(){
+        return restaurantUI.isDisplayed(btn_catalogToOrderGuide);
+    }
+    public boolean isCatalogDisplayed(){
+        return restaurantUI.isDisplayed(txtCatalog);
+    }
+    public void clickPlaceOrderSoftOrderMinimum(){
+        restaurantUI.click(btn_placeOrderSoftOrderMinimum);
     }
 
 

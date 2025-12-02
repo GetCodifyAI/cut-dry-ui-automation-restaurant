@@ -1233,6 +1233,9 @@ public class Customer {
     public static void setStandingOrder(){
         customersPage.setStandingOrder();
     }
+    public static void resetStandingOrder(){
+        customersPage.resetStandingOrder();
+    }
     public static boolean isStandingOrderSuccessPopupDisplayed(){
         return customersPage.isStandingOrderSuccessPopupDisplayed();
     }
@@ -1328,7 +1331,30 @@ public class Customer {
     public static boolean isSingleAddressDisplay()throws InterruptedException{
         return customersPage.isSingleAddressDisplay();
     }
-
+    public static boolean isAccountHoldBannerDisplay(String message) throws InterruptedException {
+        return customersPage.isAccountHoldPopUpDisplay(message);
+    }
+    public static void selectDistributorCenter(String center)throws InterruptedException{
+        customersPage.selectDistributorCenter(center);
+    }
+    public static boolean isCatalogFilterDisplayTagList(String name,String tag){
+        return customersPage.isCatalogFilterDisplayTagList(name,tag);
+    }
+    public static boolean IsChangeLocationOrderGuideDisplay(String name){
+        return customersPage.IsChangeLocationOrderGuideDisplay(name);
+    }
+    public static boolean isCustomerOrderGuideDisplayed(){
+        return customersPage.isCustomerOrderGuideDisplayed();
+    }
+    public static boolean isCatalogDisplayed(){
+        return customersPage.isCatalogDisplayed();
+    }
+    public static void clickPlaceOrderSoftOrderMinimum() throws InterruptedException {
+        customersPage.clickPlaceOrderSoftOrderMinimum();
+        if (customersPage.isDuplicatePopupDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
+    }
 
 
 }

@@ -20,7 +20,7 @@ public class VerifyTheRevenueSummeryIsDisplayedCorrectlyOnTheEditOrderFlowTest e
     static String orderSummary = "Order Summary";
     static String totalLine = "Line Items";
     static String totalQuantity = "Quantity";
-    static String orderMinimum = "Order Minimum ";
+    static String orderMinimum = "Order Minimum";
 
 
     @BeforeMethod
@@ -88,7 +88,9 @@ public class VerifyTheRevenueSummeryIsDisplayedCorrectlyOnTheEditOrderFlowTest e
         // Add the product via Catalog
         Customer.goToCatalog();
         Customer.searchItemOnCatalog(searchItemCode);
+        Thread.sleep(5000);
         Customer.clickOnPlusIconInCatalogPDP(1, itemName);
+        Thread.sleep(5000);
 
         Customer.clickCartSummery();
         softAssert.assertTrue(Customer.isCartSummaryDisplay(orderSummary),"cart summary display error Catalog");
@@ -101,6 +103,7 @@ public class VerifyTheRevenueSummeryIsDisplayedCorrectlyOnTheEditOrderFlowTest e
         Thread.sleep(10000);
         softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
         Customer.clickOnPlusIconInCatalogPDP(1, itemName);
+        Thread.sleep(5000);
         Customer.clickCheckOutPDP();
 
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");

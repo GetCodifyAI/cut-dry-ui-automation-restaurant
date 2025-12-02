@@ -2,6 +2,7 @@ package com.cutanddry.qa.tests.Catalog;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
+import com.cutanddry.qa.functions.Catalog;
 import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
@@ -13,10 +14,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyCatalogItemImagesTest extends TestBase {
+public class VerifyThatOPsDisplayTheirOwnProductsAlongWithProductsFromOtherManufacturersTest extends TestBase {
     static User user;
-    String ItemName = "Artichoke -24CT";
-    String image = "https://cut-dry-assets.s3.us-east-2.amazonaws.com/uploads/359a6db1924f5569ecc9438feff5a127.jpg";
+    String userName = "70351601";
+    static String endlessAisle = "Endless Aisle";
+
+
 
     @BeforeMethod
     public void setUp(){
@@ -24,22 +27,34 @@ public class VerifyCatalogItemImagesTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-297")
-    public void VerifyCatalogItemImages() throws InterruptedException {
+    @Test(groups = "DOT-TC-1410")
+    public void VerifyThatOPsDisplayTheirOwnProductsAlongWithProductsFromOtherManufacturers() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
-        Dashboard.navigateToIndependentFoodsCo();
-        Dashboard.navigateToOrderGuide();
+        Login.navigateToLoginAs();
+        Login.logInToOperator(userName);
+
+        Customer.clickOnPlaceOrderSW();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+
         Customer.goToCatalog();
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"ERROR in navigating to catalog page");
-        Customer.searchItemOnCatalog(ItemName);
-        softAssert.assertTrue(Customer.CatalogImagesDisplayed(image),"Error in displaying catalog images ");
+        softAssert.assertTrue(Customer.isCatalogFilterDisplayed(endlessAisle),"catalog filter not display");
 
+        Customer.clickOnOrderGuideTab();
+        Customer.clearSearchField();
+        Thread.sleep(3000);
+
+        Customer.goToEdit();
+        softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigation error for edit");
+        Customer.createOrderFromCatalog();
+        softAssert.assertTrue(Customer.isEditOrderGuideTextCatalogDisplayed(),"navigation error for edit order guide catalog");
+        softAssert.assertTrue(Customer.isCatalogFilterDisplayed(endlessAisle),"catalog filter not display");
 
         softAssert.assertAll();
+
     }
 
     @AfterMethod

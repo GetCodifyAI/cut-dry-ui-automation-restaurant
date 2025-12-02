@@ -20,6 +20,7 @@ public class VerifyTheBehaviourWhenAddingSubstituteItemForMultiUOMItemTest exten
     static String Dp_Name = "47837013 - Brandon IFC Cut+Dry Agent - Independent Foods Co";
     String uom1 = "1";
     String uom2 = "2";
+    static String substituteItemName = "Brussels Sprouts - 12 OZ";
 
     static double itemPriceUOM1 ,itemPriceUOM2, totalItemPrice;
 
@@ -49,14 +50,18 @@ public class VerifyTheBehaviourWhenAddingSubstituteItemForMultiUOMItemTest exten
         Catalog.selectItemFromGrid(searchItemCde);
         softAssert.assertEquals(Catalog.getItemcodeInCatalogData(),searchItemCde,"Error in getting Item Code");
         Catalog.navigateToSubstituteTab();
-        Catalog.deleteSubstitute();
-        Catalog.saveChanges();
+//        Catalog.deleteSubstitute();
+//        Catalog.saveChanges();
+//        Catalog.navigateToSubstituteTab();
+        Catalog.removeExistingItem(substituteItemName);
         Catalog.addSubstitutions();
         String SubstituteItemName = Catalog.getSubstituteItemName(substituteItemCode);
+        Catalog.addSubstitutions();
         Catalog.searchAndAddSubstituteItem(substituteItemCode);
         Catalog.clickShowSub();
         Catalog.saveChanges();
         softAssert.assertTrue(Catalog.successOverlayDisplayed(),"Error in saving the changes after adding  substitute");
+        Catalog.navigateToSubstituteTab();
         softAssert.assertTrue(Catalog.isAddedSubstituteItemDisplayedInPage(SubstituteItemName),"Error in adding substitute items");
 
 
@@ -95,9 +100,8 @@ public class VerifyTheBehaviourWhenAddingSubstituteItemForMultiUOMItemTest exten
         Catalog.selectItemFromGrid(searchItemCde);
         softAssert.assertEquals(Catalog.getItemcodeInCatalogData(),searchItemCde,"Error in getting Item Code");
         Catalog.navigateToSubstituteTab();
-        Catalog.deleteSubstitute();
-        Catalog.saveChanges();
-        softAssert.assertTrue(Catalog.successOverlayDisplayed(),"Error in Removing substitute item");
+        Catalog.removeExistingItem(substituteItemName);
+        Catalog.clickDontShowSub();
         softAssert.assertAll();
 
     }

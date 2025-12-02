@@ -34,13 +34,13 @@ public class CatalogPage extends LoginPage {
     By txt_catalog = By.xpath("//div[contains(text(),'Manage Your Digital Catalog')]");
     By searchField = By.xpath("//div//input[contains(@placeholder,'Find Item in Catalog')]");
     String itemInTheGrid = "//tr[contains(@class,'_du1frc')]//td[text()='ITEMCODE']";
-    By ItemCodeInCatalogData = By.xpath("//div[contains(@class, 'form-group') and contains(.//label, 'Item Code')]//div[contains(@class, 'col-sm-8')]");
-    By substituteTab = By.xpath("//a[contains(text(),'Substitutes')]");
-    String deleteSubstituteItemBtn = "//div[@class='align-items-center my-1 row']//div[contains(text(),'ITEMCODE')]//following-sibling::div[contains(@class,'col-md')]/*";
+    By ItemCodeInCatalogData = By.xpath("//div[normalize-space(.)='Product Code (SKU)']/ancestor::div[2]/following-sibling::div//input");
+    By substituteTab = By.xpath("//div[contains(text(),'Product Substitutes')]");
+    String deleteSubstituteItemBtn = "//div[contains(text(),'ITEMCODE')]//following-sibling::div/*[local-name()='svg']";
     By saveChangesBtn = By.xpath("//button[text()='Save']");
-    By addSubstitutionsBtn = By.xpath("//button[contains(text(),'+ Add Substitution')]");
-    By selectSubstituteTxtField = By.xpath("//div[@class= ' css-1wa3eu0-placeholder' and text()='Select...']");
-    By substituteItemInputField = By.xpath("//div[@class=' css-1wa3eu0-placeholder' and text()='Select...']/following::input[@type='text' and @aria-autocomplete='list']");
+    By addSubstitutionsBtn = By.xpath("//div[contains(text(),'+ Add Substitution')]");
+    By selectSubstituteTxtField = By.xpath("//div[contains(text(),'Select...')]");
+    By substituteItemInputField = By.xpath("//div[contains(text(),'Select...')]/following::input[@type='text' and @aria-autocomplete='list']");
     String selectItemFromDropdown = "(//div[contains(text(),'ITEMCODE')])[last()]";
     By substituteAddBtn = By.xpath("//button[contains(text(),'Add')]");
     By substituteCancelBtn = By.xpath("//button[contains(text(),'Cancel')]");
@@ -53,6 +53,18 @@ public class CatalogPage extends LoginPage {
     String priceColumn = "//th[text()='PRICE']";
     String lastOrderPrice = "//span[contains(text(),'PRICE')]";
     By btn_showSub = By.xpath("//label[text()='Show Subs']");
+    By btn_dontShowSub = By.xpath("//label[text()=concat(\"Don\", \"'\", \"t Show Subs\")]\n");
+    By dealsTypeDropDown = By.xpath("//div[contains(text(), 'Deals')]");
+    By dealsTypeDownOption = By.xpath("//div[contains(text(), 'Deals')]/../../following-sibling::div//*[name()='svg' and @data-icon='square']/following-sibling::div[contains(text(), 'GPO Contracted Items')]");
+    By txt_dealsTypeDownOption = By.xpath("//div[contains(text(), 'Deals')]/../../following-sibling::div//*[name()='svg' and @data-icon='square-check']/following-sibling::div[contains(text(), 'GPO Contracted Items')]");
+    By productConfigsEditBtn = By.xpath("//*[contains(text(),'Product Configuration')]/following-sibling::button");
+    By productStatusDropdown = By.xpath("//div[normalize-space()='Product Status']/following::div[@id='config-active']");
+    String productStatus = "(//div[contains(text(),'PRODSTATUS')])[last()]";
+    By itemStatusDropdown = By.xpath("(//div[contains(text(),'All Results')]/../following-sibling::div//div[contains(@class,'value-container')])[3]");
+    String itemStatusOption = "(//div[contains(text(),'ITEMSTATUS') and contains(@class,'themed_select__option')])[last()]";
+
+
+
 
 
 
@@ -230,10 +242,10 @@ public class CatalogPage extends LoginPage {
     }
     public String getItemCodeFromCatalogDataPage(){
         restaurantUI.waitForVisibility(ItemCodeInCatalogData);
-        return restaurantUI.getText(ItemCodeInCatalogData);
+        return restaurantUI.getText(ItemCodeInCatalogData,"value");
     }
     public void clickOnSubstituteTab(){
-        restaurantUI.click(substituteTab);
+        restaurantUI.clickUsingJavaScript(substituteTab);
     }
     public boolean isDeleteSubstituteItemDisplayed(String itemCode){
         return  restaurantUI.isDisplayed(By.xpath(deleteSubstituteItemBtn.replace("ITEMCODE",itemCode)));
@@ -340,6 +352,30 @@ public class CatalogPage extends LoginPage {
     }
     public void clickShowSub(){
         restaurantUI.click(btn_showSub);
+    }
+    public void clickDontShowSub(){
+        restaurantUI.click(btn_dontShowSub);
+    }
+    public void clickDealsType()throws InterruptedException{
+        restaurantUI.click(dealsTypeDropDown);
+        restaurantUI.click(dealsTypeDownOption);
+    }
+    public boolean isGPOContractedDisplay()throws InterruptedException{
+        return restaurantUI.isDisplayed(txt_dealsTypeDownOption);
+    }
+    public void clickEditOnProductConfigs(){
+        restaurantUI.waitForVisibility(productConfigsEditBtn);
+        restaurantUI.click(productConfigsEditBtn);
+    }
+    public void clickOnInactiveOrInactive(String prodStatus){
+        restaurantUI.click(productStatusDropdown);
+        restaurantUI.waitForVisibility(By.xpath(productStatus.replace("PRODSTATUS",prodStatus)));
+        restaurantUI.click(By.xpath(productStatus.replace("PRODSTATUS",prodStatus)));
+    }
+    public void clickOnItemStatus(String itemStatus){
+        restaurantUI.click(itemStatusDropdown);
+        restaurantUI.waitForVisibility(By.xpath(itemStatusOption.replace("ITEMSTATUS",itemStatus)));
+        restaurantUI.click(By.xpath(itemStatusOption.replace("ITEMSTATUS",itemStatus)));
     }
 
 

@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyPlacingAnOrderForCustomerWithAnyOtherBranchCodeTest extends TestBase {
     static User user;
-    String searchItemCode = "99005";
+    String searchItemCode = "51301";
     static String OperatorName = "45808864";
     static double itemPrice;
     static String itemName,orderId;

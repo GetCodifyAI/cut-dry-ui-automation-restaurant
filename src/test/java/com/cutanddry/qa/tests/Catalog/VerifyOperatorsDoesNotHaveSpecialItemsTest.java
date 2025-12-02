@@ -5,6 +5,7 @@ import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
+import com.cutanddry.qa.functions.Order;
 import com.cutanddry.qa.utils.JsonUtil;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -13,10 +14,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyCatalogItemImagesTest extends TestBase {
+public class VerifyOperatorsDoesNotHaveSpecialItemsTest extends TestBase {
     static User user;
-    String ItemName = "Artichoke -24CT";
-    String image = "https://cut-dry-assets.s3.us-east-2.amazonaws.com/uploads/359a6db1924f5569ecc9438feff5a127.jpg";
+    String searchItemCode = "20475";
+    String itemName = "Mascarpone Domestic 00016";
+
 
     @BeforeMethod
     public void setUp(){
@@ -24,8 +26,8 @@ public class VerifyCatalogItemImagesTest extends TestBase {
         user = JsonUtil.readUserLogin();
     }
 
-    @Test(groups = "DOT-TC-297")
-    public void VerifyCatalogItemImages() throws InterruptedException {
+    @Test(groups = "DOT-TC-1427")
+    public void VerifyOperatorsDoesNotHaveSpecialItems() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
@@ -33,13 +35,12 @@ public class VerifyCatalogItemImagesTest extends TestBase {
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+
         Customer.goToCatalog();
-        softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"ERROR in navigating to catalog page");
-        Customer.searchItemOnCatalog(ItemName);
-        softAssert.assertTrue(Customer.CatalogImagesDisplayed(image),"Error in displaying catalog images ");
-
-
+        Customer.searchItemOnCatalog(searchItemCode);
+        softAssert.assertFalse(Customer.getFirstElementFrmSearchResults().contains(itemName.toLowerCase()), "item not found");
         softAssert.assertAll();
+
     }
 
     @AfterMethod

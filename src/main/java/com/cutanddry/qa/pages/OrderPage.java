@@ -36,6 +36,17 @@ public class OrderPage extends LoginPage{
     By btn_chatSupplierOption = By.xpath("//span[contains(text(), 'Chat')]");
     By areYouSurePopUp = By.xpath("//h2[text() = 'Are you sure?']");
     By btn_yes = By.xpath("//button[contains(text(),'Yes')]");
+    By lbl_orderGuideName = By.xpath("//label[contains(text(),'Order Guide Name')]/following-sibling::input");
+    By lbl_orderGuideDescription = By.xpath("//label[contains(text(),'Guide Description')]/following-sibling::input");
+    By btn_save = By.xpath("//button[normalize-space(text())='Save']");
+    String editedOrderGuide =  "//div[contains(text(), 'Order Guide:')]//following::div[contains(text(), 'NAME')]";
+    String editedOrderGuideDescription =  "//div[contains(text(), 'NAME')]";
+    By lbl_orderGuideLocation = By.xpath("//label[contains(text(),'Locations')]/following-sibling::*//div[text()='Main St']/following-sibling::div");
+    By orderGuideLocationDropDown = By.xpath("//label[contains(text(),'Locations')]/following-sibling::div");
+    By orderGuideLocationDropDownOption = By.xpath("//label[contains(text(),'Locations')]/following-sibling::*//div[text()='Main St']");
+    By btn_FindMoreInCatalog = By.xpath("//button[text()='Find More in Catalog']");
+    By lbl_inactiveItemDetected = By.xpath("//h2[text()='Inactive Items Detected']");
+
 
 
     public void clickAddNewSupplier(){
@@ -195,6 +206,44 @@ public class OrderPage extends LoginPage{
     public void clickYes(){
         restaurantUI.click(btn_yes);
     }
+    public void editOrderGuideName(String name) throws InterruptedException {
+        restaurantUI.clear(lbl_orderGuideName);
+        restaurantUI.sendKeys(lbl_orderGuideName, name);
+        restaurantUI.waitForCustom(1000);
+    }
+    public void editOrderGuideDescription(String name) throws InterruptedException {
+        restaurantUI.clear(lbl_orderGuideDescription);
+        restaurantUI.sendKeys(lbl_orderGuideDescription, name);
+        restaurantUI.waitForCustom(1000);
+    }
+    public void clickOnSave(){
+        restaurantUI.waitForVisibility(btn_save);
+        restaurantUI.clickWithFallback(btn_save);
+    }
+    public boolean editedOrderGuideNameDisplay(String name){
+        return restaurantUI.isDisplayed(By.xpath(editedOrderGuide.replace("NAME",name)));
+    }
+    public boolean editedOrderGuideDescriptionDisplay(String name){
+        return restaurantUI.isDisplayed(By.xpath(editedOrderGuideDescription.replace("NAME",name)));
+    }
+    public void removeOrderGuideLocation()throws InterruptedException{
+        restaurantUI.click(lbl_orderGuideLocation);
+    }
+    public void clickOrderGuideLocationDropDown()throws InterruptedException{
+        restaurantUI.click(orderGuideLocationDropDown);
+    }
+    public void clickOrderGuideLocationDropDownOption()throws InterruptedException{
+        restaurantUI.click(orderGuideLocationDropDownOption);
+    }
+    public void  clickFindMoreInCatalog()throws InterruptedException{
+        restaurantUI.scrollToElement(btn_FindMoreInCatalog);
+        restaurantUI.click(btn_FindMoreInCatalog);
+    }
+    public boolean isInactiveItemDetectedPopUpDisplay()throws InterruptedException{
+        restaurantUI.waitForVisibility(lbl_inactiveItemDetected);
+        return restaurantUI.isDisplayed(lbl_inactiveItemDetected);
+    }
+
 
 
 
