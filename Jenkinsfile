@@ -24,7 +24,7 @@ pipeline {
     }
     
     triggers {
-        cron('H 4,22 * * 1-5')
+        cron('H 22 * * 1-5')
     }
     
     stages {
@@ -45,7 +45,7 @@ pipeline {
                         }
                     }
                 }
-                
+
                 stage('Regression 2') {
                     agent any
                     steps {
@@ -61,7 +61,7 @@ pipeline {
                         }
                     }
                 }
-                
+
                 stage('Regression 3') {
                     agent any
                     steps {
@@ -77,7 +77,7 @@ pipeline {
                         }
                     }
                 }
-                
+
                 stage('Regression 4') {
                     agent any
                     steps {
@@ -93,7 +93,7 @@ pipeline {
                         }
                     }
                 }
-                
+
                 stage('Regression 5') {
                     agent any
                     steps {
@@ -109,7 +109,7 @@ pipeline {
                         }
                     }
                 }
-                
+
                 stage('Regression 6') {
                     agent any
                     steps {
@@ -125,7 +125,7 @@ pipeline {
                         }
                     }
                 }
-                
+
                 stage('Regression 7') {
                     agent any
                     steps {
@@ -141,7 +141,7 @@ pipeline {
                         }
                     }
                 }
-                
+
                 stage('Regression 8') {
                     agent any
                     steps {
@@ -157,7 +157,7 @@ pipeline {
                         }
                     }
                 }
-                
+
                 stage('Regression 9') {
                     agent any
                     steps {
@@ -173,7 +173,7 @@ pipeline {
                         }
                     }
                 }
-                
+
                 stage('Regression 10') {
                     agent any
                     steps {
@@ -189,7 +189,7 @@ pipeline {
                         }
                     }
                 }
-                
+
                 stage('Regression 11') {
                     agent any
                     steps {
@@ -273,15 +273,29 @@ def runTestSuiteWithCleanup(xmlFile, partName, jobNumber) {
     echo "Running test suite: ${xmlFile} (${partName}) with cleanup optimization"
     
     sh '''
-        rm -rf target/surefire-reports* || true
-        rm -rf target/screenshots* || true
-        rm -rf target/test-output* || true
-        
-        rm -rf ~/.cache/google-chrome* || true
-        rm -rf /tmp/chrome_* /tmp/.org.chromium.* || true
-        
-        echo "Disk usage before test execution:"
-        df -h
+        # Kill any lingering Chrome/ChromeDriver processes
+            pkill -9 chrome || true
+            pkill -9 chromedriver || true
+            pkill -9 Xvfb || true
+
+            # Wait for processes to fully terminate
+            sleep 5
+
+            # Clean up test artifacts
+            rm -rf target/surefire-reports* || true
+            rm -rf target/screenshots* || true
+            rm -rf target/test-output* || true
+
+            # Aggressive Chrome cleanup
+            rm -rf ~/.cache/google-chrome* || true
+            rm -rf /tmp/chrome_* || true
+            rm -rf /tmp/.org.chromium.* || true
+            rm -rf /tmp/.com.google.Chrome.* || true
+            rm -rf /tmp/scoped_dir* || true
+            rm -rf /dev/shm/.org.chromium.* || true
+
+            echo "Disk usage before test execution:"
+            df -h
     '''
     
     try {
@@ -450,6 +464,16 @@ def calculateAndReportResults() {
 
 def archiveAndCleanup(suiteNumber, reportName) {
     echo "Archiving artifacts and performing cleanup for suite ${suiteNumber}"
+    
+    // Kill lingering Chrome/ChromeDriver processes immediately after test completion
+    sh """
+        echo "Killing lingering Chrome processes for suite ${suiteNumber}..."
+        pkill -9 chrome || true
+        pkill -9 chromedriver || true
+        pkill -9 Xvfb || true
+        sleep 2
+        echo "Chrome processes killed for suite ${suiteNumber}"
+    """
     
     archiveArtifacts artifacts: 'target/surefire-reports*/**/*', allowEmptyArchive: true, fingerprint: true
     
