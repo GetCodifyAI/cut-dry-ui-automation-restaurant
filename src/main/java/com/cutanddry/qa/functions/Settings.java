@@ -262,5 +262,8 @@ public class Settings {
     public static void clickOnSaveChanges() throws InterruptedException {
         settingsPage.clickOnSaveChanges();
     }
+    public static void selectOrderMinimum(boolean status){
+        settingsPage.selectOrderMinimum(status);
+    }
 
 }
