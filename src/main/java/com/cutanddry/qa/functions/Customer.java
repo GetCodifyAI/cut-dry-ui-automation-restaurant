@@ -1355,6 +1355,18 @@ public class Customer {
             customersPage.clickYesDuplicatePopup();
         }
     }
+    public static void SelectOrderMinimumFromProfile(String orderMinimum){
+        customersPage.selectOrderMinimum(orderMinimum);
+    }
+    public static void ifHasHoldsRemoveHoldsFromCustomer(){
+        if(customersPage.isCustomerOnHold()){
+            customersPage.clickOnEditAccHolds();
+            customersPage.clickOnAccDropdown();
+            customersPage.clickOnNone();
+            customersPage.clickOnSave();
+            customersPage.clickOnYes();
+        }
+    }
 
 
 }

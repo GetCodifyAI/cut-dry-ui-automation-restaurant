@@ -152,5 +152,8 @@ public class InternalTools {
     public static void manualOrderQuantityCalculationToggle(boolean status){
         internalToolsPage.manualOrderQuantityCalculationToggle(status);
     }
+    public static void enterOrderMinimumAmount(String min){
+        internalToolsPage.enterOrderMinimumAmount(min);
+    }
 
 }

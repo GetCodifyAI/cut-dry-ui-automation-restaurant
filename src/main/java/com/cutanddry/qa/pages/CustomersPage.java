@@ -285,10 +285,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By lbl_locationGuide = By.xpath("//div[text()='Location/Guide:']/following-sibling::div//div[@class='cd_themed_select__single-value css-1uccc91-singleValue']");
     String dropDownLocationOrderGuide =  "(//div[contains(text(), 'Location/Guide:')]//following::div[contains(text(), 'NAME')])[last()]";
     By catalogAccessEditBtn = By.xpath("//div[contains(text(), 'Catalog Access')]//following-sibling::div//div[@class='pl-0 col-sm-auto col-auto']//*[name()='svg' and contains(@data-icon, 'pen-to-square')]");
-    By catalogAccessDisableOption = By.xpath("//div[contains(text(),'Disabled')]");
-    By catalogAccessEnableOption = By.xpath("//div[contains(text(),'Enabled')]");
-    By lbl_catalogAccessEnable = By.xpath("//div[contains(text(), 'Catalog Access')]//following-sibling::div//*[contains(text(),'Enabled')]");
-    By catalogAccessDisableTxt = By.xpath("//div[@class='list-group-item']//div[text()='Disabled']");
+    By catalogAccessDisableOption = By.xpath("//div[contains(text(),'Internal Only')]");
+    By catalogAccessEnableOption = By.xpath("//div[contains(text(),'Visible to All')]");
+    By lbl_catalogAccessEnable = By.xpath("//div[contains(text(), 'Catalog Access')]//following-sibling::div//*[contains(text(),'Visible to All')]");
+    By catalogAccessDisableTxt = By.xpath("//div[@class='list-group-item']//div[text()='Internal Only']");
     By txt_poNumber = By.xpath("//div[contains(text(),'PO Number')]/following-sibling::div/input");
     String pONumberError = "//h2[text()='ERROR']";
     String catalogFilter = "//div[contains(text(),'FILTER')]";
@@ -327,7 +327,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String tbx_itemQuantity = "//td[text()='CODE']/following-sibling::*//div/input[@data-input ='quantityInput']";
     String btn_editRecentOrder = "//td[text()='ORDERID']/following-sibling::td/button[text()='Edit Order']";
     String btn_editRecentOrderQuantity = "//td[text()='ORDERID']/following-sibling::td[text()='QUANTITY']";
-    String btn_editRecentOrderPrice = "//td[text()='ORDERID']/following-sibling::td[2]";
+    String btn_editRecentOrderPrice = "//td[text()='ORDERID']/following-sibling::td[3]";
     By dropdown_option_QuickAdd = By.xpath("//div[text()='Quick Add View']");
     By txt_QuickAddView = By.xpath("//div[text()='Quick Add View']");
     By lbl_itemCode = By.xpath("(//div[text()='Item Code']/../../../../following-sibling::td//input)[1]");
@@ -385,6 +385,16 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String orderGuideLocation =  "//div[contains(text(), 'Location/Guide:')]//following::div[text()= 'NAME']";
     By txtCatalog = By.xpath("//div[text()='Catalog']");
     By btn_placeOrderSoftOrderMinimum = By.xpath("//button[text()='Place Order']");
+    By orderMinimumeditBtn = By.xpath("//*[contains(text(),'Order Minimum')]/following-sibling::div//*[local-name()='svg' and @data-icon='pen-to-square']");
+    String orderMinimumSelectionRadioBtn = "//*[contains(text(),'ORDERMINIMUM')]/../input";
+    By orderMinimumOverlayCloseBtn = By.xpath("//*[contains(text(),'Edit Order Minimum')]/../following-sibling::button/span[normalize-space()='×']");
+    By customer_Holds = By.xpath("//span[contains(text(),'Credit') or contains(text(),'Hard') or contains(text(),'General')]");
+    By btn_saveEditShipAddress = By.xpath("//button[contains(text(),'Save Changes')]");
+    By txt_none = By.xpath("//div[contains(@class, 'themed_select__option') and  text()='None']");
+
+
+
+
 
 
 
@@ -2344,6 +2354,21 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public void clickPlaceOrderSoftOrderMinimum(){
         restaurantUI.click(btn_placeOrderSoftOrderMinimum);
+    }
+    public void selectOrderMinimum(String orderMinimum){
+        restaurantUI.click(orderMinimumeditBtn);
+        if(!restaurantUI.isCheckboxOrRadioBtnSelected(By.xpath(orderMinimumSelectionRadioBtn.replace("ORDERMINIMUM",orderMinimum)))){
+            restaurantUI.click(By.xpath(orderMinimumSelectionRadioBtn.replace("ORDERMINIMUM",orderMinimum)));
+            restaurantUI.click(btn_saveEditShipAddress);
+        }
+        restaurantUI.click(orderMinimumOverlayCloseBtn);
+    }
+    public boolean isCustomerOnHold(){
+        return restaurantUI.isDisplayed(customer_Holds);
+    }
+    public void clickOnNone(){
+        restaurantUI.waitForVisibility(txt_none);
+        restaurantUI.click(txt_none);
     }
 
 

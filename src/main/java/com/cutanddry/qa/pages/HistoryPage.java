@@ -53,8 +53,8 @@ public class HistoryPage extends TestBase {
     String days = "//div[text()='DATE']";
     String date = "//td[text()='DATE']";
     String sts = "//div[text()='STATUS']";
-    By txt_status = By.xpath("(//td[9])[1]/div[1]");
-    String status = "//td/div[text()='STATUS']";
+    By txt_status = By.xpath("(//td[10])[1]/div[1]");
+    String status = "//td/span[text()='STATUS']";
     By btn_uploadInvoices = By.xpath("//button[contains(text(),'Upload Invoice')]");
     By txt_uploadInvoices = By.xpath("//div[contains(text(),'Upload & Scan Invoice')]");
     By selectSupplierDropDown = By.xpath("//label[contains(text(),'Select the supplier of this order')]/following-sibling::div");
