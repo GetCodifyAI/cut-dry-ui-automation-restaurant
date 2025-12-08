@@ -71,6 +71,8 @@ public class InternalToolsPage extends TestBase {
     By manualOrderQuantityCalculationToggleStable1 = By.xpath("//div[contains(text(), 'Enable manual Order Quantity calculation in OG:')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
 
     By lbl_paymentRail = By.xpath("//h5[contains(text(),'Payment Rail Configurations (Pay Engineer Only)')]");
+    By addOrderMinimumAmount = By.xpath("//div[contains(text(),'Order Minimum Amount')]/following-sibling::div/input");
+
 
 
 
@@ -375,6 +377,11 @@ public class InternalToolsPage extends TestBase {
         } else if (!enable && isEnabled) {
             restaurantUI.clickWithScrollAndHover(manualOrderQuantityCalculationToggleStable1);
         }
+    }
+    public void enterOrderMinimumAmount(String minimum){
+        restaurantUI.click(addOrderMinimumAmount);
+        restaurantUI.clear(addOrderMinimumAmount);
+        restaurantUI.sendKeys(addOrderMinimumAmount,minimum);
     }
 
 
