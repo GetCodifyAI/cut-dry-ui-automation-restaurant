@@ -151,7 +151,7 @@ public class Customer {
     public static void submitOrder() throws InterruptedException {
         customersPage.submitOrder();
         if (customersPage.caseMinNotMetDisplayed()){
-            customersPage.clickYesDuplicatePopup();
+            customersPage.clickPlaceOrderSoftOrderMinimum();
         }
         Thread.sleep(4000);
         if (customersPage.isDuplicatePopupDisplayed()){
