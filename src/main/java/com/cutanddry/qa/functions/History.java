@@ -116,7 +116,7 @@ public class History {
     public static void clickConfirmCancelOrder(){
         historyPage.clickConfirmCancelOrder();
     }
-    public static void clickEditOrder(){
+    public static void clickEditOrder()throws InterruptedException{
         historyPage.clickEditOrder();
     }
     public static boolean isEditOrderPopUpDisplayed(){
