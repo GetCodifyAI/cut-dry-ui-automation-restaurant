@@ -151,7 +151,7 @@ public class Customer {
     public static void submitOrder() throws InterruptedException {
         customersPage.submitOrder();
         if (customersPage.caseMinNotMetDisplayed()){
-            customersPage.clickYesDuplicatePopup();
+            customersPage.clickPlaceOrderSoftOrderMinimum();
         }
         Thread.sleep(4000);
         if (customersPage.isDuplicatePopupDisplayed()){
@@ -1343,7 +1343,30 @@ public class Customer {
     public static boolean IsChangeLocationOrderGuideDisplay(String name){
         return customersPage.IsChangeLocationOrderGuideDisplay(name);
     }
-
+    public static boolean isCustomerOrderGuideDisplayed(){
+        return customersPage.isCustomerOrderGuideDisplayed();
+    }
+    public static boolean isCatalogDisplayed(){
+        return customersPage.isCatalogDisplayed();
+    }
+    public static void clickPlaceOrderSoftOrderMinimum() throws InterruptedException {
+        customersPage.clickPlaceOrderSoftOrderMinimum();
+        if (customersPage.isDuplicatePopupDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
+    }
+    public static void SelectOrderMinimumFromProfile(String orderMinimum){
+        customersPage.selectOrderMinimum(orderMinimum);
+    }
+    public static void ifHasHoldsRemoveHoldsFromCustomer(){
+        if(customersPage.isCustomerOnHold()){
+            customersPage.clickOnEditAccHolds();
+            customersPage.clickOnAccDropdown();
+            customersPage.clickOnNone();
+            customersPage.clickOnSave();
+            customersPage.clickOnYes();
+        }
+    }
 
 
 }
