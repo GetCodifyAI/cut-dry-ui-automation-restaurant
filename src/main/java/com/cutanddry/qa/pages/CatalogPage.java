@@ -26,9 +26,9 @@ public class CatalogPage extends LoginPage {
     By getTotalQuantityReviewOrder = By.xpath("//td[contains(text(),'Total Quantity:')]/following-sibling::td");
     By getDeliveryFeesReviewOrder = By.xpath("//td[contains(text(),'Delivery Fee')]/following-sibling::td");
 //    By getTotalOrderQuantity = By.xpath("//div[contains(text(),'Items')]/../following-sibling::td");
-    By getTotalOrderQuantity = By.xpath("//td[contains(text(),'Total Quantity')]/following-sibling::td");
+    By getTotalOrderQuantity = By.xpath("//div[contains(text(),'Total Qty')]/following-sibling::div");
 //    By getTotalOrderPrice = By.xpath("//div[contains(text(),'Total')]/../following-sibling::td");
-    By getTotalOrderPrice = By.xpath("//td[text()='Total']/following-sibling::td");
+    By getTotalOrderPrice = By.xpath("//div[text()='Total']/following-sibling::div");
     By itemTypeDropDown = By.xpath("//div[contains(text(), 'Item Type')]");
     By itemTypeDropDownOption = By.xpath("//div[contains(text(), 'Item Type')]/../../following-sibling::div//*[name()='svg' and @data-icon='square']/following-sibling::div[contains(text(), 'Special Order')]");
     By txt_catalog = By.xpath("//div[contains(text(),'Manage Your Digital Catalog')]");
