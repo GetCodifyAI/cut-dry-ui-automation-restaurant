@@ -13,7 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheSelectMultipleUOMFromRecommendedBySalesRepCarouselAndSubmissionTest extends TestBase {
     static User user;
-    static String Dp_Name = "47837013 - Brandon IFC Cut+Dry Agent - Independent Foods Co";
+    static String Dp_Name = "46505655 - Kevin - Independent Foods Co";
     String searchItemName = "Carrot - Baby Peeled - 1 LB";
     String searchItemCode1 = "01409";
     String uomDropDownOption = "Multiple Units";
