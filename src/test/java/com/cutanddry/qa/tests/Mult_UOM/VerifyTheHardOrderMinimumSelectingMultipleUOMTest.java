@@ -19,7 +19,7 @@ public class VerifyTheHardOrderMinimumSelectingMultipleUOMTest extends TestBase 
     static String orderMinimumType = "Hard Order Minimum";
     static String orderMinInternal = "3000000";
     String distributor = "Independent Foods Co";
-    static String Dp_Name = "47837013 - Brandon IFC Cut+Dry Agent - Independent Foods Co";
+    static String Dp_Name = "46505655 - Kevin - Independent Foods Co";
     String searchItemName = "Organic Bananas - 2 LB";
     String searchItemCde = "00529";
     String uom1 = "1";
