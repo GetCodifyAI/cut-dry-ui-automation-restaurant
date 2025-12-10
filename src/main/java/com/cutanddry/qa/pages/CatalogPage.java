@@ -21,14 +21,14 @@ public class CatalogPage extends LoginPage {
     By getTotalItemPrice = By.xpath("//td[text()='Total:']/following-sibling::td");
     By getTotalEndlessAislePriceReviewOrder = By.xpath("//td[contains(text(),'Endless Aisle Total')]/following-sibling::td");
     By getTotalEndlessAisleSubTotalPriceReviewOrder = By.xpath("//td[contains(text(),'Endless Aisle Subtotal')]/following-sibling::td");
-    By getSubTotalOrderPrice = By.xpath("//*[contains(text(),'Subtotal')]/following-sibling::td");
+    By getSubTotalOrderPrice = By.xpath("//*[contains(text(),'Subtotal')]/following-sibling::div");
     By getTotalPriceReviewOrder = By.xpath("//td[text()='Total:']/following-sibling::td");
     By getTotalQuantityReviewOrder = By.xpath("//td[contains(text(),'Total Quantity:')]/following-sibling::td");
     By getDeliveryFeesReviewOrder = By.xpath("//td[contains(text(),'Delivery Fee')]/following-sibling::td");
 //    By getTotalOrderQuantity = By.xpath("//div[contains(text(),'Items')]/../following-sibling::td");
-    By getTotalOrderQuantity = By.xpath("//td[contains(text(),'Total Quantity')]/following-sibling::td");
+    By getTotalOrderQuantity = By.xpath("//div[contains(text(),'Total Qty')]/following-sibling::div");
 //    By getTotalOrderPrice = By.xpath("//div[contains(text(),'Total')]/../following-sibling::td");
-    By getTotalOrderPrice = By.xpath("//td[text()='Total']/following-sibling::td");
+    By getTotalOrderPrice = By.xpath("//div[text()='Total']/following-sibling::div");
     By itemTypeDropDown = By.xpath("//div[contains(text(), 'Item Type')]");
     By itemTypeDropDownOption = By.xpath("//div[contains(text(), 'Item Type')]/../../following-sibling::div//*[name()='svg' and @data-icon='square']/following-sibling::div[contains(text(), 'Special Order')]");
     By txt_catalog = By.xpath("//div[contains(text(),'Manage Your Digital Catalog')]");
@@ -57,6 +57,12 @@ public class CatalogPage extends LoginPage {
     By dealsTypeDropDown = By.xpath("//div[contains(text(), 'Deals')]");
     By dealsTypeDownOption = By.xpath("//div[contains(text(), 'Deals')]/../../following-sibling::div//*[name()='svg' and @data-icon='square']/following-sibling::div[contains(text(), 'GPO Contracted Items')]");
     By txt_dealsTypeDownOption = By.xpath("//div[contains(text(), 'Deals')]/../../following-sibling::div//*[name()='svg' and @data-icon='square-check']/following-sibling::div[contains(text(), 'GPO Contracted Items')]");
+    By productConfigsEditBtn = By.xpath("//*[contains(text(),'Product Configuration')]/following-sibling::button");
+    By productStatusDropdown = By.xpath("//div[normalize-space()='Product Status']/following::div[@id='config-active']");
+    String productStatus = "(//div[contains(text(),'PRODSTATUS')])[last()]";
+    By itemStatusDropdown = By.xpath("(//div[contains(text(),'All Results')]/../following-sibling::div//div[contains(@class,'value-container')])[3]");
+    String itemStatusOption = "(//div[contains(text(),'ITEMSTATUS') and contains(@class,'themed_select__option')])[last()]";
+
 
 
 
@@ -356,6 +362,20 @@ public class CatalogPage extends LoginPage {
     }
     public boolean isGPOContractedDisplay()throws InterruptedException{
         return restaurantUI.isDisplayed(txt_dealsTypeDownOption);
+    }
+    public void clickEditOnProductConfigs(){
+        restaurantUI.waitForVisibility(productConfigsEditBtn);
+        restaurantUI.click(productConfigsEditBtn);
+    }
+    public void clickOnInactiveOrInactive(String prodStatus){
+        restaurantUI.click(productStatusDropdown);
+        restaurantUI.waitForVisibility(By.xpath(productStatus.replace("PRODSTATUS",prodStatus)));
+        restaurantUI.click(By.xpath(productStatus.replace("PRODSTATUS",prodStatus)));
+    }
+    public void clickOnItemStatus(String itemStatus){
+        restaurantUI.click(itemStatusDropdown);
+        restaurantUI.waitForVisibility(By.xpath(itemStatusOption.replace("ITEMSTATUS",itemStatus)));
+        restaurantUI.click(By.xpath(itemStatusOption.replace("ITEMSTATUS",itemStatus)));
     }
 
 
