@@ -17,7 +17,7 @@ public class VerifyTheBehaviourWhenAddingSubstituteItemForMultiUOMItemTest exten
     String searchItemCde = "00529";
     String substituteItemCode = "01922";
     String uomDropDownOption = "Multiple Units";
-    static String Dp_Name = "47837013 - Brandon IFC Cut+Dry Agent - Independent Foods Co";
+    static String Dp_Name = "46505655 - Kevin - Independent Foods Co";
     String uom1 = "1";
     String uom2 = "2";
     static String substituteItemName = "Brussels Sprouts - 12 OZ";

@@ -17,7 +17,7 @@ public class CreditRequestsPage extends TestBase {
     By btn_yes = By.xpath("//button[@class = 'swal2-confirm swal2-styled' and text() = 'Yes']");
     By txt_sent_request = By.xpath("//h2[@class = 'swal2-title' and text() = 'Credit Request Sent!']");
     By btn_close = By.xpath("//button[@class = 'swal2-confirm swal2-styled' and text() = 'Close']");
-    By txt_credit_status = By.xpath("//div[@class='themed_select__single-value themed_select__single-value--is-disabled css-107lb6w-singleValue' and text()='Credit Status: Requested']");
+    By txt_credit_status = By.xpath("//div[@class='_1wbidd3' and text()='Credit Requested']");
     By txt_credit_request = By.xpath("//h3[@class='mt-2 mont' and text()='Credit Requests']");
     By first_row_credit_requests = By.xpath("//table[@class='table table-hover']//tbody//tr[1]");
     By txt_credit_request_section = By.xpath("//h2[@class='mb-0 _1vx3fhy' and starts-with(text(), 'Order #')]");

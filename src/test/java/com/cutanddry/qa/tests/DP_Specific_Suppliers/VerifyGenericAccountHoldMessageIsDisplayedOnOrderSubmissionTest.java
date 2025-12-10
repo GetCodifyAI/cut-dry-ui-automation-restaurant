@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyGenericAccountHoldMessageIsDisplayedOnOrderSubmissionTest extends TestBase {
     static User user;
-    static String Dp_Name = "47837013 - Brandon IFC Cut+Dry Agent - Independent Foods Co";
+    static String Dp_Name = "46505655 - Kevin - Independent Foods Co";
     static String customerId = "30275";
     static String OperatorName = "372460856";
     static String holdMessage = "Your account is on hold by your supplier. Your order could not be submitted, but has been saved as a Draft. Please contact your supplier about your account status and resubmit your order.";
