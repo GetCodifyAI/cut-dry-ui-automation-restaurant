@@ -404,6 +404,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String btn_catalogPDPPlusDisabled = "(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//*[name()='svg' and contains(@data-icon, 'plus')]/ancestor::button[@disabled]";
     String btn_reviewCartPlusDisabled = "//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='plus']/ancestor::button[@disabled]";
     String tbx_itemQuantityByCode = "//td[text()='CODE']/following-sibling::*//input[@data-input='quantityInput']";
+    String getTxtCatalogPdpItemCount = "//input[@data-input='quantityInput']";
+
 
 
 
@@ -2452,8 +2454,18 @@ public void clickOnCloseOrderGuideEditor(){
     public void setItemQuantityByCode(String code, String quantity) throws InterruptedException {
         By quantityInput = By.xpath(tbx_itemQuantityByCode.replace("CODE", code));
         restaurantUI.clearUsingJavaScript(quantityInput);
+        restaurantUI.clearWithKeys(quantityInput);
         restaurantUI.sendKeys(quantityInput, quantity);
         restaurantUI.waitForCustom(2000);
+    }
+
+    public void setCatalogPdpItemCount(String count,String name) throws InterruptedException {
+        By qty = By.xpath("//input[@data-input='quantityInput']");
+
+        restaurantUI.click(By.xpath(btn_catalogPDPPlusStable.replace("NAME", name)));
+        restaurantUI.clearWithKeys(qty);
+        restaurantUI.waitForCustom(2000);
+        restaurantUI.sendKeysRaw(qty, count);
     }
 
 

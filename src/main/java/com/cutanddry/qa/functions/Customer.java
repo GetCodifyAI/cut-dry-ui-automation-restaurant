@@ -1423,6 +1423,12 @@ public class Customer {
         customersPage.setItemQuantityByCode(code, quantity);
     }
 
+    public static void   setCatalogPdpItemCount(String quantity, String name) throws InterruptedException {
+        customersPage. setCatalogPdpItemCount(quantity, name);
+    }
+
+
+
 
 
 }

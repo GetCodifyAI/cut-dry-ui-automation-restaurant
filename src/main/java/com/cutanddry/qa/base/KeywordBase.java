@@ -188,6 +188,25 @@ public class KeywordBase {
         return this;
     }
 
+    public KeywordBase clearWithKeys(By by) {
+        try {
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(by));
+            element.click();
+
+            // Send BACKSPACE many times to ensure input becomes empty
+            for (int i = 0; i < 10; i++) {
+                element.sendKeys(Keys.BACK_SPACE);
+            }
+
+            logger.info("Cleared number input fully using BACKSPACE: {}", by);
+        } catch (Exception e) {
+            logger.error("Failed to clear number input using BACKSPACE: {}", by, e);
+        }
+        return this;
+    }
+
+
+
     // Get text from an element
     public String getText(By by) {
         try {
@@ -1058,5 +1077,17 @@ public class KeywordBase {
             return 0;
         }
     }
+
+    public KeywordBase sendKeysRaw(By by, CharSequence keys) {
+        try {
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+            element.sendKeys(keys);
+            logger.info("Sent RAW keys to element: {} - Keys: {}", by, keys);
+        } catch (Exception e) {
+            logger.error("Failed to send RAW keys to element: {}", by, e);
+        }
+        return this;
+    }
+
 }
 
