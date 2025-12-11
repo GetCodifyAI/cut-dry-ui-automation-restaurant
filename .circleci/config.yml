@@ -1425,28 +1425,28 @@ workflows:
 #            - nightly-build-and-test-11
 #
 #
-  scheduled-test-2:
-    triggers:
-      - schedule:
-          cron: "32 10 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 25 06 --> DP gap = 40 min
-          filters:
-            branches:
-              only:
-                - viranga_bug_fix
-    jobs:
+#  scheduled-test-2:
+#    triggers:
+#      - schedule:
+#          cron: "40 04 * * 1-5"  # This will run daily-build-and-test at 11:15 AM IST (05:45 AM UTC) // 25 06 --> DP gap = 40 min
+#          filters:
+#            branches:
+#              only:
+#                - main
+#    jobs:
 #      - daily-build-and-test-1
 #      - daily-build-and-test-2
 #      - daily-build-and-test-3
-      - daily-build-and-test-4
+#      - daily-build-and-test-4
 #      - daily-build-and-test-5
-      - calculate-pass-fail-rate:
-          requires:
+#      - calculate-pass-fail-rate:
+#          requires:
 #            - daily-build-and-test-1
 #            - daily-build-and-test-2
 #            - daily-build-and-test-3
 #            - daily-build-and-test-4
 #            - daily-build-and-test-5
-
+#
 #  scheduled-test-2-sub1:
 #    triggers:
 #      - schedule:
