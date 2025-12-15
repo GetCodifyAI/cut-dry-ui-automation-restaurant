@@ -266,7 +266,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By accountOnHold = By.xpath("//h2[text()='Account on hold!']");
     String accountHoldMessage = "//p[text()='MESSAGE']";
     String dynamicToXPathStable = "//div[contains(@class,'react-datepicker')]/preceding::div[contains(@class, 'react-datepicker__day') and contains(@aria-disabled, 'false') and text()='DAY']";
-    String deliveryDateOrderHistory = "//*[contains(text(),'#') and text()='ID']/../../preceding-sibling::td[2][text()='DATE']";
+    String deliveryDateOrderHistory = "//*[contains(text(),'#') and text()='ID']/../../preceding-sibling::td[2][contains(text(),'DATE')]";
     By btn_pickUpDateStable = By.xpath("//div[text()='Pickup Date:']/../following-sibling::div//*[name()='svg' and @data-icon='calendar-date-vect']");
     String fulfillmentTypeOrderHistory = "//*[contains(text(),'#') and text()='ID']/../../preceding-sibling::td[2]//*[text()='TYPE']";
     By btn_nextMonth = By.xpath("//button[contains(@aria-label,'Next Month')]");

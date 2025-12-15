@@ -4,7 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import org.openqa.selenium.By;
 
 public class CreditRequestsPage extends TestBase {
-    By btn_report_issue = By.xpath("//span[text()='Report Issue']");
+    By btn_report_issue = By.xpath("//button[text()='Report Issue']");
     By txt_report_issue = By.xpath("//h2[@class='mb-0 _1vx3fhy' and text()='Which items had an issue?']");
     By btn_first_row = By.xpath("//tr[@class='_du1frc']");
     By txt_tell_us = By.xpath("//div[@class='mont modal-title h4' and text()='Tell us more...']");
@@ -17,11 +17,11 @@ public class CreditRequestsPage extends TestBase {
     By btn_yes = By.xpath("//button[@class = 'swal2-confirm swal2-styled' and text() = 'Yes']");
     By txt_sent_request = By.xpath("//h2[@class = 'swal2-title' and text() = 'Credit Request Sent!']");
     By btn_close = By.xpath("//button[@class = 'swal2-confirm swal2-styled' and text() = 'Close']");
-    By txt_credit_status = By.xpath("//div[@class='themed_select__single-value themed_select__single-value--is-disabled css-107lb6w-singleValue' and text()='Credit Status: Requested']");
+    By txt_credit_status = By.xpath("//div[@class='_1wbidd3' and text()='Credit Requested']");
     By txt_credit_request = By.xpath("//h3[@class='mt-2 mont' and text()='Credit Requests']");
     By first_row_credit_requests = By.xpath("//table[@class='table table-hover']//tbody//tr[1]");
-    By txt_credit_request_section = By.xpath("//h2[@class='mb-0 _1vx3fhy' and starts-with(text(), 'Order #')]");
-    By btn_process_credit = By.xpath("//button[@class='mr-3 btn btn-primary' and text()='Process Credit']");
+    By txt_credit_request_section = By.xpath("//div[starts-with(text(), 'Order #')]");
+    By btn_process_credit = By.xpath("//button[text()='Process Credit']");
     By txt_process_credit = By.xpath("//h2[@class='mb-0 _1vx3fhy' and text()='Process Credit']");
     By btn_check_box = By.xpath("//td/div[@class='d-flex align-items-center justify-content-center _du1frc']");
     By btn_approve_credit = By.xpath("//button[@class='btn btn-primary' and text()='Approve Credit']");
@@ -34,8 +34,8 @@ public class CreditRequestsPage extends TestBase {
     By btn_confirm = By.xpath("//button[@class='swal2-confirm order-2 swal2-styled' and text()='Confirm']");
     By txt_approved_credit = By.xpath("//h2[@id='swal2-title' and text()='Credit Request Approved!']");
     By txt_declined_credit = By.xpath("//h2[@id='swal2-title' and text()='Credit Request Declined!']");
-    By txt_credit_approved = By.xpath("//td/span[@Class='_1a5re9s' and text()='Credit Approved']");
-    By txt_credit_declined = By.xpath("//td/span[@Class='_1a5re9s' and text()='Credit Declined']");
+    By txt_credit_approved = By.xpath("//div[@Class='_1wbidd3' and text()='Credit Approved']");
+    By txt_credit_declined = By.xpath("//div[@Class='_1wbidd3' and text()='Credit Declined']");
     By lbl_itemName = By.xpath("(//td[contains(@class,'align-middle')])[2]");
     By lbl_itemCode = By.xpath("(//td[contains(@class,'align-middle')])[3]");
     By lbl_itemPrice = By.xpath("(//td[contains(@class,'align-middle')])[5]");
