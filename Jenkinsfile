@@ -20,7 +20,7 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '10'))
         timeout(time: 4, unit: 'HOURS')
-        parallelsAlwaysFailFast()
+//         parallelsAlwaysFailFast()
     }
     
     triggers {
