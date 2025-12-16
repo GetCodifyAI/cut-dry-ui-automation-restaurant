@@ -52,6 +52,7 @@
 
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheGlobalOrderMinimumAmountIsAppliedWhenUseGlobalSettingsIsConfiguredWithHardOrderMinimumTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheGlobalOrderMinimumAmountIsAppliedWhenUseGlobalSettingsIsConfiguredWithSoftOrderMinimumTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyOrderMinimumIsNotAppliedWhenNoOrderMinimumIsConfiguredTest" />
         </classes>
     </test>
 </suite>

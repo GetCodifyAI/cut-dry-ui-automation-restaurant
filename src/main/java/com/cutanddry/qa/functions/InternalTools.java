@@ -155,5 +155,8 @@ public class InternalTools {
     public static void enterOrderMinimumAmount(String min){
         internalToolsPage.enterOrderMinimumAmount(min);
     }
+    public static void TurnOnAllowSupplierToSetMinimumToggle(boolean status){
+        internalToolsPage.TurnOnAllowSupplierToSetMinimumToggle(status);
+    }
 
 }
