@@ -1358,6 +1358,9 @@ public class Customer {
     public static void SelectOrderMinimumFromProfile(String orderMinimum){
         customersPage.selectOrderMinimum(orderMinimum);
     }
+    public static void SelectPriceVisibilityFromProfile(String priceVisibility){
+        customersPage.selectPriceVisibility(priceVisibility);
+    }
     public static void ifHasHoldsRemoveHoldsFromCustomer(){
         if(customersPage.isCustomerOnHold()){
             customersPage.clickOnEditAccHolds();

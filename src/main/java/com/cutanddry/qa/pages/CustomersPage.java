@@ -389,6 +389,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String orderMinimumSelectionRadioBtn = "//*[contains(text(),'ORDERMINIMUM')]/../input";
     By orderMinimumOverlayCloseBtn = By.xpath("//*[contains(text(),'Edit Order Minimum')]/../following-sibling::button/span[normalize-space()='×']");
     By customer_Holds = By.xpath("//span[contains(text(),'Credit') or contains(text(),'Hard') or contains(text(),'General')]");
+    By priceVisibilityEditBtn = By.xpath("//*[contains(text(),'Price Visibility')]/following-sibling::div//*[local-name()='svg' and @data-icon='pen-to-square']");
+    String priceVisibilitySelectionRadioBtn = "//*[contains(text(),'PRICEVISIBILITY')]/../input";
+    By priceVisibilityOverlayCloseBtn = By.xpath("//*[contains(text(),'Edit Price Visibility')]/../following-sibling::button/span[normalize-space()='×']");
     By btn_saveEditShipAddress = By.xpath("//button[contains(text(),'Save Changes')]");
     By txt_none = By.xpath("//div[contains(@class, 'themed_select__option') and  text()='None']");
 
@@ -2362,6 +2365,14 @@ public void clickOnCloseOrderGuideEditor(){
             restaurantUI.click(btn_saveEditShipAddress);
         }
         restaurantUI.click(orderMinimumOverlayCloseBtn);
+    }
+    public void selectPriceVisibility(String priceVisibility){
+        restaurantUI.click(priceVisibilityEditBtn);
+        if(!restaurantUI.isCheckboxOrRadioBtnSelected(By.xpath(priceVisibilitySelectionRadioBtn.replace("PRICEVISIBILITY",priceVisibility)))){
+            restaurantUI.click(By.xpath(priceVisibilitySelectionRadioBtn.replace("PRICEVISIBILITY",priceVisibility)));
+            restaurantUI.click(btn_saveEditShipAddress);
+        }
+        restaurantUI.click(priceVisibilityOverlayCloseBtn);
     }
     public boolean isCustomerOnHold(){
         return restaurantUI.isDisplayed(customer_Holds);
