@@ -391,6 +391,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By customer_Holds = By.xpath("//span[contains(text(),'Credit') or contains(text(),'Hard') or contains(text(),'General')]");
     By btn_saveEditShipAddress = By.xpath("//button[contains(text(),'Save Changes')]");
     By txt_none = By.xpath("//div[contains(@class, 'themed_select__option') and  text()='None']");
+    By btn_approveOrder = By.xpath("//button[contains(text(),'Approve')]");
+    By btn_rejectOrder = By.xpath("//button[contains(text(),'Reject')]");
 
 
 
@@ -2369,6 +2371,22 @@ public void clickOnCloseOrderGuideEditor(){
     public void clickOnNone(){
         restaurantUI.waitForVisibility(txt_none);
         restaurantUI.click(txt_none);
+    }
+    public boolean isApproveButtonDisplayed() {
+        try {
+            restaurantUI.waitForVisibility(btn_approveOrder);
+        } catch (Exception e) {
+            return false;
+        }
+        return restaurantUI.isDisplayed(btn_approveOrder);
+    }
+    public boolean isRejectButtonDisplayed() {
+        try {
+            restaurantUI.waitForVisibility(btn_rejectOrder);
+        } catch (Exception e) {
+            return false;
+        }
+        return restaurantUI.isDisplayed(btn_rejectOrder);
     }
 
 
