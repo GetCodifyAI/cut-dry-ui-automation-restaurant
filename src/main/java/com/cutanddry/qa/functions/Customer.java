@@ -72,9 +72,6 @@ public class Customer {
         customersPage. clickPlusReviewCartForOneStep();
 
     }
-
-
-
     public static void decreaseReviewCartQtyByThree() throws InterruptedException {
         customersPage.clickMinusQryFirstRow();
         customersPage.clickMinusQryFirstRow();
