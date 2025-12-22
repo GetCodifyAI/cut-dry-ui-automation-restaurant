@@ -49,11 +49,14 @@
             <class name="com.cutanddry.qa.tests.Orders.VerifyThatTheOrderUponRecreatingWithInactiveItemsTest" />
 
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyAddToOrderGuideIconOnItemsWillNotDisplayedForTheOperatorsWhenTheCatalogOnlyOrderFlowIsActivatedTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.QuickAddFlowMaximumQuantityValidationTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifySimpleListViewMaximumQuantityValidationTest" />
+
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheGlobalOrderMinimumAmountIsAppliedWhenUseGlobalSettingsIsConfiguredWithHardOrderMinimumTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheGlobalOrderMinimumAmountIsAppliedWhenUseGlobalSettingsIsConfiguredWithSoftOrderMinimumTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyOrderMinimumIsNotAppliedWhenNoOrderMinimumIsConfiguredTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.QuickAddFlowMaximumQuantityValidationTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifySimpleListViewMaximumQuantityValidationTest" />
+
+
         </classes>
     </test>
 </suite>
