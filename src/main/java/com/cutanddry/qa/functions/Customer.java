@@ -833,7 +833,7 @@ public class Customer {
             customersPage.clickYesDuplicatePopup();
         }
     }
-    public static void clickYesOrderMinimum() throws InterruptedException {
+    public static void clickYesCaseMinimum() throws InterruptedException {
         customersPage.clickOnYes();
         if (customersPage.isDuplicatePopupDisplayed()){
             customersPage.clickYesDuplicatePopup();
@@ -1439,8 +1439,73 @@ public class Customer {
         customersPage. setCatalogPdpItemCount(quantity, name);
     }
 
+    public static boolean isOrderGuideSettingsDisplayed() {
+        return customersPage.isOrderGuideSettingsDisplayed();
+    }
+
+    public static boolean isOrderMinimumFieldDisplayed() {
+        return customersPage.isOrderMinimumFieldDisplayed();
+    }
+
+    public static boolean isOrderCaseMinimumFieldDisplayed() {
+        return customersPage.isOrderCaseMinimumFieldDisplayed();
+    }
+
+    public static boolean isDeliveryDaysFieldDisplayed() {
+        return customersPage.isDeliveryDaysFieldDisplayed();
+    }
+
+    public static void setOrderMinimum(String amount) throws InterruptedException {
+        customersPage.setOrderMinimumValue(amount);
+    }
+
+    public static void setOrderCaseMinimum(String amount) throws InterruptedException {
+        customersPage.setOrderCaseMinimumValue(amount);
+    }
+
+    public static void removeDeliveryDay(String day) throws InterruptedException {
+        customersPage.removeDeliveryDayFromSettings(day);
+    }
+
+    public static void clickSaveOrderGuideSettings() throws InterruptedException {
+        customersPage.clickSaveOrderGuideSettingsBtn();
+    }
+
+    public static void closeOrderGuideSettings() throws InterruptedException {
+        customersPage.clickCloseOrderGuideSettingsBtn();
+    }
+
+    public static void clickBackToCartFromOrderMinimumPopup() throws InterruptedException {
+        customersPage. clickBackToCartFromOrderMinimumPopup();
+    }
+
+    public static void ClickSeveralTimesToIncreaseTheQuantity(int count)
+    {
+        for (int i = 0; i < count; i++) {
+            Customer.clickPlusReviewCartForOneStep();
+        }
+    }
 
 
+    public static boolean isCaseMinPopupDisplayed(){
+        return customersPage.isCaseMinPopupDisplayed();
+    }
+
+    public static void clickOnBtnForRamona(){
+        customersPage.clickOnBtnForRamona();
+    }
+
+    public static boolean isDisplayedMinOrderAmountLabel() throws InterruptedException {
+         return customersPage.isDisplayedMinOrderAmountLabel();
+    }
+
+    public static boolean isDisplayedMinOrderCaseLabel() throws InterruptedException {
+       return customersPage. isDisplayedMinOrderCaseLabel();
+    }
+
+    public static boolean  isDisplayedDeliveryDaysLabel() throws InterruptedException {
+       return customersPage. isDisplayedMinOrderCaseLabel();
+    }
 
 
 }

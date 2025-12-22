@@ -1089,5 +1089,9 @@ public class KeywordBase {
         return this;
     }
 
+    public List<WebElement> findElements(By by) {
+        return driver.findElements(by);
+    }
+
 }
 

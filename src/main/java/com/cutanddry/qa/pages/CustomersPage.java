@@ -2,6 +2,9 @@ package com.cutanddry.qa.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class CustomersPage extends LoginPage {
 
@@ -415,6 +418,35 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String btn_reviewCartPlusDisabled = "//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='plus']/ancestor::button[@disabled]";
     String tbx_itemQuantityByCode = "//td[text()='CODE']/following-sibling::*//input[@data-input='quantityInput']";
     String getTxtCatalogPdpItemCount = "//input[@data-input='quantityInput']";
+
+
+    By txt_orderGuideSettingsOverlay = By.xpath("//div[contains(text(), 'Order Guide Settings')]");
+    By txt_orderMinimumField = By.xpath("//div[contains(text(), 'Min. Order Amount')]");
+    By txt_orderCaseMinimumField = By.xpath("//div[contains(text(), 'Min. Order Cases')] | //div[contains(text(), 'Case Minimum')]");
+    By txt_deliveryDaysField = By.xpath("//div[contains(text(), 'Delivery Days')]");
+    By tbx_orderMinimumInput = By.xpath("//label[normalize-space()='Min. Order Amount']/following-sibling::input");
+    By tbx_orderCaseMinimumInput = By.xpath("//label[normalize-space()='Min. Order Cases']/following-sibling::input");
+    By btn_saveOrderGuideSettings = By.xpath("//button[contains(text(), 'Save')]");
+    By btn_closeOrderGuideSettings = By.xpath("//button[contains(@class, 'close')]/span[text()='×'] | //button[contains(text(), 'Close')]");
+    String txt_deliveryDayCheckbox = "//div[text()='DAY']/preceding-sibling::input[@type='checkbox'] | //label[contains(text(), 'DAY')]/input[@type='checkbox']";
+    String txt_removeDeliveryDay =
+            "//div[contains(@class,'themed_select__multi-value')]" +
+                    "[.//div[normalize-space()='DAY']]" +
+                    "//div[contains(@class,'themed_select__multi-value__remove')]";
+
+    By btn_backToCart =
+            By.xpath("//button[@data-testid='order-minimum-back']");
+
+    By txt_popupAlertCaseMin = By.xpath("//h2[normalize-space()='Case Minimum Not Met']");
+    By btn_ramona =
+            By.xpath("//div[@class='w-100' and normalize-space()='Ramona']");
+
+    By MinOrderAmountLabel = By.xpath("//label[normalize-space(text())='Min. Order Amount']");
+    By MinOrderCaseLabel = By.xpath("//label[normalize-space(text())='Min. Order Cases']");
+    By DeliveryDateLabel = By.xpath("//label[normalize-space(text())='Delivery Days']");
+
+
+
 
 
 
@@ -2492,6 +2524,86 @@ public void clickOnCloseOrderGuideEditor(){
         restaurantUI.waitForCustom(2000);
         restaurantUI.sendKeysRaw(qty, count);
     }
+
+    public boolean isOrderGuideSettingsDisplayed() {
+        try {
+            restaurantUI.waitForVisibility(txt_orderGuideSettingsOverlay);
+            return restaurantUI.isDisplayed(txt_orderGuideSettingsOverlay);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    public boolean isOrderMinimumFieldDisplayed() {
+        return restaurantUI.isDisplayed(txt_orderMinimumField);
+    }
+    public boolean isOrderCaseMinimumFieldDisplayed() {
+        return restaurantUI.isDisplayed(txt_orderCaseMinimumField);
+    }
+    public boolean isDeliveryDaysFieldDisplayed() {
+        return restaurantUI.isDisplayed(txt_deliveryDaysField);
+    }
+    public void setOrderMinimumValue(String amount) throws InterruptedException {
+        restaurantUI.waitForVisibility(tbx_orderMinimumInput);
+        restaurantUI.clearUsingJavaScript(tbx_orderMinimumInput);
+        restaurantUI.sendKeys(tbx_orderMinimumInput, amount);
+        restaurantUI.waitForCustom(1000);
+    }
+    public void setOrderCaseMinimumValue(String amount) throws InterruptedException {
+        restaurantUI.waitForVisibility(tbx_orderCaseMinimumInput);
+        restaurantUI.clearUsingJavaScript(tbx_orderCaseMinimumInput);
+        restaurantUI.sendKeys(tbx_orderCaseMinimumInput, amount);
+        restaurantUI.waitForCustom(1000);
+    }
+
+    public void removeDeliveryDayFromSettings(String day) throws InterruptedException {
+        By removeDayBtn = By.xpath(
+                txt_removeDeliveryDay.replace("DAY", day)
+        );
+
+        if (restaurantUI.isDisplayed(removeDayBtn)) {
+            restaurantUI.click(removeDayBtn);
+            restaurantUI.waitForCustom(500);
+        }
+    }
+
+    public void clickSaveOrderGuideSettingsBtn() throws InterruptedException {
+        restaurantUI.click(btn_saveOrderGuideSettings);
+        restaurantUI.waitForCustom(2000);
+    }
+    public void clickCloseOrderGuideSettingsBtn() throws InterruptedException {
+        restaurantUI.click(btn_closeOrderGuideSettings);
+        restaurantUI.waitForCustom(2000);
+    }
+
+    public void clickBackToCartFromOrderMinimumPopup() {
+        restaurantUI.waitForVisibility(txt_popupAlertOrderMin);
+        restaurantUI.waitForClickability(btn_backToCart);
+        restaurantUI.click(btn_backToCart);
+    }
+
+
+    public boolean isCaseMinPopupDisplayed(){
+        restaurantUI.waitForVisibility(txt_popupAlertCaseMin);
+        return restaurantUI.isDisplayed(txt_popupAlertCaseMin);
+    }
+
+    public void clickOnBtnForRamona(){
+        restaurantUI.click(btn_ramona);
+    }
+
+
+    public boolean isDisplayedMinOrderAmountLabel() throws InterruptedException {
+        return restaurantUI.isDisplayed(MinOrderAmountLabel);
+    }
+
+    public boolean isDisplayedMinOrderCaseLabel() throws InterruptedException {
+        return restaurantUI.isDisplayed(MinOrderCaseLabel);
+    }
+
+    public boolean isDisplayedDeliveryDaysLabel() throws InterruptedException {
+        return restaurantUI.isDisplayed(DeliveryDateLabel );
+    }
+
 
 
 }

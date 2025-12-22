@@ -55,6 +55,8 @@
             <class name="com.cutanddry.qa.tests.Orders.VerifyOrderMinimumIsNotAppliedWhenNoOrderMinimumIsConfiguredTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.QuickAddFlowMaximumQuantityValidationTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifySimpleListViewMaximumQuantityValidationTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyOrderGuideSettingsForNonIntegratedDPsTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyOrderGuideSettingsForScrapperIntegratedDPsTest" />
 
 
         </classes>
