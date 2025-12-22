@@ -1368,5 +1368,40 @@ public class Customer {
         }
     }
 
+    public static boolean isOrderGuideSettingsDisplayed() {
+        return customersPage.isOrderGuideSettingsDisplayed();
+    }
+
+    public static boolean isOrderMinimumFieldDisplayed() {
+        return customersPage.isOrderMinimumFieldDisplayed();
+    }
+
+    public static boolean isOrderCaseMinimumFieldDisplayed() {
+        return customersPage.isOrderCaseMinimumFieldDisplayed();
+    }
+
+    public static boolean isDeliveryDaysFieldDisplayed() {
+        return customersPage.isDeliveryDaysFieldDisplayed();
+    }
+
+    public static void setOrderMinimum(String amount) throws InterruptedException {
+        customersPage.setOrderMinimumValue(amount);
+    }
+
+    public static void setOrderCaseMinimum(String amount) throws InterruptedException {
+        customersPage.setOrderCaseMinimumValue(amount);
+    }
+
+    public static void removeDeliveryDay(String day) throws InterruptedException {
+        customersPage.removeDeliveryDayFromSettings(day);
+    }
+
+    public static void clickSaveOrderGuideSettings() throws InterruptedException {
+        customersPage.clickSaveOrderGuideSettingsBtn();
+    }
+
+    public static void closeOrderGuideSettings() throws InterruptedException {
+        customersPage.clickCloseOrderGuideSettingsBtn();
+    }
 
 }
