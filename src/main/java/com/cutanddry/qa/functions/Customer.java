@@ -1367,6 +1367,10 @@ public class Customer {
             customersPage.clickOnYes();
         }
     }
-
-
+    public static boolean isApproveButtonDisplayed() {
+        return customersPage.isApproveButtonDisplayed();
+    }
+    public static boolean isRejectButtonDisplayed() {
+        return customersPage.isRejectButtonDisplayed();
+    }
 }
