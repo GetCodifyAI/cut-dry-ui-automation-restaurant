@@ -53,9 +53,11 @@ public class VerifyCreateCreditRequestTest extends TestBase {
         softAssert.assertTrue(CreditRequests.isIssuePopUpDisplayed(),"Issue pop up not display");
         CreditRequests.clickIssueOption();
         CreditRequests.clickContinue();
-        softAssert.assertTrue(CreditRequests.isIssuePopUpDisplayed(),"Issue pop up not display");
+        Thread.sleep(3000);
+        softAssert.assertTrue(CreditRequests.isIssuePopUpDisplayed(),"Issue pop up not display 1");
         CreditRequests.clickContinue();
-        softAssert.assertTrue(CreditRequests.isIssuePopUpDisplayed(),"Issue pop up not display");
+        Thread.sleep(3000);
+        softAssert.assertTrue(CreditRequests.isIssuePopUpDisplayed(),"Issue pop up not display 2");
         CreditRequests.clickContinue();
         softAssert.assertTrue(CreditRequests.isCreditRequestedDisplayed(),"Credit requested not display");
         CreditRequests.clickSaveCheckIn();

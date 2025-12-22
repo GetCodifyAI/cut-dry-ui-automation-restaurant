@@ -28,11 +28,11 @@ public class OrderPage extends LoginPage{
     By locationFilter = By.xpath("//div[contains(@class, ' css-2b097c-container')]");
     String locationOption = "//div[contains(@class,'themed_select__option ') and contains(text(), 'LOCATION')]";
     String addedLocation = "//td//span[contains(text(), 'LOCATION')]";
-    By btn_checkIn = By.xpath("//button[contains(text(),'Check-In Order')]");
+    By btn_checkIn = By.xpath("//span[contains(text(),'Check-In Order')]");
     String checkInTitle = "//h2[contains(text(),'Check-In Order #ORDER_ID')]";
     By btn_checkInAll = By.xpath("//button[contains(text(),'Check-In All')]");
     By lbl_checkInAllPopup = By.xpath("//h2[contains(text(),'Check-in all items?')]");
-    String lbl_orderStatus = "//div[contains(text(),'Order Status: STATUS')]";
+    String lbl_orderStatus = "//span[text()='Status']/following-sibling::span[text()='STATUS']";
     By btn_chatSupplierOption = By.xpath("//span[contains(text(), 'Chat')]");
     By areYouSurePopUp = By.xpath("//h2[text() = 'Are you sure?']");
     By btn_yes = By.xpath("//button[contains(text(),'Yes')]");

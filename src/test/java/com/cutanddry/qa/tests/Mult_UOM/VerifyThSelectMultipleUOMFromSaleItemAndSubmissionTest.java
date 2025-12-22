@@ -68,7 +68,6 @@ public class VerifyThSelectMultipleUOMFromSaleItemAndSubmissionTest extends Test
         softAssert.assertEquals(Catalog.getTotalQuantityInOrder(),totalItemQuantityReviewOrder,"order quantity not successfully submitted");
         softAssert.assertEquals(Catalog.getTotalPriceInOrder(),totalItemPrice,"order not successfully submitted");
         softAssert.assertAll();
-        softAssert.assertAll();
 
     }
 

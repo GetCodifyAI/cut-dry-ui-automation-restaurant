@@ -1,4 +1,4 @@
-package com.cutanddry.qa.tests.Mult_UOM;
+package com.cutanddry.qa.tests.Orders;
 
 import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
@@ -11,42 +11,39 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyTheHardOrderMinimumSelectingMultipleUOMTest extends TestBase {
+public class VerifyOrderMinimumIsNotAppliedWhenNoOrderMinimumIsConfiguredTest extends TestBase {
     static User user;
-    static String orderMin = "3000000";
-    static String OperatorName = "429887675";
+    static String OperatorName = "235564457";
     static String defaultOrderMin = "0";
     static String orderMinimumType = "Hard Order Minimum";
-    static String orderMinInternal = "3000000";
+    static String orderMinInternal = "50000";
     String distributor = "Independent Foods Co";
     static String Dp_Name = "46505655 - Kevin - Independent Foods Co";
-    String searchItemName = "Organic Bananas - 2 LB";
-    String searchItemCde = "00529";
-    String uom1 = "1";
-    String uom2 = "2";
-    static double itemPriceUOM1 ,itemPriceUOM2;
-    String uomDropDownOption = "Multiple Units";
+    static String orderMinimumSetting = "Exempt from Order Minimum";
+    static String customerId = "97071";
 
 
     @BeforeMethod
-    public void setUp(){
+    public void setUp() {
         initialization();
         user = JsonUtil.readUserLogin();
+
     }
 
-    @Test(groups = "DOT-TC-1069")
-    public void VerifyTheHardOrderMinimumSelectingMultipleUOM()throws InterruptedException {
+    @Test(groups = "DOT-TC-1613")
+    public void VerifyOrderMinimumIsNotAppliedWhenNoOrderMinimumIsConfigured() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(), "login error");
 
         Login.navigateToInternalTools();
         InternalTools.navigateToConfigureSupplier();
         InternalTools.navigateToEditDetails(distributor);
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.TurnOnOrderMinimumGloballyToggle(true);
+        InternalTools.TurnOnAllowSupplierToSetMinimumToggle(true);
         InternalTools.clickOnOrderMinimumDropdown(orderMinimumType);
-        InternalTools.enterOrderMinimum(orderMinInternal);
+        InternalTools.enterOrderMinimumAmount(orderMinInternal);
         InternalTools.clickSave();
         softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save");
         InternalTools.clickOkOnSuccessBtn();
@@ -59,41 +56,35 @@ public class VerifyTheHardOrderMinimumSelectingMultipleUOMTest extends TestBase 
         //set hard hold minimum
         Dashboard.navigateToOrderSettings();
         softAssert.assertTrue(Settings.isOrderSettingsTextDisplayed(),"navigation error");
-        Settings.enterOrderMinimum(orderMin);
-        Settings.setOrderMinimums(false);
+        Settings.selectOrderMinimum(false);
         Settings.clickOnSaveChanges();
 
-//        Login.closePreviousTab();
-        Login.navigateToLoginAs();
-        Login.loginAsBookkeeper(OperatorName);
-        restaurantUI.switchToNewTab();
-        Dashboard.navigateToOrder();
-        Dashboard.navigateToIndependentFoodsCoClassic();
-        Dashboard.navigateToOrderGuide();
-        //Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        //set global order minimum from the profile
+        Dashboard.navigateToCustomers();
+        Customer.searchCustomerByCode(customerId);
+        softAssert.assertTrue(Customer.isCustomerSearchResultByCodeDisplayed(customerId), "Unable to find the customer Id");
+        Customer.SelectCustomer(customerId);
+        Customer.SelectOrderMinimumFromProfile(orderMinimumSetting);
+        Customer.ifHasHoldsRemoveHoldsFromCustomer();
+        Login.closePreviousTab();
 
-        Customer.goToCatalog();
-        Customer.searchItemOnCatalog(searchItemCde);
-        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(searchItemName.toLowerCase()), "item not found");
-        Catalog.ClickOnMultiUomDropDown(searchItemName);
-        Catalog.ClickOnMultiUomDropDownOption(uomDropDownOption);
-        softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
-        itemPriceUOM1 = Catalog.getPDPPriceUOM(uom1);
-        itemPriceUOM2 = Catalog.getPDPPriceUOM(uom2);
-        Catalog.clickAddToCartPlusIcon(1, uom1);
-        Catalog.clickAddToCartPlusIcon(1, uom2);
-        softAssert.assertEquals(Math.round(Customer.getItemPriceOnCheckoutButtonViaPDP() * 100.0) / 100.0,
-                ((Math.round(itemPriceUOM1 * 100.0) / 100.0)+(Math.round(itemPriceUOM2 * 100.0) / 100.0)), "The item has not been selected.");
-        Customer.clickCheckOutPDP();
+        Login.navigateToLoginAs();
+        Login.logInToOperatorAsWhiteLabel(OperatorName);
+        Dashboard.navigateToOrder();
+        Customer.increaseFirstRowQtyCustom(1);
+        Customer.checkoutItems();
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
+
         softAssert.assertTrue(Customer.isMinOrderBannerDisplayed(),"banner not appearing error");
         Customer.submitOrderMinimum();
-        softAssert.assertTrue(Customer.isOrderMinPopupDisplayed(),"popup display error");
+        softAssert.assertFalse(Customer.isOrderMinPopupDisplayed(),"popup display error");
         Customer.clickOkOrderMinimum();
+        softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
+        Customer.clickClose();
 
         Login.closePreviousTab();
 
-       //Distributor flow
+        //Distributor flow
         Login.navigateToLoginAs();
         Login.goToDistributor(Dp_Name);
         Dashboard.isUserNavigatedToDistributorDashboard();
@@ -101,25 +92,16 @@ public class VerifyTheHardOrderMinimumSelectingMultipleUOMTest extends TestBase 
         Dashboard.navigateToOrderSettings();
         softAssert.assertTrue(Settings.isOrderSettingsTextDisplayed(),"navigation error");
         Settings.enterOrderMinimum(defaultOrderMin);
-        Settings.setOrderMinimums(true);
+        Settings.selectOrderMinimum(true);
         Settings.clickOnSaveChanges();
 
-        Login.navigateToInternalTools();
-        InternalTools.navigateToConfigureSupplier();
-        InternalTools.navigateToEditDetails(distributor);
-        InternalTools.navigateToOrderingSettingsTab();
-        InternalTools.TurnOnOrderMinimumGloballyToggle(false);
-        InternalTools.clickSave();
-        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save");
-        InternalTools.clickOkOnSuccessBtn();
         softAssert.assertAll();
 
     }
-
+    
     @AfterMethod
     public void tearDown(ITestResult result) {
         takeScreenshotOnFailure(result);
         closeAllBrowsers();
     }
-
 }

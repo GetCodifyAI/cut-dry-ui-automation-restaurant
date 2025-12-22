@@ -141,7 +141,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_increaseQtyFirstRowClassic = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'plus')])[1]");
     By btn_decreaseQtyFirstRowClassic = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'minus')])[1]");
     By tbx_itemQuantityFirstRowClassic = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'minus')]/../following-sibling::div/input)[1]");
-    By lbl_caseMinNotMet = By.xpath("//h2[contains(text(), 'Case Minimum Not Met')] | //h2[contains(text(), 'Order Minimum Not Met')]");
+    By lbl_caseMinNotMet = By.xpath("//div[contains(text(), 'Case Minimum Not Met')] | //div[contains(text(), 'Order Minimum Not Met')]");
     By addNewItemBtn = By.xpath("//*[contains(text(),'Add New Item')]");
     By addItemsToOrderGuideTxt = By.xpath("//div[contains(text(),'Add Item To Order Guide')]");
     By itemNameTextField = By.xpath("//label[contains(text(),'Item Name')]/following-sibling::input");
@@ -175,7 +175,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String txt_customerProfile = "//div[contains(@class, 'd-flex') and contains(text(), 'BUSINESSNAME')]";
     By tb_orders = By.xpath("//a[text()='Orders' and @role='tab']");
     String specificOrderRecord = "//tr//*[text()='ORDER_ID']";
-    String orderTitle = "//h2[contains(text(),'Order #ORDER_ID')]";
+    String orderTitle = "//div[contains(text(),'Order #ORDER_ID')]";
     By btn_addToCartPDP = By.xpath("(//button[contains(text(), 'Add to Cart')])[1]");
     By lbl_pickUp = By.xpath("//span[text()='Pickup/Will Call']");
     By sel_pickup = By.xpath("//span[text()='Pickup/Will Call']/preceding-sibling::div//*[contains(@data-icon, 'circle')]");
@@ -268,7 +268,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By accountOnHold = By.xpath("//h2[text()='Account on hold!']");
     String accountHoldMessage = "//p[text()='MESSAGE']";
     String dynamicToXPathStable = "//div[contains(@class,'react-datepicker')]/preceding::div[contains(@class, 'react-datepicker__day') and contains(@aria-disabled, 'false') and text()='DAY']";
-    String deliveryDateOrderHistory = "//*[contains(text(),'#') and text()='ID']/../../preceding-sibling::td[2][text()='DATE']";
+    String deliveryDateOrderHistory = "//*[contains(text(),'#') and text()='ID']/../../preceding-sibling::td[2][contains(text(),'DATE')]";
     By btn_pickUpDateStable = By.xpath("//div[text()='Pickup Date:']/../following-sibling::div//*[name()='svg' and @data-icon='calendar-date-vect']");
     String fulfillmentTypeOrderHistory = "//*[contains(text(),'#') and text()='ID']/../../preceding-sibling::td[2]//*[text()='TYPE']";
     By btn_nextMonth = By.xpath("//button[contains(@aria-label,'Next Month')]");
@@ -287,10 +287,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By lbl_locationGuide = By.xpath("//div[text()='Location/Guide:']/following-sibling::div//div[@class='cd_themed_select__single-value css-1uccc91-singleValue']");
     String dropDownLocationOrderGuide =  "(//div[contains(text(), 'Location/Guide:')]//following::div[contains(text(), 'NAME')])[last()]";
     By catalogAccessEditBtn = By.xpath("//div[contains(text(), 'Catalog Access')]//following-sibling::div//div[@class='pl-0 col-sm-auto col-auto']//*[name()='svg' and contains(@data-icon, 'pen-to-square')]");
-    By catalogAccessDisableOption = By.xpath("//div[contains(text(),'Disabled')]");
-    By catalogAccessEnableOption = By.xpath("//div[contains(text(),'Enabled')]");
-    By lbl_catalogAccessEnable = By.xpath("//div[contains(text(), 'Catalog Access')]//following-sibling::div//*[contains(text(),'Enabled')]");
-    By catalogAccessDisableTxt = By.xpath("//div[@class='list-group-item']//div[text()='Disabled']");
+    By catalogAccessDisableOption = By.xpath("//div[contains(text(),'Internal Only')]");
+    By catalogAccessEnableOption = By.xpath("//div[contains(text(),'Visible to All')]");
+    By lbl_catalogAccessEnable = By.xpath("//div[contains(text(), 'Catalog Access')]//following-sibling::div//*[contains(text(),'Visible to All')]");
+    By catalogAccessDisableTxt = By.xpath("//div[@class='list-group-item']//div[text()='Internal Only']");
     By txt_poNumber = By.xpath("//div[contains(text(),'PO Number')]/following-sibling::div/input");
     String pONumberError = "//h2[text()='ERROR']";
     String catalogFilter = "//div[contains(text(),'FILTER')]";
@@ -309,8 +309,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String txt_distributorName = "//span[contains(text(),'NAME')]";
     By btn_closeMenu = By.xpath("//*[local-name() = 'svg' and @data-icon='cdCancel']");
     String btn_catalogPlusStable = "((//div[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = translate(\"NAME\", 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')])[2]/../../following::div//*[name()='svg' and contains(@data-icon, 'plus')])[1]";
-    By btn_sendERP = By.xpath("//button[text()='Send to ERP']");
-    String txt_notesToCustomer = "//th[text()='Notes to Customer']/../../following-sibling::tbody//*[text()='NOTE']";
+    By btn_sendERP = By.xpath("//span[text()='Send to ERP']");
+    String txt_notesToCustomer = "//div[text()='Notes to Customer']/following-sibling::div[text()='NOTE']";
     By txt_submitERP = By.xpath("//h2[text()='Submit Order to ERP?']");
     By txt_OrderSentERP = By.xpath("//h2[text()='Order sent to ERP!']");
     String txt_OrderSubmissionStep = "//td[text()='STEP']";
@@ -329,7 +329,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String tbx_itemQuantity = "//td[text()='CODE']/following-sibling::*//div/input[@data-input ='quantityInput']";
     String btn_editRecentOrder = "//td[text()='ORDERID']/following-sibling::td/button[text()='Edit Order']";
     String btn_editRecentOrderQuantity = "//td[text()='ORDERID']/following-sibling::td[text()='QUANTITY']";
-    String btn_editRecentOrderPrice = "//td[text()='ORDERID']/following-sibling::td[2]";
+    String btn_editRecentOrderPrice = "//td[text()='ORDERID']/following-sibling::td[3]";
     By dropdown_option_QuickAdd = By.xpath("//div[text()='Quick Add View']");
     By txt_QuickAddView = By.xpath("//div[text()='Quick Add View']");
     By lbl_itemCode = By.xpath("(//div[text()='Item Code']/../../../../following-sibling::td//input)[1]");
@@ -388,6 +388,16 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String orderGuideLocation =  "//div[contains(text(), 'Location/Guide:')]//following::div[text()= 'NAME']";
     By txtCatalog = By.xpath("//div[text()='Catalog']");
     By btn_placeOrderSoftOrderMinimum = By.xpath("//button[text()='Place Order']");
+    By orderMinimumeditBtn = By.xpath("//*[contains(text(),'Order Minimum')]/following-sibling::div//*[local-name()='svg' and @data-icon='pen-to-square']");
+    String orderMinimumSelectionRadioBtn = "//*[contains(text(),'ORDERMINIMUM')]/../input";
+    By orderMinimumOverlayCloseBtn = By.xpath("//*[contains(text(),'Edit Order Minimum')]/../following-sibling::button/span[normalize-space()='×']");
+    By customer_Holds = By.xpath("//span[contains(text(),'Credit') or contains(text(),'Hard') or contains(text(),'General')]");
+    By btn_saveEditShipAddress = By.xpath("//button[contains(text(),'Save Changes')]");
+    By txt_none = By.xpath("//div[contains(@class, 'themed_select__option') and  text()='None']");
+
+
+
+
 
 
 
@@ -2372,6 +2382,21 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public void clickPlaceOrderSoftOrderMinimum(){
         restaurantUI.click(btn_placeOrderSoftOrderMinimum);
+    }
+    public void selectOrderMinimum(String orderMinimum){
+        restaurantUI.click(orderMinimumeditBtn);
+        if(!restaurantUI.isCheckboxOrRadioBtnSelected(By.xpath(orderMinimumSelectionRadioBtn.replace("ORDERMINIMUM",orderMinimum)))){
+            restaurantUI.click(By.xpath(orderMinimumSelectionRadioBtn.replace("ORDERMINIMUM",orderMinimum)));
+            restaurantUI.click(btn_saveEditShipAddress);
+        }
+        restaurantUI.click(orderMinimumOverlayCloseBtn);
+    }
+    public boolean isCustomerOnHold(){
+        return restaurantUI.isDisplayed(customer_Holds);
+    }
+    public void clickOnNone(){
+        restaurantUI.waitForVisibility(txt_none);
+        restaurantUI.click(txt_none);
     }
 
     public boolean isItemVerifiedFailedPopUpDisplay()throws InterruptedException{
