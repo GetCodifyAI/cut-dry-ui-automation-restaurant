@@ -79,6 +79,15 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_selectDeliveryDateFirstLine = By.xpath("(//div[contains(@class, 'cd_themed_select__option')])[1]");
     By btn_selectDeliveryDateSecondLine = By.xpath("(//div[contains(@class, 'cd_themed_select__option')])[2]");
     By btn_orderGuideSettings = By.xpath("//div[contains(text(), 'Order Guide Settings')]");
+    By txt_orderGuideSettingsOverlay = By.xpath("//div[contains(text(), 'Order Guide Settings')]");
+    By txt_orderMinimumField = By.xpath("//div[contains(text(), 'Order Minimum')]");
+    By txt_orderCaseMinimumField = By.xpath("//div[contains(text(), 'Order Case Minimum')] | //div[contains(text(), 'Case Minimum')]");
+    By txt_deliveryDaysField = By.xpath("//div[contains(text(), 'Delivery Days')]");
+    By tbx_orderMinimumInput = By.xpath("//div[contains(text(), 'Order Minimum')]/following-sibling::div//input | //label[contains(text(), 'Order Minimum')]/following-sibling::div//input");
+    By tbx_orderCaseMinimumInput = By.xpath("//div[contains(text(), 'Order Case Minimum')]/following-sibling::div//input | //div[contains(text(), 'Case Minimum')]/following-sibling::div//input | //label[contains(text(), 'Case Minimum')]/following-sibling::div//input");
+    By btn_saveOrderGuideSettings = By.xpath("//button[contains(text(), 'Save')]");
+    By btn_closeOrderGuideSettings = By.xpath("//button[contains(@class, 'close')]/span[text()='×'] | //button[contains(text(), 'Close')]");
+    String txt_deliveryDayCheckbox = "//div[text()='DAY']/preceding-sibling::input[@type='checkbox'] | //label[contains(text(), 'DAY')]/input[@type='checkbox']";
     By btn_orderApproval = By.xpath("//div[contains(@class, 'react-switch-handle')]");
     By btn_save = By.xpath("//button[contains(@class, 'btn btn-primary') and contains(text(), 'Save')]");
     By btn_previousDraftOrderNo = By.xpath("//div[contains(text(),'previous draft order')]/..//div[text()='No']");
@@ -877,6 +886,52 @@ public void clickOnCloseOrderGuideEditor(){
     public void clickOnOrderGuideSettings() {
         restaurantUI.waitForClickability(btn_orderGuideSettings);
         restaurantUI.click(btn_orderGuideSettings);
+    }
+    public boolean isOrderGuideSettingsDisplayed() {
+        try {
+            restaurantUI.waitForVisibility(txt_orderGuideSettingsOverlay);
+            return restaurantUI.isDisplayed(txt_orderGuideSettingsOverlay);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    public boolean isOrderMinimumFieldDisplayed() {
+        return restaurantUI.isDisplayed(txt_orderMinimumField);
+    }
+    public boolean isOrderCaseMinimumFieldDisplayed() {
+        return restaurantUI.isDisplayed(txt_orderCaseMinimumField);
+    }
+    public boolean isDeliveryDaysFieldDisplayed() {
+        return restaurantUI.isDisplayed(txt_deliveryDaysField);
+    }
+    public void setOrderMinimumValue(String amount) throws InterruptedException {
+        restaurantUI.waitForVisibility(tbx_orderMinimumInput);
+        restaurantUI.clearUsingJavaScript(tbx_orderMinimumInput);
+        restaurantUI.sendKeys(tbx_orderMinimumInput, amount);
+        restaurantUI.waitForCustom(1000);
+    }
+    public void setOrderCaseMinimumValue(String amount) throws InterruptedException {
+        restaurantUI.waitForVisibility(tbx_orderCaseMinimumInput);
+        restaurantUI.clearUsingJavaScript(tbx_orderCaseMinimumInput);
+        restaurantUI.sendKeys(tbx_orderCaseMinimumInput, amount);
+        restaurantUI.waitForCustom(1000);
+    }
+    public void removeDeliveryDayFromSettings(String day) throws InterruptedException {
+        By deliveryDayCheckbox = By.xpath(txt_deliveryDayCheckbox.replace("DAY", day));
+        if (restaurantUI.isDisplayed(deliveryDayCheckbox)) {
+            if (restaurantUI.isCheckboxOrRadioBtnSelected(deliveryDayCheckbox)) {
+                restaurantUI.click(deliveryDayCheckbox);
+                restaurantUI.waitForCustom(1000);
+            }
+        }
+    }
+    public void clickSaveOrderGuideSettingsBtn() throws InterruptedException {
+        restaurantUI.click(btn_saveOrderGuideSettings);
+        restaurantUI.waitForCustom(2000);
+    }
+    public void clickCloseOrderGuideSettingsBtn() throws InterruptedException {
+        restaurantUI.click(btn_closeOrderGuideSettings);
+        restaurantUI.waitForCustom(2000);
     }
     public void clickOnOrderApproval() throws InterruptedException {
         if(restaurantUI.isDisplayed(ratingOverlayIframe)){
