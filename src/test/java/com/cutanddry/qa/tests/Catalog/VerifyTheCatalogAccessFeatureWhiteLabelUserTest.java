@@ -50,7 +50,7 @@ public class VerifyTheCatalogAccessFeatureWhiteLabelUserTest extends TestBase {
         Login.navigateToLoginAs();
         Login.logInToOperatorAsWhiteLabel(OperatorName);
         Dashboard.navigateToOrder();
-       // Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuideNotIncludeCatalogTag(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuideNotIncludeCatalogTag(),"navigation error");
         itemName = Customer.getItemNameFirstRow();
         searchItemCode = Customer.getItemCodeFirstRow();
         itemPrice = Customer.getActiveItemPriceFirstRow();

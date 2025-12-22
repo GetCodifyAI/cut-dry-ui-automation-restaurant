@@ -37,7 +37,7 @@ public class VerifyThSelectMultipleUOMAvailableRebateItemAndSubmissionTest exten
         Login.logInToOperator(OperatorName);
 
         Customer.clickOnPlaceOrderSW();
-        //Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.searchItemOnOrderGuide(itemCode);
         Customer.ClickOnMultiUomDropDownOG(itemCode);
         Customer.clickOGAddToCartPlusIcon(1,itemCode, uom1);

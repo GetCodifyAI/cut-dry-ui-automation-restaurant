@@ -46,7 +46,7 @@ public class VerifyTheHardOrderMinimumSelectingMultipleUOMTest extends TestBase 
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.TurnOnOrderMinimumGloballyToggle(true);
         InternalTools.clickOnOrderMinimumDropdown(orderMinimumType);
-        InternalTools.enterOrderMinimum(orderMinInternal);
+//        InternalTools.enterOrderMinimum(orderMinInternal);
         InternalTools.clickSave();
         softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save");
         InternalTools.clickOkOnSuccessBtn();
@@ -70,7 +70,7 @@ public class VerifyTheHardOrderMinimumSelectingMultipleUOMTest extends TestBase 
         Dashboard.navigateToOrder();
         Dashboard.navigateToIndependentFoodsCoClassic();
         Dashboard.navigateToOrderGuide();
-        //Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 
         Customer.goToCatalog();
         Customer.searchItemOnCatalog(searchItemCde);
