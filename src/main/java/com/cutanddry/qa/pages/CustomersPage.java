@@ -397,6 +397,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By customer_Holds = By.xpath("//span[contains(text(),'Credit') or contains(text(),'Hard') or contains(text(),'General')]");
     By btn_saveEditShipAddress = By.xpath("//button[contains(text(),'Save Changes')]");
     By txt_none = By.xpath("//div[contains(@class, 'themed_select__option') and  text()='None']");
+    By priceVisibilityEditBtn = By.xpath("//div[contains(text(), 'Price Visibility')]//following-sibling::div//div//*[name()='svg' and contains(@data-icon, 'pen-to-square')]");
+    By priceVisibilityDropDown = By.xpath("//div[contains(text(), 'Price Visibility')]//following-sibling::div/div/div/div");
+    String priceVisibilityOption = "//div[contains(text(), 'Price Visibility')]//following-sibling::*//div[text()='STATUS']";
 
 
 
@@ -2604,6 +2607,24 @@ public void clickOnCloseOrderGuideEditor(){
         return restaurantUI.isDisplayed(DeliveryDateLabel );
     }
 
+    public void clickEditPriceVisibility(){
+        restaurantUI.isDisplayed(priceVisibilityEditBtn);
+        restaurantUI.click(priceVisibilityEditBtn);
+    }
 
+    public void editPriceVisibilityStatus(String status){
+        restaurantUI.click(priceVisibilityDropDown);
+        restaurantUI.waitForVisibility(By.xpath(priceVisibilityOption.replace("STATUS", status)));
+        restaurantUI.click(By.xpath(priceVisibilityOption.replace("STATUS", status)));
+    }
+
+    public void savePriceVisibilityChanges(){
+        restaurantUI.clickWithScrollAndHover(btn_saveEditShipAddress);
+        try {
+            restaurantUI.waitForCustom(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
