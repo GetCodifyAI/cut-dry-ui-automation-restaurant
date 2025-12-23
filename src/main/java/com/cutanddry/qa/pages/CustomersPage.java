@@ -397,6 +397,12 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By customer_Holds = By.xpath("//span[contains(text(),'Credit') or contains(text(),'Hard') or contains(text(),'General')]");
     By btn_saveEditShipAddress = By.xpath("//button[contains(text(),'Save Changes')]");
     By txt_none = By.xpath("//div[contains(@class, 'themed_select__option') and  text()='None']");
+    By txt_generalHold = By.xpath("//div[contains(@class, 'themed_select__option') and text()='General Hold']");
+    By lbl_generalHold = By.xpath("//div[text()='Account Holds']/following-sibling::div//span[contains(@class, 'badge') and text()='General Hold']");
+    By btn_contactSupplier = By.xpath("//button[contains(text(),'Contact Supplier')]");
+    By btn_viewDetails = By.xpath("//button[contains(text(),'View Details')]");
+    String generalHoldModalMessage = "//p[contains(text(),'MESSAGE')]";
+    By generalHoldBanner = By.xpath("//div[contains(@class,'alert') or contains(@class,'banner')]//span[contains(text(),'hold') or contains(text(),'Hold')]");
 
 
 
@@ -1893,6 +1899,33 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public boolean isAccountHoldMessageDisplay(String message)throws InterruptedException{
         return restaurantUI.isDisplayed(By.xpath(accountHoldMessage.replace("MESSAGE",message)));
+    }
+    public void clickOnGeneralHold(){
+        restaurantUI.waitForVisibility(txt_generalHold);
+        restaurantUI.click(txt_generalHold);
+    }
+    public boolean isGeneralHoldSelected(){
+        return restaurantUI.isDisplayed(lbl_generalHold);
+    }
+    public boolean isContactSupplierButtonDisplayed() throws InterruptedException {
+        return restaurantUI.isDisplayed(btn_contactSupplier);
+    }
+    public void clickContactSupplierButton() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_contactSupplier);
+        restaurantUI.click(btn_contactSupplier);
+    }
+    public boolean isViewDetailsButtonDisplayed() throws InterruptedException {
+        return restaurantUI.isDisplayed(btn_viewDetails);
+    }
+    public void clickViewDetailsButton() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_viewDetails);
+        restaurantUI.click(btn_viewDetails);
+    }
+    public boolean isGeneralHoldModalMessageDisplayed(String message) throws InterruptedException {
+        return restaurantUI.isDisplayed(By.xpath(generalHoldModalMessage.replace("MESSAGE", message)));
+    }
+    public boolean isGeneralHoldBannerDisplayed() throws InterruptedException {
+        return restaurantUI.isDisplayed(generalHoldBanner);
     }
     public void increaseFirstRowQtySpecificCustomer() throws InterruptedException {
         restaurantUI.click(btn_increaseQtyFirstRow);

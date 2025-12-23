@@ -932,6 +932,30 @@ public class Customer {
     public static boolean isAccountHoldMessageDisplay(String message) throws InterruptedException {
         return customersPage.isAccountHoldMessageDisplay(message);
     }
+    public static void clickOnGeneralHold() {
+        customersPage.clickOnGeneralHold();
+    }
+    public static boolean isGeneralHoldSelected() {
+        return customersPage.isGeneralHoldSelected();
+    }
+    public static boolean isContactSupplierButtonDisplayed() throws InterruptedException {
+        return customersPage.isContactSupplierButtonDisplayed();
+    }
+    public static void clickContactSupplierButton() throws InterruptedException {
+        customersPage.clickContactSupplierButton();
+    }
+    public static boolean isViewDetailsButtonDisplayed() throws InterruptedException {
+        return customersPage.isViewDetailsButtonDisplayed();
+    }
+    public static void clickViewDetailsButton() throws InterruptedException {
+        customersPage.clickViewDetailsButton();
+    }
+    public static boolean isGeneralHoldModalMessageDisplayed(String message) throws InterruptedException {
+        return customersPage.isGeneralHoldModalMessageDisplayed(message);
+    }
+    public static boolean isGeneralHoldBannerDisplayed() throws InterruptedException {
+        return customersPage.isGeneralHoldBannerDisplayed();
+    }
     public static void increaseFirstRowQtySpecificCustomer(int count) throws InterruptedException {
         for (int i=0; i<count;i++){
             customersPage.increaseFirstRowQtySpecificCustomer();
