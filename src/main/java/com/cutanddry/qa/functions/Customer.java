@@ -1504,5 +1504,46 @@ public class Customer {
        return customersPage. isDisplayedMinOrderCaseLabel();
     }
 
+    public static void editStatusPriceVisibility(String status){
+        customersPage.clickEditPriceVisibility();
+        customersPage.editPriceVisibilityStatus(status);
+        customersPage.savePriceVisibilityChanges();
+    }
+
+    public static void clickOnGeneralHold() {
+        customersPage.clickOnGeneralHold();
+    }
+    public static boolean isGeneralHoldSelected() {
+        return customersPage.isGeneralHoldSelected();
+    }
+    public static boolean isContactSupplierButtonDisplayed() throws InterruptedException {
+        return customersPage.isContactSupplierButtonDisplayed();
+    }
+    public static void clickContactSupplierButton() throws InterruptedException {
+        customersPage.clickContactSupplierButton();
+    }
+    public static boolean isViewDetailsButtonDisplayed() throws InterruptedException {
+        return customersPage.isViewDetailsButtonDisplayed();
+    }
+    public static void clickViewDetailsButton() throws InterruptedException {
+        customersPage.clickViewDetailsButton();
+    }
+    public static boolean isGeneralHoldModalMessageDisplayed(String message) throws InterruptedException {
+        return customersPage.isGeneralHoldModalMessageDisplayed(message);
+    }
+    public static boolean isGeneralHoldBannerDisplayed() throws InterruptedException {
+        return customersPage.isGeneralHoldBannerDisplayed();
+    }
+
+    public static boolean isChatWindowDisplay() throws InterruptedException {
+        return customersPage.isChatWindowDisplay();
+    }
+
+    public static void ClickContactSupplier(){
+        customersPage.ClickContactSupplier();
+    }
+
+
+
 
 }
