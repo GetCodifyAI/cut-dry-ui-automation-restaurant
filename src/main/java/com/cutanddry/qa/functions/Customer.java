@@ -1504,5 +1504,56 @@ public class Customer {
        return customersPage. isDisplayedMinOrderCaseLabel();
     }
 
+    public static boolean isAddInstructionsLinkDisplayed() {
+        return customersPage.isAddInstructionsLinkDisplayed();
+    }
+
+    public static boolean isAddInstructionsLinkDisplayedForItem(String itemCode) {
+        return customersPage.isAddInstructionsLinkDisplayedForItem(itemCode);
+    }
+
+    public static void clickAddInstructionsForFirstItem() throws InterruptedException {
+        customersPage.clickAddInstructionsForFirstItem();
+    }
+
+    public static void clickAddInstructionsForItem(String itemCode) throws InterruptedException {
+        customersPage.clickAddInstructionsForItem(itemCode);
+    }
+
+    public static void clickInstructionsLinkForItem(String itemCode) throws InterruptedException {
+        customersPage.clickInstructionsLinkForItem(itemCode);
+    }
+
+    public static boolean isItemInstructionModalDisplayed() {
+        return customersPage.isItemInstructionModalDisplayed();
+    }
+
+    public static void enterItemInstructions(String instructions) throws InterruptedException {
+        customersPage.enterItemInstructions(instructions);
+    }
+
+    public static void clearItemInstructions() throws InterruptedException {
+        customersPage.clearItemInstructions();
+    }
+
+    public static String getItemInstructionsText() {
+        return customersPage.getItemInstructionsText();
+    }
+
+    public static void saveItemInstructions() throws InterruptedException {
+        customersPage.clickSaveItemInstructions();
+    }
+
+    public static void cancelItemInstructions() throws InterruptedException {
+        customersPage.clickCancelItemInstructions();
+    }
+
+    public static boolean isInstructionsDisplayedForItem(String itemCode) {
+        return customersPage.isInstructionsDisplayedForItem(itemCode);
+    }
+
+    public static String getDisplayedInstructionsForItem(String itemCode) {
+        return customersPage.getDisplayedInstructionsForItem(itemCode);
+    }
 
 }
