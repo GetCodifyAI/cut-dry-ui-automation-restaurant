@@ -51,7 +51,10 @@ public class SettingsPage extends LoginPage{
     By btn_generateExport = By.xpath("//button[text()='Generate Export']");
     By txt_orderSettings = By.xpath("//li[contains(text(),'Order Settings')]");
     By tbx_orderMinimum = By.xpath("//label[text()='Order Minimum ($)']/following-sibling::div//input");
-    By sel_OrderMinimums = By.xpath("//*[contains(text(),'Order Minimums')]/preceding-sibling::input");
+    By sel_OrderMinimums = By.xpath("//span[text()='Order Minimums']/preceding-sibling::div/div[@class='react-switch-handle']");
+    By orderMinimumToggleOrderSettingStable = By.xpath("//span[text()='Order Minimums']/preceding-sibling::div/div[@class='react-switch-handle']");
+    By orderMinimumToggleOrderSettingStable1 = By.xpath("//span[text()='Order Minimums']/preceding-sibling::div/div[@class='react-switch-handle']/parent::div/div[1]");
+
 
 
 
@@ -293,19 +296,21 @@ public class SettingsPage extends LoginPage{
         restaurantUI.sendKeys(tbx_orderMinimum, amount);
         restaurantUI.waitForCustom(3000);
     }
-    public void setOrderMinimums(boolean select) {
+    public void setOrderMinimums(boolean enable) {
         restaurantUI.waitForVisibility(sel_OrderMinimums);
-        boolean isSelected = restaurantUI.isCheckboxOrRadioBtnSelected(sel_OrderMinimums);
-
-        if (select && !isSelected) {
-            restaurantUI.click(sel_OrderMinimums); // Select the checkbox
-        } else if (!select && isSelected) {
-            restaurantUI.click(sel_OrderMinimums); // Deselect the checkbox
+        if (restaurantUI.isCheckboxOrRadioBtnSelected(sel_OrderMinimums ) != enable){
+            restaurantUI.click(sel_OrderMinimums);
         }
-        try {
-            restaurantUI.waitForCustom(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+    }
+    public void selectOrderMinimum(boolean enable) {
+
+        String handlePosition = restaurantUI.getElement(orderMinimumToggleOrderSettingStable).getAttribute("style");
+        boolean isEnabled = handlePosition.contains("translateX(19px)");
+
+        if (enable && !isEnabled) {
+            restaurantUI.clickWithScrollAndHover(orderMinimumToggleOrderSettingStable1);
+        } else if (!enable && isEnabled) {
+            restaurantUI.clickWithScrollAndHover(orderMinimumToggleOrderSettingStable1);
         }
     }
 
