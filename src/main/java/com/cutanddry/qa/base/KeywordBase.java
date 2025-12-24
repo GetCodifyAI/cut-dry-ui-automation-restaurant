@@ -205,6 +205,30 @@ public class KeywordBase {
         return this;
     }
 
+    public KeywordBase clearWithAllSelect(By by) {
+        try {
+            WebElement element = wait.until(
+                    ExpectedConditions.elementToBeClickable(by)
+            );
+
+            element.click();
+            element.clear();
+
+            // Fallback for React / JS-controlled inputs
+            if (!element.getAttribute("value").isEmpty()) {
+                element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+                element.sendKeys(Keys.DELETE);
+            }
+
+            logger.info("Cleared element: {}", by);
+        } catch (Exception e) {
+            logger.error("Failed to clear element: {}", by, e);
+            throw e; // IMPORTANT: don't swallow failures
+        }
+        return this;
+    }
+
+
 
 
     // Get text from an element

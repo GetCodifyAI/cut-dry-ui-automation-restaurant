@@ -1543,6 +1543,104 @@ public class Customer {
         customersPage.ClickContactSupplier();
     }
 
+    public static boolean isAddInstructionsLinkDisplayed() {
+        return customersPage.isAddInstructionsLinkDisplayed();
+    }
+
+    public static boolean isAddInstructionsLinkDisplayedForItem(String itemCode) {
+        return customersPage.isAddInstructionsLinkDisplayedForItem(itemCode);
+    }
+
+    public static void clickAddInstructionsForFirstItem() throws InterruptedException {
+        customersPage.clickAddInstructionsForFirstItem();
+    }
+
+    public static void clickEditInstructionsForFirstItem() throws InterruptedException {
+        customersPage.clickEditInstructionsForFirstItem();
+    }
+
+
+    public static void clickAddInstructionsForItem(String itemCode) throws InterruptedException {
+        customersPage.clickAddInstructionsForItem(itemCode);
+    }
+
+    public static void clickInstructionsLinkForItem(String itemCode) throws InterruptedException {
+        customersPage.clickInstructionsLinkForItem(itemCode);
+    }
+
+    public static boolean isItemInstructionModalDisplayed() {
+        return customersPage.isItemInstructionModalDisplayed();
+    }
+
+    public static void enterItemInstructions(String instructions) throws InterruptedException {
+        customersPage.enterItemInstructions(instructions);
+    }
+
+    public static void clearItemInstructions() throws InterruptedException {
+        customersPage.clearItemInstructions();
+    }
+
+    public static String getItemInstructionsText() {
+        return customersPage.getItemInstructionsText();
+    }
+
+    public static String getItemSavedInstructionsText() {
+        return customersPage.getItemSavedInstructionsText();
+    }
+
+
+
+    public static void saveItemInstructions() throws InterruptedException {
+        customersPage.clickSaveItemInstructions();
+    }
+
+    public static void cancelItemInstructions() throws InterruptedException {
+        customersPage.clickCancelItemInstructions();
+    }
+
+    public static boolean isInstructionsDisplayedForItem(String itemCode) {
+        return customersPage.isInstructionsDisplayedForItem(itemCode);
+    }
+
+    public static String getDisplayedInstructionsForItem(String itemCode) {
+        return customersPage.getDisplayedInstructionsForItem(itemCode);
+    }
+
+    public static boolean isHistoryInstructionDisplayed(){
+        return customersPage.isHistoryInstructionDisplaed();
+    }
+
+    public static boolean isSpecialInstructionDisplay(){
+        return customersPage.isSpecialInstructionDisplay();
+    }
+
+    public static boolean isSpecialInstructionsSectionDisplayed() throws InterruptedException {
+        return customersPage.isSpecialInstructionsSectionDisplayed();
+    }
+
+    public static boolean isSpecialInstructionsTextAreaDisplayed() throws InterruptedException {
+        return customersPage.isSpecialInstructionsTextAreaDisplayed();
+    }
+
+    public static void typeSpecialInstructions(String instructions) throws InterruptedException {
+        customersPage.typeSpecialInstructions(instructions);
+    }
+
+    public static String getSpecialInstructionsText() throws InterruptedException {
+        return customersPage.getSpecialInstructionsText();
+    }
+
+    public static void clearSpecialInstructions() throws InterruptedException {
+        customersPage.clearSpecialInstructions();
+    }
+
+    public static boolean isSpecialInstructionsTooltipDisplayed() throws InterruptedException {
+        return customersPage.isSpecialInstructionsTooltipDisplayed();
+    }
+
+    public static void hoverOnSpecialInstructionsTooltip() throws InterruptedException {
+        customersPage.hoverOnSpecialInstructionsTooltip();
+    }
 
 
 
