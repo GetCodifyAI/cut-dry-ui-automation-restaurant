@@ -397,6 +397,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By customer_Holds = By.xpath("//span[contains(text(),'Credit') or contains(text(),'Hard') or contains(text(),'General')]");
     By btn_saveEditShipAddress = By.xpath("//button[contains(text(),'Save Changes')]");
     By txt_none = By.xpath("//div[contains(@class, 'themed_select__option') and  text()='None']");
+    By btn_saveEditPriceVisibility = By.xpath("//button[normalize-space()='Save']");
 
 
 
@@ -444,6 +445,20 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By MinOrderAmountLabel = By.xpath("//label[normalize-space(text())='Min. Order Amount']");
     By MinOrderCaseLabel = By.xpath("//label[normalize-space(text())='Min. Order Cases']");
     By DeliveryDateLabel = By.xpath("//label[normalize-space(text())='Delivery Days']");
+
+    By priceVisibilityEditBtn = By.xpath("//div[contains(text(), 'Price Visibility')]//following-sibling::div//div//*[name()='svg' and contains(@data-icon, 'pen-to-square')]");
+    By priceVisibilityDropDown = By.xpath("//div[contains(text(), 'Price Visibility')]//following-sibling::div/div/div/div");
+    String priceVisibilityOption = "//div[contains(text(), 'Price Visibility')]//following-sibling::*//div[text()='STATUS']";
+
+    By txt_generalHold = By.xpath("//div[contains(@class, 'themed_select__option') and text()='General Hold']");
+    By lbl_generalHold = By.xpath("//div[text()='Account Holds']/following-sibling::div//span[contains(@class, 'badge') and text()='General Hold']");
+    By btn_contactSupplier = By.xpath("//button[contains(text(),'Contact Supplier')]");
+    By btn_viewDetails = By.xpath("//button[contains(text(),'View Details')]");
+    String generalHoldModalMessage = "//p[contains(text(),'MESSAGE')]";
+    By generalHoldBanner = By.xpath("//div[contains(@class,'alert') or contains(@class,'banner')]//span[contains(text(),'hold') or contains(text(),'Hold')]");
+    By chatWindowPlaceholderText = By.xpath("//input[@placeholder='Message...']");
+    By contactSupplierBtn = By.xpath("//button[normalize-space()='Contact Supplier']");
+
 
 
 
@@ -2603,6 +2618,61 @@ public void clickOnCloseOrderGuideEditor(){
     public boolean isDisplayedDeliveryDaysLabel() throws InterruptedException {
         return restaurantUI.isDisplayed(DeliveryDateLabel );
     }
+
+    public void clickEditPriceVisibility(){
+        restaurantUI.isDisplayed(priceVisibilityEditBtn);
+        restaurantUI.click(priceVisibilityEditBtn);
+    }
+
+    public void editPriceVisibilityStatus(String status){
+        restaurantUI.click(priceVisibilityDropDown);
+        restaurantUI.waitForVisibility(By.xpath(priceVisibilityOption.replace("STATUS", status)));
+        restaurantUI.click(By.xpath(priceVisibilityOption.replace("STATUS", status)));
+    }
+
+    public void savePriceVisibilityChanges(){
+        restaurantUI.click(btn_saveEditPriceVisibility);
+    }
+
+    public void clickOnGeneralHold(){
+        restaurantUI.waitForVisibility(txt_generalHold);
+        restaurantUI.click(txt_generalHold);
+    }
+    public boolean isGeneralHoldSelected(){
+        return restaurantUI.isDisplayed(lbl_generalHold);
+    }
+    public boolean isContactSupplierButtonDisplayed() throws InterruptedException {
+        return restaurantUI.isDisplayed(btn_contactSupplier);
+    }
+    public void clickContactSupplierButton() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_contactSupplier);
+        restaurantUI.click(btn_contactSupplier);
+    }
+    public boolean isViewDetailsButtonDisplayed() throws InterruptedException {
+        return restaurantUI.isDisplayed(btn_viewDetails);
+    }
+    public void clickViewDetailsButton() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_viewDetails);
+        restaurantUI.click(btn_viewDetails);
+    }
+    public boolean isGeneralHoldModalMessageDisplayed(String message) throws InterruptedException {
+        return restaurantUI.isDisplayed(By.xpath(generalHoldModalMessage.replace("MESSAGE", message)));
+    }
+    public boolean isGeneralHoldBannerDisplayed() throws InterruptedException {
+        return restaurantUI.isDisplayed(generalHoldBanner);
+    }
+
+    public boolean isChatWindowDisplay()throws InterruptedException{
+        restaurantUI.waitForVisibility(chatWindowPlaceholderText);
+        return restaurantUI.isDisplayed(chatWindowPlaceholderText);
+    }
+
+    public void ClickContactSupplier (){
+        restaurantUI.waitForVisibility(contactSupplierBtn);
+        restaurantUI.click(contactSupplierBtn);
+    }
+
+
 
 
 
