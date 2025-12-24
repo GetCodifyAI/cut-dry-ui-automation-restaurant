@@ -56,6 +56,7 @@
             <class name="com.cutanddry.qa.tests.OrderGuide.QuickAddFlowMaximumQuantityValidationTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifySimpleListViewMaximumQuantityValidationTest" />
             <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyOrderGuideSettingsForNonIntegratedDPsTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyOrderGuideSettingsForScrapperIntegratedDPsTest" />
 
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyGeneralHoldModalAndBannerDisplayFromOperatorPortalTest" />
             <class name="com.cutanddry.qa.tests.History.VerifyOrderTotalsPersistCorrectlyInHistoryAfterSubmissionTest" />
