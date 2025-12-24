@@ -1543,7 +1543,32 @@ public class Customer {
         customersPage.ClickContactSupplier();
     }
 
+    public static boolean isSpecialInstructionsSectionDisplayed() throws InterruptedException {
+        return customersPage.isSpecialInstructionsSectionDisplayed();
+    }
 
+    public static boolean isSpecialInstructionsTextAreaDisplayed() throws InterruptedException {
+        return customersPage.isSpecialInstructionsTextAreaDisplayed();
+    }
 
+    public static void typeSpecialInstructions(String instructions) throws InterruptedException {
+        customersPage.typeSpecialInstructions(instructions);
+    }
+
+    public static String getSpecialInstructionsText() throws InterruptedException {
+        return customersPage.getSpecialInstructionsText();
+    }
+
+    public static void clearSpecialInstructions() throws InterruptedException {
+        customersPage.clearSpecialInstructions();
+    }
+
+    public static boolean isSpecialInstructionsTooltipDisplayed() throws InterruptedException {
+        return customersPage.isSpecialInstructionsTooltipDisplayed();
+    }
+
+    public static void hoverOnSpecialInstructionsTooltip() throws InterruptedException {
+        customersPage.hoverOnSpecialInstructionsTooltip();
+    }
 
 }
