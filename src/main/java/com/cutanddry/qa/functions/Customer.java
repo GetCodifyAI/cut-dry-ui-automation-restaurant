@@ -68,9 +68,9 @@ public class Customer {
 
     }
 
-    public static void increaseReviewCartQtyByThree(){
-        customersPage.clickPlusReviewCart();
-        customersPage.clickPlusReviewCart();
+    public static void  clickPlusReviewCartForOneStep(){
+        customersPage. clickPlusReviewCartForOneStep();
+
     }
     public static void decreaseReviewCartQtyByThree() throws InterruptedException {
         customersPage.clickMinusQryFirstRow();
@@ -830,7 +830,7 @@ public class Customer {
             customersPage.clickYesDuplicatePopup();
         }
     }
-    public static void clickYesOrderMinimum() throws InterruptedException {
+    public static void clickYesCaseMinimum() throws InterruptedException {
         customersPage.clickOnYes();
         if (customersPage.isDuplicatePopupDisplayed()){
             customersPage.clickYesDuplicatePopup();
@@ -1173,6 +1173,10 @@ public class Customer {
     public static void enterItemQuantity(String code)throws InterruptedException{
         customersPage.enterItemQuantity(code);
     }
+
+    public static void enterItemQuantityWithClear(String code)throws InterruptedException{
+        customersPage.enterItemQuantityWithClear(code);
+    }
     public static void clickVerifyItem()throws InterruptedException{
         customersPage.clickVerifyItem();
     }
@@ -1367,6 +1371,179 @@ public class Customer {
             customersPage.clickOnYes();
         }
     }
+
+    public static boolean isItemVerifiedFailedPopUpDisplay()throws InterruptedException{
+        return customersPage.isItemVerifiedFailedPopUpDisplay();
+    }
+
+    public static boolean isMaxQuantityExceededErrorMsg() throws  InterruptedException{
+        return customersPage.isMaxQuantityExceededErrorMsg();
+    }
+
+    public static void enterItemQuantitySimpleList(String code)throws InterruptedException{
+        customersPage.enterItemQuantitySimpleList(code);
+    }
+
+    public static void enterQuantitySimpleListViewByIndex(int index, String quantity) throws InterruptedException {
+        customersPage.enterQuantitySimpleListViewByIndex(index, quantity);
+    }
+    public static void tabAwayFromQuantityField() throws InterruptedException {
+        customersPage.tabAwayFromQuantityField();
+    }
+    public static boolean isMaxQuantityErrorModalDisplayed() throws InterruptedException {
+        return customersPage.isMaxQuantityErrorModalDisplayed();
+    }
+    public static void clickErrorModalOkButton() throws InterruptedException {
+        customersPage.clickErrorModalOkButton();
+    }
+    public static String getQuantitySimpleListViewByIndex(int index) {
+        return customersPage.getQuantitySimpleListViewByIndex(index);
+    }
+
+    public static boolean isMaxQuantityExceededModalDisplayed() throws InterruptedException {
+        return customersPage.isMaxQuantityExceededModalDisplayed();
+    }
+
+    public static boolean isMaxQuantityExceededMessageDisplayed() throws InterruptedException {
+        return customersPage.isMaxQuantityExceededMessageDisplayed();
+    }
+
+    public static void clickMaxQuantityModalOk() throws InterruptedException {
+        customersPage.clickMaxQuantityModalOk();
+    }
+
+    public static boolean isPlusButtonDisabledFirstRow() throws InterruptedException {
+        return customersPage.isPlusButtonDisabledFirstRow();
+    }
+
+    public static boolean isPlusButtonDisabledCatalogPDP(String name) throws InterruptedException {
+        return customersPage.isPlusButtonDisabledCatalogPDP(name);
+    }
+
+    public static boolean isPlusButtonDisabledReviewCart(String code) throws InterruptedException {
+        return customersPage.isPlusButtonDisabledReviewCart(code);
+    }
+
+    public static String getItemQuantityByCode(String code) throws InterruptedException {
+        return customersPage.getItemQuantityByCode(code);
+    }
+
+    public static void setItemQuantityByCode(String code, String quantity) throws InterruptedException {
+        customersPage.setItemQuantityByCode(code, quantity);
+    }
+
+    public static void   setCatalogPdpItemCount(String quantity, String name) throws InterruptedException {
+        customersPage. setCatalogPdpItemCount(quantity, name);
+    }
+
+    public static boolean isOrderGuideSettingsDisplayed() {
+        return customersPage.isOrderGuideSettingsDisplayed();
+    }
+
+    public static boolean isOrderMinimumFieldDisplayed() {
+        return customersPage.isOrderMinimumFieldDisplayed();
+    }
+
+    public static boolean isOrderCaseMinimumFieldDisplayed() {
+        return customersPage.isOrderCaseMinimumFieldDisplayed();
+    }
+
+    public static boolean isDeliveryDaysFieldDisplayed() {
+        return customersPage.isDeliveryDaysFieldDisplayed();
+    }
+
+    public static void setOrderMinimum(String amount) throws InterruptedException {
+        customersPage.setOrderMinimumValue(amount);
+    }
+
+    public static void setOrderCaseMinimum(String amount) throws InterruptedException {
+        customersPage.setOrderCaseMinimumValue(amount);
+    }
+
+    public static void removeDeliveryDay(String day) throws InterruptedException {
+        customersPage.removeDeliveryDayFromSettings(day);
+    }
+
+    public static void clickSaveOrderGuideSettings() throws InterruptedException {
+        customersPage.clickSaveOrderGuideSettingsBtn();
+    }
+
+    public static void closeOrderGuideSettings() throws InterruptedException {
+        customersPage.clickCloseOrderGuideSettingsBtn();
+    }
+
+    public static void clickBackToCartFromOrderMinimumPopup() throws InterruptedException {
+        customersPage. clickBackToCartFromOrderMinimumPopup();
+    }
+
+    public static void ClickSeveralTimesToIncreaseTheQuantity(int count)
+    {
+        for (int i = 0; i < count; i++) {
+            Customer.clickPlusReviewCartForOneStep();
+        }
+    }
+
+
+    public static boolean isCaseMinPopupDisplayed(){
+        return customersPage.isCaseMinPopupDisplayed();
+    }
+
+    public static void clickOnBtnForRamona(){
+        customersPage.clickOnBtnForRamona();
+    }
+
+    public static boolean isDisplayedMinOrderAmountLabel() throws InterruptedException {
+         return customersPage.isDisplayedMinOrderAmountLabel();
+    }
+
+    public static boolean isDisplayedMinOrderCaseLabel() throws InterruptedException {
+       return customersPage. isDisplayedMinOrderCaseLabel();
+    }
+
+    public static boolean  isDisplayedDeliveryDaysLabel() throws InterruptedException {
+       return customersPage. isDisplayedMinOrderCaseLabel();
+    }
+
+    public static void editStatusPriceVisibility(String status){
+        customersPage.clickEditPriceVisibility();
+        customersPage.editPriceVisibilityStatus(status);
+        customersPage.savePriceVisibilityChanges();
+    }
+
+    public static void clickOnGeneralHold() {
+        customersPage.clickOnGeneralHold();
+    }
+    public static boolean isGeneralHoldSelected() {
+        return customersPage.isGeneralHoldSelected();
+    }
+    public static boolean isContactSupplierButtonDisplayed() throws InterruptedException {
+        return customersPage.isContactSupplierButtonDisplayed();
+    }
+    public static void clickContactSupplierButton() throws InterruptedException {
+        customersPage.clickContactSupplierButton();
+    }
+    public static boolean isViewDetailsButtonDisplayed() throws InterruptedException {
+        return customersPage.isViewDetailsButtonDisplayed();
+    }
+    public static void clickViewDetailsButton() throws InterruptedException {
+        customersPage.clickViewDetailsButton();
+    }
+    public static boolean isGeneralHoldModalMessageDisplayed(String message) throws InterruptedException {
+        return customersPage.isGeneralHoldModalMessageDisplayed(message);
+    }
+    public static boolean isGeneralHoldBannerDisplayed() throws InterruptedException {
+        return customersPage.isGeneralHoldBannerDisplayed();
+    }
+
+    public static boolean isChatWindowDisplay() throws InterruptedException {
+        return customersPage.isChatWindowDisplay();
+    }
+
+    public static void ClickContactSupplier(){
+        customersPage.ClickContactSupplier();
+    }
+
+
 
 
 }
