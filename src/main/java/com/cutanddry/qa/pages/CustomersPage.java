@@ -296,6 +296,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By catalogAccessDisableTxt = By.xpath("//div[@class='list-group-item']//div[text()='Internal Only']");
     By txt_poNumber = By.xpath("//div[contains(text(),'PO Number')]/following-sibling::div/input");
     String pONumberError = "//h2[text()='ERROR']";
+    By lbl_specialInstructions = By.xpath("//div[contains(text(),'Special Instructions')]");
+    By txt_specialInstructionsTextArea = By.xpath("//div[contains(text(),'Special Instructions')]/following-sibling::div//textarea | //textarea[@placeholder='Enter special instructions...'] | //div[contains(text(),'Special Instructions')]/..//textarea");
+    By icon_specialInstructionsTooltip = By.xpath("//div[contains(text(),'Special Instructions')]//*[local-name()='svg' and (@data-icon='circle-info' or @data-icon='info-circle')] | //div[contains(text(),'Special Instructions')]//button[contains(@data-tip,'')]");
     String catalogFilter = "//div[contains(text(),'FILTER')]";
     String catalogFilterTag = "//div[contains(text(),'TAG')]";
     By txt_editOrderGuideCatalog = By.xpath("//div[contains(text(), 'Edit Order Guide')]");
@@ -2670,6 +2673,39 @@ public void clickOnCloseOrderGuideEditor(){
     public void ClickContactSupplier (){
         restaurantUI.waitForVisibility(contactSupplierBtn);
         restaurantUI.click(contactSupplierBtn);
+    }
+
+    public boolean isSpecialInstructionsSectionDisplayed() throws InterruptedException {
+        return restaurantUI.isDisplayed(lbl_specialInstructions, 5);
+    }
+
+    public boolean isSpecialInstructionsTextAreaDisplayed() throws InterruptedException {
+        return restaurantUI.isDisplayed(txt_specialInstructionsTextArea, 5);
+    }
+
+    public void typeSpecialInstructions(String instructions) throws InterruptedException {
+        restaurantUI.waitForVisibility(txt_specialInstructionsTextArea);
+        restaurantUI.clear(txt_specialInstructionsTextArea);
+        restaurantUI.sendKeys(txt_specialInstructionsTextArea, instructions);
+    }
+
+    public String getSpecialInstructionsText() throws InterruptedException {
+        restaurantUI.waitForVisibility(txt_specialInstructionsTextArea);
+        return restaurantUI.getAttributeValue(txt_specialInstructionsTextArea, "value");
+    }
+
+    public void clearSpecialInstructions() throws InterruptedException {
+        restaurantUI.waitForVisibility(txt_specialInstructionsTextArea);
+        restaurantUI.clear(txt_specialInstructionsTextArea);
+    }
+
+    public boolean isSpecialInstructionsTooltipDisplayed() throws InterruptedException {
+        return restaurantUI.isDisplayed(icon_specialInstructionsTooltip, 5);
+    }
+
+    public void hoverOnSpecialInstructionsTooltip() throws InterruptedException {
+        restaurantUI.waitForVisibility(icon_specialInstructionsTooltip);
+        restaurantUI.hoverOverElement(icon_specialInstructionsTooltip);
     }
 
 
