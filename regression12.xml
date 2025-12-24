@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="regression suit" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="com.cutanddry.qa.utils.RetryTransformer"/>
+        <listener class-name="com.cutanddry.qa.utils.TestNGListener"/>
+        <listener class-name="com.cutanddry.qa.utils.AIOSampleUIMethodListener"/>
+    </listeners>
+    <test name="operator tests">
+        <parameter name="PART" value="Part Twelve" />
+        <classes>
+            <class name="com.cutanddry.qa.tests.OrderGuide.QuickAddFlowMaximumQuantityValidationTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifySimpleListViewMaximumQuantityValidationTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyOrderGuideSettingsForNonIntegratedDPsTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyOrderGuideSettingsForScrapperIntegratedDPsTest" />
+
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyGeneralHoldModalAndBannerDisplayFromOperatorPortalTest" />
+            <class name="com.cutanddry.qa.tests.History.VerifyOrderTotalsPersistCorrectlyInHistoryAfterSubmissionTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyAddFromCatalogButtonFunctionalityOnReviewOrderScreenTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenSoftOrderMinimumTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenTest" />
+        </classes>
+    </test>
+</suite>

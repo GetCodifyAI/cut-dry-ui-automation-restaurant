@@ -53,20 +53,6 @@
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheGlobalOrderMinimumAmountIsAppliedWhenUseGlobalSettingsIsConfiguredWithHardOrderMinimumTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheGlobalOrderMinimumAmountIsAppliedWhenUseGlobalSettingsIsConfiguredWithSoftOrderMinimumTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyOrderMinimumIsNotAppliedWhenNoOrderMinimumIsConfiguredTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.QuickAddFlowMaximumQuantityValidationTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifySimpleListViewMaximumQuantityValidationTest" />
-            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyOrderGuideSettingsForNonIntegratedDPsTest" />
-            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyOrderGuideSettingsForScrapperIntegratedDPsTest" />
-
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyGeneralHoldModalAndBannerDisplayFromOperatorPortalTest" />
-            <class name="com.cutanddry.qa.tests.History.VerifyOrderTotalsPersistCorrectlyInHistoryAfterSubmissionTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyAddFromCatalogButtonFunctionalityOnReviewOrderScreenTest" />
-            <class name="com.cutanddry.qa.tests.Orders.VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenSoftOrderMinimumTest" />
-            <class name="com.cutanddry.qa.tests.Orders.VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenTest" />
-
-
-
-
         </classes>
     </test>
 </suite>
