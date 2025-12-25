@@ -158,6 +158,19 @@ public class Customer {
             customersPage.clickYesDuplicatePopup();
         }
     }
+    public static void submitOrderOnly() throws InterruptedException {
+        customersPage.submitOrder();
+        if (customersPage.caseMinNotMetDisplayed()){
+            customersPage.clickPlaceOrderSoftOrderMinimum();
+        }
+        Thread.sleep(4000);
+    }
+    public static boolean isDuplicateOrderPopupDisplayed() {
+        return customersPage.isDuplicatePopupDisplayed();
+    }
+    public static void clickYesOnDuplicateOrderPopup() throws InterruptedException {
+        customersPage.clickYesDuplicatePopup();
+    }
     public static boolean isThankingForOrderPopupDisplayed(){return customersPage.isThankingForOrderPopupDisplayed();}
     public static void clickClose(){
         customersPage.clickCloseIcon();
