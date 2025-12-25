@@ -16,6 +16,7 @@
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyGeneralHoldModalAndBannerDisplayFromOperatorPortalTest" />
             <class name="com.cutanddry.qa.tests.History.VerifyOrderTotalsPersistCorrectlyInHistoryAfterSubmissionTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyAddFromCatalogButtonFunctionalityOnReviewOrderScreenTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyBackButtonNavigationOnReviewOrderScreenTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenSoftOrderMinimumTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenTest" />
         </classes>
