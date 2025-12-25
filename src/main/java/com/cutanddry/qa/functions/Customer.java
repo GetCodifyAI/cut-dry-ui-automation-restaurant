@@ -566,6 +566,9 @@ public class Customer {
     public static boolean isReviewOrderTextDisplayed(){
         return customersPage.isReviewOrderTextDisplayed();
     }
+    public static boolean isPriceDisclaimerTextDisplayed(){
+        return customersPage.isPriceDisclaimerTextDisplayed();
+    }
     public static double getItemPriceOnCheckoutButtonViaPDP() throws InterruptedException {
         return customersPage.getItemPriceOnCheckoutButtonViaPDP();
     }

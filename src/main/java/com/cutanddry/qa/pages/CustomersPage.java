@@ -160,6 +160,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By lbl_itemCodeList = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[2])[1]");
     By lbl_itemPriceList = By.xpath("((//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-2]//input)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[last()-2]//span)[1])[1]");
     By txt_reviewOrder = By.xpath("//div[text()='Review Order']");
+    By txt_priceDisclaimer = By.xpath("//*[contains(text(),'Prices are subject to change')] | //*[contains(text(),'Weighed item prices are estimated')]");
     By btn_checkOutPDP = By.xpath("//button[@data-for='cartCheckoutButton' and contains(text(),'$')]");
 //    String btn_catalogPDPPlusStable = "(//div[translate(normalize-space(text()), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')]/following::div//*[name()='svg' and contains(@data-icon, 'plus')])[1]";
     String btn_catalogPDPPlusStable = "(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//*[name()='svg' and contains(@data-icon, 'plus')]";
@@ -1374,6 +1375,9 @@ public void clickOnCloseOrderGuideEditor(){
     public boolean isReviewOrderTextDisplayed(){
         restaurantUI.waitForVisibility(txt_reviewOrder);
         return restaurantUI.isDisplayed(txt_reviewOrder);
+    }
+    public boolean isPriceDisclaimerTextDisplayed(){
+        return restaurantUI.isDisplayed(txt_priceDisclaimer, 5);
     }
     public boolean isEditOrderTextDisplayed(){
         restaurantUI.waitForVisibility(editOrderPage);
