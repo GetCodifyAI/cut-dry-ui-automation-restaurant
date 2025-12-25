@@ -479,7 +479,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By icon_specialInstructionsTooltip = By.xpath("//div[contains(text(),'Special Instructions')]//*[local-name()='svg' and (@data-icon='circle-info' or @data-icon='info-circle')] | //div[contains(text(),'Special Instructions')]//button[contains(@data-tip,'')]");
     By get_specialInstructionsInHistory = By.xpath("//div[normalize-space()='Please deliver to back door. Call upon arrival.']");
 
-
+    By txt_priceDisclaimer = By.xpath("//div[normalize-space()='*Prices are subject to change. Weighed item prices are estimated.']");
 
 
 
@@ -2832,6 +2832,17 @@ public void clickOnCloseOrderGuideEditor(){
         restaurantUI.waitForVisibility(icon_specialInstructionsTooltip);
         restaurantUI.hoverOverElement(icon_specialInstructionsTooltip);
     }
+
+    public void clickBrowserNativeBackButton() throws InterruptedException {
+        restaurantUI.goBack();
+        restaurantUI.waitForCustom(2000);
+    }
+
+    public boolean isPriceDisclaimerTextDisplayed(){
+        return restaurantUI.isDisplayed(txt_priceDisclaimer, 5);
+    }
+
+
 
 
 

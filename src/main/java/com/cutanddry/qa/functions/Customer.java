@@ -369,6 +369,11 @@ public class Customer {
         }
     }
 
+    public static void clickOnBackBtn() throws InterruptedException {
+        customersPage.clickOnBackBtn();
+    }
+
+
     public static void editsection(String sectionName){
         customersPage.clickOnEditSection(sectionName);
     }
@@ -1640,6 +1645,28 @@ public class Customer {
 
     public static void hoverOnSpecialInstructionsTooltip() throws InterruptedException {
         customersPage.hoverOnSpecialInstructionsTooltip();
+    }
+
+    public static void clickBrowserNativeBackButton() throws InterruptedException {
+        customersPage.clickBrowserNativeBackButton();
+    }
+
+    public static boolean isPriceDisclaimerTextDisplayed(){
+        return customersPage.isPriceDisclaimerTextDisplayed();
+    }
+
+    public static void submitOrderOnly() throws InterruptedException {
+        customersPage.submitOrder();
+        if (customersPage.caseMinNotMetDisplayed()){
+            customersPage.clickPlaceOrderSoftOrderMinimum();
+        }
+        Thread.sleep(4000);
+    }
+    public static boolean isDuplicateOrderPopupDisplayed() {
+        return customersPage.isDuplicatePopupDisplayed();
+    }
+    public static void clickYesOnDuplicateOrderPopup() throws InterruptedException {
+        customersPage.clickYesDuplicatePopup();
     }
 
 
