@@ -18,6 +18,13 @@
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyAddFromCatalogButtonFunctionalityOnReviewOrderScreenTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenSoftOrderMinimumTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenTest" />
+
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyAddInstructionsPerItemFunctionalityOnReviewOrderScreenTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifySpecialInstructionsTextAreaFunctionalityOnReviewOrderScreenTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyBackButtonNavigationOnReviewOrderScreenTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyPriceDisclaimerTextOnReviewOrderScreenTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyDuplicateOrderDetectionAndHandlingTest" />
+
         </classes>
     </test>
 </suite>
