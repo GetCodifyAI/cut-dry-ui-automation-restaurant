@@ -1962,6 +1962,9 @@ public void clickOnCloseOrderGuideEditor(){
         restaurantUI.waitForClickability(btn_deleteOrderGuide);
         restaurantUI.click(btn_deleteOrderGuide);
     }
+    public boolean isDeleteOrderGuideOptionDisplayed(){
+        return restaurantUI.isDisplayed(btn_deleteOrderGuide);
+    }
     public boolean isPurchaseHistoryDisplay(){
         return restaurantUI.isDisplayed(txt_purchaseHistoryCatalog);
     }
