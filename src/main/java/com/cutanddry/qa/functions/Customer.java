@@ -1543,7 +1543,16 @@ public class Customer {
         customersPage.ClickContactSupplier();
     }
 
+    public static void enterDecimalQuantityInCatalogCard(String quantity) throws InterruptedException {
+        customersPage.enterDecimalQuantityInCatalogCard(quantity);
+    }
 
+    public static boolean isPartialQuantityErrorPopupDisplayed() throws InterruptedException {
+        return customersPage.isPartialQuantityErrorPopupDisplayed();
+    }
 
+    public static void clickPartialQuantityErrorOkButton() throws InterruptedException {
+        customersPage.clickPartialQuantityErrorOkButton();
+    }
 
 }
