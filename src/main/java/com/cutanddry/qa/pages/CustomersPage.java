@@ -459,7 +459,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By chatWindowPlaceholderText = By.xpath("//input[@placeholder='Message...']");
     By contactSupplierBtn = By.xpath("//button[normalize-space()='Contact Supplier']");
 
-
+    By txt_partialQuantityErrorPopup = By.xpath("//*[contains(text(),'Cannot order partial quantities from this supplier')]");
+    By tbx_catalogCardQuantityInput = By.xpath("(//input[@data-input='quantityInput' or @type='number'])[1]");
 
 
 
@@ -2672,8 +2673,25 @@ public void clickOnCloseOrderGuideEditor(){
         restaurantUI.click(contactSupplierBtn);
     }
 
+    public void enterDecimalQuantityInCatalogCard(String quantity) throws InterruptedException {
+        restaurantUI.waitForVisibility(tbx_catalogCardQuantityInput);
+        restaurantUI.clearUsingJavaScript(tbx_catalogCardQuantityInput);
+        restaurantUI.clearWithKeys(tbx_catalogCardQuantityInput);
+        restaurantUI.sendKeys(tbx_catalogCardQuantityInput, quantity);
+        restaurantUI.sendKeys(tbx_catalogCardQuantityInput, Keys.ENTER.toString());
+        restaurantUI.waitForCustom(2000);
+    }
 
+    public boolean isPartialQuantityErrorPopupDisplayed() throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.isDisplayed(txt_partialQuantityErrorPopup);
+    }
 
-
+    public void clickPartialQuantityErrorOkButton() throws InterruptedException {
+        if (restaurantUI.isDisplayed(btn_errorModalOk)) {
+            restaurantUI.click(btn_errorModalOk);
+            restaurantUI.waitForCustom(1000);
+        }
+    }
 
 }

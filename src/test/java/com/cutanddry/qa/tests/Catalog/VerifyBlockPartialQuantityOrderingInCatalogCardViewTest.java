@@ -6,7 +6,6 @@ import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
-import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,6 +15,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyBlockPartialQuantityOrderingInCatalogCardViewTest extends TestBase {
     static User user;
     static String itemName = "Artichoke -24CT";
+    static String decimalQuantity = "3.5";
 
     @BeforeMethod
     public void setUp() {
@@ -39,8 +39,11 @@ public class VerifyBlockPartialQuantityOrderingInCatalogCardViewTest extends Tes
 
         Customer.searchItemOnCatalog(itemName);
 
-        String initialQty = Customer.getItemQtyCatalog();
-        softAssert.assertNotNull(initialQty, "Initial quantity should be displayed");
+        Customer.enterDecimalQuantityInCatalogCard(decimalQuantity);
+        softAssert.assertTrue(Customer.isPartialQuantityErrorPopupDisplayed(),
+                "Error popup 'Cannot order partial quantities from this supplier!' should be displayed");
+
+        Customer.clickPartialQuantityErrorOkButton();
 
         Customer.increaseCatalogQtyByThree();
         String qtyAfterIncrease = Customer.getItemQtyCatalog();
