@@ -191,6 +191,16 @@ public class Customer {
     public static void uploadToOrder(){
         customersPage.clickOnUploadToOrder();
     }
+    public static void clickSaveDraft(){
+        customersPage.clickOnMoreOptions();
+        customersPage.clickOnSaveDraft();
+    }
+    public static boolean isSaveDraftOptionDisplayed(){
+        return customersPage.isSaveDraftOptionDisplayed();
+    }
+    public static boolean isSaveDraftOptionNotDisplayed(){
+        return customersPage.isSaveDraftOptionNotDisplayed();
+    }
     public static void goToCreatePopup(){
         customersPage.clickOnMoreOptions();
         customersPage.clickOnCreate();

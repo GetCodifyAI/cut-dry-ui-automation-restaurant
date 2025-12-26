@@ -57,6 +57,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_exportOrderGuide = By.xpath("//a[contains(text(), 'Export Order Guide (XLSX)')]");
     By btn_importOrderGuide = By.xpath("//a[contains(text(), 'Import Order Guide (XLSX)')]");
     By btn_uploadToOrder = By.xpath("//a[contains(text(), 'Upload to Order')]");
+    By btn_saveDraft = By.xpath("//*[contains(text(), 'Save Draft')]");
     By btn_create = By.xpath("//div[contains(text(), 'Create')]");
     By tbx_OrderGuideName = By.xpath("//input[@placeholder='Enter Name']");
     By btn_submitOrderGuide = By.xpath("//button[contains(text(), 'Submit')]");
@@ -795,6 +796,28 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     public void clickOnUploadToOrder() {
         restaurantUI.waitForClickability(btn_uploadToOrder);
         restaurantUI.click(btn_uploadToOrder);
+    }
+
+    public void clickOnSaveDraft() {
+        restaurantUI.waitForClickability(btn_saveDraft);
+        restaurantUI.click(btn_saveDraft);
+    }
+
+    public boolean isSaveDraftOptionDisplayed() {
+        try {
+            restaurantUI.waitForVisibility(btn_saveDraft);
+            return restaurantUI.isDisplayed(btn_saveDraft);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isSaveDraftOptionNotDisplayed() {
+        try {
+            return !restaurantUI.isDisplayed(btn_saveDraft);
+        } catch (Exception e) {
+            return true;
+        }
     }
 
     public void clickOnCreate() {
