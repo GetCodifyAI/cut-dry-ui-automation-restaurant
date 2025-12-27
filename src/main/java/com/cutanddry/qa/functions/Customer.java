@@ -191,6 +191,16 @@ public class Customer {
     public static void uploadToOrder(){
         customersPage.clickOnUploadToOrder();
     }
+    public static void switchToOfflineMode() throws InterruptedException {
+        customersPage.clickOnSwitchToOfflineMode();
+        customersPage.clickOnActivateOfflineMode();
+    }
+    public static boolean isSwitchToOfflineModeOptionDisplayed(){
+        return customersPage.isSwitchToOfflineModeOptionDisplayed();
+    }
+    public static boolean isOfflineModeActive(){
+        return customersPage.isOfflineModeActive();
+    }
     public static void goToCreatePopup(){
         customersPage.clickOnMoreOptions();
         customersPage.clickOnCreate();
