@@ -459,10 +459,28 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By chatWindowPlaceholderText = By.xpath("//input[@placeholder='Message...']");
     By contactSupplierBtn = By.xpath("//button[normalize-space()='Contact Supplier']");
 
+    By lnk_addInstructionsFirstItem = By.xpath("//div[normalize-space()='Add Instructions']");
+    String lnk_addInstructionsByItemCode = "//td[text()='ITEMCODE']/ancestor::tr//span[contains(text(),'Add Instructions')] | //td[text()='ITEMCODE']/ancestor::tr//a[contains(text(),'Add Instructions')]";
+    String lnk_instructionsByItemCode = "//td[text()='ITEMCODE']/ancestor::tr//span[contains(text(),'Instructions')] | //td[text()='ITEMCODE']/ancestor::tr//a[contains(text(),'Instructions')]";
+    By txt_itemInstructionModal = By.xpath("//div[contains(@class,'modal')]//div[contains(text(),'Item Instruction')] | //div[contains(@class,'modal')]//h5[contains(text(),'Instruction')]");
+    By tbx_itemInstructionInput = By.xpath("//textarea[@placeholder='Enter instructions here...']");
+    By btn_updateItemInstruction = By.xpath("//button[normalize-space()='Update']");
+    By btn_cancelItemInstruction = By.xpath("//button[normalize-space()='Cancel']");
+    String txt_instructionsDisplayByItemCode = "//td[text()='ITEMCODE']/ancestor::tr//span[contains(text(),'Instructions:')]";
+    String txt_instructionsTextByItemCode = "//td[text()='ITEMCODE']/ancestor::tr//span[contains(text(),'Instructions:')]/following-sibling::span | //td[text()='ITEMCODE']/ancestor::tr//span[contains(@class,'instruction')]";
+    By lnk_EditInstructionsItem = By.xpath("//div[normalize-space()='Instructions:']");
+
+    By itemSavedInstruction = By.xpath("//*[@data-testid='instruction-value']");
+    By messageInInstructionHistory = By.xpath("//p[normalize-space()='Please slice thin']");
 
 
+    By lbl_specialInstructions = By.xpath("//div[contains(text(),'Special Instructions')]");
+    By txt_specialInstructionsTextArea = By.xpath("//div[contains(text(),'Special Instructions')]/following-sibling::div//textarea | //textarea[@placeholder='Enter special instructions...'] | //div[contains(text(),'Special Instructions')]/..//textarea");
+    By icon_specialInstructionsTooltip = By.xpath("//div[contains(text(),'Special Instructions')]//*[local-name()='svg' and (@data-icon='circle-info' or @data-icon='info-circle')] | //div[contains(text(),'Special Instructions')]//button[contains(@data-tip,'')]");
+    By get_specialInstructionsInHistory = By.xpath("//div[normalize-space()='Please deliver to back door. Call upon arrival.']");
 
-
+    By txt_priceDisclaimer = By.xpath("//div[normalize-space()='*Prices are subject to change. Weighed item prices are estimated.']");
+    String dropDownSupplierLocationOrderGuide =  "(//div[contains(text(), 'Location/Guide:')]//following::div[contains(text(), 'NAME')])[1]";
 
 
 
@@ -2667,10 +2685,169 @@ public void clickOnCloseOrderGuideEditor(){
         return restaurantUI.isDisplayed(chatWindowPlaceholderText);
     }
 
+    public boolean isHistoryInstructionDisplaed(){
+        restaurantUI.waitForVisibility(messageInInstructionHistory);
+        return restaurantUI.isDisplayed(messageInInstructionHistory);
+    }
+
+    public boolean isSpecialInstructionDisplay(){
+        restaurantUI.waitForVisibility(get_specialInstructionsInHistory);
+        return restaurantUI.isDisplayed(get_specialInstructionsInHistory);
+    }
+
     public void ClickContactSupplier (){
         restaurantUI.waitForVisibility(contactSupplierBtn);
         restaurantUI.click(contactSupplierBtn);
     }
+
+    public boolean isAddInstructionsLinkDisplayed() {
+        try {
+            restaurantUI.waitForVisibility(lnk_addInstructionsFirstItem);
+            return restaurantUI.isDisplayed(lnk_addInstructionsFirstItem);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isAddInstructionsLinkDisplayedForItem(String itemCode) {
+        try {
+            By locator = By.xpath(lnk_addInstructionsByItemCode.replace("ITEMCODE", itemCode));
+            return restaurantUI.isDisplayed(locator);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void clickAddInstructionsForFirstItem() throws InterruptedException {
+        restaurantUI.waitForVisibility(lnk_addInstructionsFirstItem);
+        restaurantUI.click(lnk_addInstructionsFirstItem);
+        restaurantUI.waitForCustom(1000);
+    }
+    public void clickEditInstructionsForFirstItem() throws InterruptedException {
+        restaurantUI.waitForVisibility(lnk_EditInstructionsItem);
+        restaurantUI.click(lnk_EditInstructionsItem);
+        restaurantUI.waitForCustom(1000);
+    }
+
+    public void clickAddInstructionsForItem(String itemCode) throws InterruptedException {
+        By locator = By.xpath(lnk_addInstructionsByItemCode.replace("ITEMCODE", itemCode));
+        restaurantUI.waitForVisibility(locator);
+        restaurantUI.click(locator);
+        restaurantUI.waitForCustom(1000);
+    }
+
+    public void clickInstructionsLinkForItem(String itemCode) throws InterruptedException {
+        By locator = By.xpath(lnk_instructionsByItemCode.replace("ITEMCODE", itemCode));
+        restaurantUI.waitForVisibility(locator);
+        restaurantUI.click(locator);
+        restaurantUI.waitForCustom(1000);
+    }
+
+    public boolean isItemInstructionModalDisplayed() {
+        try {
+            restaurantUI.waitForVisibility(txt_itemInstructionModal);
+            return restaurantUI.isDisplayed(txt_itemInstructionModal);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void enterItemInstructions(String instructions) throws InterruptedException {
+        restaurantUI.waitForVisibility(tbx_itemInstructionInput);
+        restaurantUI.clear(tbx_itemInstructionInput);
+        restaurantUI.sendKeys(tbx_itemInstructionInput, instructions);
+        restaurantUI.waitForCustom(1000);
+    }
+
+    public void clearItemInstructions() throws InterruptedException {
+        restaurantUI.waitForVisibility(tbx_itemInstructionInput);
+        restaurantUI.clearWithAllSelect(tbx_itemInstructionInput);
+        restaurantUI.waitForCustom(1000);
+    }
+
+    public String getItemInstructionsText() {
+        restaurantUI.waitForVisibility(tbx_itemInstructionInput);
+        return restaurantUI.getAttributeValue(tbx_itemInstructionInput, "value");
+    }
+
+    public String getItemSavedInstructionsText() {
+        restaurantUI.waitForVisibility(itemSavedInstruction);
+        return restaurantUI.getAttributeValue(itemSavedInstruction, "value");
+    }
+
+    public void clickSaveItemInstructions() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_updateItemInstruction);
+        restaurantUI.click(btn_updateItemInstruction);
+        restaurantUI.waitForCustom(1000);
+    }
+
+    public void clickCancelItemInstructions() throws InterruptedException {
+        restaurantUI.waitForVisibility(btn_cancelItemInstruction);
+        restaurantUI.click(btn_cancelItemInstruction);
+        restaurantUI.waitForCustom(1000);
+    }
+
+    public boolean isInstructionsDisplayedForItem(String itemCode) {
+        try {
+            By locator = By.xpath(txt_instructionsDisplayByItemCode.replace("ITEMCODE", itemCode));
+            return restaurantUI.isDisplayed(locator);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public String getDisplayedInstructionsForItem(String itemCode) {
+        By locator = By.xpath(txt_instructionsTextByItemCode.replace("ITEMCODE", itemCode));
+        restaurantUI.waitForVisibility(locator);
+        return restaurantUI.getText(locator);
+    }
+
+    public boolean isSpecialInstructionsSectionDisplayed() throws InterruptedException {
+        return restaurantUI.isDisplayed(lbl_specialInstructions, 5);
+    }
+
+    public boolean isSpecialInstructionsTextAreaDisplayed() throws InterruptedException {
+        return restaurantUI.isDisplayed(txt_specialInstructionsTextArea, 5);
+    }
+
+    public void typeSpecialInstructions(String instructions) throws InterruptedException {
+        restaurantUI.waitForVisibility(txt_specialInstructionsTextArea);
+        restaurantUI.clear(txt_specialInstructionsTextArea);
+        restaurantUI.sendKeys(txt_specialInstructionsTextArea, instructions);
+    }
+
+    public String getSpecialInstructionsText() throws InterruptedException {
+        restaurantUI.waitForVisibility(txt_specialInstructionsTextArea);
+        return restaurantUI.getAttributeValue(txt_specialInstructionsTextArea, "value");
+    }
+
+    public void clearSpecialInstructions() throws InterruptedException {
+        restaurantUI.waitForVisibility(txt_specialInstructionsTextArea);
+        restaurantUI.clear(txt_specialInstructionsTextArea);
+    }
+
+    public boolean isSpecialInstructionsTooltipDisplayed() throws InterruptedException {
+        return restaurantUI.isDisplayed(icon_specialInstructionsTooltip, 5);
+    }
+
+    public void hoverOnSpecialInstructionsTooltip() throws InterruptedException {
+        restaurantUI.waitForVisibility(icon_specialInstructionsTooltip);
+        restaurantUI.hoverOverElement(icon_specialInstructionsTooltip);
+    }
+
+    public void clickBrowserNativeBackButton() throws InterruptedException {
+        restaurantUI.goBack();
+        restaurantUI.waitForCustom(2000);
+    }
+
+    public boolean isPriceDisclaimerTextDisplayed(){
+        return restaurantUI.isDisplayed(txt_priceDisclaimer, 5);
+    }
+    public boolean IsSupplierLocationOrderGuideDisplay(String name){
+        return restaurantUI.isDisplayed(By.xpath(dropDownSupplierLocationOrderGuide.replace("NAME",name)));
+    }
+
+
 
 
 
