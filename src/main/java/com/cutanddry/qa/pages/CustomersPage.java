@@ -480,6 +480,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By get_specialInstructionsInHistory = By.xpath("//div[normalize-space()='Please deliver to back door. Call upon arrival.']");
 
     By txt_priceDisclaimer = By.xpath("//div[normalize-space()='*Prices are subject to change. Weighed item prices are estimated.']");
+    String dropDownSupplierLocationOrderGuide =  "(//div[contains(text(), 'Location/Guide:')]//following::div[contains(text(), 'NAME')])[1]";
+
 
 
 
@@ -2840,6 +2842,9 @@ public void clickOnCloseOrderGuideEditor(){
 
     public boolean isPriceDisclaimerTextDisplayed(){
         return restaurantUI.isDisplayed(txt_priceDisclaimer, 5);
+    }
+    public boolean IsSupplierLocationOrderGuideDisplay(String name){
+        return restaurantUI.isDisplayed(By.xpath(dropDownSupplierLocationOrderGuide.replace("NAME",name)));
     }
 
 

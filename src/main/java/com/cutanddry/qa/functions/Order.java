@@ -142,6 +142,21 @@ public class Order {
     public static boolean isInactiveItemDetectedPopUpDisplay()throws InterruptedException{
         return orderPage.isInactiveItemDetectedPopUpDisplay();
     }
+    public static boolean isThreeDotDropDownOptionDisplayed(String option)throws InterruptedException{
+        return orderPage.isThreeDotDropDownOptionDisplayed(option);
+    }
+    public static void clickEditGuideOption()throws InterruptedException{
+        orderPage.clickEditGuideOption();
+    }
+    public static boolean isSelectLocationPopUpDisplayed()throws InterruptedException{
+        return orderPage.isSelectLocationPopUpDisplayed();
+    }
+    public static void selectLocationSupplier(String location)throws InterruptedException{
+         orderPage.selectLocationSupplier(location);
+    }
+    public static void clickViewCatalogOption()throws InterruptedException{
+        orderPage.clickViewCatalogOption();
+    }
 
 
 

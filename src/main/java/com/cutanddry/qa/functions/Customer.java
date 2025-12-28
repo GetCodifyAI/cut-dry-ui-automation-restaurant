@@ -1668,6 +1668,9 @@ public class Customer {
     public static void clickYesOnDuplicateOrderPopup() throws InterruptedException {
         customersPage.clickYesDuplicatePopup();
     }
+    public static boolean IsSupplierLocationOrderGuideDisplay(String name){
+        return customersPage.IsSupplierLocationOrderGuideDisplay(name);
+    }
 
 
 
