@@ -89,6 +89,7 @@ public class LoginPage extends TestBase {
     }
 
     public void typeToSearchOnOperator(String operator) throws InterruptedException {
+        restaurantUI.waitForCustom(5000);
         restaurantUI.sendKeys(tbx_operatorSearch, operator);
         restaurantUI.waitForCustom(4000);
     }
