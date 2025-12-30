@@ -669,7 +669,12 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         }
 
         System.out.println("Extracted Price: " + priceText);
-        return Double.valueOf(priceText.replace("$", "").replace("/cs", "").replace("/pkg", "").trim());
+        
+        // Remove currency symbols, slashes, unit info, and non-digit characters except dot and minus
+        // This handles formats like: $1.25/ea, $48.00/packs, $10.00 Off, $5.99/cs, $12.34/lb, $7.50/pkg
+        String cleaned = priceText.replaceAll("[^0-9.-]", "");
+        
+        return Double.valueOf(cleaned);
     }
 
     public Double getItemPriceOnCheckoutButton() {
@@ -716,7 +721,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
             priceText = restaurantUI.getText(lbl_cartItemUnitPrice);
         }
 
-        return Double.valueOf(priceText.replace("$", "").replace("/cs", "").replace("/pkg", "").trim());
+        // Remove currency symbols, slashes, unit info, and non-digit characters except dot and minus
+        String cleaned = priceText.replaceAll("[^0-9.-]", "");
+        return Double.valueOf(cleaned);
 
     }
 
@@ -1671,7 +1678,9 @@ public void clickOnCloseOrderGuideEditor(){
             priceText = restaurantUI.getText(By.xpath(lbl_cartItemUnitPriceReviewMultiUOM.replace("UOM", position)));
         }
 
-        return Double.valueOf(priceText.replace("$", "").replace("/cs", "").replace("/pkg", "").trim());
+        // Remove currency symbols, slashes, unit info, and non-digit characters except dot and minus
+        String cleaned = priceText.replaceAll("[^0-9.-]", "");
+        return Double.valueOf(cleaned);
 
     }
     public boolean isCombinedPopupDisplayed() {
