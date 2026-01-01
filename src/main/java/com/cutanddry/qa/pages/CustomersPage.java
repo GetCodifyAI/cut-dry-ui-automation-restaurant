@@ -1400,7 +1400,11 @@ public void clickOnCloseOrderGuideEditor(){
     public Double getItemPriceOnCheckoutButtonViaPDP() throws InterruptedException {
         restaurantUI.waitForVisibility(btn_checkOutPDP);
         restaurantUI.waitForCustom(8000);
-        return Double.valueOf(restaurantUI.getText(btn_checkOutPDP).replace("$",""));
+        String priceText = restaurantUI.getText(btn_checkOutPDP);
+        if (priceText == null || priceText.isEmpty()) {
+            throw new RuntimeException("Checkout button price text is null or empty - element may not be visible or page state is incorrect");
+        }
+        return Double.valueOf(priceText.replace("$",""));
     }
     public void clickOnPlusIconInCatalogPDP(String name){
         restaurantUI.waitForVisibility(By.xpath(btn_catalogPDPPlusStable.replace("NAME", name)));
@@ -1444,6 +1448,12 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public String getOrderedId() {
         String orderId = restaurantUI.getText(txt_orderId);
+        if (orderId == null || orderId.isEmpty()) {
+            throw new RuntimeException("Order ID text is null or empty - order confirmation popup may not be displayed");
+        }
+        if (!orderId.contains("#")) {
+            throw new RuntimeException("Order ID text does not contain '#' symbol. Actual text: " + orderId);
+        }
         return orderId.substring(orderId.indexOf("#") + 1).trim();
     }
     public boolean isCustomersTextDisplayed(){

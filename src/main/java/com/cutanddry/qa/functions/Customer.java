@@ -110,7 +110,13 @@ public class Customer {
         }
         customersPage.typeToSearchOnOrderGuide(item);
     }
-    public static String getFirstElementFrmSearchResults(){return customersPage.getFirstItemNameFrmSearchResults().toLowerCase();}
+    public static String getFirstElementFrmSearchResults(){
+        String itemName = customersPage.getFirstItemNameFrmSearchResults();
+        if (itemName == null || itemName.isEmpty()) {
+            throw new RuntimeException("First item name from search results is null or empty - search results may not be displayed");
+        }
+        return itemName.toLowerCase();
+    }
     public static void addItemToCartCatalog()throws InterruptedException {
         customersPage.clickAddToCartCatalog();
     }
