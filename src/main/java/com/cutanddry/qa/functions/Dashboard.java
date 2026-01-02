@@ -229,4 +229,8 @@ public class Dashboard {
             dashboardPage.clickOnNoDraftOrder();
         }
     }
+
+    public static void clickOnPlaceOrder_Cashback_Foods () throws InterruptedException {
+        dashboardPage.clickOnPlaceOrder_Cashback_Foods();
+    }
 }

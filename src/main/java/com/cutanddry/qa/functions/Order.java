@@ -111,7 +111,7 @@ public class Order {
     public static boolean isAreYouSurePopUpDisplayed(){
         return orderPage.isAreYouSurePopUpDisplayed();
     }
-    public static void clickYes(){
+    public static void clickYes() throws InterruptedException {
         orderPage.clickYes();
     }
     public static void editOrderGuideName(String name) throws InterruptedException {
