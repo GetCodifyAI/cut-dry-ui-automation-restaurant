@@ -67,7 +67,6 @@ public class VerifySaveDraftFunctionalityInMoreOptionsMenuTest extends TestBase 
 
         Drafts.clickDraft(String.valueOf(itemPrice));
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page after clicking on the draft.");
-
         softAssert.assertAll();
     }
 
