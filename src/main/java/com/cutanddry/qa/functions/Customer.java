@@ -820,7 +820,7 @@ public class Customer {
     public static String IsCustomOrderTextDisplayed() throws InterruptedException {
         return customersPage.IsCustomOrderTextDisplayed();
     }
-    public static void submitOrderMinimum(){
+    public static void submitOrderMinimum() throws InterruptedException {
         customersPage.submitOrder();
     }
     public static boolean isOrderMinPopupDisplayed(){
@@ -1668,6 +1668,36 @@ public class Customer {
     public static void clickYesOnDuplicateOrderPopup() throws InterruptedException {
         customersPage.clickYesDuplicatePopup();
     }
+
+    public static void clickSaveDraft(){
+        customersPage.clickOnSaveDraft();
+    }
+    public static boolean isSaveDraftOptionDisplayed(){
+        return customersPage.isSaveDraftOptionDisplayed();
+    }
+    public static boolean isSaveDraftOptionNotDisplayed(){
+        return customersPage.isSaveDraftOptionNotDisplayed();
+    }
+
+    public static boolean isDeleteOrderGuideOptionDisplayed(){
+        return customersPage.isDeleteOrderGuideOptionDisplayed();
+    }
+
+    public static boolean isOrderGuidePresentInDropdown(String orderGuideName) {
+        return customersPage.isOrderGuidePresentInDropdown(orderGuideName);
+    }
+
+    public static void switchToOfflineMode() throws InterruptedException {
+        customersPage.clickOnSwitchToOfflineMode();
+        customersPage.clickOnActivateOfflineMode();
+    }
+    public static boolean isSwitchToOfflineModeOptionDisplayed(){
+        return customersPage.isSwitchToOfflineModeOptionDisplayed();
+    }
+    public static boolean isOfflineModeActive(){
+        return customersPage.isOfflineModeActive();
+    }
+
 
 
 

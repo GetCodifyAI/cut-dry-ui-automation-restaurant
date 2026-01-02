@@ -480,6 +480,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By get_specialInstructionsInHistory = By.xpath("//div[normalize-space()='Please deliver to back door. Call upon arrival.']");
 
     By txt_priceDisclaimer = By.xpath("//div[normalize-space()='*Prices are subject to change. Weighed item prices are estimated.']");
+    By btn_saveDraft = By.xpath("//div[normalize-space(text())='Save Draft']");
+    By btn_switchToOfflineMode = By.xpath("//a[contains(text(), 'Switch to Offline Mode')] | //div[contains(text(), 'Switch to Offline Mode')]");
+    By btn_activateOfflineMode = By.xpath("//button[contains(text(), 'Activate Offline Mode')]");
+    By txt_offlineModeActive = By.xpath("//*[contains(text(), 'Offline Mode')] | //*[contains(text(), 'offline mode')]");
 
 
 
@@ -742,9 +746,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.waitForInvisibility(btn_close_);
         restaurantUI.refreshPage();
     }
-    public void submitOrder() {
+    public void submitOrder() throws InterruptedException {
         restaurantUI.waitForClickability(btn_submitOrder);
         restaurantUI.click(btn_submitOrder);
+        clickYesDuplicatePopup();
     }
 
     public void clickCompanyDropdown() {
@@ -2842,10 +2847,67 @@ public void clickOnCloseOrderGuideEditor(){
         return restaurantUI.isDisplayed(txt_priceDisclaimer, 5);
     }
 
+    public void clickOnSaveDraft() {
+        restaurantUI.waitForClickability(btn_saveDraft);
+        restaurantUI.click(btn_saveDraft);
+    }
 
+    public boolean isSaveDraftOptionDisplayed() {
+        try {
+            restaurantUI.waitForVisibility(btn_saveDraft);
+            return restaurantUI.isDisplayed(btn_saveDraft);
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
+    public boolean isSaveDraftOptionNotDisplayed() {
+        try {
+            return !restaurantUI.isDisplayed(btn_saveDraft);
+        } catch (Exception e) {
+            return true;
+        }
+    }
 
+    public boolean isDeleteOrderGuideOptionDisplayed(){
+        return restaurantUI.isDisplayed(btn_deleteOrderGuide);
+    }
 
+    public boolean isOrderGuidePresentInDropdown(String orderGuideName) {
+        String dynamicXpath = dropDownOrderGuide.replace("NAME", orderGuideName);
+        try {
+            return restaurantUI.isDisplayed(By.xpath(dynamicXpath));
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
+    public void clickOnSwitchToOfflineMode() {
+        restaurantUI.waitForClickability(btn_switchToOfflineMode);
+        restaurantUI.click(btn_switchToOfflineMode);
+    }
+
+    public void clickOnActivateOfflineMode() throws InterruptedException {
+        restaurantUI.waitForClickability(btn_activateOfflineMode);
+        restaurantUI.click(btn_activateOfflineMode);
+        restaurantUI.waitForCustom(2000);
+    }
+
+    public boolean isOfflineModeActive() {
+        try {
+            restaurantUI.waitForVisibility(txt_offlineModeActive);
+            return restaurantUI.isDisplayed(txt_offlineModeActive);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isSwitchToOfflineModeOptionDisplayed() {
+        try {
+            return restaurantUI.isDisplayed(btn_switchToOfflineMode);
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 }

@@ -203,8 +203,10 @@ public class OrderPage extends LoginPage{
     public boolean isAreYouSurePopUpDisplayed(){
         return restaurantUI.isDisplayed(areYouSurePopUp);
     }
-    public void clickYes(){
+
+    public void clickYes() throws InterruptedException {
         restaurantUI.click(btn_yes);
+        restaurantUI.waitForCustom(1000);
     }
     public void editOrderGuideName(String name) throws InterruptedException {
         restaurantUI.clear(lbl_orderGuideName);
