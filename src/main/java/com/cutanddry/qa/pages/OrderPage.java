@@ -46,6 +46,12 @@ public class OrderPage extends LoginPage{
     By orderGuideLocationDropDownOption = By.xpath("//label[contains(text(),'Locations')]/following-sibling::*//div[text()='Main St']");
     By btn_FindMoreInCatalog = By.xpath("//button[text()='Find More in Catalog']");
     By lbl_inactiveItemDetected = By.xpath("//h2[text()='Inactive Items Detected']");
+    String threeDotDropDownOption = "//span[contains(text(), 'OPTION')]";
+    By btn_editGuideOption = By.xpath("//span[contains(text(), 'Edit Guide')]");
+    By selectLocation = By.xpath("//div[contains(text(),'Select Location')]");
+    String selectLocationSupplier = "//div[contains(text(),'Select Location')]/following-sibling::div//div[text()='LOCATION']";
+    By btn_viewCatalogOption = By.xpath("//span[contains(text(), 'View Catalog')]");
+
 
 
 
@@ -244,6 +250,23 @@ public class OrderPage extends LoginPage{
     public boolean isInactiveItemDetectedPopUpDisplay()throws InterruptedException{
         restaurantUI.waitForVisibility(lbl_inactiveItemDetected);
         return restaurantUI.isDisplayed(lbl_inactiveItemDetected);
+    }
+    public boolean isThreeDotDropDownOptionDisplayed(String option)throws InterruptedException{
+        return restaurantUI.isDisplayed(By.xpath(threeDotDropDownOption.replace("OPTION",option)));
+    }
+    public void clickEditGuideOption()throws InterruptedException{
+        restaurantUI.waitForVisibility(btn_editGuideOption);
+        restaurantUI.click(btn_editGuideOption);
+    }
+    public boolean isSelectLocationPopUpDisplayed()throws InterruptedException{
+        return restaurantUI.isDisplayed(selectLocation);
+    }
+    public void selectLocationSupplier(String location){
+        restaurantUI.click(By.xpath(selectLocationSupplier.replace("LOCATION",location)));
+    }
+    public void clickViewCatalogOption()throws InterruptedException{
+        restaurantUI.waitForVisibility(btn_viewCatalogOption);
+        restaurantUI.click(btn_viewCatalogOption);
     }
 
 

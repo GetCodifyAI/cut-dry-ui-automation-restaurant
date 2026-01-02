@@ -484,6 +484,8 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_switchToOfflineMode = By.xpath("//a[contains(text(), 'Switch to Offline Mode')] | //div[contains(text(), 'Switch to Offline Mode')]");
     By btn_activateOfflineMode = By.xpath("//button[contains(text(), 'Activate Offline Mode')]");
     By txt_offlineModeActive = By.xpath("//*[contains(text(), 'Offline Mode')] | //*[contains(text(), 'offline mode')]");
+    String dropDownSupplierLocationOrderGuide =  "(//div[contains(text(), 'Location/Guide:')]//following::div[contains(text(), 'NAME')])[1]";
+
 
 
 
@@ -2845,6 +2847,9 @@ public void clickOnCloseOrderGuideEditor(){
 
     public boolean isPriceDisclaimerTextDisplayed(){
         return restaurantUI.isDisplayed(txt_priceDisclaimer, 5);
+    }
+    public boolean IsSupplierLocationOrderGuideDisplay(String name){
+        return restaurantUI.isDisplayed(By.xpath(dropDownSupplierLocationOrderGuide.replace("NAME",name)));
     }
 
     public void clickOnSaveDraft() {
