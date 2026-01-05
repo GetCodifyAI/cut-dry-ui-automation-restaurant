@@ -17,6 +17,7 @@ public class VerifyOrderGuideManualEntryMaxQuantityValidationTest extends TestBa
     static String invalidQuantity = "2000";
     static String catalogItemCode = "29763";
     static String pdpItemCode = "02092";
+    static String pdpItemName = "Fuji Apples 125 CT";
 
     @BeforeMethod
     public void setUp() {
@@ -34,6 +35,10 @@ public class VerifyOrderGuideManualEntryMaxQuantityValidationTest extends TestBa
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(), "navigation error");
+
+        Customer.expandMoreOptionsDropdown();
+        Customer.clickSimpleListView();
+        softAssert.assertTrue(Customer.isSimpleListViewTextDisplay(), "Simple list view section not displayed");
 
         Customer.enterQuantitySimpleListViewByIndex(1, validMaxQuantity);
         Customer.tabAwayFromQuantityField();
@@ -71,16 +76,16 @@ public class VerifyOrderGuideManualEntryMaxQuantityValidationTest extends TestBa
         softAssert.assertEquals(catalogQtyAfterError, validMaxQuantity, "Catalog item quantity should be auto-corrected to 1999");
 
         Customer.searchItemOnCatalog(pdpItemCode);
-        softAssert.assertTrue(Customer.isCatalogSearchItemCodeDisplay(pdpItemCode), "PDP item not found in catalog");
-        Customer.ClickOnItem(pdpItemCode);
+        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(pdpItemName.toLowerCase()), "PDP item not found in catalog");
+        Customer.clickOnProductStable(pdpItemName);
         Customer.clickAddToCartPDP();
 
-        Customer.setCatalogPdpItemCount(validMaxQuantity, pdpItemCode);
+        Customer.setCatalogPdpItemCount(validMaxQuantity, pdpItemName);
         Customer.tabAwayFromQuantityField();
         softAssert.assertTrue(Customer.isMaxQuantityErrorModalDisplayed(), "Maximum Quantity Reached popup should display for PDP item with quantity 1999");
         Customer.clickErrorModalOkButton();
 
-        Customer.setCatalogPdpItemCount(invalidQuantity, pdpItemCode);
+        Customer.setCatalogPdpItemCount(invalidQuantity, pdpItemName);
         Customer.tabAwayFromQuantityField();
         softAssert.assertTrue(Customer.isMaxQuantityErrorModalDisplayed(), "Maximum Quantity Exceeded popup should display for PDP item with quantity 2000");
         Customer.clickErrorModalOkButton();
