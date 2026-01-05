@@ -2554,6 +2554,13 @@ public void clickOnCloseOrderGuideEditor(){
         restaurantUI.waitForCustom(2000);
     }
 
+    public void setItemQuantityFirstRow(String quantity) throws InterruptedException {
+        restaurantUI.clearUsingJavaScript(tbx_itemQuantityFirstRow);
+        restaurantUI.clearWithKeys(tbx_itemQuantityFirstRow);
+        restaurantUI.sendKeys(tbx_itemQuantityFirstRow, quantity);
+        restaurantUI.waitForCustom(2000);
+    }
+
     public void setCatalogPdpItemCount(String count,String name) throws InterruptedException {
         By qty = By.xpath("//input[@data-input='quantityInput']");
 
