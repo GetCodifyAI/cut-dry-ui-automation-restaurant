@@ -12,9 +12,10 @@ public class CustomersPage extends LoginPage {
 //    By btn_increaseQtyFirstRow = By.xpath("//tr[1]/td[6]/div/div/div/div[3]");
 By btn_increaseQtyFirstRow = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'plus')])[1]");
 //    By btn_decreaseQtyFirstRow = By.xpath("//tr[1]/td[6]/div/div/div/div[1]");
+
 By btn_decreaseQtyFirstRow = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'minus')])[1]");
     By btn_decreaseQtySecondRow = By.xpath("//tr[2]/td[6]/div/div/div/div[1]");
-    By btn_increaseQtySecondRow = By.xpath("//tr[2]/td[6]/div/div/div/div[3]");
+    By btn_increaseQtySecondRow = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'plus')])[2]");
     By btn_checkout = By.xpath("//button[@data-for='cartCheckoutButton']");
     By txt_catalog = By.xpath("//span[contains(text(), 'Catalog')]");
     By btn_catalog = By.xpath("//span[text()='Catalog']");
@@ -85,7 +86,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_selectDeliveryDateSecondLine = By.xpath("(//div[contains(@class, 'cd_themed_select__option')])[2]");
     By btn_orderGuideSettings = By.xpath("//div[contains(text(), 'Order Guide Settings')]");
     By btn_orderApproval = By.xpath("//div[contains(@class, 'react-switch-handle')]");
-    By btn_save = By.xpath("//button[contains(@class, 'btn btn-primary') and contains(text(), 'Save')]");
+    By btn_save = By.xpath("//button[@type='button' and normalize-space()='Save']");
     By btn_previousDraftOrderNo = By.xpath("//div[contains(text(),'previous draft order')]/..//div[text()='No']");
     By btn_placeOrder = By.xpath("//a[contains(@class, 'btn-primary') and contains(text(), 'Place Order')]");
     By btn_increaseQtyFirstRowInWL = By.xpath("(//div[contains(@data-tip,'View Product Details')]/../../following::td//div/*[local-name()='svg' and @data-icon='plus'])[1]");
@@ -485,6 +486,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_activateOfflineMode = By.xpath("//button[contains(text(), 'Activate Offline Mode')]");
     By txt_offlineModeActive = By.xpath("//*[contains(text(), 'Offline Mode')] | //*[contains(text(), 'offline mode')]");
     String dropDownSupplierLocationOrderGuide =  "(//div[contains(text(), 'Location/Guide:')]//following::div[contains(text(), 'NAME')])[1]";
+    By catelogPageQuantityInput = By.xpath("//input[@data-input='quantityInput']");
 
 
 
@@ -754,6 +756,11 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         clickYesDuplicatePopup();
     }
 
+    public void submitOrderWithoutClickPopUpYes() throws InterruptedException {
+        restaurantUI.waitForClickability(btn_submitOrder);
+        restaurantUI.click(btn_submitOrder);
+    }
+
     public void clickCompanyDropdown() {
         restaurantUI.waitForClickability(btn_companyDropdown);
         restaurantUI.click(btn_companyDropdown);
@@ -996,7 +1003,7 @@ public void clickOnCloseOrderGuideEditor(){
     }
 
     public void clickOnSave() {
-        restaurantUI.click(btn_save );
+        restaurantUI.click(btn_save);
     }
 
     public void clickOnPlaceOrder() {
@@ -2913,6 +2920,14 @@ public void clickOnCloseOrderGuideEditor(){
         } catch (Exception e) {
             return false;
         }
+
+    }
+
+    public void setItemQuantityFirstRow(String quantity) throws InterruptedException {
+        restaurantUI.clearUsingJavaScript(tbx_itemQuantityFirstRow);
+        restaurantUI.clearWithKeys(tbx_itemQuantityFirstRow);
+        restaurantUI.sendKeys(tbx_itemQuantityFirstRow, quantity);
+        restaurantUI.waitForCustom(2000);
     }
 
 }
