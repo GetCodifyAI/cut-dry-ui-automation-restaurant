@@ -84,6 +84,13 @@ public class Dashboard {
         }
     }
 
+    public static void selectSupplierWithoutClickSpecificCustomer(String supplierName){
+        dashboardPage.clickOnSupplier(supplierName);
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickNoBtnOnDraftCheckOverlay();
+        }
+    }
+
     public static boolean isNavigatedToMaxiesSLPage() throws InterruptedException {
         return dashboardPage.isNavigatedToMaxiesSLOrderGuide();
     }

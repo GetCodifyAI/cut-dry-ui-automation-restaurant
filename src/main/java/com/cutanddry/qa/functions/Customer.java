@@ -11,7 +11,9 @@ public class Customer {
     public static void increaseFirstRowQtyByOne() throws InterruptedException {
         customersPage.clickPlusQryFirstRow();
     }
-    public static void increaseSecondRowQtyByOne() throws InterruptedException {customersPage.clickPlusQrySecondRow();}
+    public static void increaseSecondRowQtyByOne() throws InterruptedException {
+        customersPage.clickPlusQrySecondRow();}
+
     public static void decreaseFirstRowQtyByOne() throws InterruptedException {
         customersPage.clickMinusQryFirstRow();
     }
@@ -1662,6 +1664,11 @@ public class Customer {
         }
         Thread.sleep(4000);
     }
+
+    public static void submitOrderWithoutClickPopUpYes() throws InterruptedException {
+        customersPage.submitOrderWithoutClickPopUpYes();
+    }
+
     public static boolean isDuplicateOrderPopupDisplayed() {
         return customersPage.isDuplicatePopupDisplayed();
     }
@@ -1699,6 +1706,10 @@ public class Customer {
     }
     public static boolean isOfflineModeActive(){
         return customersPage.isOfflineModeActive();
+    }
+
+    public static void setItemQuantityFirstRow(String quantity) throws InterruptedException {
+        customersPage.setItemQuantityFirstRow(quantity);
     }
 
 

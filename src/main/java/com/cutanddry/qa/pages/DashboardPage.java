@@ -174,6 +174,7 @@ public class DashboardPage extends LoginPage{
         restaurantUI.click(By.xpath(supplierTxt.replace("SUPPLIERNAME",supplierName)));
     }
 
+
     public boolean isNavigatedToMaxiesSLOrderGuide() throws InterruptedException {
         restaurantUI.waitForCustom(4000);
         return restaurantUI.isDisplayed(MaxiesSLTxt);

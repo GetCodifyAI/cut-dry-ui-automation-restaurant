@@ -13,11 +13,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.time.LocalDate;
+
 public class VerifyOrderGuideSettingsForNonIntegratedDPsTest extends TestBase {
     static User user;
     String supplierName = "David Rio";
     String userName = "nancy@coupacafe.com";
-    static String Date = "29";
+    static String date = String.valueOf(LocalDate.now().getDayOfMonth());
 
 
     @BeforeMethod
@@ -35,11 +37,11 @@ public class VerifyOrderGuideSettingsForNonIntegratedDPsTest extends TestBase {
 
         Login.navigateToLoginAs();
         Login.logInToOperator(userName);
-        Dashboard.selectSupplier(supplierName);
+        Dashboard.selectSupplierWithoutClickSpecificCustomer(supplierName);
         Customer.expandMoreOptionsDropdown();
         Customer.orderGuideSettings();
         Customer.setOrderMinimum("200");
-        Customer.setOrderCaseMinimum("5");
+        Customer.setOrderCaseMinimum("10");
         Customer.removeDeliveryDay("Sunday");
         Customer.clickSaveOrderGuideSettings();
         Thread.sleep(3000);
@@ -49,14 +51,14 @@ public class VerifyOrderGuideSettingsForNonIntegratedDPsTest extends TestBase {
 
         Customer.increaseFirstRowQtyByOne();
         Customer.checkoutItems();
-        Customer.selectDeliveryDateLine(Date);
+        Customer.selectDeliveryDateLineStable(date,true);
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "ERROR in navigating to Review Order page");
 
         Customer.submitOrderMinimum();
         softAssert.assertTrue(Customer.isOrderMinPopupDisplayed(), "Order Minimum popup not displayed");
         Customer.clickBackToCartFromOrderMinimumPopup();
-        Customer.ClickSeveralTimesToIncreaseTheQuantity(8);
-        Customer.submitOrderMinimum();
+        Customer.ClickSeveralTimesToIncreaseTheQuantity(7);
+        Customer. submitOrderWithoutClickPopUpYes();
         softAssert.assertTrue(Customer.isCaseMinPopupDisplayed(), "Case  Minimum popup not displayed");
         Customer.clickYesCaseMinimum();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "Order not completed successfully");

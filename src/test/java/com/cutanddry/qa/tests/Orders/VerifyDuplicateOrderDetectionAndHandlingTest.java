@@ -53,7 +53,7 @@ public class VerifyDuplicateOrderDetectionAndHandlingTest extends TestBase {
         Customer.checkoutItems();
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "Failed to navigate to Review Order page for second order");
 
-        Customer.submitOrderOnly();
+        Customer.submitOrderWithoutClickPopUpYes();
         softAssert.assertTrue(Customer.isDuplicateOrderPopupDisplayed(), "Duplicate order warning popup not displayed");
 
         Customer.clickYesOnDuplicateOrderPopup();
