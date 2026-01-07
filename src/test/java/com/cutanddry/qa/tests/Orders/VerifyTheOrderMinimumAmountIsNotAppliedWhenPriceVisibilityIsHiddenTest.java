@@ -21,6 +21,8 @@ public class VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenT
     static String Dp_Name = "46505655 - Kevin - Independent Foods Co";
     static String orderMinimumSetting = "Use Global Settings";
     static String customerId = "97071";
+    static String priceVisibilityHidden = "Hidden";
+    static String priceVisibilityVisible = "Visible";
 
     @BeforeMethod
     public void setUp() {
@@ -59,6 +61,7 @@ public class VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenT
         Customer.searchCustomerByCode(customerId);
         softAssert.assertTrue(Customer.isCustomerSearchResultByCodeDisplayed(customerId), "Unable to find the customer Id");
         Customer.SelectCustomer(customerId);
+        Customer.editStatusPriceVisibility(priceVisibilityHidden);
         Customer.SelectOrderMinimumFromProfile(orderMinimumSetting);
         Customer.ifHasHoldsRemoveHoldsFromCustomer();
         Login.closePreviousTab();
@@ -84,6 +87,7 @@ public class VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenT
         Customer.searchCustomerByCode(customerId);
         softAssert.assertTrue(Customer.isCustomerSearchResultByCodeDisplayed(customerId), "Unable to find the customer Id");
         Customer.SelectCustomer(customerId);
+        Customer.editStatusPriceVisibility(priceVisibilityVisible);
         Login.closePreviousTab();
 
         Login.navigateToLoginAs();
