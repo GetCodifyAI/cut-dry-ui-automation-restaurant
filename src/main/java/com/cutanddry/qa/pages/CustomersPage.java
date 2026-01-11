@@ -419,6 +419,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String btn_catalogPDPPlusDisabled = "(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//*[name()='svg' and contains(@data-icon, 'plus')]/ancestor::button[@disabled]";
     String btn_reviewCartPlusDisabled = "//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='plus']/ancestor::button[@disabled]";
     String tbx_itemQuantityByCode = "//td[text()='CODE']/following-sibling::*//input[@data-input='quantityInput']";
+    String txt_itemUnavailableTag = "//td[text()='CODE']/ancestor::tr//span[contains(text(),'Unavailable')] | //div[contains(text(),'CODE')]/ancestor::tr//span[contains(text(),'Unavailable')]";
+    String txt_itemRowByCode = "//td[text()='CODE'] | //div[contains(@data-tip,'View Product Details')]//div[contains(text(),'CODE')]";
+    By txt_noItemsFoundCatalog = By.xpath("//div[contains(text(),'No items found')] | //div[contains(text(),'No results')] | //div[contains(text(),'no items')]");
     String getTxtCatalogPdpItemCount = "//input[@data-input='quantityInput']";
 
 
@@ -2928,6 +2931,29 @@ public void clickOnCloseOrderGuideEditor(){
         restaurantUI.clearWithKeys(tbx_itemQuantityFirstRow);
         restaurantUI.sendKeys(tbx_itemQuantityFirstRow, quantity);
         restaurantUI.waitForCustom(2000);
+    }
+
+    public boolean isItemUnavailableTagDisplayed(String code) throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.isDisplayed(By.xpath(txt_itemUnavailableTag.replace("CODE", code)));
+    }
+
+    public boolean isItemRowDisplayedByCode(String code) throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        try {
+            return restaurantUI.isDisplayed(By.xpath(txt_itemRowByCode.replace("CODE", code)));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isNoItemsFoundInCatalog() throws InterruptedException {
+        restaurantUI.waitForCustom(3000);
+        try {
+            return restaurantUI.isDisplayed(txt_noItemsFoundCatalog);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 }
