@@ -46,6 +46,7 @@
             <class name="com.cutanddry.qa.tests.Orders.VerifyThatTheRecentOrdersTableContainsTheEditOrderButtonTest"/>
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyQuickAddViewAndSimpleListViewFeaturesWhenEnabledFromSupplierConfigTest"/>
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheManageStandingOrdersCTAFunctionalityInOrderGuideTest"/>
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyStandingOrderUponEditingWithInactiveItemsTest"/>
         </classes>
     </test>
 </suite>
