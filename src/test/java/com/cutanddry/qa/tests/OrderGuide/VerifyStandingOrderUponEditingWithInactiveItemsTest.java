@@ -11,13 +11,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class VerifyTheManageStandingOrdersCTAFunctionalityInOrderGuideTest extends TestBase {
+public class VerifyStandingOrderUponEditingWithInactiveItemsTest extends TestBase {
     static User user;
-    static String itemName,StandingPrice,totalQuantity;
-    static String itemCode = "01700";
-    static String customerId = "21259";
     static String Dp_Name = "46505655 - Kevin - Independent Foods Co";
+    String searchItemCode = "01775";
+    static String itemName;
     static double itemPrice;
+    String Active = "Active";
+    String InActive = "Inactive";
+    String All = "All Items";
 
     @BeforeMethod
     public void setUp(){
@@ -25,25 +27,25 @@ public class VerifyTheManageStandingOrdersCTAFunctionalityInOrderGuideTest exten
         user = JsonUtil.readUserLogin();
     }
 
-
-    @Test(groups = "DOT-TC-1563")
-    public void VerifyTheManageStandingOrdersCTAFunctionalityInOrderGuide() throws InterruptedException {
+    @Test(groups = "DOT-TC-2675")
+    public void VerifyStandingOrderUponEditingWithInactiveItems() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
+
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+
         Customer.expandMoreOptionsDropdown();
         softAssert.assertTrue(Customer.isManageStandingOrdersDisplay(),"Manage Standing Orders option display error");
         Customer.clickManageStandingOrders();
-       // softAssert.assertTrue(Customer.isManageStandingOrdersPopUpDisplay(),"Manage Standing Orders pop up display error");
-        softAssert.assertTrue(Customer.isCreateStandingOrdersButtonDisplay()," Create Standing Orders button display error");
+        softAssert.assertTrue(Customer.isCreateStandingOrdersButtonDisplay(),"Create Standing Orders button display error");
         Customer.clickCreateStandingOrders();
 
         Customer.selectDeliveryDateAsLastBefore();
-        Customer.searchItemOnOrderGuide(itemCode);
+        Customer.searchItemOnOrderGuide(searchItemCode);
         itemPrice = Customer.getActiveItemPriceFirstRow();
         itemName = Customer.getItemNameFirstRow();
         Customer.increaseFirstRowQtyByOne();
@@ -54,38 +56,18 @@ public class VerifyTheManageStandingOrdersCTAFunctionalityInOrderGuideTest exten
         softAssert.assertTrue(Customer.isStandingOrderSuccessPopupDisplayed(),"order creating error");
         Customer.clickOK();
 
-        // Edit the standing order
-        Dashboard.navigateToIndependentFoodsCo();
-        Dashboard.navigateToOrderGuide();
-        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-        Customer.expandMoreOptionsDropdown();
-        softAssert.assertTrue(Customer.isManageStandingOrdersDisplay(),"Manage Standing Orders option display error");
-        Customer.clickManageStandingOrders();
-
-        // softAssert.assertTrue(Customer.isManageStandingOrdersPopUpDisplay(),"Manage Standing Orders pop up display error");
-        Customer.clickOnStandingOrderPauseIcon();
-        softAssert.assertTrue(Order.isAreYouSurePopUpDisplayed(),"Are you sure pop up not displayed");
-        Order.clickYes();
-        Customer.clickOnStandingOrderEditIcon();
-        softAssert.assertTrue(Customer.isReviewStandingOrdersDisplayed(),"navigate error review standing order");
-        Customer.increaseFirstRowQtyByOne();
-        totalQuantity = Catalog.getTotalQuantityInReviewOrder();
-        Customer.resetStandingOrder();
-        softAssert.assertTrue(Customer.isStandingOrderSuccessPopupDisplayed(),"order creating error");
-        Customer.clickOK();
-
         Login.navigateToLoginAs();
         Login.goToDistributor(Dp_Name);
         Dashboard.isUserNavigatedToDistributorDashboard();
         Assert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(),"login error");
-        Dashboard.navigateToCustomers();
-        Customer.searchCustomerByCode(customerId);
-        Assert.assertTrue(Customer.isCustomerSearchResultByCodeDisplayed(customerId), "Unable to find the customer Id");
-        Customer.SelectCustomer(customerId);
-        Customer.clickOnOrdersTab();
-        StandingPrice = String.valueOf((int) itemPrice*2);
-        softAssert.assertTrue(Customer.isStandingOrdersPaused(),"standing orders not paused");
-        softAssert.assertTrue(Customer.isSubmittedStandingOrderDisplayed(totalQuantity,StandingPrice),"standing order submit error");
+
+        Dashboard.navigateToCatalog();
+        softAssert.assertTrue(Catalog.isUserNavigatedToCatalog(),"navigation error");
+        Catalog.selectItemStatus(All);
+        Catalog.selectItemFromGrid(searchItemCode);
+        Catalog.clickEditOnProductCatalogControl();
+        Catalog.selectProductActiveInactiveStatus(InActive);
+        Catalog.saveChanges();
 
         Login.navigateToOperator();
 
@@ -98,12 +80,40 @@ public class VerifyTheManageStandingOrdersCTAFunctionalityInOrderGuideTest exten
         Customer.expandMoreOptionsDropdown();
         softAssert.assertTrue(Customer.isManageStandingOrdersDisplay(),"Manage Standing Orders option display error");
         Customer.clickManageStandingOrders();
-//        softAssert.assertTrue(Customer.isManageStandingOrdersPopupDisplayed()," add section popup error");
-        Customer.clickOnStandingOrderResumeIcon();
-        softAssert.assertTrue(Order.isAreYouSurePopUpDisplayed(),"Are you sure pop up not displayed");
-        Order.clickYes();
+        Customer.clickOnStandingOrderEditIcon();
+
+        softAssert.assertTrue(Order.isInactiveItemDetectedPopUpDisplay(),"Inactive Items Detected alert not displayed");
+        Customer.clickClose();
+        softAssert.assertTrue(Customer.isReviewStandingOrdersDisplayed(),"navigate error review standing order");
+        softAssert.assertEquals(Math.round(Catalog.getTotalPriceInReviewOrder() * 100.0) / 100.0,
+                0.00, "Total price in review order is not zero after inactive item removal.");
+
+        Login.navigateToLoginAs();
+        Login.goToDistributor(Dp_Name);
+        Login.switchIntoNewTab();
+        Dashboard.navigateToCatalog();
+        softAssert.assertTrue(Catalog.isUserNavigatedToCatalog(),"navigation error");
+        Catalog.selectItemStatus(All);
+        Catalog.selectItemFromGrid(searchItemCode);
+        Catalog. clickEditOnProductCatalogControl();
+        Catalog.selectProductActiveInactiveStatus(Active);
+        Catalog.saveChanges();
+
+        Login.navigateToOperator();
+
+        Dashboard.isUserNavigatedToDashboard();
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
+        Dashboard.navigateToIndependentFoodsCo();
+        Dashboard.navigateToOrderGuide();
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+
+        Customer.expandMoreOptionsDropdown();
+        softAssert.assertTrue(Customer.isManageStandingOrdersDisplay(),"Manage Standing Orders option display error");
+        Customer.clickManageStandingOrders();
         softAssert.assertTrue(Customer.isStandingOrdersDeletedIconDisplay(),"delete error");
         Customer.clickOnStandingOrderDeleteIcon();
+
+
         softAssert.assertAll();
     }
 
@@ -112,6 +122,4 @@ public class VerifyTheManageStandingOrdersCTAFunctionalityInOrderGuideTest exten
         takeScreenshotOnFailure(result);
         closeAllBrowsers();
     }
-
-
 }

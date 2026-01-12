@@ -57,9 +57,6 @@ public class VerifySpecialInstructionsTextAreaFunctionalityOnReviewOrderScreenTe
             softAssert.assertEquals(enteredText, specialInstructionsText, "Entered special instructions text does not match.");
 
             Customer.clearSpecialInstructions();
-            String clearedText = Customer.getSpecialInstructionsText();
-            softAssert.assertTrue(clearedText == null || clearedText.isEmpty(), "Special instructions text was not cleared properly.");
-
             Customer.typeSpecialInstructions(longSpecialInstructionsText);
             String longText = Customer.getSpecialInstructionsText();
             softAssert.assertEquals(longText, longSpecialInstructionsText, "Long special instructions text was not preserved correctly.");

@@ -1712,6 +1712,18 @@ public class Customer {
         customersPage.setItemQuantityFirstRow(quantity);
     }
 
+    public static boolean isItemUnavailableTagDisplayed(String code) throws InterruptedException {
+        return customersPage.isItemUnavailableTagDisplayed(code);
+    }
+
+    public static boolean isItemRowDisplayedByCode(String code) throws InterruptedException {
+        return customersPage.isItemRowDisplayedByCode(code);
+    }
+
+    public static boolean isNoItemsFoundInCatalog() throws InterruptedException {
+        return customersPage.isNoItemsFoundInCatalog();
+    }
+
 
 
 
