@@ -32,6 +32,11 @@
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyDeleteOrderGuideFunctionalityInMoreOptionsMenuTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifySaveDraftFunctionalityInMoreOptionsMenuTest" />
 
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyStandingOrderInactiveItemCannotBeOrderedTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyStandingOrderUponEditingWithInactiveItemsTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyOrderGuideManualEntryMaxQuantityValidationTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyOrderGuideStepperMaximumQuantityValidationTest" />
+
         </classes>
     </test>
 </suite>
