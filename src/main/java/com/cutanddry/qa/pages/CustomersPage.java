@@ -488,6 +488,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String dropDownSupplierLocationOrderGuide =  "(//div[contains(text(), 'Location/Guide:')]//following::div[contains(text(), 'NAME')])[1]";
     By catelogPageQuantityInput = By.xpath("//input[@data-input='quantityInput']");
 
+    String txt_itemUnavailableTag = "//td[text()='CODE']/ancestor::tr//span[contains(text(),'Unavailable')] | //div[contains(text(),'CODE')]/ancestor::tr//span[contains(text(),'Unavailable')]";
+    String txt_itemRowByCode = "//td[text()='CODE'] | //div[contains(@data-tip,'View Product Details')]//div[contains(text(),'CODE')]";
+    By txt_noItemsFoundCatalog = By.xpath("//div[contains(text(),'No items found')] | //div[contains(text(),'No results')] | //div[contains(text(),'no items')]");
 
 
 
@@ -2835,7 +2838,11 @@ public void clickOnCloseOrderGuideEditor(){
 
     public void clearSpecialInstructions() throws InterruptedException {
         restaurantUI.waitForVisibility(txt_specialInstructionsTextArea);
-        restaurantUI.clear(txt_specialInstructionsTextArea);
+        WebElement element = restaurantUI.getElement(txt_specialInstructionsTextArea);
+        element.click();
+        element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        element.sendKeys(Keys.DELETE);
+        element.sendKeys(Keys.TAB);
     }
 
     public boolean isSpecialInstructionsTooltipDisplayed() throws InterruptedException {
@@ -2928,6 +2935,29 @@ public void clickOnCloseOrderGuideEditor(){
         restaurantUI.clearWithKeys(tbx_itemQuantityFirstRow);
         restaurantUI.sendKeys(tbx_itemQuantityFirstRow, quantity);
         restaurantUI.waitForCustom(2000);
+    }
+
+    public boolean isItemUnavailableTagDisplayed(String code) throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.isDisplayed(By.xpath(txt_itemUnavailableTag.replace("CODE", code)));
+    }
+
+    public boolean isItemRowDisplayedByCode(String code) throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        try {
+            return restaurantUI.isDisplayed(By.xpath(txt_itemRowByCode.replace("CODE", code)));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isNoItemsFoundInCatalog() throws InterruptedException {
+        restaurantUI.waitForCustom(3000);
+        try {
+            return restaurantUI.isDisplayed(txt_noItemsFoundCatalog);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 }

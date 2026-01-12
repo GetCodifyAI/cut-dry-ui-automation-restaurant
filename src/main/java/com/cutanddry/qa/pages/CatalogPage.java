@@ -58,6 +58,7 @@ public class CatalogPage extends LoginPage {
     By dealsTypeDownOption = By.xpath("//div[contains(text(), 'Deals')]/../../following-sibling::div//*[name()='svg' and @data-icon='square']/following-sibling::div[contains(text(), 'GPO Contracted Items')]");
     By txt_dealsTypeDownOption = By.xpath("//div[contains(text(), 'Deals')]/../../following-sibling::div//*[name()='svg' and @data-icon='square-check']/following-sibling::div[contains(text(), 'GPO Contracted Items')]");
     By productConfigsEditBtn = By.xpath("//*[contains(text(),'Product Configuration')]/following-sibling::button");
+    By productCatalogEditBtn =  By.xpath("//button[normalize-space()='Edit']");
     By productStatusDropdown = By.xpath("//div[normalize-space()='Product Status']/following::div[@id='config-active']");
     String productStatus = "(//div[contains(text(),'PRODSTATUS')])[last()]";
     By itemStatusDropdown = By.xpath("(//div[contains(text(),'All Results')]/../following-sibling::div//div[contains(@class,'value-container')])[3]");
@@ -367,6 +368,12 @@ public class CatalogPage extends LoginPage {
         restaurantUI.waitForVisibility(productConfigsEditBtn);
         restaurantUI.click(productConfigsEditBtn);
     }
+
+    public void clickEditOnProductCatalogControl(){
+        restaurantUI.waitForVisibility(productCatalogEditBtn);
+        restaurantUI.click(productCatalogEditBtn);
+    }
+
     public void clickOnInactiveOrInactive(String prodStatus){
         restaurantUI.click(productStatusDropdown);
         restaurantUI.waitForVisibility(By.xpath(productStatus.replace("PRODSTATUS",prodStatus)));

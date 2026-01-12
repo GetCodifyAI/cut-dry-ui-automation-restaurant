@@ -45,7 +45,7 @@ public class OrderPage extends LoginPage{
     By orderGuideLocationDropDown = By.xpath("//label[contains(text(),'Locations')]/following-sibling::div");
     By orderGuideLocationDropDownOption = By.xpath("//label[contains(text(),'Locations')]/following-sibling::*//div[text()='Main St']");
     By btn_FindMoreInCatalog = By.xpath("//button[text()='Find More in Catalog']");
-    By lbl_inactiveItemDetected = By.xpath("//h2[text()='Inactive Items Detected']");
+    By lbl_inactiveItemDetected = By.xpath("//div[normalize-space()='Inactive Items Removed']");
     String threeDotDropDownOption = "//span[contains(text(), 'OPTION')]";
     By btn_editGuideOption = By.xpath("//span[contains(text(), 'Edit Guide')]");
     By selectLocation = By.xpath("//div[contains(text(),'Select Location')]");
