@@ -159,6 +159,11 @@ public class Catalog {
     public static void selectEditFromProductConfig(){
         catalogPage.clickEditOnProductConfigs();
     }
+
+    public static void  clickEditOnProductCatalogControl() {
+        catalogPage. clickEditOnProductCatalogControl();
+    }
+
     public static void selectProductActiveInactiveStatus(String prodStatus){
         catalogPage.clickOnInactiveOrInactive(prodStatus);
     }
