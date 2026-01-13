@@ -23,7 +23,7 @@ public class HistoryPage extends TestBase {
     By btn_more_options = By.xpath("//span[text() = 'More Options']");
     By btn_print_order =By.xpath("//div[text() ='Print Order']");
     By txt_order_section = By.xpath("//div[starts-with(text(), 'Order #')]");
-    By btn_add_note =By.xpath("//div[@class='col-auto col']");
+    By btn_add_note =By.xpath("//span[normalize-space()='Add notes to this order that only your team can see']/parent::div");
     By txt_add_note = By.xpath("//div[@class = 'mont modal-title h4' and text()='Add Order Notes']");
     By btn_textarea =By.xpath("//textarea[@class = 'form-control']");
     By btn_save_changes =By.xpath("//button[@class='mt-2 btn btn-primary btn-block' and text() = 'Save Changes']");
