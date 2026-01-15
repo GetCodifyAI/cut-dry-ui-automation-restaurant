@@ -37,6 +37,7 @@
 
             <class name="com.cutanddry.qa.tests.Approvals.VerifyOrderApprovalTurnOnFeatureTest" />
             <class name="com.cutanddry.qa.tests.Approvals.VerifyOrderApprovalChangesTest" />
+            <class name="com.cutanddry.qa.tests.Approvals.VerifyEmployeeOrderEditRestrictionAfterApprovalTest" />
 
             <class name="com.cutanddry.qa.tests.MultiCart.VerifyCreatedOrdersFromMultipleCartsTest" />
             <class name="com.cutanddry.qa.tests.MultiCart.VerifyGroupingProductsIntoTwoCartsTest" />
