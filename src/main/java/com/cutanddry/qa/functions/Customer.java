@@ -1724,7 +1724,24 @@ public class Customer {
         return customersPage.isNoItemsFoundInCatalog();
     }
 
+    public static boolean isBrandColumnHeaderDisplayed() throws InterruptedException {
+        return customersPage.isBrandColumnHeaderDisplayed();
+    }
 
+    public static boolean isCatalogListViewTableDisplayed() throws InterruptedException {
+        return customersPage.isCatalogListViewTableDisplayed();
+    }
 
+    public static String getFirstItemBrandInListView() throws InterruptedException {
+        return customersPage.getFirstItemBrandInListView();
+    }
+
+    public static String getFirstItemNameInListView() throws InterruptedException {
+        return customersPage.getFirstItemNameInListView();
+    }
+
+    public static boolean isBrandDataDisplayedInListView() throws InterruptedException {
+        return customersPage.isBrandDataDisplayedInListView();
+    }
 
 }

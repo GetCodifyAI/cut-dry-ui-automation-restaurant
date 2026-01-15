@@ -492,6 +492,12 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String txt_itemRowByCode = "//td[text()='CODE'] | //div[contains(@data-tip,'View Product Details')]//div[contains(text(),'CODE')]";
     By txt_noItemsFoundCatalog = By.xpath("//div[contains(text(),'No items found')] | //div[contains(text(),'No results')] | //div[contains(text(),'no items')]");
 
+    By txt_brandColumnHeader = By.xpath("//th[contains(text(),'Brand')] | //td[contains(text(),'Brand')] | //div[contains(@class,'header') and contains(text(),'Brand')]");
+    By txt_catalogListViewTable = By.xpath("//table[contains(@class,'table')] | //table//thead");
+    String txt_brandColumnData = "//table//tbody//tr[INDEX]//td[contains(@class,'brand')] | //table//tbody//tr[INDEX]/td[3]";
+    By txt_firstItemBrandInListView = By.xpath("(//table//tbody//tr//td[3])[1]");
+    By txt_firstItemNameInListView = By.xpath("(//table//tbody//tr//td[1]//div[@data-tip='View Product Details'] | //table//tbody//tr//td[1]//span)[1]");
+
 
 
 
@@ -2955,6 +2961,38 @@ public void clickOnCloseOrderGuideEditor(){
         restaurantUI.waitForCustom(3000);
         try {
             return restaurantUI.isDisplayed(txt_noItemsFoundCatalog);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isBrandColumnHeaderDisplayed() throws InterruptedException {
+        restaurantUI.waitForCustom(3000);
+        return restaurantUI.isDisplayed(txt_brandColumnHeader);
+    }
+
+    public boolean isCatalogListViewTableDisplayed() throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.isDisplayed(txt_catalogListViewTable);
+    }
+
+    public String getFirstItemBrandInListView() throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        restaurantUI.waitForVisibility(txt_firstItemBrandInListView);
+        return restaurantUI.getText(txt_firstItemBrandInListView);
+    }
+
+    public String getFirstItemNameInListView() throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        restaurantUI.waitForVisibility(txt_firstItemNameInListView);
+        return restaurantUI.getText(txt_firstItemNameInListView);
+    }
+
+    public boolean isBrandDataDisplayedInListView() throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        try {
+            String brandText = getFirstItemBrandInListView();
+            return brandText != null && !brandText.trim().isEmpty();
         } catch (Exception e) {
             return false;
         }
