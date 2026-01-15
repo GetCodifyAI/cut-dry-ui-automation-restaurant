@@ -1724,7 +1724,36 @@ public class Customer {
         return customersPage.isNoItemsFoundInCatalog();
     }
 
+    public static String getHeaderCartTotal() throws InterruptedException {
+        return customersPage.getHeaderCartTotal();
+    }
 
+    public static String getHeaderLineItemsCount() throws InterruptedException {
+        return customersPage.getHeaderLineItemsCount();
+    }
 
+    public static String getHeaderQuantityCount() throws InterruptedException {
+        return customersPage.getHeaderQuantityCount();
+    }
+
+    public static boolean isOrderSummaryWidgetDisplayed() throws InterruptedException {
+        return customersPage.isOrderSummaryWidgetDisplayed();
+    }
+
+    public static boolean isCartTotalBelowMinimum() throws InterruptedException {
+        return customersPage.isCartTotalBelowMinimum();
+    }
+
+    public static void clickOnOrderSummaryWidget() throws InterruptedException {
+        customersPage.clickOnOrderSummaryWidget();
+    }
+
+    public static void setItemQuantitySecondRow(String quantity) throws InterruptedException {
+        customersPage.setItemQuantitySecondRow(quantity);
+    }
+
+    public static void setItemQuantityThirdRow(String quantity) throws InterruptedException {
+        customersPage.setItemQuantityThirdRow(quantity);
+    }
 
 }
