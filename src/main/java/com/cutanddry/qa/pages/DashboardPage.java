@@ -7,6 +7,7 @@ import static org.apache.commons.lang3.BooleanUtils.or;
 public class DashboardPage extends LoginPage{
     By txt_dashboard = By.xpath("//div[text()='Place Order']");
     By btn_placeOrder = By.xpath("//div[contains(text(), 'Independent Foods Co')]");
+    By btn_placeOrder_Cashback_Foods = By.xpath("//div[contains(text(), 'Cashback Foods')]");
     By btn_hayes = By.xpath("//div[contains(text(), 'Hayes')]");
     By txt_OrderGuide = By.xpath("//span[contains(text(), 'Order Guide')]");
     By btn_TestAutomation = By.xpath("//div[contains(text(), 'Test_Automation') and contains(@class, 'w-100')]");
@@ -105,6 +106,10 @@ public class DashboardPage extends LoginPage{
     }
     public void clickOnPlaceOrder() {
         restaurantUI.click(btn_placeOrder);}
+
+    public void clickOnPlaceOrder_Cashback_Foods() {
+        restaurantUI.click(btn_placeOrder_Cashback_Foods);}
+
     public void clickOnHayes() {
         restaurantUI.click(btn_hayes);}
     public boolean isOrderGuideTextDisplayed(){
@@ -168,6 +173,7 @@ public class DashboardPage extends LoginPage{
         restaurantUI.waitForVisibility(By.xpath(supplierTxt.replace("SUPPLIERNAME",supplierName)));
         restaurantUI.click(By.xpath(supplierTxt.replace("SUPPLIERNAME",supplierName)));
     }
+
 
     public boolean isNavigatedToMaxiesSLOrderGuide() throws InterruptedException {
         restaurantUI.waitForCustom(4000);

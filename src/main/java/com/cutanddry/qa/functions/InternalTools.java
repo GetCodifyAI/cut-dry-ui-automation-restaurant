@@ -85,7 +85,7 @@ public class InternalTools {
     public static void displayPurchasePriceOnOperatorToggle(boolean status){
         internalToolsPage.displayPurchasePriceOnOperatorToggle(status);
     }
-    public static void clickEnableFTNIPaymentGatewayCheckbox(boolean status){
+    public static void clickEnableFTNIPaymentGatewayCheckbox(boolean status)throws InterruptedException{
         internalToolsPage.clickEnableFTNIPaymentGatewayCheckbox(status);
     }
     public static void clickHideZeroStockLabelToggle(boolean status){
@@ -151,6 +151,12 @@ public class InternalTools {
     }
     public static void manualOrderQuantityCalculationToggle(boolean status){
         internalToolsPage.manualOrderQuantityCalculationToggle(status);
+    }
+    public static void enterOrderMinimumAmount(String min){
+        internalToolsPage.enterOrderMinimumAmount(min);
+    }
+    public static void TurnOnAllowSupplierToSetMinimumToggle(boolean status){
+        internalToolsPage.TurnOnAllowSupplierToSetMinimumToggle(status);
     }
 
 }

@@ -44,6 +44,16 @@
 
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThatTheOrderGuideNameAndDescriptionInOrderGuideSettingsTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThatTheOrderGuideLocationInOrderGuideSettingsTest" />
+
+            <class name="com.cutanddry.qa.tests.Orders.VerifyFindMoreInCatalogButtonTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyThatTheOrderUponEditingWithInactiveItemsTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyThatTheOrderUponRecreatingWithInactiveItemsTest" />
+
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyAddToOrderGuideIconOnItemsWillNotDisplayedForTheOperatorsWhenTheCatalogOnlyOrderFlowIsActivatedTest" />
+
+            <class name="com.cutanddry.qa.tests.Orders.VerifyTheGlobalOrderMinimumAmountIsAppliedWhenUseGlobalSettingsIsConfiguredWithHardOrderMinimumTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyTheGlobalOrderMinimumAmountIsAppliedWhenUseGlobalSettingsIsConfiguredWithSoftOrderMinimumTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyOrderMinimumIsNotAppliedWhenNoOrderMinimumIsConfiguredTest" />
         </classes>
     </test>
 </suite>

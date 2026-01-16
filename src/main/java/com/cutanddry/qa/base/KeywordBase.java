@@ -61,6 +61,30 @@ public class KeywordBase {
         return this;
     }
 
+
+
+    public void pressTabKey() {
+        try {
+            Actions actions = new Actions(driver);
+            actions.sendKeys(Keys.TAB).perform();
+            logger.info("Pressed TAB key globally");
+        } catch (Exception e) {
+            logger.error("Failed to press TAB globally", e);
+            throw e;
+        }
+    }
+
+    public KeywordBase pressTab() {
+        try {
+            actions.sendKeys(Keys.TAB).perform();
+            logger.info("Pressed TAB key");
+        } catch (Exception e) {
+            logger.error("Failed to press TAB key", e);
+        }
+        return this;
+    }
+
+
     // Click on an element using By object with Actions class
     public KeywordBase clickAction(By by) {
         try {
@@ -73,6 +97,8 @@ public class KeywordBase {
         }
         return this;
     }
+
+
 
     // Click on an element using By object
     public KeywordBase clickWithFallback(By by) {
@@ -165,6 +191,49 @@ public class KeywordBase {
         }
         return this;
     }
+
+    public KeywordBase clearWithKeys(By by) {
+        try {
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(by));
+            element.click();
+
+            // Send BACKSPACE many times to ensure input becomes empty
+            for (int i = 0; i < 10; i++) {
+                element.sendKeys(Keys.BACK_SPACE);
+            }
+
+            logger.info("Cleared number input fully using BACKSPACE: {}", by);
+        } catch (Exception e) {
+            logger.error("Failed to clear number input using BACKSPACE: {}", by, e);
+        }
+        return this;
+    }
+
+    public KeywordBase clearWithAllSelect(By by) {
+        try {
+            WebElement element = wait.until(
+                    ExpectedConditions.elementToBeClickable(by)
+            );
+
+            element.click();
+            element.clear();
+
+            // Fallback for React / JS-controlled inputs
+            if (!element.getAttribute("value").isEmpty()) {
+                element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+                element.sendKeys(Keys.DELETE);
+            }
+
+            logger.info("Cleared element: {}", by);
+        } catch (Exception e) {
+            logger.error("Failed to clear element: {}", by, e);
+            throw e; // IMPORTANT: don't swallow failures
+        }
+        return this;
+    }
+
+
+
 
     // Get text from an element
     public String getText(By by) {
@@ -1036,5 +1105,21 @@ public class KeywordBase {
             return 0;
         }
     }
+
+    public KeywordBase sendKeysRaw(By by, CharSequence keys) {
+        try {
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+            element.sendKeys(keys);
+            logger.info("Sent RAW keys to element: {} - Keys: {}", by, keys);
+        } catch (Exception e) {
+            logger.error("Failed to send RAW keys to element: {}", by, e);
+        }
+        return this;
+    }
+
+    public List<WebElement> findElements(By by) {
+        return driver.findElements(by);
+    }
+
 }
 

@@ -84,6 +84,13 @@ public class Dashboard {
         }
     }
 
+    public static void selectSupplierWithoutClickSpecificCustomer(String supplierName){
+        dashboardPage.clickOnSupplier(supplierName);
+        if(dashboardPage.isDraftOrderPopUpDisplayed()){
+            dashboardPage.clickNoBtnOnDraftCheckOverlay();
+        }
+    }
+
     public static boolean isNavigatedToMaxiesSLPage() throws InterruptedException {
         return dashboardPage.isNavigatedToMaxiesSLOrderGuide();
     }
@@ -228,5 +235,9 @@ public class Dashboard {
         if(dashboardPage.isDraftOrderPopUpDisplayed()){
             dashboardPage.clickOnNoDraftOrder();
         }
+    }
+
+    public static void clickOnPlaceOrder_Cashback_Foods () throws InterruptedException {
+        dashboardPage.clickOnPlaceOrder_Cashback_Foods();
     }
 }

@@ -111,7 +111,7 @@ public class Order {
     public static boolean isAreYouSurePopUpDisplayed(){
         return orderPage.isAreYouSurePopUpDisplayed();
     }
-    public static void clickYes(){
+    public static void clickYes() throws InterruptedException {
         orderPage.clickYes();
     }
     public static void editOrderGuideName(String name) throws InterruptedException {
@@ -135,6 +135,27 @@ public class Order {
     public static void addOrderGuideLocation()throws InterruptedException{
         orderPage.clickOrderGuideLocationDropDown();
         orderPage.clickOrderGuideLocationDropDownOption();
+    }
+    public static void clickFindMoreInCatalog()throws InterruptedException{
+        orderPage.clickFindMoreInCatalog();
+    }
+    public static boolean isInactiveItemDetectedPopUpDisplay()throws InterruptedException{
+        return orderPage.isInactiveItemDetectedPopUpDisplay();
+    }
+    public static boolean isThreeDotDropDownOptionDisplayed(String option)throws InterruptedException{
+        return orderPage.isThreeDotDropDownOptionDisplayed(option);
+    }
+    public static void clickEditGuideOption()throws InterruptedException{
+        orderPage.clickEditGuideOption();
+    }
+    public static boolean isSelectLocationPopUpDisplayed()throws InterruptedException{
+        return orderPage.isSelectLocationPopUpDisplayed();
+    }
+    public static void selectLocationSupplier(String location)throws InterruptedException{
+         orderPage.selectLocationSupplier(location);
+    }
+    public static void clickViewCatalogOption()throws InterruptedException{
+        orderPage.clickViewCatalogOption();
     }
 
 

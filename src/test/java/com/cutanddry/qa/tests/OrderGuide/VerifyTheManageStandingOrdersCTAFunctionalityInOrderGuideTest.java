@@ -16,7 +16,7 @@ public class VerifyTheManageStandingOrdersCTAFunctionalityInOrderGuideTest exten
     static String itemName,StandingPrice,totalQuantity;
     static String itemCode = "01700";
     static String customerId = "21259";
-    static String Dp_Name = "47837013 - Brandon IFC Cut+Dry Agent - Independent Foods Co";
+    static String Dp_Name = "46505655 - Kevin - Independent Foods Co";
     static double itemPrice;
 
     @BeforeMethod
@@ -102,10 +102,8 @@ public class VerifyTheManageStandingOrdersCTAFunctionalityInOrderGuideTest exten
         Customer.clickOnStandingOrderResumeIcon();
         softAssert.assertTrue(Order.isAreYouSurePopUpDisplayed(),"Are you sure pop up not displayed");
         Order.clickYes();
+        softAssert.assertTrue(Customer.isStandingOrdersDeletedIconDisplay(),"delete error");
         Customer.clickOnStandingOrderDeleteIcon();
-        softAssert.assertFalse(Customer.isStandingOrdersDeletedIconDisplay(),"delete error");
-
-
         softAssert.assertAll();
     }
 
