@@ -9,36 +9,36 @@
         <parameter name="PART" value="Regression_8" />
         <parameter name="PART" value="Part Eight" />
         <classes>
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInTheOrderGuideSectionFromTheOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectionOfMultipleUOMsFromTheOrderGuideSectionAndOrderSubmissionFromTheOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInThePDPSectionFromTheOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectionOfMultipleUOMsFromThePDPSectionAndOrderSubmissionFromOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInTheReviewOrderSectionFromTheOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheDeleteItemsProductsFromMultipleUOMsInTheReviewOrderSectionTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithEditFlowTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithDraftOrderTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSideTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyPlaceOrderWithMultiUOMForNonIntegratedTest" />
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyProductWithDifferentCombinationsOfUOMsCanBeAddedFromCatalogInOrderReviewSectionTest" />
+<!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInTheOrderGuideSectionFromTheOperatorSideTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectionOfMultipleUOMsFromTheOrderGuideSectionAndOrderSubmissionFromTheOperatorSideTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInThePDPSectionFromTheOperatorSideTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectionOfMultipleUOMsFromThePDPSectionAndOrderSubmissionFromOperatorSideTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheEditQuantityOfMultipleUOMsInTheReviewOrderSectionFromTheOperatorSideTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheDeleteItemsProductsFromMultipleUOMsInTheReviewOrderSectionTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithEditFlowTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyingThatSelectingMultipleUOMFromTheOrderGuideSubmittingOrdersCompletingOrdersAndCheckingOrderHistoryWithDraftOrderTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheBehaviourOfMultiUoMsWhenRecreatingAnOrderFromTheOperatorSideTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyPlaceOrderWithMultiUOMForNonIntegratedTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyProductWithDifferentCombinationsOfUOMsCanBeAddedFromCatalogInOrderReviewSectionTest" />-->
 
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCustomOrderGuideSectionTest"/>
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyWhiteLabelCustomOrderGuideSectionTest"/>
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCustomOrderGuideSectionTest"/>-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyWhiteLabelCustomOrderGuideSectionTest"/>-->
 
-            <class name="com.cutanddry.qa.tests.Pay.VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureEnabledTest"/>
-            <class name="com.cutanddry.qa.tests.Pay.VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureDisabledTest"/>
-<!--            TODO: Need to resolve the invoice download and print issue with feature team-->
-<!--            <class name="com.cutanddry.qa.tests.History.VerifyTheInvoiceDownloadAndPrintFeatureTest"/>-->
+<!--            <class name="com.cutanddry.qa.tests.Pay.VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureEnabledTest"/>-->
+<!--            <class name="com.cutanddry.qa.tests.Pay.VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureDisabledTest"/>-->
+<!--&lt;!&ndash;            TODO: Need to resolve the invoice download and print issue with feature team&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="com.cutanddry.qa.tests.History.VerifyTheInvoiceDownloadAndPrintFeatureTest"/>&ndash;&gt;-->
 
-            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyReportIssueButtonIsEnabledTest"/>
-            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyReportIssueButtonIsDisabledTest"/>
+<!--            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyReportIssueButtonIsEnabledTest"/>-->
+<!--            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyReportIssueButtonIsDisabledTest"/>-->
 
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifySubstituteItemsNotDisplayedIfTurnedOffCustomerProfileTest"/>
+<!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifySubstituteItemsNotDisplayedIfTurnedOffCustomerProfileTest"/>-->
 
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyNavigatingToOrderGuideTest"/>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyAddingItemToCartOfTheSelectedSupplierTest"/>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateDraftCreationOfTheSelectedSupplierTest"/>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateNavigatingToRelevantDraftOrderFromDraftsTest"/>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSubmittingOrderOfTheSelectedSupplierTest"/>
+<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyNavigatingToOrderGuideTest"/>-->
+<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyAddingItemToCartOfTheSelectedSupplierTest"/>-->
+<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateDraftCreationOfTheSelectedSupplierTest"/>-->
+<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateNavigatingToRelevantDraftOrderFromDraftsTest"/>-->
+<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSubmittingOrderOfTheSelectedSupplierTest"/>-->
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateAddingItemToOrderGuideOfTheSelectedSupplierTest"/>
 
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateItemSearchByNameOrderCodeForSelectedSupplierTest"/>
