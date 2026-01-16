@@ -9,40 +9,40 @@
         <parameter name="PART" value="Regression_9" />
         <parameter name="PART" value="Part Nine" />
         <classes>
-<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierCatalogWithSwitchFlowTest"/>-->
-<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierLogoWithSwitchFlowTest"/>-->
-<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierBannerWithSwitchFlowTest"/>-->
-<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierRecentOrderHistoryWithSwitchFlowTest"/>-->
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierCatalogWithSwitchFlowTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierLogoWithSwitchFlowTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierBannerWithSwitchFlowTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheSupplierRecentOrderHistoryWithSwitchFlowTest"/>
 
-<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheWLUserNavigatedToTheParentSupplierTest"/>-->
-<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateWhiteLabelSuppliersSelectionSwitchTest"/>-->
-<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidatePreSelectedSupplierRoutingWhenLoadingWhiteLabelAppTest"/>-->
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheWLUserNavigatedToTheParentSupplierTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateWhiteLabelSuppliersSelectionSwitchTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidatePreSelectedSupplierRoutingWhenLoadingWhiteLabelAppTest"/>
 
-<!--            <class name="com.cutanddry.qa.tests.Substitutions.VerifySubstituteItemWithSubstitutingAnItemForCustomerWithGroupCode1000Test" />-->
-<!--            <class name="com.cutanddry.qa.tests.Substitutions.VerifyDoNotSubOptionForCustomerWithGroupCode1000Test" />-->
-<!--            <class name="com.cutanddry.qa.tests.Substitutions.VerifyPlacingAnOrderForChainCustomersWithProprietaryItemsTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Substitutions.VerifySubstitutingAnItemForCustomerWithBranchCodes1246Test" />-->
-<!--            <class name="com.cutanddry.qa.tests.Substitutions.VerifyDoNotSubOptionForCustomerWithBranchCode1246Test" />-->
-<!--            <class name="com.cutanddry.qa.tests.Substitutions.VerifyPlacingAnOrderForCustomerWithAnyOtherBranchCodeTest" />-->
+            <class name="com.cutanddry.qa.tests.Substitutions.VerifySubstituteItemWithSubstitutingAnItemForCustomerWithGroupCode1000Test" />
+            <class name="com.cutanddry.qa.tests.Substitutions.VerifyDoNotSubOptionForCustomerWithGroupCode1000Test" />
+            <class name="com.cutanddry.qa.tests.Substitutions.VerifyPlacingAnOrderForChainCustomersWithProprietaryItemsTest" />
+            <class name="com.cutanddry.qa.tests.Substitutions.VerifySubstitutingAnItemForCustomerWithBranchCodes1246Test" />
+            <class name="com.cutanddry.qa.tests.Substitutions.VerifyDoNotSubOptionForCustomerWithBranchCode1246Test" />
+            <class name="com.cutanddry.qa.tests.Substitutions.VerifyPlacingAnOrderForCustomerWithAnyOtherBranchCodeTest" />
 
-<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheCompanySwitchTest"/>-->
-<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSupplierSelectionModalAtLogIinAfterSessionTest"/>-->
-<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSupplierSelectionModalAfterLogIinAndSessionTest"/>-->
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateTheCompanySwitchTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSupplierSelectionModalAtLogIinAfterSessionTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSupplierSelectionModalAfterLogIinAndSessionTest"/>
 
-<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSupplierSelectionModalCloseBehaviourTest"/>-->
-<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyLastOrderedPricesAreNotShowingInOrderGuidesTest"/>-->
-<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyCustomAccountHoldMessageIsDisplayedForCarmelaOnOrderSubmissionTest"/>-->
-<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyGenericAccountHoldMessageIsDisplayedOnOrderSubmissionTest"/>-->
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSupplierSelectionModalCloseBehaviourTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyLastOrderedPricesAreNotShowingInOrderGuidesTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyCustomAccountHoldMessageIsDisplayedForCarmelaOnOrderSubmissionTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyGenericAccountHoldMessageIsDisplayedOnOrderSubmissionTest"/>
 
-<!--            <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureDisplayWhenChatModuleEnableTest"/>-->
-<!--            <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureNotDisplayWhenChatModuleDisableTest"/>-->
-<!--            <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureNotDisplayWhenChatModuleDisableInWhiteLabelCustomerTest"/>-->
+            <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureDisplayWhenChatModuleEnableTest"/>
+            <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureNotDisplayWhenChatModuleDisableTest"/>
+            <class name="com.cutanddry.qa.tests.Chat.VerifyTheChatFeatureNotDisplayWhenChatModuleDisableInWhiteLabelCustomerTest"/>
 
-<!--            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveDeliveryAsTheFulfillmentTypeTest"/>-->
-<!--            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveMailDeliveryAsTheFulfillmentTypeTest"/>-->
-<!--            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHavePickUpWillCallAsTheFulfillmentTypeTest"/>-->
-<!--            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveDeliveryAsTheFulfillmentTypeEditOrderSubmissionTest"/>-->
-<!--            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveMailDeliveryAsTheFulfillmentTypeEditOrderSubmissionTest"/>-->
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveDeliveryAsTheFulfillmentTypeTest"/>
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveMailDeliveryAsTheFulfillmentTypeTest"/>
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHavePickUpWillCallAsTheFulfillmentTypeTest"/>
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveDeliveryAsTheFulfillmentTypeEditOrderSubmissionTest"/>
+            <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveMailDeliveryAsTheFulfillmentTypeEditOrderSubmissionTest"/>
             <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHavePickUpWillCallAsTheFulfillmentTypeEditOrderSubmissionTest"/>
             <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveDeliveryAsTheFulfillmentTypeDraftOrderSubmissionTest"/>
             <class name="com.cutanddry.qa.tests.Fulfillment_Type.VerifyTheRestaurantCanHaveMailDeliveryAsTheFulfillmentTypeDraftOrderSubmissionTest"/>

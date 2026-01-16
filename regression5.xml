@@ -9,24 +9,24 @@
         <parameter name="PART" value="Regression_5" />
         <parameter name="PART" value="Part Five" />
         <classes>
-<!--            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderGuideQtyEditTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierCartQtyEditTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionFromDraftTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierCartDeleteTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderGuideItemHideTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderEditTest" />-->
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderGuideQtyEditTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierCartQtyEditTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionFromDraftTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierCartDeleteTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderGuideItemHideTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.Coupa_Cafe.VerifyCoupaCafeNonIntegratedSupplierOrderEditTest" />
 
-<!--            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierOrderSubmissionTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierOrderGuideEditTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierCartEditTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierCartDeleteTest" />-->
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierOrderSubmissionTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierOrderGuideEditTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierCartEditTest" />
+            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyNonIntegratedSupplierCartDeleteTest" />
 
-<!--            <class name="com.cutanddry.qa.tests.Drafts.VerifyOrderDraftsTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderWithoutAddingAnyItemsTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromOrderGuideTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromCatalogTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromPDPTest" />-->
+            <class name="com.cutanddry.qa.tests.Drafts.VerifyOrderDraftsTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderWithoutAddingAnyItemsTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromOrderGuideTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromCatalogTest" />
+            <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromPDPTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifySubmitDraftOrderByAddingItemsFromOrderGuideCatalogPDPTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifyDeleteDraftOrderTest" />
             <class name="com.cutanddry.qa.tests.Drafts.VerifyPendingApprovalsAreClickableTest" />
