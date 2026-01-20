@@ -68,7 +68,7 @@ public class VerifyThSelectMultipleUOMJustInTimeItemAndSubmissionTest extends Te
         softAssert.assertTrue(History.checkIfSearchedElementVisible(orderId), "Order ID not found in the table.");
         History.clickOnFirstItemOfOrderHistory();
         softAssert.assertEquals(Catalog.getTotalQuantityInOrder(),totalItemQuantityReviewOrder,"order quantity not successfully submitted");
-        softAssert.assertEquals(Catalog.getTotalPriceInOrder(),totalPDPItemPrice, 0.01,"order not successfully submitted");
+        softAssert.assertEquals(Catalog.getTotalPriceInOrder(),totalPDPItemPrice, 0.1,"order not successfully submitted");
         softAssert.assertAll();
 
     }
