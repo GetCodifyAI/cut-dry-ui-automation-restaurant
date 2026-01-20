@@ -10,7 +10,7 @@ public class CatalogPage extends LoginPage {
     String btn_editQuantities = "//div[text()='Organic Bananas - 2 LB']/../../following-sibling::*//div//button[text()='Edit Quantities']";
     String btn_addToCartMinusQuantity = "((//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::*//*[name()='svg' and contains(@data-icon, 'minus')])[UOM]";
     By btn_addToCart = By.xpath("(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//button[text()='Add to Cart']");
-    String getPriceUOM = "((//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::*//div//span[contains(text(),'$')][1])[UOM]";
+    String getPriceUOM = "(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div//span[contains(text(),'$')])[UOM]";
     By btn_backToCatalog = By.xpath("//button[contains(text(),'Back')]");
     String multiUomDropDownOG = "(//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg'])[1]";
     String btn_OGAddToCartPlusQuantity ="(//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='plus'])[UOM]";
@@ -114,6 +114,7 @@ public class CatalogPage extends LoginPage {
     }
     private double extractPrice(By priceLocator) {
         restaurantUI.waitForVisibility(priceLocator);
+
         String tagName = restaurantUI.getElement(priceLocator).getTagName();
         String priceText;
 
@@ -124,8 +125,13 @@ public class CatalogPage extends LoginPage {
         }
 
         System.out.println("Extracted Price: " + priceText);
-        return Double.valueOf(priceText.replace("$", "").replace("/cs", "").replace("/lb", "").replace("/pkg", "").trim());
+
+        // ✅ Extract only numbers and decimal
+        String numericPrice = priceText.replaceAll("[^0-9.]", "");
+
+        return Double.parseDouble(numericPrice);
     }
+
     public void clickOnBackToCatalog(){
         restaurantUI.waitForVisibility(btn_backToCatalog);
         restaurantUI.waitForClickability(btn_backToCatalog);
