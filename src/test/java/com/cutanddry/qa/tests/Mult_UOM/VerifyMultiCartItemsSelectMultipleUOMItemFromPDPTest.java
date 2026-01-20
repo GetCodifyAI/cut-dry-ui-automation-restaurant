@@ -14,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyMultiCartItemsSelectMultipleUOMItemFromPDPTest extends TestBase {
     static User user;
     String itemName = "A/P Deo Men Adventure";
-    String itemName2 = "Chicken Flavour Base";
+    String itemName2 = "Almond Extract";
 
     String uom1 = "1";
     String uom2 = "2";
