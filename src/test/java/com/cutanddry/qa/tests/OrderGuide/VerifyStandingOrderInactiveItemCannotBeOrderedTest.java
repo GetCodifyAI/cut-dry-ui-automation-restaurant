@@ -37,10 +37,10 @@ public class VerifyStandingOrderInactiveItemCannotBeOrderedTest extends TestBase
         Dashboard.navigateToOrderGuide();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 
-//        Login.navigateToLoginAs();
-//        Login.goToDistributor(Dp_Name);
-//        Dashboard.isUserNavigatedToDistributorDashboard();
-//        Assert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(), "login error");
+        Login.navigateToLoginAs();
+        Login.goToDistributor(Dp_Name);
+        Dashboard.isUserNavigatedToDistributorDashboard();
+        Assert.assertTrue(Dashboard.isUserNavigatedToDistributorDashboard(), "login error");
 
         Dashboard.navigateToCatalog();
         softAssert.assertTrue(Catalog.isUserNavigatedToCatalog(), "navigation error");
