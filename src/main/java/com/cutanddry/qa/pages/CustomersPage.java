@@ -258,6 +258,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By tbx_homeSearch = By.xpath("//input[@placeholder='Search items by name or code...']");
     By btn_homeSearch = By.xpath("//button/*[local-name()='svg' and @data-icon='magnifying-glass']");
     By txt_editItem = By.xpath("//*[contains(text(), 'Edit Item')]");
+    By editItemNameTextField = By.xpath("//label[contains(text(),'Item Name')]/following-sibling::input");
     By caseUnit = By.xpath("//label[text()='Unit']/../following-sibling::div[text()='Case']");
     String multiUomDropDownIndicator = "//td[text()='CODE']/following-sibling::td[1]//div/*[local-name()='svg']";
     By txt_recentOrder = By.xpath("//span[text()='Recent Orders']");
@@ -1885,6 +1886,17 @@ public void clickOnCloseOrderGuideEditor(){
     public boolean isEditItemPopupDisplayed(){
         restaurantUI.waitForVisibility(txt_editItem);
         return restaurantUI.isDisplayed(txt_editItem);
+    }
+    public void clearAndEditItemName(String newItemName) throws InterruptedException {
+        restaurantUI.waitForVisibility(editItemNameTextField);
+        restaurantUI.clearUsingJavaScript(editItemNameTextField);
+        restaurantUI.waitForCustom(1000);
+        restaurantUI.sendKeys(editItemNameTextField, newItemName);
+    }
+    public void clickSaveItemBtnOnEditPopup() throws InterruptedException {
+        restaurantUI.waitForClickability(saveItemBtn);
+        restaurantUI.click(saveItemBtn);
+        restaurantUI.waitForCustom(5000);
     }
     public void clickOnCaseUnit()throws InterruptedException{
         restaurantUI.waitForClickability(caseUnit);

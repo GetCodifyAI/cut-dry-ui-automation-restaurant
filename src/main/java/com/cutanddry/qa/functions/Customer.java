@@ -879,6 +879,12 @@ public class Customer {
     public static boolean isEditItemPopupDisplayed(){
         return customersPage.isEditItemPopupDisplayed();
     }
+    public static void clearAndEditItemName(String newItemName) throws InterruptedException {
+        customersPage.clearAndEditItemName(newItemName);
+    }
+    public static void clickSaveItemBtnOnEditPopup() throws InterruptedException {
+        customersPage.clickSaveItemBtnOnEditPopup();
+    }
     public static void clickOnCaseUnit() throws InterruptedException {
         customersPage.clickOnCaseUnit();
     }
