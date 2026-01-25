@@ -13,7 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyUniversalAppAdminRolesTest extends TestBase {
     static User user;
-    static String itemName = "01700";
+    static String itemName = "Artichoke -24CT";
 
     @BeforeMethod
     public void setUp(){
@@ -35,6 +35,7 @@ public class VerifyUniversalAppAdminRolesTest extends TestBase {
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
         Customer.clickOnBackBtnInEditOrderGuide();
         Customer.searchItemOnOrderGuide(itemName);
+        Boolean itemNameFromFirstRow = Customer.getItemNameFirstRow().toLowerCase().contains(itemName.toLowerCase());
         softAssert.assertTrue(Customer.getItemNameFirstRow().toLowerCase().contains(itemName.toLowerCase()),"item mismatch");
         Customer.increaseFirstRowQtyByOne();
         Customer.goToCatalog();
