@@ -1779,5 +1779,16 @@ public class Customer {
         return customersPage.isBrandDataDisplayedInListView();
     }
 
+    public static void updateItemName(String newItemName) {
+        customersPage.updateItemName(newItemName);
+    }
+
+    public static String getItemNameFromEditPopup() {
+        return customersPage.getItemNameFromEditPopup();
+    }
+
+    public static void clickSaveItemBtnWithoutRefresh() {
+        customersPage.clickSaveItemBtnWithoutRefresh();
+    }
 
 }
