@@ -506,8 +506,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String txt_brandColumnData = "//table//tbody//tr[INDEX]//td[contains(@class,'brand')] | //table//tbody//tr[INDEX]/td[3]";
     By txt_firstItemBrandInListView = By.xpath("(//table//tbody//tr//td[3])[1]");
     By txt_firstItemNameInListView = By.xpath("(//table//tbody//tr//td[1]//div[@data-tip='View Product Details'] | //table//tbody//tr//td[1]//span)[1]");
-
-
+    By editItemNameTextField = By.xpath("//label[contains(text(),'Item Name')]/following-sibling::input");
 
 
 
@@ -3074,6 +3073,18 @@ public void clickOnCloseOrderGuideEditor(){
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public void clearAndEditItemName(String newItemName) throws InterruptedException {
+        restaurantUI.waitForVisibility(editItemNameTextField);
+        restaurantUI.clearUsingJavaScript(editItemNameTextField);
+        restaurantUI.waitForCustom(1000);
+        restaurantUI.sendKeys(editItemNameTextField, newItemName);
+    }
+    public void clickSaveItemBtnOnEditPopup() throws InterruptedException {
+        restaurantUI.waitForClickability(saveItemBtn);
+        restaurantUI.click(saveItemBtn);
+        restaurantUI.waitForCustom(5000);
     }
 
 
