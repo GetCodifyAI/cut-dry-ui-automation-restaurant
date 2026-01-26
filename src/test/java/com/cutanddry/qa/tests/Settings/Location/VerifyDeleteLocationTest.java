@@ -17,6 +17,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyDeleteLocationTest extends TestBase {
     static User user;
     String testLocation = "Test Location Updated";
+    String streetAddress = "Test Address";
 
     @BeforeMethod
     public void setUp(){
@@ -31,6 +32,14 @@ public class VerifyDeleteLocationTest extends TestBase {
         Dashboard.isUserNavigatedToDashboard();
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Settings.clickOnLocationsUnderSettings();
+        Settings.AddLocation();
+        softAssert.assertTrue(Settings.isAddLocationOverlayDisplayed(),"Error in displaying add location overlay");
+        Settings.enterLocationName(testLocation);
+        Settings.enterStreetAddress(streetAddress);
+        Settings.clickAddLocationBtnInOverlay();
+        softAssert.assertTrue(Settings.isSuccessOverlayDisplayed(),"Error in displaying success overlay");
+        Users.clickOnOkBtnInSuccessOverlay();
+        softAssert.assertTrue(Settings.isAddedLocationDisplayedInLocations(testLocation),"Added Location not displayed");
         Settings.clickOnLocationInGrid(testLocation);
         softAssert.assertTrue(Settings.isEditLocationOverlayDisplayed(),"Error in displaying edit location overlay");
         Settings.DeleteLocation();
@@ -38,7 +47,6 @@ public class VerifyDeleteLocationTest extends TestBase {
         Settings.clickYesOnDeleteLocationOverlay();
         Users.clickOnOkBtnInSuccessOverlay();
         softAssert.assertFalse(Settings.isEditedLocationDisplayedInLocations(testLocation),"Location not deleted");
-
         softAssert.assertAll();
     }
 
