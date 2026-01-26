@@ -1779,5 +1779,12 @@ public class Customer {
         return customersPage.isBrandDataDisplayedInListView();
     }
 
+    public static void clearAndEditItemName(String newItemName) throws InterruptedException {
+        customersPage.clearAndEditItemName(newItemName);
+    }
+    public static void clickSaveItemBtnOnEditPopup() throws InterruptedException {
+        customersPage.clickSaveItemBtnOnEditPopup();
+    }
+
 
 }
