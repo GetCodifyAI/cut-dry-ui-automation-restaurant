@@ -3076,18 +3076,13 @@ public void clickOnCloseOrderGuideEditor(){
         }
     }
 
-    public void updateItemName(String newItemName) {
+    public void clearAndEditItemName(String newItemName) {
         restaurantUI.waitForVisibility(itemNameTextField);
         restaurantUI.clearWithAllSelect(itemNameTextField);
         restaurantUI.sendKeysRaw(itemNameTextField, newItemName);
     }
 
-    public String getItemNameFromEditPopup() {
-        restaurantUI.waitForVisibility(itemNameTextField);
-        return restaurantUI.getText(itemNameTextField, "value");
-    }
-
-    public void clickSaveItemBtnWithoutRefresh() {
+    public void clickSaveItemBtnOnEditPopup() {
         restaurantUI.click(saveItemBtn);
         try {
             restaurantUI.waitForCustom(3000);

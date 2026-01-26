@@ -19,12 +19,10 @@ public class VerifySearchFeatureAfterEditingItemNameForCoupaCafeUsersTest {
     String userName = "jcoupal@coupa";
     String supplierNameOne = "David Rio";
     String supplierNameTwo = "Performance Foodservice";
-    String originalItemNameOne;
-    String originalItemNameTwo;
-    String editedItemNameOne;
-    String editedItemNameTwo;
-    String itemCodeOne;
-    String itemCodeTwo;
+    String originalItemNameOne = "Chai Latte Mix";
+    String editedItemNameOne = "Chai Latte Mix Edited";
+    String originalItemNameTwo = "Coffee Creamer";
+    String editedItemNameTwo = "Coffee Creamer Edited";
 
     @BeforeMethod
     public void setUp() {
@@ -36,59 +34,45 @@ public class VerifySearchFeatureAfterEditingItemNameForCoupaCafeUsersTest {
     public void VerifySearchFeatureAfterEditingItemNameForCoupaCafeUsers() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
+        Dashboard.isUserNavigatedToDashboard();
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(), "login error");
         Login.navigateToLoginAs();
         Login.logInToOperator(userName);
 
         Dashboard.selectSupplier(supplierNameOne);
         Assert.assertTrue(Dashboard.isNavigatedToOperatorOrderGuide(supplierNameOne), "ERROR in Navigating to David Rio Order Guide");
-
-        originalItemNameOne = Customer.getItemNameFirstRow();
-        itemCodeOne = Customer.getItemCodeFirstRow();
-        editedItemNameOne = "EditedItem_" + System.currentTimeMillis();
-
         Customer.goToEdit();
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(), "ERROR in navigating to Order Guide Edit View for David Rio");
-        Customer.clickOnItemEditBtn(itemCodeOne);
-        Customer.updateItemName(editedItemNameOne);
-        Customer.clickSaveItemBtnWithoutRefresh();
-        Customer.clickOnBackBtnInEditOrderGuide();
-
+        Customer.clickOnItemEditBtn(originalItemNameOne);
+        softAssert.assertTrue(Customer.isEditItemPopupDisplayed(), "ERROR in displaying Edit Item popup for David Rio");
+        Customer.clearAndEditItemName(editedItemNameOne);
+        Customer.clickSaveItemBtnOnEditPopup();
+        Customer.closeOrderGuideEditor();
         Customer.searchItemOnOrderGuide(editedItemNameOne);
-        String searchResultOne = Customer.getFirstItemNameFrmSearchResults();
-        softAssert.assertTrue(searchResultOne.contains(editedItemNameOne) || editedItemNameOne.contains(searchResultOne),
-                "Search result does not contain the edited item name for David Rio. Expected: " + editedItemNameOne + ", Found: " + searchResultOne);
-
+        softAssert.assertTrue(Customer.getItemNameFirstRow().toLowerCase().contains(editedItemNameOne.toLowerCase()), "ERROR: Edited item name not found in search results for David Rio");
+        Customer.clickOnBackBtn();
         Customer.goToEdit();
-        Customer.clickOnItemEditBtn(itemCodeOne);
-        Customer.updateItemName(originalItemNameOne);
-        Customer.clickSaveItemBtnWithoutRefresh();
-        Customer.clickOnBackBtnInEditOrderGuide();
+        Customer.clickOnItemEditBtn(editedItemNameOne);
+        Customer.clearAndEditItemName(originalItemNameOne);
+        Customer.clickSaveItemBtnOnEditPopup();
+        Customer.closeOrderGuideEditor();
 
         Dashboard.selectSupplier(supplierNameTwo);
         Assert.assertTrue(Dashboard.isNavigatedToOperatorOrderGuide(supplierNameTwo), "ERROR in Navigating to Performance Foodservice Order Guide");
-
-        originalItemNameTwo = Customer.getItemNameFirstRow();
-        itemCodeTwo = Customer.getItemCodeFirstRow();
-        editedItemNameTwo = "EditedItem_" + System.currentTimeMillis();
-
         Customer.goToEdit();
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(), "ERROR in navigating to Order Guide Edit View for Performance Foodservice");
-        Customer.clickOnItemEditBtn(itemCodeTwo);
-        Customer.updateItemName(editedItemNameTwo);
-        Customer.clickSaveItemBtnWithoutRefresh();
-        Customer.clickOnBackBtnInEditOrderGuide();
-
+        Customer.clickOnItemEditBtn(originalItemNameTwo);
+        softAssert.assertTrue(Customer.isEditItemPopupDisplayed(), "ERROR in displaying Edit Item popup for Performance Foodservice");
+        Customer.clearAndEditItemName(editedItemNameTwo);
+        Customer.clickSaveItemBtnOnEditPopup();
+        Customer.closeOrderGuideEditor();
         Customer.searchItemOnOrderGuide(editedItemNameTwo);
-        String searchResultTwo = Customer.getFirstItemNameFrmSearchResults();
-        softAssert.assertTrue(searchResultTwo.contains(editedItemNameTwo) || editedItemNameTwo.contains(searchResultTwo),
-                "Search result does not contain the edited item name for Performance Foodservice. Expected: " + editedItemNameTwo + ", Found: " + searchResultTwo);
-
+        softAssert.assertTrue(Customer.getItemNameFirstRow().toLowerCase().contains(editedItemNameTwo.toLowerCase()), "ERROR: Edited item name not found in search results for Performance Foodservice");
+        Customer.clickOnBackBtn();
         Customer.goToEdit();
-        Customer.clickOnItemEditBtn(itemCodeTwo);
-        Customer.updateItemName(originalItemNameTwo);
-        Customer.clickSaveItemBtnWithoutRefresh();
-        Customer.clickOnBackBtnInEditOrderGuide();
+        Customer.clickOnItemEditBtn(editedItemNameTwo);
+        Customer.clearAndEditItemName(originalItemNameTwo);
+        Customer.clickSaveItemBtnOnEditPopup();
 
         softAssert.assertAll();
     }

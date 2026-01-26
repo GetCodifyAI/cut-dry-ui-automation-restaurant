@@ -1779,16 +1779,12 @@ public class Customer {
         return customersPage.isBrandDataDisplayedInListView();
     }
 
-    public static void updateItemName(String newItemName) {
-        customersPage.updateItemName(newItemName);
+    public static void clearAndEditItemName(String newItemName) {
+        customersPage.clearAndEditItemName(newItemName);
     }
 
-    public static String getItemNameFromEditPopup() {
-        return customersPage.getItemNameFromEditPopup();
-    }
-
-    public static void clickSaveItemBtnWithoutRefresh() {
-        customersPage.clickSaveItemBtnWithoutRefresh();
+    public static void clickSaveItemBtnOnEditPopup() {
+        customersPage.clickSaveItemBtnOnEditPopup();
     }
 
 }
