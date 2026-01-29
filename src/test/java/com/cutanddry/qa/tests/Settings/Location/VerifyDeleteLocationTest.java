@@ -16,7 +16,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyDeleteLocationTest extends TestBase {
     static User user;
-    String testLocation = "Test Location Updated";
+    String testLocation = "Test Location Updated One";
     String streetAddress = "Test Address";
 
     @BeforeMethod
