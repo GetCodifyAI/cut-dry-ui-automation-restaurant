@@ -23,7 +23,7 @@ public class HistoryPage extends TestBase {
     By btn_more_options = By.xpath("//span[text() = 'More Options']");
     By btn_print_order =By.xpath("//div[text() ='Print Order']");
     By txt_order_section = By.xpath("//div[starts-with(text(), 'Order #')]");
-    By btn_add_note =By.xpath("//div[@class='col-auto col']");
+    By btn_add_note =By.xpath("//span[normalize-space()='Add notes to this order that only your team can see']/parent::div");
     By txt_add_note = By.xpath("//div[@class = 'mont modal-title h4' and text()='Add Order Notes']");
     By btn_textarea =By.xpath("//textarea[@class = 'form-control']");
     By btn_save_changes =By.xpath("//button[@class='mt-2 btn btn-primary btn-block' and text() = 'Save Changes']");
@@ -65,7 +65,7 @@ public class HistoryPage extends TestBase {
     String locationDropDownOption = "//div[contains(@class,'themed_select__option') and text()='OPTION']";
     By invoiceUploadStatus = By.xpath("(//td//span[text()='Invoice Upload'])[1]");
     By btn_orderCheckoutReview = By.xpath("//div[text()='Total']/following-sibling::div[normalize-space()!='']");
-    By btn_orderItemCountReview = By.xpath("//td[contains(text(), 'Total Quantity')]/following-sibling::td[normalize-space()!='']");
+    By btn_orderItemCountReview = By.xpath("//div[text()='Total Qty']/following-sibling::*//span[1]");
     String orderTitle = "//*[contains(text(),'Order Number #ORDER_ID')]";
     By btn_submittedOrderTotal = By.xpath("(//*[contains(text(), 'Total')]/following-sibling::*[normalize-space()!=''])[last()]");
     By lbl_orderTableColumn = By.xpath("//table/thead/tr/th");

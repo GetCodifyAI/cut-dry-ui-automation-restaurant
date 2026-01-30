@@ -75,7 +75,7 @@ public class VerifyOrderMinimumIsNotAppliedWhenNoOrderMinimumIsConfiguredTest ex
         Customer.checkoutItems();
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
 
-        softAssert.assertTrue(Customer.isMinOrderBannerDisplayed(),"banner not appearing error");
+        softAssert.assertFalse(Customer.isMinOrderBannerDisplayed(),"banner is appearing");
         Customer.submitOrderMinimum();
         softAssert.assertFalse(Customer.isOrderMinPopupDisplayed(),"popup display error");
         Customer.clickOkOrderMinimum();
