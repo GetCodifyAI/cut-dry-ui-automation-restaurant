@@ -23,7 +23,7 @@
 <!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifySpecialInstructionsTextAreaFunctionalityOnReviewOrderScreenTest" />-->
 <!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyBackButtonNavigationOnReviewOrderScreenTest" />-->
 <!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyPriceDisclaimerTextOnReviewOrderScreenTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Orders.VerifyDuplicateOrderDetectionAndHandlingTest" />-->
+            <class name="com.cutanddry.qa.tests.Orders.VerifyDuplicateOrderDetectionAndHandlingTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyThreeDotMenuActionsVisibleInPlaceOrderScreenTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyEditGuideRoutesToCorrectOrderGuideEditorForThatSupplierTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyViewCatalogFromMenuMatchesInlineViewCatalogBehaviorTest" />
