@@ -158,6 +158,12 @@ public class CatalogPage extends LoginPage {
     }
     public String getMultiOrderedId(String uom) {
         String orderId = restaurantUI.getText(By.xpath(txt_orderIdMulti.replace("UOM", uom)));
+        if (orderId == null || orderId.isEmpty()) {
+            throw new RuntimeException("Order ID text is null or empty for UOM: " + uom + " - order confirmation may not be displayed");
+        }
+        if (!orderId.contains("#")) {
+            throw new RuntimeException("Order ID text does not contain '#' symbol. Actual text: " + orderId);
+        }
         return orderId.substring(orderId.indexOf("#") + 1).trim();
     }
     public double getTotalPriceUOM() throws InterruptedException {
