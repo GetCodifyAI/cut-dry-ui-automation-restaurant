@@ -13,7 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheSelectMultipleUOMFromDoNotForgetToOrderCarouselAndSubmissionTest extends TestBase {
     static User user;
-    static String Dp_Name = "46505655 - Kevin - Independent Foods Co";
+    static String Dp_Name = "Independent Foods Co";
     String searchItemName = "Carrot - Baby Peeled - 1 LB";
     String uomDropDownOption = "Multiple Units";
     String uom1 = "1";

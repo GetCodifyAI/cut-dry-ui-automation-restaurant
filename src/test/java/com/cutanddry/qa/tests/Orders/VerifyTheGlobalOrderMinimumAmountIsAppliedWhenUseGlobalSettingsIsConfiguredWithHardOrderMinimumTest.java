@@ -18,7 +18,7 @@ public class VerifyTheGlobalOrderMinimumAmountIsAppliedWhenUseGlobalSettingsIsCo
     static String orderMinimumType = "Hard Order Minimum";
     static String orderMinInternal = "50000";
     String distributor = "Independent Foods Co";
-    static String Dp_Name = "46505655 - Kevin - Independent Foods Co";
+    static String Dp_Name = "Independent Foods Co";
     static String orderMinimumSetting = "Use Global Settings";
     static String customerId = "97071";
 
