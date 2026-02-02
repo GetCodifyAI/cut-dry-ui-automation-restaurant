@@ -17,7 +17,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifySubstituteItemsNotDisplayedIfTurnedOffCustomerProfileTest extends TestBase {
     static User user;
 
-    static String Dp_Name = "46505655 - Kevin - Independent Foods Co";
+    static String Dp_Name = "Independent Foods Co";
     String CustomerCode = "21259";
     String disabledSub = "Disabled";
     String enabledSub = "Enabled";

@@ -21,7 +21,7 @@ public class VerifyPublicPayByBankAccountTest extends TestBase {
     static String routingNumber = "321081669";
     static String operatorUser = "65436339";
     static String vendorID = "63168995";
-    static String Dp_Name = "46505655 - Kevin - Independent Foods Co";
+    static String Dp_Name = "Independent Foods Co";
     static String customerId = "44939";
 
     @BeforeMethod

@@ -13,7 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyStandingOrderUponEditingWithInactiveItemsTest extends TestBase {
     static User user;
-    static String Dp_Name = "46505655 - Kevin - Independent Foods Co";
+    static String Dp_Name = "Independent Foods Co";
     String searchItemCode = "01775";
     static String itemName;
     static double itemPrice;
