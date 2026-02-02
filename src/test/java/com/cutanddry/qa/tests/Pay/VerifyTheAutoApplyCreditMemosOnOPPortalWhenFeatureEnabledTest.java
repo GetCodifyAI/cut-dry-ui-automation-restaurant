@@ -14,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureEnabledTest extends TestBase {
     static User user;
     String distributor = "Independent Foods Co";
-    static String Dp_Name = "46505655 - Kevin - Independent Foods Co";
+    static String Dp_Name = "Independent Foods Co";
     static String customerId = "21259";
 
 
