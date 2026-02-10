@@ -16,10 +16,10 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheOutOfStockLabelsDisplayWhenHideZeroStockLabelOnOperatorAppToggleDisabledTest extends TestBase {
     static User user;
-    static String OperatorName ="316152164";
-    static String CompanyName = "Vitco Foods";
-    static String itemCodeOG = "71600";
-    static String itemNameOG = "S/O Cup Paper Cold 16 OZ White";
+    static String OperatorName ="209163801";
+    static String CompanyName = "What Chefs Want - Rockies";
+    static String itemCodeOG = "91874";
+    static String itemNameOG = "Cheese - Cheddar White Ny";
     static String tag = "Out of stock";
 
     @BeforeMethod
