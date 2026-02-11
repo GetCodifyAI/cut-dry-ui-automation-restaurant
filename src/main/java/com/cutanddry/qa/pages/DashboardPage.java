@@ -17,32 +17,32 @@ public class DashboardPage extends LoginPage{
     By txt_disDashboard = By.xpath("//li[contains(text(),'Dashboard')]");
     By btn_cooksCompanyProduce = By.xpath("//div[contains(text(), 'Cooks Company Produce')]");
     By txt_approvals = By.xpath("//div[contains(text(), 'Approvals')]");
-    By btn_Reports = By.xpath("//a[contains(@data-tip, 'Reports')]");
-    By btn_approvals = By.xpath("//a[contains(@data-tip, 'Approvals')]");
-    By btn_drafts = By.xpath("//a[contains(@data-tip, 'View Drafts')]");
-    By btn_chats = By.xpath("//a[contains(@data-tip, 'Chat')]");
-    By btn_pay = By.xpath("//a[contains(@data-tip, 'View Invoices')]");
+    By btn_Reports = By.xpath("(//a[contains(@data-tip, 'Reports')])[1]");
+    By btn_approvals = By.xpath("(//a[contains(@data-tip, 'Approvals')])[1]");
+    By btn_drafts = By.xpath("(//a[contains(@data-tip, 'View Drafts')])[1]");
+    By btn_chats = By.xpath("(//a[contains(@data-tip, 'Chat')])[1]");
+    By btn_pay = By.xpath("(//a[contains(@data-tip, 'View Invoices')])[1]");
     By txt_drafts = By.xpath("//div[contains(text(), 'Drafts')]");
     By txt_chats = By.xpath("//li[contains(text(), 'Your Suppliers')]");
     By txt_pay = By.xpath("//h2[contains(text(), 'Invoices')]");
-    By btn_customers = By.xpath("//a[@data-tip='Customers']");
-    By btn_order = By.xpath("//a[@data-tip='Place Order']");
+    By btn_customers = By.xpath("(//a[@data-tip='Customers'])[1]");
+    By btn_order = By.xpath("(//a[@data-tip='Place Order'])[1]");
     String supplierTxt = "//tr[@class='_du1frc _14u3xd3 py-3']//div[text()='SUPPLIERNAME']";
     By MaxiesSLTxt = By.xpath("//div[@class='_hp19hv mx-3 aling-items-center d-flex']//span[@data-tip='Maxies SL']//div[text()='Maxies SL']");
-    By btn_Rewards = By.xpath("//a[contains(@data-tip, 'Rewards')]");
+    By btn_Rewards = By.xpath("(//a[contains(@data-tip, 'Rewards')])[1]");
     By txt_dp_dashboard = By.xpath("//h3[text()='Dashboard']");
     By btn_credit_requests = By.xpath("//a[@data-for='sideNavSupplierMenuOptions' and @href='/credit-requests']");
-    By users = By.xpath("//div[contains(text(),'Users')]");
+    By users = By.xpath("(//div[contains(text(),'Users')])[1]");
     By tbx_msg = By.xpath("//input[@placeholder='Message...']");
     String customerNameText = "//img[contains(@data-tip,'SUPPLIERNAME')]";
     By locationFilter = By.xpath("(//div[text()='Place Order']/following-sibling::div//div)[1]");
     By locationOption = By.xpath("//div[text()='Place Order']/following-sibling::*//div[contains(@id,'react-select') and contains(text(), 'All Locations')]");
-    By btn_catalog = By.xpath("//a[@data-tip='View Catalog']");
+    By btn_catalog = By.xpath("(//a[@data-tip='View Catalog'])[1]");
     By btn_settings = By.xpath("//a[@role='button' and contains(text(), 'Settings')]");
     By btn_orderSettings = By.xpath("//div[@arrowprops]//a[text()='Orders']");
     By txt_productCatalog = By.xpath("//div[text()='Choose your product catalog']");
     String chooseProductCatalog = "//span[text()='NAME']";
-    By btn_home = By.xpath("//a[@data-tip='Home']");
+    By btn_home = By.xpath("(//a[@data-tip='Home'])[1]");
     By txt_home = By.xpath("//li[text()='Home']");
     By btn_switch1932Saval = By.xpath("//button[text()='Switch to 1932 by Saval']");
     By btn_category = By.xpath("//div[text()='Shop Our Catalog']/following-sibling::*//div//p[text()='Beverages']");
@@ -152,20 +152,20 @@ public class DashboardPage extends LoginPage{
         restaurantUI.click(btn_cooksCompanyProduce);}
 
     public void clickOnDrafts() {
-        restaurantUI.click(btn_drafts);}
+        restaurantUI.clickWithFallback(btn_drafts);}
     public void clickOnChats() {
-        restaurantUI.click(btn_chats);}
+        restaurantUI.clickWithFallback(btn_chats);}
     public void clickOnReports() {
-        restaurantUI.click(btn_Reports);}
+        restaurantUI.clickWithFallback(btn_Reports);}
     public void clickOnPay() {
-        restaurantUI.click(btn_pay);}
+        restaurantUI.clickWithFallback(btn_pay);}
     public void clickOnApprovals() {
-        restaurantUI.click(btn_approvals);}
+        restaurantUI.clickWithFallback(btn_approvals);}
     public void clickOnCustomers(){
-        restaurantUI.click(btn_customers);
+        restaurantUI.clickWithFallback(btn_customers);
     }
     public void clickOnOrder() throws InterruptedException {
-        restaurantUI.click(btn_order);
+        restaurantUI.clickWithFallback(btn_order);
         restaurantUI.waitForCustom(2000);
     }
 
@@ -187,11 +187,11 @@ public class DashboardPage extends LoginPage{
     }
 
     public void clickOnUsers(){
-        restaurantUI.click(users);
+        restaurantUI.clickWithFallback(users);
     }
 
     public void clickOnRewards(){
-        restaurantUI.click(btn_Rewards);
+        restaurantUI.clickWithFallback(btn_Rewards);
     }
 
     public boolean isDistributorDashboardTextDisplayed(){
@@ -214,7 +214,7 @@ public class DashboardPage extends LoginPage{
         restaurantUI.click(locationOption);
     }
     public void clickOnCatalog(){
-        restaurantUI.click(btn_catalog);
+        restaurantUI.clickWithFallback(btn_catalog);
     }
     public void clickOnOrderSettings(){
         restaurantUI.scrollToElement(btn_settings);
@@ -232,7 +232,7 @@ public class DashboardPage extends LoginPage{
         restaurantUI.click(By.xpath(chooseProductCatalog.replace("NAME",name)));
     }
     public void clickOnHome() throws InterruptedException {
-        restaurantUI.click(btn_home);
+        restaurantUI.clickWithFallback(btn_home);
         restaurantUI.waitForCustom(2000);
     }
     public boolean isUserNavigateHome()throws InterruptedException{

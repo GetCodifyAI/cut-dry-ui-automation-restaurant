@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 
 public class SuppliersPage extends TestBase {
 
-    By btn_suppliers = By.xpath("//div[normalize-space(text()) = 'Suppliers']");
+    By btn_suppliers = By.xpath("(//div[normalize-space(text()) = 'Suppliers'])[1]");
     By txt_suppliers = By.xpath("//th[text()='Supplier Name']");
     By btn_addSupplier = By.xpath("//button[text()='Add Supplier']");
     By tbx_suppliers = By.xpath("//input[@placeholder='Supplier Name'][1]");
@@ -28,7 +28,7 @@ public class SuppliersPage extends TestBase {
 
 
 
-    public void clickSuppliers(){ restaurantUI.click(btn_suppliers); }
+    public void clickSuppliers(){ restaurantUI.clickWithFallback(btn_suppliers); }
 
     public boolean isSuppliersTextDisplayed(){
         try {
