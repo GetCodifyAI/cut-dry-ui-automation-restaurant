@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 
 public class HistoryPage extends TestBase {
     By btn_close = By.xpath("//span[text()='×']");
-    By btn_history = By.xpath("//a[contains(., 'History')]");
+    By btn_history = By.xpath("(//a[contains(., 'History')])[1]");
     By txt_history = By.xpath("//h2[text()='Order History']");
     By btn_search = By.xpath("//input[@placeholder='Search' and contains(@class, 'form-control')]");
     By first_row_order_details = By.xpath("//tr[2]/td[4]");
@@ -89,7 +89,7 @@ public class HistoryPage extends TestBase {
         restaurantUI.click(btn_close);
     }
     public void clickHistory(){
-        restaurantUI.click(btn_history);
+        restaurantUI.clickWithFallback(btn_history);
         try {
             restaurantUI.waitForCustom(3000);
         } catch (InterruptedException e) {
