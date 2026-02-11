@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 public class PayPage extends TestBase {
 
-    By btn_pay = By.xpath("//a[contains(@data-tip, 'View Invoices')]");
+    By btn_pay = By.xpath("(//a[contains(@data-tip, 'View Invoices')])[1]");
     By btn_paymentSettings = By.xpath("//button[contains(text(),'Payment Settings')]");
     By txt_paymentSettings = By.xpath("//h2[@class='_5kripx' and text()='Payment Settings']");
     By text_visibilityOfPaySuppliers = By.xpath("//h2[contains(text(),'Invoices')]");
@@ -108,7 +108,7 @@ public class PayPage extends TestBase {
 
 
     public void clickOnPay() {
-        restaurantUI.click(btn_pay);
+        restaurantUI.clickWithFallback(btn_pay);
     }
 
     public boolean isPaySupplierTextDisplayed() {

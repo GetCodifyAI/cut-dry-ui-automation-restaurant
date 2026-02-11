@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class OrderPage extends LoginPage{
     By btn_addNewSupplier = By.xpath("//span[text()='Add a new supplier']");
     String addedNewSupplier = "//td//div[contains(text(), 'SUPPLIER')]";
-    By btn_order = By.xpath("//div[normalize-space(text()) = 'Order']");
+    By btn_order = By.xpath("(//div[normalize-space(text()) = 'Order'])[1]");
     By txt_placeOrder = By.xpath("//div[contains(@class,'py-3') and text()='Place Order']");
     String btn_finishSetup = "//td//div[contains(text(), 'SUPPLIER')]/../../../following-sibling::td//button[contains(text(),'Finish Setup')]";
     By txt_editOrderGuide =By.xpath("//span[contains(text(), 'Edit Order Guide')]");
@@ -64,7 +64,7 @@ public class OrderPage extends LoginPage{
         return restaurantUI.isDisplayed(By.xpath(addedNewSupplier.replace("SUPPLIER",supplier)));
     }
     public void clickOrder(){
-        restaurantUI.click(btn_order);
+        restaurantUI.clickWithFallback(btn_order);
     }
     public boolean isPlaceOrderTextDisplayed(){
         try {

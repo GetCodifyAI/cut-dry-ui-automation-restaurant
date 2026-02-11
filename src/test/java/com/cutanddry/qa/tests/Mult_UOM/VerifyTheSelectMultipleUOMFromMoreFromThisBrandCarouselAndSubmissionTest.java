@@ -13,7 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheSelectMultipleUOMFromMoreFromThisBrandCarouselAndSubmissionTest extends TestBase {
     static User user;
-    static String Dp_Name = "46505655 - Kevin - Independent Foods Co";
+    static String Dp_Name = "Independent Foods Co";
     String searchItemName = "Del Monte Diced Peaches Fruit Cup";
     String searchItemName2 = "Chicken - Bones Natural Joyce Farms";
     String searchItemCde = "17859";
