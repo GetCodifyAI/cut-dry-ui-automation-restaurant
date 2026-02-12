@@ -4,21 +4,21 @@ import org.openqa.selenium.By;
 
 public class SettingsPage extends LoginPage{
 
-    By btn_settings = By.xpath("//a[contains(text(), 'Settings')]");
+    By btn_settings = By.xpath("(//a[contains(text(), 'Settings')])[1]");
     By btn_orders = By.xpath("(//a[@href='/settings/orders'])[2]");
     By tbx_cutOffTime = By.xpath("//input[@type='time']");
     By btn_saveChanges = By.xpath("//button[text()='Save Changes']");
-    By profileBtn = By.xpath("//div[@class='fade _1v9d984k mt-5 show']//a[contains(text(),'Profile')]");
+    By profileBtn = By.xpath("//div[@class='fade _1v9d984k show']//a[contains(text(),'Profile')]");
     By profileTextField = By.xpath("//label[contains(text(),'Name')]/following-sibling::div//input[@type='text']");
     By saveBtn = By.xpath("//button[contains(text(),'Save')]");
     By profileUpdateSuccessOverlay = By.xpath("//h2[contains(@class,'swal2-title') and contains(text(),'Profile updated successfully')]");
-    By businessBtn = By.xpath("//div[@class='fade _1v9d984k mt-5 show']//a[contains(text(),'Business')]");
+    By businessBtn = By.xpath("//div[@class='fade _1v9d984k show']//a[contains(text(),'Business')]");
     By restaurantNameTextField = By.xpath("//label[contains(text(),'Name')]/following-sibling::div//input[@class='form-control']");
     By companyDetailsUpdateSuccessOverlay = By.xpath("//h2[contains(@class,'swal2-title') and contains(text(),'Company details successfully edited.')]");
     By removeLogoBtn = By.xpath("//button[@class='mt-2 btn btn-link' and contains(text(),'Remove')]");
     By logoImage = By.xpath("//img[contains(@src,'ordering-supplies-images')]");
     By BrowseImgBtn = By.xpath("//*/input[@type='file']");
-    By locationsBtn = By.xpath("//div[@class='fade _1v9d984k mt-5 show']//a[contains(text(),'Locations')]");
+    By locationsBtn = By.xpath("//div[@class='fade _1v9d984k show']//a[contains(text(),'Locations')]");
     By addLocationBtn = By.xpath("//button[@class='px-4 btn btn-primary' and contains(text(),'Add Location')]");
     By locationNameTextField = By.xpath("//label[contains(text(),'Location Name')]/following-sibling::input[@type='text']");
     By addLocationTxt = By.xpath("//div[text()='Add Location']");
@@ -30,7 +30,7 @@ public class SettingsPage extends LoginPage{
     By deleteLocationBtn = By.xpath("//button[@class='btn btn-link' and contains(text(),'Delete Location')]");
     By deleteLocationOverlay = By.xpath("//h2[@id='swal2-title' and contains(text(),'Are you sure you want to delete this location?')]");
     By yesBtnInDeleteLocationOverlay = By.xpath("//button[@class='swal2-confirm _1fmw5qi order-2 swal2-styled' and contains(text(),'Yes')]");
-    By accountingBtn = By.xpath("//div[@class='fade _1v9d984k mt-5 show']//a[contains(text(),'Accounting')]");
+    By accountingBtn = By.xpath("//div[@class='fade _1v9d984k show']//a[contains(text(),'Accounting')]");
     By accountCatagory = By.xpath("//h5[text()='Accounting Categories']");
     By numberOfRows = By.xpath("//table[@class='table table-striped']/tbody/tr");
     By createCategoryBtn = By.xpath("//button[@class='btn btn-success' and contains(text(),'Create Category')]");
@@ -44,7 +44,7 @@ public class SettingsPage extends LoginPage{
     By txt_restaurant = By.xpath("//h2[text()='Company Settings']");
     By txt_locations = By.xpath("//h2[text()='Locations']");
     By btn_settings_ = By.xpath("//a[contains(@data-tip, 'Settings')]");
-    By exportBtn = By.xpath("//div[@class='fade _1v9d984k mt-5 show']//a[contains(text(),'Export')]");
+    By exportBtn = By.xpath("//div[@class='fade _1v9d984k show']//a[contains(text(),'Export')]");
     By txt_exportData = By.xpath("//h2[text()='Export Data']");
     By selectExportTypeDropDown = By.xpath("//span[text()='Select Export Type']");
     String exportTypeOption = "//a[text()='TYPE']";
@@ -60,7 +60,7 @@ public class SettingsPage extends LoginPage{
 
 
     public void clickOnSettings(){
-        restaurantUI.click(btn_settings);
+        restaurantUI.clickWithFallback(btn_settings);
     }
     public void clickOnSettingsBtn(){
         restaurantUI.click(btn_settings_);
@@ -81,7 +81,7 @@ public class SettingsPage extends LoginPage{
     }
 
     public void clickOnProfile() throws InterruptedException {
-        restaurantUI.click(profileBtn);
+        restaurantUI.clickWithFallback(profileBtn);
         restaurantUI.waitForCustom(3000);
     }
 
@@ -108,7 +108,7 @@ public class SettingsPage extends LoginPage{
     }
 
     public void clickOnBusiness() throws InterruptedException {
-        restaurantUI.click(businessBtn);
+        restaurantUI.clickWithFallback(businessBtn);
         restaurantUI.waitForCustom(1000);
     }
 
@@ -142,7 +142,7 @@ public class SettingsPage extends LoginPage{
     }
 
     public void clickOnLocationsBtn() throws InterruptedException {
-        restaurantUI.click(locationsBtn);
+        restaurantUI.clickWithFallback(locationsBtn);
         restaurantUI.waitForCustom(1000);
     }
 
@@ -199,7 +199,7 @@ public class SettingsPage extends LoginPage{
     }
 
     public void clickOnAccountingBtn(){
-        restaurantUI.click(btn_settings);
+        restaurantUI.clickWithFallback(btn_settings);
         restaurantUI.click(accountingBtn);
     }
     public boolean isNavigatedToAccountingCatagory(){
@@ -260,7 +260,7 @@ public class SettingsPage extends LoginPage{
        return restaurantUI.isDisplayed(By.xpath(addedCategoryCodeOrName.replace("CATEGORYCODE",categoryName)));
     }
     public void clickOnExportBtn() throws InterruptedException {
-        restaurantUI.click(exportBtn);
+        restaurantUI.clickWithFallback(exportBtn);
         restaurantUI.waitForCustom(1000);
     }
     public boolean isExportDataTextDisplayed()throws InterruptedException{
