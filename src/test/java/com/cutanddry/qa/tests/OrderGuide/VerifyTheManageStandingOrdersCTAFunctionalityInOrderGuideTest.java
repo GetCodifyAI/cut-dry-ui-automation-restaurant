@@ -16,7 +16,7 @@ public class VerifyTheManageStandingOrdersCTAFunctionalityInOrderGuideTest exten
     static String itemName,StandingPrice,totalQuantity;
     static String itemCode = "01700";
     static String customerId = "21259";
-    static String Dp_Name = "46505655 - Kevin - Independent Foods Co";
+    static String Dp_Name = "Independent Foods Co";
     static double itemPrice;
 
     @BeforeMethod
