@@ -35,7 +35,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_increaseQtyCatalog = By.xpath("//div[contains(@class, 'card-deck')]//*[name()='svg' and contains(@data-icon, 'plus')]");
     By btn_decreaseQtyCatalog = By.xpath("//div[contains(@class, 'card-deck')]//*[name()='svg' and contains(@data-icon,'minus')]");
     By tbx_itemQuantityCatalog = By.xpath("//input[@type='number']");
-    By lbl_itemPriceSearchCatalogList = By.xpath("//div[4]/div/div[1]/div/span[contains(text(), '$')]");
+    By lbl_itemPriceSearchCatalogList = By.xpath("//div[5]/div/div[1]/div/span[contains(text(), '$')]");
     By txt_addToCart = By.xpath("//button[contains(text(), 'Add to Cart')]");
     By lbl_itemPriceReviewCart = By.xpath("//td[text()='Total:']/following-sibling::td");
     By btn_increaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div/div[3]");
