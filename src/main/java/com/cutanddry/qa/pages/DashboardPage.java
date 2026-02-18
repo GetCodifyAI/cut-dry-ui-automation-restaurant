@@ -31,7 +31,7 @@ public class DashboardPage extends LoginPage{
     By MaxiesSLTxt = By.xpath("//div[@class='_hp19hv mx-3 aling-items-center d-flex']//span[@data-tip='Maxies SL']//div[text()='Maxies SL']");
     By btn_Rewards = By.xpath("(//a[contains(@data-tip, 'Rewards')])[1]");
     By txt_dp_dashboard = By.xpath("//h3[text()='Dashboard']");
-    By btn_credit_requests = By.xpath("//a[@data-for='sideNavSupplierMenuOptions' and @href='/credit-requests']");
+    By btn_credit_requests = By.xpath("(//a[contains(.,'Credit Req') and contains(@href,'credit-requests')])[2]");
     By users = By.xpath("(//div[contains(text(),'Users')])[1]");
     By tbx_msg = By.xpath("//input[@placeholder='Message...']");
     String customerNameText = "//img[contains(@data-tip,'SUPPLIERNAME')]";
