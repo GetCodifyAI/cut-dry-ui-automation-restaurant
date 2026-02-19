@@ -16,13 +16,13 @@ public class DashboardPage extends LoginPage{
     By NoBtnDraftOrder = By.xpath("//div[text()='No']");
     By txt_disDashboard = By.xpath("//li[contains(text(),'Dashboard')]");
     By btn_cooksCompanyProduce = By.xpath("//div[contains(text(), 'Cooks Company Produce')]");
-    By txt_approvals = By.xpath("//div[contains(text(), 'Approvals')]");
+    By txt_approvals = By.xpath("//li[normalize-space()='Approvals' and @aria-current='page']");
     By btn_Reports = By.xpath("(//a[contains(@data-tip, 'Reports')])[1]");
     By btn_approvals = By.xpath("(//a[contains(@data-tip, 'Approvals')])[1]");
     By btn_drafts = By.xpath("(//a[contains(@data-tip, 'View Drafts')])[1]");
     By btn_chats = By.xpath("(//a[contains(@data-tip, 'Chat')])[1]");
     By btn_pay = By.xpath("(//a[contains(@data-tip, 'View Invoices')])[1]");
-    By txt_drafts = By.xpath("//div[contains(text(), 'Drafts')]");
+    By txt_drafts = By.xpath("//li[@aria-current='page' and normalize-space()='Drafts']");
     By txt_chats = By.xpath("//li[contains(text(), 'Your Suppliers')]");
     By txt_pay = By.xpath("//h2[contains(text(), 'Invoices')]");
     By btn_customers = By.xpath("(//a[@data-tip='Customers'])[1]");
