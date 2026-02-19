@@ -43,7 +43,7 @@ public class SettingsPage extends LoginPage{
     By txt_profile = By.xpath("//h2[text()='Profile']");
     By txt_restaurant = By.xpath("//h2[text()='Company Settings']");
     By txt_locations = By.xpath("//h2[text()='Locations']");
-    By btn_settings_ = By.xpath("//a[contains(@data-tip, 'Settings')]");
+    By btn_settings_ = By.xpath("(//a[@href='/my-settings'])[2]");
     By exportBtn = By.xpath("//div[@class='fade _1v9d984k show']//a[contains(text(),'Export')]");
     By txt_exportData = By.xpath("//h2[text()='Export Data']");
     By selectExportTypeDropDown = By.xpath("//span[text()='Select Export Type']");
