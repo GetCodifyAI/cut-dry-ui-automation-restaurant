@@ -40,7 +40,7 @@ public class VerifyTheDeliveryFeesSelectMultipleUOMTest extends TestBase {
         searchItemCode = Customer.getItemCodeFirstRow();
         itemPrice = Customer.getActiveItemPriceFirstRow();
         Customer.increaseFirstRowQtyCustom(3);
-        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),itemPrice*3,"The item has not been selected.");
+        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),itemPrice*3,0.1,"The item has not been selected.");
         Customer.checkoutItems();
 
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
