@@ -592,6 +592,9 @@ public class Customer {
     public static void clickOnProduct(String name){
         customersPage.clickOnProduct(name);
     }
+    public static void clickOnProductStablePDP(String name){
+        customersPage.clickOnProductStablePDP(name);
+    }
     public static boolean isProductDetailsDisplayed(){
         return customersPage.isProductDetailsDisplayed();
     }
@@ -746,6 +749,9 @@ public class Customer {
         if (customersPage.caseMinNotMetDisplayed()){
             customersPage.clickYesDuplicatePopup();
         }
+        if (customersPage.isOrderMinPopupDisplayed()){
+            customersPage.clickPlaceOrderSoftOrderMinimum();
+        }
         if (customersPage.isDuplicatePopupDisplayed()){
             customersPage.clickYesDuplicatePopup();
         }
@@ -839,6 +845,13 @@ public class Customer {
     }
     public static void clickYesCaseMinimum() throws InterruptedException {
         customersPage.clickOnYes();
+        if (customersPage.isDuplicatePopupDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
+    }
+
+    public static void clickCancelCaseMinimum() throws InterruptedException {
+        customersPage.clickOnCancel();
         if (customersPage.isDuplicatePopupDisplayed()){
             customersPage.clickYesDuplicatePopup();
         }
