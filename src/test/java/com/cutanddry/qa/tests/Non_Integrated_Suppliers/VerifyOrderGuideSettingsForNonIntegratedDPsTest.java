@@ -4,6 +4,7 @@ import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.data.models.User;
 import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
+import com.cutanddry.qa.functions.History;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
 import org.testng.Assert;
@@ -40,8 +41,8 @@ public class VerifyOrderGuideSettingsForNonIntegratedDPsTest extends TestBase {
         Dashboard.selectSupplierWithoutClickSpecificCustomer(supplierName);
         Customer.expandMoreOptionsDropdown();
         Customer.orderGuideSettings();
-        Customer.setOrderMinimum("200");
-        Customer.setOrderCaseMinimum("10");
+        Customer.setOrderMinimum("100");
+        Customer.setOrderCaseMinimum("12");
         Customer.removeDeliveryDay("Sunday");
         Customer.clickSaveOrderGuideSettings();
         Thread.sleep(3000);
@@ -57,10 +58,12 @@ public class VerifyOrderGuideSettingsForNonIntegratedDPsTest extends TestBase {
         Customer.submitOrderMinimum();
         softAssert.assertTrue(Customer.isOrderMinPopupDisplayed(), "Order Minimum popup not displayed");
         Customer.clickBackToCartFromOrderMinimumPopup();
-        Customer.ClickSeveralTimesToIncreaseTheQuantity(7);
+        Customer.ClickSeveralTimesToIncreaseTheQuantity(10);
         Customer. submitOrderWithoutClickPopUpYes();
         softAssert.assertTrue(Customer.isCaseMinPopupDisplayed(), "Case  Minimum popup not displayed");
-        Customer.clickYesCaseMinimum();
+        Customer.clickCancelCaseMinimum();
+        Customer.ClickSeveralTimesToIncreaseTheQuantity(2);
+        Customer.submitOrderMinimum();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "Order not completed successfully");
         Customer.clickClose();
 

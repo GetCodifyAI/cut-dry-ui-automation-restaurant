@@ -843,6 +843,13 @@ public class Customer {
             customersPage.clickYesDuplicatePopup();
         }
     }
+
+    public static void clickCancelCaseMinimum() throws InterruptedException {
+        customersPage.clickOnCancel();
+        if (customersPage.isDuplicatePopupDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
+    }
     public static void clickOnInvoice(){
         customersPage.clickonInvoice();
         customersPage.isFirstRecordDisplayed();

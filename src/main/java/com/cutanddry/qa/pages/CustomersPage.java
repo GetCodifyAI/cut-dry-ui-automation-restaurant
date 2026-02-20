@@ -246,6 +246,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txt_minOrderBanner = By.xpath("//div[contains(text(), 'Add a few more items worth') and contains(text(), 'to meet minimum order amount')]");
     By btn_OK = By.xpath("//button[text()='OK']");
     By btn_yes = By.xpath("//button[text()='Yes']");
+    By btn_cancel= By.xpath("//button[text()='Cancel']");
     By btn_invoice = By.xpath("//a[text()='Invoices']");
     By cb_inInvoiceTable = By.xpath("//table/tbody/tr[1]/td[1]//div[contains(@class, '_du1frc')]");
     By substitutionsAccessEditBtn = By.xpath("//div[contains(text(), 'Substitutions')]//following-sibling::div//div//*[name()='svg' and contains(@data-icon, 'pen-to-square')]");
@@ -1825,6 +1826,10 @@ public void clickOnCloseOrderGuideEditor(){
     public void clickOnYes(){
         restaurantUI.waitForVisibility(btn_yes);
         restaurantUI.click(btn_yes);
+    }
+    public void clickOnCancel(){
+        restaurantUI.waitForVisibility(btn_cancel);
+        restaurantUI.click(btn_cancel);
     }
     public void clickonInvoice(){
         restaurantUI.click(btn_invoice);
