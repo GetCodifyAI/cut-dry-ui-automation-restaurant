@@ -16,11 +16,12 @@ public class DashboardPage extends LoginPage{
     By NoBtnDraftOrder = By.xpath("//div[text()='No']");
     By txt_disDashboard = By.xpath("//li[contains(text(),'Dashboard')]");
     By btn_cooksCompanyProduce = By.xpath("//div[contains(text(), 'Cooks Company Produce')]");
-    By txt_approvals = By.xpath("//li[normalize-space()='Approvals' and @aria-current='page']");
+    By txt_approvals = By.xpath("(//a[contains(@data-tip, 'Approvals')])[2]");
     By btn_Reports = By.xpath("(//a[contains(@data-tip, 'Reports')])[1]");
     By btn_approvals = By.xpath("(//a[contains(@data-tip, 'Approvals')])[1]");
     By btn_drafts = By.xpath("(//a[contains(@data-tip, 'View Drafts')])[1]");
     By btn_chats = By.xpath("(//a[contains(@data-tip, 'Chat')])[1]");
+    By btn_chats_visible = By.xpath("(//a[contains(@data-tip, 'Chat')])[2]");
     By btn_pay = By.xpath("(//a[contains(@data-tip, 'View Invoices')])[1]");
     By txt_drafts = By.xpath("//li[@aria-current='page' and normalize-space()='Drafts']");
     By txt_chats = By.xpath("//li[contains(text(), 'Your Suppliers')]");
@@ -97,15 +98,11 @@ public class DashboardPage extends LoginPage{
         return restaurantUI.isDisplayed(txt_pay);
     }
     public boolean isApprovalsTabDisplayed(){
-        try {
-            restaurantUI.waitForVisibility(txt_approvals);
-        } catch (Exception e){
-            return false;
-        }
+        restaurantUI.waitForVisibility(txt_approvals);
         return restaurantUI.isDisplayed(txt_approvals);
     }
     public void clickOnPlaceOrder() {
-        restaurantUI.click(btn_placeOrder);}
+        restaurantUI.clickWithFallback(btn_placeOrder);}
 
     public void clickOnPlaceOrder_Cashback_Foods() {
         restaurantUI.click(btn_placeOrder_Cashback_Foods);}
@@ -292,7 +289,7 @@ public class DashboardPage extends LoginPage{
          restaurantUI.clickUsingJavaScript(outSideModal);
     }
     public boolean isChatSectionDisplay()throws InterruptedException{
-        return restaurantUI.isDisplayed(btn_chats);
+        return restaurantUI.isDisplayed(btn_chats_visible);
     }
     public boolean isChatWithUsDisplay()throws InterruptedException{
         restaurantUI.waitForCustom(3000);

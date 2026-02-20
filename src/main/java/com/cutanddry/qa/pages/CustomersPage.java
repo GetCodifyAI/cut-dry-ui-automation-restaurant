@@ -167,6 +167,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String btn_catalogPDPMinusStable = "(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//*[name()='svg' and contains(@data-icon, 'minus')]";
     String lbl_catalogSearchResultItemList = "(//div[contains(@class,'card-deck')]//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))])[last()]";
     String txt_product = "//div[contains(@class,'_3quvq7 _1vlidrf' ) and contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]";
+    String txt_productStableToPdp = "//div[contains(@class,'_3quvq7' ) and contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]";
     By lbl_productDetails = By.xpath("//span[text()='Product Details']");
     By btn_catalogPlus = By.xpath("//*[name()='svg' and @data-icon='plus']");
     By itemSort = By.xpath("//div[contains(text(),'Sort Items By:')]/..//*[name()='svg']");
@@ -1450,6 +1451,10 @@ public void clickOnCloseOrderGuideEditor(){
     public void clickOnProduct(String name){
         restaurantUI.waitForVisibility(By.xpath(txt_product.replace("NAME", name)));
         restaurantUI.clickUsingJavaScript(By.xpath(txt_product.replace("NAME", name)));
+    }
+    public void clickOnProductStablePDP(String name){
+        restaurantUI.waitForVisibility(By.xpath(txt_productStableToPdp.replace("NAME", name)));
+        restaurantUI.clickUsingJavaScript(By.xpath(txt_productStableToPdp.replace("NAME", name)));
     }
     public boolean isProductDetailsDisplayed(){
         return restaurantUI.isDisplayed(lbl_productDetails);
