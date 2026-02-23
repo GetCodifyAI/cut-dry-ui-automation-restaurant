@@ -18,8 +18,8 @@ public class VerifyTheOutOfStockLabelsDisplayWhenHideZeroStockLabelOnOperatorApp
     static User user;
     static String OperatorName ="209163801";
     static String CompanyName = "What Chefs Want - Rockies";
-    static String itemCodeOG = "91874";
-    static String itemNameOG = "Cheese - Cheddar White Ny";
+    static String itemCodeOG = "96018";
+    static String itemNameOG = "Salt - Maldon Smoked Flake";
     static String tag = "Out of stock";
 
     @BeforeMethod
@@ -58,7 +58,7 @@ public class VerifyTheOutOfStockLabelsDisplayWhenHideZeroStockLabelOnOperatorApp
         Customer.checkoutItems();
         softAssert.assertFalse(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
 
-        Customer.clickOnProduct(itemNameOG);
+        Customer.clickOnProductStablePDP(itemNameOG);
         softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
         softAssert.assertTrue(Customer.isPDPItemDisplayTag(itemNameOG,tag),"tag display PDP error");
         softAssert.assertAll();
