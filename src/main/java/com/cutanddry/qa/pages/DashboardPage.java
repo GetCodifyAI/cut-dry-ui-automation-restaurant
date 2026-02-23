@@ -39,8 +39,8 @@ public class DashboardPage extends LoginPage{
     By locationFilter = By.xpath("(//div[text()='Place Order']/following-sibling::div//div)[1]");
     By locationOption = By.xpath("//div[text()='Place Order']/following-sibling::*//div[contains(@id,'react-select') and contains(text(), 'All Locations')]");
     By btn_catalog = By.xpath("(//a[@data-tip='View Catalog'])[1]");
-    By btn_settings = By.xpath("//a[@role='button' and contains(text(), 'Settings')]");
-    By btn_orderSettings = By.xpath("//div[@arrowprops]//a[text()='Orders']");
+    By btn_settings = By.xpath("(//a[@role='button' and contains(text(), 'Settings')])[last()]");
+    By btn_orderSettings = By.xpath("//div[contains(@class,'fade')]/a[text()='Orders']");
     By txt_productCatalog = By.xpath("//div[text()='Choose your product catalog']");
     String chooseProductCatalog = "//span[text()='NAME']";
     By btn_home = By.xpath("(//a[@data-tip='Home'])[1]");
@@ -61,7 +61,7 @@ public class DashboardPage extends LoginPage{
     By txt_selectOrderGuide = By.xpath("//div[text()='Select Order Guide']");
     By selectOrderGuide = By.xpath("//div[text()='Independent Foods Co']");
     By btn_selectOrderGuideCustom = By.xpath("//div[contains(text(),'Select Order Guide')]/following-sibling::div/div[1]");
-
+    By btn_viewMore = By.xpath("//*[local-name() = 'svg' and @data-icon='cdDotsGrid']");
 
 
     public boolean isDashboardTextDisplayed(){
@@ -214,6 +214,7 @@ public class DashboardPage extends LoginPage{
         restaurantUI.clickWithFallback(btn_catalog);
     }
     public void clickOnOrderSettings(){
+        restaurantUI.hoverOverElement(btn_viewMore);
         restaurantUI.scrollToElement(btn_settings);
         restaurantUI.clickUsingJavaScript(btn_settings);
         restaurantUI.hoverOverElement(btn_orderSettings);

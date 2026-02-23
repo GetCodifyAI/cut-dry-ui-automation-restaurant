@@ -13,7 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenSoftOrderMinimumTest extends TestBase {
     static User user;
-    static String OperatorName = "235564457";
+    static String OperatorName = "113107011";
     static String defaultOrderMin = "0";
     static String orderMinimumType = "Soft Order Minimum";
     static String orderMinInternal = "50000";
