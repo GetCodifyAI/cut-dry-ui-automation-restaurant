@@ -17,6 +17,10 @@ public class VerifyAddInstructionsPerItemFunctionalityOnReviewOrderScreenTest ex
     static double itemPrice;
     static String orderId;
 
+    String testInstructions = "Please slice thin";
+    String updatedInstructions = "Check max character count with typing le";
+    String maxCharacterLengthInstructions  = "Check max character count with typing letters";
+
     @BeforeMethod
     public void setUp() {
         initialization();
@@ -26,9 +30,7 @@ public class VerifyAddInstructionsPerItemFunctionalityOnReviewOrderScreenTest ex
     @Test(groups = "DOT-TC-3484")
     public void verifyAddInstructionsPerItemFunctionalityOnReviewOrderScreen() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
-        String testInstructions = "Please slice thin";
-        String updatedInstructions = "Check max character count with typing le";
-        String maxCharacterLengthInstructions  = "Check max character count with typing letters";
+
 
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(), "Login failed - user not on dashboard");
