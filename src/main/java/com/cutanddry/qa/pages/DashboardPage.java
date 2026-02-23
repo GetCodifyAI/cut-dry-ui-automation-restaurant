@@ -64,7 +64,6 @@ public class DashboardPage extends LoginPage{
     By btn_viewMore = By.xpath("//*[local-name() = 'svg' and @data-icon='cdDotsGrid']");
 
 
-
     public boolean isDashboardTextDisplayed(){
 //        try {
 //            restaurantUI.waitForVisibility(txt_dashboard);
