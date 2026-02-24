@@ -66,7 +66,7 @@ public class VerifyStandingOrderInactiveItemCannotBeOrderedTest extends TestBase
         softAssert.assertTrue(Customer.isCreateStandingOrdersButtonDisplay(), "Create Standing Orders button display error");
         Customer.clickCreateStandingOrders();
 
-        Customer.selectDeliveryDateAsLastBefore();
+       // Customer.selectDeliveryDateAsLastBefore();
         Customer.searchItemOnOrderGuide(itemCode);
 
         softAssert.assertTrue(Customer.isItemRowDisplayedByCode(itemCode), "Inactive item should be visible in Standing Order flow");

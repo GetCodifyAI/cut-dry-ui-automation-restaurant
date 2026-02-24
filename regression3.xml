@@ -34,8 +34,8 @@
             <class name="com.cutanddry.qa.tests.History.VerifyTheFilteringOrdersByOrderStatusTest" />
             <!--            TODO: upload invoice feature no longer in order history page-->
 <!--            <class name="com.cutanddry.qa.tests.History.VerifyTheUploadInvoiceFunctionalityTest" />-->
-
-            <class name="com.cutanddry.qa.tests.Rewards.VerifyAddSupplierOptionTest" />
+            <!--            TODO: upload add more supplier feature no longer in reward page-->
+<!--            <class name="com.cutanddry.qa.tests.Rewards.VerifyAddSupplierOptionTest" />-->
             <!-- <class name="com.cutanddry.qa.tests.Rewards.VerifyLaunchPadOptionTest" /> -->
             <class name="com.cutanddry.qa.tests.Rewards.VerifyRewardsFeatureForLearnMoreOptionTest" />
             <class name="com.cutanddry.qa.tests.Rewards.VerifySearchByDateRangeTest" />
