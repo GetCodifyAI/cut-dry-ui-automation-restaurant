@@ -61,6 +61,55 @@ public class KeywordBase {
         return this;
     }
 
+    public KeywordBase clicked(By by) {
+        try {
+            logger.info("Attempting to click element: {}", by);
+
+            WebElement element = wait.until(
+                    ExpectedConditions.presenceOfElementLocated(by));
+            logger.info("Element is present in DOM");
+
+            logger.info("Displayed: {}", element.isDisplayed());
+            logger.info("Enabled: {}", element.isEnabled());
+
+            wait.until(ExpectedConditions.elementToBeClickable(by));
+            logger.info("Element is clickable");
+
+            element.click();
+            logger.info("Clicked on element successfully: {}", by);
+
+        } catch (TimeoutException te) {
+            logger.error("Timeout waiting for element to be clickable: {}", by);
+            debugElementState(by);
+        } catch (Exception e) {
+            logger.error("Unexpected error while clicking element: {}", by, e);
+            debugElementState(by);
+        }
+
+        return this;
+    }
+
+    private void debugElementState(By by) {
+        try {
+            List<WebElement> elements = driver.findElements(by);
+
+            logger.info("Elements found count: {}", elements.size());
+
+            if (!elements.isEmpty()) {
+                WebElement el = elements.get(0);
+                logger.info("Displayed: {}", el.isDisplayed());
+                logger.info("Enabled: {}", el.isEnabled());
+                logger.info("Location: {}", el.getLocation());
+                logger.info("Size: {}", el.getSize());
+            } else {
+                logger.warn("Element not found in DOM at all.");
+            }
+
+        } catch (Exception ex) {
+            logger.error("Error while debugging element state", ex);
+        }
+    }
+
 
 
     public void pressTabKey() {
