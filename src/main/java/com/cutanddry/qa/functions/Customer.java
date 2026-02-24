@@ -1799,5 +1799,13 @@ public class Customer {
         customersPage.clickSaveItemBtnOnEditPopup();
     }
 
+    public static void typeOnStandingOrderTitle(String title) throws InterruptedException {
+        customersPage.typeOnStandingOrderTitle(title);
+    }
+
+    public static void clickYes() throws InterruptedException {
+        customersPage.clickYes();
+    }
+
 
 }

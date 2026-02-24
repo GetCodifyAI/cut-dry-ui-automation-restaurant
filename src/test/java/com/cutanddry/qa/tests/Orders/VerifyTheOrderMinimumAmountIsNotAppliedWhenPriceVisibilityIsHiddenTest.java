@@ -13,14 +13,14 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenTest extends TestBase {
     static User user;
-    static String OperatorName = "235564457";
+    static String OperatorName = "804381139";
     static String defaultOrderMin = "0";
     static String orderMinimumType = "Hard Order Minimum";
     static String orderMinInternal = "50000";
-    String distributor = "Independent Foods Co";
-    static String Dp_Name = "Independent Foods Co";
+    String distributor = "What Chefs Want - Rockies";
+    static String Dp_Name = "What Chefs Want - Rockies";
     static String orderMinimumSetting = "Use Global Settings";
-    static String customerId = "97071";
+    static String customerId = "2TASTE";
     static String priceVisibilityHidden = "Hidden";
     static String priceVisibilityVisible = "Visible";
 
@@ -62,8 +62,8 @@ public class VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenT
         softAssert.assertTrue(Customer.isCustomerSearchResultByCodeDisplayed(customerId), "Unable to find the customer Id");
         Customer.SelectCustomer(customerId);
         Customer.editStatusPriceVisibility(priceVisibilityHidden);
-        Customer.SelectOrderMinimumFromProfile(orderMinimumSetting);
-        Customer.ifHasHoldsRemoveHoldsFromCustomer();
+        //Customer.SelectOrderMinimumFromProfile(orderMinimumSetting);
+        //Customer.ifHasHoldsRemoveHoldsFromCustomer();
         Login.closePreviousTab();
 
         Login.navigateToLoginAs();
