@@ -1164,6 +1164,7 @@ public void clickOnCloseOrderGuideEditor(){
 
     public void clickOnEditSection(String name){
         restaurantUI.waitForVisibility(By.xpath(sectionEditBtn.replace("NAME", name)));
+        restaurantUI.scrollToElementStable(By.xpath(sectionEditBtn.replace("NAME", name)));
         restaurantUI.click(By.xpath(sectionEditBtn.replace("NAME", name)));
     }
 
