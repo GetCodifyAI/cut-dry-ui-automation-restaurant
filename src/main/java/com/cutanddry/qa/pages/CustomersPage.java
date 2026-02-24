@@ -24,7 +24,7 @@ By btn_decreaseQtyFirstRow = By.xpath("(//tr/td//div[contains(@data-tip,'View Pr
     By tbx_orderGuideSearch = By.xpath("//input[@placeholder='Search order guide...']");
     //By lbl_catalogSearchItemList = By.xpath("(//button[contains(@data-for,'tooltipundefined')]/ancestor::div[2]/following-sibling::div[2]/div/div)[1]");
     By lbl_catalogSearchItemList = By.xpath("(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div[2]/div/div)[1]");
-    By btn_addToCart = By.xpath("//button[contains(@data-for,'tooltipundefined')]/ancestor::div[3]//div/button/*[contains(@data-icon,'plus')]");
+    By btn_addToCart = By.xpath("(//button[normalize-space()='Add to Cart' and not(@disabled)])[1]");
 //    By tbx_itemQuantityFirstRow = By.xpath("//tr[1]//td[6]//input");
 By tbx_itemQuantityFirstRow = By.xpath("(//*[@data-input ='quantityInput'])[1]");
 //    By lbl_itemPriceFirstRow = By.xpath("(//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[5]//div)[1] | (//td//span//div[@data-tip='View Product Details']/ancestor::tr/td[5]//span)[1]");
@@ -35,7 +35,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_increaseQtyCatalog = By.xpath("//div[contains(@class, 'card-deck')]//*[name()='svg' and contains(@data-icon, 'plus')]");
     By btn_decreaseQtyCatalog = By.xpath("//div[contains(@class, 'card-deck')]//*[name()='svg' and contains(@data-icon,'minus')]");
     By tbx_itemQuantityCatalog = By.xpath("//input[@type='number']");
-    By lbl_itemPriceSearchCatalogList = By.xpath("//div[4]/div/div[1]/div/span[contains(text(), '$')]");
+    By lbl_itemPriceSearchCatalogList = By.xpath("//div[5]/div/div[1]/div/span[contains(text(), '$')]");
     By txt_addToCart = By.xpath("//button[contains(text(), 'Add to Cart')]");
     By lbl_itemPriceReviewCart = By.xpath("//td[text()='Total:']/following-sibling::td");
     By btn_increaseQtyReviewCart = By.xpath("//tr[2]/td[4]/div/div/div/div/div[3]");
@@ -167,6 +167,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     String btn_catalogPDPMinusStable = "(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//*[name()='svg' and contains(@data-icon, 'minus')]";
     String lbl_catalogSearchResultItemList = "(//div[contains(@class,'card-deck')]//div[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))])[last()]";
     String txt_product = "//div[contains(@class,'_3quvq7 _1vlidrf' ) and contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]";
+    String txt_productStableToPdp = "//div[contains(@class,'_3quvq7' ) and contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), translate('NAME', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))]";
     By lbl_productDetails = By.xpath("//span[text()='Product Details']");
     By btn_catalogPlus = By.xpath("//*[name()='svg' and @data-icon='plus']");
     By itemSort = By.xpath("//div[contains(text(),'Sort Items By:')]/..//*[name()='svg']");
@@ -246,6 +247,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txt_minOrderBanner = By.xpath("//div[contains(text(), 'Add a few more items worth') and contains(text(), 'to meet minimum order amount')]");
     By btn_OK = By.xpath("//button[text()='OK']");
     By btn_yes = By.xpath("//button[text()='Yes']");
+    By btn_cancel= By.xpath("//button[text()='Cancel']");
     By btn_invoice = By.xpath("//a[text()='Invoices']");
     By cb_inInvoiceTable = By.xpath("//table/tbody/tr[1]/td[1]//div[contains(@class, '_du1frc')]");
     By substitutionsAccessEditBtn = By.xpath("//div[contains(text(), 'Substitutions')]//following-sibling::div//div//*[name()='svg' and contains(@data-icon, 'pen-to-square')]");
@@ -350,15 +352,15 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txt_ManageStandingOrders = By.xpath("//div[text()='Manage Standing Orders']");
     By btn_CreateStandingOrders = By.xpath("//button[text()='Create a Standing Order']");
     By btn_removeDelivery = By.xpath("(//div[contains(@class, 'cd_themed_select__clear-indicator')])[1]");
-    By dropdown_delivery = By.xpath("(//div[text()='Delivery to Hayes:']/following-sibling::div//div[text()='Select Days...'])[1]");
+    By dropdown_delivery = By.xpath("(//div[contains(@class,'cd_themed_select__dropdown-indicator')])[1]");
     String txt_deliveryDay = "//div[text()='DAY']/preceding-sibling::input[@type='checkbox']";
     String txt_deliveryLastBeforeDay = "(//div[contains(@class, 'cd_themed_select__option')]//input[@type='checkbox'])[last()-1]";
     By btn_setStandingOrder = By.xpath("//button[text()='Set Standing Order']");
     By btn_resetStandingOrder = By.xpath("//button[text()='Reset Standing Order']");
     By txt_success = By.xpath("//h2[text()='Success']");
     By txt_reviewStandingOrders = By.xpath("//div[text()='Review Standing Order']");
-    By btn_editStandingOrderIcon = By.xpath("//button[@title='Edit']");
-    By btn_deleteStandingOrderIcon = By.xpath("//button[@title='Delete']");
+    By btn_editStandingOrderIcon = By.xpath("//button[.//span[text()='Edit']]");
+    By btn_deleteStandingOrderIcon = By.xpath("//button[.//span[text()='Edit']]/following-sibling::button[1]");
     By txt_deletePopup = By.xpath("//h2[text()='Are you sure?']");
     String standingOrder = "//div[text()=' (QUANTITY items for $PRICE)']";
     By btn_pauseStandingOrderIcon = By.xpath("//button[@title='Pause']");
@@ -415,7 +417,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txt_maxQuantityExceededModal = By.xpath("//div[@role='dialog']");
     By txt_maxQuantityExceededMessage = By.xpath("//div[@id='swal2-content' and text()='You have reached the maximum order quantity for this item.']");
     By btn_maxQuantityModalOk = By.xpath("//button[text()='OK']");
-    By btn_increaseQtyFirstRowDisabled = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'plus')])[1]/ancestor::button[@disabled] | (//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'plus')])[1][@disabled]");
+    By btn_increaseQtyFirstRowDisabled = By.xpath("//div[@class='d-flex align-items-center justify-content-center _ikqwqe btn-secondary disabled _1pcpsid py-2 ml-2 text-center align-middle']");
     String btn_catalogPDPPlusDisabled = "(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//*[name()='svg' and contains(@data-icon, 'plus')]/ancestor::button[@disabled]";
     String btn_reviewCartPlusDisabled = "//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='plus']/ancestor::button[@disabled]";
     String tbx_itemQuantityByCode = "//td[text()='CODE']/following-sibling::*//input[@data-input='quantityInput']";
@@ -508,7 +510,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txt_firstItemNameInListView = By.xpath("(//table//tbody//tr//td[1]//div[@data-tip='View Product Details'] | //table//tbody//tr//td[1]//span)[1]");
     By editItemNameTextField = By.xpath("//label[contains(text(),'Item Name')]/following-sibling::input");
 
-
+    By tbx_titleStandingOrder = By.xpath("//input[@placeholder='Enter title']");
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         /*restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -630,7 +632,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.waitForVisibility(btn_addToCart);
         restaurantUI.waitForClickability(btn_addToCart);
         restaurantUI.waitForCustom(4000);
-        restaurantUI.click(btn_addToCart);
+        restaurantUI.clicked(btn_addToCart);
         restaurantUI.waitForCustom(2000);
         restaurantUI.waitForElementEnabledState(btn_checkout, true);
     }
@@ -1162,6 +1164,7 @@ public void clickOnCloseOrderGuideEditor(){
 
     public void clickOnEditSection(String name){
         restaurantUI.waitForVisibility(By.xpath(sectionEditBtn.replace("NAME", name)));
+        restaurantUI.scrollToElementStable(By.xpath(sectionEditBtn.replace("NAME", name)));
         restaurantUI.click(By.xpath(sectionEditBtn.replace("NAME", name)));
     }
 
@@ -1449,6 +1452,10 @@ public void clickOnCloseOrderGuideEditor(){
     public void clickOnProduct(String name){
         restaurantUI.waitForVisibility(By.xpath(txt_product.replace("NAME", name)));
         restaurantUI.clickUsingJavaScript(By.xpath(txt_product.replace("NAME", name)));
+    }
+    public void clickOnProductStablePDP(String name){
+        restaurantUI.waitForVisibility(By.xpath(txt_productStableToPdp.replace("NAME", name)));
+        restaurantUI.clickUsingJavaScript(By.xpath(txt_productStableToPdp.replace("NAME", name)));
     }
     public boolean isProductDetailsDisplayed(){
         return restaurantUI.isDisplayed(lbl_productDetails);
@@ -1825,6 +1832,10 @@ public void clickOnCloseOrderGuideEditor(){
     public void clickOnYes(){
         restaurantUI.waitForVisibility(btn_yes);
         restaurantUI.click(btn_yes);
+    }
+    public void clickOnCancel(){
+        restaurantUI.waitForVisibility(btn_cancel);
+        restaurantUI.click(btn_cancel);
     }
     public void clickonInvoice(){
         restaurantUI.click(btn_invoice);
@@ -3085,9 +3096,19 @@ public void clickOnCloseOrderGuideEditor(){
         restaurantUI.waitForClickability(saveItemBtn);
         restaurantUI.click(saveItemBtn);
         restaurantUI.waitForCustom(5000);
+
     }
 
+    public void typeOnStandingOrderTitle(String title) throws InterruptedException {
+        restaurantUI.clear(tbx_titleStandingOrder);
+        restaurantUI.waitForCustom(1000);
+        restaurantUI.sendKeys(tbx_titleStandingOrder, title);
+    }
 
+    public void clickYes() throws InterruptedException {
+        restaurantUI.click(btn_yes);
+        restaurantUI.waitForCustom(1000);
+    }
 
 
 }

@@ -16,8 +16,8 @@ import org.testng.asserts.SoftAssert;
 public class VerifyFilterOptionOfTheRewardTypeTest extends TestBase {
     static User user;
     String dropDown = "Reward Type";
-    String dropDownOption = "Manufacturer-Direct Rebate";
-    String result = "Manufacturer-Direct Rebate";
+    String dropDownOption = "Manufacturer Cashback";
+    String result = "Manufacturer Cashback";
 
     @BeforeMethod
     public void setUp(){

@@ -14,7 +14,7 @@ import org.testng.asserts.SoftAssert;
 public class VerifyWLAppBookkeeperRolesTest extends TestBase {
     static User user;
     static String itemName = "Artichoke -24ct";
-    static String OperatorName = "Ayendra IFC WL";
+    static String OperatorName = "bookkeeper@cutanddry.com";
 
     @BeforeMethod
     public void setUp(){

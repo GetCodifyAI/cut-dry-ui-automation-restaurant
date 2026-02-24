@@ -36,8 +36,7 @@ public class VerifyRestaurantUpdateTest extends TestBase {
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
-        Dashboard.navigateToIndependentFoodsCo();
-        Dashboard.navigateToOrderGuide();
+
         Settings.clickOnBusinessUnderSettings();
         Settings.editNameInRestaurant(restaurantName);
         Settings.saveRestaurantChanges();

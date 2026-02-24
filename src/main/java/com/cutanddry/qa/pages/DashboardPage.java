@@ -16,13 +16,14 @@ public class DashboardPage extends LoginPage{
     By NoBtnDraftOrder = By.xpath("//div[text()='No']");
     By txt_disDashboard = By.xpath("//li[contains(text(),'Dashboard')]");
     By btn_cooksCompanyProduce = By.xpath("//div[contains(text(), 'Cooks Company Produce')]");
-    By txt_approvals = By.xpath("//div[contains(text(), 'Approvals')]");
+    By txt_approvals = By.xpath("(//a[contains(@data-tip, 'Approvals')])[2]");
     By btn_Reports = By.xpath("(//a[contains(@data-tip, 'Reports')])[1]");
     By btn_approvals = By.xpath("(//a[contains(@data-tip, 'Approvals')])[1]");
     By btn_drafts = By.xpath("(//a[contains(@data-tip, 'View Drafts')])[1]");
     By btn_chats = By.xpath("(//a[contains(@data-tip, 'Chat')])[1]");
+    By btn_chats_visible = By.xpath("(//a[contains(@data-tip, 'Chat')])[2]");
     By btn_pay = By.xpath("(//a[contains(@data-tip, 'View Invoices')])[1]");
-    By txt_drafts = By.xpath("//div[contains(text(), 'Drafts')]");
+    By txt_drafts = By.xpath("//li[@aria-current='page' and normalize-space()='Drafts']");
     By txt_chats = By.xpath("//li[contains(text(), 'Your Suppliers')]");
     By txt_pay = By.xpath("//h2[contains(text(), 'Invoices')]");
     By btn_customers = By.xpath("(//a[@data-tip='Customers'])[1]");
@@ -31,15 +32,15 @@ public class DashboardPage extends LoginPage{
     By MaxiesSLTxt = By.xpath("//div[@class='_hp19hv mx-3 aling-items-center d-flex']//span[@data-tip='Maxies SL']//div[text()='Maxies SL']");
     By btn_Rewards = By.xpath("(//a[contains(@data-tip, 'Rewards')])[1]");
     By txt_dp_dashboard = By.xpath("//h3[text()='Dashboard']");
-    By btn_credit_requests = By.xpath("//a[@data-for='sideNavSupplierMenuOptions' and @href='/credit-requests']");
+    By btn_credit_requests = By.xpath("(//a[contains(.,'Credit Req') and contains(@href,'credit-requests')])[2]");
     By users = By.xpath("(//div[contains(text(),'Users')])[1]");
     By tbx_msg = By.xpath("//input[@placeholder='Message...']");
     String customerNameText = "//img[contains(@data-tip,'SUPPLIERNAME')]";
     By locationFilter = By.xpath("(//div[text()='Place Order']/following-sibling::div//div)[1]");
     By locationOption = By.xpath("//div[text()='Place Order']/following-sibling::*//div[contains(@id,'react-select') and contains(text(), 'All Locations')]");
     By btn_catalog = By.xpath("(//a[@data-tip='View Catalog'])[1]");
-    By btn_settings = By.xpath("//a[@role='button' and contains(text(), 'Settings')]");
-    By btn_orderSettings = By.xpath("//div[@arrowprops]//a[text()='Orders']");
+    By btn_settings = By.xpath("(//a[@role='button' and contains(text(), 'Settings')])[last()]");
+    By btn_orderSettings = By.xpath("//div[contains(@class,'fade')]/a[text()='Orders']");
     By txt_productCatalog = By.xpath("//div[text()='Choose your product catalog']");
     String chooseProductCatalog = "//span[text()='NAME']";
     By btn_home = By.xpath("(//a[@data-tip='Home'])[1]");
@@ -60,7 +61,7 @@ public class DashboardPage extends LoginPage{
     By txt_selectOrderGuide = By.xpath("//div[text()='Select Order Guide']");
     By selectOrderGuide = By.xpath("//div[text()='Independent Foods Co']");
     By btn_selectOrderGuideCustom = By.xpath("//div[contains(text(),'Select Order Guide')]/following-sibling::div/div[1]");
-
+    By btn_viewMore = By.xpath("//*[local-name() = 'svg' and @data-icon='cdDotsGrid']");
 
 
     public boolean isDashboardTextDisplayed(){
@@ -97,15 +98,11 @@ public class DashboardPage extends LoginPage{
         return restaurantUI.isDisplayed(txt_pay);
     }
     public boolean isApprovalsTabDisplayed(){
-        try {
-            restaurantUI.waitForVisibility(txt_approvals);
-        } catch (Exception e){
-            return false;
-        }
+        restaurantUI.waitForVisibility(txt_approvals);
         return restaurantUI.isDisplayed(txt_approvals);
     }
     public void clickOnPlaceOrder() {
-        restaurantUI.click(btn_placeOrder);}
+        restaurantUI.clickWithFallback(btn_placeOrder);}
 
     public void clickOnPlaceOrder_Cashback_Foods() {
         restaurantUI.click(btn_placeOrder_Cashback_Foods);}
@@ -217,6 +214,7 @@ public class DashboardPage extends LoginPage{
         restaurantUI.clickWithFallback(btn_catalog);
     }
     public void clickOnOrderSettings(){
+        restaurantUI.hoverOverElement(btn_viewMore);
         restaurantUI.scrollToElement(btn_settings);
         restaurantUI.clickUsingJavaScript(btn_settings);
         restaurantUI.hoverOverElement(btn_orderSettings);
@@ -292,7 +290,7 @@ public class DashboardPage extends LoginPage{
          restaurantUI.clickUsingJavaScript(outSideModal);
     }
     public boolean isChatSectionDisplay()throws InterruptedException{
-        return restaurantUI.isDisplayed(btn_chats);
+        return restaurantUI.isDisplayed(btn_chats_visible);
     }
     public boolean isChatWithUsDisplay()throws InterruptedException{
         restaurantUI.waitForCustom(3000);

@@ -371,8 +371,8 @@ public class CatalogPage extends LoginPage {
         return restaurantUI.isDisplayed(txt_dealsTypeDownOption);
     }
     public void clickEditOnProductConfigs(){
-        restaurantUI.waitForVisibility(productConfigsEditBtn);
-        restaurantUI.click(productConfigsEditBtn);
+        restaurantUI.waitForVisibility( productCatalogEditBtn);
+        restaurantUI.click(productCatalogEditBtn);
     }
 
     public void clickEditOnProductCatalogControl(){
