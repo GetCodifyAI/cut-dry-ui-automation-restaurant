@@ -1169,6 +1169,23 @@ public class KeywordBase {
     public List<WebElement> findElements(By by) {
         return driver.findElements(by);
     }
+    public KeywordBase scrollToElementCenter(By by) {
+        try {
+            WebElement element = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(by)
+            );
+
+            ((JavascriptExecutor) driver).executeScript(
+                    "arguments[0].scrollIntoView({ block: 'center', inline: 'nearest' });",
+                    element
+            );
+
+            logger.info("Scrolled to element (centered): {}", by);
+        } catch (Exception e) {
+            logger.error("Failed to scroll to element: {}", by, e);
+        }
+        return this;
+    }
 
 }
 

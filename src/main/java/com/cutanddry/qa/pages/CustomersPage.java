@@ -359,13 +359,13 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_resetStandingOrder = By.xpath("//button[text()='Reset Standing Order']");
     By txt_success = By.xpath("//h2[text()='Success']");
     By txt_reviewStandingOrders = By.xpath("//div[text()='Review Standing Order']");
-    By btn_editStandingOrderIcon = By.xpath("//button[.//span[text()='Edit']]");
+    By btn_editStandingOrderIcon = By.xpath("//span[text()='Edit']");
     By btn_deleteStandingOrderIcon = By.xpath("//button[.//span[text()='Edit']]/following-sibling::button[1]");
     By txt_deletePopup = By.xpath("//h2[text()='Are you sure?']");
     String standingOrder = "//div[text()=' (QUANTITY items for $PRICE)']";
-    By btn_pauseStandingOrderIcon = By.xpath("//button[@title='Pause']");
+    By btn_pauseStandingOrderIcon = By.xpath("//button/*[contains(@data-icon,'circle-pause')]");
     By txt_pausedStandingOrders = By.xpath("//div[contains(text(),'(Paused) ')]");
-    By btn_resumeStandingOrderIcon = By.xpath("//button[@title='Resume']");
+    By btn_resumeStandingOrderIcon = By.xpath("//button/*[contains(@data-icon,'circle-play')]");
     String btn_addToRecentOrder = "//td[text()='ORDERID']/following-sibling::td/button[text()='Add to Order']";
     String increaseQuantityReviewPage = "//td[text()='CODE']/following-sibling::td//div/*[contains(@data-icon,'plus')]";
     String decreaseQuantityReviewPage = "//td[text()='CODE']/following-sibling::td//div/*[contains(@data-icon,'minus')]";
@@ -1845,8 +1845,8 @@ public void clickOnCloseOrderGuideEditor(){
     }
     public void clickEditSubstitutionsAccess(){
         restaurantUI.waitForVisibility(substitutionsAccessEditBtn);
-        restaurantUI.scrollToElement(substitutionsAccessEditBtn);
-        restaurantUI.click(substitutionsAccessEditBtn);
+        restaurantUI.scrollToElementCenter(substitutionsAccessEditBtn);
+        restaurantUI.clickWithFallback(substitutionsAccessEditBtn);
     }
     public void editSubstitutionStatus(String status){
         restaurantUI.click(substitutionDropDown);
