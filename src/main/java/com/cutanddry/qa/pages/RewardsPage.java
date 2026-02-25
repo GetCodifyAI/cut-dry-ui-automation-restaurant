@@ -15,17 +15,19 @@ public class RewardsPage extends TestBase {
     By text_visibilityOfSupplier = By.xpath("//h4[contains(text(),'Connect to Performance')]");
     By btn_launchpad = By.xpath("//button[contains(text(),'Go to Launchpad')]");
     By text_beplLaunchpad = By.xpath("//p[contains(text(),'Welcome to')]");
-    By btn_selectDateRange = By.xpath("//label[text()='Date Range']/following-sibling::div");
-    By btn_selectAllDates = By.xpath("//div[text()='All']");
+    By btn_selectDateRange = By.xpath("(//div[text()='Date Range']/../following-sibling::div)[last()]");
+    By btn_selectAllDates = By.xpath("(//div[text()='All'])[last()]");
     By link_orderID = By.xpath("(//a[contains(@href,'orders-revised')])[1]");
     String viewOrderName = "//div[text() = 'itemName']";
     By promotioOverlay = By.xpath("//*[contains(text(),'You could be earning more!')]");
     By mayBeLaterTxt = By.xpath("//*[contains(text(),'Maybe Later')]");
-    By txt_rewards = By.xpath("//div[text()='Cut+Dry Rewards']");
-    String rewardsDropDown = "//label[text()='DROPDOWN']/following-sibling::*//div[contains(text(),'Select...')]";
+    By txt_rewards = By.xpath("//li[text()='Rewards']");
+    String rewardsDropDown = "//div[text()='DROPDOWN']/../following-sibling::*//div[contains(text(),'Select...')]";
     String dropDownOption = "//div[contains(text(),'DROPDOWNOPTION')]";
-    String dropDownResult = "//td[contains(text(),'RESULT')]";
+    String dropDownResult = "//th[normalize-space(text())='Supplier']/../../following-sibling::*//td[contains(normalize-space(text()),'RESULT')]";
     String rewardsStatus = "//div[contains(text(),'STATUS')]";
+    By btn_ExternalReward = By.xpath("//a[@role='tab' and normalize-space()='External Rewards']");
+
 
     public void clickOnLearnMore(){restaurantUI.click(link_learnMore);
     }
@@ -133,11 +135,6 @@ public class RewardsPage extends TestBase {
         restaurantUI.click(By.xpath(dropDownOption.replace("DROPDOWNOPTION",Option)));
     }
     public boolean isResultDisplayed(String result){
-        try {
-            restaurantUI.waitForVisibility(By.xpath(dropDownResult.replace("RESULT",result)));
-        } catch (Exception e){
-            return false;
-        }
         return restaurantUI.isDisplayed(By.xpath(dropDownResult.replace("RESULT",result)));
     }
     public boolean isRewardsStatusDisplayed(String status){
@@ -147,6 +144,9 @@ public class RewardsPage extends TestBase {
             return false;
         }
         return restaurantUI.isDisplayed(By.xpath(rewardsStatus.replace("STATUS",status)));
+    }
+    public void clickOnExternalReward() throws InterruptedException {
+        restaurantUI.clickWithFallback(btn_ExternalReward);
     }
 
 }

@@ -187,10 +187,9 @@ public class DashboardPage extends LoginPage{
         restaurantUI.clickWithFallback(users);
     }
 
-    public void clickOnRewards(){
+    public void clickOnRewards() throws InterruptedException {
         restaurantUI.clickWithFallback(btn_Rewards);
     }
-
     public boolean isDistributorDashboardTextDisplayed(){
         try {
             restaurantUI.waitForVisibility(txt_dp_dashboard);

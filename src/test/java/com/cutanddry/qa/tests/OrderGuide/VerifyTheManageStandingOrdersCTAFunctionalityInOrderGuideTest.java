@@ -18,6 +18,7 @@ public class VerifyTheManageStandingOrdersCTAFunctionalityInOrderGuideTest exten
     static String customerId = "21259";
     static String Dp_Name = "Independent Foods Co";
     static double itemPrice;
+    static String title = "Test Order 3";
 
     @BeforeMethod
     public void setUp(){
@@ -38,16 +39,19 @@ public class VerifyTheManageStandingOrdersCTAFunctionalityInOrderGuideTest exten
         Customer.expandMoreOptionsDropdown();
         softAssert.assertTrue(Customer.isManageStandingOrdersDisplay(),"Manage Standing Orders option display error");
         Customer.clickManageStandingOrders();
+        Customer.deleteTheExistingStandingOrdersInManageIFAvailable();
        // softAssert.assertTrue(Customer.isManageStandingOrdersPopUpDisplay(),"Manage Standing Orders pop up display error");
         softAssert.assertTrue(Customer.isCreateStandingOrdersButtonDisplay()," Create Standing Orders button display error");
         Customer.clickCreateStandingOrders();
 
-        Customer.selectDeliveryDateAsLastBefore();
         Customer.searchItemOnOrderGuide(itemCode);
         itemPrice = Customer.getActiveItemPriceFirstRow();
         itemName = Customer.getItemNameFirstRow();
         Customer.increaseFirstRowQtyByOne();
         Customer.checkoutItems();
+        Customer.typeOnStandingOrderTitle(title);
+        Customer.selectDeliveryDateAsLastBefore();
+
         softAssert.assertTrue(Customer.isReviewStandingOrdersDisplayed(),"navigate error review standing order");
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
         Customer.setStandingOrder();

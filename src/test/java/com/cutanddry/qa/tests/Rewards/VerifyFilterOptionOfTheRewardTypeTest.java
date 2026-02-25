@@ -16,8 +16,8 @@ import org.testng.asserts.SoftAssert;
 public class VerifyFilterOptionOfTheRewardTypeTest extends TestBase {
     static User user;
     String dropDown = "Reward Type";
-    String dropDownOption = "Manufacturer Cashback";
-    String result = "Manufacturer Cashback";
+    String dropDownOption = "Dining Alliance Rebate";
+    String result = "Dining Alliance Rebate";
 
     @BeforeMethod
     public void setUp(){
@@ -33,6 +33,7 @@ public class VerifyFilterOptionOfTheRewardTypeTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToRewards();
         softAssert.assertTrue(Rewards.isRewardsTextDisplayed(),"Rewards section navigation error");
+        Rewards.clickOnExternalReward();
         Rewards.selectAllDateRange();
         Rewards.clickAllDateRange();
         Rewards.selectRewardsFilter(dropDown,dropDownOption);
