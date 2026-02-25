@@ -30,26 +30,26 @@ public class VerifyUniversalAppBookkeeperRolesTest extends TestBase {
         Login.navigateToLoginAs();
         Login.loginAsBookkeeper(OperatorName);
         restaurantUI.switchToNewTab();
-//        Dashboard.navigateToOrder();
-//        Dashboard.navigateToIndependentFoodsCo();
-//        Dashboard.navigateToOrderGuide();
-//    //    Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
-//
-//        Customer.goToEdit();
-//        softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
-//        Customer.clickOnBackBtnInEditOrderGuide();
-//        Customer.searchItemOnOrderGuide(itemName);
-//        softAssert.assertTrue(Customer.getItemNameFirstRow().equalsIgnoreCase(itemName),"item mismatch");
-//        Customer.increaseFirstRowQtyBySixClassic();
-//        Customer.goToCatalog();
-//        softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
-//        Customer.searchItemOnCatalog(itemName);
-//        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().equalsIgnoreCase(itemName), "item not found");
-//        Customer.increaseCatalogQtyByThree();
-//        Customer.checkoutItems();
-//        Customer.submitOrder();
-//        softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
-//        Customer.clickClose();
+        Dashboard.navigateToOrder();
+        Dashboard.navigateToIndependentFoodsCo();
+        Dashboard.navigateToOrderGuide();
+    //    Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+
+        Customer.goToEdit();
+        softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
+        Customer.clickOnBackBtnInEditOrderGuide();
+        Customer.searchItemOnOrderGuide(itemName);
+        softAssert.assertTrue(Customer.getItemNameFirstRow().equalsIgnoreCase(itemName),"item mismatch");
+        Customer.increaseFirstRowQtyBySixClassic();
+        Customer.goToCatalog();
+        softAssert.assertTrue(Customer.isUserNavigatedToCatalog(),"navigation error");
+        Customer.searchItemOnCatalog(itemName);
+        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().equalsIgnoreCase(itemName), "item not found");
+        Customer.increaseCatalogQtyByThree();
+        Customer.checkoutItems();
+        Customer.submitOrder();
+        softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(),"order not completed");
+        Customer.clickClose();
 
         History.goToHistory();
         softAssert.assertTrue(History.isUserNavigatedToHistory(),"navigation to history error");
