@@ -110,10 +110,9 @@ public class Dashboard {
         dashboardPage.clickOnApprovals();
     }
 
-    public static void navigateToRewards() {
+    public static void navigateToRewards() throws InterruptedException {
         dashboardPage.clickOnRewards();
     }
-
     public static boolean isUserNavigatedToDistributorDashboard(){
         return dashboardPage.isDistributorDashboardTextDisplayed();
     }

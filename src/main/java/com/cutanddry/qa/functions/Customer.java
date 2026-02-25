@@ -1806,6 +1806,12 @@ public class Customer {
     public static void clickYes() throws InterruptedException {
         customersPage.clickYes();
     }
+    public static void deleteTheExistingStandingOrdersInManageIFAvailable() throws InterruptedException {
+        for (int i = 0; i < 10 && customersPage.isStandingOrdersDeletedIconDisplay(); i++) {
+            customersPage.clickOnStandingOrderDeleteIcon();
+            Thread.sleep(200);
+        }
+    }
 
 
 }
