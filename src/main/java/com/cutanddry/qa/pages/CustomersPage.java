@@ -402,7 +402,13 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By txt_none = By.xpath("//div[contains(@class, 'themed_select__option') and  text()='None']");
     By btn_saveEditPriceVisibility = By.xpath("//button[normalize-space()='Save']");
 
-
+    By txt_maxQuantityExceededModal = By.xpath("//h2[contains(text(),'Maximum Quantity Exceeded')]");
+    By txt_maxQuantityExceededMessage = By.xpath("//div[contains(text(),'The maximum quantity allowed per item is 1,999')]");
+    By btn_maxQuantityModalOk = By.xpath("//button[text()='OK']");
+    By btn_increaseQtyFirstRowDisabled = By.xpath("(//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'plus')])[1]/ancestor::button[@disabled] | (//tr/td//div[contains(@data-tip,'View Product Details')]/following::td//div/*[contains(@data-icon,'plus')])[1][@disabled]");
+    String btn_catalogPDPPlusDisabled = "(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//*[name()='svg' and contains(@data-icon, 'plus')]/ancestor::button[@disabled]";
+    String btn_reviewCartPlusDisabled = "//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='plus']/ancestor::button[@disabled]";
+    String tbx_itemQuantityByCode = "//td[text()='CODE']/following-sibling::*//input[@data-input='quantityInput']";
 
 
 
@@ -3111,4 +3117,45 @@ public void clickOnCloseOrderGuideEditor(){
     }
 
 
+
+    public boolean isMaxQuantityExceededModalDisplayed() throws InterruptedException {
+        restaurantUI.waitForCustom(2000);
+        return restaurantUI.isDisplayed(txt_maxQuantityExceededModal);
+    }
+
+    public boolean isMaxQuantityExceededMessageDisplayed() throws InterruptedException {
+        return restaurantUI.isDisplayed(txt_maxQuantityExceededMessage);
+    }
+
+    public void clickMaxQuantityModalOk() throws InterruptedException {
+        restaurantUI.click(btn_maxQuantityModalOk);
+        restaurantUI.waitForCustom(2000);
+    }
+
+    public boolean isPlusButtonDisabledFirstRow() throws InterruptedException {
+        restaurantUI.waitForCustom(1000);
+        return restaurantUI.isDisplayed(btn_increaseQtyFirstRowDisabled);
+    }
+
+    public boolean isPlusButtonDisabledCatalogPDP(String name) throws InterruptedException {
+        restaurantUI.waitForCustom(1000);
+        return restaurantUI.isDisplayed(By.xpath(btn_catalogPDPPlusDisabled.replace("NAME", name)));
+    }
+
+    public boolean isPlusButtonDisabledReviewCart(String code) throws InterruptedException {
+        restaurantUI.waitForCustom(1000);
+        return restaurantUI.isDisplayed(By.xpath(btn_reviewCartPlusDisabled.replace("CODE", code)));
+    }
+
+    public String getItemQuantityByCode(String code) throws InterruptedException {
+        restaurantUI.waitForCustom(1000);
+        return restaurantUI.getText(By.xpath(tbx_itemQuantityByCode.replace("CODE", code)), "value");
+    }
+
+    public void setItemQuantityByCode(String code, String quantity) throws InterruptedException {
+        By quantityInput = By.xpath(tbx_itemQuantityByCode.replace("CODE", code));
+        restaurantUI.clearUsingJavaScript(quantityInput);
+        restaurantUI.sendKeys(quantityInput, quantity);
+        restaurantUI.waitForCustom(2000);
+    }
 }
