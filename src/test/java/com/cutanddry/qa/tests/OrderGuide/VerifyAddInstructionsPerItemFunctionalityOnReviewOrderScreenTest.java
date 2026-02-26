@@ -67,15 +67,18 @@ public class VerifyAddInstructionsPerItemFunctionalityOnReviewOrderScreenTest ex
         Drafts.clickDraft(String.valueOf(itemPrice));
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
         Customer.clickEditInstructionsForFirstItem();
-        softAssert.assertTrue(existingInstructions.contains(testInstructions) || testInstructions.contains(existingInstructions),
-                "Existing instructions not pre-populated in modal. Expected: " + testInstructions + ", Found: " + existingInstructions);
+        existingInstructions = Customer.getItemInstructionsText();
+        softAssert.assertNotNull(existingInstructions, "Instructions text is null after navigating from drafts");
+        softAssert.assertTrue(existingInstructions != null && (existingInstructions.contains(testInstructions) || testInstructions.contains(existingInstructions)),
+                "Existing instructions not pre-populated in modal after draft navigation. Expected: " + testInstructions + ", Found: " + existingInstructions);
 
         Customer.enterItemInstructions(maxCharacterLengthInstructions);
         Customer.saveItemInstructions();
         Customer.clickEditInstructionsForFirstItem();
         existingInstructions = Customer.getItemInstructionsText();
-        softAssert.assertTrue(existingInstructions.contains(updatedInstructions) || testInstructions.contains(existingInstructions),
-                "Existing instructions not Exceed the max character length. Expected: " + updatedInstructions + ", Found: " + maxCharacterLengthInstructions);
+        softAssert.assertNotNull(existingInstructions, "Instructions text is null after entering max character length instructions");
+        softAssert.assertTrue(existingInstructions != null && (existingInstructions.contains(updatedInstructions) || updatedInstructions.contains(existingInstructions)),
+                "Existing instructions not Exceed the max character length. Expected: " + updatedInstructions + ", Found: " + existingInstructions);
         Customer.saveItemInstructions();
 
         Customer.clickEditInstructionsForFirstItem();
