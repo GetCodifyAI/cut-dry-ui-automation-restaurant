@@ -39,19 +39,9 @@ public class VerifyOrderGuideSettingsForScrapperIntegratedDPsTest extends TestBa
         Customer.clickOnBtnForRamona();
         Customer.expandMoreOptionsDropdown();
         Customer.orderGuideSettings();
-        Assert.assertTrue(Customer.isDisplayedMinOrderAmountLabel(),
-                "Min Order Amount label is NOT displayed"
-        );
-
-        Assert.assertTrue(
-                Customer.isDisplayedMinOrderCaseLabel(),
-                "Min Order Case label is NOT displayed"
-        );
-
-        Assert.assertTrue(
-                Customer.isDisplayedDeliveryDaysLabel(),
-                "Delivery Days label is NOT displayed"
-        );
+        Assert.assertTrue(Customer.isDisplayedMinOrderAmountLabel(), "Min Order Amount label is NOT displayed");
+        Assert.assertTrue(Customer.isDisplayedMinOrderCaseLabel(), "Min Order Case label is NOT displayed");
+        Assert.assertTrue(Customer.isDisplayedDeliveryDaysLabel(), "Delivery Days label is NOT displayed");
         Customer.setOrderMinimum("200");
         Customer.clickSaveOrderGuideSettings();
         Thread.sleep(3000);

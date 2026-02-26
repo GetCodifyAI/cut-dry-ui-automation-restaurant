@@ -830,6 +830,9 @@ public class Customer {
     }
     public static void submitOrderMinimum() throws InterruptedException {
         customersPage.submitOrder();
+        if (customersPage.isDuplicatePopupDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
     }
     public static boolean isOrderMinPopupDisplayed(){
         return customersPage.isOrderMinPopupDisplayed();
