@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="regression suit" parallel="tests" thread-count="2">
+<suite name="regression suit" parallel="tests" thread-count="1">
     <listeners>
         <listener class-name="com.cutanddry.qa.utils.RetryTransformer"/>
         <listener class-name="com.cutanddry.qa.utils.TestNGListener"/>
