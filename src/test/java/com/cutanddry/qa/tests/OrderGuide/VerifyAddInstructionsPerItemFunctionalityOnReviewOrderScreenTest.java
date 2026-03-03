@@ -18,8 +18,10 @@ public class VerifyAddInstructionsPerItemFunctionalityOnReviewOrderScreenTest ex
     static String orderId;
 
     String testInstructions = "Please slice thin";
-    String updatedInstructions = "Check max character count with typing le";
+    String updatedInstructions = "Check max character";
     String maxCharacterLengthInstructions  = "Check max character count with typing letters";
+    String supplierName = "Fortune fish-MO";
+    String userName = "savannah.miranda@noble33.com";
 
     @BeforeMethod
     public void setUp() {
@@ -31,13 +33,13 @@ public class VerifyAddInstructionsPerItemFunctionalityOnReviewOrderScreenTest ex
     public void verifyAddInstructionsPerItemFunctionalityOnReviewOrderScreen() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
 
-
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
-        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(), "Login failed - user not on dashboard");
+        Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(), "login error");
 
-        Dashboard.navigateToIndependentFoodsCo();
-        Dashboard.navigateToOrderGuide();
-
+        Login.navigateToLoginAs();
+        Login.logInToOperatorAsWhiteLabel(userName);
+        Customer.clickOnPlaceOrder();
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 
         Customer.increaseFirstRowQtyByOne();
         itemCode = Customer.getItemCodeFirstRow();
@@ -85,7 +87,7 @@ public class VerifyAddInstructionsPerItemFunctionalityOnReviewOrderScreenTest ex
         softAssert.assertTrue(Customer.isAddInstructionsLinkDisplayed(),
                 "Add Instructions link not displayed after clearing instructions");
 
-        Customer.clickEditInstructionsForFirstItem();
+        Customer.clickAddInstructionsForFirstItem();
         Customer.enterItemInstructions(testInstructions);
         Customer.saveItemInstructions();
 
