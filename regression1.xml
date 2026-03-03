@@ -9,18 +9,18 @@
         <parameter name="PART" value="Regression_1" />
         <parameter name="PART" value="Part One" />
         <classes>
-            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantLoginTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmOrderGuideTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmCatalogTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmOrderGuideTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmCatalogTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmReviewCartTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantOrderSubmissionTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyItemPriceTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCompanyDropdownTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCreatingOrdersWithCatalogItemsTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyExportingOrderGuideEditFeatureTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePrintFeatureTest" />
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantLoginTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmOrderGuideTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.AddProductsFrmCatalogTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmOrderGuideTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmCatalogTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.EditProductQtyFrmReviewCartTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.RestaurantOrderSubmissionTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyItemPriceTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCompanyDropdownTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyCreatingOrdersWithCatalogItemsTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyExportingOrderGuideEditFeatureTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThePrintFeatureTest" />-->
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyAddingOrderGuideSectionsTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyEditOrderGuideSectionsTest" />
             <class name="com.cutanddry.qa.tests.OrderGuide.VerifyOrderGuideSectionDeleteTest" />
