@@ -462,7 +462,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By chatWindowPlaceholderText = By.xpath("//input[@placeholder='Message...']");
     By contactSupplierBtn = By.xpath("//button[normalize-space()='Contact Supplier']");
 
-    By lnk_addInstructionsFirstItem = By.xpath("//div[normalize-space()='Add Instructions']");
+    By lnk_addInstructionsFirstItem = By.xpath("(//div[normalize-space()='Add Instructions'])[2]");
     String lnk_addInstructionsByItemCode = "//td[text()='ITEMCODE']/ancestor::tr//span[contains(text(),'Add Instructions')] | //td[text()='ITEMCODE']/ancestor::tr//a[contains(text(),'Add Instructions')]";
     String lnk_instructionsByItemCode = "//td[text()='ITEMCODE']/ancestor::tr//span[contains(text(),'Instructions')] | //td[text()='ITEMCODE']/ancestor::tr//a[contains(text(),'Instructions')]";
     By txt_itemInstructionModal = By.xpath("//div[contains(@class,'modal')]//div[contains(text(),'Item Instruction')] | //div[contains(@class,'modal')]//h5[contains(text(),'Instruction')]");
