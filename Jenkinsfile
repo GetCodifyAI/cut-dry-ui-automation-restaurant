@@ -19,7 +19,7 @@ pipeline {
     
     options {
         buildDiscarder(logRotator(numToKeepStr: '10'))
-        timeout(time: 4, unit: 'HOURS')
+        timeout(time: 5, unit: 'HOURS')
 //         parallelsAlwaysFailFast()
     }
     
