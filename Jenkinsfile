@@ -221,6 +221,38 @@ pipeline {
                          }
                      }
                 }
+
+                stage('Regression 13') {
+                     agent any
+                     steps {
+                         script {
+                             runTestSuiteWithCleanup('regression13.xml', 'Part_Thirteen', 13)
+                         }
+                     }
+                     post {
+                         always {
+                             script {
+                                  archiveAndCleanup('13', 'Regression 13 Test Report')
+                             }
+                         }
+                     }
+                }
+
+                stage('Regression 14') {
+                     agent any
+                     steps {
+                         script {
+                             runTestSuiteWithCleanup('regression14.xml', 'Part_Fourteen', 14)
+                         }
+                     }
+                     post {
+                         always {
+                             script {
+                                  archiveAndCleanup('14', 'Regression 14 Test Report')
+                             }
+                         }
+                     }
+                }
             }
         }
         
@@ -228,7 +260,7 @@ pipeline {
             agent any
             steps {
                 script {
-                    for (int i = 1; i <= 12; i++) {
+                    for (int i = 1; i <= 14; i++) {
                         try {
                             unstash "test-results-${i}"
                         } catch (Exception e) {
