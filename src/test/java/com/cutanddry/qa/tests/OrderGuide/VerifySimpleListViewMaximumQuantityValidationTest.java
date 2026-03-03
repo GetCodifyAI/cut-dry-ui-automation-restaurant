@@ -43,7 +43,7 @@ public class VerifySimpleListViewMaximumQuantityValidationTest extends TestBase 
         softAssert.assertTrue(Customer.isMaxQuantityErrorModalDisplayed(), "Error modal should not display for valid quantity 1999");
         String qty1 = Customer.getQuantitySimpleListViewByIndex(1);
         softAssert.assertEquals(qty1, validQuantity1, "Valid quantity 1999 should be accepted");
-
+        Customer.clickErrorModalOkButton();
         Customer.enterQuantitySimpleListViewByIndex(2, invalidQuantity);
         Customer.tabAwayFromQuantityField();
         softAssert.assertTrue(Customer.isMaxQuantityErrorModalDisplayed(), "Error modal should display for invalid quantity 2000");
