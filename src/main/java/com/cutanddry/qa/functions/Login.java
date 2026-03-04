@@ -142,5 +142,14 @@ public class Login {
     public static void openNewTabAndSwitchIt(){
         loginPage.openNewTabAndSwitchIt();
     }
+    public static void closeNewTabAndSwitchBack(){
+        loginPage.closeNewTabAndSwitchBack();
+    }
+    public static void navigateToNode(String Node){
+        loginPage.navigateToNode(Node);
+    }
+    public static void setValueToNode(String keyName, String valueName) throws InterruptedException {
+        loginPage.setValueToNode(keyName,valueName);
+    }
 
 }
