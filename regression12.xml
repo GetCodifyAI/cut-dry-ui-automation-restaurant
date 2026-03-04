@@ -22,6 +22,8 @@
             <class name="com.cutanddry.qa.tests.Orders.VerifyThreeDotMenuActionsVisibleInPlaceOrderScreenTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyEditGuideRoutesToCorrectOrderGuideEditorForThatSupplierTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyViewCatalogFromMenuMatchesInlineViewCatalogBehaviorTest" />
+
+            <class name="com.cutanddry.qa.tests.Drafts.VerifyDraftRetentionPeriodTest" />
         </classes>
     </test>
 </suite>
