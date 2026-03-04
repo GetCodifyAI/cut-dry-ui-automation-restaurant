@@ -57,6 +57,8 @@ public class Drafts {
     public static boolean isLastDraftStatusDisplayed(String total,String date){
         return draftsPage.isLastDraftStatusDisplayed(total,date);
     }
-
+    public static boolean isDraftRetentionMessageDisplayed(String message){
+        return draftsPage.isDraftRetentionMessageDisplayed(message);
+    }
 
 }

@@ -17,6 +17,7 @@ public class Constants {
     public static String SLACK_WEBHOOK = System.getenv("SLACK_WEBHOOK");
     public static String PUBLIC_PAY_URL = "https://app-uat.staging.cutanddry.com/public-pay/";
     public static String SAVAL_FOOD_URL = "https://savalfoodservice-uat.staging.cutanddry.com/log-in?redirect_on_login=%2F";
+    public static String NODE_EXPLORER = "https://app-uat.staging.cutanddry.com/admin";
     //slackToken=***
     //slackChannel=#ui-automation-tests
 

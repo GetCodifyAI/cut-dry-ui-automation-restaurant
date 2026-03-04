@@ -14,7 +14,7 @@ public class DraftsPage extends LoginPage{
     By btn_yes = By.xpath("//button[contains(text(),'Yes')]");
     String txt_reference = "//td[text()='NUMBER']";
     String txt_lastDraftDisplay = "(//tbody/tr[contains(@href, '/place-order/') and contains(@href, 'draftId')]/td[contains(text(), 'TOTAL')])[1]/../td[1]/div[contains(text(),'DATE')]";
-
+    String draftRetentionMsg = "//div[contains(text(),'DRAFTMSG')]";
 
 
 
@@ -85,5 +85,8 @@ public class DraftsPage extends LoginPage{
         restaurantUI.waitForVisibility(By.xpath(txt_lastDraftDisplay.replace("TOTAL", total).replace("DATE",date)));
         return restaurantUI.isDisplayed(By.xpath(txt_lastDraftDisplay.replace("TOTAL", total).replace("DATE",date)));
     }
-
+    public boolean isDraftRetentionMessageDisplayed(String message) {
+        restaurantUI.waitForVisibility(By.xpath(draftRetentionMsg.replace("DRAFTMSG", message)));
+        return restaurantUI.isDisplayed(By.xpath(draftRetentionMsg.replace("DRAFTMSG", message)));
+    }
 }
