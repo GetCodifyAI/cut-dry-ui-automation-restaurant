@@ -43,6 +43,9 @@ public class LoginPage extends TestBase {
     By txt_emailOrMobileSaval = By.xpath("//input[@placeholder='Enter your email or mobile number']");
     By txt_passwordSaval = By.xpath("//input[@placeholder='Enter your Password']");
     By btn_signInSaval = By.xpath("//button[@type='submit']");
+    By txt_key = By.xpath("//input[@name='data_key']");
+    By txt_value = By.xpath("//input[@name='data_val']");
+    By btn_setData = By.xpath("//button[contains(text(), 'Set data')]");
 
 
     public void typeEmailOrMobile(String emailOrMobile){
@@ -213,7 +216,18 @@ public class LoginPage extends TestBase {
     public void  openNewTabAndSwitchIt(){
         restaurantUI.OpenNewTabAndSwitchToIt();
     }
-
+    public void closeNewTabAndSwitchBack(){
+        restaurantUI.CloseNewTabAndSwitchToOriginal();
+    }
+    public void navigateToNode(String Node){
+        restaurantUI.navigateToURL(Constants.NODE_EXPLORER+ "/node/" + Node);
+    }
+    public void setValueToNode(String keyName, String valueName) throws InterruptedException {
+        restaurantUI.sendKeys(txt_key,keyName);
+        restaurantUI.sendKeys(txt_value,valueName);
+        restaurantUI.click(btn_setData);
+        restaurantUI.waitForCustom(2000);
+    }
 
 
 }
