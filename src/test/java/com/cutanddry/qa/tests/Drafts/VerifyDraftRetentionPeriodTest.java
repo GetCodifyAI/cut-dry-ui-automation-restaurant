@@ -32,7 +32,7 @@ public class VerifyDraftRetentionPeriodTest {
     }
 
     @Test(groups = "DOT-TC-1280")
-    public void VerifySubmitDraftOrderByAddingItemsFromCatalog() throws InterruptedException {
+    public void VerifyDraftRetentionPeriod() throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();

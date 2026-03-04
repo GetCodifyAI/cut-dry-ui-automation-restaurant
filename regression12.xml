@@ -40,6 +40,8 @@
             <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyOrderGuideSettingsForNonIntegratedDPsTest" />
             <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyOrderGuideSettingsForScrapperIntegratedDPsTest" />
 
+            <class name="com.cutanddry.qa.tests.Drafts.VerifyDraftRetentionPeriodTest" />
+
         </classes>
     </test>
 </suite>
