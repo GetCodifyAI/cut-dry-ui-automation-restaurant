@@ -107,9 +107,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By selectedSections = By.xpath("//a[contains(@class,'_1ccoy1o text-decoration-none dropdown-item') and contains(text(),'Add Section')]");
     By sectionInput = By.xpath("//label[contains(text(),'Section Name')]/following-sibling::input[@id='sectionName']");
     By saveSectionBtn = By.xpath("//button[contains(text(),'Save')]");
-    String section = "//div[contains(@class,'d-flex align-items-center no-gutters')]//div[contains(text(),'SECTIONNAME')]";
+    String section = "//div[contains(@class,'d-flex align-items-center no-gutters')]//div[text()='SECTIONNAME']";
     By backBtn = By.xpath("//button[contains(text(),'Back')]");
-    String sectionEditBtn ="//div[contains(text(), 'NAME')]/following-sibling::div[@class='col-2 d-flex justify-content-end align-items-center']/*[local-name() = 'svg' and @data-icon='pencil']";
+    String sectionEditBtn ="//div[text()='NAME']/following-sibling::div[@class='col-2 d-flex justify-content-end align-items-center']/*[local-name() = 'svg' and @data-icon='pencil']";
     By sectionDeleteBtn = By.xpath("//button[contains(text(),'Delete')]");
     By deleteConfirmationYesBtn = By.xpath("//button[contains(text(),'Yes')]");
     By unitSelectionDropdown = By.xpath("//tbody/tr/td[3]/div/div/div/div");

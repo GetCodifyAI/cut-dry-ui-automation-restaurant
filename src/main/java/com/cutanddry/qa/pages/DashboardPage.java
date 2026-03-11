@@ -62,6 +62,9 @@ public class DashboardPage extends LoginPage{
     By selectOrderGuide = By.xpath("//div[text()='Independent Foods Co']");
     By btn_selectOrderGuideCustom = By.xpath("//div[contains(text(),'Select Order Guide')]/following-sibling::div/div[1]");
     By btn_viewMore = By.xpath("//*[local-name() = 'svg' and @data-icon='cdDotsGrid']");
+    static By wordAfterCompanyLocator = By.xpath("//span[text()='Company:']/following-sibling::span");
+    static By dropdownToggle = By.xpath("//span[text()='Company:']/ancestor::button[contains(@class, 'dropdown-toggle')]");
+    static By independentFoodOption = By.xpath("//a[text()='Cut & Dry Test Account']");
 
 
     public boolean isDashboardTextDisplayed(){
@@ -303,6 +306,21 @@ public class DashboardPage extends LoginPage{
     }
     public void selectOrderGuideCustom(){
         restaurantUI.click(btn_selectOrderGuideCustom);
+    }
+    public static String getTextAfterCompany() {
+        restaurantUI.waitForVisibility(wordAfterCompanyLocator);
+        return restaurantUI.getText(wordAfterCompanyLocator);
+    }
+    public static void selectIndependentFoodCo() {
+        // Click the dropdown
+        driver.findElement(dropdownToggle).click();
+        System.out.println("Dropdown clicked.");
+
+        // Wait for the 'Independent Foods Co' option to be visible and click it
+        restaurantUI.waitForVisibility(independentFoodOption);
+        driver.findElement(independentFoodOption).click();
+
+        System.out.println("Company name changed to 'Independent Foods Co'.");
     }
 
 }
