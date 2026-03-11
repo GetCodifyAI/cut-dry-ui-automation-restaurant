@@ -1,0 +1,311 @@
+pipeline {
+    agent { label 'ec2-fleet' }
+
+    parameters {
+        choice(
+            name: 'TEST_SUITE',
+            choices: [
+                'regression1.xml',
+                'regression2.xml',
+                'regression3.xml',
+                'regression4.xml',
+                'regression5.xml',
+                'regression6.xml',
+                'regression7.xml',
+                'regression8.xml',
+                'regression9.xml',
+                'regression10.xml',
+                'regression11.xml',
+                'regression12.xml',
+                'regression13.xml',
+                'regression14.xml',
+                'smoke.xml',
+                'bvt.xml'
+            ],
+            description: 'Select the TestNG suite XML file to run'
+        )
+        choice(
+            name: 'TEST_ENVIRONMENT',
+            choices: ['uat', 'staging', 'prod'],
+            description: 'Target environment for test execution'
+        )
+        booleanParam(
+            name: 'HEADLESS',
+            defaultValue: true,
+            description: 'Run browser in headless mode'
+        )
+        booleanParam(
+            name: 'CLEANUP_AFTER_EXECUTION',
+            defaultValue: true,
+            description: 'Clean up temporary files after execution to save disk space'
+        )
+    }
+
+    environment {
+        MAVEN_OPTS   = '-Xmx2048m'
+        JAVA_HOME    = '/usr/lib/jvm/java-21-openjdk-amd64'
+        TEST_ENV     = "${params.TEST_ENVIRONMENT}"
+        RUN_HEADLESS = "${params.HEADLESS}"
+    }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        timeout(time: 2, unit: 'HOURS')
+    }
+
+    stages {
+
+        stage('Setup') {
+            steps {
+                script {
+                    echo "=== On-Demand Test Run ==="
+                    echo "Suite     : ${params.TEST_SUITE}"
+                    echo "Environment: ${params.TEST_ENVIRONMENT}"
+                    echo "Headless  : ${params.HEADLESS}"
+                }
+                sh '''
+                    pkill -9 chrome      || true
+                    pkill -9 chromedriver || true
+                    pkill -9 Xvfb        || true
+                    sleep 3
+
+                    rm -rf target/surefire-reports* || true
+                    rm -rf target/screenshots*      || true
+                    rm -rf target/test-output*      || true
+
+                    rm -rf ~/.cache/google-chrome* || true
+                    rm -rf /tmp/chrome_*           || true
+                    rm -rf /tmp/.org.chromium.*    || true
+                    rm -rf /tmp/.com.google.Chrome.* || true
+                    rm -rf /tmp/scoped_dir*        || true
+                    rm -rf /dev/shm/.org.chromium.* || true
+
+                    echo "Disk usage before execution:"
+                    df -h
+                '''
+                setupTestEnvironment()
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                script {
+                    try {
+                        sh """
+                            echo "Running suite: ${params.TEST_SUITE}"
+                            mvn clean test \\
+                                -Dsurefire.suiteXmlFiles=${params.TEST_SUITE} \\
+                                -Drun.headless=${params.HEADLESS} \\
+                                -Dtest.env=${params.TEST_ENVIRONMENT} \\
+                                -Dcreate.cycle=true \\
+                                -Dmaven.test.failure.ignore=true \\
+                                -Duser.timezone=UTC \\
+                                -Dmaven.repo.local=\${WORKSPACE}/.m2/repository
+                        """
+                    } catch (Exception e) {
+                        echo "Test execution completed with some failures: ${e.getMessage()}"
+                    }
+                }
+            }
+        }
+
+        stage('Report Results') {
+            steps {
+                script {
+                    calculateAndReportResults()
+                }
+            }
+            post {
+                always {
+                    publishTestResults testResultsPattern: '**/target/surefire-reports/TEST-*.xml'
+
+                    archiveArtifacts artifacts: '**/target/surefire-reports/**/*', allowEmptyArchive: true
+
+                    publishHTML([
+                        allowMissing         : true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll              : true,
+                        reportDir            : 'target/surefire-reports',
+                        reportFiles          : 'index.html',
+                        reportName           : "${params.TEST_SUITE} Report"
+                    ])
+
+                    script {
+                        sendSlackNotification()
+                    }
+                }
+            }
+        }
+
+        stage('Cleanup') {
+            when {
+                expression { params.CLEANUP_AFTER_EXECUTION }
+            }
+            steps {
+                sh '''
+                    pkill -9 chrome       || true
+                    pkill -9 chromedriver  || true
+                    pkill -9 Xvfb         || true
+
+                    rm -rf target/classes      || true
+                    rm -rf target/test-classes || true
+                    rm -rf target/maven-*      || true
+
+                    rm -rf ~/.cache/google-chrome* || true
+                    rm -rf /tmp/chrome_* /tmp/.org.chromium.* || true
+
+                    find . -type f -name "*.class" -delete || true
+                    rm -rf .m2 || true
+
+                    echo "Post-run disk usage:"
+                    df -h
+                '''
+            }
+        }
+    }
+
+    post {
+        failure {
+            script {
+                sendSlackNotification('FAILURE')
+            }
+        }
+        unstable {
+            script {
+                sendSlackNotification('UNSTABLE')
+            }
+        }
+    }
+}
+
+// ──────────────────────────────────────────────
+// Shared helper functions
+// ──────────────────────────────────────────────
+
+def setupTestEnvironment() {
+    sh '''
+        echo "Setting up test environment..."
+
+        rm -rf /tmp/chrome_* /tmp/.org.chromium.* || true
+
+        export JAVA_HOME='/usr/lib/jvm/java-21-openjdk-amd64'
+        echo "JAVA_HOME: $JAVA_HOME"
+        java -version
+
+        if command -v mvn > /dev/null 2>&1; then
+            echo "Maven version:"
+            mvn -version
+        else
+            echo "ERROR: Maven not found"
+            exit 1
+        fi
+
+        if command -v google-chrome > /dev/null 2>&1; then
+            echo "Chrome: $(google-chrome --version)"
+        elif command -v chromium-browser > /dev/null 2>&1; then
+            echo "Chromium: $(chromium-browser --version)"
+        else
+            echo "WARNING: No browser found - headless tests may fail"
+        fi
+
+        mkdir -p target/surefire-reports
+        df -h
+        echo "Environment setup complete"
+    '''
+}
+
+def calculateAndReportResults() {
+    sh '''
+        echo "Calculating test results..."
+
+        TOTAL=0; PASSED=0; FAILED=0; ERRORS=0; SKIPPED=0
+
+        for file in target/surefire-reports/TEST-*.xml; do
+            [ -f "$file" ] || continue
+            echo "Processing: $file"
+
+            TESTS=$(grep -Eo 'tests="[0-9]+"'    "$file" | grep -Eo '[0-9]+' | head -1)
+            FAILURES=$(grep -Eo 'failures="[0-9]+"' "$file" | grep -Eo '[0-9]+' | head -1)
+            FILE_ERRORS=$(grep -Eo 'errors="[0-9]+"'  "$file" | grep -Eo '[0-9]+' | head -1)
+            FILE_SKIPPED=$(grep -Eo 'skipped="[0-9]+"' "$file" | grep -Eo '[0-9]+' | head -1)
+
+            TOTAL=$((TOTAL   + ${TESTS:-0}))
+            FAILED=$((FAILED  + ${FAILURES:-0}))
+            ERRORS=$((ERRORS  + ${FILE_ERRORS:-0}))
+            SKIPPED=$((SKIPPED + ${FILE_SKIPPED:-0}))
+        done
+
+        ACTUAL_TOTAL=$((TOTAL - SKIPPED))
+        PASSED=$((ACTUAL_TOTAL - FAILED - ERRORS))
+
+        if [ "$ACTUAL_TOTAL" -gt 0 ]; then
+            PASS_RATE=$(echo "scale=2; ($PASSED / $ACTUAL_TOTAL) * 100.0" | bc)
+            FAIL_RATE=$(echo "scale=2; (($FAILED + $ERRORS) / $ACTUAL_TOTAL) * 100.0" | bc)
+        else
+            PASS_RATE="0.00"
+            FAIL_RATE="0.00"
+        fi
+
+        echo "=== TEST RESULTS ==="
+        echo "Total  : $ACTUAL_TOTAL"
+        echo "Passed : $PASSED"
+        echo "Failed : $FAILED"
+        echo "Errors : $ERRORS"
+        echo "Skipped: $SKIPPED"
+        echo "Pass Rate: $PASS_RATE%"
+        echo "Fail Rate: $FAIL_RATE%"
+        echo "===================="
+
+        {
+            echo "TOTAL_TESTS=$ACTUAL_TOTAL"
+            echo "PASSED_TESTS=$PASSED"
+            echo "FAILED_TESTS=$FAILED"
+            echo "ERROR_TESTS=$ERRORS"
+            echo "SKIPPED_TESTS=$SKIPPED"
+            echo "PASS_RATE=$PASS_RATE"
+            echo "FAIL_RATE=$FAIL_RATE"
+        } > test_results.env
+    '''
+}
+
+def sendSlackNotification(buildStatus = null) {
+    def status = buildStatus ?: currentBuild.currentResult
+    def color  = status == 'FAILURE' ? 'danger' : (status == 'UNSTABLE' ? 'warning' : 'good')
+    def emoji  = status == 'FAILURE' ? '❌'      : (status == 'UNSTABLE' ? '⚠️'       : '✅')
+
+    try {
+        def testResults = [:]
+        if (fileExists('test_results.env')) {
+            testResults = readProperties file: 'test_results.env'
+        }
+
+        def message = """
+${emoji} *Cut+Dry Restaurant Automation – On-Demand Run*
+*Build:*       ${env.BUILD_NUMBER}
+*Suite:*       ${params.TEST_SUITE}
+*Environment:* ${params.TEST_ENVIRONMENT}
+*Status:*      ${status}
+*Branch:*      ${env.BRANCH_NAME ?: 'main'}
+*Duration:*    ${currentBuild.durationString}
+
+*Test Summary:*
+• Total Tests: ${testResults.TOTAL_TESTS  ?: 'N/A'}
+• Passed:      ${testResults.PASSED_TESTS ?: 'N/A'}
+• Failed:      ${testResults.FAILED_TESTS ?: 'N/A'}
+• Errors:      ${testResults.ERROR_TESTS  ?: 'N/A'}
+• Pass Rate:   ${testResults.PASS_RATE    ?: 'N/A'}%
+
+*Build URL:* ${env.BUILD_URL}
+        """.trim()
+
+        slackSend(
+            channel   : '#qa-automation',
+            color     : color,
+            message   : message,
+            teamDomain: 'your-workspace',
+            token     : 'your-slack-token'
+        )
+    } catch (Exception e) {
+        echo "Failed to send Slack notification: ${e.getMessage()}"
+    }
+}
