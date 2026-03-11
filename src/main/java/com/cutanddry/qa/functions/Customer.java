@@ -1023,6 +1023,9 @@ public class Customer {
     public static void clickCatalogListView(){
         customersPage.clickCatalogListView();
     }
+    public static void clickOnListView(){
+        customersPage.clickCatalogListView();
+    }
     public static boolean isAddToOrderGuideListViewDisplay(){
         return customersPage.isAddToOrderGuideListViewDisplay();
     }
@@ -1816,5 +1819,36 @@ public class Customer {
         }
     }
 
+    public static boolean isMaxQuantityExceededModalDisplayed() throws InterruptedException {
+        return customersPage.isMaxQuantityExceededModalDisplayed();
+    }
+
+    public static boolean isMaxQuantityExceededMessageDisplayed() throws InterruptedException {
+        return customersPage.isMaxQuantityExceededMessageDisplayed();
+    }
+
+    public static void clickMaxQuantityModalOk() throws InterruptedException {
+        customersPage.clickMaxQuantityModalOk();
+    }
+
+    public static boolean isPlusButtonDisabledFirstRow() throws InterruptedException {
+        return customersPage.isPlusButtonDisabledFirstRow();
+    }
+
+    public static boolean isPlusButtonDisabledCatalogPDP(String name) throws InterruptedException {
+        return customersPage.isPlusButtonDisabledCatalogPDP(name);
+    }
+
+    public static boolean isPlusButtonDisabledReviewCart(String code) throws InterruptedException {
+        return customersPage.isPlusButtonDisabledReviewCart(code);
+    }
+
+    public static String getItemQuantityByCode(String code) throws InterruptedException {
+        return customersPage.getItemQuantityByCode(code);
+    }
+
+    public static void setItemQuantityByCode(String code, String quantity) throws InterruptedException {
+        customersPage.setItemQuantityByCode(code, quantity);
+    }
 
 }
