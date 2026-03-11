@@ -12,27 +12,10 @@ pipeline {
             defaultValue: 'main',
             description: 'Branch to check out before running tests (e.g. main, feature/fali-test-analysis, staging_regression)'
         )
-        choice(
-            name: 'TEST_SUITE',
-            choices: [
-                'regression1.xml',
-                'regression2.xml',
-                'regression3.xml',
-                'regression4.xml',
-                'regression5.xml',
-                'regression6.xml',
-                'regression7.xml',
-                'regression8.xml',
-                'regression9.xml',
-                'regression10.xml',
-                'regression11.xml',
-                'regression12.xml',
-                'regression13.xml',
-                'regression14.xml',
-                'smoke.xml',
-                'bvt.xml'
-            ],
-            description: 'Select the TestNG suite XML file to run'
+        string(
+            name: 'TEST_GROUP',
+            defaultValue: '',
+            description: 'TestNG group(s) to run — matches the @Test(groups = "...") annotation value. Examples: DOT-TC-923, DOT-TC-56, DOT-TC-285. Comma-separate multiple groups: DOT-TC-56,DOT-TC-57'
         )
         choice(
             name: 'TEST_ENVIRONMENT',
@@ -73,7 +56,7 @@ pipeline {
                     echo "=== On-Demand Test Run ==="
                     echo "Repository : ${params.REPO_URL}"
                     echo "Branch     : ${params.BRANCH}"
-                    echo "Suite      : ${params.TEST_SUITE}"
+                    echo "Test Group : ${params.TEST_GROUP}"
                     echo "Environment: ${params.TEST_ENVIRONMENT}"
                     echo "Headless   : ${params.HEADLESS}"
                 }
@@ -123,9 +106,9 @@ pipeline {
                 script {
                     try {
                         sh """
-                            echo "Running suite: ${params.TEST_SUITE}"
+                            echo "Running test group: ${params.TEST_GROUP}"
                             mvn clean test \\
-                                -Dsurefire.suiteXmlFiles=${params.TEST_SUITE} \\
+                                -Dgroups=${params.TEST_GROUP} \\
                                 -Drun.headless=${params.HEADLESS} \\
                                 -Dtest.env=${params.TEST_ENVIRONMENT} \\
                                 -Dcreate.cycle=true \\
@@ -158,7 +141,7 @@ pipeline {
                         keepAll              : true,
                         reportDir            : 'target/surefire-reports',
                         reportFiles          : 'index.html',
-                        reportName           : "${params.TEST_SUITE} Report"
+                        reportName           : "Group: ${params.TEST_GROUP} Report"
                     ])
 
                     script {
@@ -313,7 +296,7 @@ def sendSlackNotification(buildStatus = null) {
         def message = """
 ${emoji} *Cut+Dry Restaurant Automation – On-Demand Run*
 *Build:*       ${env.BUILD_NUMBER}
-*Suite:*       ${params.TEST_SUITE}
+*Group:*       ${params.TEST_GROUP}
 *Environment:* ${params.TEST_ENVIRONMENT}
 *Status:*      ${status}
 *Branch:*      ${env.BRANCH_NAME ?: 'main'}
