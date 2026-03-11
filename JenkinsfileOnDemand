@@ -2,6 +2,16 @@ pipeline {
     agent { label 'ec2-fleet' }
 
     parameters {
+        string(
+            name: 'REPO_URL',
+            defaultValue: 'https://github.com/GetCodifyAI/cut-dry-ui-automation-restaurant.git',
+            description: 'Git repository URL to clone'
+        )
+        string(
+            name: 'BRANCH',
+            defaultValue: 'main',
+            description: 'Branch to check out before running tests (e.g. main, feature/fali-test-analysis, staging_regression)'
+        )
         choice(
             name: 'TEST_SUITE',
             choices: [
@@ -46,6 +56,8 @@ pipeline {
         JAVA_HOME    = '/usr/lib/jvm/java-21-openjdk-amd64'
         TEST_ENV     = "${params.TEST_ENVIRONMENT}"
         RUN_HEADLESS = "${params.HEADLESS}"
+        GIT_REPO_URL = "${params.REPO_URL}"
+        GIT_BRANCH   = "${params.BRANCH}"
     }
 
     options {
@@ -55,14 +67,33 @@ pipeline {
 
     stages {
 
-        stage('Setup') {
+        stage('Checkout') {
             steps {
                 script {
                     echo "=== On-Demand Test Run ==="
-                    echo "Suite     : ${params.TEST_SUITE}"
+                    echo "Repository : ${params.REPO_URL}"
+                    echo "Branch     : ${params.BRANCH}"
+                    echo "Suite      : ${params.TEST_SUITE}"
                     echo "Environment: ${params.TEST_ENVIRONMENT}"
-                    echo "Headless  : ${params.HEADLESS}"
+                    echo "Headless   : ${params.HEADLESS}"
                 }
+                checkout([
+                    $class           : 'GitSCM',
+                    branches         : [[name: "refs/heads/${params.BRANCH}"]],
+                    userRemoteConfigs: [[
+                        url           : "${params.REPO_URL}",
+                        credentialsId : 'github-credentials'
+                    ]],
+                    extensions       : [
+                        [$class: 'CleanBeforeCheckout'],
+                        [$class: 'CloneOption', noTags: false, shallow: false, depth: 0]
+                    ]
+                ])
+            }
+        }
+
+        stage('Setup') {
+            steps {
                 sh '''
                     pkill -9 chrome      || true
                     pkill -9 chromedriver || true
