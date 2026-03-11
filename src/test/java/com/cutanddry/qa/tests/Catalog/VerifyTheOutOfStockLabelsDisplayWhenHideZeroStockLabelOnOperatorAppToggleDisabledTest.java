@@ -18,8 +18,8 @@ public class VerifyTheOutOfStockLabelsDisplayWhenHideZeroStockLabelOnOperatorApp
     static User user;
     static String OperatorName ="209163801";
     static String CompanyName = "What Chefs Want - Rockies";
-    static String itemCodeOG = "96018";
-    static String itemNameOG = "Salt - Maldon Smoked Flake";
+    static String itemCodeOG = "33925";
+    static String itemNameOG = "Agave - Wild Light Organic";
     static String tag = "Out of stock";
 
     @BeforeMethod
