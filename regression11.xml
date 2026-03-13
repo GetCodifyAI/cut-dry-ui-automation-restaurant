@@ -22,24 +22,26 @@
 <!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromCompareSimilarItemsCarouselAndSubmissionTest" />-->
 <!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromRecommendedForCustomerCarouselAndSubmissionTest" />-->
 <!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromRecommendedBySalesRepCarouselAndSubmissionTest" />-->
-<!--            &lt;!&ndash;            TODO: Uncomment the following test when the bug[DOT-9106] is fixed [Error popup "There was an error, please try again." appears while searching for an item in the Order Guide section]&ndash;&gt;-->
+            <!--            TODO: Uncomment the following test when the bug[DOT-9106] is fixed [Error popup "There was an error, please try again." appears while searching for an item in the Order Guide section]-->
 
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheRevenueSummeryIsDisplayedCorrectlyOnTheEditOrderFlowTest" />
 
-<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifySingleShipToAddressFallbackTest" />-->
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyMultipleShipToAddressDisplayAndSelectionTest" />
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifySingleShipToAddressFallbackTest" />
 
-<!--            <class name="com.cutanddry.qa.tests.Catalog.VerifyThatTheItemTypeFilterIsVisibleForOtherDPsOperatorsTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Catalog.VerifyOperatorsDoesNotHaveSpecialItemsTest" />-->
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyThatTheItemTypeFilterIsVisibleForOtherDPsOperatorsTest" />
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyOperatorsDoesNotHaveSpecialItemsTest" />
 
-<!--            <class name="com.cutanddry.qa.tests.Catalog.VerifyThatTheGPOFilterOptionInTheCatalogAvailableForOtherOPsTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Catalog.VerifyThatOPsDisplayTheirOwnProductsAlongWithProductsFromOtherManufacturersTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Catalog.VerifyThatDistributionCentreFilterIsFilteringRelevantDistributorCentresForOPSideTest" />-->
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyThatTheGPOFilterOptionInTheCatalogAvailableForOtherOPsTest" />
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyThatOPsDisplayTheirOwnProductsAlongWithProductsFromOtherManufacturersTest" />
+            <class name="com.cutanddry.qa.tests.Catalog.VerifyThatDistributionCentreFilterIsFilteringRelevantDistributorCentresForOPSideTest" />
 
-<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThatTheOrderGuideNameAndDescriptionInOrderGuideSettingsTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThatTheOrderGuideLocationInOrderGuideSettingsTest" />-->
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThatTheOrderGuideNameAndDescriptionInOrderGuideSettingsTest" />
+            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyThatTheOrderGuideLocationInOrderGuideSettingsTest" />
 
-<!--            <class name="com.cutanddry.qa.tests.Orders.VerifyFindMoreInCatalogButtonTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Orders.VerifyThatTheOrderUponEditingWithInactiveItemsTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Orders.VerifyThatTheOrderUponRecreatingWithInactiveItemsTest" />-->
+            <class name="com.cutanddry.qa.tests.Orders.VerifyFindMoreInCatalogButtonTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyThatTheOrderUponEditingWithInactiveItemsTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyThatTheOrderUponRecreatingWithInactiveItemsTest" />
 
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyAddToOrderGuideIconOnItemsWillNotDisplayedForTheOperatorsWhenTheCatalogOnlyOrderFlowIsActivatedTest" />
 
