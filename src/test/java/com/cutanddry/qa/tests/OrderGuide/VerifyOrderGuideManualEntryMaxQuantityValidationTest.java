@@ -19,6 +19,7 @@ public class VerifyOrderGuideManualEntryMaxQuantityValidationTest extends TestBa
     static String catalogItemCode = "29763";
     static String pdpItemCode = "02092";
     static String pdpItemName = "Fuji Apples 125 CT";
+    static String catalogItemName = "Beef Cheese Dog 6/1 Uncured Food Service";
 
     @BeforeMethod
     public void setUp() {
@@ -60,7 +61,8 @@ public class VerifyOrderGuideManualEntryMaxQuantityValidationTest extends TestBa
 
         Customer.searchItemOnCatalog(catalogItemCode);
         softAssert.assertTrue(Customer.isCatalogSearchItemCodeDisplay(catalogItemCode), "Catalog item not found");
-        Customer.addItemToCartCatalog();
+        Customer.clickOnPlusIconInCatalogPDP(1, catalogItemName);
+//        Customer.addItemToCartCatalog();
 
         Customer.setItemQuantityByCode(catalogItemCode, validMaxQuantity);
         Customer.tabAwayFromQuantityField();
@@ -78,7 +80,8 @@ public class VerifyOrderGuideManualEntryMaxQuantityValidationTest extends TestBa
 
         Customer.searchItemOnCatalog(pdpItemCode);
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(pdpItemName.toLowerCase()), "PDP item not found in catalog");
-        Customer.clickOnProductStable(pdpItemName);
+        Customer.clickOnProduct(pdpItemName);
+        softAssert.assertTrue(Customer.isProductDetailsDisplayed(),"The user is unable to land on the Product Details page.");
         Customer.clickAddToCartPDP();
 
         Customer.setCatalogPdpItemCount(validMaxQuantity, pdpItemName);

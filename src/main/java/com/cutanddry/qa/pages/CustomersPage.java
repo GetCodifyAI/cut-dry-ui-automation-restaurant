@@ -420,7 +420,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_increaseQtyFirstRowDisabled = By.xpath("//div[@class='d-flex align-items-center justify-content-center _ikqwqe btn-secondary disabled _1pcpsid py-2 ml-2 text-center align-middle']");
     String btn_catalogPDPPlusDisabled = "(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//*[name()='svg' and contains(@data-icon, 'plus')]/ancestor::button[@disabled]";
     String btn_reviewCartPlusDisabled = "//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='plus']/ancestor::button[@disabled]";
-    String tbx_itemQuantityByCode = "//td[text()='CODE']/following-sibling::*//input[@data-input='quantityInput']";
+    String tbx_itemQuantityByCode = "(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//*//input[@data-input='quantityInput']";
     String getTxtCatalogPdpItemCount = "//input[@data-input='quantityInput']";
 
 

@@ -1458,6 +1458,9 @@ public class Customer {
     public static void   setCatalogPdpItemCount(String quantity, String name) throws InterruptedException {
         customersPage. setCatalogPdpItemCount(quantity, name);
     }
+    public static void   setReviewOrderScreenItemCount(String quantity, String name) throws InterruptedException {
+        customersPage. setCatalogPdpItemCount(quantity, name);
+    }
 
     public static boolean isOrderGuideSettingsDisplayed() {
         return customersPage.isOrderGuideSettingsDisplayed();
