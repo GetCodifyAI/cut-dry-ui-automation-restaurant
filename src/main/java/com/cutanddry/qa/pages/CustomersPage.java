@@ -107,9 +107,9 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By selectedSections = By.xpath("//a[contains(@class,'_1ccoy1o text-decoration-none dropdown-item') and contains(text(),'Add Section')]");
     By sectionInput = By.xpath("//label[contains(text(),'Section Name')]/following-sibling::input[@id='sectionName']");
     By saveSectionBtn = By.xpath("//button[contains(text(),'Save')]");
-    String section = "//div[contains(@class,'d-flex align-items-center no-gutters')]//div[contains(text(),'SECTIONNAME')]";
+    String section = "//div[contains(@class,'d-flex align-items-center no-gutters')]//div[text()='SECTIONNAME']";
     By backBtn = By.xpath("//button[contains(text(),'Back')]");
-    String sectionEditBtn ="//div[contains(text(), 'NAME')]/following-sibling::div[@class='col-2 d-flex justify-content-end align-items-center']/*[local-name() = 'svg' and @data-icon='pencil']";
+    String sectionEditBtn ="//div[text()='NAME']/following-sibling::div[@class='col-2 d-flex justify-content-end align-items-center']/*[local-name() = 'svg' and @data-icon='pencil']";
     By sectionDeleteBtn = By.xpath("//button[contains(text(),'Delete')]");
     By deleteConfirmationYesBtn = By.xpath("//button[contains(text(),'Yes')]");
     By unitSelectionDropdown = By.xpath("//tbody/tr/td[3]/div/div/div/div");
@@ -420,7 +420,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By btn_increaseQtyFirstRowDisabled = By.xpath("//div[@class='d-flex align-items-center justify-content-center _ikqwqe btn-secondary disabled _1pcpsid py-2 ml-2 text-center align-middle']");
     String btn_catalogPDPPlusDisabled = "(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//*[name()='svg' and contains(@data-icon, 'plus')]/ancestor::button[@disabled]";
     String btn_reviewCartPlusDisabled = "//td[text()='CODE']/following-sibling::*//div/*[local-name()='svg' and @data-icon='plus']/ancestor::button[@disabled]";
-    String tbx_itemQuantityByCode = "//td[text()='CODE']/following-sibling::*//input[@data-input='quantityInput']";
+    String tbx_itemQuantityByCode = "(//button[contains(@data-for,'add-to-order-guide')]/ancestor::div[2]/following-sibling::div)[1]/following-sibling::div//*//input[@data-input='quantityInput']";
     String getTxtCatalogPdpItemCount = "//input[@data-input='quantityInput']";
 
 

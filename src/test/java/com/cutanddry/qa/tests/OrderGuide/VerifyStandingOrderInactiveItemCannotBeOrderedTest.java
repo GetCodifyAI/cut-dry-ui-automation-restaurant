@@ -63,10 +63,10 @@ public class VerifyStandingOrderInactiveItemCannotBeOrderedTest extends TestBase
         Customer.expandMoreOptionsDropdown();
         softAssert.assertTrue(Customer.isManageStandingOrdersDisplay(), "Manage Standing Orders option display error");
         Customer.clickManageStandingOrders();
+        Customer.deleteTheExistingStandingOrdersInManageIFAvailable();
         softAssert.assertTrue(Customer.isCreateStandingOrdersButtonDisplay(), "Create Standing Orders button display error");
         Customer.clickCreateStandingOrders();
 
-       // Customer.selectDeliveryDateAsLastBefore();
         Customer.searchItemOnOrderGuide(itemCode);
 
         softAssert.assertTrue(Customer.isItemRowDisplayedByCode(itemCode), "Inactive item should be visible in Standing Order flow");

@@ -43,6 +43,7 @@ public class VerifyStandingOrderUponEditingWithInactiveItemsTest extends TestBas
         Customer.expandMoreOptionsDropdown();
         softAssert.assertTrue(Customer.isManageStandingOrdersDisplay(),"Manage Standing Orders option display error");
         Customer.clickManageStandingOrders();
+        Customer.deleteTheExistingStandingOrdersInManageIFAvailable();
         softAssert.assertTrue(Customer.isCreateStandingOrdersButtonDisplay(),"Create Standing Orders button display error");
         Customer.clickCreateStandingOrders();
 
