@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyFilterOptionOfTheDistributorsWithRewardsTest extends TestBase {
     static User user;
-    String dropDown = "Distributors with Rewards";
+    String dropDown = "Distributors";
     String dropDownOption = "Cashback Foods";
     String result = "Cashback Foods";
 
