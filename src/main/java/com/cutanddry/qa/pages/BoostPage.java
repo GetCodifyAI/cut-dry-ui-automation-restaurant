@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 
 public class BoostPage extends TestBase {
 
-    By btn_boost = By.xpath("//a[@data-tip='Boost']");
+    By btn_boost = By.xpath("(//a[@data-tip='Boost'])[last()]");
     By txt_boost = By.xpath("//li[contains(text(),'Boost')]");
     By tab_suggestiveSales = By.xpath("//a[text()='Suggestive Sales']");
     By txt_topCategoryPicks = By.xpath("//td[text()='Top Category Picks']");
@@ -33,6 +33,7 @@ public class BoostPage extends TestBase {
     By toggleCarouselDisplayStatus = By.xpath("//div[@class='ml-4']//input[@type='checkbox' and @role='switch' and @checked]");
     By btn_dontforget_config = By.xpath("//tr[td[contains(text(), \"Don't Forget to Order\")]]//button[contains(text(), \"View & Configure\")]");
     By btn_morefrom_config = By.xpath("//tr[td[contains(text(), 'More from this Brand')]]//button[contains(text(), 'View & Configure')]");
+    By btn_viewMore = By.xpath("//*[local-name() = 'svg' and @data-icon='cdDotsGrid']");
 
 
 
@@ -41,6 +42,8 @@ public class BoostPage extends TestBase {
 
 
     public void clickOnBoost(){
+        restaurantUI.hoverOverElement(btn_viewMore);
+        restaurantUI.scrollToElement(btn_boost);
         restaurantUI.click(btn_boost);
     }
     public boolean isBoostTextDisplayed() {

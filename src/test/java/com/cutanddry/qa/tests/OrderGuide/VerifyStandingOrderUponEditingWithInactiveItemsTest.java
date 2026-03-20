@@ -20,6 +20,8 @@ public class VerifyStandingOrderUponEditingWithInactiveItemsTest extends TestBas
     String Active = "Active";
     String InActive = "Inactive";
     String All = "All Items";
+    static String title = "Test Order";
+
 
     @BeforeMethod
     public void setUp(){
@@ -44,7 +46,7 @@ public class VerifyStandingOrderUponEditingWithInactiveItemsTest extends TestBas
         softAssert.assertTrue(Customer.isCreateStandingOrdersButtonDisplay(),"Create Standing Orders button display error");
         Customer.clickCreateStandingOrders();
 
-        Customer.selectDeliveryDateAsLastBefore();
+
         Customer.searchItemOnOrderGuide(searchItemCode);
         itemPrice = Customer.getActiveItemPriceFirstRow();
         itemName = Customer.getItemNameFirstRow();
@@ -52,6 +54,9 @@ public class VerifyStandingOrderUponEditingWithInactiveItemsTest extends TestBas
         Customer.checkoutItems();
         softAssert.assertTrue(Customer.isReviewStandingOrdersDisplayed(),"navigate error review standing order");
         softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
+        Customer.typeOnStandingOrderTitle(title);
+        Customer.selectDeliveryDateAsLastBefore();
+
         Customer.setStandingOrder();
         softAssert.assertTrue(Customer.isStandingOrderSuccessPopupDisplayed(),"order creating error");
         Customer.clickOK();
@@ -112,8 +117,7 @@ public class VerifyStandingOrderUponEditingWithInactiveItemsTest extends TestBas
         Customer.clickManageStandingOrders();
         softAssert.assertTrue(Customer.isStandingOrdersDeletedIconDisplay(),"delete error");
         Customer.clickOnStandingOrderDeleteIcon();
-
-
+        softAssert.assertTrue(Customer.isCreateStandingOrdersButtonDisplay(),"Create Standing Orders button display error");
         softAssert.assertAll();
     }
 

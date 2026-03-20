@@ -33,8 +33,6 @@ public class VerifyAddLocationTest extends TestBase {
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
-        Dashboard.navigateToIndependentFoodsCo();
-        Dashboard.navigateToOrderGuide();
         Settings.clickOnLocationsUnderSettings();
         Settings.AddLocation();
         softAssert.assertTrue(Settings.isAddLocationOverlayDisplayed(),"Error in displaying add location overlay");

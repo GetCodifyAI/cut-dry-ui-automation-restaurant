@@ -33,6 +33,7 @@ public class VerifyFilterOptionOfTheDistributorsWithRewardsTest extends TestBase
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToRewards();
         softAssert.assertTrue(Rewards.isRewardsTextDisplayed(),"Rewards section navigation error");
+        Rewards.clickOnExternalReward();
         Rewards.selectAllDateRange();
         Rewards.clickAllDateRange();
         Rewards.selectRewardsFilter(dropDown,dropDownOption);

@@ -110,10 +110,9 @@ public class Dashboard {
         dashboardPage.clickOnApprovals();
     }
 
-    public static void navigateToRewards() {
+    public static void navigateToRewards() throws InterruptedException {
         dashboardPage.clickOnRewards();
     }
-
     public static boolean isUserNavigatedToDistributorDashboard(){
         return dashboardPage.isDistributorDashboardTextDisplayed();
     }
@@ -239,5 +238,13 @@ public class Dashboard {
 
     public static void clickOnPlaceOrder_Cashback_Foods () throws InterruptedException {
         dashboardPage.clickOnPlaceOrder_Cashback_Foods();
+    }
+    public static boolean isCompanyIndependentFood() {
+        String companyName = DashboardPage.getTextAfterCompany();
+        System.out.println("The current company name is "+ companyName);
+        return "Cut & Dry Test Account".equals(companyName);
+    }
+    public static void selectIndependentFoodCo(){
+        DashboardPage.selectIndependentFoodCo();
     }
 }

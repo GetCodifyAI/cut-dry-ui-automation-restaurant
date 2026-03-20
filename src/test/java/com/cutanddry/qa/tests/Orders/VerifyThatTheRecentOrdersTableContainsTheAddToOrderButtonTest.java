@@ -47,7 +47,7 @@ public class VerifyThatTheRecentOrdersTableContainsTheAddToOrderButtonTest exten
 
         Customer.searchItemOnOrderGuide(itemCode);
         itemPrice = Customer.getActiveItemPriceFirstRow();
-        Customer.increaseFirstRowQtyCustom(16);
+        Customer.increaseFirstRowQtyCustom(3);
         Customer.checkoutItems();
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
         Customer.submitOrderRebate();
@@ -62,7 +62,7 @@ public class VerifyThatTheRecentOrdersTableContainsTheAddToOrderButtonTest exten
         History.clickConfirmEditOrder();
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
         Customer.decreaseReviewQtyStable(itemCode,1);
-        softAssert.assertEquals(Customer.getItemQuantityReviewPage(itemCode),"16","item quantity not equal");
+        softAssert.assertEquals(Customer.getItemQuantityReviewPage(itemCode),"3","item quantity not equal");
         softAssert.assertFalse(Customer.isTrashCanReviewPage(itemCode),"trash can display item");
 
         Drafts.clickEditOrder();

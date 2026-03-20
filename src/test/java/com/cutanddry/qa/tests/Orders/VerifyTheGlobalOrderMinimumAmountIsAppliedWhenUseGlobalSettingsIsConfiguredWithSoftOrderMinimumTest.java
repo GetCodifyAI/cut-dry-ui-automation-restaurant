@@ -13,14 +13,14 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheGlobalOrderMinimumAmountIsAppliedWhenUseGlobalSettingsIsConfiguredWithSoftOrderMinimumTest extends TestBase {
     static User user;
-    static String OperatorName = "235564457";
+    static String OperatorName = "150174559";
     static String defaultOrderMin = "0";
     static String orderMinimumType = "Soft Order Minimum";
     static String orderMinInternal = "50000";
     String distributor = "Independent Foods Co";
     static String Dp_Name = "Independent Foods Co";
     static String orderMinimumSetting = "Use Global Settings";
-    static String customerId = "97071";
+    static String customerId = "25553";
 
 
     @BeforeMethod

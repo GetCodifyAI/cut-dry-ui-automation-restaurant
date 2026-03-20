@@ -80,5 +80,8 @@ public class Rewards {
     public static boolean isRewardsStatusDisplayed(String status){
         return RewardsPage.isRewardsStatusDisplayed(status);
     }
+    public static void clickOnExternalReward() throws InterruptedException {
+        RewardsPage.clickOnExternalReward();
+    }
 }
 

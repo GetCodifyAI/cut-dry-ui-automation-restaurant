@@ -52,7 +52,7 @@ public class ValidateSubmittingOrderOfTheSelectedSupplierTest extends TestBase {
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
         orderId = Customer.getSuccessOrderId();
         Customer.clickClose();
-        softAssert.assertTrue(Customer.isRecentOrderDisplayed(orderId),"order submitted error");
+        softAssert.assertTrue(Customer.isRecentOrderDisplayed(orderId),"order submitted error 1");
 
         Dashboard.navigateToHome();
         softAssert.assertTrue(Dashboard.isUserNavigateHome(),"user navigate home error");
@@ -72,7 +72,7 @@ public class ValidateSubmittingOrderOfTheSelectedSupplierTest extends TestBase {
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
         orderId = Customer.getSuccessOrderId();
         Customer.clickClose();
-        softAssert.assertTrue(Customer.isRecentOrderDisplayed(orderId),"order submitted error");
+        softAssert.assertTrue(Customer.isRecentOrderDisplayed(orderId),"order submitted error 2");
         softAssert.assertAll();
     }
 

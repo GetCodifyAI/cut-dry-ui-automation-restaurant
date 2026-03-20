@@ -32,8 +32,6 @@ public class VerifyEditLocationTest extends TestBase {
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
-        Dashboard.navigateToIndependentFoodsCo();
-        Dashboard.navigateToOrderGuide();
         Settings.clickOnLocationsUnderSettings();
         Settings.clickOnLocationInGrid(testLocation);
         softAssert.assertTrue(Settings.isEditLocationOverlayDisplayed(),"Error in displaying edit location overlay");

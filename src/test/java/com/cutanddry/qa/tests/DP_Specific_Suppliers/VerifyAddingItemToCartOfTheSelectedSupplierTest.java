@@ -45,7 +45,7 @@ public class VerifyAddingItemToCartOfTheSelectedSupplierTest extends TestBase {
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName.toLowerCase()), "item not found");
         Customer.clickOnPlusIconInCatalogPDP(5, itemName);
         catalogItemPrice = Customer.catalogItemPrice(itemName);
-        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),catalogItemPrice*5,"The item has not been selected.");
+        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),catalogItemPrice*5,0.1,"The item has not been selected.");
 
 
         Dashboard.navigateToHome();

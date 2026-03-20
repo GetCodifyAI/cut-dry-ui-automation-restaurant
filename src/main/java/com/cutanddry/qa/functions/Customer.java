@@ -592,6 +592,9 @@ public class Customer {
     public static void clickOnProduct(String name){
         customersPage.clickOnProduct(name);
     }
+    public static void clickOnProductStablePDP(String name){
+        customersPage.clickOnProductStablePDP(name);
+    }
     public static boolean isProductDetailsDisplayed(){
         return customersPage.isProductDetailsDisplayed();
     }
@@ -746,6 +749,9 @@ public class Customer {
         if (customersPage.caseMinNotMetDisplayed()){
             customersPage.clickYesDuplicatePopup();
         }
+        if (customersPage.isOrderMinPopupDisplayed()){
+            customersPage.clickPlaceOrderSoftOrderMinimum();
+        }
         if (customersPage.isDuplicatePopupDisplayed()){
             customersPage.clickYesDuplicatePopup();
         }
@@ -824,6 +830,9 @@ public class Customer {
     }
     public static void submitOrderMinimum() throws InterruptedException {
         customersPage.submitOrder();
+        if (customersPage.isDuplicatePopupDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
     }
     public static boolean isOrderMinPopupDisplayed(){
         return customersPage.isOrderMinPopupDisplayed();
@@ -839,6 +848,13 @@ public class Customer {
     }
     public static void clickYesCaseMinimum() throws InterruptedException {
         customersPage.clickOnYes();
+        if (customersPage.isDuplicatePopupDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
+    }
+
+    public static void clickCancelCaseMinimum() throws InterruptedException {
+        customersPage.clickOnCancel();
         if (customersPage.isDuplicatePopupDisplayed()){
             customersPage.clickYesDuplicatePopup();
         }
@@ -1784,6 +1800,20 @@ public class Customer {
     }
     public static void clickSaveItemBtnOnEditPopup() throws InterruptedException {
         customersPage.clickSaveItemBtnOnEditPopup();
+    }
+
+    public static void typeOnStandingOrderTitle(String title) throws InterruptedException {
+        customersPage.typeOnStandingOrderTitle(title);
+    }
+
+    public static void clickYes() throws InterruptedException {
+        customersPage.clickYes();
+    }
+    public static void deleteTheExistingStandingOrdersInManageIFAvailable() throws InterruptedException {
+        for (int i = 0; i < 10 && customersPage.isStandingOrdersDeletedIconDisplay(); i++) {
+            customersPage.clickOnStandingOrderDeleteIcon();
+            Thread.sleep(200);
+        }
     }
 
 

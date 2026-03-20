@@ -10,6 +10,12 @@ public class Login {
         loginPage.typeEmailOrMobile(emailOrMobile);
         loginPage.typePassword(password);
         loginPage.clickSubmit();
+        if (!Dashboard.isCompanyIndependentFood()) {
+            System.out.println("Company name is incorrect. Changing to 'Independent Foods Co'...");
+            Dashboard.selectIndependentFoodCo();
+        } else {
+            System.out.println("Company name is already 'Independent Foods Co'. No changes needed.");
+        }
     }
     public static boolean forgotPassword(){
         loginPage.clickForgotPassword();
@@ -141,6 +147,15 @@ public class Login {
     }
     public static void openNewTabAndSwitchIt(){
         loginPage.openNewTabAndSwitchIt();
+    }
+    public static void closeNewTabAndSwitchBack(){
+        loginPage.closeNewTabAndSwitchBack();
+    }
+    public static void navigateToNode(String Node){
+        loginPage.navigateToNode(Node);
+    }
+    public static void setValueToNode(String keyName, String valueName) throws InterruptedException {
+        loginPage.setValueToNode(keyName,valueName);
     }
 
 }

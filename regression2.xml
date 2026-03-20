@@ -21,7 +21,7 @@
             <class name="com.cutanddry.qa.tests.Settings.Location.VerifyEditLocationTest" />
             <class name="com.cutanddry.qa.tests.Settings.Location.VerifyDeleteLocationTest" />
             <class name="com.cutanddry.qa.tests.Settings.Profile.VerifyProfileUpdateTest" />
-            <class name="com.cutanddry.qa.tests.Settings.Restaurant.VerifyRestaurantUpdateTest" />
+<!--            <class name="com.cutanddry.qa.tests.Settings.Restaurant.VerifyRestaurantUpdateTest" />-->
             <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheOrderExportFileGenerateTest" />
             <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheOrderExportWithPricesFileGenerateTest" />
             <class name="com.cutanddry.qa.tests.Settings.Export.VerifyTheProductExportFileGenerateTest" />

@@ -31,8 +31,7 @@ public class VerifyProfileUpdateTest extends TestBase {
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
-        Dashboard.navigateToIndependentFoodsCo();
-        Dashboard.navigateToOrderGuide();
+
         Settings.clickOnProfileUnderSettings();
         Settings.editNameInProfile(editedProfileName);
         Settings.saveProfileChanges();
