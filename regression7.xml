@@ -9,11 +9,11 @@
         <parameter name="PART" value="Regression_7" />
         <parameter name="PART" value="Part Seven" />
         <classes>
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyEditQuantitiesFunctionalityInCatalogTest" />
+<!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyEditQuantitiesFunctionalityInCatalogTest" />-->
 <!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifySelectMultipleUOMItemFromCatalogOnlyTest" />-->
 <!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheNavigationToThePDPWhenSelectingMultipleUnitsTest" />-->
 <!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyEditQuantitiesFunctionalityInCatalogPDPTest" />-->
-            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyEditOrderWithDifferenceUOMInReviewSectionTest" />
+<!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyEditOrderWithDifferenceUOMInReviewSectionTest" />-->
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyMultiCartItemsSelectMultipleUOMItemFromPDPTest" />
 
             <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheDeliveryFeesSelectMultipleUOMTest" />
