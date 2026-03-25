@@ -1819,5 +1819,13 @@ public class Customer {
         }
     }
 
+    public static boolean isCartEmpty(){
+        return customersPage.isCartEmpty();
+    }
+
+    public static void clickCloseWithoutRefresh(){
+        customersPage.clickCloseWithoutRefresh();
+    }
+
 
 }

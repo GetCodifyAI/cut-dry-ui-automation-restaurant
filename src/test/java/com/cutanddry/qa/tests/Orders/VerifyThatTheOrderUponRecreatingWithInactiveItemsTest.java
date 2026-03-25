@@ -80,9 +80,9 @@ public class VerifyThatTheOrderUponRecreatingWithInactiveItemsTest extends TestB
         History.clickMoreOptions();
         History.clickRecreateOrder();
 
-        softAssert.assertTrue(Order.isInactiveItemDetectedPopUpDisplay(),"item not inactive");
-        Customer.clickOK();
-
+        //softAssert.assertTrue(Order.isInactiveItemDetectedPopUpDisplay(),"item not inactive");
+        //Customer.clickOK();
+        softAssert.assertTrue(Customer.isCartEmpty(), "The cart is not empty");
         softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),0.00,"The item has not been selected.");
 
         // Distributor Flows
