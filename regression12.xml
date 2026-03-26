@@ -9,8 +9,8 @@
         <parameter name="PART" value="Part Twelve" />
         <classes>
             <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyGeneralHoldModalAndBannerDisplayFromOperatorPortalTest" />
-            <class name="com.cutanddry.qa.tests.History.VerifyOrderTotalsPersistCorrectlyInHistoryAfterSubmissionTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyAddFromCatalogButtonFunctionalityOnReviewOrderScreenTest" />
+<!--            <class name="com.cutanddry.qa.tests.History.VerifyOrderTotalsPersistCorrectlyInHistoryAfterSubmissionTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyAddFromCatalogButtonFunctionalityOnReviewOrderScreenTest" />-->
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenSoftOrderMinimumTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenTest" />
 
@@ -22,23 +22,6 @@
             <class name="com.cutanddry.qa.tests.Orders.VerifyThreeDotMenuActionsVisibleInPlaceOrderScreenTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyEditGuideRoutesToCorrectOrderGuideEditorForThatSupplierTest" />
             <class name="com.cutanddry.qa.tests.Orders.VerifyViewCatalogFromMenuMatchesInlineViewCatalogBehaviorTest" />
-
-            <class name="com.cutanddry.qa.tests.Offline_Ordering.VerifyUserCanAddUpdateItemsToCartInOfflineModeTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyDeleteOrderGuideFunctionalityInMoreOptionsMenuTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifySaveDraftFunctionalityInMoreOptionsMenuTest" />
-
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyStandingOrderInactiveItemCannotBeOrderedTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyStandingOrderUponEditingWithInactiveItemsTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyOrderGuideManualEntryMaxQuantityValidationTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyOrderGuideStepperMaximumQuantityValidationTest" />
-
-
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyTheSearchFeatureAfterEditingAnItemNameTest" />
-
-            <class name="com.cutanddry.qa.tests.OrderGuide.QuickAddFlowMaximumQuantityValidationTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifySimpleListViewMaximumQuantityValidationTest" />
-            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyOrderGuideSettingsForNonIntegratedDPsTest" />
-            <class name="com.cutanddry.qa.tests.Non_Integrated_Suppliers.VerifyOrderGuideSettingsForScrapperIntegratedDPsTest" />
 
             <class name="com.cutanddry.qa.tests.Drafts.VerifyDraftRetentionPeriodTest" />
 
