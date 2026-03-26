@@ -63,6 +63,9 @@ public class CatalogPage extends LoginPage {
     String productStatus = "(//div[contains(text(),'PRODSTATUS')])[last()]";
     By itemStatusDropdown = By.xpath("(//div[contains(text(),'All Results')]/../following-sibling::div//div[contains(@class,'value-container')])[3]");
     String itemStatusOption = "(//div[contains(text(),'ITEMSTATUS') and contains(@class,'themed_select__option')])[last()]";
+    By supplierCatalogSearchField = By.xpath("//input[contains(@placeholder,'Search product by name, sku, gtin')]" );
+    By supplierCatalogSearchButton = By.xpath("//input[contains(@placeholder,'Search product by name, sku, gtin')]/following-sibling::button");
+    By firstSearchResultRow = By.xpath("(//tr[contains(@class,'_du1frc')])[1]");
 
 
 
@@ -391,5 +394,22 @@ public class CatalogPage extends LoginPage {
         restaurantUI.click(By.xpath(itemStatusOption.replace("ITEMSTATUS",itemStatus)));
     }
 
+    public void searchOnSupplierCatalog(String searchText) throws InterruptedException {
+        restaurantUI.waitForVisibility(supplierCatalogSearchField);
+        restaurantUI.sendKeys(supplierCatalogSearchField, searchText);
+        restaurantUI.click(supplierCatalogSearchButton);
+        restaurantUI.waitForCustom(5000);
+    }
+
+    public void clickFirstSearchResultInSupplierCatalog() throws InterruptedException {
+        restaurantUI.waitForVisibility(firstSearchResultRow);
+        restaurantUI.click(firstSearchResultRow);
+        restaurantUI.waitForCustom(3000);
+    }
+
+    public void searchAndClickFirstItemInSupplierCatalog(String searchText) throws InterruptedException {
+        searchOnSupplierCatalog(searchText);
+        clickFirstSearchResultInSupplierCatalog();
+    }
 
 }
