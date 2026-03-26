@@ -511,6 +511,7 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     By editItemNameTextField = By.xpath("//label[contains(text(),'Item Name')]/following-sibling::input");
 
     By tbx_titleStandingOrder = By.xpath("//input[@placeholder='Enter title']");
+    By txt_cartEmpty = By.xpath("//button[@data-tip='Your cart is empty']");
 
     public boolean isPreviousDraftOrderNoDisplayed() throws InterruptedException {
         /*restaurantUI.waitForElementEnabledState(btn_previousDraftOrderNo, true);
@@ -767,6 +768,12 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         restaurantUI.waitForInvisibility(btn_close_);
         restaurantUI.refreshPage();
     }
+
+    public void clickCloseWithoutRefresh(){
+        restaurantUI.waitForVisibility(btn_close_);
+        restaurantUI.click(btn_close_);
+    }
+
     public void submitOrder() throws InterruptedException {
         restaurantUI.waitForClickability(btn_submitOrder);
         restaurantUI.click(btn_submitOrder);
@@ -3108,6 +3115,11 @@ public void clickOnCloseOrderGuideEditor(){
     public void clickYes() throws InterruptedException {
         restaurantUI.click(btn_yes);
         restaurantUI.waitForCustom(1000);
+    }
+
+    public boolean isCartEmpty(){
+        restaurantUI.waitForVisibility(txt_cartEmpty);
+        return restaurantUI.isDisplayed(txt_cartEmpty);
     }
 
 
