@@ -152,7 +152,7 @@ public class Customer {
     }
     public static void submitOrder() throws InterruptedException {
         customersPage.submitOrder();
-        if (customersPage.caseMinNotMetDisplayed()){
+        if (customersPage.isOrderMinPopupDisplayed()){
             customersPage.clickPlaceOrderSoftOrderMinimum();
         }
         Thread.sleep(4000);
