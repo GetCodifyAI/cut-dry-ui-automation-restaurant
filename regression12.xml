@@ -8,22 +8,37 @@
     <test name="operator tests">
         <parameter name="PART" value="Part Twelve" />
         <classes>
-            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyGeneralHoldModalAndBannerDisplayFromOperatorPortalTest" />
+<!--            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.VerifyGeneralHoldModalAndBannerDisplayFromOperatorPortalTest" />-->
 <!--            <class name="com.cutanddry.qa.tests.History.VerifyOrderTotalsPersistCorrectlyInHistoryAfterSubmissionTest" />-->
 <!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyAddFromCatalogButtonFunctionalityOnReviewOrderScreenTest" />-->
-            <class name="com.cutanddry.qa.tests.Orders.VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenSoftOrderMinimumTest" />
-            <class name="com.cutanddry.qa.tests.Orders.VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenTest" />
+<!--            <class name="com.cutanddry.qa.tests.Orders.VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenSoftOrderMinimumTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Orders.VerifyTheOrderMinimumAmountIsNotAppliedWhenPriceVisibilityIsHiddenTest" />-->
 
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyAddInstructionsPerItemFunctionalityOnReviewOrderScreenTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifySpecialInstructionsTextAreaFunctionalityOnReviewOrderScreenTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyBackButtonNavigationOnReviewOrderScreenTest" />
-            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyPriceDisclaimerTextOnReviewOrderScreenTest" />
-            <class name="com.cutanddry.qa.tests.Orders.VerifyDuplicateOrderDetectionAndHandlingTest" />
-            <class name="com.cutanddry.qa.tests.Orders.VerifyThreeDotMenuActionsVisibleInPlaceOrderScreenTest" />
-            <class name="com.cutanddry.qa.tests.Orders.VerifyEditGuideRoutesToCorrectOrderGuideEditorForThatSupplierTest" />
-            <class name="com.cutanddry.qa.tests.Orders.VerifyViewCatalogFromMenuMatchesInlineViewCatalogBehaviorTest" />
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyAddInstructionsPerItemFunctionalityOnReviewOrderScreenTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifySpecialInstructionsTextAreaFunctionalityOnReviewOrderScreenTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyBackButtonNavigationOnReviewOrderScreenTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyPriceDisclaimerTextOnReviewOrderScreenTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Orders.VerifyDuplicateOrderDetectionAndHandlingTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Orders.VerifyThreeDotMenuActionsVisibleInPlaceOrderScreenTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Orders.VerifyEditGuideRoutesToCorrectOrderGuideEditorForThatSupplierTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Orders.VerifyViewCatalogFromMenuMatchesInlineViewCatalogBehaviorTest" />-->
 
-            <class name="com.cutanddry.qa.tests.Drafts.VerifyDraftRetentionPeriodTest" />
+<!--            <class name="com.cutanddry.qa.tests.Drafts.VerifyDraftRetentionPeriodTest" />-->
+
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelAdminTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelManagerTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheSelectMultipleUOMFromRecommendedBySalesRepCarouselAndSubmissionTest" />
+            <class name="com.cutanddry.qa.tests.Orders.VerifyThatTheRecentOrdersTableContainsTheAddToOrderButtonTest" />
+            <class name="com.cutanddry.qa.tests.default_view.VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalToolsForOperatorTest" />
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyPlaceOrderWithMultiUOMForNonIntegratedTest" />
+            <class name="com.cutanddry.qa.tests.Pay.VerifyTheAutoApplyCreditMemosOnOPPortalWhenFeatureEnabledTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateDraftCreationOfTheSelectedSupplierTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateNavigatingToRelevantDraftOrderFromDraftsTest"/>
+            <class name="com.cutanddry.qa.tests.DP_Specific_Suppliers.ValidateSubmittingOrderOfTheSelectedSupplierTest"/>
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheHardOrderMinimumSelectingMultipleUOMTest" />
+            <class name="com.cutanddry.qa.tests.Substitutions.VerifyPlacingAnOrderForCustomerWithAnyOtherBranchCodeTest" />
+
+
 
         </classes>
     </test>
