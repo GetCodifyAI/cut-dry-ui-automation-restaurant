@@ -71,6 +71,7 @@ public class VerifyOrderMinimumIsNotAppliedWhenNoOrderMinimumIsConfiguredTest ex
         Login.navigateToLoginAs();
         Login.logInToOperatorAsWhiteLabel(OperatorName);
         Dashboard.navigateToOrder();
+        Customer.clickCloseWithoutRefresh();
         Customer.increaseFirstRowQtyCustom(1);
         Customer.checkoutItems();
         softAssert.assertTrue(Customer.isReviewOrderTextDisplayed(), "The user is unable to land on the Review Order page.");
@@ -78,7 +79,7 @@ public class VerifyOrderMinimumIsNotAppliedWhenNoOrderMinimumIsConfiguredTest ex
         softAssert.assertFalse(Customer.isMinOrderBannerDisplayed(),"banner is appearing");
         Customer.submitOrderMinimum();
         softAssert.assertFalse(Customer.isOrderMinPopupDisplayed(),"popup display error");
-        Customer.clickOkOrderMinimum();
+        //Customer.clickOkOrderMinimum();
         softAssert.assertTrue(Customer.isThankingForOrderPopupDisplayed(), "The order was not completed successfully.");
         Customer.clickClose();
 

@@ -152,7 +152,7 @@ public class Customer {
     }
     public static void submitOrder() throws InterruptedException {
         customersPage.submitOrder();
-        if (customersPage.caseMinNotMetDisplayed()){
+        if (customersPage.isOrderMinPopupDisplayed()){
             customersPage.clickPlaceOrderSoftOrderMinimum();
         }
         Thread.sleep(4000);
@@ -1817,6 +1817,14 @@ public class Customer {
             customersPage.clickOnStandingOrderDeleteIcon();
             Thread.sleep(200);
         }
+    }
+
+    public static boolean isCartEmpty(){
+        return customersPage.isCartEmpty();
+    }
+
+    public static void clickCloseWithoutRefresh(){
+        customersPage.clickCloseWithoutRefresh();
     }
 
 

@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 public class VerifyTheOrderDetailsAddNotesTest extends TestBase {
     static User user;
-    static String orderNote = "This is the order note !!!";
+    static String orderNote = "This is the Test order note !!!";
 
     @BeforeMethod
     public void setUp(){
