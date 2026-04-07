@@ -167,4 +167,16 @@ public class Catalog {
     public static void selectProductActiveInactiveStatus(String prodStatus){
         catalogPage.clickOnInactiveOrInactive(prodStatus);
     }
+
+    public static void searchOnSupplierCatalog(String searchText) throws InterruptedException {
+        catalogPage.searchOnSupplierCatalog(searchText);
+    }
+
+    public static void clickFirstSearchResultInSupplierCatalog() throws InterruptedException {
+        catalogPage.clickFirstSearchResultInSupplierCatalog();
+    }
+
+    public static void searchAndClickFirstItemInSupplierCatalog(String searchText) throws InterruptedException {
+        catalogPage.searchAndClickFirstItemInSupplierCatalog(searchText);
+    }
 }
