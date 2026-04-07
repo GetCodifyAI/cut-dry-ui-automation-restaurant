@@ -48,10 +48,10 @@ public class InternalToolsPage extends TestBase {
     By caseMinimumGloballyToggleStable1 = By.xpath("//div[contains(text(), 'Soft/Hard order Case minimum')]/following-sibling::div//div[@class='react-switch-bg']/following-sibling::div[@class='react-switch-handle']/parent::div/div[1]");
 
     By lbl_DefaultViewPortalDropDow = By.xpath("//*[contains(text(), 'Default View for Operators')]/following-sibling::div//div[contains(@class,'themed_select__indicators')]");
-    By lbl_DefaultViewPortalAsSimpleList = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Simple List']");
-    By lbl_DefaultViewPortalAsQuickAdd = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Quick Add']");
-    By lbl_DefaultViewPortalAsOrderGuide = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Order Guide']");
-    By lbl_DefaultViewPortalAsCatalog = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Catalog']");
+    By lbl_DefaultViewPortalAsSimpleList = By.xpath("//div[contains(@class,'themed_select__single-value') and text()='Simple List']");
+    By lbl_DefaultViewPortalAsQuickAdd = By.xpath("//div[contains(@class,'themed_select__single-value') and text()='Quick Add']");
+    By lbl_DefaultViewPortalAsOrderGuide = By.xpath("//div[contains(@class,'themed_select__single-value') and text()='Order Guide']");
+    By lbl_DefaultViewPortalAsCatalog = By.xpath("//div[contains(@class,'themed_select__single-value') and contains(text(),'Catalog')]");
     By lbl_DefaultViewPortalAsScanToOrder = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Scan to Order']");
 
     By lbl_QuickAddViewDropDow = By.xpath("//*[contains(text(), 'Quick Add View:')]/following-sibling::div//div[contains(@class,'themed_select__indicators')]");

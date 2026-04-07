@@ -24,7 +24,8 @@ public class VerifyEndToEndCreditRequestDeclineFlowTest extends TestBase {
     @Test(groups = "DOT-TC-507")
     public void verifyEndToEndCreditRequestDeclineFlow() throws InterruptedException{
         String itemName;
-        SoftAssert softAssert = new SoftAssert();
+        SoftAssert softAssert = new SoftAssert(
+        );
         Login.loginAsRestaurant(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
