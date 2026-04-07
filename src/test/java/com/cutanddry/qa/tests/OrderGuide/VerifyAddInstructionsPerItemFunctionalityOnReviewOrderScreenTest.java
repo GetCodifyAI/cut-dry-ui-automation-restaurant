@@ -39,7 +39,7 @@ public class VerifyAddInstructionsPerItemFunctionalityOnReviewOrderScreenTest ex
         Login.navigateToLoginAs();
         Login.logInToOperatorAsWhiteLabel(userName);
         Customer.clickOnPlaceOrder();
-       // Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
+        Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 
         Customer.increaseFirstRowQtyByOne();
         itemCode = Customer.getItemCodeFirstRow();
