@@ -48,6 +48,7 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
         InternalTools.enableDefaultViewPortalAsOrderGuide();
         Thread.sleep(5000);
 //        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save 1");
+
         InternalTools.clickOkOnSuccessBtn();
 
         Login.navigateToLoginAs();
