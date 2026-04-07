@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 public class BoostPage extends TestBase {
 
     By btn_boost = By.xpath("(//a[@data-tip='Boost'])[last()]");
-    By txt_boost = By.xpath("//li[contains(text(),'Boost')]");
+    By txt_boost = By.xpath("//h2[normalize-space()='Boost']");
     By tab_suggestiveSales = By.xpath("//a[text()='Suggestive Sales']");
     By txt_topCategoryPicks = By.xpath("//td[text()='Top Category Picks']");
     By btn_topPicks_config = By.xpath("//tr[td[contains(text(), 'Top Category Picks')]]//button[contains(text(), 'View & Configure')]");
