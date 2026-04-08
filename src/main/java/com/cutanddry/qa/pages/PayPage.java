@@ -108,180 +108,180 @@ public class PayPage extends TestBase {
 
 
     public void clickOnPay() {
-        restaurantUI.clickWithFallback(btn_pay);
+        getRestaurantUI().clickWithFallback(btn_pay);
     }
 
     public boolean isPaySupplierTextDisplayed() {
         try {
-            restaurantUI.waitForVisibility(text_visibilityOfPaySuppliers);
+            getRestaurantUI().waitForVisibility(text_visibilityOfPaySuppliers);
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(text_visibilityOfPaySuppliers);
+        return getRestaurantUI().isDisplayed(text_visibilityOfPaySuppliers);
     }
 
     public void clickOnPayOption() throws InterruptedException {
-        restaurantUI.click(btn_payOption);
-        restaurantUI.waitForCustom(800);
+        getRestaurantUI().click(btn_payOption);
+        getRestaurantUI().waitForVisibility(txt_invoiceIdNo);
     }
 
     public boolean isInvoiceIDNoDisplayed() throws InterruptedException {
         try {
-            restaurantUI.waitForVisibility(txt_invoiceIdNo);
+            getRestaurantUI().waitForVisibility(txt_invoiceIdNo);
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(txt_invoiceIdNo);
+        return getRestaurantUI().isDisplayed(txt_invoiceIdNo);
     }
 
     public void clickOnAddPaymentMethod() throws InterruptedException {
-        restaurantUI.waitForCustom(800);
-        restaurantUI.click(btn_addPaymentMethod);
+        getRestaurantUI().waitForClickability(btn_addPaymentMethod);
+        getRestaurantUI().click(btn_addPaymentMethod);
     }
 
     public boolean isAddPaymentMethodTextDisplayed() {
         try {
-            restaurantUI.waitForVisibility(text_visibilityOfAddPaymentMethod);
+            getRestaurantUI().waitForVisibility(text_visibilityOfAddPaymentMethod);
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(text_visibilityOfAddPaymentMethod);
+        return getRestaurantUI().isDisplayed(text_visibilityOfAddPaymentMethod);
     }
 
     public void clickOnBankAccountOption() {
-        restaurantUI.click(btn_bankAccountOption);
+        getRestaurantUI().click(btn_bankAccountOption);
     }
 
     public boolean isAddBankAccountTextDisplayed() {
         try {
-            restaurantUI.waitForVisibility(txt_visibilityOfAddBankAccount);
+            getRestaurantUI().waitForVisibility(txt_visibilityOfAddBankAccount);
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(txt_visibilityOfAddBankAccount);
+        return getRestaurantUI().isDisplayed(txt_visibilityOfAddBankAccount);
     }
 
     public void typeAccountNumber(String accountNumber) throws InterruptedException {
-        restaurantUI.sendKeys(txb_accNo, accountNumber);
-        restaurantUI.waitForCustom(800);
+        getRestaurantUI().sendKeys(txb_accNo, accountNumber);
+        getRestaurantUI().waitForCustom(800);
     }
 
     public void typeRouteNumber(String routeNumber) throws InterruptedException {
-        restaurantUI.sendKeys(txt_routNo, routeNumber);
-        restaurantUI.waitForCustom(800);
+        getRestaurantUI().sendKeys(txt_routNo, routeNumber);
+        getRestaurantUI().waitForCustom(800);
     }
 
     public void addAccountType() throws InterruptedException {
-        restaurantUI.click(btn_accType);
-        restaurantUI.click(btn_accTypeOption);
-        restaurantUI.waitForCustom(800);
-        restaurantUI.click(btn_next);
+        getRestaurantUI().click(btn_accType);
+        getRestaurantUI().click(btn_accTypeOption);
+        getRestaurantUI().waitForClickability(btn_next);
+        getRestaurantUI().click(btn_next);
     }
 
     public void typeNickname(String nickname) throws InterruptedException {
-        restaurantUI.sendKeys(txt_nickname, nickname);
-        restaurantUI.waitForCustom(800);
-        restaurantUI.click(btn_save);
+        getRestaurantUI().sendKeys(txt_nickname, nickname);
+        getRestaurantUI().waitForClickability(btn_save);
+        getRestaurantUI().click(btn_save);
     }
 
     public boolean isPaymentMethodAddSuccessOverlayDisplayed() {
-        return restaurantUI.isDisplayed(paymentMethodSuccessTxt);
+        return getRestaurantUI().isDisplayed(paymentMethodSuccessTxt);
     }
 
     public void clickOnPaymentSetting() {
-        restaurantUI.scrollToElement(btn_paymentSettings);
-        restaurantUI.clickUsingJavaScript(btn_paymentSettings);
+        getRestaurantUI().scrollToElement(btn_paymentSettings);
+        getRestaurantUI().clickUsingJavaScript(btn_paymentSettings);
     }
 
     public void clickOnRemovePaymentSetting() {
-        restaurantUI.click(btn_paymentMethod);
+        getRestaurantUI().click(btn_paymentMethod);
     }
 
     public boolean isEditNicknameTextDisplayed() {
         try {
-            restaurantUI.waitForVisibility(txt_visibilityOfNickname);
+            getRestaurantUI().waitForVisibility(txt_visibilityOfNickname);
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(txt_visibilityOfNickname);
+        return getRestaurantUI().isDisplayed(txt_visibilityOfNickname);
     }
 
     public void clickOnRemovePayment() {
-        restaurantUI.click(btn_removePayment);
+        getRestaurantUI().click(btn_removePayment);
     }
 
     public boolean isRemoveConfirmationTextDisplayed() {
         try {
-            restaurantUI.waitForVisibility(txt_removeConfirmation);
+            getRestaurantUI().waitForVisibility(txt_removeConfirmation);
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(txt_removeConfirmation);
+        return getRestaurantUI().isDisplayed(txt_removeConfirmation);
     }
 
     public void clickOnConfirmYes() {
-        restaurantUI.click(btn_remYesConfirmation);
+        getRestaurantUI().click(btn_remYesConfirmation);
     }
 
     public void editNickName(String editNickname) throws InterruptedException {
-        restaurantUI.doubleClick(tbx_editNickname);
-        restaurantUI.waitForClickability(tbx_editNickname);
-        restaurantUI.sendKeys(tbx_editNickname, editNickname);
+        getRestaurantUI().doubleClick(tbx_editNickname);
+        getRestaurantUI().waitForClickability(tbx_editNickname);
+        getRestaurantUI().sendKeys(tbx_editNickname, editNickname);
     }
 
     public boolean isRemoveSuccessTextDisplayed() {
         try {
-            restaurantUI.waitForVisibility(txt_removeSuccessMsg);
+            getRestaurantUI().waitForVisibility(txt_removeSuccessMsg);
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(txt_removeSuccessMsg);
+        return getRestaurantUI().isDisplayed(txt_removeSuccessMsg);
     }
 
     public void clickOnOk() {
-        restaurantUI.click(btn_OK);
+        getRestaurantUI().click(btn_OK);
     }
 
     public void clickPaymentSettingsRemove(String nickName) {
-        restaurantUI.click(By.xpath(btn_paymentSettingsRemove.replace("NICKNAME", nickName)));
+        getRestaurantUI().click(By.xpath(btn_paymentSettingsRemove.replace("NICKNAME", nickName)));
     }
 
     public boolean isPaymentSettingsNicknameTextDisplayed(String Nickname) {
         try {
-            restaurantUI.waitForVisibility(By.xpath(txt_paySettingsNickname.replace("NICKNAME", Nickname)));
+            getRestaurantUI().waitForVisibility(By.xpath(txt_paySettingsNickname.replace("NICKNAME", Nickname)));
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(By.xpath(txt_paySettingsNickname.replace("NICKNAME", Nickname)));
+        return getRestaurantUI().isDisplayed(By.xpath(txt_paySettingsNickname.replace("NICKNAME", Nickname)));
     }
 
     public void clickOnOneInvoice() {
-        restaurantUI.click(invoice);
+        getRestaurantUI().click(invoice);
     }
 
     public boolean isInvoiceIdTextDisplayed() {
         try {
-            restaurantUI.waitForVisibility(txt_invoiceId);
+            getRestaurantUI().waitForVisibility(txt_invoiceId);
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(txt_invoiceId);
+        return getRestaurantUI().isDisplayed(txt_invoiceId);
     }
 
     public void clickOnInvoiceStatus() throws InterruptedException {
-        restaurantUI.waitForCustom(500);
-        restaurantUI.click(btn_invoiceStatus);
+        getRestaurantUI().waitForClickability(btn_invoiceStatus);
+        getRestaurantUI().click(btn_invoiceStatus);
     }
 
     public void clickOnPastDue() throws InterruptedException {
-        restaurantUI.waitForVisibility(btn_statusPastDue);
-        restaurantUI.click(btn_statusPastDue);
-        restaurantUI.waitForCustom(10000);
+        getRestaurantUI().waitForVisibility(btn_statusPastDue);
+        getRestaurantUI().click(btn_statusPastDue);
+        getRestaurantUI().waitForCustom(10000);
     }
 
     public boolean isSearchedTextDisplayed() {
-        String searchStatusName = restaurantUI.getText(pastDue);
-        String searchResult = restaurantUI.getText(txt_searchedStatus);
+        String searchStatusName = getRestaurantUI().getText(pastDue);
+        String searchResult = getRestaurantUI().getText(txt_searchedStatus);
         try {
             return searchStatusName.equals(searchResult);
         } catch (Exception e) {
@@ -291,98 +291,97 @@ public class PayPage extends TestBase {
     }
 
     public void clickOnPaidTab() throws InterruptedException {
-        restaurantUI.click(btn_paidTab);
-        restaurantUI.waitForCustom(2000);
+        getRestaurantUI().click(btn_paidTab);
+        getRestaurantUI().waitForVisibility(navigatePaidTab);
     }
 
     public void clickOnPaidInvoiceStatus() throws InterruptedException {
-        restaurantUI.waitForCustom(300);
-        restaurantUI.click(btn_statusPaid);
+        getRestaurantUI().waitForClickability(btn_statusPaid);
+        getRestaurantUI().click(btn_statusPaid);
     }
 
     public void clickOnPaidStatusOption() throws InterruptedException {
-        restaurantUI.click(paidInvoice);
-        restaurantUI.waitForCustom(300);
+        getRestaurantUI().click(paidInvoice);
+        getRestaurantUI().waitForCustom(300);
     }
 
     public boolean isPaidSearchedTextDisplayed() {
-        return restaurantUI.isDisplayed(statusPaid);
+        return getRestaurantUI().isDisplayed(statusPaid);
     }
 
     public void clickOnOneInvoiceDownloadReceipt() {
-        restaurantUI.click(btn_threeDots);
-        restaurantUI.click(btn_downloadReceipt);
+        getRestaurantUI().click(btn_threeDots);
+        getRestaurantUI().click(btn_downloadReceipt);
     }
 
     public boolean isPaymentSettingsDisplayed() {
         try {
-            restaurantUI.waitForVisibility(txt_paymentSettings);
+            getRestaurantUI().waitForVisibility(txt_paymentSettings);
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(txt_paymentSettings);
+        return getRestaurantUI().isDisplayed(txt_paymentSettings);
     }
 
     public void clickOnOneInvoicePrintReceipt() {
-        restaurantUI.click(btn_threeDots);
-        restaurantUI.click(btn_printReceipt);
+        getRestaurantUI().click(btn_threeDots);
+        getRestaurantUI().click(btn_printReceipt);
     }
 
     public void clickSelectPaidInvoice() throws InterruptedException {
-        restaurantUI.waitForCustom(3000);
-        restaurantUI.waitForClickability(btn_selectPaidInvoice);
-        restaurantUI.clickUsingJavaScript(btn_selectPaidInvoice);
+        getRestaurantUI().waitForClickability(btn_selectPaidInvoice);
+        getRestaurantUI().clickUsingJavaScript(btn_selectPaidInvoice);
     }
 
     public void clickSelectOutstandingInvoice() throws InterruptedException {
-        restaurantUI.waitForCustom(2000);
-        restaurantUI.clickUsingJavaScript(btn_selectOutstandingInvoice);
+        getRestaurantUI().waitForVisibility(btn_selectOutstandingInvoice);
+        getRestaurantUI().clickUsingJavaScript(btn_selectOutstandingInvoice);
     }
 
     public void clickBatchActions() throws InterruptedException {
-        restaurantUI.waitForVisibility(btn_batchAction);
-        restaurantUI.click(btn_batchAction);
+        getRestaurantUI().waitForVisibility(btn_batchAction);
+        getRestaurantUI().click(btn_batchAction);
     }
 
     public void clickDownloadInvoices() {
-        restaurantUI.click(btn_downloadInvoice);
+        getRestaurantUI().click(btn_downloadInvoice);
     }
 
     public boolean isInvoicesSentPopUpDisplayed() {
         try {
-            restaurantUI.waitForVisibility(txt_downloadInvoice);
+            getRestaurantUI().waitForVisibility(txt_downloadInvoice);
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(txt_downloadInvoice);
+        return getRestaurantUI().isDisplayed(txt_downloadInvoice);
     }
 
     public void clickOk() {
-        restaurantUI.click(btn_ok);
+        getRestaurantUI().click(btn_ok);
     }
 
     public void clickAutoPay() {
-        restaurantUI.scrollToElement(btn_autoPay);
-        restaurantUI.clickUsingJavaScript(btn_autoPay);
+        getRestaurantUI().scrollToElement(btn_autoPay);
+        getRestaurantUI().clickUsingJavaScript(btn_autoPay);
     }
 
     public boolean isAutoPaySettingsHighlighted() {
         try {
-            restaurantUI.waitForVisibility(txt_highlightAutoPay);
+            getRestaurantUI().waitForVisibility(txt_highlightAutoPay);
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(txt_highlightAutoPay);
+        return getRestaurantUI().isDisplayed(txt_highlightAutoPay);
     }
 
     public boolean isBatchPaymentOverlayDisplayed() {
-        return restaurantUI.isDisplayed(batchPaymentTxt);
+        return getRestaurantUI().isDisplayed(batchPaymentTxt);
     }
 
     public void clickNextButton() {
-        restaurantUI.click(nextBtn);
+        getRestaurantUI().click(nextBtn);
         try {
-            restaurantUI.waitForCustom(2000);
+            getRestaurantUI().waitForCustom(2000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -390,175 +389,175 @@ public class PayPage extends TestBase {
 
     public boolean isNavigatePaidDisplayed() {
         try {
-            restaurantUI.waitForVisibility(navigatePaidTab);
+            getRestaurantUI().waitForVisibility(navigatePaidTab);
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(navigatePaidTab);
+        return getRestaurantUI().isDisplayed(navigatePaidTab);
     }
 
     public void clickCutAndDryPayToggle(boolean enable) {
 
-        String handlePosition = restaurantUI.getElement(cutAndDryPayToggleStable).getAttribute("style");
+        String handlePosition = getRestaurantUI().getElement(cutAndDryPayToggleStable).getAttribute("style");
         boolean isEnabled = handlePosition.contains("translateX(66px)");
 
         if (enable && !isEnabled) {
-            restaurantUI.clickWithScrollAndHover(cutAndDryPayToggleStable1);
-            restaurantUI.click(btn_markInvoiceYes);
+            getRestaurantUI().clickWithScrollAndHover(cutAndDryPayToggleStable1);
+            getRestaurantUI().click(btn_markInvoiceYes);
         } else if (!enable && isEnabled) {
-            restaurantUI.clickWithScrollAndHover(cutAndDryPayToggleStable1);
-            restaurantUI.click(btn_markInvoiceYes);
+            getRestaurantUI().clickWithScrollAndHover(cutAndDryPayToggleStable1);
+            getRestaurantUI().click(btn_markInvoiceYes);
         }
     }
 
     public void clickOnInvoiceRecord(int rowNo) {
         String row_count = String.valueOf(rowNo);
         By lbl_invoiceRecord = By.xpath(cbox_invoiceRecord.replace("ROW_COUNT", row_count));
-        restaurantUI.waitForVisibility(lbl_invoiceRecord);
-        restaurantUI.click(lbl_invoiceRecord);
+        getRestaurantUI().waitForVisibility(lbl_invoiceRecord);
+        getRestaurantUI().click(lbl_invoiceRecord);
     }
 
     public void clickCreateBatch() throws InterruptedException {
-        restaurantUI.waitForVisibility(btn_createBatch);
-        restaurantUI.click(btn_createBatch);
+        getRestaurantUI().waitForVisibility(btn_createBatch);
+        getRestaurantUI().click(btn_createBatch);
     }
 
     public boolean isBatchPaymentDisplayed() throws InterruptedException {
-        return restaurantUI.isDisplayed(txt_batchPayment);
+        return getRestaurantUI().isDisplayed(txt_batchPayment);
     }
 
     public boolean isCreditMemoDisplayed() throws InterruptedException {
-        restaurantUI.waitForCustom(3000);
-        return restaurantUI.isDisplayed(creditMemoDisplay);
+        getRestaurantUI().waitForCustom(3000);
+        return getRestaurantUI().isDisplayed(creditMemoDisplay);
     }
 
     public void clickSelectInvoice(String invoice) {
-        restaurantUI.scrollToElement(By.xpath(selectInvoice.replace("INVOICEID", invoice)));
-        restaurantUI.clickUsingJavaScript(By.xpath(selectInvoice.replace("INVOICEID", invoice)));
+        getRestaurantUI().scrollToElement(By.xpath(selectInvoice.replace("INVOICEID", invoice)));
+        getRestaurantUI().clickUsingJavaScript(By.xpath(selectInvoice.replace("INVOICEID", invoice)));
     }
 
     public void clickDownloadInvoice() throws InterruptedException {
-        restaurantUI.click(downloadInvoice);
-        restaurantUI.waitForCustom(2000);
+        getRestaurantUI().click(downloadInvoice);
+        getRestaurantUI().waitForCustom(2000);
     }
 
     public void clickPrintInvoice() throws InterruptedException {
-        restaurantUI.click(PrintInvoice);
-        restaurantUI.waitForCustom(2000);
+        getRestaurantUI().click(PrintInvoice);
+        getRestaurantUI().waitForCustom(2000);
     }
 
     public void navigateToPublicPayView(String vendorID){
         try {
-            restaurantUI.waitForCustom(3000);
+            getRestaurantUI().waitForCustom(3000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        restaurantUI.navigateToURL(Constants.PUBLIC_PAY_URL+ vendorID);
-        restaurantUI.waitForVisibility(publicPayView);
+        getRestaurantUI().navigateToURL(Constants.PUBLIC_PAY_URL+ vendorID);
+        getRestaurantUI().waitForVisibility(publicPayView);
     }
 
     public boolean isNavigatedToPublicPayView() {
-        return restaurantUI.isDisplayed(publicPayView);
+        return getRestaurantUI().isDisplayed(publicPayView);
     }
 
     public void openUnpaidInvoice() {
-        restaurantUI.click(firstUnpaidInvoice);
+        getRestaurantUI().click(firstUnpaidInvoice);
     }
     public boolean isInvoiceOpened(){
-        return restaurantUI.isDisplayed(paymentSummeryText);
+        return getRestaurantUI().isDisplayed(paymentSummeryText);
     }
 
     public void clickOnCardOption() {
-        restaurantUI.click(btn_cardOption);
+        getRestaurantUI().click(btn_cardOption);
     }
 
     public void enterCardNumber(String cardNum) throws InterruptedException {
-        restaurantUI.switchToFrameByElement(switchIframeCardNumber);
-        restaurantUI.sendKeys(cardNumber, cardNum);
-        restaurantUI.switchToDefaultContent();
+        getRestaurantUI().switchToFrameByElement(switchIframeCardNumber);
+        getRestaurantUI().sendKeys(cardNumber, cardNum);
+        getRestaurantUI().switchToDefaultContent();
     }
 
     public void enterCVVNumber(String cvvNumber) throws InterruptedException {
-        restaurantUI.switchToFrameByElement(switchIframeCardCVV);
-        restaurantUI.sendKeys(cardCVV, cvvNumber);
-        restaurantUI.switchToDefaultContent();
+        getRestaurantUI().switchToFrameByElement(switchIframeCardCVV);
+        getRestaurantUI().sendKeys(cardCVV, cvvNumber);
+        getRestaurantUI().switchToDefaultContent();
     }
 
     public void enterZipCode(String zipCode) throws InterruptedException {
-        restaurantUI.sendKeys(cardZipCode, zipCode);
-        restaurantUI.waitForCustom(800);
+        getRestaurantUI().sendKeys(cardZipCode, zipCode);
+        getRestaurantUI().waitForCustom(800);
     }
 
     public void enterExpirationDate(String expiriationDate) throws InterruptedException {
-        restaurantUI.switchToFrameByElement(switchIframeCardExp);
-        restaurantUI.sendKeys(cardExp, expiriationDate);
-        restaurantUI.switchToDefaultContent();
+        getRestaurantUI().switchToFrameByElement(switchIframeCardExp);
+        getRestaurantUI().sendKeys(cardExp, expiriationDate);
+        getRestaurantUI().switchToDefaultContent();
     }
 
     public void clickOnPublicPay() {
-        restaurantUI.click(btn_publicPay);
+        getRestaurantUI().click(btn_publicPay);
     }
 
     public boolean isTransactionRejectedPopUpDisplayed() {
-        return restaurantUI.isDisplayed(transactionRejectedPopUp);
+        return getRestaurantUI().isDisplayed(transactionRejectedPopUp);
     }
 
     public boolean isTotalUnpaidInvoicesTextDisplayed() {
         try {
-            restaurantUI.waitForVisibility(txt_totalUnpaidInvoices);
+            getRestaurantUI().waitForVisibility(txt_totalUnpaidInvoices);
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(txt_totalUnpaidInvoices);
+        return getRestaurantUI().isDisplayed(txt_totalUnpaidInvoices);
     }
 
     public boolean isTotalCreditsTextDisplayed() {
         try {
-            restaurantUI.waitForVisibility(txt_totalCredits);
+            getRestaurantUI().waitForVisibility(txt_totalCredits);
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(txt_totalCredits);
+        return getRestaurantUI().isDisplayed(txt_totalCredits);
     }
 
     public boolean isPastDueTextDisplayed() {
         try {
-            restaurantUI.waitForVisibility(txt_pastDueAmount);
+            getRestaurantUI().waitForVisibility(txt_pastDueAmount);
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(txt_pastDueAmount);
+        return getRestaurantUI().isDisplayed(txt_pastDueAmount);
     }
 
     public void clickOnInvoiceType() throws InterruptedException {
-        restaurantUI.waitForCustom(500);
-        restaurantUI.click(btn_invoiceType);
+        getRestaurantUI().waitForClickability(btn_invoiceType);
+        getRestaurantUI().click(btn_invoiceType);
     }
 
     public void clickOnTypeCreditMemo() throws InterruptedException {
-        restaurantUI.waitForClickability(btn_typeCreditMemo);
-        restaurantUI.click(btn_typeCreditMemo);
-        restaurantUI.waitForCustom(500);
+        getRestaurantUI().waitForClickability(btn_typeCreditMemo);
+        getRestaurantUI().click(btn_typeCreditMemo);
+        getRestaurantUI().waitForCustom(500);
     }
 
     public void clickOnTypeInvoice() throws InterruptedException {
-        restaurantUI.waitForClickability(btn_typeInvoice);
-        restaurantUI.click(btn_typeInvoice);
-        restaurantUI.waitForCustom(500);
+        getRestaurantUI().waitForClickability(btn_typeInvoice);
+        getRestaurantUI().click(btn_typeInvoice);
+        getRestaurantUI().waitForCustom(500);
     }
 
     public void clickOnStatusUnpaid()throws InterruptedException{
-        restaurantUI.waitForClickability(btn_statusUnpaid);
-        restaurantUI.click(btn_statusUnpaid);
-        restaurantUI.waitForCustom(500);
+        getRestaurantUI().waitForClickability(btn_statusUnpaid);
+        getRestaurantUI().click(btn_statusUnpaid);
+        getRestaurantUI().waitForCustom(500);
     }
 
     public float getCreditMemosTotalAmount() {
         float total = 0f;
-        int creditMemos = restaurantUI.countElements(lst_creditMemos);
+        int creditMemos = getRestaurantUI().countElements(lst_creditMemos);
         for (int i = 1; i <= creditMemos; i++) {
             By amountLocator = By.xpath("(" + lst_creditMemos.toString().replace("By.xpath: ", "") + ")[" + i + "]");
-            String amountText = restaurantUI.getText(amountLocator);
+            String amountText = getRestaurantUI().getText(amountLocator);
             if (amountText != null && !amountText.isEmpty()) {
                 amountText = amountText.replaceAll("[^\\d.]", "");
                 total += Float.parseFloat(amountText);
@@ -569,7 +568,7 @@ public class PayPage extends TestBase {
 
     public float getTotalCreditsAmount(){
         float TotalCreditsAmount = 0f;
-        String CreditsAmountTotal = restaurantUI.getText(totalCreditsAmount);
+        String CreditsAmountTotal = getRestaurantUI().getText(totalCreditsAmount);
         String creditsAmountTotal = CreditsAmountTotal.replaceAll("[^\\d.]", "");
         try {
             TotalCreditsAmount = Float.parseFloat(creditsAmountTotal);
@@ -581,10 +580,10 @@ public class PayPage extends TestBase {
 
     public float getPastDueInvoicesTotalAmount() {
         float totalPastDueAmount = 0f;
-        int pastDueInvoices = restaurantUI.countElements(lst_pastDueInvoices);
+        int pastDueInvoices = getRestaurantUI().countElements(lst_pastDueInvoices);
         for (int i = 1; i <=pastDueInvoices ; i++) {
             By amountLocator = By.xpath("(" + lst_pastDueInvoices.toString().replace("By.xpath: ", "") + ")[" + i + "]");
-            String amountText = restaurantUI.getText(amountLocator);
+            String amountText = getRestaurantUI().getText(amountLocator);
             if (amountText != null && !amountText.isEmpty()) {
                 amountText = amountText.replaceAll("[^\\d.]", "");
                 totalPastDueAmount += Float.parseFloat(amountText);
@@ -595,7 +594,7 @@ public class PayPage extends TestBase {
 
     public float getTotalPastDueInvoicesAmount(){
         float TotalPastDueInvoicesAmount = 0f;
-        String PastDueInvoicesAmountTotal = restaurantUI.getText(totalPastDueAmount);
+        String PastDueInvoicesAmountTotal = getRestaurantUI().getText(totalPastDueAmount);
         String pastDueInvoicesAmountTotal = PastDueInvoicesAmountTotal.replaceAll("[^\\d.]", "");
         try {
             TotalPastDueInvoicesAmount = Float.parseFloat(pastDueInvoicesAmountTotal);
@@ -606,21 +605,21 @@ public class PayPage extends TestBase {
     }
 
     public void clearInvoiceTypeDropDownOption()throws InterruptedException {
-        restaurantUI.click(clearInvoiceTypeDropdown);
-        restaurantUI.waitForCustom(800);
+        getRestaurantUI().click(clearInvoiceTypeDropdown);
+        getRestaurantUI().waitForCustom(800);
     }
     public void clearInvoiceStatusDropDownOption()throws InterruptedException{
-        restaurantUI.click(clearInvoiceStatusDropDown);
-        restaurantUI.waitForCustom(800);
+        getRestaurantUI().click(clearInvoiceStatusDropDown);
+        getRestaurantUI().waitForCustom(800);
 
     }
 
     public float getUnpaidInvoicesTotalAmount() {
         float totalUnpaidInvoicesAmount = 0f;
-        int unpaidInvoices = restaurantUI.countElements(lst_unpaidInvoices);
+        int unpaidInvoices = getRestaurantUI().countElements(lst_unpaidInvoices);
         for (int i = 1; i <=unpaidInvoices ; i++) {
             By amountLocator = By.xpath("(" + lst_unpaidInvoices.toString().replace("By.xpath: ", "") + ")[" + i + "]");
-            String amountText = restaurantUI.getText(amountLocator);
+            String amountText = getRestaurantUI().getText(amountLocator);
             if (amountText != null && !amountText.isEmpty()) {
                 amountText = amountText.replaceAll("[^\\d.]", "");
                 totalUnpaidInvoicesAmount += Float.parseFloat(amountText);
@@ -631,7 +630,7 @@ public class PayPage extends TestBase {
 
     public float getTotalUnpaidInvoicesAmount(){
         float TotalUnpaidInvoicesAmount = 0f;
-        String UnpaidInvoicesTotalAmount = restaurantUI.getText(totalUnpaidInvoicesAmount);
+        String UnpaidInvoicesTotalAmount = getRestaurantUI().getText(totalUnpaidInvoicesAmount);
         String unpaidInvoicesTotalAmount = UnpaidInvoicesTotalAmount.replaceAll("[^\\d.]", "");
         try {
             TotalUnpaidInvoicesAmount = Float.parseFloat(unpaidInvoicesTotalAmount);
@@ -642,21 +641,21 @@ public class PayPage extends TestBase {
 
     }
     public boolean isPaymentSuccessfulOverlayDisplayed(){
-        return restaurantUI.isDisplayed(paymentSuccessMessage);
+        return getRestaurantUI().isDisplayed(paymentSuccessMessage);
     }
 
     public void clickOnSupplierDropdown(String supplierName) throws InterruptedException {
-        restaurantUI.waitForCustom(3000);
-        restaurantUI.click(supplierDropDown);
-        restaurantUI.click(By.xpath(supplier.replace("SUPPLIER",supplierName)));
+        getRestaurantUI().waitForClickability(supplierDropDown);
+        getRestaurantUI().click(supplierDropDown);
+        getRestaurantUI().click(By.xpath(supplier.replace("SUPPLIER",supplierName)));
     }
 
     public boolean isAllInvoicesDisplayedAreForSupplier(String supplierName) throws InterruptedException {
-        restaurantUI.waitForCustom(2000);
-        return restaurantUI.checkTextInElementsList(supplierInPaidTable,supplierName);
+        getRestaurantUI().waitForCustom(2000);
+        return getRestaurantUI().checkTextInElementsList(supplierInPaidTable,supplierName);
     }
     public boolean isPaymentSuccessfulPopUpDisplayed() {
-        return restaurantUI.isDisplayed(txt_paymentSuccessful);
+        return getRestaurantUI().isDisplayed(txt_paymentSuccessful);
     }
 
 

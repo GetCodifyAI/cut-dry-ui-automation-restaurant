@@ -85,13 +85,13 @@ public class HistoryPage extends TestBase {
 
 
     public void clickClose(){
-        restaurantUI.waitForVisibility(btn_close);
-        restaurantUI.click(btn_close);
+        getRestaurantUI().waitForVisibility(btn_close);
+        getRestaurantUI().click(btn_close);
     }
     public void clickHistory(){
-        restaurantUI.clickWithFallback(btn_history);
+        getRestaurantUI().clickWithFallback(btn_history);
         try {
-            restaurantUI.waitForCustom(3000);
+            getRestaurantUI().waitForCustom(3000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -99,361 +99,348 @@ public class HistoryPage extends TestBase {
 
     public boolean isHistoryTextDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_history);
+            getRestaurantUI().waitForVisibility(txt_history);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_history);
+        return getRestaurantUI().isDisplayed(txt_history);
     }
 
     public void clickOnSearch(){
-        restaurantUI.click(btn_search);
+        getRestaurantUI().click(btn_search);
     }
     public void typeOnSearch(String orderID) throws InterruptedException {
-        restaurantUI.clear(btn_search);
-        restaurantUI.click(icon_deleteSearchItem);
-        restaurantUI.sendKeys(btn_search, orderID);
-        restaurantUI.waitForCustom(400);
+        getRestaurantUI().clear(btn_search);
+        getRestaurantUI().click(icon_deleteSearchItem);
+        getRestaurantUI().sendKeys(btn_search, orderID);
+        getRestaurantUI().waitForCustom(400);
     }
 
     public boolean checkIfSearchedElementVisible(String orderID) {
-        restaurantUI.waitForVisibility(By.xpath(search_result.replace("ORDERID",orderID)));
-        if (!restaurantUI.isDisplayed(By.xpath(search_result.replace("ORDERID",orderID)))) {
-            restaurantUI.refreshPage();
+        getRestaurantUI().waitForVisibility(By.xpath(search_result.replace("ORDERID",orderID)));
+        if (!getRestaurantUI().isDisplayed(By.xpath(search_result.replace("ORDERID",orderID)))) {
+            getRestaurantUI().refreshPage();
         }
-        return restaurantUI.isDisplayed(By.xpath(search_result.replace("ORDERID",orderID)));
+        return getRestaurantUI().isDisplayed(By.xpath(search_result.replace("ORDERID",orderID)));
     }
 
     public boolean checkIfFilteredElementVisible(String location){
-        return restaurantUI.isDisplayed(By.xpath(filter_result.replace("LOCATION",location)));
+        return getRestaurantUI().isDisplayed(By.xpath(filter_result.replace("LOCATION",location)));
     }
 
     public void clickOnFirstItemOfOrderHistory(){
-        try {
-            restaurantUI.waitForCustom(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        restaurantUI.click(first_row_order_details);
+        getRestaurantUI().waitForVisibility(first_row_order_details);
+        getRestaurantUI().click(first_row_order_details);
     }
     public boolean isOrderSectionDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_order_section);
+            getRestaurantUI().waitForVisibility(txt_order_section);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_order_section);
+        return getRestaurantUI().isDisplayed(txt_order_section);
     }
 
     public void clickOnItems(){
-        restaurantUI.click(btn_items);
+        getRestaurantUI().click(btn_items);
     }
     public boolean checkIfItemSectionVisible() {
-        restaurantUI.waitForVisibility(header_items_table);
-        return restaurantUI.isDisplayed(header_items_table);
+        getRestaurantUI().waitForVisibility(header_items_table);
+        return getRestaurantUI().isDisplayed(header_items_table);
     }
     public void clickOnTimeline(){
-        restaurantUI.click(btn_timeline);
+        getRestaurantUI().click(btn_timeline);
     }
     public boolean checkIfTimelineSectionVisible() {
-        return restaurantUI.isDisplayed(header_timeline_table);
+        return getRestaurantUI().isDisplayed(header_timeline_table);
     }
     public void clickOnMoreFilters(){
-        restaurantUI.waitForVisibility(btn_more_filters);
-        restaurantUI.click(btn_more_filters);
+        getRestaurantUI().waitForVisibility(btn_more_filters);
+        getRestaurantUI().click(btn_more_filters);
     }
     public boolean isFilterOrdersPopupDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_filter_orders);
+            getRestaurantUI().waitForVisibility(txt_filter_orders);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_filter_orders);
+        return getRestaurantUI().isDisplayed(txt_filter_orders);
     }
 
     public void clickLocation(){
-        restaurantUI.click(btn_location);
+        getRestaurantUI().click(btn_location);
     }
 
     public void clickOption(){
-        restaurantUI.click(btn_option);
+        getRestaurantUI().click(btn_option);
     }
 
     public void clickSave(){
-        restaurantUI.click(btn_save);
+        getRestaurantUI().click(btn_save);
     }
     public void clickMoreOptions(){
-        restaurantUI.click(btn_more_options);
+        getRestaurantUI().click(btn_more_options);
     }
     public void clickPrintOrder(){
-        restaurantUI.click(btn_print_order);
+        getRestaurantUI().click(btn_print_order);
     }
     public void clickAddNotes(){
-        restaurantUI.click(btn_add_note);
+        getRestaurantUI().click(btn_add_note);
     }
     public boolean isAddNotePopUpWindowDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_add_note);
+            getRestaurantUI().waitForVisibility(txt_add_note);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_add_note);
+        return getRestaurantUI().isDisplayed(txt_add_note);
     }
     public void clickTextarea(){
-        restaurantUI.click(btn_textarea);
+        getRestaurantUI().click(btn_textarea);
     }
     public void typeOrderNote(String orderNote) throws InterruptedException {
-        restaurantUI.clear(btn_textarea);
-        restaurantUI.sendKeys(btn_textarea, orderNote);
-        restaurantUI.waitForCustom(400);
+        getRestaurantUI().clear(btn_textarea);
+        getRestaurantUI().sendKeys(btn_textarea, orderNote);
+        getRestaurantUI().waitForCustom(400);
     }
     public void clickSaveChanges(){
-        restaurantUI.click(btn_save_changes);
+        getRestaurantUI().click(btn_save_changes);
     }
     public boolean checkOrderNoteVisible(String orderNote){
-        return restaurantUI.isDisplayed(By.xpath(order_note_result.replace("NOTE",orderNote)));
+        return getRestaurantUI().isDisplayed(By.xpath(order_note_result.replace("NOTE",orderNote)));
     }
     public void clickCheckIn(){
-        restaurantUI.click(btn_checkin);
+        getRestaurantUI().click(btn_checkin);
     }
     public boolean isCheckInOrderSectionDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_checkin_order_section);
+            getRestaurantUI().waitForVisibility(txt_checkin_order_section);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_checkin_order_section);
+        return getRestaurantUI().isDisplayed(txt_checkin_order_section);
     }
     public void clickCheckInAll(){
-        restaurantUI.click(btn_checkin_all);
+        getRestaurantUI().click(btn_checkin_all);
     }
     public boolean isCheckInAllPopupDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_chekin_popup);
+            getRestaurantUI().waitForVisibility(txt_chekin_popup);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_chekin_popup);
+        return getRestaurantUI().isDisplayed(txt_chekin_popup);
     }
     public void clickConfirm(){
-        restaurantUI.click(btn_confirm);
+        getRestaurantUI().click(btn_confirm);
     }
     public boolean isCheckInOrderStatusDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_checkin_status);
+            getRestaurantUI().waitForVisibility(txt_checkin_status);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_checkin_status);
+        return getRestaurantUI().isDisplayed(txt_checkin_status);
     }
     public void clickCancel(){
-        restaurantUI.click(btn_cancel_order);
+        getRestaurantUI().click(btn_cancel_order);
     }
     public boolean isCancelOrderPopUpDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_cancel_order);
+            getRestaurantUI().waitForVisibility(txt_cancel_order);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_cancel_order);
+        return getRestaurantUI().isDisplayed(txt_cancel_order);
     }
     public void clickConfirmCancelOrder(){
-        restaurantUI.click(btn_confirm_order);
+        getRestaurantUI().click(btn_confirm_order);
     }
-    public void clickEditOrder()throws InterruptedException{
-        restaurantUI.waitForCustom(5000);
-        restaurantUI.click(btn_edit_order);
+    public void clickEditOrder(){
+        getRestaurantUI().waitForVisibility(btn_edit_order);
+        getRestaurantUI().click(btn_edit_order);
     }
     public boolean isEditOrderPopUpDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_edit_order);
+            getRestaurantUI().waitForVisibility(txt_edit_order);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_edit_order);
+        return getRestaurantUI().isDisplayed(txt_edit_order);
     }
     public void clickConfirmEditOrder(){
-        restaurantUI.click(btn_confirm_order);
+        getRestaurantUI().click(btn_confirm_order);
         try {
-            restaurantUI.waitForCustom(3000);
+            getRestaurantUI().waitForCustom(3000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
     public boolean isReviewOrderTextDisplayed(){
-//        restaurantUI.waitForVisibility(txt_review_order);
-        return restaurantUI.isDisplayed(txt_review_order,3);
+//        getRestaurantUI().waitForVisibility(txt_review_order);
+        return getRestaurantUI().isDisplayed(txt_review_order,3);
 
     }
     public void increaseFirstRowQtyByOne()throws InterruptedException{
-        restaurantUI.click(btn_edit_quantity);
-        restaurantUI.waitForCustom(4000);
+        getRestaurantUI().click(btn_edit_quantity);
+        getRestaurantUI().waitForCustom(4000);
 
     }
     public void clickSubmitEditOrder(){
-        restaurantUI.click(btn_submit_edit_order);
+        getRestaurantUI().click(btn_submit_edit_order);
     }
     public void clickCheckOutEditOrder(){
-        restaurantUI.click(btn_checkout_edit_order);
+        getRestaurantUI().click(btn_checkout_edit_order);
     }
     public boolean isOrderEditRequestPopupDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_ok_edit_order);
+            getRestaurantUI().waitForVisibility(txt_ok_edit_order);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_ok_edit_order);
+        return getRestaurantUI().isDisplayed(txt_ok_edit_order);
     }
     public void clickOkEditOrder(){
-        restaurantUI.click(btn_ok_edit_order);
+        getRestaurantUI().click(btn_ok_edit_order);
     }
     public void clickRecreateOrder(){
-        restaurantUI.click(btn_recreate_order);
+        getRestaurantUI().click(btn_recreate_order);
     }
 
     public String getLastOrderReference(){
-        return restaurantUI.getText(lastOrderId).split("#")[1];
+        return getRestaurantUI().getText(lastOrderId).split("#")[1];
     }
     public String getLastWorkingDate() {
-        return restaurantUI.getLastWorkingDay();
+        return getRestaurantUI().getLastWorkingDay();
     }
     public void selectOrderDate(String day){
-        restaurantUI.click(lbl_orderDateDropdown);
-        restaurantUI.waitForVisibility(By.xpath(days.replace("DATE", day)));
-        restaurantUI.click(By.xpath(days.replace("DATE", day)));
+        getRestaurantUI().click(lbl_orderDateDropdown);
+        getRestaurantUI().waitForVisibility(By.xpath(days.replace("DATE", day)));
+        getRestaurantUI().click(By.xpath(days.replace("DATE", day)));
     }
     public boolean isOrderDateChanged(String day){
         try {
-            return restaurantUI.isDisplayed(By.xpath(days.replace("DATE", day)));
+            return getRestaurantUI().isDisplayed(By.xpath(days.replace("DATE", day)));
         } catch (Exception e){
             return false;
         }
     }
     public Boolean isFilteredOrdersCorrectOld(String OrdersDate){
-        try {
-            restaurantUI.waitForCustom(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        //restaurantUI.scrollToElementStable(By.xpath("("+ date.replace("DATE", OrdersDate) + ")" + "[last()]"));
-        return restaurantUI.isDisplayed(By.xpath("("+ date.replace("DATE", OrdersDate) + ")" + "[last()]"));
+        getRestaurantUI().waitForVisibility(By.xpath("("+ date.replace("DATE", OrdersDate) + ")" + "[last()]"));
+        //getRestaurantUI().scrollToElementStable(By.xpath("("+ date.replace("DATE", OrdersDate) + ")" + "[last()]"));
+        return getRestaurantUI().isDisplayed(By.xpath("("+ date.replace("DATE", OrdersDate) + ")" + "[last()]"));
     }
 
     public Boolean isFilteredOrdersCorrect(String OrdersDate) throws InterruptedException {
-        restaurantUI.waitForCustom(2000);
+        getRestaurantUI().waitForCustom(2000);
         By orderDateXPath = By.xpath("(" + date.replace("DATE", OrdersDate) + ")[last()]");
-        restaurantUI.scrollToElementStable(orderDateXPath, 5);
-        if (restaurantUI.isDisplayed(orderDateXPath, 5)) {
+        getRestaurantUI().scrollToElementStable(orderDateXPath, 5);
+        if (getRestaurantUI().isDisplayed(orderDateXPath, 5)) {
             return true;
         }
         return false;
     }
 
     public void selectOrderStatus(String stat){
-        restaurantUI.click(lbl_statusDropdown);
-        restaurantUI.waitForVisibility(By.xpath(sts.replace("STATUS", stat)));
-        restaurantUI.click(By.xpath(sts.replace("STATUS", stat)));
+        getRestaurantUI().click(lbl_statusDropdown);
+        getRestaurantUI().waitForVisibility(By.xpath(sts.replace("STATUS", stat)));
+        getRestaurantUI().click(By.xpath(sts.replace("STATUS", stat)));
     }
     public boolean isOrderStatusChanged(String stat){
         try {
-            restaurantUI.isDisplayed(By.xpath(sts.replace("STATUS", stat)));
+            getRestaurantUI().isDisplayed(By.xpath(sts.replace("STATUS", stat)));
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(By.xpath(sts.replace("STATUS", stat)));
+        return getRestaurantUI().isDisplayed(By.xpath(sts.replace("STATUS", stat)));
     }
     public Boolean isFilteredOrderStatusCorrect(String OrdersStatus){
-        try {
-            restaurantUI.waitForCustom(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        String s = restaurantUI.getText(txt_status);
-        restaurantUI.scrollToElement(By.xpath("("+ status.replace("STATUS", s) + ")" + "[last()]"));
-        return restaurantUI.validateFilteredElements(By.xpath(status.replace("STATUS", s)),OrdersStatus);
+        getRestaurantUI().waitForVisibility(txt_status);
+        String s = getRestaurantUI().getText(txt_status);
+        getRestaurantUI().scrollToElement(By.xpath("("+ status.replace("STATUS", s) + ")" + "[last()]"));
+        return getRestaurantUI().validateFilteredElements(By.xpath(status.replace("STATUS", s)),OrdersStatus);
     }
     public void clickUploadInvoices()throws InterruptedException{
-        restaurantUI.click(btn_uploadInvoices);
+        getRestaurantUI().click(btn_uploadInvoices);
     }
     public boolean isUploadInvoicesWindowDisplayed()throws InterruptedException{
         try {
-            restaurantUI.waitForVisibility(txt_uploadInvoices);
+            getRestaurantUI().waitForVisibility(txt_uploadInvoices);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_uploadInvoices);
+        return getRestaurantUI().isDisplayed(txt_uploadInvoices);
     }
     public void selectSupplierInvoice(String option)throws InterruptedException{
-        restaurantUI.waitForVisibility(selectSupplierDropDown);
-        restaurantUI.click(selectSupplierDropDown);
-        restaurantUI.click(By.xpath(dropDownOption.replace("OPTION", option)));
+        getRestaurantUI().waitForVisibility(selectSupplierDropDown);
+        getRestaurantUI().click(selectSupplierDropDown);
+        getRestaurantUI().click(By.xpath(dropDownOption.replace("OPTION", option)));
     }
     public void selectRestaurantLocation(String option)throws InterruptedException{
-        restaurantUI.waitForVisibility(restaurantLocationDropDown);
-        restaurantUI.click(restaurantLocationDropDown);
-        restaurantUI.click(By.xpath(locationDropDownOption.replace("OPTION", option)));
+        getRestaurantUI().waitForVisibility(restaurantLocationDropDown);
+        getRestaurantUI().click(restaurantLocationDropDown);
+        getRestaurantUI().click(By.xpath(locationDropDownOption.replace("OPTION", option)));
     }
     public boolean isInvoicesUploadedPopUpDisplayed()throws InterruptedException{
         try {
-            restaurantUI.waitForVisibility(invoiceUploadedPopUp);
+            getRestaurantUI().waitForVisibility(invoiceUploadedPopUp);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(invoiceUploadedPopUp);
+        return getRestaurantUI().isDisplayed(invoiceUploadedPopUp);
     }
     public void clickOkInvoice()throws InterruptedException{
-        restaurantUI.click(btn_ok);
-        restaurantUI.waitForCustom(2000);
-        restaurantUI.refreshPage();
+        getRestaurantUI().click(btn_ok);
+        getRestaurantUI().waitForCustom(2000);
+        getRestaurantUI().refreshPage();
     }
     public boolean isInvoicesUploadedStatusDisplayed()throws InterruptedException{
         try {
-            restaurantUI.waitForVisibility(invoiceUploadStatus);
+            getRestaurantUI().waitForVisibility(invoiceUploadStatus);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(invoiceUploadStatus);
+        return getRestaurantUI().isDisplayed(invoiceUploadStatus);
     }
 
     public Double getItemPriceOnMultiOUM() throws InterruptedException {
-        restaurantUI.waitForVisibility(btn_orderCheckoutReview);
-        String priceText = restaurantUI.getText(btn_orderCheckoutReview).replace("$", "").replace(",", "");
+        getRestaurantUI().waitForVisibility(btn_orderCheckoutReview);
+        String priceText = getRestaurantUI().getText(btn_orderCheckoutReview).replace("$", "").replace(",", "");
         return Double.valueOf(priceText);
     }
 
     public Double getItemCountOnReviewMultiOUM() throws InterruptedException {
-        restaurantUI.waitForVisibility(btn_orderItemCountReview);
-        String priceText = restaurantUI.getText(btn_orderItemCountReview);
+        getRestaurantUI().waitForVisibility(btn_orderItemCountReview);
+        String priceText = getRestaurantUI().getText(btn_orderItemCountReview);
         return Double.valueOf(priceText);
     }
 
-    public boolean isOrderIdDisplayed(String orderId) throws InterruptedException {
-        restaurantUI.waitForVisibility(By.xpath(orderTitle.replace("ORDER_ID", orderId)));
-        restaurantUI.waitForCustom(4000);
-        return restaurantUI.isDisplayed(By.xpath(orderTitle.replace("ORDER_ID", orderId)));
+    public boolean isOrderIdDisplayed(String orderId) {
+        getRestaurantUI().waitForVisibility(By.xpath(orderTitle.replace("ORDER_ID", orderId)));
+        return getRestaurantUI().isDisplayed(By.xpath(orderTitle.replace("ORDER_ID", orderId)));
     }
 
     public Double getItemPriceOnSubmittedOrder() throws InterruptedException {
-        restaurantUI.waitForVisibility(btn_submittedOrderTotal);
-        String priceText = restaurantUI.getText(btn_submittedOrderTotal).replace("$", "").replace(",", "");
+        getRestaurantUI().waitForVisibility(btn_submittedOrderTotal);
+        String priceText = getRestaurantUI().getText(btn_submittedOrderTotal).replace("$", "").replace(",", "");
         return Double.valueOf(priceText);
     }
 
    /* public void clickOnOrder(String orderId) {
-        for (int i = 1; i <= restaurantUI.countElements(lbl_orderTableColumn); i++) {
-            if ("Reference".equalsIgnoreCase(restaurantUI.getText(By.xpath(lbl_orderTableColumnName.replace("COUNT", String.valueOf(i)))))) {
-                for (int j = 1; j <= restaurantUI.countElements(lbl_orderTableRow); j++) {
+        for (int i = 1; i <= getRestaurantUI().countElements(lbl_orderTableColumn); i++) {
+            if ("Reference".equalsIgnoreCase(getRestaurantUI().getText(By.xpath(lbl_orderTableColumnName.replace("COUNT", String.valueOf(i)))))) {
+                for (int j = 1; j <= getRestaurantUI().countElements(lbl_orderTableRow); j++) {
                     String xpath = lbl_orderTableRef.replace("TR_COUNT", String.valueOf(j)).replace("TH_COUNT", String.valueOf(i));
 
                     String referenceData;
                     try {
-                        referenceData = restaurantUI.getText(2,By.xpath(xpath)).trim();
+                        referenceData = getRestaurantUI().getText(2,By.xpath(xpath)).trim();
                     } catch (Exception e) {
                         continue;
                     }
 
                     if (!referenceData.isEmpty() && orderId.equalsIgnoreCase(referenceData.replace("Order",""))) {
-                        restaurantUI.click(By.xpath(xpath));
+                        getRestaurantUI().click(By.xpath(xpath));
                         return;
                     }
                 }
@@ -463,23 +450,23 @@ public class HistoryPage extends TestBase {
 
     public void clickOnOrder(String orderId) {
         int maxRecords = 15;
-        for (int i = 1; i <= restaurantUI.countElements(lbl_orderTableColumn); i++) {
-            String columnName = restaurantUI.executeJSForText(By.xpath(lbl_orderTableColumnName.replace("COUNT", String.valueOf(i))));
+        for (int i = 1; i <= getRestaurantUI().countElements(lbl_orderTableColumn); i++) {
+            String columnName = getRestaurantUI().executeJSForText(By.xpath(lbl_orderTableColumnName.replace("COUNT", String.valueOf(i))));
 
             if ("Reference".equalsIgnoreCase(columnName)) {
-                int totalRows = Math.min(restaurantUI.countElements(lbl_orderTableRow), maxRecords);
+                int totalRows = Math.min(getRestaurantUI().countElements(lbl_orderTableRow), maxRecords);
                 for (int j = 1; j <= totalRows; j++) {
                     String xpath = lbl_orderTableRef.replace("TR_COUNT", String.valueOf(j)).replace("TH_COUNT", String.valueOf(i));
 
                     String referenceData;
                     try {
-                        referenceData = restaurantUI.executeJSForText(By.xpath(xpath));
+                        referenceData = getRestaurantUI().executeJSForText(By.xpath(xpath));
                     } catch (Exception e) {
                         continue;
                     }
 
                     if (!referenceData.isEmpty() && orderId.equalsIgnoreCase(referenceData.replace("Order", "").trim())) {
-                        restaurantUI.click(By.xpath(xpath));  // You can replace this with JS click if needed
+                        getRestaurantUI().click(By.xpath(xpath));  // You can replace this with JS click if needed
                         return;
                     }
                 }
@@ -487,30 +474,30 @@ public class HistoryPage extends TestBase {
         }
     }
     public void clickOnInvoiceTab(){
-        restaurantUI.click(btn_invoice);
+        getRestaurantUI().click(btn_invoice);
     }
     public void clickOnDownloadInvoice(){
-        restaurantUI.click(btn_downloadInvoice);
+        getRestaurantUI().click(btn_downloadInvoice);
     }
     public void clickOnPrintInvoice(){
-        restaurantUI.click(btn_printInvoice);
+        getRestaurantUI().click(btn_printInvoice);
     }
 
     public void ensureOrderDateSortedDescending() throws InterruptedException {
 
-        restaurantUI.waitForVisibility(lbl_orderDateColumn);
-        restaurantUI.click(lbl_orderDateColumn);
+        getRestaurantUI().waitForVisibility(lbl_orderDateColumn);
+        getRestaurantUI().click(lbl_orderDateColumn);
 
-        if (restaurantUI.isDisplayed(lbl_orderDateArrowUp)) {
-            restaurantUI.click(lbl_orderDateColumn);
-            restaurantUI.waitForCustom(2000);
+        if (getRestaurantUI().isDisplayed(lbl_orderDateArrowUp)) {
+            getRestaurantUI().click(lbl_orderDateColumn);
+            getRestaurantUI().waitForCustom(2000);
         }
 
     }
     public void refreshHistoryPage(){
-        restaurantUI.refreshPage();
+        getRestaurantUI().refreshPage();
     }
     public boolean isAddToOrderPopUpDisplayed(){
-        return restaurantUI.isDisplayed(txt_addToOrder);
+        return getRestaurantUI().isDisplayed(txt_addToOrder);
     }
 }

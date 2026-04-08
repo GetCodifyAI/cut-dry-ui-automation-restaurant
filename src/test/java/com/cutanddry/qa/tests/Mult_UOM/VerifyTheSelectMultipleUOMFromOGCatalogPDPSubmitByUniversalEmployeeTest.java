@@ -38,7 +38,7 @@ public class VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalEmployee
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Login.navigateToLoginAs();
         Login.loginAsEmployee(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Dashboard.navigateToOrder();
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();

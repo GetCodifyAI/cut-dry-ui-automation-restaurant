@@ -33,7 +33,7 @@ public class VerifyPaidInvoiceStatusDropdownTest extends TestBase{
         Pay.clickOnPaidInvoiceTab();
         Pay.clickOnPaidInvoiceStatusDropdownMenu();
         Pay.clickOnInvoicePaidStatusOption();
-        Thread.sleep(5000);
+        getRestaurantUI().waitForCustom(5000);
         softAssert.assertTrue(Pay.isPaidSearchedTextDisplayed(),"error in text display");
         softAssert.assertAll();
 

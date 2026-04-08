@@ -41,7 +41,7 @@ public class VerifyTheChatFeatureNotDisplayWhenChatModuleDisableInWhiteLabelCust
 
         Login.navigateToLoginAs();
         Login.loginAsAdminWL(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
 
         softAssert.assertFalse(Dashboard.isChatSectionDisplay(),"Chat section not display");
         softAssert.assertFalse(Dashboard.isChatWithUsDisplay(),"chat with us button display error");
@@ -55,7 +55,7 @@ public class VerifyTheChatFeatureNotDisplayWhenChatModuleDisableInWhiteLabelCust
 
         Login.navigateToLoginAs();
         Login.loginAsAdminWL(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
 
         softAssert.assertTrue(Dashboard.isChatSectionDisplay(),"Chat section not display");
         softAssert.assertTrue(Dashboard.isChatWithUsDisplay(),"chat with us button display error");

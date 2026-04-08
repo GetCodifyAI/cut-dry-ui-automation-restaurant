@@ -82,7 +82,7 @@ public class VerifyThatTheSendToERPButtonIsNotAvailableForScheduledJITOrdersTest
         Customer.clickConfirm();
         softAssert.assertTrue(Customer.isOrderSentERPPopUpDisplayed(), "order sent to ERP pop up not display");
         Customer.clickOK();
-        Thread.sleep(3000);
+        getRestaurantUI().waitForCustom(3000);
         softAssert.assertFalse(Customer.isSendToERPButtonDisplayed(), "Send to ERP button display");
         softAssert.assertFalse(Customer.isNotesToCustomerDisplayed(note), "customer notes display");
 

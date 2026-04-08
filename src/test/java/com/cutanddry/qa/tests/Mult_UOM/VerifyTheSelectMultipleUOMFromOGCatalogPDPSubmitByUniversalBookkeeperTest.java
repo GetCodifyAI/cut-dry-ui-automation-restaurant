@@ -37,7 +37,7 @@ public class VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByUniversalBookkeep
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Login.navigateToLoginAs();
         Login.loginAsBookkeeper(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Dashboard.navigateToOrder();
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();

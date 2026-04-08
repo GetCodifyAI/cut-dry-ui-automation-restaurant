@@ -44,10 +44,10 @@ public class VerifyOrderGuideSettingsForScrapperIntegratedDPsTest extends TestBa
         Assert.assertTrue(Customer.isDisplayedDeliveryDaysLabel(), "Delivery Days label is NOT displayed");
         Customer.setOrderMinimum("200");
         Customer.clickSaveOrderGuideSettings();
-        Thread.sleep(3000);
+        getRestaurantUI().waitForCustom(3000);
 
         Customer.closeEditor();
-        Thread.sleep(2000);
+        getRestaurantUI().waitForCustom(2000);
 
         Customer.increaseFirstRowQtyByOne();
         Customer.checkoutItems();

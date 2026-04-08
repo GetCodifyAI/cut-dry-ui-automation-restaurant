@@ -45,7 +45,7 @@ public class VerifyThatOPsDisplayTheirOwnProductsAlongWithProductsFromOtherManuf
 
         Customer.clickOnOrderGuideTab();
         Customer.clearSearchField();
-        Thread.sleep(3000);
+        getRestaurantUI().waitForCustom(3000);
 
         Customer.goToEdit();
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigation error for edit");

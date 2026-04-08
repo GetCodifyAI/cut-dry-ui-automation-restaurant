@@ -35,7 +35,7 @@ public class VerifyThatTheOrderGuideLocationInOrderGuideSettingsTest extends Tes
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Login.navigateToLoginAs();
         Login.loginAsManager(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Dashboard.navigateToOrder();
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();
@@ -45,19 +45,19 @@ public class VerifyThatTheOrderGuideLocationInOrderGuideSettingsTest extends Tes
         Customer.orderGuideSettings();
         Order.removeOrderGuideLocation();
         Order.clickOnSave();
-        Thread.sleep(5000);
+        getRestaurantUI().waitForCustom(5000);
 
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
         softAssert.assertTrue(Customer.IsChangeLocationOrderGuideDisplay(location1),"Display edit order guide location ");
 
         Customer.closeEditor();
-        Thread.sleep(10000);
+        getRestaurantUI().waitForCustom(10000);
 
         Customer.expandMoreOptionsDropdown();
         Customer.orderGuideSettings();
         Order.addOrderGuideLocation();
         Order.clickOnSave();
-        Thread.sleep(5000);
+        getRestaurantUI().waitForCustom(5000);
 
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
         softAssert.assertTrue(Customer.IsChangeLocationOrderGuideDisplay(location2),"Display edit order guide location ");

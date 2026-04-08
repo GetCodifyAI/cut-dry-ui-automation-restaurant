@@ -52,8 +52,8 @@ public class ValidateSupplierSelectionModalAfterLogIinAndSessionTest extends Tes
         Dashboard.clickOnSignOutProfile();
 
         // Simulate session expiration
-        driver.manage().deleteAllCookies();
-        driver.navigate().refresh();
+        getDriver().manage().deleteAllCookies();
+        getDriver().navigate().refresh();
 
         Login.loginAsSavalFoodRestaurant(EmailOrMobile,Password);
         Assert.assertTrue(Dashboard.isChooseProductCatalogDisplayed(),"navigate to choose product catalog error");

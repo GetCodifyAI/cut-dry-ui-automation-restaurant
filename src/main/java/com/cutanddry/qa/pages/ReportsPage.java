@@ -27,95 +27,95 @@ public class ReportsPage extends TestBase {
 
     public boolean isReportingTextDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_reports);
+            getRestaurantUI().waitForVisibility(txt_reports);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_reports);
+        return getRestaurantUI().isDisplayed(txt_reports);
     }
     public boolean isDisabledGenerateReportButtonDisplayed(){
         try {
-            restaurantUI.waitForVisibility(btn_disabledGenerateReport);
+            getRestaurantUI().waitForVisibility(btn_disabledGenerateReport);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(btn_disabledGenerateReport);
+        return getRestaurantUI().isDisplayed(btn_disabledGenerateReport);
     }
 
     public void clickOnGenerateReports(){
-        restaurantUI.click(btn_generateReport);
+        getRestaurantUI().click(btn_generateReport);
     }
 
     public void clickOnDropdownReportType(){
-        restaurantUI.click(btn_selectReportType);
+        getRestaurantUI().click(btn_selectReportType);
     }
 
     public void clickOnMonthlyExpensesByVendor(){
-        restaurantUI.click(btn_monthlyExpensesByVendor);
+        getRestaurantUI().click(btn_monthlyExpensesByVendor);
     }
     public void clickOnReportTypeOption(String report){
-        restaurantUI.waitForVisibility(By.xpath(reportTypeOption.replace("REPORT", report)));
-        restaurantUI.click(By.xpath(reportTypeOption.replace("REPORT", report)));
+        getRestaurantUI().waitForVisibility(By.xpath(reportTypeOption.replace("REPORT", report)));
+        getRestaurantUI().click(By.xpath(reportTypeOption.replace("REPORT", report)));
     }
     public boolean isGeneratedReportDisplayed(String report){
         try {
-            restaurantUI.waitForVisibility(By.xpath(generatedReport.replace("GENERATED_REPORT", report)));
+            getRestaurantUI().waitForVisibility(By.xpath(generatedReport.replace("GENERATED_REPORT", report)));
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(By.xpath(generatedReport.replace("GENERATED_REPORT", report)));
+        return getRestaurantUI().isDisplayed(By.xpath(generatedReport.replace("GENERATED_REPORT", report)));
     }
     public boolean isReportTypeDisplayed(String txt){
         try {
-            restaurantUI.waitForVisibility(By.xpath(txt_option.replace("TXT", txt)));
+            getRestaurantUI().waitForVisibility(By.xpath(txt_option.replace("TXT", txt)));
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(By.xpath(txt_option.replace("TXT", txt)));
+        return getRestaurantUI().isDisplayed(By.xpath(txt_option.replace("TXT", txt)));
     }
     public void clickOnDropdownTable(){
-        restaurantUI.click(btn_table);
+        getRestaurantUI().click(btn_table);
     }
 
     public void clickOnCsv(){
-        restaurantUI.click(btn_csv);
+        getRestaurantUI().click(btn_csv);
     }
 
     public boolean isCSVTextDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_csv);
+            getRestaurantUI().waitForVisibility(txt_csv);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_csv);
+        return getRestaurantUI().isDisplayed(txt_csv);
     }
 
     public void turnOnReportsForWhiteLabelCustomers(){
         try {
-            restaurantUI.waitForCustom(4000);
+            getRestaurantUI().waitForCustom(4000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        restaurantUI.OpenNewTabAndSwitchToIt();
-        restaurantUI.navigateToURL(Constants.GATE_KEEPER_URL);
-        restaurantUI.scrollToElement(By.xpath(reportForAllVV.replace("GATEKEEPERFEATURE","reports_for_white_label")));
-        if(!restaurantUI.isCheckboxSelected(By.xpath(reportForAllVV.replace("GATEKEEPERFEATURE","reports_for_white_label")))){
-            restaurantUI.click(By.xpath(reportForAllVV.replace("GATEKEEPERFEATURE","reports_for_white_label")));
+        getRestaurantUI().OpenNewTabAndSwitchToIt();
+        getRestaurantUI().navigateToURL(Constants.GATE_KEEPER_URL);
+        getRestaurantUI().scrollToElement(By.xpath(reportForAllVV.replace("GATEKEEPERFEATURE","reports_for_white_label")));
+        if(!getRestaurantUI().isCheckboxSelected(By.xpath(reportForAllVV.replace("GATEKEEPERFEATURE","reports_for_white_label")))){
+            getRestaurantUI().click(By.xpath(reportForAllVV.replace("GATEKEEPERFEATURE","reports_for_white_label")));
         }
-        restaurantUI.CloseNewTabAndSwitchToOriginal();
+        getRestaurantUI().CloseNewTabAndSwitchToOriginal();
     }
     public void searchData(String text){
-        restaurantUI.waitForVisibility(searchBox);
-        restaurantUI.clear(searchBox);
-        restaurantUI.sendKeys(searchBox,text);
+        getRestaurantUI().waitForVisibility(searchBox);
+        getRestaurantUI().clear(searchBox);
+        getRestaurantUI().sendKeys(searchBox,text);
     }
     public boolean isSearchResultDisplayed(String result){
         try {
-            restaurantUI.waitForVisibility(By.xpath(searchResult.replace("RESULT", result)));;
+            getRestaurantUI().waitForVisibility(By.xpath(searchResult.replace("RESULT", result)));;
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(By.xpath(searchResult.replace("RESULT", result)));
+        return getRestaurantUI().isDisplayed(By.xpath(searchResult.replace("RESULT", result)));
     }
 
 

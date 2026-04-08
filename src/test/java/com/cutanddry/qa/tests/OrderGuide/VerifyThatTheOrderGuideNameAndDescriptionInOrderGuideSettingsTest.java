@@ -41,20 +41,20 @@ public class VerifyThatTheOrderGuideNameAndDescriptionInOrderGuideSettingsTest e
 
         Customer.clickOGDropdown();
         Customer.selectOrderGuide(OrderGuideName);
-        Thread.sleep(6000);
+        getRestaurantUI().waitForCustom(6000);
         Customer.expandMoreOptionsDropdown();
         Customer.orderGuideSettings();
         Order.editOrderGuideName(NewOrderGuideName);
         Order.editOrderGuideDescription(OrderGuideDescription);
         Order.clickOnSave();
-        Thread.sleep(5000);
+        getRestaurantUI().waitForCustom(5000);
 
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
         Customer.clickLocationGuide();
         softAssert.assertTrue(Customer.IsLocationOrderGuideDisplay(NewOrderGuideName),"Display edit order guide ");
 
         Customer.closeEditor();
-        Thread.sleep(10000);
+        getRestaurantUI().waitForCustom(10000);
         softAssert.assertTrue(Order.editedOrderGuideNameDisplay(NewOrderGuideName),"order guide name edit error");
         softAssert.assertTrue(Order.editedOrderGuideDescriptionDisplay(OrderGuideDescription),"order guide Description edit error");
 

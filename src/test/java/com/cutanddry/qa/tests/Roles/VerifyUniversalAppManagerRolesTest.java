@@ -29,7 +29,7 @@ public class VerifyUniversalAppManagerRolesTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Login.navigateToLoginAs();
         Login.loginAsManager(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Dashboard.navigateToOrder();
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();

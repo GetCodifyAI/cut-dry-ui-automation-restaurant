@@ -30,7 +30,7 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
         Login.loginAsAdminWL(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Dashboard.navigateToOrderWLAManager();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error order");
 
@@ -60,8 +60,8 @@ public class VerifyWLAppManagerRolesTest extends TestBase {
         Settings.clickOnLocationsUnderSettings();
         softAssert.assertTrue(Settings.isNavigatedToLocationSettings(),"navigation to loc settings error");
 
-        restaurantUI.switchToNewTab();
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Dashboard.navigateToUsers();
         softAssert.assertTrue(Users.isNavigatedToUserTab(),"navigation to users error");
         Dashboard.navigateToReports();

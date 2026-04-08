@@ -1,5 +1,6 @@
 package com.cutanddry.qa.functions;
 
+import com.cutanddry.qa.base.TestBase;
 import com.cutanddry.qa.pages.CustomersPage;
 import com.cutanddry.qa.pages.DashboardPage;
 import lombok.SneakyThrows;
@@ -58,7 +59,7 @@ public class Customer {
     public static void increaseCatalogQtyByThree(){
         customersPage.clickPlusCatalog();
         customersPage.clickPlusCatalog();
-        Thread.sleep(4000);
+        TestBase.getRestaurantUI().waitForCustom(4000);
 
     }
     @SneakyThrows
@@ -66,7 +67,7 @@ public class Customer {
         customersPage.clickMinusCatalog();
         customersPage.clickMinusCatalog();
         customersPage.clickMinusCatalog();
-        Thread.sleep(4000);
+        TestBase.getRestaurantUI().waitForCustom(4000);
 
     }
 
@@ -91,7 +92,7 @@ public class Customer {
            customersPage.clickDoNotSubstitute();
            customersPage.clickSaveSelection();
         }
-        Thread.sleep(4000);
+        TestBase.getRestaurantUI().waitForCustom(4000);
     }
     public static boolean isUserNavigatedToCatalog(){return customersPage.isCatalogTextDisplayed();}
 
@@ -104,7 +105,7 @@ public class Customer {
     @SneakyThrows
     public static void searchItemOnCatalog(String item){
         customersPage.typeToSearchOnCatalog(item);
-        Thread.sleep(5000);
+        TestBase.getRestaurantUI().waitForCustom(5000);
     }
     public static void searchItemOnOrderGuide(String item) throws InterruptedException {
         if (customersPage.isPreviousDraftOrderNoDisplayed()){
@@ -155,7 +156,7 @@ public class Customer {
         if (customersPage.isOrderMinPopupDisplayed()){
             customersPage.clickPlaceOrderSoftOrderMinimum();
         }
-        Thread.sleep(4000);
+        TestBase.getRestaurantUI().waitForCustom(4000);
         if (customersPage.isDuplicatePopupDisplayed()){
             customersPage.clickYesDuplicatePopup();
         }
@@ -258,7 +259,14 @@ public class Customer {
 
     @SneakyThrows
     public static void submitOrderAfterDeliveryTime(){
-        Thread.sleep(240000);
+        // Wait for the delivery cutoff time to pass (4 minutes) using polling instead of hard sleep
+        long cutoffWaitMs = Long.parseLong(System.getProperty("cutoff.wait.ms", "240000"));
+        long pollingIntervalMs = 10000; // check every 10 seconds
+        long elapsed = 0;
+        while (elapsed < cutoffWaitMs) {
+            Thread.sleep(pollingIntervalMs);
+            elapsed += pollingIntervalMs;
+        }
         customersPage.submitOrder();
         if(customersPage.isDuplicatePopupDisplayed()){
             customersPage.clickYesDuplicatePopup();
@@ -288,7 +296,7 @@ public class Customer {
         if (customersPage.isPreviousDraftOrderNoDisplayed()){
             customersPage.clickPreviousDraftOrderNo();
         }
-        Thread.sleep(3000);
+        TestBase.getRestaurantUI().waitForCustom(3000);
     }
 
     public static void increaseFirstRowQtyByOneInWL() throws InterruptedException {
@@ -755,7 +763,7 @@ public class Customer {
         if (customersPage.isDuplicatePopupDisplayed()){
             customersPage.clickYesDuplicatePopup();
         }
-        Thread.sleep(4000);
+        TestBase.getRestaurantUI().waitForCustom(4000);
         if (customersPage.isCombinedPopupDisplayed()){
             customersPage.clickContinueCombined();
         }
@@ -879,7 +887,7 @@ public class Customer {
         if (customersPage.isPreviousDraftOrderNoDisplayed()){
             customersPage.isPreviousDraftOrderYesDisplayed();
         }
-        Thread.sleep(3000);
+        TestBase.getRestaurantUI().waitForCustom(3000);
     }
     public static void removeItemFromCatalogStable(String name)throws InterruptedException{
         customersPage.clickOnRemoveFromOrderGuideStable(name);
@@ -890,7 +898,7 @@ public class Customer {
         if (customersPage.isPreviousDraftOrderNoDisplayed()){
             customersPage.clickPreviousDraftOrderNo();
         }
-        Thread.sleep(5000);
+        TestBase.getRestaurantUI().waitForCustom(5000);
     }
     public static boolean isEditItemPopupDisplayed(){
         return customersPage.isEditItemPopupDisplayed();
@@ -1681,7 +1689,7 @@ public class Customer {
         if (customersPage.caseMinNotMetDisplayed()){
             customersPage.clickPlaceOrderSoftOrderMinimum();
         }
-        Thread.sleep(4000);
+        TestBase.getRestaurantUI().waitForCustom(4000);
     }
 
     public static void submitOrderWithoutClickPopUpYes() throws InterruptedException {
@@ -1815,7 +1823,7 @@ public class Customer {
     public static void deleteTheExistingStandingOrdersInManageIFAvailable() throws InterruptedException {
         for (int i = 0; i < 10 && customersPage.isStandingOrdersDeletedIconDisplay(); i++) {
             customersPage.clickOnStandingOrderDeleteIcon();
-            Thread.sleep(200);
+            TestBase.getRestaurantUI().waitForCustom(200);
         }
     }
 

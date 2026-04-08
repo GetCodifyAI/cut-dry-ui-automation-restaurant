@@ -42,118 +42,118 @@ public class BoostPage extends TestBase {
 
 
     public void clickOnBoost(){
-        restaurantUI.hoverOverElement(btn_viewMore);
-        restaurantUI.scrollToElement(btn_boost);
-        restaurantUI.click(btn_boost);
+        getRestaurantUI().hoverOverElement(btn_viewMore);
+        getRestaurantUI().scrollToElement(btn_boost);
+        getRestaurantUI().click(btn_boost);
     }
     public boolean isBoostTextDisplayed() {
         try {
-            restaurantUI.waitForVisibility(txt_boost);
+            getRestaurantUI().waitForVisibility(txt_boost);
         } catch (Exception e) {
             return false;
         }
-        return restaurantUI.isDisplayed(txt_boost);
+        return getRestaurantUI().isDisplayed(txt_boost);
     }
     public void clickSuggestiveSales() {
-        restaurantUI.click(tab_suggestiveSales);
+        getRestaurantUI().click(tab_suggestiveSales);
     }
     public boolean isSuggestiveTabDisplayed() {
-        return restaurantUI.isDisplayed(txt_topCategoryPicks);
+        return getRestaurantUI().isDisplayed(txt_topCategoryPicks);
     }
     public void clickTopCategoryPicksConfig() {
-        restaurantUI.click(btn_topPicks_config);
+        getRestaurantUI().click(btn_topPicks_config);
     }
     public boolean isTopCategoryPopupDisplayed() {
-        return restaurantUI.isDisplayed(txt_popupTopCategoryPick);
+        return getRestaurantUI().isDisplayed(txt_popupTopCategoryPick);
     }
     public void ensureTopCategoryPicksDisplayStatus(boolean enable) throws InterruptedException {
-        restaurantUI.waitForClickability(toggleSwitch);
-        boolean isCurrentlyEnabled = restaurantUI.isDisplayed(enableSwitch);
+        getRestaurantUI().waitForClickability(toggleSwitch);
+        boolean isCurrentlyEnabled = getRestaurantUI().isDisplayed(enableSwitch);
         if (isCurrentlyEnabled != enable) {
-            restaurantUI.click(toggleSwitch);
-            restaurantUI.waitForCustom(2000);
+            getRestaurantUI().click(toggleSwitch);
+            getRestaurantUI().waitForCustom(2000);
         }
     }
     public void clickAllItemsConfig() {
-        restaurantUI.waitForVisibility(btn_allItemConfig);
-        restaurantUI.click(btn_allItemConfig);
+        getRestaurantUI().waitForVisibility(btn_allItemConfig);
+        getRestaurantUI().click(btn_allItemConfig);
     }
     public void clickClose() throws InterruptedException {
-        restaurantUI.click(btn_close);
-        restaurantUI.waitForCustom(2000);
+        getRestaurantUI().click(btn_close);
+        getRestaurantUI().waitForCustom(2000);
     }
     public boolean checkInactive(String type) throws InterruptedException {
-        restaurantUI.waitForCustom(1000);
-        return restaurantUI.isDisplayed(By.xpath(txt_inactive_state.replace("Type", type)));
+        getRestaurantUI().waitForCustom(1000);
+        return getRestaurantUI().isDisplayed(By.xpath(txt_inactive_state.replace("Type", type)));
     }
     public void clickCompareSimilarItemsConfig() {
-        restaurantUI.click(btn_similar_config);
+        getRestaurantUI().click(btn_similar_config);
     }
     public boolean isCompareSimilarPopupDisplayed() {
-        return restaurantUI.isDisplayed(txt_popupCompareSimilarItems);
+        return getRestaurantUI().isDisplayed(txt_popupCompareSimilarItems);
     }
     public void toggleOnCarouselDisplayStatus(boolean inactive) throws InterruptedException {
         if (inactive){
-            restaurantUI.click(toggle_carouselDisplayStatus);
+            getRestaurantUI().click(toggle_carouselDisplayStatus);
         }
-        restaurantUI.waitForCustom(1000);
+        getRestaurantUI().waitForCustom(1000);
     }
     public void toggleOffCarouselDisplayStatus() {
-        restaurantUI.click(toggle_carouselDisplayStatus);
+        getRestaurantUI().click(toggle_carouselDisplayStatus);
     }
     public void clickRecommendForCustomerConfig() {
-        restaurantUI.click(btn_recCustomer_config);
+        getRestaurantUI().click(btn_recCustomer_config);
     }
     public boolean isRecommendForCustomerPopupDisplayed() {
-        return restaurantUI.isDisplayed(txt_popupRecommendForCustomer);
+        return getRestaurantUI().isDisplayed(txt_popupRecommendForCustomer);
     }
     public void clickRecommendBySalesRepConfig() {
-        restaurantUI.click(btn_recSales_config);
+        getRestaurantUI().click(btn_recSales_config);
     }
     public boolean isRecommendBySalesRepPopupDisplayed() {
-        return restaurantUI.isDisplayed(txt_popupRecommendedBySalesRep);
+        return getRestaurantUI().isDisplayed(txt_popupRecommendedBySalesRep);
     }
     public void clickSalesRepConfig(String name) {
-        restaurantUI.waitForVisibility(By.xpath(btn_salesRepConfig.replace("NAME", name)));
-        restaurantUI.click(By.xpath(btn_salesRepConfig.replace("NAME", name)));
+        getRestaurantUI().waitForVisibility(By.xpath(btn_salesRepConfig.replace("NAME", name)));
+        getRestaurantUI().click(By.xpath(btn_salesRepConfig.replace("NAME", name)));
     }
     public boolean isSalesRepConfigPopupDisplayed() {
-        return restaurantUI.isDisplayed(txt_popupSalesRepConfig);
+        return getRestaurantUI().isDisplayed(txt_popupSalesRepConfig);
     }
     public void clickAddItems() {
-        restaurantUI.clickWithScrollAndHover(btn_addItems);
+        getRestaurantUI().clickWithScrollAndHover(btn_addItems);
     }
     public void addItem(String code) {
-        restaurantUI.waitForVisibility(input_addItem);
-        restaurantUI.sendKeys(input_addItem, code);
-        restaurantUI.waitForVisibility(By.xpath(txt_itemAdded.replace("CODE", code+" : ")));
-        restaurantUI.hoverOverElement(By.xpath(txt_itemAdded.replace("CODE", code+" : ")));
-        restaurantUI.click(By.xpath(txt_itemAdded.replace("CODE", code+" : ")));
+        getRestaurantUI().waitForVisibility(input_addItem);
+        getRestaurantUI().sendKeys(input_addItem, code);
+        getRestaurantUI().waitForVisibility(By.xpath(txt_itemAdded.replace("CODE", code+" : ")));
+        getRestaurantUI().hoverOverElement(By.xpath(txt_itemAdded.replace("CODE", code+" : ")));
+        getRestaurantUI().click(By.xpath(txt_itemAdded.replace("CODE", code+" : ")));
     }
     public void clickAdd() {
-        restaurantUI.waitForVisibility(btn_add);
-        restaurantUI.click(btn_add);
+        getRestaurantUI().waitForVisibility(btn_add);
+        getRestaurantUI().click(btn_add);
     }
     public boolean isItemAdded(String code) {
-        return restaurantUI.isDisplayed(By.xpath(txt_itemAdded.replace("CODE", code)));
+        return getRestaurantUI().isDisplayed(By.xpath(txt_itemAdded.replace("CODE", code)));
     }
     public void removeItem(String code) {
-        restaurantUI.clickWithScrollAndHover(By.xpath(btn_removeItem.replace("CODE", code)));
+        getRestaurantUI().clickWithScrollAndHover(By.xpath(btn_removeItem.replace("CODE", code)));
     }
     public boolean isItemInCarouselPreview(String code) {
-        return restaurantUI.isDisplayed(By.xpath(txt_itemAdded.replace("CODE", code)));
+        return getRestaurantUI().isDisplayed(By.xpath(txt_itemAdded.replace("CODE", code)));
     }
     public void ensureCarouselDisplayStatus(boolean enable) throws InterruptedException {
-        if (restaurantUI.isCheckboxOrRadioBtnSelected(toggleCarouselDisplayStatus ) != enable){
-            restaurantUI.click(toggle_carouselDisplayStatus);
+        if (getRestaurantUI().isCheckboxOrRadioBtnSelected(toggleCarouselDisplayStatus ) != enable){
+            getRestaurantUI().click(toggle_carouselDisplayStatus);
         }
-        restaurantUI.waitForCustom(2000);
+        getRestaurantUI().waitForCustom(2000);
     }
     public void clickDontForgetToOrderConfig() {
-        restaurantUI.click(btn_dontforget_config);
+        getRestaurantUI().click(btn_dontforget_config);
     }
     public void clickMoreFromThisConfig() {
-        restaurantUI.click(btn_morefrom_config);
+        getRestaurantUI().click(btn_morefrom_config);
     }
 
 

@@ -19,74 +19,74 @@ public class DraftsPage extends LoginPage{
 
 
     public void clickFirstDraftOrder(String SupplierName){
-        restaurantUI.click(By.xpath(firstDraftOrder.replace("SUPPLIER",SupplierName)));
+        getRestaurantUI().click(By.xpath(firstDraftOrder.replace("SUPPLIER",SupplierName)));
     }
     public boolean isDraftsTextDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_drafts);
+            getRestaurantUI().waitForVisibility(txt_drafts);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_drafts);
+        return getRestaurantUI().isDisplayed(txt_drafts);
     }
     public boolean isLastDraftDisplayed(String total){
-        restaurantUI.waitForVisibility(By.xpath(txt_lastDraft.replace("TOTAL", total)));
-        return restaurantUI.isDisplayed(By.xpath(txt_lastDraft.replace("TOTAL", total)));
+        getRestaurantUI().waitForVisibility(By.xpath(txt_lastDraft.replace("TOTAL", total)));
+        return getRestaurantUI().isDisplayed(By.xpath(txt_lastDraft.replace("TOTAL", total)));
     }
     public void clickDraft(String total){
-        restaurantUI.click(By.xpath(txt_lastDraft.replace("TOTAL", total)));
+        getRestaurantUI().click(By.xpath(txt_lastDraft.replace("TOTAL", total)));
     }
     public void clickEditOrder(){
-        restaurantUI.click(btn_editOrder);
+        getRestaurantUI().click(btn_editOrder);
     }
     public String getReferenceNum() throws InterruptedException {
-        restaurantUI.waitForVisibility(referenceNum);
-        restaurantUI.waitForCustom(3000);
-        String referenceNumOP = restaurantUI.getText(referenceNum);
+        getRestaurantUI().waitForVisibility(referenceNum);
+        getRestaurantUI().waitForCustom(3000);
+        String referenceNumOP = getRestaurantUI().getText(referenceNum);
         return referenceNumOP.substring(1);
     }
     public void clickTrashIcon()throws InterruptedException{
-        restaurantUI.waitForVisibility(btn_trash);
-        restaurantUI.click(btn_trash);
+        getRestaurantUI().waitForVisibility(btn_trash);
+        getRestaurantUI().click(btn_trash);
     }
     public boolean isDraftsDeleteTextDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_delete);
+            getRestaurantUI().waitForVisibility(txt_delete);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_delete);
+        return getRestaurantUI().isDisplayed(txt_delete);
     }
     public void clickYesButton()throws InterruptedException{
-        restaurantUI.waitForVisibility(btn_yes);
-        restaurantUI.click(btn_yes);
+        getRestaurantUI().waitForVisibility(btn_yes);
+        getRestaurantUI().click(btn_yes);
     }
     public boolean isDraftDeleteConfirmationDisplayed(String text){
         try {
-            restaurantUI.waitForVisibility(By.xpath(confirmationModel.replace("TEXT", text)));
+            getRestaurantUI().waitForVisibility(By.xpath(confirmationModel.replace("TEXT", text)));
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(By.xpath(confirmationModel.replace("TEXT", text)));
+        return getRestaurantUI().isDisplayed(By.xpath(confirmationModel.replace("TEXT", text)));
     }
     public boolean isReferenceNumberDisplayed(String number){
         try {
-            restaurantUI.waitForVisibility(By.xpath(txt_reference.replace("TEXT", number)));
+            getRestaurantUI().waitForVisibility(By.xpath(txt_reference.replace("TEXT", number)));
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(By.xpath(txt_reference.replace("NUMBER", number)));
+        return getRestaurantUI().isDisplayed(By.xpath(txt_reference.replace("NUMBER", number)));
     }
     public void clickFirstDraft()throws InterruptedException{
-        restaurantUI.waitForVisibility(referenceNum);
-        restaurantUI.click(referenceNum);
+        getRestaurantUI().waitForVisibility(referenceNum);
+        getRestaurantUI().click(referenceNum);
     }
     public boolean isLastDraftStatusDisplayed(String total,String date){
-        restaurantUI.waitForVisibility(By.xpath(txt_lastDraftDisplay.replace("TOTAL", total).replace("DATE",date)));
-        return restaurantUI.isDisplayed(By.xpath(txt_lastDraftDisplay.replace("TOTAL", total).replace("DATE",date)));
+        getRestaurantUI().waitForVisibility(By.xpath(txt_lastDraftDisplay.replace("TOTAL", total).replace("DATE",date)));
+        return getRestaurantUI().isDisplayed(By.xpath(txt_lastDraftDisplay.replace("TOTAL", total).replace("DATE",date)));
     }
     public boolean isDraftRetentionMessageDisplayed(String message) {
-        restaurantUI.waitForVisibility(By.xpath(draftRetentionMsg.replace("DRAFTMSG", message)));
-        return restaurantUI.isDisplayed(By.xpath(draftRetentionMsg.replace("DRAFTMSG", message)));
+        getRestaurantUI().waitForVisibility(By.xpath(draftRetentionMsg.replace("DRAFTMSG", message)));
+        return getRestaurantUI().isDisplayed(By.xpath(draftRetentionMsg.replace("DRAFTMSG", message)));
     }
 }

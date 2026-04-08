@@ -41,7 +41,7 @@ public class VerifyAddToOrderGuideIconOnItemsWillNotDisplayedForTheOperatorsWhen
         softAssert.assertTrue(Customer.isCatalogDisplayed(),"catalog text not displayed");
 
         Customer.searchItemOnCatalog(searchItemCode);
-        Thread.sleep(4000);
+        getRestaurantUI().waitForCustom(4000);
         softAssert.assertTrue(Customer.getFirstElementFrmCatalogSearchResults(itemName).contains(itemName.toLowerCase()), "item not found");
         softAssert.assertFalse(Customer.isAddFromCatalogHeartItemDisplay(),"add from catalog heart item display");
         Customer.clickOnPlusIconInCatalogPDP(2, itemName);

@@ -37,7 +37,7 @@ public class VerifyThSelectMultipleUOMJustInTimeItemAndSubmissionTest extends Te
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Login.navigateToLoginAs();
         Login.loginAsAdminWL(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
 
         Customer.clickOnPlaceOrder();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");

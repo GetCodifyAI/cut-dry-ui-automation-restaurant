@@ -42,14 +42,14 @@ public class VerifyUserCanAddUpdateItemsToCartInOfflineModeTest extends TestBase
         double initialCheckoutPrice = Customer.getItemPriceOnCheckoutButton();
 
         Customer.increaseFirstRowQtyByOne();
-        Thread.sleep(1000);
+        getRestaurantUI().waitForCustom(1000);
         String qtyAfterIncrease = Customer.getItemQtyFirstRow();
         double checkoutPriceAfterIncrease = Customer.getItemPriceOnCheckoutButton();
         softAssert.assertNotEquals(qtyAfterIncrease, initialQty, "Item quantity did not increase after clicking plus icon");
         softAssert.assertTrue(checkoutPriceAfterIncrease > initialCheckoutPrice, "Checkout total did not increase after adding item");
 
         Customer.decreaseFirstRowQtyByOne();
-        Thread.sleep(1000);
+        getRestaurantUI().waitForCustom(1000);
         String qtyAfterDecrease = Customer.getItemQtyFirstRow();
         double checkoutPriceAfterDecrease = Customer.getItemPriceOnCheckoutButton();
         softAssert.assertEquals(qtyAfterDecrease, initialQty, "Item quantity did not decrease after clicking minus icon");

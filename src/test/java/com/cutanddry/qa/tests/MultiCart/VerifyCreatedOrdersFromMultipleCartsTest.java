@@ -32,7 +32,7 @@ public class VerifyCreatedOrdersFromMultipleCartsTest extends TestBase{
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Login.navigateToLoginAs();
         Login.goToOperatorBermudaBiologicalStation(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Customer.clickOnPlaceOrder();
         Customer.searchItemOnOrderGuide(itemName_1);
         Customer.addItemFromCatalogIfNotAvailableInOG(itemName_1);

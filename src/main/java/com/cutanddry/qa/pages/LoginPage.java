@@ -49,184 +49,184 @@ public class LoginPage extends TestBase {
 
 
     public void typeEmailOrMobile(String emailOrMobile){
-        restaurantUI.sendKeys(txt_emailOrMobile,emailOrMobile);
+        getRestaurantUI().sendKeys(txt_emailOrMobile,emailOrMobile);
     }
     public void typePassword(String password){
-        restaurantUI.sendKeys(txt_password,password);
+        getRestaurantUI().sendKeys(txt_password,password);
     }
     public void clickSubmit(){
-        restaurantUI.click(btn_signIn);
+        getRestaurantUI().click(btn_signIn);
     }
     public void clickForgotPassword(){
-        restaurantUI.click(btn_forgotPassword);
+        getRestaurantUI().click(btn_forgotPassword);
     }
     public boolean isForgotPasswordPopupDisplayed(){
-        return restaurantUI.isDisplayed(txt_forgotPassword);
+        return getRestaurantUI().isDisplayed(txt_forgotPassword);
     }
     public void enterEmailOrMobile(String emailOrMobile){
-        restaurantUI.sendKeys(txt_enterEmailOrMobile,emailOrMobile);
+        getRestaurantUI().sendKeys(txt_enterEmailOrMobile,emailOrMobile);
     }
     public void clickRequestPassword() {
-        restaurantUI.waitForClickability(btn_requestPassword);
-        restaurantUI.click(btn_requestPassword);
+        getRestaurantUI().waitForClickability(btn_requestPassword);
+        getRestaurantUI().click(btn_requestPassword);
     }
     public boolean validEmailOrMobile() {
-        return restaurantUI.isDisplayed(txt_validEmailOrMobile);
+        return getRestaurantUI().isDisplayed(txt_validEmailOrMobile);
     }
     public boolean invalidEmailOrMobile() {
-        return restaurantUI.isDisplayed(txt_invalidEmailOrMobile);
+        return getRestaurantUI().isDisplayed(txt_invalidEmailOrMobile);
     }
     public void clickOk() {
-        restaurantUI.waitForVisibility(btn_ok);
-        restaurantUI.click(btn_ok);
+        getRestaurantUI().waitForVisibility(btn_ok);
+        getRestaurantUI().click(btn_ok);
     }
     public void clickTryAgain() {
-        restaurantUI.waitForVisibility(btn_tryAgain);
-        restaurantUI.click(btn_tryAgain);
+        getRestaurantUI().waitForVisibility(btn_tryAgain);
+        getRestaurantUI().click(btn_tryAgain);
     }
     public void navigateToWhiteLabel() {
-        restaurantUI.navigateToURL(Constants.WHITELABEL_APP_URL);
+        getRestaurantUI().navigateToURL(Constants.WHITELABEL_APP_URL);
     }
     public void navigateToLoginAs() {
-        restaurantUI.navigateToURL(Constants.LOGIN_AS_APP_URL);
+        getRestaurantUI().navigateToURL(Constants.LOGIN_AS_APP_URL);
     }
 
     public void typeToSearchOnOperator(String operator) throws InterruptedException {
-        restaurantUI.waitForCustom(5000);
-        restaurantUI.sendKeys(tbx_operatorSearch, operator);
-        restaurantUI.waitForCustom(4000);
+        getRestaurantUI().waitForVisibility(tbx_operatorSearch);
+        getRestaurantUI().sendKeys(tbx_operatorSearch, operator);
+        getRestaurantUI().waitForCustom(4000);
     }
     public void clickOnJoshuaClayton(){
-        restaurantUI.click(txt_joshuaClayton);
+        getRestaurantUI().click(txt_joshuaClayton);
     }
     public void clickOnManager(){
-        restaurantUI.click(txt_manager);
+        getRestaurantUI().click(txt_manager);
     }
     public void clickOnEmployee(){
-        restaurantUI.click(txt_employee);
+        getRestaurantUI().click(txt_employee);
     }
     public void clickOnBookkeeper(String bookKeeper){
-        restaurantUI.waitForVisibility(By.xpath(txt_bookkeeper.replace("BOOKKEEPERNAME",bookKeeper)));
-        restaurantUI.click(By.xpath(txt_bookkeeper.replace("BOOKKEEPERNAME",bookKeeper)));
+        getRestaurantUI().waitForVisibility(By.xpath(txt_bookkeeper.replace("BOOKKEEPERNAME",bookKeeper)));
+        getRestaurantUI().click(By.xpath(txt_bookkeeper.replace("BOOKKEEPERNAME",bookKeeper)));
     }
     public void clickOnStephanieCollins(){
-        restaurantUI.click(txt_stephanieCollins);
+        getRestaurantUI().click(txt_stephanieCollins);
     }
     public void clickOnAdminWL(){
-        restaurantUI.click(txt_adminWL);
+        getRestaurantUI().click(txt_adminWL);
     }
     public void clickOnManagerWL(String name){
-        restaurantUI.click(By.xpath(managerWL.replace("NAME",name)));
+        getRestaurantUI().click(By.xpath(managerWL.replace("NAME",name)));
     }
     public void clickOnEmployeeWL(){
-        restaurantUI.click(txt_employeeWL);
+        getRestaurantUI().click(txt_employeeWL);
     }
     public void clickOnBookkeeperWL(){
-        restaurantUI.click(txt_bookkeeperWL);
+        getRestaurantUI().click(txt_bookkeeperWL);
     }
     public void clickOnLoginAsClassic() throws InterruptedException {
-        restaurantUI.click(btn_LoginAsClassic);
-//        restaurantUI.closeBrowser();
-//        restaurantUI.waitForCustom(4000);
+        getRestaurantUI().click(btn_LoginAsClassic);
+//        getRestaurantUI().closeBrowser();
+//        getRestaurantUI().waitForCustom(4000);
     }
 
     public void clickOnLoginAsClassicAndSwitchToNewTab() throws InterruptedException {
-        restaurantUI.click(btn_LoginAsClassic);
-        restaurantUI.switchToNewTab();
-        restaurantUI.waitForCustom(3000);
+        getRestaurantUI().click(btn_LoginAsClassic);
+        getRestaurantUI().switchToNewTab();
+        getRestaurantUI().waitForCustom(3000);
     }
 
     public void clickOnLoginAsWhiteLabel() throws InterruptedException {
-        restaurantUI.click(btn_LoginAsWhiteLabel);
-//        restaurantUI.closeBrowser();
-//        restaurantUI.waitForCustom(4000);
+        getRestaurantUI().click(btn_LoginAsWhiteLabel);
+//        getRestaurantUI().closeBrowser();
+//        getRestaurantUI().waitForCustom(4000);
     }
     public void clickOnBermudaBiologicalStation(){
-        restaurantUI.click(txt_bermudaBiologicalStation);
+        getRestaurantUI().click(txt_bermudaBiologicalStation);
     }
 
     public void typeToSearchOnDistributor(String operator) throws InterruptedException {
-        restaurantUI.click(tbx_distributorSearch);
-        restaurantUI.sendKeys(tbx_distributorSearch, operator);
-        restaurantUI.waitForCustom(4000);
+        getRestaurantUI().click(tbx_distributorSearch);
+        getRestaurantUI().sendKeys(tbx_distributorSearch, operator);
+        getRestaurantUI().waitForCustom(4000);
     }
 
     public void clickOnSunriseFood(){
-        restaurantUI.click(txt_sunriseFoods);
+        getRestaurantUI().click(txt_sunriseFoods);
     }
     public void clickOnDistributor(String DP_Name){
-        restaurantUI.click(By.xpath(txt_distributor.replace("DISTRIBUTOR_NAME",DP_Name)));
+        getRestaurantUI().click(By.xpath(txt_distributor.replace("DISTRIBUTOR_NAME",DP_Name)));
     }
 
 
     public void clickOnLoginAsSupplier() throws InterruptedException {
-        restaurantUI.click(btn_LoginAsSupplier);
-//        restaurantUI.closeBrowser();
-//        restaurantUI.waitForCustom(4000);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().click(btn_LoginAsSupplier);
+//        getRestaurantUI().closeBrowser();
+//        getRestaurantUI().waitForCustom(4000);
+        getRestaurantUI().switchToNewTab();
     }
     public void navigateToOperator(){
-        restaurantUI.openURL(Constants.MAIN_URL);
+        getRestaurantUI().openURL(Constants.MAIN_URL);
     }
     public void settingsWLGateKeeper() throws InterruptedException {
-        restaurantUI.openURL(Constants.GATE_KEEPER_URL);
-        restaurantUI.refreshPage();
-        restaurantUI.waitForCustom(1000);
-        if (!restaurantUI.isDisplayed(lbl_activeVVChecked)){
-            restaurantUI.click(lbl_activeVV);
-            restaurantUI.waitForCustom(1000);
+        getRestaurantUI().openURL(Constants.GATE_KEEPER_URL);
+        getRestaurantUI().refreshPage();
+        getRestaurantUI().waitForVisibility(lbl_activeVVChecked);
+        if (!getRestaurantUI().isDisplayed(lbl_activeVVChecked)){
+            getRestaurantUI().click(lbl_activeVV);
+            getRestaurantUI().waitForCustom(1000);
         }
     }
 
     public void clickOperator(String operator){
-        restaurantUI.waitForVisibility(By.xpath(txt_operator.replace("OPERATOR_NAME",operator)));
-        restaurantUI.click(By.xpath(txt_operator.replace("OPERATOR_NAME",operator)));
+        getRestaurantUI().waitForVisibility(By.xpath(txt_operator.replace("OPERATOR_NAME",operator)));
+        getRestaurantUI().click(By.xpath(txt_operator.replace("OPERATOR_NAME",operator)));
     }
 
     public void clickOnInternalTools(){
-        restaurantUI.navigateToURL(Constants.LOGIN_AS_APP_URL);
-        restaurantUI.click(internalToolsBtn);
+        getRestaurantUI().navigateToURL(Constants.LOGIN_AS_APP_URL);
+        getRestaurantUI().click(internalToolsBtn);
     }
     public void switchIntoNewTab(){
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
     }
     public void closePreviousTab()throws InterruptedException{
-        restaurantUI.CloseAllPreviousTabAndSwitchToNew();
+        getRestaurantUI().CloseAllPreviousTabAndSwitchToNew();
     }
     public void navigateSavalFood(){
-        restaurantUI.navigateToURL(Constants.SAVAL_FOOD_URL);
+        getRestaurantUI().navigateToURL(Constants.SAVAL_FOOD_URL);
     }
     public void typeEmailOrMobileSaval(String emailOrMobile){
-        restaurantUI.sendKeys(txt_emailOrMobileSaval,emailOrMobile);
+        getRestaurantUI().sendKeys(txt_emailOrMobileSaval,emailOrMobile);
     }
     public void typePasswordSaval(String password){
-        restaurantUI.sendKeys(txt_passwordSaval,password);
+        getRestaurantUI().sendKeys(txt_passwordSaval,password);
     }
     public void clickSignInSaval(){
-        restaurantUI.click(btn_signInSaval);
+        getRestaurantUI().click(btn_signInSaval);
     }
     public void refreshThePage(){
-        restaurantUI.refreshPage();
+        getRestaurantUI().refreshPage();
     }
     public void clickOnLoginAsWhiteLabelAndSwitchToNewTab() throws InterruptedException {
-        restaurantUI.click(btn_LoginAsWhiteLabel);
-        restaurantUI.switchToNewTab();
-        restaurantUI.waitForCustom(3000);
+        getRestaurantUI().click(btn_LoginAsWhiteLabel);
+        getRestaurantUI().switchToNewTab();
+        getRestaurantUI().waitForCustom(3000);
     }
     public void  openNewTabAndSwitchIt(){
-        restaurantUI.OpenNewTabAndSwitchToIt();
+        getRestaurantUI().OpenNewTabAndSwitchToIt();
     }
     public void closeNewTabAndSwitchBack(){
-        restaurantUI.CloseNewTabAndSwitchToOriginal();
+        getRestaurantUI().CloseNewTabAndSwitchToOriginal();
     }
     public void navigateToNode(String Node){
-        restaurantUI.navigateToURL(Constants.NODE_EXPLORER+ "/node/" + Node);
+        getRestaurantUI().navigateToURL(Constants.NODE_EXPLORER+ "/node/" + Node);
     }
     public void setValueToNode(String keyName, String valueName) throws InterruptedException {
-        restaurantUI.sendKeys(txt_key,keyName);
-        restaurantUI.sendKeys(txt_value,valueName);
-        restaurantUI.click(btn_setData);
-        restaurantUI.waitForCustom(2000);
+        getRestaurantUI().sendKeys(txt_key,keyName);
+        getRestaurantUI().sendKeys(txt_value,valueName);
+        getRestaurantUI().click(btn_setData);
+        getRestaurantUI().waitForCustom(2000);
     }
 
 

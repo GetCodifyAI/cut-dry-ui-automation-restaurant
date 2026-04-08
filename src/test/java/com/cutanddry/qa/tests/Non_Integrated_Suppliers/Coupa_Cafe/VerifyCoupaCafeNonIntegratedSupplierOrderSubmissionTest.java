@@ -63,7 +63,7 @@ public class VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionTest {
         Customer.enterPrice(UOM_Pound,Pound_Price);
         Customer.selectAccountingCategory(accountingCategoryName);
         Customer.saveItem();
-        Thread.sleep(4000);
+        getRestaurantUI().waitForCustom(4000);
         Customer.searchItemOnOrderGuide(itemCode);
         softAssert.assertTrue(Customer.isAddItemDisplayedInOrderGuide(itemCode),"Item not displayed");
         itemName = Customer.getItemNameFirstRow();
@@ -76,7 +76,7 @@ public class VerifyCoupaCafeNonIntegratedSupplierOrderSubmissionTest {
 
         Dashboard.selectSupplier(supplierName);
         Customer.goToEdit();
-        Thread.sleep(4000);
+        getRestaurantUI().waitForCustom(4000);
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"ERROR in navigating to Order Guide Edit View");
         Customer.clickOnItemEditBtn(itemCode);
         Customer.clickOnItemHideBtn();

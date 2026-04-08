@@ -56,259 +56,247 @@ public class CreditRequestsPage extends TestBase {
 
 
     public void clickReportIssue(){
-        restaurantUI.click(btn_report_issue);
+        getRestaurantUI().click(btn_report_issue);
     }
     public boolean isReportIssueSectionDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_report_issue);
+            getRestaurantUI().waitForVisibility(txt_report_issue);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_report_issue);
+        return getRestaurantUI().isDisplayed(txt_report_issue);
     }
     public void clickOneItem(){
-        restaurantUI.click(btn_first_row);
+        getRestaurantUI().click(btn_first_row);
     }
     public boolean isIssuePopUpDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_tell_us);
+            getRestaurantUI().waitForVisibility(txt_tell_us);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_tell_us);
+        return getRestaurantUI().isDisplayed(txt_tell_us);
     }
     public void clickIssueOption() throws InterruptedException{
-        restaurantUI.click(btn_issue_option);
-        restaurantUI.waitForCustom(2000);
-        restaurantUI.click(btn_first_option);
+        getRestaurantUI().click(btn_issue_option);
+        getRestaurantUI().waitForCustom(2000);
+        getRestaurantUI().click(btn_first_option);
     }
     public void clickContinue(){
-        restaurantUI.click(btn_continue);
+        getRestaurantUI().click(btn_continue);
     }
     public boolean isCreditRequestedDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_credit_requested);
+            getRestaurantUI().waitForVisibility(txt_credit_requested);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_credit_requested);
+        return getRestaurantUI().isDisplayed(txt_credit_requested);
     }
     public void clickSaveCheckIn(){
-        restaurantUI.click(btn_save_checkin);
+        getRestaurantUI().click(btn_save_checkin);
     }
     public boolean isSubmitCreditRequestPopupDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_submit_credit_request);
+            getRestaurantUI().waitForVisibility(txt_submit_credit_request);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_submit_credit_request);
+        return getRestaurantUI().isDisplayed(txt_submit_credit_request);
     }
     public void clickYes(){
-        restaurantUI.click(btn_yes);
+        getRestaurantUI().click(btn_yes);
     }
     public boolean isCreditRequestSentPopupDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_sent_request);
+            getRestaurantUI().waitForVisibility(txt_sent_request);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_sent_request);
+        return getRestaurantUI().isDisplayed(txt_sent_request);
     }
     public void clickClose(){
-        restaurantUI.click(btn_close);
+        getRestaurantUI().click(btn_close);
     }
     public boolean isCreditStatusRequestedDisplay(){
         try {
-            restaurantUI.waitForVisibility(txt_credit_status);
+            getRestaurantUI().waitForVisibility(txt_credit_status);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_credit_status);
+        return getRestaurantUI().isDisplayed(txt_credit_status);
     }
     //----------------------
 
     public boolean isCreditRequestSectionDisplay(){
         try {
-            restaurantUI.waitForVisibility(txt_credit_request);
+            getRestaurantUI().waitForVisibility(txt_credit_request);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_credit_request);
+        return getRestaurantUI().isDisplayed(txt_credit_request);
     }
     public void clickCreditRequest(){
-        restaurantUI.click(first_row_credit_requests);
+        getRestaurantUI().click(first_row_credit_requests);
     }
     public boolean isOrderCreditRequestSectionDisplay(){
         try {
-            restaurantUI.waitForVisibility(txt_credit_request_section);
+            getRestaurantUI().waitForVisibility(txt_credit_request_section);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_credit_request_section);
+        return getRestaurantUI().isDisplayed(txt_credit_request_section);
     }
     public void clickProcessCredit(){
-        restaurantUI.click(btn_process_credit);
+        getRestaurantUI().click(btn_process_credit);
     }
     public boolean isProcessCreditSectionDisplay(){
         try {
-            restaurantUI.waitForVisibility(txt_process_credit);
+            getRestaurantUI().waitForVisibility(txt_process_credit);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_process_credit);
+        return getRestaurantUI().isDisplayed(txt_process_credit);
     }
     public void clickSelectItem(){
-        restaurantUI.click(btn_check_box);
+        getRestaurantUI().click(btn_check_box);
     }
     public void clickApproveCredit(){
-        restaurantUI.click(btn_approve_credit);
+        getRestaurantUI().click(btn_approve_credit);
     }
     public boolean isApproveCreditPopUpDisplay(){
         try {
-            restaurantUI.waitForVisibility(txt_approve_credit);
+            getRestaurantUI().waitForVisibility(txt_approve_credit);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_approve_credit);
+        return getRestaurantUI().isDisplayed(txt_approve_credit);
     }
     public void clickSubmit(){
-        restaurantUI.click(btn_submit);
+        getRestaurantUI().click(btn_submit);
     }
     public boolean isConfirmApprovalPopUpDisplay(){
         try {
-            restaurantUI.waitForVisibility(txt_confirm_approve);
+            getRestaurantUI().waitForVisibility(txt_confirm_approve);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_confirm_approve);
+        return getRestaurantUI().isDisplayed(txt_confirm_approve);
     }
     public void clickConfirm(){
-        restaurantUI.click(btn_confirm);
+        getRestaurantUI().click(btn_confirm);
     }
     public boolean isCreditRequestApprovedPopUpDisplay(){
         try {
-            restaurantUI.waitForVisibility(txt_approved_credit);
+            getRestaurantUI().waitForVisibility(txt_approved_credit);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_approved_credit);
+        return getRestaurantUI().isDisplayed(txt_approved_credit);
     }
     public boolean isCreditApprovedDisplay(){
         try {
-            restaurantUI.waitForVisibility(txt_credit_approved);
+            getRestaurantUI().waitForVisibility(txt_credit_approved);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_credit_approved);
+        return getRestaurantUI().isDisplayed(txt_credit_approved);
     }
     public void clickDeclineCredit(){
-        restaurantUI.click(btn_decline_credit);
+        getRestaurantUI().click(btn_decline_credit);
     }
     public boolean isDeclineCreditPopUpDisplay(){
         try {
-            restaurantUI.waitForVisibility(txt_decline_credit);
+            getRestaurantUI().waitForVisibility(txt_decline_credit);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_decline_credit);
+        return getRestaurantUI().isDisplayed(txt_decline_credit);
     }
     public boolean isConfirmDeclinePopUpDisplay(){
         try {
-            restaurantUI.waitForVisibility(txt_confirm_decline_);
+            getRestaurantUI().waitForVisibility(txt_confirm_decline_);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_confirm_decline_);
+        return getRestaurantUI().isDisplayed(txt_confirm_decline_);
     }
     public boolean isCreditRequestDeclinedPopUpDisplay(){
         try {
-            restaurantUI.waitForVisibility(txt_declined_credit);
+            getRestaurantUI().waitForVisibility(txt_declined_credit);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_declined_credit);
+        return getRestaurantUI().isDisplayed(txt_declined_credit);
     }
     public boolean isCreditDeclinedDisplay(){
         try {
-            restaurantUI.waitForVisibility(txt_credit_declined);
+            getRestaurantUI().waitForVisibility(txt_credit_declined);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_credit_declined);
+        return getRestaurantUI().isDisplayed(txt_credit_declined);
     }
     public String getCreditItemName() throws InterruptedException {
-        restaurantUI.waitForElementEnabledState(lbl_itemName,true);
-        restaurantUI.waitForCustom(3000);
-        return restaurantUI.getText(lbl_itemName);
+        getRestaurantUI().waitForElementEnabledState(lbl_itemName,true);
+        getRestaurantUI().waitForCustom(3000);
+        return getRestaurantUI().getText(lbl_itemName);
     }
     public String getItemCode() throws InterruptedException {
-        restaurantUI.waitForVisibility(lbl_itemCode);
-        restaurantUI.waitForCustom(3000);
-        return restaurantUI.getText(lbl_itemCode);
+        getRestaurantUI().waitForVisibility(lbl_itemCode);
+        return getRestaurantUI().getText(lbl_itemCode);
     }
     public String getItemPrice() throws InterruptedException {
-        restaurantUI.waitForVisibility(lbl_itemPrice);
-        restaurantUI.waitForCustom(3000);
-        return restaurantUI.getText(lbl_itemPrice);
+        getRestaurantUI().waitForVisibility(lbl_itemPrice);
+        return getRestaurantUI().getText(lbl_itemPrice);
     }
     public String getItemQuantity() throws InterruptedException {
-        restaurantUI.waitForVisibility(lbl_itemQuantity);
-        restaurantUI.waitForCustom(3000);
-        return restaurantUI.getText(lbl_itemQuantity);
+        getRestaurantUI().waitForVisibility(lbl_itemQuantity);
+        return getRestaurantUI().getText(lbl_itemQuantity);
     }
     public String getItemIssue() throws InterruptedException {
-        restaurantUI.waitForVisibility(lbl_itemIssue);
-        restaurantUI.waitForCustom(3000);
-        return restaurantUI.getText(lbl_itemIssue);
+        getRestaurantUI().waitForVisibility(lbl_itemIssue);
+        return getRestaurantUI().getText(lbl_itemIssue);
     }
     public String getItemTotal() throws InterruptedException {
-        restaurantUI.waitForVisibility(lbl_itemTotal);
-        restaurantUI.waitForCustom(3000);
-        return restaurantUI.getText(lbl_itemTotal);
+        getRestaurantUI().waitForVisibility(lbl_itemTotal);
+        return getRestaurantUI().getText(lbl_itemTotal);
     }
     public String getItemCredit() throws InterruptedException {
-        restaurantUI.waitForVisibility(lbl_itemCredit);
-        restaurantUI.waitForCustom(3000);
-        return restaurantUI.getText(lbl_itemCredit);
+        getRestaurantUI().waitForVisibility(lbl_itemCredit);
+        return getRestaurantUI().getText(lbl_itemCredit);
     }
     public String getCreditItemNameDP() throws InterruptedException {
-        restaurantUI.waitForElementEnabledState(lbl_itemNameDP,true);
-        restaurantUI.waitForCustom(3000);
-        return restaurantUI.getText(lbl_itemNameDP);
+        getRestaurantUI().waitForElementEnabledState(lbl_itemNameDP,true);
+        getRestaurantUI().waitForCustom(3000);
+        return getRestaurantUI().getText(lbl_itemNameDP);
     }
     public String getItemCodeDP() throws InterruptedException {
-        restaurantUI.waitForVisibility(lbl_itemCodeDP);
-        restaurantUI.waitForCustom(3000);
-        return restaurantUI.getText(lbl_itemCodeDP);
+        getRestaurantUI().waitForVisibility(lbl_itemCodeDP);
+        return getRestaurantUI().getText(lbl_itemCodeDP);
     }
     public String getItemPriceDP() throws InterruptedException {
-        restaurantUI.waitForVisibility(lbl_itemPriceDP);
-        restaurantUI.waitForCustom(3000);
-        return restaurantUI.getText(lbl_itemPriceDP);
+        getRestaurantUI().waitForVisibility(lbl_itemPriceDP);
+        return getRestaurantUI().getText(lbl_itemPriceDP);
     }
     public String getItemQuantityDP() throws InterruptedException {
-        restaurantUI.waitForVisibility(lbl_itemQuantityDP);
-        restaurantUI.waitForCustom(3000);
-        return restaurantUI.getText(lbl_itemQuantityDP);
+        getRestaurantUI().waitForVisibility(lbl_itemQuantityDP);
+        return getRestaurantUI().getText(lbl_itemQuantityDP);
     }
     public String getItemIssueDP() throws InterruptedException {
-        restaurantUI.waitForVisibility(lbl_itemIssueDP);
-        restaurantUI.waitForCustom(3000);
-        return restaurantUI.getText(lbl_itemIssueDP);
+        getRestaurantUI().waitForVisibility(lbl_itemIssueDP);
+        return getRestaurantUI().getText(lbl_itemIssueDP);
     }
     public String getItemTotalDP() throws InterruptedException {
-        restaurantUI.waitForVisibility(lbl_itemTotalDP);
-        restaurantUI.waitForCustom(3000);
-        return restaurantUI.getText(lbl_itemTotalDP);
+        getRestaurantUI().waitForVisibility(lbl_itemTotalDP);
+        return getRestaurantUI().getText(lbl_itemTotalDP);
     }
     public String getItemCreditDP() throws InterruptedException {
-        restaurantUI.waitForVisibility(lbl_itemCreditDP);
-        restaurantUI.waitForCustom(3000);
-        return restaurantUI.getText(lbl_itemCreditDP);
+        getRestaurantUI().waitForVisibility(lbl_itemCreditDP);
+        return getRestaurantUI().getText(lbl_itemCreditDP);
     }
     public boolean isReportIssueButtonDisplayed(){
-        return restaurantUI.isDisplayed(btn_report_issue);
+        return getRestaurantUI().isDisplayed(btn_report_issue);
     }
 
 

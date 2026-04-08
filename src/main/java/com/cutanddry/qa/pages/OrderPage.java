@@ -56,217 +56,217 @@ public class OrderPage extends LoginPage{
 
 
     public void clickAddNewSupplier(){
-        restaurantUI.click(btn_addNewSupplier);
+        getRestaurantUI().click(btn_addNewSupplier);
     }
     public boolean isAddedNewSupplierDisplayed(String supplier)throws InterruptedException {
-        restaurantUI.waitForCustom(2000);
-        restaurantUI.waitForVisibility(By.xpath(addedNewSupplier.replace("SUPPLIER",supplier)));
-        return restaurantUI.isDisplayed(By.xpath(addedNewSupplier.replace("SUPPLIER",supplier)));
+        getRestaurantUI().waitForCustom(2000);
+        getRestaurantUI().waitForVisibility(By.xpath(addedNewSupplier.replace("SUPPLIER",supplier)));
+        return getRestaurantUI().isDisplayed(By.xpath(addedNewSupplier.replace("SUPPLIER",supplier)));
     }
     public void clickOrder(){
-        restaurantUI.clickWithFallback(btn_order);
+        getRestaurantUI().clickWithFallback(btn_order);
     }
     public boolean isPlaceOrderTextDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_placeOrder);
+            getRestaurantUI().waitForVisibility(txt_placeOrder);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_placeOrder);
+        return getRestaurantUI().isDisplayed(txt_placeOrder);
     }
     public void clickOnOneSupplier(String supplier) throws InterruptedException {
-        restaurantUI.waitForCustom(2000);
-        restaurantUI.waitForVisibility(By.xpath(addedNewSupplier.replace("SUPPLIER",supplier)));
-        restaurantUI.click(By.xpath(addedNewSupplier.replace("SUPPLIER",supplier)));
+        getRestaurantUI().waitForCustom(2000);
+        getRestaurantUI().waitForVisibility(By.xpath(addedNewSupplier.replace("SUPPLIER",supplier)));
+        getRestaurantUI().click(By.xpath(addedNewSupplier.replace("SUPPLIER",supplier)));
     }
     public void clickFinishSetup(String supplier)throws InterruptedException{
-        restaurantUI.click(By.xpath(btn_finishSetup.replace("SUPPLIER",supplier)));
+        getRestaurantUI().click(By.xpath(btn_finishSetup.replace("SUPPLIER",supplier)));
     }
     public boolean isNavigateEditOrderGuide(){
         try {
-            restaurantUI.waitForVisibility(txt_editOrderGuide);
+            getRestaurantUI().waitForVisibility(txt_editOrderGuide);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_editOrderGuide);
+        return getRestaurantUI().isDisplayed(txt_editOrderGuide);
     }
     public void clickUploadFile(){
-        restaurantUI.click(btn_uploadFile);
+        getRestaurantUI().click(btn_uploadFile);
     }
     public void clickNext(){
-        restaurantUI.click(btn_next);
+        getRestaurantUI().click(btn_next);
     }
     public void clickConfirm(){
-        restaurantUI.click(btn_confirm);
+        getRestaurantUI().click(btn_confirm);
     }
     public void clickOK()throws InterruptedException{
-        restaurantUI.waitForCustom(2000);
-        restaurantUI.click(btn_ok);
+        getRestaurantUI().waitForCustom(2000);
+        getRestaurantUI().click(btn_ok);
     }
     public boolean isNewlyAddedOrderGuideDisplayed(){
         try {
-            restaurantUI.waitForVisibility(lbl_itemName);
+            getRestaurantUI().waitForVisibility(lbl_itemName);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(lbl_itemName);
+        return getRestaurantUI().isDisplayed(lbl_itemName);
     }
     public void clickThreeDotDropDown(String supplier)throws InterruptedException{
-        restaurantUI.click(By.xpath(btn_threeDotDropDown.replace("SUPPLIER",supplier)));
+        getRestaurantUI().click(By.xpath(btn_threeDotDropDown.replace("SUPPLIER",supplier)));
     }
     public void clickEditSupplierOption()throws InterruptedException{
-        restaurantUI.waitForVisibility(btn_editSupplierOption);
-        restaurantUI.click(btn_editSupplierOption);
+        getRestaurantUI().waitForVisibility(btn_editSupplierOption);
+        getRestaurantUI().click(btn_editSupplierOption);
     }
     public void clickCreateItems(){
-        restaurantUI.waitForVisibility(btn_createItems);
-        restaurantUI.click(btn_createItems);
+        getRestaurantUI().waitForVisibility(btn_createItems);
+        getRestaurantUI().click(btn_createItems);
     }
     public boolean isAddItemToOrderGuidePopUpDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_addItemToOrderGuide);
+            getRestaurantUI().waitForVisibility(txt_addItemToOrderGuide);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_addItemToOrderGuide);
+        return getRestaurantUI().isDisplayed(txt_addItemToOrderGuide);
     }
     public void addItemName(String itemName) throws InterruptedException {
-        restaurantUI.clear(addItemName);
-        restaurantUI.sendKeys(addItemName,itemName);
+        getRestaurantUI().clear(addItemName);
+        getRestaurantUI().sendKeys(addItemName,itemName);
     }
     public void addItemCode(String itemCode) throws InterruptedException {
-        restaurantUI.clear(addItemCode);
-        restaurantUI.sendKeys(addItemCode,itemCode);
+        getRestaurantUI().clear(addItemCode);
+        getRestaurantUI().sendKeys(addItemCode,itemCode);
     }
     public void addItemPrice(String itemPrice) throws InterruptedException {
-        restaurantUI.clear(addPrice);
-        restaurantUI.sendKeys(addPrice,itemPrice);
+        getRestaurantUI().clear(addPrice);
+        getRestaurantUI().sendKeys(addPrice,itemPrice);
     }
     public void addItemPar(String itemPar) throws InterruptedException {
-        restaurantUI.clear(addPar);
-        restaurantUI.sendKeys(addPar,itemPar);
+        getRestaurantUI().clear(addPar);
+        getRestaurantUI().sendKeys(addPar,itemPar);
     }
     public void clickAccountingCategoryDropDown()throws InterruptedException {
-        restaurantUI.click(accountingCategoryDropDown);
+        getRestaurantUI().click(accountingCategoryDropDown);
     }
     public void clickAccountingCategoryOption()throws InterruptedException {
-        restaurantUI.waitForVisibility(accountingCategoryOption);
-        restaurantUI.click(accountingCategoryOption);
+        getRestaurantUI().waitForVisibility(accountingCategoryOption);
+        getRestaurantUI().click(accountingCategoryOption);
     }
     public void clickSaveItem()throws InterruptedException {
-        restaurantUI.waitForClickability(btn_saveItem);
-        restaurantUI.click(btn_saveItem);
+        getRestaurantUI().waitForClickability(btn_saveItem);
+        getRestaurantUI().click(btn_saveItem);
     }
     public void clickLocationFilter(){
-        restaurantUI.click(locationFilter);
+        getRestaurantUI().click(locationFilter);
     }
     public void clickOnLocationOption(String location) throws InterruptedException {
-        restaurantUI.waitForCustom(2000);
-        restaurantUI.waitForVisibility(By.xpath(locationOption.replace("LOCATION",location)));
-        restaurantUI.click(By.xpath(locationOption.replace("LOCATION",location)));
+        getRestaurantUI().waitForCustom(2000);
+        getRestaurantUI().waitForVisibility(By.xpath(locationOption.replace("LOCATION",location)));
+        getRestaurantUI().click(By.xpath(locationOption.replace("LOCATION",location)));
     }
     public boolean isLocationFilterWork(String location){
         try {
-            restaurantUI.waitForVisibility(By.xpath(addedLocation.replace("LOCATION",location)));
+            getRestaurantUI().waitForVisibility(By.xpath(addedLocation.replace("LOCATION",location)));
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(By.xpath(addedLocation.replace("LOCATION",location)));
+        return getRestaurantUI().isDisplayed(By.xpath(addedLocation.replace("LOCATION",location)));
     }
     public void clickOnCheckIn() {
-        restaurantUI.waitForClickability(btn_checkIn);
-        restaurantUI.click(btn_checkIn);
+        getRestaurantUI().waitForClickability(btn_checkIn);
+        getRestaurantUI().click(btn_checkIn);
     }
     public boolean isCheckInOrderIdDisplayed(String orderId) throws InterruptedException {
-        restaurantUI.waitForVisibility(By.xpath(checkInTitle.replace("ORDER_ID", orderId)));
-        restaurantUI.waitForCustom(4000);
-        return restaurantUI.isDisplayed(By.xpath(checkInTitle.replace("ORDER_ID", orderId)));
+        getRestaurantUI().waitForVisibility(By.xpath(checkInTitle.replace("ORDER_ID", orderId)));
+        getRestaurantUI().waitForCustom(4000);
+        return getRestaurantUI().isDisplayed(By.xpath(checkInTitle.replace("ORDER_ID", orderId)));
     }
     public void clickOnCheckInAll() {
-        restaurantUI.waitForClickability(btn_checkInAll);
-        restaurantUI.click(btn_checkInAll);
+        getRestaurantUI().waitForClickability(btn_checkInAll);
+        getRestaurantUI().click(btn_checkInAll);
     }
     public boolean isCheckInAllPopupDisplayed() {
         try {
-            restaurantUI.waitForVisibility(lbl_checkInAllPopup);
-            return restaurantUI.isDisplayed(lbl_checkInAllPopup);
+            getRestaurantUI().waitForVisibility(lbl_checkInAllPopup);
+            return getRestaurantUI().isDisplayed(lbl_checkInAllPopup);
         } catch (Exception e) {
             return false;
         }
     }
     public boolean isOrderStatusDisplayed(String status) throws InterruptedException {
-        restaurantUI.waitForVisibility(By.xpath(lbl_orderStatus.replace("STATUS", status)));
-        restaurantUI.waitForCustom(4000);
-        return restaurantUI.isDisplayed(By.xpath(lbl_orderStatus.replace("STATUS", status)));
+        getRestaurantUI().waitForVisibility(By.xpath(lbl_orderStatus.replace("STATUS", status)));
+        getRestaurantUI().waitForCustom(4000);
+        return getRestaurantUI().isDisplayed(By.xpath(lbl_orderStatus.replace("STATUS", status)));
     }
     public void clickChatSupplierOption()throws InterruptedException{
-        restaurantUI.waitForVisibility(btn_chatSupplierOption);
-        restaurantUI.click(btn_chatSupplierOption);
+        getRestaurantUI().waitForVisibility(btn_chatSupplierOption);
+        getRestaurantUI().click(btn_chatSupplierOption);
     }
     public boolean isChatOptionDisplay(){
-        return restaurantUI.isDisplayed(btn_chatSupplierOption);
+        return getRestaurantUI().isDisplayed(btn_chatSupplierOption);
     }
     public boolean isAreYouSurePopUpDisplayed(){
-        return restaurantUI.isDisplayed(areYouSurePopUp);
+        return getRestaurantUI().isDisplayed(areYouSurePopUp);
     }
 
     public void clickYes() throws InterruptedException {
-        restaurantUI.click(btn_yes);
-        restaurantUI.waitForCustom(1000);
+        getRestaurantUI().click(btn_yes);
+        getRestaurantUI().waitForCustom(1000);
     }
     public void editOrderGuideName(String name) throws InterruptedException {
-        restaurantUI.clear(lbl_orderGuideName);
-        restaurantUI.sendKeys(lbl_orderGuideName, name);
-        restaurantUI.waitForCustom(1000);
+        getRestaurantUI().clear(lbl_orderGuideName);
+        getRestaurantUI().sendKeys(lbl_orderGuideName, name);
+        getRestaurantUI().waitForCustom(1000);
     }
     public void editOrderGuideDescription(String name) throws InterruptedException {
-        restaurantUI.clear(lbl_orderGuideDescription);
-        restaurantUI.sendKeys(lbl_orderGuideDescription, name);
-        restaurantUI.waitForCustom(1000);
+        getRestaurantUI().clear(lbl_orderGuideDescription);
+        getRestaurantUI().sendKeys(lbl_orderGuideDescription, name);
+        getRestaurantUI().waitForCustom(1000);
     }
     public void clickOnSave(){
-        restaurantUI.waitForVisibility(btn_save);
-        restaurantUI.clickWithFallback(btn_save);
+        getRestaurantUI().waitForVisibility(btn_save);
+        getRestaurantUI().clickWithFallback(btn_save);
     }
     public boolean editedOrderGuideNameDisplay(String name){
-        return restaurantUI.isDisplayed(By.xpath(editedOrderGuide.replace("NAME",name)));
+        return getRestaurantUI().isDisplayed(By.xpath(editedOrderGuide.replace("NAME",name)));
     }
     public boolean editedOrderGuideDescriptionDisplay(String name){
-        return restaurantUI.isDisplayed(By.xpath(editedOrderGuideDescription.replace("NAME",name)));
+        return getRestaurantUI().isDisplayed(By.xpath(editedOrderGuideDescription.replace("NAME",name)));
     }
     public void removeOrderGuideLocation()throws InterruptedException{
-        restaurantUI.click(lbl_orderGuideLocation);
+        getRestaurantUI().click(lbl_orderGuideLocation);
     }
     public void clickOrderGuideLocationDropDown()throws InterruptedException{
-        restaurantUI.click(orderGuideLocationDropDown);
+        getRestaurantUI().click(orderGuideLocationDropDown);
     }
     public void clickOrderGuideLocationDropDownOption()throws InterruptedException{
-        restaurantUI.click(orderGuideLocationDropDownOption);
+        getRestaurantUI().click(orderGuideLocationDropDownOption);
     }
     public void  clickFindMoreInCatalog()throws InterruptedException{
-        restaurantUI.scrollToElement(btn_FindMoreInCatalog);
-        restaurantUI.click(btn_FindMoreInCatalog);
+        getRestaurantUI().scrollToElement(btn_FindMoreInCatalog);
+        getRestaurantUI().click(btn_FindMoreInCatalog);
     }
     public boolean isInactiveItemDetectedPopUpDisplay()throws InterruptedException{
-        restaurantUI.waitForVisibility(lbl_inactiveItemDetected);
-        return restaurantUI.isDisplayed(lbl_inactiveItemDetected);
+        getRestaurantUI().waitForVisibility(lbl_inactiveItemDetected);
+        return getRestaurantUI().isDisplayed(lbl_inactiveItemDetected);
     }
     public boolean isThreeDotDropDownOptionDisplayed(String option)throws InterruptedException{
-        return restaurantUI.isDisplayed(By.xpath(threeDotDropDownOption.replace("OPTION",option)));
+        return getRestaurantUI().isDisplayed(By.xpath(threeDotDropDownOption.replace("OPTION",option)));
     }
     public void clickEditGuideOption()throws InterruptedException{
-        restaurantUI.waitForVisibility(btn_editGuideOption);
-        restaurantUI.click(btn_editGuideOption);
+        getRestaurantUI().waitForVisibility(btn_editGuideOption);
+        getRestaurantUI().click(btn_editGuideOption);
     }
     public boolean isSelectLocationPopUpDisplayed()throws InterruptedException{
-        return restaurantUI.isDisplayed(selectLocation);
+        return getRestaurantUI().isDisplayed(selectLocation);
     }
     public void selectLocationSupplier(String location){
-        restaurantUI.click(By.xpath(selectLocationSupplier.replace("LOCATION",location)));
+        getRestaurantUI().click(By.xpath(selectLocationSupplier.replace("LOCATION",location)));
     }
     public void clickViewCatalogOption()throws InterruptedException{
-        restaurantUI.waitForVisibility(btn_viewCatalogOption);
-        restaurantUI.click(btn_viewCatalogOption);
+        getRestaurantUI().waitForVisibility(btn_viewCatalogOption);
+        getRestaurantUI().click(btn_viewCatalogOption);
     }
 
 

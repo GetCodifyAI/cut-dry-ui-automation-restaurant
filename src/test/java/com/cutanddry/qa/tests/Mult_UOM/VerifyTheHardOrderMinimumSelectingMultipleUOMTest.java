@@ -66,7 +66,7 @@ public class VerifyTheHardOrderMinimumSelectingMultipleUOMTest extends TestBase 
 //        Login.closePreviousTab();
         Login.navigateToLoginAs();
         Login.loginAsBookkeeper(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Dashboard.navigateToOrder();
         Dashboard.navigateToIndependentFoodsCoClassic();
         Dashboard.navigateToOrderGuide();

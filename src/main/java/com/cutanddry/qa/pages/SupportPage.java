@@ -9,14 +9,14 @@ public class SupportPage extends TestBase {
     By support_center = By.xpath("//h1[contains(text(),'How Can We Help You?')]");
 
     public void clickOnSupport() throws InterruptedException {
-        String url = restaurantUI.getText(support_icon,"href");
-        restaurantUI.navigateToURL(url);
+        String url = getRestaurantUI().getText(support_icon,"href");
+        getRestaurantUI().navigateToURL(url);
     }
 
     public boolean isSupportCenterHeaderDisplayed(){
 
         try {
-            return restaurantUI.isDisplayed(support_center);
+            return getRestaurantUI().isDisplayed(support_center);
         } catch (Exception e){
             return false;
         }

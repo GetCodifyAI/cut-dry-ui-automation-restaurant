@@ -32,7 +32,7 @@ public class VerifyEmployeeOrderEditRestrictionAfterApprovalTest extends TestBas
 
         Login.navigateToLoginAs();
         Login.loginAsEmployee(employeeOperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
 
         Dashboard.navigateToOrder();
         Dashboard.navigateToIndependentFoodsCo();
@@ -55,7 +55,7 @@ public class VerifyEmployeeOrderEditRestrictionAfterApprovalTest extends TestBas
 
             Login.navigateToLoginAs();
             Login.loginAsManager(adminOperatorName);
-            restaurantUI.switchToNewTab();
+            getRestaurantUI().switchToNewTab();
 
             Dashboard.navigateToDrafts();
             Assert.assertTrue(Drafts.isUserNavigatedToDrafts(), "Navigation error - Drafts page not displayed for Admin");
@@ -83,7 +83,7 @@ public class VerifyEmployeeOrderEditRestrictionAfterApprovalTest extends TestBas
 
             Login.navigateToLoginAs();
             Login.loginAsEmployee(employeeOperatorName);
-            restaurantUI.switchToNewTab();
+            getRestaurantUI().switchToNewTab();
 
             Dashboard.navigateToHome();
             softAssert.assertTrue(Customer.isRecentOrderTextDisplayed(), "Recent Orders section not displayed for Employee on Home page");

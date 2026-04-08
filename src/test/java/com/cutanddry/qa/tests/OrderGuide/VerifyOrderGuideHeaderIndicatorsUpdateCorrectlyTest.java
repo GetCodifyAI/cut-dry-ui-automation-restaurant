@@ -42,7 +42,7 @@ public class VerifyOrderGuideHeaderIndicatorsUpdateCorrectlyTest extends TestBas
         softAssert.assertTrue(initialCartTotal.contains("$"), "Initial cart total should display currency symbol");
 
         Customer.increaseFirstRowQtyByOne();
-        Thread.sleep(2000);
+        getRestaurantUI().waitForCustom(2000);
 
         String lineItemsAfterFirstAdd = Customer.getHeaderLineItemsCount();
         String quantityAfterFirstAdd = Customer.getHeaderQuantityCount();
@@ -51,13 +51,13 @@ public class VerifyOrderGuideHeaderIndicatorsUpdateCorrectlyTest extends TestBas
         softAssert.assertNotEquals(quantityAfterFirstAdd, "0", "Quantity count should update after adding first item");
 
         Customer.increaseFirstRowQtyByThree();
-        Thread.sleep(2000);
+        getRestaurantUI().waitForCustom(2000);
 
         String quantityAfterIncrease = Customer.getHeaderQuantityCount();
         softAssert.assertNotEquals(quantityAfterIncrease, quantityAfterFirstAdd, "Quantity count should increase when adding more of same item");
 
         Customer.increaseSecondRowQtyByOne();
-        Thread.sleep(2000);
+        getRestaurantUI().waitForCustom(2000);
 
         String lineItemsAfterSecondAdd = Customer.getHeaderLineItemsCount();
         String quantityAfterSecondAdd = Customer.getHeaderQuantityCount();
@@ -70,7 +70,7 @@ public class VerifyOrderGuideHeaderIndicatorsUpdateCorrectlyTest extends TestBas
         softAssert.assertTrue(cartTotalAfterAdding.contains("$"), "Cart total should display currency symbol after adding items");
 
         Customer.decreaseFirstRowQtyByOne();
-        Thread.sleep(2000);
+        getRestaurantUI().waitForCustom(2000);
 
         String quantityAfterDecrease = Customer.getHeaderQuantityCount();
         int qtyAfterSecondAdd = parseCount(quantityAfterSecondAdd);
@@ -81,7 +81,7 @@ public class VerifyOrderGuideHeaderIndicatorsUpdateCorrectlyTest extends TestBas
         softAssert.assertTrue(Customer.isUserNavigatedToCatalog(), "Navigation to Catalog failed");
 
         Customer.clickOnOrderGuideTab();
-        Thread.sleep(2000);
+        getRestaurantUI().waitForCustom(2000);
 
         String lineItemsAfterNavigation = Customer.getHeaderLineItemsCount();
         String quantityAfterNavigation = Customer.getHeaderQuantityCount();

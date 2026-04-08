@@ -39,7 +39,7 @@ public class VerifyThatOPsHaveTheCustomerTypeFilterToFilterCustomerTypesTest ext
         Customer.goToCatalog();
         for (String itemCode : itemCodes) {
             Customer.searchItemOnCatalog(itemCode);
-            Thread.sleep(4000);
+            getRestaurantUI().waitForCustom(4000);
             softAssert.assertTrue(Customer.isCatalogSearchItemCodeDisplay(itemCode), "Item not found: " + itemCode
             );}
         softAssert.assertAll();

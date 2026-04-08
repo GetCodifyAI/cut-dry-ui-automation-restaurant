@@ -22,72 +22,72 @@ public class UsersPage extends LoginPage {
     By userRemoveOverlay = By.xpath("//h2[@id='swal2-title' and contains(text(),'Are you sure you want to remove this user?')]");
 
     public boolean isUsersPageDisplayed() {
-        return restaurantUI.isDisplayed(usersTab);
+        return getRestaurantUI().isDisplayed(usersTab);
     }
 
     public void clickAddUserBtn(){
-        restaurantUI.click(addUserBtn);
+        getRestaurantUI().click(addUserBtn);
     }
 
     public void typeName(String userName){
-        restaurantUI.sendKeys(nameTextField,userName);
+        getRestaurantUI().sendKeys(nameTextField,userName);
     }
 
     public void typeEmail(String userEmail){
-        restaurantUI.sendKeys(emailTextField,userEmail);
+        getRestaurantUI().sendKeys(emailTextField,userEmail);
     }
 
     public void locationSelectionDropdown(String locationName){
-        restaurantUI.click(locationDropDown);
-        restaurantUI.sendKeysAndEnter(locationDropDown,locationName);
-        restaurantUI.click(locationTxt);
+        getRestaurantUI().click(locationDropDown);
+        getRestaurantUI().sendKeysAndEnter(locationDropDown,locationName);
+        getRestaurantUI().click(locationTxt);
     }
 
     public boolean employeeSelectionDropdown(String emp){
-        restaurantUI.click(employeeDropDown);
-        boolean out = restaurantUI.getText(employeeList).contains(emp);
-        restaurantUI.click(employeeDropDown);
+        getRestaurantUI().click(employeeDropDown);
+        boolean out = getRestaurantUI().getText(employeeList).contains(emp);
+        getRestaurantUI().click(employeeDropDown);
         return out;
     }
     public void clickOnAddUserOverlayBtn(){
-        restaurantUI.click(addUserOverlayBtn);
+        getRestaurantUI().click(addUserOverlayBtn);
     }
 
     public boolean isSuccessOverlayDisplayed(){
-        return restaurantUI.isDisplayed(successTxt);
+        return getRestaurantUI().isDisplayed(successTxt);
     }
 
     public void clickOkBtn(){
         try {
-            restaurantUI.waitForCustom(4000);
+            getRestaurantUI().waitForCustom(4000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        restaurantUI.click(btn_ok);
+        getRestaurantUI().click(btn_ok);
     }
 
     public void clickOnUser(String username){
-        restaurantUI.click(By.xpath(user.replace("USERNAME", username)));
+        getRestaurantUI().click(By.xpath(user.replace("USERNAME", username)));
     }
 
     public boolean isUserDisplayed(String username){
-        return restaurantUI.isDisplayed(By.xpath(user.replace("USERNAME", username)));
+        return getRestaurantUI().isDisplayed(By.xpath(user.replace("USERNAME", username)));
     }
 
     public void clickOnSaveChangesBtn(){
-        restaurantUI.click(saveChangeBtn);
+        getRestaurantUI().click(saveChangeBtn);
     }
 
     public void clickOnDeleteBtn(){
-        restaurantUI.click(removeUserBtn);
+        getRestaurantUI().click(removeUserBtn);
     }
 
     public boolean isUserRemoveOverlayDisplayed(){
-        return restaurantUI.isDisplayed(userRemoveOverlay);
+        return getRestaurantUI().isDisplayed(userRemoveOverlay);
     }
     public boolean isUserEditable(String username){
         try {
-            restaurantUI.waitForClickability(By.xpath(user.replace("USERNAME", username)));
+            getRestaurantUI().waitForClickability(By.xpath(user.replace("USERNAME", username)));
         } catch (Exception e) {
             return false;
         }

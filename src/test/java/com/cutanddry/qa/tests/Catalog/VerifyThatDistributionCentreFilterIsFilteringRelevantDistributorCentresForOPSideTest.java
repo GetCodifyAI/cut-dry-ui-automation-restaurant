@@ -48,7 +48,7 @@ public class VerifyThatDistributionCentreFilterIsFilteringRelevantDistributorCen
         softAssert.assertTrue(Customer.isCatalogFilterDisplayTagList(itemName,tag),"new tag display list error");
 
         Customer.clickOnOrderGuideTab();
-        Thread.sleep(3000);
+        getRestaurantUI().waitForCustom(3000);
 
         Customer.goToEdit();
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigation error for edit");

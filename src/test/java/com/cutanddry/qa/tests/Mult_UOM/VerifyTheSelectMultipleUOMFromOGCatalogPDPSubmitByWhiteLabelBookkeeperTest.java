@@ -40,7 +40,7 @@ public class VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelBookkee
         Login.settingsWLGateKeeper();
         Login.navigateToLoginAs();
         Login.loginAsAdminWL(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Dashboard.navigateToOrder();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 

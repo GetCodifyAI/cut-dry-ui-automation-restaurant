@@ -39,7 +39,7 @@ public class VerifyTheSelectMultipleUOMFromOGCatalogPDPSubmitByWhiteLabelManager
         Login.settingsWLGateKeeper();
         Login.navigateToLoginAs();
         Login.loginAsAdminWL(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Dashboard.navigateToOrder();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 

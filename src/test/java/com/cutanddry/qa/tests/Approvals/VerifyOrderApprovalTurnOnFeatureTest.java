@@ -29,7 +29,7 @@ public class VerifyOrderApprovalTurnOnFeatureTest extends TestBase {
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
         Login.goToOperatorJoshuaClayton(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToCooksCompanyProduce();
         Customer.expandMoreOptionsDropdown();

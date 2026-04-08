@@ -69,16 +69,16 @@ public class DashboardPage extends LoginPage{
 
     public boolean isDashboardTextDisplayed(){
 //        try {
-//            restaurantUI.waitForVisibility(txt_dashboard);
+//            getRestaurantUI().waitForVisibility(txt_dashboard);
 //        } catch (Exception e){
 //            return false;
 //        }
-        return restaurantUI.isDisplayed(txt_dashboard,60);
+        return getRestaurantUI().isDisplayed(txt_dashboard,60);
     }
     public boolean isChatTextDisplayed(){
         boolean out;
         try {
-            out = restaurantUI.isDisplayed(txt_chats) | restaurantUI.isDisplayed(tbx_msg);
+            out = getRestaurantUI().isDisplayed(txt_chats) | getRestaurantUI().isDisplayed(tbx_msg);
         } catch (Exception e){
             return false;
         }
@@ -86,239 +86,239 @@ public class DashboardPage extends LoginPage{
     }
     public boolean isDraftsTextDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_drafts);
+            getRestaurantUI().waitForVisibility(txt_drafts);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_drafts);
+        return getRestaurantUI().isDisplayed(txt_drafts);
     }
     public boolean isPayTextDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_pay);
+            getRestaurantUI().waitForVisibility(txt_pay);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_pay);
+        return getRestaurantUI().isDisplayed(txt_pay);
     }
     public boolean isApprovalsTabDisplayed(){
-        restaurantUI.waitForVisibility(txt_approvals);
-        return restaurantUI.isDisplayed(txt_approvals);
+        getRestaurantUI().waitForVisibility(txt_approvals);
+        return getRestaurantUI().isDisplayed(txt_approvals);
     }
     public void clickOnPlaceOrder() {
-        restaurantUI.clickWithFallback(btn_placeOrder);}
+        getRestaurantUI().clickWithFallback(btn_placeOrder);}
 
     public void clickOnPlaceOrder_Cashback_Foods() {
-        restaurantUI.click(btn_placeOrder_Cashback_Foods);}
+        getRestaurantUI().click(btn_placeOrder_Cashback_Foods);}
 
     public void clickOnHayes() {
-        restaurantUI.click(btn_hayes);}
+        getRestaurantUI().click(btn_hayes);}
     public boolean isOrderGuideTextDisplayed(){
-        return restaurantUI.isDisplayed(txt_OrderGuide);
+        return getRestaurantUI().isDisplayed(txt_OrderGuide);
     }
     public boolean isMaxiesOrderGuideTextDisplayed(){
-        return restaurantUI.isDisplayed(txt_MaxiesOrderGuide);
+        return getRestaurantUI().isDisplayed(txt_MaxiesOrderGuide);
     }
     public boolean isTestAutomationPopupDisplayed(){
-        return restaurantUI.isDisplayed(btn_TestAutomation,5);
+        return getRestaurantUI().isDisplayed(btn_TestAutomation,5);
     }
     public void clickOnTestAutomationPopup(){
-        restaurantUI.waitForClickability(btn_TestAutomation);
-        restaurantUI.click(btn_TestAutomation);
-        restaurantUI.waitForInvisibility(btn_TestAutomation);
+        getRestaurantUI().waitForClickability(btn_TestAutomation);
+        getRestaurantUI().click(btn_TestAutomation);
+        getRestaurantUI().waitForInvisibility(btn_TestAutomation);
     }
     public boolean isDraftOrderPopUpDisplayed(){
         try {
-            return restaurantUI.isDisplayed(txt_draftOrder);
+            return getRestaurantUI().isDisplayed(txt_draftOrder);
         } catch (Exception e){
             return false;
         }
     }
     public void clickOnNoDraftOrder(){
-        restaurantUI.click(btn_noDraftOrder);
+        getRestaurantUI().click(btn_noDraftOrder);
     }
 
     public void clickNoBtnOnDraftCheckOverlay(){
-        restaurantUI.click(NoBtnDraftOrder);
+        getRestaurantUI().click(NoBtnDraftOrder);
     }
     public boolean isDisDashboardTextDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_disDashboard);
+            getRestaurantUI().waitForVisibility(txt_disDashboard);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_disDashboard);
+        return getRestaurantUI().isDisplayed(txt_disDashboard);
     }
     public void clickOnCooksCompanyProduce() {
-        restaurantUI.click(btn_cooksCompanyProduce);}
+        getRestaurantUI().click(btn_cooksCompanyProduce);}
 
     public void clickOnDrafts() {
-        restaurantUI.clickWithFallback(btn_drafts);}
+        getRestaurantUI().clickWithFallback(btn_drafts);}
     public void clickOnChats() {
-        restaurantUI.clickWithFallback(btn_chats);}
+        getRestaurantUI().clickWithFallback(btn_chats);}
     public void clickOnReports() {
-        restaurantUI.clickWithFallback(btn_Reports);}
+        getRestaurantUI().clickWithFallback(btn_Reports);}
     public void clickOnPay() {
-        restaurantUI.clickWithFallback(btn_pay);}
+        getRestaurantUI().clickWithFallback(btn_pay);}
     public void clickOnApprovals() {
-        restaurantUI.clickWithFallback(btn_approvals);}
+        getRestaurantUI().clickWithFallback(btn_approvals);}
     public void clickOnCustomers(){
-        restaurantUI.clickWithFallback(btn_customers);
+        getRestaurantUI().clickWithFallback(btn_customers);
     }
     public void clickOnOrder() throws InterruptedException {
-        restaurantUI.clickWithFallback(btn_order);
-        restaurantUI.waitForCustom(2000);
+        getRestaurantUI().clickWithFallback(btn_order);
+        getRestaurantUI().waitForCustom(2000);
     }
 
     public void clickOnSupplier(String supplierName){
-        restaurantUI.waitForVisibility(By.xpath(supplierTxt.replace("SUPPLIERNAME",supplierName)));
-        restaurantUI.click(By.xpath(supplierTxt.replace("SUPPLIERNAME",supplierName)));
+        getRestaurantUI().waitForVisibility(By.xpath(supplierTxt.replace("SUPPLIERNAME",supplierName)));
+        getRestaurantUI().click(By.xpath(supplierTxt.replace("SUPPLIERNAME",supplierName)));
     }
 
 
     public boolean isNavigatedToMaxiesSLOrderGuide() throws InterruptedException {
-        restaurantUI.waitForCustom(4000);
-        return restaurantUI.isDisplayed(MaxiesSLTxt);
+        getRestaurantUI().waitForCustom(4000);
+        return getRestaurantUI().isDisplayed(MaxiesSLTxt);
     }
 
     public boolean isNavigatedToOrderGuide(String Supplier) throws InterruptedException {
-        restaurantUI.waitForCustom(4000);
-        restaurantUI.waitForVisibility(By.xpath(customerNameText.replace("SUPPLIERNAME",Supplier)),30);
-        return restaurantUI.isDisplayed(By.xpath(customerNameText.replace("SUPPLIERNAME",Supplier)));
+        getRestaurantUI().waitForCustom(4000);
+        getRestaurantUI().waitForVisibility(By.xpath(customerNameText.replace("SUPPLIERNAME",Supplier)),30);
+        return getRestaurantUI().isDisplayed(By.xpath(customerNameText.replace("SUPPLIERNAME",Supplier)));
     }
 
     public void clickOnUsers(){
-        restaurantUI.clickWithFallback(users);
+        getRestaurantUI().clickWithFallback(users);
     }
 
     public void clickOnRewards() throws InterruptedException {
-        restaurantUI.clickWithFallback(btn_Rewards);
+        getRestaurantUI().clickWithFallback(btn_Rewards);
     }
     public boolean isDistributorDashboardTextDisplayed(){
         try {
-            restaurantUI.waitForVisibility(txt_dp_dashboard);
+            getRestaurantUI().waitForVisibility(txt_dp_dashboard);
         } catch (Exception e){
             return false;
         }
-        return restaurantUI.isDisplayed(txt_dp_dashboard);
+        return getRestaurantUI().isDisplayed(txt_dp_dashboard);
     }
     public void clickOnCreditRequests(){
-        restaurantUI.click(btn_credit_requests);
+        getRestaurantUI().click(btn_credit_requests);
     }
     public void clickLocationFilter(){
-        restaurantUI.click(locationFilter);
+        getRestaurantUI().click(locationFilter);
     }
     public void clickOnLocationOption() throws InterruptedException {
-        restaurantUI.waitForCustom(2000);
-        restaurantUI.waitForVisibility(locationOption);
-        restaurantUI.click(locationOption);
+        getRestaurantUI().waitForCustom(2000);
+        getRestaurantUI().waitForVisibility(locationOption);
+        getRestaurantUI().click(locationOption);
     }
     public void clickOnCatalog(){
-        restaurantUI.clickWithFallback(btn_catalog);
+        getRestaurantUI().clickWithFallback(btn_catalog);
     }
     public void clickOnOrderSettings(){
-        restaurantUI.hoverOverElement(btn_viewMore);
-        restaurantUI.scrollToElement(btn_settings);
-        restaurantUI.clickUsingJavaScript(btn_settings);
-        restaurantUI.hoverOverElement(btn_orderSettings);
-        restaurantUI.clickWithFallback(btn_orderSettings);
+        getRestaurantUI().hoverOverElement(btn_viewMore);
+        getRestaurantUI().scrollToElement(btn_settings);
+        getRestaurantUI().clickUsingJavaScript(btn_settings);
+        getRestaurantUI().hoverOverElement(btn_orderSettings);
+        getRestaurantUI().clickWithFallback(btn_orderSettings);
     }
     public boolean isChooseProductCatalogDisplayed()throws InterruptedException{
-        restaurantUI.waitForCustom(3000);
-        restaurantUI.waitForVisibility(txt_productCatalog);
-        return restaurantUI.isDisplayed(txt_productCatalog);
+        getRestaurantUI().waitForCustom(3000);
+        getRestaurantUI().waitForVisibility(txt_productCatalog);
+        return getRestaurantUI().isDisplayed(txt_productCatalog);
     }
     public void chooseProductCatalog(String name)throws InterruptedException{
-        restaurantUI.waitForVisibility(By.xpath(chooseProductCatalog.replace("NAME",name)));
-        restaurantUI.click(By.xpath(chooseProductCatalog.replace("NAME",name)));
+        getRestaurantUI().waitForVisibility(By.xpath(chooseProductCatalog.replace("NAME",name)));
+        getRestaurantUI().click(By.xpath(chooseProductCatalog.replace("NAME",name)));
     }
     public void clickOnHome() throws InterruptedException {
-        restaurantUI.clickWithFallback(btn_home);
-        restaurantUI.waitForCustom(2000);
+        getRestaurantUI().clickWithFallback(btn_home);
+        getRestaurantUI().waitForCustom(2000);
     }
     public boolean isUserNavigateHome()throws InterruptedException{
-        return restaurantUI.isDisplayed(txt_home);
+        return getRestaurantUI().isDisplayed(txt_home);
     }
     public void switch1932Saval()throws InterruptedException{
-        restaurantUI.waitForVisibility(btn_switch1932Saval);
-        restaurantUI.uiScrollTop();
-        restaurantUI.click(btn_switch1932Saval);
-        restaurantUI.waitForCustom(3000);
+        getRestaurantUI().waitForVisibility(btn_switch1932Saval);
+        getRestaurantUI().uiScrollTop();
+        getRestaurantUI().click(btn_switch1932Saval);
+        getRestaurantUI().waitForCustom(3000);
     }
     public void clickCategory()throws InterruptedException{
-        restaurantUI.waitForVisibility(btn_category);
-        restaurantUI.clickUsingJavaScript(btn_category);
+        getRestaurantUI().waitForVisibility(btn_category);
+        getRestaurantUI().clickUsingJavaScript(btn_category);
     }
     public void clickNoBtnOnDraftCheckOverlayCatalog(){
-        restaurantUI.hoverOverElement(NoBtnDraftOrderCatalog);
-        restaurantUI.clickUsingJavaScript(NoBtnDraftOrderCatalog);
+        getRestaurantUI().hoverOverElement(NoBtnDraftOrderCatalog);
+        getRestaurantUI().clickUsingJavaScript(NoBtnDraftOrderCatalog);
     }
     public void switchSavalFood()throws InterruptedException{
-        restaurantUI.waitForVisibility(btn_switchSavalFood);
-        restaurantUI.click(btn_switchSavalFood);
+        getRestaurantUI().waitForVisibility(btn_switchSavalFood);
+        getRestaurantUI().click(btn_switchSavalFood);
     }
     public boolean isCatalogDataDisplayed()throws InterruptedException{
-        return restaurantUI.isDisplayed(btn_category);
+        return getRestaurantUI().isDisplayed(btn_category);
     }
     public boolean isSavalFoodServiceLogoDisplayed()throws InterruptedException{
-        return restaurantUI.isDisplayed(savalFoodServiceLogo);
+        return getRestaurantUI().isDisplayed(savalFoodServiceLogo);
     }
     public boolean isSavalFoodServiceBannerDisplayed()throws InterruptedException{
-        return restaurantUI.isDisplayed(savalFoodBanner);
+        return getRestaurantUI().isDisplayed(savalFoodBanner);
     }
     public boolean isSwitch1932SavalDisplayed()throws InterruptedException{
-        return restaurantUI.isDisplayed(btn_switch1932Saval);
+        return getRestaurantUI().isDisplayed(btn_switch1932Saval);
     }
     public boolean isSwitchSavalFoodDisplayed()throws InterruptedException{
-        return restaurantUI.isDisplayed(btn_switchSavalFood);
+        return getRestaurantUI().isDisplayed(btn_switchSavalFood);
     }
     public boolean isParentDpNameDisplayed(String name)throws InterruptedException{
-        return restaurantUI.isDisplayed(By.xpath(parentDpName.replace("NAME",name)));
+        return getRestaurantUI().isDisplayed(By.xpath(parentDpName.replace("NAME",name)));
     }
     public void clickOnColonnade() {
-        restaurantUI.click(btn_colonnade);
+        getRestaurantUI().click(btn_colonnade);
     }
 
     public boolean isChooseCompanyDisplay(String name)throws InterruptedException{
-        restaurantUI.waitForVisibility(By.xpath(chooseProductCatalog.replace("NAME",name)));
-        return restaurantUI.isDisplayed(By.xpath(chooseProductCatalog.replace("NAME",name)));
+        getRestaurantUI().waitForVisibility(By.xpath(chooseProductCatalog.replace("NAME",name)));
+        return getRestaurantUI().isDisplayed(By.xpath(chooseProductCatalog.replace("NAME",name)));
     }
     public void clickOnProfile(String name) {
-        restaurantUI.click(By.xpath(txt_profile.replace("NAME",name)));
+        getRestaurantUI().click(By.xpath(txt_profile.replace("NAME",name)));
     }
     public void clickOnSignOutProfile() {
-        restaurantUI.click(signOutProfile);
+        getRestaurantUI().click(signOutProfile);
     }
     public void clickOutsideModal()throws InterruptedException{
-         restaurantUI.clickUsingJavaScript(outSideModal);
+         getRestaurantUI().clickUsingJavaScript(outSideModal);
     }
     public boolean isChatSectionDisplay()throws InterruptedException{
-        return restaurantUI.isDisplayed(btn_chats_visible);
+        return getRestaurantUI().isDisplayed(btn_chats_visible);
     }
     public boolean isChatWithUsDisplay()throws InterruptedException{
-        restaurantUI.waitForCustom(3000);
-        return restaurantUI.isDisplayed(btn_chatWithUs);
+        getRestaurantUI().waitForCustom(3000);
+        return getRestaurantUI().isDisplayed(btn_chatWithUs);
     }
     public boolean isSelectOrderGuidePopUpDisplayed(){
-        return restaurantUI.isDisplayed(txt_selectOrderGuide);
+        return getRestaurantUI().isDisplayed(txt_selectOrderGuide);
     }
     public void selectOrderGuide(){
-        restaurantUI.click(selectOrderGuide);
+        getRestaurantUI().click(selectOrderGuide);
     }
     public void selectOrderGuideCustom(){
-        restaurantUI.click(btn_selectOrderGuideCustom);
+        getRestaurantUI().click(btn_selectOrderGuideCustom);
     }
     public static String getTextAfterCompany() {
-        restaurantUI.waitForVisibility(wordAfterCompanyLocator);
-        return restaurantUI.getText(wordAfterCompanyLocator);
+        getRestaurantUI().waitForVisibility(wordAfterCompanyLocator);
+        return getRestaurantUI().getText(wordAfterCompanyLocator);
     }
     public static void selectIndependentFoodCo() {
         // Click the dropdown
-        driver.findElement(dropdownToggle).click();
+        getDriver().findElement(dropdownToggle).click();
         System.out.println("Dropdown clicked.");
 
         // Wait for the 'Independent Foods Co' option to be visible and click it
-        restaurantUI.waitForVisibility(independentFoodOption);
-        driver.findElement(independentFoodOption).click();
+        getRestaurantUI().waitForVisibility(independentFoodOption);
+        getDriver().findElement(independentFoodOption).click();
 
         System.out.println("Company name changed to 'Independent Foods Co'.");
     }

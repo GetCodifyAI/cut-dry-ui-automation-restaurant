@@ -31,7 +31,7 @@ public class VerifyReportFeatureForWhiteLabelOperatorTest extends TestBase {
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
         Login.goToOperatorStephanieCollins(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Dashboard.navigateToReports();
         softAssert.assertTrue(Reports.disabledGenerateReport(),"error in  generate report button");
         softAssert.assertAll();

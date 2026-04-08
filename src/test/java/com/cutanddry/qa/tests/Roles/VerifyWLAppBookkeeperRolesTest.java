@@ -30,7 +30,7 @@ public class VerifyWLAppBookkeeperRolesTest extends TestBase {
         Dashboard.isUserNavigatedToDashboard();
         Login.navigateToLoginAs();
         Login.loginAsAdminWL(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Dashboard.navigateToOrder();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 
@@ -64,8 +64,8 @@ public class VerifyWLAppBookkeeperRolesTest extends TestBase {
         softAssert.assertTrue(Settings.isNavigatedToRestaurantSettings(),"navigation to restaurant settings error");
         Settings.clickOnLocationsUnderSettings();
         softAssert.assertTrue(Settings.isNavigatedToLocationSettings(),"navigation to loc settings error");
-        restaurantUI.switchToNewTab();
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Dashboard.navigateToUsers();
         softAssert.assertTrue(Users.isNavigatedToUserTab(),"navigation to users error");
         Users.clickAddUser();

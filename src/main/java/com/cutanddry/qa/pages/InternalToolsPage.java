@@ -86,315 +86,315 @@ public class InternalToolsPage extends TestBase {
 
 
     public void clickConfigureSuppliers(){
-        restaurantUI.click(configureSupplierLink);
+        getRestaurantUI().click(configureSupplierLink);
     }
 
     public void clickEditDetails(String Distributor){
-        restaurantUI.click(By.xpath(editDetails.replace("SUPPLIER",Distributor)));
+        getRestaurantUI().click(By.xpath(editDetails.replace("SUPPLIER",Distributor)));
     }
 
     public void clickOnPayDetailsSection(){
-        restaurantUI.click(payDetailsBtn);
+        getRestaurantUI().click(payDetailsBtn);
     }
 
     public void clickUncheckFromInternalTools(String Configuration){
-        restaurantUI.waitForVisibility(By.xpath(configureInternalToolsChanges.replace("CONFIGURATION",Configuration)));
-        if(restaurantUI.isCheckboxSelected(By.xpath(configureInternalToolsChanges.replace("CONFIGURATION",Configuration)))) {
-            restaurantUI.click(By.xpath(configureInternalToolsChanges.replace("CONFIGURATION", Configuration)));
+        getRestaurantUI().waitForVisibility(By.xpath(configureInternalToolsChanges.replace("CONFIGURATION",Configuration)));
+        if(getRestaurantUI().isCheckboxSelected(By.xpath(configureInternalToolsChanges.replace("CONFIGURATION",Configuration)))) {
+            getRestaurantUI().click(By.xpath(configureInternalToolsChanges.replace("CONFIGURATION", Configuration)));
         }
     }
 
     public void clickSave(){
-        restaurantUI.click(saveBtn);
+        getRestaurantUI().click(saveBtn);
     }
 
     public boolean isSuccessOverlayDisplayed(){
-        return restaurantUI.isDisplayed(successOverlay);
+        return getRestaurantUI().isDisplayed(successOverlay);
     }
 
     public void clickOK(){
-        restaurantUI.click(okBtn);
+        getRestaurantUI().click(okBtn);
     }
     public void clickOnOrderingSettings(){
-        restaurantUI.waitForVisibility(OrderingSettingsTab);
-        restaurantUI.click(OrderingSettingsTab);
+        getRestaurantUI().waitForVisibility(OrderingSettingsTab);
+        getRestaurantUI().click(OrderingSettingsTab);
         try {
-            restaurantUI.waitForCustom(3000);
+            getRestaurantUI().waitForCustom(3000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
     public void clickTurnOnOrderMinimumGloballyToggle(boolean enable) {
 
-        String handlePosition = restaurantUI.getElement(orderMinimumGloballyToggleStable).getAttribute("style");
+        String handlePosition = getRestaurantUI().getElement(orderMinimumGloballyToggleStable).getAttribute("style");
         boolean isEnabled = handlePosition.contains("translateX(29px)");
 
         if (enable && !isEnabled) {
-            restaurantUI.clickWithScrollAndHover(orderMinimumGloballyToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(orderMinimumGloballyToggleStable1);
         } else if (!enable && isEnabled) {
-            restaurantUI.clickWithScrollAndHover(orderMinimumGloballyToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(orderMinimumGloballyToggleStable1);
         }
     }
     public void clickOnOrderMinimumDropdown(String type){
-        restaurantUI.click(orderMinimumDropDown);
-        restaurantUI.click(By.xpath(orderMinimumDropDownOption.replace("TYPE",type)));
+        getRestaurantUI().click(orderMinimumDropDown);
+        getRestaurantUI().click(By.xpath(orderMinimumDropDownOption.replace("TYPE",type)));
     }
     public void enterOrderMinimum(String minimum){
-        restaurantUI.click(addOrderMinimum);
-        restaurantUI.clear(addOrderMinimum);
-        restaurantUI.sendKeys(addOrderMinimum,minimum);
+        getRestaurantUI().click(addOrderMinimum);
+        getRestaurantUI().clear(addOrderMinimum);
+        getRestaurantUI().sendKeys(addOrderMinimum,minimum);
     }
     public void clickSaveBtn(){
-        restaurantUI.scrollToElement(SaveBtn);
-        restaurantUI.waitForVisibility(SaveBtn);
-        restaurantUI.clickUsingJavaScript(SaveBtn);
+        getRestaurantUI().scrollToElement(SaveBtn);
+        getRestaurantUI().waitForVisibility(SaveBtn);
+        getRestaurantUI().clickUsingJavaScript(SaveBtn);
     }
     public void clickCreditMemoCheckbox(boolean enable) {
 
-        boolean isChecked = restaurantUI.getElement(checkboxLocatorCreditMemo).isSelected();
+        boolean isChecked = getRestaurantUI().getElement(checkboxLocatorCreditMemo).isSelected();
 
         if (enable && !isChecked) {
-            restaurantUI.click(checkboxLocatorCreditMemo); // Check the box if not checked
+            getRestaurantUI().click(checkboxLocatorCreditMemo); // Check the box if not checked
         } else if (!enable && isChecked) {
-            restaurantUI.click(checkboxLocatorCreditMemo); // Uncheck the box if already checked
+            getRestaurantUI().click(checkboxLocatorCreditMemo); // Uncheck the box if already checked
         }
     }
     public void enableReportIssueOptionToggle(boolean enable) {
 
-        String handlePosition = restaurantUI.getElement(reportIssueOptionToggleStable).getAttribute("style");
+        String handlePosition = getRestaurantUI().getElement(reportIssueOptionToggleStable).getAttribute("style");
         boolean isEnabled = handlePosition.contains("translateX(29px)");
 
         if (enable && !isEnabled) {
-            restaurantUI.clickWithScrollAndHover(reportIssueOptionToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(reportIssueOptionToggleStable1);
         } else if (!enable && isEnabled) {
-            restaurantUI.clickWithScrollAndHover(reportIssueOptionToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(reportIssueOptionToggleStable1);
         }
     }
     public void disableHideCheckInOptionToggle(boolean enable) {
 
-        String handlePosition = restaurantUI.getElement(hideCheckInOptionToggleStable).getAttribute("style");
+        String handlePosition = getRestaurantUI().getElement(hideCheckInOptionToggleStable).getAttribute("style");
         boolean isEnabled = handlePosition.contains("translateX(29px)");
 
         if (enable && !isEnabled) {
-            restaurantUI.clickWithScrollAndHover(hideCheckInOptionToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(hideCheckInOptionToggleStable1);
         } else if (!enable && isEnabled) {
-            restaurantUI.clickWithScrollAndHover(hideCheckInOptionToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(hideCheckInOptionToggleStable1);
         }
     }
     public boolean isSuccessPopUpDisplayed(){
-        return restaurantUI.isDisplayed(successPopUp);
+        return getRestaurantUI().isDisplayed(successPopUp);
     }
     public void clickPayEnabledToggle(boolean enable) {
 
-        String handlePosition = restaurantUI.getElement(payDetailsToggleStable).getAttribute("style");
+        String handlePosition = getRestaurantUI().getElement(payDetailsToggleStable).getAttribute("style");
         boolean isEnabled = handlePosition.contains("translateX(29px)");
 
         if (enable && !isEnabled) {
-            restaurantUI.clickWithScrollAndHover(payDetailsToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(payDetailsToggleStable1);
         } else if (!enable && isEnabled) {
-            restaurantUI.clickWithScrollAndHover(payDetailsToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(payDetailsToggleStable1);
         }
     }
     public void addCustomerToPayDisable(String name)throws InterruptedException{
-        restaurantUI.click(addCustomerToPayDisable);
-        restaurantUI.scrollToElement(By.xpath(selectDisableCustomer.replace("NAME", name)));
-        restaurantUI.click(By.xpath(selectDisableCustomer.replace("NAME", name)));
-        restaurantUI.waitForCustom(3000);
+        getRestaurantUI().click(addCustomerToPayDisable);
+        getRestaurantUI().scrollToElement(By.xpath(selectDisableCustomer.replace("NAME", name)));
+        getRestaurantUI().click(By.xpath(selectDisableCustomer.replace("NAME", name)));
+        getRestaurantUI().waitForCustom(3000);
     }
     public void enableWillCallPickUpToggle(boolean enable) {
 
-        String handlePosition = restaurantUI.getElement(enableWillCallPickUpToggleStable).getAttribute("style");
+        String handlePosition = getRestaurantUI().getElement(enableWillCallPickUpToggleStable).getAttribute("style");
         boolean isEnabled = handlePosition.contains("translateX(29px)");
 
         if (enable && !isEnabled) {
-            restaurantUI.clickWithScrollAndHover(enableWillCallPickUpToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(enableWillCallPickUpToggleStable1);
         } else if (!enable && isEnabled) {
-            restaurantUI.clickWithScrollAndHover(enableWillCallPickUpToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(enableWillCallPickUpToggleStable1);
         }
     }
 
     public void enableDisableToggle(String ToggleName,boolean enable ){
-        String AttributeValue = restaurantUI.getElement(By.xpath(ToggleDescription.replace("TOGGLENAME",ToggleName))).getAttribute("style");
+        String AttributeValue = getRestaurantUI().getElement(By.xpath(ToggleDescription.replace("TOGGLENAME",ToggleName))).getAttribute("style");
         boolean isEnabled = AttributeValue.contains("rgb(0, 136, 0)");
 
         if(isEnabled != enable ){
-            restaurantUI.clickWithScrollAndHover(By.xpath(ToggleDescription.replace("TOGGLENAME",ToggleName)));
+            getRestaurantUI().clickWithScrollAndHover(By.xpath(ToggleDescription.replace("TOGGLENAME",ToggleName)));
         }
     }
     public void clickChatCheckbox(boolean enable) {
 
-        boolean isChecked = restaurantUI.getElement(checkboxLocatorChat).isSelected();
+        boolean isChecked = getRestaurantUI().getElement(checkboxLocatorChat).isSelected();
 
         if (enable && !isChecked) {
-            restaurantUI.click(checkboxLocatorChat); // Check the box if not checked
+            getRestaurantUI().click(checkboxLocatorChat); // Check the box if not checked
         } else if (!enable && isChecked) {
-            restaurantUI.click(checkboxLocatorChat); // Uncheck the box if already checked
+            getRestaurantUI().click(checkboxLocatorChat); // Uncheck the box if already checked
         }
     }
     public void clickSaveChanges()throws InterruptedException{
-        restaurantUI.click(btn_saveChanges);
+        getRestaurantUI().click(btn_saveChanges);
     }
     public void displayPurchaseHistoryToggle(boolean enable) {
 
-        String handlePosition = restaurantUI.getElement(displayPurchaseHistoryToggleStable).getAttribute("style");
+        String handlePosition = getRestaurantUI().getElement(displayPurchaseHistoryToggleStable).getAttribute("style");
         boolean isEnabled = handlePosition.contains("translateX(29px)");
 
         if (enable && !isEnabled) {
-            restaurantUI.clickWithScrollAndHover(displayPurchaseHistoryToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(displayPurchaseHistoryToggleStable1);
         } else if (!enable && isEnabled) {
-            restaurantUI.clickWithScrollAndHover(displayPurchaseHistoryToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(displayPurchaseHistoryToggleStable1);
         }
     }
     public void displayPurchasePriceOnOperatorToggle(boolean enable) {
 
-        String handlePosition = restaurantUI.getElement(displayPurchasePriceOnOperatorToggleStable).getAttribute("style");
+        String handlePosition = getRestaurantUI().getElement(displayPurchasePriceOnOperatorToggleStable).getAttribute("style");
         boolean isEnabled = handlePosition.contains("translateX(29px)");
 
         if (enable && !isEnabled) {
-            restaurantUI.clickWithScrollAndHover(displayPurchasePriceOnOperatorToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(displayPurchasePriceOnOperatorToggleStable1);
         } else if (!enable && isEnabled) {
-            restaurantUI.clickWithScrollAndHover(displayPurchasePriceOnOperatorToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(displayPurchasePriceOnOperatorToggleStable1);
         }
     }
     public void clickEnableFTNIPaymentGatewayCheckbox(boolean enable) throws InterruptedException{
-        restaurantUI.waitForCustom(4000);
-        restaurantUI.click(lbl_paymentRail);
-        restaurantUI.waitForCustom(4000);
-        boolean isChecked = restaurantUI.getElement(checkboxEnableFTNIPaymentGateway).isSelected();
+        getRestaurantUI().waitForCustom(4000);
+        getRestaurantUI().click(lbl_paymentRail);
+        getRestaurantUI().waitForCustom(4000);
+        boolean isChecked = getRestaurantUI().getElement(checkboxEnableFTNIPaymentGateway).isSelected();
 
         if (enable && !isChecked) {
-            restaurantUI.click(checkboxEnableFTNIPaymentGateway); // Check the box if not checked
+            getRestaurantUI().click(checkboxEnableFTNIPaymentGateway); // Check the box if not checked
         } else if (!enable && isChecked) {
-            restaurantUI.click(checkboxEnableFTNIPaymentGateway); // Uncheck the box if already checked
+            getRestaurantUI().click(checkboxEnableFTNIPaymentGateway); // Uncheck the box if already checked
         }
     }
     public void clickHideZeroStockLabelToggle(boolean enable) {
 
-        String handlePosition = restaurantUI.getElement(hideZeroStockLabelToggleStable).getAttribute("style");
+        String handlePosition = getRestaurantUI().getElement(hideZeroStockLabelToggleStable).getAttribute("style");
         boolean isEnabled = handlePosition.contains("translateX(29px)");
 
         if (enable && !isEnabled) {
-            restaurantUI.clickWithScrollAndHover(hideZeroStockLabelToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(hideZeroStockLabelToggleStable1);
         } else if (!enable && isEnabled) {
-            restaurantUI.clickWithScrollAndHover(hideZeroStockLabelToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(hideZeroStockLabelToggleStable1);
         }
     }
     public void clickOnSimpleListViewDropdown(String type){
-        restaurantUI.click(simpleListViewDropDown);
-        restaurantUI.click(By.xpath(simpleListViewDropDownOption.replace("TYPE",type)));
+        getRestaurantUI().click(simpleListViewDropDown);
+        getRestaurantUI().click(By.xpath(simpleListViewDropDownOption.replace("TYPE",type)));
     }
     public void clickOnQuickAddViewDropDown(String type){
-        restaurantUI.click(quickAddViewDropDown);
-        restaurantUI.click(By.xpath(quickAddViewDropDownOption.replace("TYPE",type)));
+        getRestaurantUI().click(quickAddViewDropDown);
+        getRestaurantUI().click(By.xpath(quickAddViewDropDownOption.replace("TYPE",type)));
     }
     public void caseMinimumGloballyToggle(boolean enable) {
 
-        String handlePosition = restaurantUI.getElement(caseMinimumGloballyToggleStable).getAttribute("style");
+        String handlePosition = getRestaurantUI().getElement(caseMinimumGloballyToggleStable).getAttribute("style");
         boolean isEnabled = handlePosition.contains("translateX(29px)");
 
         if (enable && !isEnabled) {
-            restaurantUI.clickWithScrollAndHover(caseMinimumGloballyToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(caseMinimumGloballyToggleStable1);
         } else if (!enable && isEnabled) {
-            restaurantUI.clickWithScrollAndHover(caseMinimumGloballyToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(caseMinimumGloballyToggleStable1);
         }
     }
 
 
     public void clickOnDefaultViewPortalAsSimpleList() {
-        restaurantUI.click(lbl_DefaultViewPortalDropDow);
-        restaurantUI.waitForVisibility(lbl_DefaultViewPortalAsSimpleList);
-        restaurantUI.click(lbl_DefaultViewPortalAsSimpleList);
+        getRestaurantUI().click(lbl_DefaultViewPortalDropDow);
+        getRestaurantUI().waitForVisibility(lbl_DefaultViewPortalAsSimpleList);
+        getRestaurantUI().click(lbl_DefaultViewPortalAsSimpleList);
     }
 
     public void clickOnDefaultViewPortalAsQuickAdd() {
-        restaurantUI.click(lbl_DefaultViewPortalDropDow);
-        restaurantUI.waitForVisibility(lbl_DefaultViewPortalAsQuickAdd);
-        restaurantUI.click(lbl_DefaultViewPortalAsQuickAdd);
+        getRestaurantUI().click(lbl_DefaultViewPortalDropDow);
+        getRestaurantUI().waitForVisibility(lbl_DefaultViewPortalAsQuickAdd);
+        getRestaurantUI().click(lbl_DefaultViewPortalAsQuickAdd);
     }
 
     public void clickOnDefaultViewPortalAsOrderGuide() {
-        restaurantUI.click(lbl_DefaultViewPortalDropDow);
-        restaurantUI.waitForVisibility(lbl_DefaultViewPortalAsOrderGuide);
-        restaurantUI.click(lbl_DefaultViewPortalAsOrderGuide);
+        getRestaurantUI().click(lbl_DefaultViewPortalDropDow);
+        getRestaurantUI().waitForVisibility(lbl_DefaultViewPortalAsOrderGuide);
+        getRestaurantUI().click(lbl_DefaultViewPortalAsOrderGuide);
     }
 
     public void clickOnDefaultViewPortalAsCatalog() {
-        restaurantUI.click(lbl_DefaultViewPortalDropDow);
-        restaurantUI.waitForVisibility(lbl_DefaultViewPortalAsCatalog);
-        restaurantUI.click(lbl_DefaultViewPortalAsCatalog);
+        getRestaurantUI().click(lbl_DefaultViewPortalDropDow);
+        getRestaurantUI().waitForVisibility(lbl_DefaultViewPortalAsCatalog);
+        getRestaurantUI().click(lbl_DefaultViewPortalAsCatalog);
     }
 
     public void clickOnDefaultViewPortalAsScanToOrder() {
-        restaurantUI.click(lbl_DefaultViewPortalDropDow);
-        restaurantUI.waitForVisibility(lbl_DefaultViewPortalAsScanToOrder);
-        restaurantUI.click(lbl_DefaultViewPortalAsScanToOrder);
+        getRestaurantUI().click(lbl_DefaultViewPortalDropDow);
+        getRestaurantUI().waitForVisibility(lbl_DefaultViewPortalAsScanToOrder);
+        getRestaurantUI().click(lbl_DefaultViewPortalAsScanToOrder);
     }
 
     public void clickOnDefaultQuickAdd() {
-        restaurantUI.click(lbl_QuickAddViewDropDow);
-        restaurantUI.waitForVisibility(lbl_QuickAddEnable);
-        restaurantUI.click(lbl_QuickAddEnable);
+        getRestaurantUI().click(lbl_QuickAddViewDropDow);
+        getRestaurantUI().waitForVisibility(lbl_QuickAddEnable);
+        getRestaurantUI().click(lbl_QuickAddEnable);
     }
 
     public void clickOnDefaultSimpleList() {
-        restaurantUI.click(lbl_SimpleListViewDropDow);
-        restaurantUI.waitForVisibility(lbl_SimpleListEnable);
-        restaurantUI.click(lbl_SimpleListEnable);
+        getRestaurantUI().click(lbl_SimpleListViewDropDow);
+        getRestaurantUI().waitForVisibility(lbl_SimpleListEnable);
+        getRestaurantUI().click(lbl_SimpleListEnable);
     }
 
     public boolean isDefaultViewPortalAsSimpleListDisplayed() {
-        return restaurantUI.isDisplayed(lbl_defaultOrderHistoryAsSimpleList, 5);
+        return getRestaurantUI().isDisplayed(lbl_defaultOrderHistoryAsSimpleList, 5);
     }
 
     public boolean isDefaultViewPortalAsQuickAddDisplayed() {
-        return restaurantUI.isDisplayed(lbl_defaultOrderHistoryAsQuickAdd, 5);
+        return getRestaurantUI().isDisplayed(lbl_defaultOrderHistoryAsQuickAdd, 5);
     }
 
     public boolean isDefaultViewPortalAsOrderGuideDisplayed() {
-        return restaurantUI.isDisplayed(lbl_defaultOrderHistoryAsOrderGuide, 5);
+        return getRestaurantUI().isDisplayed(lbl_defaultOrderHistoryAsOrderGuide, 5);
     }
 
     public boolean isDefaultViewPortalAsCatalogDisplayed() {
-        return restaurantUI.isDisplayed(lbl_defaultOrderHistoryAsCatalog, 5);
+        return getRestaurantUI().isDisplayed(lbl_defaultOrderHistoryAsCatalog, 5);
     }
 
     public boolean isDefaultViewPortalAsScanToOrderDisplayed() {
-        return restaurantUI.isDisplayed(lbl_defaultOrderHistoryAsScanToOrder, 5);
+        return getRestaurantUI().isDisplayed(lbl_defaultOrderHistoryAsScanToOrder, 5);
     }
 
     public boolean isDefaultQuickAddDisplayed() {
-        return restaurantUI.isDisplayed(lbl_defaultQuickAddView, 5);
+        return getRestaurantUI().isDisplayed(lbl_defaultQuickAddView, 5);
     }
 
     public boolean isDefaultSimpleListDisplayed() {
-        return restaurantUI.isDisplayed(lbl_defaultSimpleListView, 5);
+        return getRestaurantUI().isDisplayed(lbl_defaultSimpleListView, 5);
     }
 
     public void manualOrderQuantityCalculationToggle(boolean enable) {
 
-        String handlePosition = restaurantUI.getElement(manualOrderQuantityCalculationToggleStable).getAttribute("style");
+        String handlePosition = getRestaurantUI().getElement(manualOrderQuantityCalculationToggleStable).getAttribute("style");
         boolean isEnabled = handlePosition.contains("translateX(29px)");
 
         if (enable && !isEnabled) {
-            restaurantUI.clickWithScrollAndHover(manualOrderQuantityCalculationToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(manualOrderQuantityCalculationToggleStable1);
         } else if (!enable && isEnabled) {
-            restaurantUI.clickWithScrollAndHover(manualOrderQuantityCalculationToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(manualOrderQuantityCalculationToggleStable1);
         }
     }
     public void enterOrderMinimumAmount(String minimum){
-        restaurantUI.click(addOrderMinimumAmount);
-        restaurantUI.clear(addOrderMinimumAmount);
-        restaurantUI.sendKeys(addOrderMinimumAmount,minimum);
+        getRestaurantUI().click(addOrderMinimumAmount);
+        getRestaurantUI().clear(addOrderMinimumAmount);
+        getRestaurantUI().sendKeys(addOrderMinimumAmount,minimum);
     }
     public void TurnOnAllowSupplierToSetMinimumToggle(boolean enable) {
 
-        String handlePosition = restaurantUI.getElement(AllowSupplierToSetMinimumToggleStable).getAttribute("style");
+        String handlePosition = getRestaurantUI().getElement(AllowSupplierToSetMinimumToggleStable).getAttribute("style");
         boolean isEnabled = handlePosition.contains("translateX(29px)");
 
         if (enable && !isEnabled) {
-            restaurantUI.clickWithScrollAndHover(AllowSupplierToSetMinimumToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(AllowSupplierToSetMinimumToggleStable1);
         } else if (!enable && isEnabled) {
-            restaurantUI.clickWithScrollAndHover(AllowSupplierToSetMinimumToggleStable1);
+            getRestaurantUI().clickWithScrollAndHover(AllowSupplierToSetMinimumToggleStable1);
         }
     }
 

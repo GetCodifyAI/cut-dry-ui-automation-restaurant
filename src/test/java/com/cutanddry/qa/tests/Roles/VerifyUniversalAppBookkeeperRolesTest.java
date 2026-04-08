@@ -29,7 +29,7 @@ public class VerifyUniversalAppBookkeeperRolesTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Login.navigateToLoginAs();
         Login.loginAsBookkeeper(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Dashboard.navigateToOrder();
         Dashboard.navigateToIndependentFoodsCo();
         Dashboard.navigateToOrderGuide();

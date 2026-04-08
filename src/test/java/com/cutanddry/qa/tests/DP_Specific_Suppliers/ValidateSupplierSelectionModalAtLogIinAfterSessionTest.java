@@ -42,8 +42,8 @@ public class ValidateSupplierSelectionModalAtLogIinAfterSessionTest extends Test
         softAssert.assertTrue(Dashboard.isSwitch1932SavalDisplayed(),"switch 1932 saval not displayed");
 
         // Simulate session expiration
-        driver.manage().deleteAllCookies();
-        driver.navigate().refresh();
+        getDriver().manage().deleteAllCookies();
+        getDriver().navigate().refresh();
 
         Login.loginAsSavalFoodRestaurant(EmailOrMobile,Password);
         Assert.assertTrue(Dashboard.isChooseProductCatalogDisplayed(),"navigate to choose product catalog error");

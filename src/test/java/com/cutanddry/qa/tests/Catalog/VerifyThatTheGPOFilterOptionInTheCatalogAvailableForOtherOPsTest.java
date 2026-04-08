@@ -47,13 +47,13 @@ public class VerifyThatTheGPOFilterOptionInTheCatalogAvailableForOtherOPsTest ex
         Catalog.clickDealsType();
         softAssert.assertTrue(Catalog.isGPOContractedDisplay(),"GPO contracted option filter display error");
         Customer.searchItemOnCatalog(itemCode);
-        Thread.sleep(5000);
+        getRestaurantUI().waitForCustom(5000);
         softAssert.assertTrue(Customer.isCatalogFilterDisplayTag(itemName,tag),"tag display catalog error");
 
 
         Customer.clickOnOrderGuideTab();
         Customer.clearSearchField();
-        Thread.sleep(3000);
+        getRestaurantUI().waitForCustom(3000);
 
         Customer.goToEdit();
         softAssert.assertTrue(Customer.isEditOrderGuideTextDisplayed(),"navigation error for edit");
@@ -63,7 +63,7 @@ public class VerifyThatTheGPOFilterOptionInTheCatalogAvailableForOtherOPsTest ex
         Catalog.clickDealsType();
         softAssert.assertTrue(Catalog.isGPOContractedDisplay(),"GPO contracted option filter display error");
         Customer.searchItemOnCatalog(itemCode);
-        Thread.sleep(5000);
+        getRestaurantUI().waitForCustom(5000);
         softAssert.assertTrue(Customer.isCatalogFilterDisplayTag(itemName,tag),"tag display catalog error");
 
         softAssert.assertAll();

@@ -32,7 +32,7 @@ public class VerifyWhiteLabelCustomOrderGuideSectionTest extends TestBase{
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Login.navigateToLoginAs();
         Login.goToOperatorStephanieCollins(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Order.goToOrder();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.sortItemsByCustomOrder();

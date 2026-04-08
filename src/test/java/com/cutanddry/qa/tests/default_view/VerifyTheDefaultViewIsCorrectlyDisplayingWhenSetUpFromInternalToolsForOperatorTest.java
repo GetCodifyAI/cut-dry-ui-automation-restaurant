@@ -42,11 +42,11 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
         InternalTools.navigateToEditDetails(DP);
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.clickOnQuickAddViewDropDown(status);
-        Thread.sleep(3000);
+        getRestaurantUI().waitForCustom(3000);
         InternalTools.clickOnSimpleListViewDropdown(simpleListView);
-        Thread.sleep(3000);
+        getRestaurantUI().waitForCustom(3000);
         InternalTools.enableDefaultViewPortalAsOrderGuide();
-        Thread.sleep(5000);
+        getRestaurantUI().waitForCustom(5000);
 //        softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save 1");
 
         InternalTools.clickOkOnSuccessBtn();
@@ -63,7 +63,7 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
         InternalTools.navigateToEditDetails(DP);
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.enableDefaultViewPortalAsCatalog();
-        Thread.sleep(3000);
+        getRestaurantUI().waitForCustom(3000);
         softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save 2");
         InternalTools.clickOkOnSuccessBtn();
         Login.closePreviousTab();
@@ -79,7 +79,7 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
         InternalTools.navigateToEditDetails(DP);
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.enableDefaultViewPortalAsQuickAdd();
-        Thread.sleep(4000);
+        getRestaurantUI().waitForCustom(4000);
         softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save 3");
         InternalTools.clickOkOnSuccessBtn();
         Login.closePreviousTab();
@@ -95,7 +95,7 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
         InternalTools.navigateToEditDetails(DP);
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.enableDefaultViewPortalAsSimpleList();
-        Thread.sleep(4000);
+        getRestaurantUI().waitForCustom(4000);
         softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save 4");
         InternalTools.clickOkOnSuccessBtn();
         Login.closePreviousTab();
@@ -123,7 +123,7 @@ public class VerifyTheDefaultViewIsCorrectlyDisplayingWhenSetUpFromInternalTools
         InternalTools.navigateToEditDetails(DP);
         InternalTools.navigateToOrderingSettingsTab();
         InternalTools.enableDefaultViewPortalAsOrderGuide();
-        Thread.sleep(4000);
+        getRestaurantUI().waitForCustom(4000);
         softAssert.assertTrue(InternalTools.isSuccessPopUpDisplayed(),"change not save 5");
         InternalTools.clickOkOnSuccessBtn();
 

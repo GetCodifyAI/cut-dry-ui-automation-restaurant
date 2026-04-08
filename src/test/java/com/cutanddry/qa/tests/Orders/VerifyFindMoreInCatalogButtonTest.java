@@ -37,10 +37,10 @@ public class VerifyFindMoreInCatalogButtonTest extends TestBase {
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
         Customer.searchItemOnOrderGuide(searchItemCode);
 
-        Thread.sleep(4000);
+        getRestaurantUI().waitForCustom(4000);
         softAssert.assertTrue(Customer.getItemNameFirstRow().toLowerCase().contains(itemName.toLowerCase()),"item mismatch");
         Order.clickFindMoreInCatalog();
-        Thread.sleep(6000);
+        getRestaurantUI().waitForCustom(6000);
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName.toLowerCase()), "item not found");
         softAssert.assertAll();
 

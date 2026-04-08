@@ -41,7 +41,7 @@ public class VerifyOrderApprovalForOrderWithMultiUOMTest extends TestBase {
         Login.settingsWLGateKeeper();
         Login.navigateToLoginAs();
         Login.loginAsAdminWL(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Dashboard.navigateToOrder();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 
@@ -85,7 +85,7 @@ public class VerifyOrderApprovalForOrderWithMultiUOMTest extends TestBase {
         //Login as Admin
         Login.navigateToLoginAs();
         Login.loginAsAdminWL(AdminName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Dashboard.navigateToDrafts();
         softAssert.assertTrue(Drafts.isUserNavigatedToDrafts(),"navigation error");
         softAssert.assertEquals(Drafts.getReferenceNum(),referenceNum,"draft matching error");

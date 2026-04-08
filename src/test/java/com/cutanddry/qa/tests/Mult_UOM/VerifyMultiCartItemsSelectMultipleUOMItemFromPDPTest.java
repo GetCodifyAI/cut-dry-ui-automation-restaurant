@@ -39,7 +39,7 @@ public class VerifyMultiCartItemsSelectMultipleUOMItemFromPDPTest extends TestBa
 
         Login.navigateToLoginAs();
         Login.goToOperatorBermudaBiologicalStation(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Customer.clickOnPlaceOrder();
         Assert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 

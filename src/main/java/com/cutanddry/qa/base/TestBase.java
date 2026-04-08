@@ -20,15 +20,31 @@ import java.util.logging.Logger;
 
 public class TestBase {
     private static final Logger LOGGER = Logger.getLogger(TestBase.class.getName());
-    protected static WebDriver driver;
-    protected static JavascriptExecutor js;
-    protected static KeywordBase restaurantUI;
-    protected static WebDriverWait wait;
+    private static final ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
+    private static final ThreadLocal<JavascriptExecutor> jsThread = new ThreadLocal<>();
+    private static final ThreadLocal<KeywordBase> restaurantUIThread = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriverWait> waitThread = new ThreadLocal<>();
     private static final DecimalFormat df = new DecimalFormat("#.###");
+
+    protected static WebDriver getDriver() {
+        return driverThread.get();
+    }
+
+    protected static JavascriptExecutor getJs() {
+        return jsThread.get();
+    }
+
+    public static KeywordBase getRestaurantUI() {
+        return restaurantUIThread.get();
+    }
+
+    protected static WebDriverWait getWait() {
+        return waitThread.get();
+    }
 
     // Initialization method to set up the WebDriver and other components
     public static void initialization() {
-        if (driver == null) {  // Ensure WebDriver is initialized only once
+        if (getDriver() == null) {  // Ensure WebDriver is initialized only once per thread
             if (Constants.BROWSER_NAME.equalsIgnoreCase("chrome")) {
                 try {
                     ChromeOptions chromeOptions = new ChromeOptions();
@@ -36,12 +52,13 @@ public class TestBase {
                     if (Constants.RUN_HEADLESS) {
                         chromeOptions.addArguments("--headless", "--window-size=1920,1080");
                     }
-                    driver = new ChromeDriver(chromeOptions);
-                    js = (JavascriptExecutor) driver;
-                    wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-                    driver.get(Constants.MAIN_URL);
-                    restaurantUI = new KeywordBase(driver, wait);  // Initialize KeywordBase here
+                    WebDriver newDriver = new ChromeDriver(chromeOptions);
+                    driverThread.set(newDriver);
+                    jsThread.set((JavascriptExecutor) newDriver);
+                    WebDriverWait newWait = new WebDriverWait(newDriver, Duration.ofSeconds(20));
+                    waitThread.set(newWait);
+                    newDriver.get(Constants.MAIN_URL);
+                    restaurantUIThread.set(new KeywordBase(newDriver, newWait));
 
                     LOGGER.info("WebDriver initialized and navigated to the URL: " + Constants.MAIN_URL);
                 } catch (Exception e) {
@@ -54,7 +71,7 @@ public class TestBase {
     }
 
     public static void secInitialization() {
-        if (driver == null) {  // Ensure WebDriver is initialized only once
+        if (getDriver() == null) {  // Ensure WebDriver is initialized only once per thread
             if (Constants.BROWSER_NAME.equalsIgnoreCase("chrome")) {
                 try {
                     ChromeOptions chromeOptions = new ChromeOptions();
@@ -62,12 +79,13 @@ public class TestBase {
                     if (Constants.RUN_HEADLESS) {
                         chromeOptions.addArguments("--headless", "--window-size=1920,1080");
                     }
-                    driver = new ChromeDriver(chromeOptions);
-                    js = (JavascriptExecutor) driver;
-                    wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-                    driver.get(Constants.SEC_URL);
-                    restaurantUI = new KeywordBase(driver, wait);  // Initialize KeywordBase here
+                    WebDriver newDriver = new ChromeDriver(chromeOptions);
+                    driverThread.set(newDriver);
+                    jsThread.set((JavascriptExecutor) newDriver);
+                    WebDriverWait newWait = new WebDriverWait(newDriver, Duration.ofSeconds(15));
+                    waitThread.set(newWait);
+                    newDriver.get(Constants.SEC_URL);
+                    restaurantUIThread.set(new KeywordBase(newDriver, newWait));
 
                     LOGGER.info("WebDriver initialized and navigated to the URL: " + Constants.SEC_URL);
                 } catch (Exception e) {
@@ -81,19 +99,24 @@ public class TestBase {
 
     // Method to close the browser and clean up resources
     public static void closeAllBrowsers() {
-        if (driver != null) {
-//            driver.close();
-            driver.quit();
-            driver = null;  // Reset the driver to allow re-initialization in future tests
+        if (getDriver() != null) {
+            getDriver().quit();
+            driverThread.remove();
+            jsThread.remove();
+            waitThread.remove();
+            restaurantUIThread.remove();
             LOGGER.info("All browsers are closed.");
         }
     }
 
     // Method to close the browser and clean up resources
     public static void closeAllBrowsersAtOnce() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;  // Reset the driver to allow re-initialization in future tests
+        if (getDriver() != null) {
+            getDriver().quit();
+            driverThread.remove();
+            jsThread.remove();
+            waitThread.remove();
+            restaurantUIThread.remove();
             LOGGER.info("All browsers are closed.");
         }
     }
@@ -101,23 +124,26 @@ public class TestBase {
     public static void takeScreenshotOnFailure(ITestResult result) {
         if (ITestResult.FAILURE == result.getStatus()) {
             String testName = result.getName();
-            restaurantUI.captureScreenshot(testName);
+            getRestaurantUI().captureScreenshot(testName);
         }
     }
 
     //Method to close multiple tabs
     public static void closeMultipleTabs() {
-        if (driver != null) {
+        if (getDriver() != null) {
             // Get all the window handles
-            Set<String> windowHandles = driver.getWindowHandles();
+            Set<String> windowHandles = getDriver().getWindowHandles();
 
             // Iterate over all the open windows and close them
             for (String windowHandle : windowHandles) {
-                driver.switchTo().window(windowHandle);
-                driver.close();
+                getDriver().switchTo().window(windowHandle);
+                getDriver().close();
             }
 
-            driver = null;  // Reset the driver to allow re-initialization in future tests
+            driverThread.remove();
+            jsThread.remove();
+            waitThread.remove();
+            restaurantUIThread.remove();
             LOGGER.info("All browsers are closed.");
         }
     }

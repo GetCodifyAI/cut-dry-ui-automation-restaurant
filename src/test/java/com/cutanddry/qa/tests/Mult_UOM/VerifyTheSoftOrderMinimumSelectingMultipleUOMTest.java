@@ -35,7 +35,7 @@ public class VerifyTheSoftOrderMinimumSelectingMultipleUOMTest extends TestBase 
 
         Login.navigateToLoginAs();
         Login.loginAsAdminWL(OperatorName);
-        restaurantUI.switchToNewTab();
+        getRestaurantUI().switchToNewTab();
         Dashboard.navigateToOrder();
         softAssert.assertTrue(Dashboard.isUserNavigatedToOrderGuide(),"navigation error");
 
