@@ -136,11 +136,7 @@ public class Customer {
     public static boolean isAddToCartTextDisplayed(){return customersPage.isAddToCartTextDisplayed();}
     public static double getItemPriceReviewCart(){
         if (customersPage.isEditOrderTextDisplayed()) {
-            try {
-                return customersPage.getItemPriceOnMultiOUMCheckout();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            return customersPage.getItemPriceOnMultiOUMCheckout();
         }else {
             return customersPage.getItemPriceReviewCart();
         }
