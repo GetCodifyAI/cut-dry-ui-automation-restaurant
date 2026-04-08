@@ -589,11 +589,6 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
     }
     public void clickOrderGuideTab(){
         getRestaurantUI().waitForVisibility(btn_catalogToOrderGuide);
-        try {
-            getRestaurantUI().waitForCustom(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         getRestaurantUI().click(btn_catalogToOrderGuide);
     }
 
@@ -624,13 +619,10 @@ By lbl_itemPriceFirstRow = By.xpath("((//td//span//div[@data-tip='View Product D
         return getRestaurantUI().getText(lbl_catalogSearchItemList, 0);
     }
 
-    public void clickAddToCartCatalog() throws InterruptedException {
-        getRestaurantUI().waitForCustom(4000);
+    public void clickAddToCartCatalog() {
         getRestaurantUI().waitForVisibility(btn_addToCart);
         getRestaurantUI().waitForClickability(btn_addToCart);
-        getRestaurantUI().waitForCustom(4000);
         getRestaurantUI().clicked(btn_addToCart);
-        getRestaurantUI().waitForCustom(2000);
         getRestaurantUI().waitForElementEnabledState(btn_checkout, true);
     }
 
@@ -1048,9 +1040,8 @@ public void clickOnCloseOrderGuideEditor(){
         }
         return count;
     }
-    public String getItemNameFirstRowWL() throws InterruptedException {
+    public String getItemNameFirstRowWL() {
         getRestaurantUI().waitForElementEnabledState(lbl_itemNameListWL,true);
-        getRestaurantUI().waitForCustom(3000);
         return getRestaurantUI().getText(lbl_itemNameListWL);
     }
     public void clickOnSearchCustomers(){
@@ -1393,9 +1384,8 @@ public void clickOnCloseOrderGuideEditor(){
             throw new RuntimeException(e);
         }
     }
-    public String getItemCodeFirstRow() throws InterruptedException {
+    public String getItemCodeFirstRow() {
         getRestaurantUI().waitForVisibility(lbl_itemCodeList);
-        getRestaurantUI().waitForCustom(3000);
         return getRestaurantUI().getText(lbl_itemCodeList);
     }
     public double getActiveItemPriceFirstRow() throws InterruptedException {
@@ -1414,9 +1404,8 @@ public void clickOnCloseOrderGuideEditor(){
         getRestaurantUI().waitForVisibility(editOrderPage);
         return getRestaurantUI().isDisplayed(editOrderPage);
     }
-    public Double getItemPriceOnCheckoutButtonViaPDP() throws InterruptedException {
+    public Double getItemPriceOnCheckoutButtonViaPDP() {
         getRestaurantUI().waitForVisibility(btn_checkOutPDP);
-        getRestaurantUI().waitForCustom(8000);
         return Double.valueOf(getRestaurantUI().getText(btn_checkOutPDP).replace("$",""));
     }
     public void clickOnPlusIconInCatalogPDP(String name){
@@ -1475,9 +1464,8 @@ public void clickOnCloseOrderGuideEditor(){
         }
         return getRestaurantUI().isDisplayed(txt_customers);
     }
-    public boolean isCustomerSearchResultByCodeDisplayed(String code) throws InterruptedException {
+    public boolean isCustomerSearchResultByCodeDisplayed(String code) {
         getRestaurantUI().waitForElementEnabledState(By.xpath(btnCustomerOrderGuide.replace("CODE", code)), true);
-        getRestaurantUI().waitForCustom(4000);
         return getRestaurantUI().isDisplayed(By.xpath(btnCustomerOrderGuide.replace("CODE", code)));
     }
     public String getBusinessName(String customerId){
@@ -1491,7 +1479,6 @@ public void clickOnCloseOrderGuideEditor(){
         String result = businessName.substring(0, businessName.indexOf("Test"));
         System.out.println(result);
         try {
-            getRestaurantUI().waitForCustom(3000);
             getRestaurantUI().waitForVisibility(By.xpath(txt_customerProfile.replace("BUSINESSNAME",result)));
         } catch (Exception e){
             return false;
@@ -1504,9 +1491,8 @@ public void clickOnCloseOrderGuideEditor(){
     public void clickOnSpecificRecord(String orderId) {
         getRestaurantUI().click(By.xpath(specificOrderRecord.replace("ORDER_ID", orderId)));
     }
-    public boolean isOrderIdDisplayed(String orderId) throws InterruptedException {
+    public boolean isOrderIdDisplayed(String orderId) {
         getRestaurantUI().waitForVisibility(By.xpath(orderTitle.replace("ORDER_ID", orderId)));
-        getRestaurantUI().waitForCustom(4000);
         return getRestaurantUI().isDisplayed(By.xpath(orderTitle.replace("ORDER_ID", orderId)));
     }
     public void clickAddToCart(){
@@ -1572,23 +1558,20 @@ public void clickOnCloseOrderGuideEditor(){
 //        getRestaurantUI().scrollToElementStable(lbl_firstMultiOUMItemName,3);
         getRestaurantUI().scrollToElementAccurate(lbl_firstMultiOUMItemName,2);
         getRestaurantUI().waitForElementEnabledState(lbl_firstMultiOUMItemName,true);
-        getRestaurantUI().waitForCustom(3000);
         return getRestaurantUI().getText(lbl_firstMultiOUMItemName);
     }
 
-    public String IsCustomOrderTextDisplayed() throws InterruptedException {
+    public String IsCustomOrderTextDisplayed() {
         getRestaurantUI().waitForVisibility(btn_sortCustomOrder);
-        getRestaurantUI().waitForCustom(4000);
         String dropdownText = getRestaurantUI().getText(btn_sortCustomOrder);
         return dropdownText;
 
     }
 
 
-    public String getItemCodeFirstMultiOUM() throws InterruptedException {
+    public String getItemCodeFirstMultiOUM() {
 //        getRestaurantUI().scrollToElementStable(lbl_firstMultiOUMItemCode,3);
         getRestaurantUI().waitForVisibility(lbl_firstMultiOUMItemCode);
-        getRestaurantUI().waitForCustom(3000);
         return getRestaurantUI().getText(lbl_firstMultiOUMItemCode);
     }
 
@@ -1627,7 +1610,6 @@ public void clickOnCloseOrderGuideEditor(){
             String columnName = getRestaurantUI().getText(By.xpath(lbl_orderGuideTableColumnName.replace("COUNT", String.valueOf(i))));
             if ("price".equalsIgnoreCase(columnName)) {
                 getRestaurantUI().waitForVisibility(By.xpath(lbl_firstMultiOUMItemCodeLB.replace("COUNT", String.valueOf(i))));
-                getRestaurantUI().waitForCustom(3000);
                 return getRestaurantUI().getText(By.xpath(lbl_firstMultiOUMItemCodeLB.replace("COUNT", String.valueOf(i))));
             }
         }
@@ -1642,7 +1624,6 @@ public void clickOnCloseOrderGuideEditor(){
             if ("price".equalsIgnoreCase(columnName)) {
                 getRestaurantUI().scrollToElementStable(By.xpath(lbl_firstMultiOUMItemNameLB.replace("COUNT", String.valueOf(i))),3);
                 getRestaurantUI().waitForVisibility(By.xpath(lbl_firstMultiOUMItemNameLB.replace("COUNT", String.valueOf(i))));
-                getRestaurantUI().waitForCustom(3000);
                 return getRestaurantUI().getText(By.xpath(lbl_firstMultiOUMItemNameLB.replace("COUNT", String.valueOf(i))));
             }
         }
@@ -1675,9 +1656,8 @@ public void clickOnCloseOrderGuideEditor(){
         return extractPriceStable(By.xpath(lbl_itemPriceMultiOUM.replace("UOM", position)));
     }
 
-    public Double getItemPriceOnMultiOUMCheckout() throws InterruptedException {
+    public Double getItemPriceOnMultiOUMCheckout() {
         getRestaurantUI().waitForVisibility(btn_orderCheckoutReview);
-        getRestaurantUI().waitForCustom(4000);
         String priceText = getRestaurantUI().getText(btn_orderCheckoutReview).replace("$", "").replace(",", "");
         return Double.valueOf(priceText);
     }
@@ -1754,10 +1734,9 @@ public void clickOnCloseOrderGuideEditor(){
     }
 
 
-    public String getItemCodeFirstMultiOUMCoupa() throws InterruptedException {
+    public String getItemCodeFirstMultiOUMCoupa() {
 //        getRestaurantUI().scrollToElementStable(lbl_firstMultiOUMItemCodeCoupa,3);
         getRestaurantUI().waitForVisibility(lbl_firstMultiOUMItemCodeCoupa);
-        getRestaurantUI().waitForCustom(3000);
         return getRestaurantUI().getText(lbl_firstMultiOUMItemCodeCoupa);
     }
 

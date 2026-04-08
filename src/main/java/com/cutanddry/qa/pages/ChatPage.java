@@ -21,9 +21,9 @@ public class ChatPage extends LoginPage {
         getRestaurantUI().waitForVisibility(tbx_Message);
         getRestaurantUI().click(tbx_Message);
     }
-    public void typeOnMessage(String msg) throws InterruptedException {
+    public void typeOnMessage(String msg) {
         getRestaurantUI().clear(tbx_Message);
-        getRestaurantUI().waitForCustom(3000);
+        getRestaurantUI().waitForClickability(tbx_Message);
         getRestaurantUI().sendKeys(tbx_Message, msg);
     }
     public void clickSendButton(){

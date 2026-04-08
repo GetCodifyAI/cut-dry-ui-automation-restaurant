@@ -58,11 +58,7 @@ public class UsersPage extends LoginPage {
     }
 
     public void clickOkBtn(){
-        try {
-            getRestaurantUI().waitForCustom(4000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        getRestaurantUI().waitForClickability(btn_ok);
         getRestaurantUI().click(btn_ok);
     }
 

@@ -164,9 +164,9 @@ public class DashboardPage extends LoginPage{
     public void clickOnCustomers(){
         getRestaurantUI().clickWithFallback(btn_customers);
     }
-    public void clickOnOrder() throws InterruptedException {
+    public void clickOnOrder() {
         getRestaurantUI().clickWithFallback(btn_order);
-        getRestaurantUI().waitForCustom(2000);
+        getRestaurantUI().waitForVisibility(txt_dashboard);
     }
 
     public void clickOnSupplier(String supplierName){
@@ -175,13 +175,12 @@ public class DashboardPage extends LoginPage{
     }
 
 
-    public boolean isNavigatedToMaxiesSLOrderGuide() throws InterruptedException {
-        getRestaurantUI().waitForCustom(4000);
+    public boolean isNavigatedToMaxiesSLOrderGuide() {
+        getRestaurantUI().waitForVisibility(MaxiesSLTxt);
         return getRestaurantUI().isDisplayed(MaxiesSLTxt);
     }
 
-    public boolean isNavigatedToOrderGuide(String Supplier) throws InterruptedException {
-        getRestaurantUI().waitForCustom(4000);
+    public boolean isNavigatedToOrderGuide(String Supplier) {
         getRestaurantUI().waitForVisibility(By.xpath(customerNameText.replace("SUPPLIERNAME",Supplier)),30);
         return getRestaurantUI().isDisplayed(By.xpath(customerNameText.replace("SUPPLIERNAME",Supplier)));
     }
@@ -207,8 +206,7 @@ public class DashboardPage extends LoginPage{
     public void clickLocationFilter(){
         getRestaurantUI().click(locationFilter);
     }
-    public void clickOnLocationOption() throws InterruptedException {
-        getRestaurantUI().waitForCustom(2000);
+    public void clickOnLocationOption() {
         getRestaurantUI().waitForVisibility(locationOption);
         getRestaurantUI().click(locationOption);
     }
@@ -222,8 +220,7 @@ public class DashboardPage extends LoginPage{
         getRestaurantUI().hoverOverElement(btn_orderSettings);
         getRestaurantUI().clickWithFallback(btn_orderSettings);
     }
-    public boolean isChooseProductCatalogDisplayed()throws InterruptedException{
-        getRestaurantUI().waitForCustom(3000);
+    public boolean isChooseProductCatalogDisplayed(){
         getRestaurantUI().waitForVisibility(txt_productCatalog);
         return getRestaurantUI().isDisplayed(txt_productCatalog);
     }
@@ -231,9 +228,9 @@ public class DashboardPage extends LoginPage{
         getRestaurantUI().waitForVisibility(By.xpath(chooseProductCatalog.replace("NAME",name)));
         getRestaurantUI().click(By.xpath(chooseProductCatalog.replace("NAME",name)));
     }
-    public void clickOnHome() throws InterruptedException {
+    public void clickOnHome() {
         getRestaurantUI().clickWithFallback(btn_home);
-        getRestaurantUI().waitForCustom(2000);
+        getRestaurantUI().waitForVisibility(txt_home);
     }
     public boolean isUserNavigateHome()throws InterruptedException{
         return getRestaurantUI().isDisplayed(txt_home);
@@ -294,8 +291,8 @@ public class DashboardPage extends LoginPage{
     public boolean isChatSectionDisplay()throws InterruptedException{
         return getRestaurantUI().isDisplayed(btn_chats_visible);
     }
-    public boolean isChatWithUsDisplay()throws InterruptedException{
-        getRestaurantUI().waitForCustom(3000);
+    public boolean isChatWithUsDisplay(){
+        getRestaurantUI().waitForVisibility(btn_chatWithUs);
         return getRestaurantUI().isDisplayed(btn_chatWithUs);
     }
     public boolean isSelectOrderGuidePopUpDisplayed(){

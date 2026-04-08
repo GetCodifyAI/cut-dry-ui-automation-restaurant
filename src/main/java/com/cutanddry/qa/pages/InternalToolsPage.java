@@ -118,11 +118,7 @@ public class InternalToolsPage extends TestBase {
     public void clickOnOrderingSettings(){
         getRestaurantUI().waitForVisibility(OrderingSettingsTab);
         getRestaurantUI().click(OrderingSettingsTab);
-        try {
-            getRestaurantUI().waitForCustom(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        getRestaurantUI().waitForVisibility(SaveBtn);
     }
     public void clickTurnOnOrderMinimumGloballyToggle(boolean enable) {
 
@@ -195,11 +191,11 @@ public class InternalToolsPage extends TestBase {
             getRestaurantUI().clickWithScrollAndHover(payDetailsToggleStable1);
         }
     }
-    public void addCustomerToPayDisable(String name)throws InterruptedException{
+    public void addCustomerToPayDisable(String name){
         getRestaurantUI().click(addCustomerToPayDisable);
         getRestaurantUI().scrollToElement(By.xpath(selectDisableCustomer.replace("NAME", name)));
         getRestaurantUI().click(By.xpath(selectDisableCustomer.replace("NAME", name)));
-        getRestaurantUI().waitForCustom(3000);
+        getRestaurantUI().waitForInvisibility(By.xpath(selectDisableCustomer.replace("NAME", name)));
     }
     public void enableWillCallPickUpToggle(boolean enable) {
 
@@ -256,10 +252,10 @@ public class InternalToolsPage extends TestBase {
             getRestaurantUI().clickWithScrollAndHover(displayPurchasePriceOnOperatorToggleStable1);
         }
     }
-    public void clickEnableFTNIPaymentGatewayCheckbox(boolean enable) throws InterruptedException{
-        getRestaurantUI().waitForCustom(4000);
+    public void clickEnableFTNIPaymentGatewayCheckbox(boolean enable) {
+        getRestaurantUI().waitForVisibility(lbl_paymentRail);
         getRestaurantUI().click(lbl_paymentRail);
-        getRestaurantUI().waitForCustom(4000);
+        getRestaurantUI().waitForVisibility(checkboxEnableFTNIPaymentGateway);
         boolean isChecked = getRestaurantUI().getElement(checkboxEnableFTNIPaymentGateway).isSelected();
 
         if (enable && !isChecked) {

@@ -71,19 +71,23 @@ public class BoostPage extends TestBase {
         boolean isCurrentlyEnabled = getRestaurantUI().isDisplayed(enableSwitch);
         if (isCurrentlyEnabled != enable) {
             getRestaurantUI().click(toggleSwitch);
-            getRestaurantUI().waitForCustom(2000);
+            if (enable) {
+                getRestaurantUI().waitForVisibility(enableSwitch);
+            } else {
+                getRestaurantUI().waitForInvisibility(enableSwitch);
+            }
         }
     }
     public void clickAllItemsConfig() {
         getRestaurantUI().waitForVisibility(btn_allItemConfig);
         getRestaurantUI().click(btn_allItemConfig);
     }
-    public void clickClose() throws InterruptedException {
+    public void clickClose() {
         getRestaurantUI().click(btn_close);
-        getRestaurantUI().waitForCustom(2000);
+        getRestaurantUI().waitForInvisibility(btn_close);
     }
-    public boolean checkInactive(String type) throws InterruptedException {
-        getRestaurantUI().waitForCustom(1000);
+    public boolean checkInactive(String type) {
+        getRestaurantUI().waitForVisibility(By.xpath(txt_inactive_state.replace("Type", type)));
         return getRestaurantUI().isDisplayed(By.xpath(txt_inactive_state.replace("Type", type)));
     }
     public void clickCompareSimilarItemsConfig() {
@@ -143,11 +147,15 @@ public class BoostPage extends TestBase {
     public boolean isItemInCarouselPreview(String code) {
         return getRestaurantUI().isDisplayed(By.xpath(txt_itemAdded.replace("CODE", code)));
     }
-    public void ensureCarouselDisplayStatus(boolean enable) throws InterruptedException {
-        if (getRestaurantUI().isCheckboxOrRadioBtnSelected(toggleCarouselDisplayStatus ) != enable){
+    public void ensureCarouselDisplayStatus(boolean enable) {
+        if (getRestaurantUI().isCheckboxOrRadioBtnSelected(toggleCarouselDisplayStatus) != enable){
             getRestaurantUI().click(toggle_carouselDisplayStatus);
+            if (enable) {
+                getRestaurantUI().waitForVisibility(toggleCarouselDisplayStatus);
+            } else {
+                getRestaurantUI().waitForInvisibility(toggleCarouselDisplayStatus);
+            }
         }
-        getRestaurantUI().waitForCustom(2000);
     }
     public void clickDontForgetToOrderConfig() {
         getRestaurantUI().click(btn_dontforget_config);

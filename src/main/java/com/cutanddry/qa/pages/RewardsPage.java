@@ -44,11 +44,6 @@ public class RewardsPage extends TestBase {
     public void clickOnRedeemBalance(){
         getRestaurantUI().waitForClickability(btn_redeemBalance);
         getRestaurantUI().hoverOverElement(btn_redeemBalance);
-        try {
-            getRestaurantUI().waitForCustom(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         getRestaurantUI().clickUsingJavaScript(btn_redeemBalance);}
 
     public boolean isRedeemBalanceTextDisplayed(){

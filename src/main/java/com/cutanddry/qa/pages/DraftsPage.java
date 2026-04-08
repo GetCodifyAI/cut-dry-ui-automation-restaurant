@@ -39,9 +39,8 @@ public class DraftsPage extends LoginPage{
     public void clickEditOrder(){
         getRestaurantUI().click(btn_editOrder);
     }
-    public String getReferenceNum() throws InterruptedException {
+    public String getReferenceNum() {
         getRestaurantUI().waitForVisibility(referenceNum);
-        getRestaurantUI().waitForCustom(3000);
         String referenceNumOP = getRestaurantUI().getText(referenceNum);
         return referenceNumOP.substring(1);
     }

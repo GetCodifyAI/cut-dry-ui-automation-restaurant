@@ -82,12 +82,12 @@ public class CatalogPage extends LoginPage {
     public void clickAddToCartPlusIcon(String uom)throws InterruptedException{
         getRestaurantUI().waitForVisibility(By.xpath(btn_addToCartPlusQuantity.replace("UOM", uom)));
         getRestaurantUI().click(By.xpath(btn_addToCartPlusQuantity.replace("UOM", uom)));
-        getRestaurantUI().waitForCustom(4000);
+        getRestaurantUI().waitForVisibility(btn_addToCart);
     }
     public void clickAddToCartMinusIcon(String uom) throws InterruptedException {
         getRestaurantUI().waitForVisibility(By.xpath(btn_addToCartMinusQuantity.replace("UOM", uom)));
         getRestaurantUI().click(By.xpath(btn_addToCartMinusQuantity.replace("UOM", uom)));
-        getRestaurantUI().waitForCustom(4000);
+        getRestaurantUI().waitForVisibility(btn_addToCart);
     }
     public void ClickOnEditQuantities(String name)throws InterruptedException{
         getRestaurantUI().waitForVisibility(By.xpath(btn_editQuantities.replace("NAME", name)));
@@ -141,12 +141,12 @@ public class CatalogPage extends LoginPage {
         getRestaurantUI().waitForVisibility(By.xpath(multiUomDropDownOG.replace("CODE", code)));
         getRestaurantUI().click(By.xpath(multiUomDropDownOG.replace("CODE", code)));
         getRestaurantUI().click(multiUomOption);
-        getRestaurantUI().waitForCustom(3000);
+        getRestaurantUI().waitForInvisibility(multiUomOption);
     }
     public void clickOGAddToCartPlusIcon(String code,String uom)throws InterruptedException{
         getRestaurantUI().waitForVisibility(By.xpath(btn_OGAddToCartPlusQuantity.replace("CODE", code).replace("UOM", uom)));
         getRestaurantUI().click(By.xpath(btn_OGAddToCartPlusQuantity.replace("CODE", code).replace("UOM", uom)));
-        getRestaurantUI().waitForCustom(2000);
+        getRestaurantUI().waitForVisibility(By.xpath(getOGPriceUOM.replace("CODE", code).replace("UOM", uom)));
     }
     public double getOGPriceUOM(String code ,String uom) throws InterruptedException {
         try {
@@ -239,11 +239,6 @@ public class CatalogPage extends LoginPage {
         getRestaurantUI().sendKeys(searchField,itemName);
     }
     public void clickonItemOnCatalogPage(String itemCode){
-        try {
-            getRestaurantUI().waitForCustom(7000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         getRestaurantUI().waitForVisibility(By.xpath(itemInTheGrid.replace("ITEMCODE",itemCode)));
         getRestaurantUI().click(By.xpath(itemInTheGrid.replace("ITEMCODE",itemCode)));
     }
@@ -258,11 +253,7 @@ public class CatalogPage extends LoginPage {
         return  getRestaurantUI().isDisplayed(By.xpath(deleteSubstituteItemBtn.replace("ITEMCODE",itemCode)));
     }
     public void clickOnDeleteSubstituteItemBtn(String itemCode){
-        try {
-            getRestaurantUI().waitForCustom(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        getRestaurantUI().waitForVisibility(By.xpath(deleteSubstituteItemBtn.replace("ITEMCODE",itemCode)));
         getRestaurantUI().click(By.xpath(deleteSubstituteItemBtn.replace("ITEMCODE",itemCode)));
     }
     public void clickOnSaveChangesBtn(){
@@ -279,11 +270,6 @@ public class CatalogPage extends LoginPage {
         getRestaurantUI().sendKeys(substituteItemInputField,substituteItem);
         getRestaurantUI().waitForVisibility(By.xpath(selectItemFromDropdown.replace("ITEMCODE",substituteItem)));
         getRestaurantUI().waitForClickability(By.xpath(selectItemFromDropdown.replace("ITEMCODE",substituteItem)));
-        try {
-            getRestaurantUI().waitForCustom(4000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         String ItemName = getRestaurantUI().getText(By.xpath(selectItemFromDropdown.replace("ITEMCODE",substituteItem)));
         String cleanedItemName = ItemName.split(":")[1].split("\\(")[0].trim();
         getRestaurantUI().click(substituteCancelBtn);
@@ -306,11 +292,7 @@ public class CatalogPage extends LoginPage {
         return isDisplayed;
     }
     public boolean isSubstituteItemDisplayed(String substituteItem){
-        try {
-            getRestaurantUI().waitForCustom(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        getRestaurantUI().waitForVisibility(By.xpath(substituteItemNameTxt.replace("ITEMNAME",substituteItem)));
         return getRestaurantUI().isDisplayed(By.xpath(substituteItemNameTxt.replace("ITEMNAME",substituteItem)));
     }
     public void deleteSubstitute(){
@@ -342,8 +324,7 @@ public class CatalogPage extends LoginPage {
 
         return Double.valueOf(cleaned);
     }
-    public boolean isCategoryDisplayed()throws InterruptedException{
-        getRestaurantUI().waitForCustom(3000);
+    public boolean isCategoryDisplayed(){
         getRestaurantUI().waitForVisibility(txt_category);
        return getRestaurantUI().isDisplayed(txt_category);
     }

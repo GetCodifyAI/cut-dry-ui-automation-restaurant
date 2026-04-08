@@ -58,8 +58,7 @@ public class OrderPage extends LoginPage{
     public void clickAddNewSupplier(){
         getRestaurantUI().click(btn_addNewSupplier);
     }
-    public boolean isAddedNewSupplierDisplayed(String supplier)throws InterruptedException {
-        getRestaurantUI().waitForCustom(2000);
+    public boolean isAddedNewSupplierDisplayed(String supplier) {
         getRestaurantUI().waitForVisibility(By.xpath(addedNewSupplier.replace("SUPPLIER",supplier)));
         return getRestaurantUI().isDisplayed(By.xpath(addedNewSupplier.replace("SUPPLIER",supplier)));
     }
@@ -74,8 +73,7 @@ public class OrderPage extends LoginPage{
         }
         return getRestaurantUI().isDisplayed(txt_placeOrder);
     }
-    public void clickOnOneSupplier(String supplier) throws InterruptedException {
-        getRestaurantUI().waitForCustom(2000);
+    public void clickOnOneSupplier(String supplier) {
         getRestaurantUI().waitForVisibility(By.xpath(addedNewSupplier.replace("SUPPLIER",supplier)));
         getRestaurantUI().click(By.xpath(addedNewSupplier.replace("SUPPLIER",supplier)));
     }
@@ -99,8 +97,8 @@ public class OrderPage extends LoginPage{
     public void clickConfirm(){
         getRestaurantUI().click(btn_confirm);
     }
-    public void clickOK()throws InterruptedException{
-        getRestaurantUI().waitForCustom(2000);
+    public void clickOK(){
+        getRestaurantUI().waitForClickability(btn_ok);
         getRestaurantUI().click(btn_ok);
     }
     public boolean isNewlyAddedOrderGuideDisplayed(){
@@ -160,8 +158,7 @@ public class OrderPage extends LoginPage{
     public void clickLocationFilter(){
         getRestaurantUI().click(locationFilter);
     }
-    public void clickOnLocationOption(String location) throws InterruptedException {
-        getRestaurantUI().waitForCustom(2000);
+    public void clickOnLocationOption(String location) {
         getRestaurantUI().waitForVisibility(By.xpath(locationOption.replace("LOCATION",location)));
         getRestaurantUI().click(By.xpath(locationOption.replace("LOCATION",location)));
     }
@@ -210,19 +207,17 @@ public class OrderPage extends LoginPage{
         return getRestaurantUI().isDisplayed(areYouSurePopUp);
     }
 
-    public void clickYes() throws InterruptedException {
+    public void clickYes() {
         getRestaurantUI().click(btn_yes);
-        getRestaurantUI().waitForCustom(1000);
+        getRestaurantUI().waitForInvisibility(areYouSurePopUp);
     }
-    public void editOrderGuideName(String name) throws InterruptedException {
+    public void editOrderGuideName(String name) {
         getRestaurantUI().clear(lbl_orderGuideName);
         getRestaurantUI().sendKeys(lbl_orderGuideName, name);
-        getRestaurantUI().waitForCustom(1000);
     }
-    public void editOrderGuideDescription(String name) throws InterruptedException {
+    public void editOrderGuideDescription(String name) {
         getRestaurantUI().clear(lbl_orderGuideDescription);
         getRestaurantUI().sendKeys(lbl_orderGuideDescription, name);
-        getRestaurantUI().waitForCustom(1000);
     }
     public void clickOnSave(){
         getRestaurantUI().waitForVisibility(btn_save);
