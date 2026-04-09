@@ -52,7 +52,7 @@
             <!--<class name="com.cutanddry.qa.tests.Mult_UOM.VerifyPlaceOrderWithMultiUOMForScrapperIntegratedTest" />-->
             <!--            TODO:sunrise Food DP not available -->
 <!--            <class name="com.cutanddry.qa.tests.OrderGuide.VerifyPickupIsNotDisplayedWhenItIsOnlyEnabledForTheSupplierPortalTermTest" />-->
-<!--            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheHardOrderMinimumSelectingMultipleUOMTest" />-->
+            <class name="com.cutanddry.qa.tests.Mult_UOM.VerifyTheHardOrderMinimumSelectingMultipleUOMTest" />
 
         </classes>
     </test>
