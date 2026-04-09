@@ -51,7 +51,7 @@ public class InternalToolsPage extends TestBase {
     By lbl_DefaultViewPortalAsSimpleList = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Simple List']");
     By lbl_DefaultViewPortalAsQuickAdd = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Quick Add']");
     By lbl_DefaultViewPortalAsOrderGuide = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Order Guide']");
-    By lbl_DefaultViewPortalAsCatalog = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Catalog']");
+    By lbl_DefaultViewPortalAsCatalog = By.xpath("//div[contains(@class, 'themed_select__option') and contains(text(),'Catalog')]");
     By lbl_DefaultViewPortalAsScanToOrder = By.xpath("//div[contains(@class, 'themed_select__option') and text()='Scan to Order']");
 
     By lbl_QuickAddViewDropDow = By.xpath("//*[contains(text(), 'Quick Add View:')]/following-sibling::div//div[contains(@class,'themed_select__indicators')]");

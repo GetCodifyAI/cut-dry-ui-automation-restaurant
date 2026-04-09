@@ -9,10 +9,12 @@
         <parameter name="PART" value="Regression_4" />
         <parameter name="PART" value="Part Four" />
         <classes>
-            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyCreateCreditRequestTest"/>
+            <!--            TODO: Uncomment the following test cases that are already covered by another test case.-->
+<!--            <class name="com.cutanddry.qa.tests.CreditRequests.VerifyCreateCreditRequestTest"/>-->
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestApproveFlowTest"/>
             <class name="com.cutanddry.qa.tests.CreditRequests.VerifyEndToEndCreditRequestDeclineFlowTest"/>
-            <class name="com.cutanddry.qa.tests.Credit_Requests.VerifyTheCreditReqSearchByDistributorTest"/>
+            <!--            TODO: Uncomment the following test cases that are already covered by another test case.-->
+<!--            <class name="com.cutanddry.qa.tests.Credit_Requests.VerifyTheCreditReqSearchByDistributorTest"/>-->
 
             <class name="com.cutanddry.qa.tests.Pay.VerifyAddPaymentMethodTest" />
             <class name="com.cutanddry.qa.tests.Pay.VerifyPaymentSettingsAddPaymentMethodTest" />
