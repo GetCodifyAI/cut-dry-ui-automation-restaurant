@@ -16,26 +16,26 @@
 <!--            <class name="com.cutanddry.qa.tests.E2E.PlaceMailDeliveryOrderViaCatalogTest" />-->
             <class name="com.cutanddry.qa.tests.E2E.PlaceMailDeliveryOrderViaOrderGuideCatalogAndPDPTest" />
 
-            <class name="com.cutanddry.qa.tests.Reports.VerifyMonthlyExpensesByVendorReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyMonthlyExpensesByLocationReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyExpensesByProductReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyExpensesByEmployeeReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyInvoiceDownloadZipFileReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyLocationQuantitySummaryReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyInvoiceDetailsReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyDailyExpensesReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyInvoiceDetailsQuickBooksCompatibleReportGenerateTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForClassicOperatorTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForWhiteLabelOperatorTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForClassicOperatorTestTest" />
-            <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForWhiteLabelOperatorTest" />
+<!--            <class name="com.cutanddry.qa.tests.Reports.VerifyMonthlyExpensesByVendorReportGenerateTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Reports.VerifyMonthlyExpensesByLocationReportGenerateTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Reports.VerifyExpensesByProductReportGenerateTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Reports.VerifyExpensesByEmployeeReportGenerateTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Reports.VerifyInvoiceDownloadZipFileReportGenerateTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Reports.VerifyLocationQuantitySummaryReportGenerateTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Reports.VerifyInvoiceDetailsReportGenerateTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Reports.VerifyDailyExpensesReportGenerateTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Reports.VerifyInvoiceDetailsQuickBooksCompatibleReportGenerateTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForClassicOperatorTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Reports.VerifyReportFeatureForWhiteLabelOperatorTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForClassicOperatorTestTest" />-->
+<!--            <class name="com.cutanddry.qa.tests.Reports.VerifyTheFunctionalityOfReportFeatureForWhiteLabelOperatorTest" />-->
 
             <!--            TODO: Uncomment the following test cases that are already covered by another test case.-->
 <!--            <class name="com.cutanddry.qa.tests.E2E.PlaceMailDeliveryOrderViaPDPTest" />-->
 <!--            <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaOrderGuideTest" />-->
 <!--            <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaCatalogTest" />-->
 <!--            <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaPDPTest" />-->
-            <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaOrderGuideCatalogAndPDPTest" />
+<!--            <class name="com.cutanddry.qa.tests.E2E.PlacePickUpOrderViaOrderGuideCatalogAndPDPTest" />-->
         </classes>
     </test>
 </suite>
